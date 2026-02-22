@@ -1,52 +1,70 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { createServerSupabase } from "@/lib/supabase";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseAdmin = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
-async function authenticateAdmin(request: NextRequest) {
+async function getAuthUser(request: NextRequest) {
     const authHeader = request.headers.get("authorization");
     if (!authHeader?.startsWith("Bearer ")) return null;
     const token = authHeader.split(" ")[1];
-    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-        global: { headers: { Authorization: `Bearer ${token}` } },
-    });
-    const { data: { user }, error } = await supabase.auth.getUser(token);
-    if (error || !user) return null;
+    const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        { global: { headers: { Authorization: `Bearer ${token}` } } }
+    );
+    const { data: { user } } = await supabase.auth.getUser(token);
+    if (!user) return null;
     return user;
 }
 
-/* GET — List all conversations with customer info + unread counts */
 export async function GET(request: NextRequest) {
-    const user = await authenticateAdmin(request);
+    const user = await getAuthUser(request);
     if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
 
-    const supabase = createServerSupabase();
+    const { searchParams } = new URL(request.url);
 
-    // Get all conversations
-    const { data: convs, error } = await supabase
+    // Unread count for badge
+    if (searchParams.get("unread") === "true") {
+        const { count, error } = await supabaseAdmin
+            .from("chat_messages")
+            .select("*", { count: "exact", head: true })
+            .eq("sender_role", "customer")
+            .eq("read", false);
+
+        if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ unread_count: count || 0 });
+    }
+
+    // List all conversations with customer info and unread count
+    const { data: conversations, error } = await supabaseAdmin
         .from("chat_conversations")
         .select("*")
         .order("last_message_at", { ascending: false });
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-    // Enrich with customer info and unread counts
+    // Enrich with customer info and unread count
     const enriched = await Promise.all(
-        (convs || []).map(async (conv) => {
+        (conversations || []).map(async (conv) => {
             // Get customer profile
-            const { data: profile } = await supabase
+            const { data: profile } = await supabaseAdmin
                 .from("customer_profiles")
                 .select("full_name")
                 .eq("id", conv.customer_id)
                 .single();
 
             // Get customer email from auth
-            const { data: authUser } = await supabase.auth.admin.getUserById(conv.customer_id);
+            let customerEmail = "";
+            try {
+                const { data: { user: cUser } } = await supabaseAdmin.auth.admin.getUserById(conv.customer_id);
+                customerEmail = cUser?.email || "";
+            } catch { /* silent */ }
 
-            // Count unread messages from customer
-            const { count } = await supabase
+            // Count unread messages
+            const { count: unreadCount } = await supabaseAdmin
                 .from("chat_messages")
                 .select("*", { count: "exact", head: true })
                 .eq("conversation_id", conv.id)
@@ -55,9 +73,9 @@ export async function GET(request: NextRequest) {
 
             return {
                 ...conv,
-                customer_name: profile?.full_name || authUser?.user?.user_metadata?.full_name || "Cliente",
-                customer_email: authUser?.user?.email || "",
-                unread_count: count || 0,
+                customer_name: profile?.full_name || customerEmail?.split("@")[0] || "Cliente",
+                customer_email: customerEmail,
+                unread_count: unreadCount || 0,
             };
         })
     );

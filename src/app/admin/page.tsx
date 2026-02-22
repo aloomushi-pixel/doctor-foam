@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import AdminLayout from "@/components/AdminLayout";
 
 type Booking = {
     id: string;
@@ -291,12 +292,6 @@ export default function AdminDashboardPage() {
         } catch { alert("Error al cancelar"); }
     };
 
-    /* Logout */
-    const handleLogout = async () => {
-        await supabase.auth.signOut();
-        router.push("/admin/login");
-    };
-
     if (loadingAuth) {
         return <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#94a3b8" }}>Verificando sesión...</div>;
     }
@@ -308,194 +303,165 @@ export default function AdminDashboardPage() {
     const nextBooking = bookings.filter((b) => b.service_date >= new Date().toISOString().split("T")[0]).sort((a, b) => a.service_date.localeCompare(b.service_date))[0];
 
     return (
-        <div style={{ minHeight: "100vh", background: "var(--color-bg-primary)" }}>
-            {/* Navbar */}
-            <nav style={{
-                position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-                background: "rgba(10, 22, 40, 0.95)", backdropFilter: "blur(20px)",
-                borderBottom: "1px solid rgba(96, 165, 250, 0.1)", padding: "0.75rem 1.5rem",
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-            }}>
-                <Link href="/" style={{ textDecoration: "none" }}>
-                    <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.2rem", color: "white" }}>
-                        DOCTOR <span className="gradient-text">FOAM</span>
-                    </span>
-                </Link>
-                <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                    <span style={{ fontFamily: "var(--font-heading)", fontSize: "0.8rem", color: "#64748b" }}>Admin Panel</span>
-                    <button onClick={handleLogout} style={{
-                        background: "rgba(239, 68, 68, 0.1)", border: "1px solid rgba(239, 68, 68, 0.3)",
-                        color: "#f87171", padding: "0.4rem 1rem", borderRadius: "0.5rem",
-                        cursor: "pointer", fontSize: "0.8rem", fontFamily: "var(--font-heading)",
-                    }}>
-                        Salir
-                    </button>
+        <AdminLayout>
+            <div>
+
+                {/* Stats Row */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "2rem" }}>
+                    {[
+                        { label: "Reservas este mes", value: totalBookings, icon: "📅" },
+                        { label: "Pagadas", value: paidBookings, icon: "✅" },
+                        { label: "Ingresos", value: `$${totalRevenue.toLocaleString("es-MX")}`, icon: "💰" },
+                        { label: "Próximo servicio", value: nextBooking ? new Date(nextBooking.service_date + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "short" }) : "—", icon: "🗓️" },
+                    ].map((stat) => (
+                        <div key={stat.label} className="glass-card" style={{ padding: "1.25rem", textAlign: "center" }}>
+                            <div style={{ fontSize: "1.5rem", marginBottom: "0.25rem" }}>{stat.icon}</div>
+                            <div style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>{stat.value}</div>
+                            <div style={{ color: "#64748b", fontSize: "0.75rem", fontFamily: "var(--font-heading)" }}>{stat.label}</div>
+                        </div>
+                    ))}
                 </div>
-            </nav>
 
-            <main style={{ paddingTop: "5rem", paddingBottom: "3rem" }}>
-                <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 1.5rem" }}>
-
-                    {/* Stats Row */}
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "2rem" }}>
-                        {[
-                            { label: "Reservas este mes", value: totalBookings, icon: "📅" },
-                            { label: "Pagadas", value: paidBookings, icon: "✅" },
-                            { label: "Ingresos", value: `$${totalRevenue.toLocaleString("es-MX")}`, icon: "💰" },
-                            { label: "Próximo servicio", value: nextBooking ? new Date(nextBooking.service_date + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "short" }) : "—", icon: "🗓️" },
-                        ].map((stat) => (
-                            <div key={stat.label} className="glass-card" style={{ padding: "1.25rem", textAlign: "center" }}>
-                                <div style={{ fontSize: "1.5rem", marginBottom: "0.25rem" }}>{stat.icon}</div>
-                                <div style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>{stat.value}</div>
-                                <div style={{ color: "#64748b", fontSize: "0.75rem", fontFamily: "var(--font-heading)" }}>{stat.label}</div>
-                            </div>
-                        ))}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+                    {/* Calendar */}
+                    <div className="glass-card" style={{ padding: "1.5rem" }}>
+                        <h2 style={{ fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "var(--font-heading)" }}>Calendario</h2>
+                        {loadingData ? (
+                            <div style={{ textAlign: "center", padding: "2rem", color: "#94a3b8" }}>Cargando...</div>
+                        ) : (
+                            <AdminCalendar bookings={bookings} blockedDates={blockedDates} onDayClick={handleDayClick} />
+                        )}
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-                        {/* Calendar */}
-                        <div className="glass-card" style={{ padding: "1.5rem" }}>
-                            <h2 style={{ fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "var(--font-heading)" }}>Calendario</h2>
-                            {loadingData ? (
-                                <div style={{ textAlign: "center", padding: "2rem", color: "#94a3b8" }}>Cargando...</div>
-                            ) : (
-                                <AdminCalendar bookings={bookings} blockedDates={blockedDates} onDayClick={handleDayClick} />
-                            )}
-                        </div>
-
-                        {/* Bookings List */}
-                        <div className="glass-card" style={{ padding: "1.5rem", maxHeight: "600px", overflowY: "auto" }}>
-                            <h2 style={{ fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "var(--font-heading)" }}>Reservas del mes</h2>
-                            {bookings.length === 0 ? (
-                                <div style={{ textAlign: "center", padding: "2rem", color: "#64748b" }}>No hay reservas este mes</div>
-                            ) : (
-                                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                                    {bookings.map((b) => (
-                                        <button
-                                            key={b.id}
-                                            onClick={() => setShowDetailModal(b)}
-                                            style={{
-                                                padding: "1rem", borderRadius: "0.75rem", cursor: "pointer",
-                                                border: "1px solid rgba(96, 165, 250, 0.15)", textAlign: "left",
-                                                background: "rgba(15, 34, 64, 0.4)", color: "white",
-                                                display: "flex", justifyContent: "space-between", alignItems: "center",
-                                            }}
-                                        >
-                                            <div>
-                                                <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{b.customer_name}</div>
-                                                <div style={{ color: "#94a3b8", fontSize: "0.8rem" }}>{b.package_name}</div>
-                                                <div style={{ color: "#64748b", fontSize: "0.75rem" }}>
-                                                    {new Date(b.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "short", day: "numeric", month: "short" })}
+                    {/* Bookings List */}
+                    <div className="glass-card" style={{ padding: "1.5rem", maxHeight: "600px", overflowY: "auto" }}>
+                        <h2 style={{ fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "var(--font-heading)" }}>Reservas del mes</h2>
+                        {bookings.length === 0 ? (
+                            <div style={{ textAlign: "center", padding: "2rem", color: "#64748b" }}>No hay reservas este mes</div>
+                        ) : (
+                            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                                {bookings.map((b) => (
+                                    <button
+                                        key={b.id}
+                                        onClick={() => setShowDetailModal(b)}
+                                        style={{
+                                            padding: "1rem", borderRadius: "0.75rem", cursor: "pointer",
+                                            border: "1px solid rgba(96, 165, 250, 0.15)", textAlign: "left",
+                                            background: "rgba(15, 34, 64, 0.4)", color: "white",
+                                            display: "flex", justifyContent: "space-between", alignItems: "center",
+                                        }}
+                                    >
+                                        <div>
+                                            <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{b.customer_name}</div>
+                                            <div style={{ color: "#94a3b8", fontSize: "0.8rem" }}>{b.package_name}</div>
+                                            <div style={{ color: "#64748b", fontSize: "0.75rem" }}>
+                                                {new Date(b.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "short", day: "numeric", month: "short" })}
+                                            </div>
+                                        </div>
+                                        <div style={{ textAlign: "right" }}>
+                                            <span style={{
+                                                fontSize: "0.7rem", fontWeight: 600, padding: "0.25rem 0.5rem",
+                                                borderRadius: "1rem", fontFamily: "var(--font-heading)",
+                                                background: b.payment_status === "paid" ? "rgba(16, 185, 129, 0.15)" : b.payment_status === "manual" ? "rgba(168, 85, 247, 0.15)" : "rgba(245, 158, 11, 0.15)",
+                                                color: b.payment_status === "paid" ? "#34d399" : b.payment_status === "manual" ? "#a78bfa" : "#fbbf24",
+                                            }}>
+                                                {b.payment_status === "paid" ? "Pagado" : b.payment_status === "manual" ? "Manual" : "Pendiente"}
+                                            </span>
+                                            {b.total_amount > 0 && (
+                                                <div style={{ color: "#94a3b8", fontSize: "0.8rem", marginTop: "0.25rem" }}>
+                                                    ${(b.total_amount / 100).toLocaleString("es-MX")}
                                                 </div>
-                                            </div>
-                                            <div style={{ textAlign: "right" }}>
-                                                <span style={{
-                                                    fontSize: "0.7rem", fontWeight: 600, padding: "0.25rem 0.5rem",
-                                                    borderRadius: "1rem", fontFamily: "var(--font-heading)",
-                                                    background: b.payment_status === "paid" ? "rgba(16, 185, 129, 0.15)" : b.payment_status === "manual" ? "rgba(168, 85, 247, 0.15)" : "rgba(245, 158, 11, 0.15)",
-                                                    color: b.payment_status === "paid" ? "#34d399" : b.payment_status === "manual" ? "#a78bfa" : "#fbbf24",
-                                                }}>
-                                                    {b.payment_status === "paid" ? "Pagado" : b.payment_status === "manual" ? "Manual" : "Pendiente"}
-                                                </span>
-                                                {b.total_amount > 0 && (
-                                                    <div style={{ color: "#94a3b8", fontSize: "0.8rem", marginTop: "0.25rem" }}>
-                                                        ${(b.total_amount / 100).toLocaleString("es-MX")}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
+                                            )}
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
-            </main>
 
-            {/* ─── Add Booking Modal ─── */}
-            {showAddModal && (
-                <div style={overlayStyle}>
-                    <div className="glass-card" style={{ maxWidth: "500px", width: "90%", padding: "2rem" }}>
-                        <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "0.5rem" }}>Agregar servicio manual</h3>
-                        <p style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: "1.25rem" }}>
-                            Fecha: {selectedDate && new Date(selectedDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" })}
-                        </p>
-                        <div style={{ display: "grid", gap: "0.75rem", marginBottom: "1.5rem" }}>
-                            <input placeholder="Nombre del cliente *" value={newBooking.customer_name} onChange={(e) => setNewBooking({ ...newBooking, customer_name: e.target.value })} style={modalInputStyle} />
-                            <select value={newBooking.package_name} onChange={(e) => setNewBooking({ ...newBooking, package_name: e.target.value })} style={modalInputStyle}>
-                                <option value="Industrial Deep Interior">Industrial Deep Interior</option>
-                                <option value="Signature Detail">Signature Detail</option>
-                                <option value="Ceramic Coating">Ceramic Coating</option>
-                                <option value="Ceramic + Graphene Shield">Ceramic + Graphene Shield</option>
-                                <option value="Foam Maintenance">Foam Maintenance</option>
-                            </select>
-                            <input placeholder="Teléfono" value={newBooking.customer_phone} onChange={(e) => setNewBooking({ ...newBooking, customer_phone: e.target.value })} style={modalInputStyle} />
-                            <input placeholder="Vehículo (marca, modelo, color)" value={newBooking.vehicle_info} onChange={(e) => setNewBooking({ ...newBooking, vehicle_info: e.target.value })} style={modalInputStyle} />
-                            <textarea placeholder="Notas" value={newBooking.notes} onChange={(e) => setNewBooking({ ...newBooking, notes: e.target.value })} style={{ ...modalInputStyle, minHeight: "60px", resize: "vertical" as const }} />
-                        </div>
-                        <div style={{ display: "flex", gap: "0.75rem" }}>
-                            <button onClick={() => setShowAddModal(false)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(15, 34, 64, 0.6)", color: "#94a3b8" }}>Cancelar</button>
-                            <button onClick={() => { setShowAddModal(false); setShowBlockModal(true); }} style={{ ...modalBtnStyle, flex: 1, background: "rgba(239, 68, 68, 0.15)", color: "#f87171", border: "1px solid rgba(239, 68, 68, 0.3)" }}>Bloquear día</button>
-                            <button onClick={handleAddBooking} className="btn-premium" style={{ flex: 1, justifyContent: "center", fontSize: "0.85rem" }}>Guardar</button>
+                {/* ─── Add Booking Modal ─── */}
+                {showAddModal && (
+                    <div style={overlayStyle}>
+                        <div className="glass-card" style={{ maxWidth: "500px", width: "90%", padding: "2rem" }}>
+                            <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "0.5rem" }}>Agregar servicio manual</h3>
+                            <p style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: "1.25rem" }}>
+                                Fecha: {selectedDate && new Date(selectedDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" })}
+                            </p>
+                            <div style={{ display: "grid", gap: "0.75rem", marginBottom: "1.5rem" }}>
+                                <input placeholder="Nombre del cliente *" value={newBooking.customer_name} onChange={(e) => setNewBooking({ ...newBooking, customer_name: e.target.value })} style={modalInputStyle} />
+                                <select value={newBooking.package_name} onChange={(e) => setNewBooking({ ...newBooking, package_name: e.target.value })} style={modalInputStyle}>
+                                    <option value="Industrial Deep Interior">Industrial Deep Interior</option>
+                                    <option value="Signature Detail">Signature Detail</option>
+                                    <option value="Ceramic Coating">Ceramic Coating</option>
+                                    <option value="Ceramic + Graphene Shield">Ceramic + Graphene Shield</option>
+                                    <option value="Foam Maintenance">Foam Maintenance</option>
+                                </select>
+                                <input placeholder="Teléfono" value={newBooking.customer_phone} onChange={(e) => setNewBooking({ ...newBooking, customer_phone: e.target.value })} style={modalInputStyle} />
+                                <input placeholder="Vehículo (marca, modelo, color)" value={newBooking.vehicle_info} onChange={(e) => setNewBooking({ ...newBooking, vehicle_info: e.target.value })} style={modalInputStyle} />
+                                <textarea placeholder="Notas" value={newBooking.notes} onChange={(e) => setNewBooking({ ...newBooking, notes: e.target.value })} style={{ ...modalInputStyle, minHeight: "60px", resize: "vertical" as const }} />
+                            </div>
+                            <div style={{ display: "flex", gap: "0.75rem" }}>
+                                <button onClick={() => setShowAddModal(false)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(15, 34, 64, 0.6)", color: "#94a3b8" }}>Cancelar</button>
+                                <button onClick={() => { setShowAddModal(false); setShowBlockModal(true); }} style={{ ...modalBtnStyle, flex: 1, background: "rgba(239, 68, 68, 0.15)", color: "#f87171", border: "1px solid rgba(239, 68, 68, 0.3)" }}>Bloquear día</button>
+                                <button onClick={handleAddBooking} className="btn-premium" style={{ flex: 1, justifyContent: "center", fontSize: "0.85rem" }}>Guardar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            {/* ─── Block Date Modal ─── */}
-            {showBlockModal && (
-                <div style={overlayStyle}>
-                    <div className="glass-card" style={{ maxWidth: "400px", width: "90%", padding: "2rem" }}>
-                        <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "0.5rem", color: "#f87171" }}>🚫 Bloquear día</h3>
-                        <p style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: "1.25rem" }}>
-                            {selectedDate && new Date(selectedDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" })}
-                        </p>
-                        <input placeholder="Motivo (opcional)" value={blockReason} onChange={(e) => setBlockReason(e.target.value)} style={{ ...modalInputStyle, marginBottom: "1.5rem" }} />
-                        <div style={{ display: "flex", gap: "0.75rem" }}>
-                            <button onClick={() => setShowBlockModal(false)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(15, 34, 64, 0.6)", color: "#94a3b8" }}>Cancelar</button>
-                            <button onClick={handleBlockDate} style={{ ...modalBtnStyle, flex: 1, background: "rgba(239, 68, 68, 0.2)", color: "#f87171", border: "1px solid rgba(239, 68, 68, 0.4)" }}>Bloquear</button>
+                {/* ─── Block Date Modal ─── */}
+                {showBlockModal && (
+                    <div style={overlayStyle}>
+                        <div className="glass-card" style={{ maxWidth: "400px", width: "90%", padding: "2rem" }}>
+                            <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "0.5rem", color: "#f87171" }}>🚫 Bloquear día</h3>
+                            <p style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: "1.25rem" }}>
+                                {selectedDate && new Date(selectedDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" })}
+                            </p>
+                            <input placeholder="Motivo (opcional)" value={blockReason} onChange={(e) => setBlockReason(e.target.value)} style={{ ...modalInputStyle, marginBottom: "1.5rem" }} />
+                            <div style={{ display: "flex", gap: "0.75rem" }}>
+                                <button onClick={() => setShowBlockModal(false)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(15, 34, 64, 0.6)", color: "#94a3b8" }}>Cancelar</button>
+                                <button onClick={handleBlockDate} style={{ ...modalBtnStyle, flex: 1, background: "rgba(239, 68, 68, 0.2)", color: "#f87171", border: "1px solid rgba(239, 68, 68, 0.4)" }}>Bloquear</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            {/* ─── Booking Detail Modal ─── */}
-            {showDetailModal && (
-                <div style={overlayStyle}>
-                    <div className="glass-card" style={{ maxWidth: "500px", width: "90%", padding: "2rem" }}>
-                        <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "1rem" }}>Detalle de reserva</h3>
-                        <div style={{ display: "grid", gap: "0.5rem", marginBottom: "1.5rem" }}>
-                            {[
-                                { label: "Cliente", value: showDetailModal.customer_name },
-                                { label: "Servicio", value: showDetailModal.package_name },
-                                { label: "Fecha", value: new Date(showDetailModal.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) },
-                                { label: "Vehículo", value: showDetailModal.vehicle_info || "—" },
-                                { label: "Tamaño", value: showDetailModal.vehicle_size || "—" },
-                                { label: "Dirección", value: showDetailModal.address || "—" },
-                                { label: "Teléfono", value: showDetailModal.customer_phone || "—" },
-                                { label: "Email", value: showDetailModal.customer_email || "—" },
-                                { label: "Monto", value: showDetailModal.total_amount > 0 ? `$${(showDetailModal.total_amount / 100).toLocaleString("es-MX")} MXN` : "Manual" },
-                                { label: "Estado", value: showDetailModal.payment_status === "paid" ? "✅ Pagado" : showDetailModal.payment_status === "manual" ? "🟣 Manual" : "⏳ Pendiente" },
-                                { label: "Origen", value: showDetailModal.source === "online" ? "En línea" : "Admin" },
-                                { label: "Notas", value: showDetailModal.notes || "—" },
-                            ].map((item) => (
-                                <div key={item.label} style={{ display: "flex", justifyContent: "space-between", padding: "0.4rem 0", borderBottom: "1px solid rgba(96,165,250,0.08)" }}>
-                                    <span style={{ color: "#64748b", fontSize: "0.85rem" }}>{item.label}</span>
-                                    <span style={{ color: "white", fontSize: "0.85rem", fontWeight: 500, textAlign: "right", maxWidth: "60%" }}>{item.value}</span>
-                                </div>
-                            ))}
-                        </div>
-                        <div style={{ display: "flex", gap: "0.75rem" }}>
-                            <button onClick={() => setShowDetailModal(null)} style={{ ...modalBtnStyle, flex: 2, background: "rgba(15, 34, 64, 0.6)", color: "#94a3b8" }}>Cerrar</button>
-                            <Link href="/admin/mensajes" style={{ ...modalBtnStyle, flex: 1, background: "rgba(37, 99, 235, 0.15)", color: "#60a5fa", textDecoration: "none", textAlign: "center", border: "1px solid rgba(59,130,246,0.3)" }}>
-                                💬 Chat
-                            </Link>
-                            <button onClick={() => handleCancelBooking(showDetailModal.id)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(239, 68, 68, 0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}>Cancelar</button>
+                {/* ─── Booking Detail Modal ─── */}
+                {showDetailModal && (
+                    <div style={overlayStyle}>
+                        <div className="glass-card" style={{ maxWidth: "500px", width: "90%", padding: "2rem" }}>
+                            <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "1rem" }}>Detalle de reserva</h3>
+                            <div style={{ display: "grid", gap: "0.5rem", marginBottom: "1.5rem" }}>
+                                {[
+                                    { label: "Cliente", value: showDetailModal.customer_name },
+                                    { label: "Servicio", value: showDetailModal.package_name },
+                                    { label: "Fecha", value: new Date(showDetailModal.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) },
+                                    { label: "Vehículo", value: showDetailModal.vehicle_info || "—" },
+                                    { label: "Tamaño", value: showDetailModal.vehicle_size || "—" },
+                                    { label: "Dirección", value: showDetailModal.address || "—" },
+                                    { label: "Teléfono", value: showDetailModal.customer_phone || "—" },
+                                    { label: "Email", value: showDetailModal.customer_email || "—" },
+                                    { label: "Monto", value: showDetailModal.total_amount > 0 ? `$${(showDetailModal.total_amount / 100).toLocaleString("es-MX")} MXN` : "Manual" },
+                                    { label: "Estado", value: showDetailModal.payment_status === "paid" ? "✅ Pagado" : showDetailModal.payment_status === "manual" ? "🟣 Manual" : "⏳ Pendiente" },
+                                    { label: "Origen", value: showDetailModal.source === "online" ? "En línea" : "Admin" },
+                                    { label: "Notas", value: showDetailModal.notes || "—" },
+                                ].map((item) => (
+                                    <div key={item.label} style={{ display: "flex", justifyContent: "space-between", padding: "0.4rem 0", borderBottom: "1px solid rgba(96,165,250,0.08)" }}>
+                                        <span style={{ color: "#64748b", fontSize: "0.85rem" }}>{item.label}</span>
+                                        <span style={{ color: "white", fontSize: "0.85rem", fontWeight: 500, textAlign: "right", maxWidth: "60%" }}>{item.value}</span>
+                                    </div>
+                                ))}
+                            </div>
+                            <div style={{ display: "flex", gap: "0.75rem" }}>
+                                <button onClick={() => setShowDetailModal(null)} style={{ ...modalBtnStyle, flex: 2, background: "rgba(15, 34, 64, 0.6)", color: "#94a3b8" }}>Cerrar</button>
+                                <button onClick={() => handleCancelBooking(showDetailModal.id)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(239, 68, 68, 0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}>Cancelar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )}
+            </div>
+        </AdminLayout>
     );
 }
 
