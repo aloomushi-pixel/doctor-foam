@@ -63,7 +63,7 @@ const mainServices = [
     tagline: "Restauración interior de grado profesional",
     desc: "Tu interior absorbe todo: polvo, bacterias, ácaros, derrames invisibles. Nuestro vapor seco industrial a 180°C penetra cada fibra del tapizado y elimina lo que una aspiradora jamás alcanza. Usamos inyección-extracción de grado hospitalario para remover manchas profundas, olores atrapados y alérgenos. Las pieles Connolly reciben hidratación especializada para evitar grietas. Al terminar, sanitizamos con ozono médico — tu cabina queda clínicamente limpia, no solo bonita.",
     highlights: ["Vapor seco 180°C", "Extracción profunda", "Sanitización con ozono", "Pieles hidratadas"],
-    image: "/services/deep-interior.webp",
+    image: "/services/deep-interior.jpg",
     bookingId: "deep-interior",
   },
   {
@@ -72,7 +72,7 @@ const mainServices = [
     tagline: "Corrección de pintura + interior completo",
     desc: "Los micro-rayones (swirls) hacen que tu pintura luzca opaca bajo el sol. Nuestros técnicos certificados IDA corrigen la pintura en 2-3 etapas con pulidoras de triple acción, eliminando hasta el 95% de imperfecciones. El resultado es un brillo de espejo que transforma la apariencia de tu vehículo. Incluye el Industrial Deep Interior completo, sellador cerámico express de 6 meses y acondicionamiento de rines y llantas. Todo en un solo día, sin mover tu auto.",
     highlights: ["Corrección 2-3 etapas", "Swirls eliminados 95%", "Interior completo incluido", "Sellador 6 meses"],
-    image: "/services/signature-detail.webp",
+    image: "/services/signature-detail.jpg",
     bookingId: "signature-detail",
   },
   {
@@ -81,7 +81,7 @@ const mainServices = [
     tagline: "Protección de nueva generación",
     desc: "La pintura de tu auto enfrenta lluvia ácida, rayos UV, contaminantes industriales y excrementos de aves — todos degradan el clear coat silenciosamente. Nuestro recubrimiento cerámico profesional crea un escudo invisible de dureza 9H que repele agua, suciedad y químicos durante 3 a 5 años. Incluye preparación completa de superficie y certificado Doctor Foam. ¿Quieres más? El upgrade Graphene Shield ofrece 5-7 años de protección con dureza 10H y efecto hidrofóbico superior.",
     highlights: ["Protección 3-5 años", "Dureza 9H", "Certificado incluido", "Upgrade Graphene disponible"],
-    image: "/services/ceramic-coating.webp",
+    image: "/services/ceramic-coating.jpg",
     bookingId: "ceramic-coating",
   },
 ];
