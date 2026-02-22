@@ -277,7 +277,7 @@ h6 {
 }
 
 .nav-links a {
-  color: #475569;
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 500;
@@ -286,6 +286,14 @@ h6 {
 }
 
 .nav-links a:hover {
+  color: #ffffff;
+}
+
+.navbar-scrolled .nav-links a {
+  color: #475569;
+}
+
+.navbar-scrolled .nav-links a:hover {
   color: #2563eb;
 }
 
@@ -294,9 +302,13 @@ h6 {
   display: none;
   background: none;
   border: none;
-  color: #0f172a;
+  color: #ffffff;
   cursor: pointer;
   padding: 0.5rem;
+}
+
+.navbar-scrolled .mobile-menu-btn {
+  color: #0f172a;
 }
 
 .mobile-menu {
