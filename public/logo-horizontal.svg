@@ -15,7 +15,7 @@
   <circle cx="12" cy="30" r="5" fill="url(#blueGradH)" opacity="0.12"/>
 
   <!-- DOCTOR text — white fill + blue outline -->
-  <text x="80" y="42" font-family="Outfit, sans-serif" font-weight="800" font-size="28" fill="#ffffff" stroke="url(#blueGradH)" stroke-width="1" letter-spacing="0.12em" paint-order="stroke">DOCTOR</text>
+  <text x="80" y="42" font-family="Outfit, sans-serif" font-weight="800" font-size="28" fill="#ffffff" stroke="url(#blueGradH)" stroke-width="2" letter-spacing="0.12em" paint-order="stroke">DOCTOR</text>
 
   <!-- FOAM text — blue gradient -->
   <text x="80" y="78" font-family="Outfit, sans-serif" font-weight="800" font-size="36" fill="url(#blueGradH)" letter-spacing="0.18em">FOAM</text>

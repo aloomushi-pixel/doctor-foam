@@ -38,7 +38,7 @@ function Logo({ className = "" }: { className?: string }) {
 
       {/* Wordmark */}
       <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
-        <span style={{ color: "#ffffff", WebkitTextStroke: "0.5px #2563eb", paintOrder: "stroke fill" }}>DOCTOR</span>{" "}
+        <span style={{ color: "#ffffff", WebkitTextStroke: "1.5px #2563eb", paintOrder: "stroke fill" }}>DOCTOR</span>{" "}
         <span className="gradient-text">FOAM</span>
       </span>
     </span>
