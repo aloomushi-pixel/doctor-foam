@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import bcrypt from "bcryptjs";
 
 export async function POST(request: NextRequest) {
     try {
@@ -18,45 +19,34 @@ export async function POST(request: NextRequest) {
             process.env.SUPABASE_SERVICE_ROLE_KEY!
         );
 
-        // Find the user using admin API with large page size
-        const { data: listData } = await supabase.auth.admin.listUsers({ perPage: 1000 });
-        const user = listData?.users?.find(u => u.email?.toLowerCase() === email.toLowerCase());
-
-        if (!user) {
-            console.error("[verify-reset] User not found for email:", email);
-            return NextResponse.json({ error: "Enlace inválido o expirado" }, { status: 400 });
-        }
-
-        // Verify the token
-        const storedToken = user.user_metadata?.reset_token;
-        const tokenExpiry = user.user_metadata?.reset_token_expiry;
-
-        if (!storedToken || storedToken !== token) {
-            console.error("[verify-reset] Token mismatch");
-            return NextResponse.json({ error: "Enlace inválido o expirado" }, { status: 400 });
-        }
-
-        if (new Date(tokenExpiry) < new Date()) {
-            console.error("[verify-reset] Token expired");
-            return NextResponse.json({ error: "El enlace ha expirado. Solicita uno nuevo." }, { status: 400 });
-        }
-
-        // Update the password
-        const { error: updateError } = await supabase.auth.admin.updateUserById(user.id, {
-            password: newPassword,
-            user_metadata: {
-                ...user.user_metadata,
-                reset_token: null,
-                reset_token_expiry: null,
-            },
+        // Verify token via SQL RPC
+        const { data: userId, error: verifyError } = await supabase.rpc("verify_reset_token", {
+            user_email: email,
+            token: token,
         });
 
-        if (updateError) {
-            console.error("[verify-reset] Failed to update password:", updateError.message);
+        if (!userId || verifyError) {
+            console.error("[verify-reset] Token invalid or expired:", verifyError?.message);
+            return NextResponse.json({ error: "Enlace inválido o expirado" }, { status: 400 });
+        }
+
+        console.log("[verify-reset] Token valid for user:", userId);
+
+        // Hash the new password (Supabase uses bcrypt)
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update password via SQL RPC
+        const { data: updated, error: updateError } = await supabase.rpc("update_user_password", {
+            user_email: email,
+            new_password_hash: hashedPassword,
+        });
+
+        if (updateError || !updated) {
+            console.error("[verify-reset] Failed to update password:", updateError?.message);
             return NextResponse.json({ error: "Error al actualizar la contraseña" }, { status: 500 });
         }
 
-        console.log("[verify-reset] Password updated successfully for:", email);
+        console.log("[verify-reset] ✅ Password updated successfully for:", email);
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("[verify-reset] Unexpected error:", error);
