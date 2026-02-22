@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import bcrypt from "bcryptjs";
 
 export async function POST(request: NextRequest) {
     try {
@@ -19,7 +18,7 @@ export async function POST(request: NextRequest) {
             process.env.SUPABASE_SERVICE_ROLE_KEY!
         );
 
-        // Verify token via SQL RPC
+        // Verify token via SQL RPC (returns user ID if valid)
         const { data: userId, error: verifyError } = await supabase.rpc("verify_reset_token", {
             user_email: email,
             token: token,
@@ -32,18 +31,42 @@ export async function POST(request: NextRequest) {
 
         console.log("[verify-reset] Token valid for user:", userId);
 
-        // Hash the new password (Supabase uses bcrypt)
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        // Try GoTrue admin API first — it hashes the password correctly
+        let passwordUpdated = false;
+        try {
+            const { error: adminError } = await supabase.auth.admin.updateUserById(userId, {
+                password: newPassword,
+            });
+            if (!adminError) {
+                passwordUpdated = true;
+                console.log("[verify-reset] Password updated via GoTrue admin API");
+            } else {
+                console.error("[verify-reset] GoTrue admin API failed:", adminError.message);
+            }
+        } catch (err) {
+            console.error("[verify-reset] GoTrue admin API exception:", err);
+        }
 
-        // Update password via SQL RPC
-        const { data: updated, error: updateError } = await supabase.rpc("update_user_password", {
+        // Fallback: update via direct SQL using GoTrue's crypt function
+        if (!passwordUpdated) {
+            console.log("[verify-reset] Falling back to SQL password update...");
+            const { data: sqlResult, error: sqlError } = await supabase.rpc("update_user_password_crypt", {
+                user_email: email,
+                new_password: newPassword,
+            });
+            if (sqlError || !sqlResult) {
+                console.error("[verify-reset] SQL password update failed:", sqlError?.message);
+                return NextResponse.json({ error: "Error al actualizar la contraseña" }, { status: 500 });
+            }
+            console.log("[verify-reset] Password updated via SQL crypt function");
+        }
+
+        // Clear the reset token
+        const { error: clearError } = await supabase.rpc("clear_reset_token", {
             user_email: email,
-            new_password_hash: hashedPassword,
         });
-
-        if (updateError || !updated) {
-            console.error("[verify-reset] Failed to update password:", updateError?.message);
-            return NextResponse.json({ error: "Error al actualizar la contraseña" }, { status: 500 });
+        if (clearError) {
+            console.error("[verify-reset] Warning: failed to clear reset token:", clearError.message);
         }
 
         console.log("[verify-reset] ✅ Password updated successfully for:", email);
