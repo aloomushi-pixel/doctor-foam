@@ -513,11 +513,11 @@ export default function HomePage() {
 
         <div className="container" style={{ position: "relative", zIndex: 10, textAlign: "center" }}>
           <div className="animate-on-scroll">
-            <span className="section-label">Detallado Automotriz Premium a Domicilio</span>
-            <h1 className="section-title" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", marginBottom: "1.5rem", maxWidth: "900px", marginLeft: "auto", marginRight: "auto" }}>
+            <span className="section-label" style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)", color: "#93c5fd" }}>Detallado Automotriz Premium a Domicilio</span>
+            <h1 className="section-title" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", marginBottom: "1.5rem", maxWidth: "900px", marginLeft: "auto", marginRight: "auto", color: "#ffffff" }}>
               Llevamos el <span className="gradient-text">taller perfecto</span> hasta la puerta de tu casa
             </h1>
-            <p style={{ fontSize: "1.2rem", color: "#475569", maxWidth: "700px", margin: "0 auto 2.5rem", lineHeight: "1.8" }}>
+            <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.85)", maxWidth: "700px", margin: "0 auto 2.5rem", lineHeight: "1.8" }}>
               Equipo industrial de grado profesional. Químicos especializados. Resultados iguales o superiores
               a cualquier taller de estética automotriz. Todo en un solo día, sin mover tu auto.
             </p>
@@ -528,7 +528,7 @@ export default function HomePage() {
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
-              <a href="#proceso" className="btn-outline">
+              <a href="#proceso" className="btn-outline" style={{ color: "#ffffff", borderColor: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.08)" }}>
                 ¿Cómo funciona?
               </a>
             </div>
@@ -538,19 +538,19 @@ export default function HomePage() {
           <div className="stats-row animate-on-scroll" style={{ marginTop: "4rem" }}>
             <div className="stat-item">
               <div className="stat-number gradient-text">500+</div>
-              <div className="stat-label">Vehículos atendidos</div>
+              <div className="stat-label" style={{ color: "rgba(255,255,255,0.6)" }}>Vehículos atendidos</div>
             </div>
             <div className="stat-item">
               <div className="stat-number gradient-text">4.9★</div>
-              <div className="stat-label">Calificación promedio</div>
+              <div className="stat-label" style={{ color: "rgba(255,255,255,0.6)" }}>Calificación promedio</div>
             </div>
             <div className="stat-item">
               <div className="stat-number gradient-text">100%</div>
-              <div className="stat-label">Equipo industrial</div>
+              <div className="stat-label" style={{ color: "rgba(255,255,255,0.6)" }}>Equipo industrial</div>
             </div>
             <div className="stat-item">
               <div className="stat-number gradient-text">1 día</div>
-              <div className="stat-label">Servicio completo</div>
+              <div className="stat-label" style={{ color: "rgba(255,255,255,0.6)" }}>Servicio completo</div>
             </div>
           </div>
         </div>
@@ -596,16 +596,6 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Vehicle Size Note */}
-          <div className="glass-card animate-on-scroll" style={{ maxWidth: "500px", margin: "2rem auto", padding: "1.25rem", textAlign: "left" }}>
-            <h4 style={{ fontSize: "0.9rem", marginBottom: "0.75rem", fontFamily: "var(--font-heading)" }}>🚗 Coeficiente por tamaño de vehículo</h4>
-            {vehicleSizes.map((v, i) => (
-              <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.4rem 0", borderBottom: i < vehicleSizes.length - 1 ? "1px solid rgba(37,99,235,0.08)" : "none" }}>
-                <span style={{ color: "#475569", fontSize: "0.85rem" }}>{v.label}</span>
-                <span style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.85rem" }}>×{v.coeff.toFixed(2)}</span>
-              </div>
-            ))}
-          </div>
 
           {/* Foam Maintenance Section */}
           <div style={{ marginTop: "3rem" }}>
