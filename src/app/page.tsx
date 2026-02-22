@@ -60,24 +60,29 @@ const mainServices = [
   {
     icon: "♨️",
     title: "Industrial Deep Interior",
-    desc: "Vapor seco industrial a 180°C, aspirado de alta potencia, extracción profunda, lavado a base de inyección y extracción, hidratación de pieles Connolly, sanitización con ozono.",
-    price: "Desde $3,499 MXN",
+    tagline: "Restauración interior de grado profesional",
+    desc: "Tu interior absorbe todo: polvo, bacterias, ácaros, derrames invisibles. Nuestro vapor seco industrial a 180°C penetra cada fibra del tapizado y elimina lo que una aspiradora jamás alcanza. Usamos inyección-extracción de grado hospitalario para remover manchas profundas, olores atrapados y alérgenos. Las pieles Connolly reciben hidratación especializada para evitar grietas. Al terminar, sanitizamos con ozono médico — tu cabina queda clínicamente limpia, no solo bonita.",
+    highlights: ["Vapor seco 180°C", "Extracción profunda", "Sanitización con ozono", "Pieles hidratadas"],
+    image: "/services/deep-interior.webp",
     bookingId: "deep-interior",
   },
   {
     icon: "💎",
     title: "Signature Detail",
-    desc: "Corrección de pintura en 2-3 etapas con pulidoras de triple acción. Eliminación de swirls al 95%. Incluye Industrial Deep Interior completo. Todo en un solo día, sin mover tu auto.",
-    price: "Desde $9,500 MXN",
+    tagline: "Corrección de pintura + interior completo",
+    desc: "Los micro-rayones (swirls) hacen que tu pintura luzca opaca bajo el sol. Nuestros técnicos certificados IDA corrigen la pintura en 2-3 etapas con pulidoras de triple acción, eliminando hasta el 95% de imperfecciones. El resultado es un brillo de espejo que transforma la apariencia de tu vehículo. Incluye el Industrial Deep Interior completo, sellador cerámico express de 6 meses y acondicionamiento de rines y llantas. Todo en un solo día, sin mover tu auto.",
+    highlights: ["Corrección 2-3 etapas", "Swirls eliminados 95%", "Interior completo incluido", "Sellador 6 meses"],
+    image: "/services/signature-detail.webp",
     bookingId: "signature-detail",
   },
   {
     icon: "🛡️",
     title: "Ceramic Coating",
-    desc: "Recubrimiento cerámico de última generación. Protección de 3 a 5 años contra rayos UV, lluvia ácida y contaminantes. Certificado incluido.",
-    price: "Desde $14,999 MXN",
+    tagline: "Protección de nueva generación",
+    desc: "La pintura de tu auto enfrenta lluvia ácida, rayos UV, contaminantes industriales y excrementos de aves — todos degradan el clear coat silenciosamente. Nuestro recubrimiento cerámico profesional crea un escudo invisible de dureza 9H que repele agua, suciedad y químicos durante 3 a 5 años. Incluye preparación completa de superficie y certificado Doctor Foam. ¿Quieres más? El upgrade Graphene Shield ofrece 5-7 años de protección con dureza 10H y efecto hidrofóbico superior.",
+    highlights: ["Protección 3-5 años", "Dureza 9H", "Certificado incluido", "Upgrade Graphene disponible"],
+    image: "/services/ceramic-coating.webp",
     bookingId: "ceramic-coating",
-    upgrade: "Upgrade a Graphene Shield: $17,999 MXN — Supera al cerámico en dureza e hidrofobicidad. Protección de 5 a 7 años.",
   },
 ];
 
@@ -563,25 +568,58 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Main Packages */}
-          <div className="services-grid" style={{ marginTop: "2.5rem" }}>
+          {/* Main Packages — Horizontal Cards */}
+          <div style={{ marginTop: "2.5rem", display: "flex", flexDirection: "column", gap: "2rem" }}>
             {mainServices.map((s, i) => (
-              <Link key={i} href={`/reservar?paquete=${s.bookingId}`} style={{ textDecoration: "none", color: "inherit" }}>
-                <div className="glass-card animate-on-scroll" style={{ padding: "2rem", textAlign: "left", cursor: "pointer", height: "100%" }}>
-                  <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>{s.icon}</div>
-                  <h3 style={{ fontSize: "1.2rem", marginBottom: "0.75rem" }}>{s.title}</h3>
-                  <p style={{ color: "#475569", fontSize: "0.9rem", marginBottom: "1.25rem", lineHeight: "1.7" }}>{s.desc}</p>
-                  {s.upgrade && (
-                    <p style={{ color: "#2563eb", fontSize: "0.8rem", marginBottom: "1rem", lineHeight: "1.6", background: "rgba(37,99,235,0.06)", padding: "0.75rem", borderRadius: "0.5rem" }}>
-                      ⬆️ {s.upgrade}
-                    </p>
-                  )}
-                  <span className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1rem" }}>
-                    {s.price}
-                  </span>
-                  <p style={{ color: "#94a3b8", fontSize: "0.75rem", marginTop: "0.5rem" }}>IVA incluido · Facturable</p>
+              <div key={i} className="glass-card animate-on-scroll" style={{ display: "flex", gap: "0", overflow: "hidden", cursor: "pointer", transition: "transform 0.3s ease, box-shadow 0.3s ease" }}>
+                {/* Image Side */}
+                <div style={{
+                  flex: "0 0 340px",
+                  minHeight: "280px",
+                  background: `linear-gradient(135deg, rgba(37,99,235,0.08), rgba(37,99,235,0.15))`,
+                  backgroundImage: `url(${s.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "relative",
+                }}>
+                  {/* Fallback icon if no image loaded */}
+                  <span style={{ fontSize: "4rem", opacity: 0.3, position: "absolute" }}>{s.icon}</span>
                 </div>
-              </Link>
+
+                {/* Content Side */}
+                <div style={{ flex: 1, padding: "2rem 2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <span style={{ color: "#2563eb", fontSize: "0.8rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.5rem", fontFamily: "var(--font-heading)" }}>{s.tagline}</span>
+                  <h3 style={{ fontSize: "1.5rem", marginBottom: "0.75rem", fontFamily: "var(--font-heading)" }}>
+                    <span style={{ marginRight: "0.5rem" }}>{s.icon}</span>{s.title}
+                  </h3>
+                  <p style={{ color: "#475569", fontSize: "0.9rem", lineHeight: "1.8", marginBottom: "1.25rem" }}>{s.desc}</p>
+
+                  {/* Highlights */}
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.5rem" }}>
+                    {s.highlights.map((h, j) => (
+                      <span key={j} style={{
+                        background: "rgba(37,99,235,0.08)",
+                        color: "#2563eb",
+                        fontSize: "0.75rem",
+                        fontWeight: 600,
+                        padding: "0.3rem 0.8rem",
+                        borderRadius: "2rem",
+                        fontFamily: "var(--font-heading)",
+                      }}>{h}</span>
+                    ))}
+                  </div>
+
+                  <Link href={`/reservar?paquete=${s.bookingId}`} className="btn-premium" style={{ alignSelf: "flex-start", padding: "0.7rem 2rem", fontSize: "0.85rem" }}>
+                    Reservar {s.title}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
             ))}
           </div>
 

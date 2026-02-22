@@ -297,6 +297,11 @@ h6 {
   color: #2563eb;
 }
 
+.navbar-scrolled .nav-links .btn-premium,
+.navbar-scrolled .nav-links .btn-premium:hover {
+  color: #ffffff;
+}
+
 /* Mobile menu */
 .mobile-menu-btn {
   display: none;
@@ -721,6 +726,16 @@ h6 {
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Stack horizontal service cards vertically on mobile */
+  .glass-card[style*="display: flex"] {
+    flex-direction: column !important;
+  }
+
+  .glass-card[style*="display: flex"]>div:first-child {
+    flex: none !important;
+    min-height: 200px !important;
   }
 
   .stats-row {
