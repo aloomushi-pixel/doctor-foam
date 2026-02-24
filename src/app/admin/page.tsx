@@ -29,6 +29,9 @@ type BlockedDate = {
 };
 
 /* ─── Calendar Component (Admin version) ─── */
+/* Confirmed statuses that occupy a calendar slot */
+const CONFIRMED_STATUSES = ["paid", "manual", "completed"];
+
 function AdminCalendar({
     bookings,
     blockedDates,
@@ -52,7 +55,8 @@ function AdminCalendar({
     ];
     const dayNames = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 
-    const bookedDates = new Set(bookings.map((b) => b.service_date));
+    const bookedDates = new Set(bookings.filter((b) => CONFIRMED_STATUSES.includes(b.payment_status)).map((b) => b.service_date));
+    const pendingDates = new Set(bookings.filter((b) => b.payment_status === "pending").map((b) => b.service_date));
     const blockedSet = new Set(blockedDates.map((b) => b.blocked_date));
 
     const days = [];
@@ -62,6 +66,7 @@ function AdminCalendar({
         const date = new Date(currentYear, currentMonth, d);
         const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
         const isBooked = bookedDates.has(dateStr);
+        const hasPending = pendingDates.has(dateStr);
         const isBlocked = blockedSet.has(dateStr);
         const isSunday = date.getDay() === 0;
         const isPast = date < today;
@@ -104,6 +109,7 @@ function AdminCalendar({
                 {d}
                 {isBooked && <span style={{ position: "absolute", top: "3px", right: "5px", fontSize: "0.6rem" }}>📅</span>}
                 {isBlocked && <span style={{ position: "absolute", top: "3px", right: "5px", fontSize: "0.6rem" }}>🚫</span>}
+                {hasPending && !isBooked && <span style={{ position: "absolute", bottom: "3px", left: "50%", transform: "translateX(-50%)", width: "6px", height: "6px", borderRadius: "50%", background: "#fbbf24" }} />}
             </button>
         );
     }
@@ -133,13 +139,16 @@ function AdminCalendar({
             </div>
             <div style={{ display: "flex", gap: "1rem", marginTop: "1rem", fontSize: "0.75rem", color: "#94a3b8", flexWrap: "wrap" }}>
                 <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "rgba(59, 130, 246, 0.3)", border: "1px solid rgba(59,130,246,0.5)" }} /> Reservado
+                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "rgba(59, 130, 246, 0.3)", border: "1px solid rgba(59,130,246,0.5)" }} /> Confirmado
                 </span>
                 <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
                     <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "rgba(239, 68, 68, 0.2)" }} /> Bloqueado
                 </span>
                 <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
                     <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "rgba(15, 34, 64, 0.4)", border: "1px solid rgba(96,165,250,0.1)" }} /> Disponible
+                </span>
+                <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
+                    <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#fbbf24" }} /> Pendiente pago
                 </span>
             </div>
         </div>
@@ -161,6 +170,7 @@ export default function AdminDashboardPage() {
     const [showDetailModal, setShowDetailModal] = useState<Booking | null>(null);
     const [selectedDate, setSelectedDate] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+    const [listTab, setListTab] = useState<"confirmed" | "pending">("confirmed");
 
     /* Service manager states */
     const [editMode, setEditMode] = useState(false);
@@ -412,22 +422,23 @@ export default function AdminDashboardPage() {
     }
 
     /* Stats */
-    const totalBookings = bookings.length;
-    const paidBookings = bookings.filter((b) => b.payment_status === "paid").length;
-    const totalRevenue = bookings.filter((b) => b.payment_status === "paid").reduce((sum, b) => sum + b.total_amount, 0) / 100;
-    const nextBooking = bookings.filter((b) => b.service_date >= new Date().toISOString().split("T")[0]).sort((a, b) => a.service_date.localeCompare(b.service_date))[0];
+    const confirmedBookings = bookings.filter((b) => CONFIRMED_STATUSES.includes(b.payment_status));
+    const pendingBookings = bookings.filter((b) => b.payment_status === "pending");
+    const totalRevenue = confirmedBookings.filter((b) => b.payment_status === "paid").reduce((sum, b) => sum + b.total_amount, 0) / 100;
+    const nextBooking = confirmedBookings.filter((b) => b.service_date >= new Date().toISOString().split("T")[0]).sort((a, b) => a.service_date.localeCompare(b.service_date))[0];
 
     /* Top package */
     const packageCounts: Record<string, number> = {};
-    bookings.forEach((b) => { packageCounts[b.package_name] = (packageCounts[b.package_name] || 0) + 1; });
+    confirmedBookings.forEach((b) => { packageCounts[b.package_name] = (packageCounts[b.package_name] || 0) + 1; });
     const topPackage = Object.entries(packageCounts).sort((a, b) => b[1] - a[1])[0];
 
-    /* Filtered bookings for list */
+    /* Filtered bookings for list based on active tab */
+    const tabBookings = listTab === "confirmed" ? confirmedBookings : pendingBookings;
     const filteredBookings = searchQuery
-        ? bookings.filter((b) =>
+        ? tabBookings.filter((b) =>
             b.customer_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             b.package_name.toLowerCase().includes(searchQuery.toLowerCase()))
-        : bookings;
+        : tabBookings;
 
     return (
         <AdminLayout>
@@ -436,8 +447,8 @@ export default function AdminDashboardPage() {
                 {/* Stats Row */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "1rem", marginBottom: "2rem" }}>
                     {[
-                        { label: "Reservas este mes", value: totalBookings, icon: "📅" },
-                        { label: "Pagadas", value: paidBookings, icon: "✅" },
+                        { label: "Agenda confirmada", value: confirmedBookings.length, icon: "📅" },
+                        { label: "Pendientes de pago", value: pendingBookings.length, icon: "⏳" },
                         { label: "Ingresos", value: `$${totalRevenue.toLocaleString("es-MX")}`, icon: "💰" },
                         { label: "Próximo servicio", value: nextBooking ? new Date(nextBooking.service_date + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "short" }) : "—", icon: "🗓️" },
                         { label: "Top Paquete", value: topPackage ? topPackage[0].split(" ").slice(0, 2).join(" ") : "—", icon: "🏆" },
@@ -463,15 +474,38 @@ export default function AdminDashboardPage() {
 
                     {/* Bookings List */}
                     <div className="glass-card" style={{ padding: "1.5rem", maxHeight: "600px", overflowY: "auto" }}>
+                        {/* Tabs: Agenda Confirmada / Solicitudes Pendientes */}
+                        <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
+                            {([
+                                { key: "confirmed" as const, label: `📅 Agenda (${confirmedBookings.length})` },
+                                { key: "pending" as const, label: `⏳ Pendientes (${pendingBookings.length})` },
+                            ]).map((tab) => (
+                                <button
+                                    key={tab.key}
+                                    onClick={() => { setListTab(tab.key); setSearchQuery(""); }}
+                                    style={{
+                                        padding: "0.45rem 0.85rem", borderRadius: "999px", fontSize: "0.78rem", fontWeight: 600,
+                                        fontFamily: "var(--font-heading)", cursor: "pointer", transition: "all 0.2s",
+                                        border: `1px solid ${listTab === tab.key ? (tab.key === "confirmed" ? "rgba(59,130,246,0.4)" : "rgba(245,158,11,0.4)") : "rgba(96,165,250,0.1)"}`,
+                                        background: listTab === tab.key ? (tab.key === "confirmed" ? "rgba(59,130,246,0.15)" : "rgba(245,158,11,0.15)") : "transparent",
+                                        color: listTab === tab.key ? (tab.key === "confirmed" ? "#60a5fa" : "#fbbf24") : "#64748b",
+                                    }}
+                                >
+                                    {tab.label}
+                                </button>
+                            ))}
+                        </div>
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem", gap: "0.75rem" }}>
-                            <h2 style={{ fontSize: "1.1rem", margin: 0, fontFamily: "var(--font-heading)", whiteSpace: "nowrap" }}>Reservas del mes</h2>
+                            <h2 style={{ fontSize: "1rem", margin: 0, fontFamily: "var(--font-heading)", whiteSpace: "nowrap" }}>
+                                {listTab === "confirmed" ? "Servicios confirmados" : "Esperando pago"}
+                            </h2>
                             <input
                                 type="text"
-                                placeholder="🔍 Buscar cliente o paquete..."
+                                placeholder="🔍 Buscar..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 style={{
-                                    width: "100%", maxWidth: "220px", padding: "0.45rem 0.75rem",
+                                    width: "100%", maxWidth: "180px", padding: "0.4rem 0.65rem",
                                     borderRadius: "0.5rem", border: "1px solid rgba(96, 165, 250, 0.2)",
                                     background: "rgba(10, 22, 40, 0.6)", color: "white", fontSize: "0.8rem",
                                     outline: "none",
@@ -479,44 +513,51 @@ export default function AdminDashboardPage() {
                             />
                         </div>
                         {filteredBookings.length === 0 ? (
-                            <div style={{ textAlign: "center", padding: "2rem", color: "#64748b" }}>{searchQuery ? "Sin resultados" : "No hay reservas este mes"}</div>
+                            <div style={{ textAlign: "center", padding: "2rem", color: "#64748b" }}>
+                                {searchQuery ? "Sin resultados" : listTab === "confirmed" ? "No hay servicios confirmados" : "No hay solicitudes pendientes"}
+                            </div>
                         ) : (
                             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                                {filteredBookings.map((b) => (
-                                    <button
-                                        key={b.id}
-                                        onClick={() => openDetail(b)}
-                                        style={{
-                                            padding: "1rem", borderRadius: "0.75rem", cursor: "pointer",
-                                            border: "1px solid rgba(96, 165, 250, 0.15)", textAlign: "left",
-                                            background: "rgba(15, 34, 64, 0.4)", color: "white",
-                                            display: "flex", justifyContent: "space-between", alignItems: "center",
-                                        }}
-                                    >
-                                        <div>
-                                            <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{b.customer_name}</div>
-                                            <div style={{ color: "#94a3b8", fontSize: "0.8rem" }}>{b.package_name}</div>
-                                            <div style={{ color: "#64748b", fontSize: "0.75rem" }}>
-                                                {new Date(b.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "short", day: "numeric", month: "short" })}
-                                            </div>
-                                        </div>
-                                        <div style={{ textAlign: "right" }}>
-                                            <span style={{
-                                                fontSize: "0.7rem", fontWeight: 600, padding: "0.25rem 0.5rem",
-                                                borderRadius: "1rem", fontFamily: "var(--font-heading)",
-                                                background: b.payment_status === "paid" ? "rgba(16, 185, 129, 0.15)" : b.payment_status === "manual" ? "rgba(168, 85, 247, 0.15)" : "rgba(245, 158, 11, 0.15)",
-                                                color: b.payment_status === "paid" ? "#34d399" : b.payment_status === "manual" ? "#a78bfa" : "#fbbf24",
-                                            }}>
-                                                {b.payment_status === "paid" ? "Pagado" : b.payment_status === "manual" ? "Manual" : "Pendiente"}
-                                            </span>
-                                            {b.total_amount > 0 && (
-                                                <div style={{ color: "#94a3b8", fontSize: "0.8rem", marginTop: "0.25rem" }}>
-                                                    ${(b.total_amount / 100).toLocaleString("es-MX")}
+                                {filteredBookings.map((b) => {
+                                    const isConfirmed = CONFIRMED_STATUSES.includes(b.payment_status);
+                                    return (
+                                        <button
+                                            key={b.id}
+                                            onClick={() => openDetail(b)}
+                                            style={{
+                                                padding: "1rem", borderRadius: "0.75rem", cursor: "pointer",
+                                                border: `1px solid ${isConfirmed ? "rgba(96, 165, 250, 0.15)" : "rgba(245, 158, 11, 0.15)"}`,
+                                                textAlign: "left",
+                                                background: isConfirmed ? "rgba(15, 34, 64, 0.4)" : "rgba(30, 25, 10, 0.4)",
+                                                color: "white",
+                                                display: "flex", justifyContent: "space-between", alignItems: "center",
+                                            }}
+                                        >
+                                            <div>
+                                                <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{b.customer_name}</div>
+                                                <div style={{ color: "#94a3b8", fontSize: "0.8rem" }}>{b.package_name}</div>
+                                                <div style={{ color: "#64748b", fontSize: "0.75rem" }}>
+                                                    {new Date(b.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "short", day: "numeric", month: "short" })}
                                                 </div>
-                                            )}
-                                        </div>
-                                    </button>
-                                ))}
+                                            </div>
+                                            <div style={{ textAlign: "right" }}>
+                                                <span style={{
+                                                    fontSize: "0.7rem", fontWeight: 600, padding: "0.25rem 0.5rem",
+                                                    borderRadius: "1rem", fontFamily: "var(--font-heading)",
+                                                    background: b.payment_status === "paid" ? "rgba(16, 185, 129, 0.15)" : b.payment_status === "manual" ? "rgba(168, 85, 247, 0.15)" : b.payment_status === "completed" ? "rgba(16, 185, 129, 0.15)" : "rgba(245, 158, 11, 0.15)",
+                                                    color: b.payment_status === "paid" ? "#34d399" : b.payment_status === "manual" ? "#a78bfa" : b.payment_status === "completed" ? "#34d399" : "#fbbf24",
+                                                }}>
+                                                    {statusLabel(b.payment_status)}
+                                                </span>
+                                                {b.total_amount > 0 && (
+                                                    <div style={{ color: "#94a3b8", fontSize: "0.8rem", marginTop: "0.25rem" }}>
+                                                        ${(b.total_amount / 100).toLocaleString("es-MX")}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </button>
+                                    );
+                                })}
                             </div>
                         )}
                     </div>
@@ -575,9 +616,25 @@ export default function AdminDashboardPage() {
                         <div className="glass-card" style={{ maxWidth: "560px", width: "92%", padding: "2rem", maxHeight: "90vh", overflowY: "auto" }}>
                             {/* Header */}
                             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
-                                <h3 style={{ fontFamily: "var(--font-heading)", margin: 0, fontSize: "1.1rem" }}>🔧 Gestión de Servicio</h3>
+                                <h3 style={{ fontFamily: "var(--font-heading)", margin: 0, fontSize: "1.1rem" }}>
+                                    {CONFIRMED_STATUSES.includes(showDetailModal.payment_status) ? "🔧 Gestión de Servicio" : "📋 Solicitud Pendiente"}
+                                </h3>
                                 <button onClick={() => { setShowDetailModal(null); setEditMode(false); setShowReschedule(false); }} style={{ background: "none", border: "none", color: "#64748b", cursor: "pointer", fontSize: "1.3rem" }}>✕</button>
                             </div>
+
+                            {/* Warning banner for pending */}
+                            {showDetailModal.payment_status === "pending" && (
+                                <div style={{
+                                    padding: "0.75rem 1rem", borderRadius: "0.5rem", marginBottom: "1rem",
+                                    background: "rgba(245, 158, 11, 0.1)", border: "1px solid rgba(245, 158, 11, 0.25)",
+                                    display: "flex", alignItems: "center", gap: "0.5rem",
+                                }}>
+                                    <span style={{ fontSize: "1.1rem" }}>⚠️</span>
+                                    <span style={{ color: "#fbbf24", fontSize: "0.8rem", fontWeight: 500 }}>
+                                        Pago no confirmado — no ocupa lugar en la agenda
+                                    </span>
+                                </div>
+                            )}
 
                             {/* Status badge */}
                             <div style={{ marginBottom: "1.25rem" }}>
@@ -703,8 +760,8 @@ export default function AdminDashboardPage() {
                                 </div>
                             )}
 
-                            {/* ─── Status Change ─── */}
-                            {!editMode && !showReschedule && (
+                            {/* ─── Status Change (only for confirmed bookings) ─── */}
+                            {!editMode && !showReschedule && CONFIRMED_STATUSES.includes(showDetailModal.payment_status) && (
                                 <div style={{ marginBottom: "1.25rem" }}>
                                     <label style={{ color: "#64748b", fontSize: "0.78rem", marginBottom: "0.4rem", display: "block", fontFamily: "var(--font-heading)" }}>Cambiar estado</label>
                                     <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
@@ -712,9 +769,7 @@ export default function AdminDashboardPage() {
                                             { value: "completed", label: "✅ Completado", bg: "rgba(16,185,129,0.12)", color: "#34d399", border: "rgba(16,185,129,0.3)" },
                                             { value: "paid", label: "💰 Pagado", bg: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "rgba(59,130,246,0.3)" },
                                             { value: "manual", label: "🟣 Manual", bg: "rgba(168,85,247,0.12)", color: "#a78bfa", border: "rgba(168,85,247,0.3)" },
-                                            { value: "pending", label: "⏳ Pendiente", bg: "rgba(245,158,11,0.12)", color: "#fbbf24", border: "rgba(245,158,11,0.3)" },
                                             { value: "no-show", label: "❌ No-show", bg: "rgba(239,68,68,0.12)", color: "#f87171", border: "rgba(239,68,68,0.3)" },
-                                            { value: "rescheduled", label: "🔄 Reprog.", bg: "rgba(6,182,212,0.12)", color: "#22d3ee", border: "rgba(6,182,212,0.3)" },
                                         ].map(st => (
                                             <button
                                                 key={st.value}
@@ -742,7 +797,10 @@ export default function AdminDashboardPage() {
                                 <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
                                     <button onClick={() => { setShowDetailModal(null); setEditMode(false); setShowReschedule(false); }} style={{ ...modalBtnStyle, flex: 2, background: "rgba(15,34,64,0.6)", color: "#94a3b8" }}>Cerrar</button>
                                     <button onClick={startEdit} style={{ ...modalBtnStyle, flex: 1, background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}>✏️ Editar</button>
-                                    <button onClick={() => setShowReschedule(true)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(6,182,212,0.12)", color: "#22d3ee", border: "1px solid rgba(6,182,212,0.3)" }}>📅 Reprogramar</button>
+                                    {/* Reschedule only for confirmed */}
+                                    {CONFIRMED_STATUSES.includes(showDetailModal.payment_status) && (
+                                        <button onClick={() => setShowReschedule(true)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(6,182,212,0.12)", color: "#22d3ee", border: "1px solid rgba(6,182,212,0.3)" }}>📅 Reprogramar</button>
+                                    )}
                                     <button onClick={() => handleCancelBooking(showDetailModal.id)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(239,68,68,0.12)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}>🚫 Cancelar</button>
                                 </div>
                             )}

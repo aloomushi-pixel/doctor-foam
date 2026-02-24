@@ -165,7 +165,7 @@ export async function PATCH(request: NextRequest) {
             .select("id")
             .eq("service_date", updates.service_date)
             .neq("id", id)
-            .in("payment_status", ["paid", "manual", "pending", "completed", "rescheduled"]);
+            .in("payment_status", ["paid", "manual", "completed"]);
 
         if (existing && existing.length > 0) {
             return NextResponse.json({ error: "La nueva fecha ya está ocupada" }, { status: 409 });
