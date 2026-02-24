@@ -1,5 +1,6 @@
 "use client";
 
+import AdminChatFAB from "@/components/AdminChatFAB";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -13,6 +14,7 @@ type AdminLayoutProps = {
 
 const NAV_ITEMS = [
     { href: "/admin", label: "Dashboard", icon: "📊" },
+    { href: "/admin/reservas", label: "Reservas", icon: "📋" },
     { href: "/admin/servicios", label: "Servicios", icon: "🛠️" },
     { href: "/admin/usuarios", label: "Usuarios", icon: "👥" },
     { href: "/admin/invitaciones", label: "Invitaciones", icon: "✉️" },
@@ -23,6 +25,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     const router = useRouter();
     const pathname = usePathname();
     const [session, setSession] = useState<{ access_token: string } | null>(null);
+    const [adminUser, setAdminUser] = useState<{ email: string; name: string; role: string } | null>(null);
     const [loadingAuth, setLoadingAuth] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [unreadMessages, setUnreadMessages] = useState(0);
@@ -39,6 +42,11 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                     setLoadingAuth(false);
                     return;
                 }
+                setAdminUser({
+                    email: user.email || "",
+                    name: user.user_metadata?.full_name || user.email?.split("@")[0] || "Admin",
+                    role: user.app_metadata?.role || "admin",
+                });
                 setSession(data.session);
             } else {
                 router.push("/admin/login");
@@ -303,18 +311,54 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                     })}
                 </nav>
 
-                {/* Footer */}
+                {/* Footer — User Info */}
                 <div style={{
                     padding: "1rem 0.75rem", borderTop: "1px solid rgba(96, 165, 250, 0.08)",
                 }}>
+                    {adminUser && (
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
+                            <div style={{
+                                width: "36px", height: "36px", borderRadius: "50%", flexShrink: 0,
+                                background: "linear-gradient(135deg, #2563eb, #7c3aed)",
+                                display: "flex", alignItems: "center", justifyContent: "center",
+                                color: "white", fontWeight: 700, fontSize: "0.85rem",
+                            }}>
+                                {adminUser.name[0].toUpperCase()}
+                            </div>
+                            <div style={{ flex: 1, overflow: "hidden" }}>
+                                <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                                    <span style={{
+                                        color: "white", fontSize: "0.8rem", fontWeight: 600,
+                                        textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden"
+                                    }}>
+                                        {adminUser.name}
+                                    </span>
+                                    <span style={{
+                                        fontSize: "0.55rem", padding: "0.1rem 0.35rem", borderRadius: "0.25rem",
+                                        background: "rgba(124, 58, 237, 0.2)", color: "#a78bfa",
+                                        fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em",
+                                        fontFamily: "var(--font-heading)", flexShrink: 0,
+                                    }}>
+                                        Admin
+                                    </span>
+                                </div>
+                                <p style={{
+                                    color: "#475569", fontSize: "0.68rem", margin: 0,
+                                    textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden"
+                                }}>
+                                    {adminUser.email}
+                                </p>
+                            </div>
+                        </div>
+                    )}
                     <button
                         onClick={handleLogout}
                         style={{
                             width: "100%", display: "flex", alignItems: "center", gap: "0.75rem",
-                            padding: "0.75rem 1rem", borderRadius: "0.5rem",
+                            padding: "0.6rem 1rem", borderRadius: "0.5rem",
                             border: "1px solid rgba(239, 68, 68, 0.2)",
                             background: "rgba(239, 68, 68, 0.05)", color: "#f87171",
-                            cursor: "pointer", fontSize: "0.9rem",
+                            cursor: "pointer", fontSize: "0.8rem",
                             fontFamily: "var(--font-heading)", fontWeight: 600,
                         }}
                     >
@@ -369,6 +413,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                     </div>
                 </main>
             </div>
+
+            <AdminChatFAB />
 
             {/* Responsive styles */}
             <style jsx global>{`

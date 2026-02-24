@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { NextRequest, NextResponse } from "next/server";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -28,19 +28,28 @@ export async function GET(request: NextRequest) {
     }
 
     const { searchParams } = new URL(request.url);
-    const month = parseInt(searchParams.get("month") || String(new Date().getMonth() + 1));
-    const year = parseInt(searchParams.get("year") || String(new Date().getFullYear()));
+    const fetchAll = searchParams.get("all") === "true";
 
-    const firstDay = new Date(year, month - 1, 1).toISOString().split("T")[0];
-    const lastDay = new Date(year, month, 0).toISOString().split("T")[0];
+    let query = auth.supabase.from("bookings").select("*");
 
-    const { data, error } = await auth.supabase
-        .from("bookings")
-        .select("*")
-        .gte("service_date", firstDay)
-        .lte("service_date", lastDay)
-        .neq("payment_status", "cancelled")
-        .order("service_date", { ascending: true });
+    if (fetchAll) {
+        // Return ALL bookings (for the booking manager page)
+        query = query.order("service_date", { ascending: false });
+    } else {
+        // Monthly filter (for the dashboard calendar)
+        const month = parseInt(searchParams.get("month") || String(new Date().getMonth() + 1));
+        const year = parseInt(searchParams.get("year") || String(new Date().getFullYear()));
+        const firstDay = new Date(year, month - 1, 1).toISOString().split("T")[0];
+        const lastDay = new Date(year, month, 0).toISOString().split("T")[0];
+
+        query = query
+            .gte("service_date", firstDay)
+            .lte("service_date", lastDay)
+            .neq("payment_status", "cancelled")
+            .order("service_date", { ascending: true });
+    }
+
+    const { data, error } = await query;
 
     if (error) {
         return NextResponse.json({ error: error.message }, { status: 500 });

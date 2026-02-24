@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { supabase } from "@/lib/supabase";
 import AdminLayout from "@/components/AdminLayout";
+import { supabase } from "@/lib/supabase";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { useCallback, useEffect, useState } from "react";
 
 type Booking = {
     id: string;
@@ -444,19 +444,63 @@ export default function AdminDashboardPage() {
         <AdminLayout>
             <div>
 
+                {/* Admin Header */}
+                <div style={{
+                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                    marginBottom: "2rem", flexWrap: "wrap", gap: "1rem",
+                }}>
+                    <div>
+                        <h1 style={{
+                            color: "white", fontSize: "1.5rem", margin: "0 0 0.25rem",
+                            fontFamily: "var(--font-heading)", fontWeight: 800,
+                        }}>
+                            Panel de Administración
+                        </h1>
+                        <p style={{ color: "#64748b", fontSize: "0.85rem", margin: 0, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                            <span style={{
+                                padding: "0.15rem 0.5rem", borderRadius: "0.3rem",
+                                background: "rgba(124,58,237,0.15)", color: "#a78bfa",
+                                fontSize: "0.7rem", fontWeight: 700, fontFamily: "var(--font-heading)",
+                            }}>
+                                🛡️ Administrador
+                            </span>
+                            Doctor Foam — Gestión de servicios
+                        </p>
+                    </div>
+                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                        <Link href="/admin/reservas" style={{
+                            padding: "0.5rem 1rem", borderRadius: "0.5rem",
+                            background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.3)",
+                            color: "#60a5fa", textDecoration: "none", fontSize: "0.8rem",
+                            fontWeight: 600, fontFamily: "var(--font-heading)",
+                        }}>
+                            📋 Ver todas las reservas
+                        </Link>
+                    </div>
+                </div>
+
                 {/* Stats Row */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "1rem", marginBottom: "2rem" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(175px, 1fr))", gap: "1rem", marginBottom: "2rem" }}>
                     {[
-                        { label: "Agenda confirmada", value: confirmedBookings.length, icon: "📅" },
-                        { label: "Pendientes de pago", value: pendingBookings.length, icon: "⏳" },
-                        { label: "Ingresos", value: `$${totalRevenue.toLocaleString("es-MX")}`, icon: "💰" },
-                        { label: "Próximo servicio", value: nextBooking ? new Date(nextBooking.service_date + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "short" }) : "—", icon: "🗓️" },
-                        { label: "Top Paquete", value: topPackage ? topPackage[0].split(" ").slice(0, 2).join(" ") : "—", icon: "🏆" },
+                        { label: "Agenda confirmada", value: confirmedBookings.length, icon: "📅", gradient: "linear-gradient(135deg, #2563eb, #3b82f6)" },
+                        { label: "Pendientes de pago", value: pendingBookings.length, icon: "⏳", gradient: "linear-gradient(135deg, #d97706, #f59e0b)" },
+                        { label: "Ingresos", value: `$${totalRevenue.toLocaleString("es-MX")}`, icon: "💰", gradient: "linear-gradient(135deg, #059669, #10b981)" },
+                        { label: "Próximo servicio", value: nextBooking ? new Date(nextBooking.service_date + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "short" }) : "—", icon: "🗓️", gradient: "linear-gradient(135deg, #7c3aed, #8b5cf6)" },
+                        { label: "Top Paquete", value: topPackage ? topPackage[0].split(" ").slice(0, 2).join(" ") : "—", icon: "🏆", gradient: "linear-gradient(135deg, #dc2626, #ef4444)" },
                     ].map((stat) => (
-                        <div key={stat.label} className="glass-card" style={{ padding: "1.25rem", textAlign: "center" }}>
-                            <div style={{ fontSize: "1.5rem", marginBottom: "0.25rem" }}>{stat.icon}</div>
-                            <div style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>{stat.value}</div>
-                            <div style={{ color: "#64748b", fontSize: "0.75rem", fontFamily: "var(--font-heading)" }}>{stat.label}</div>
+                        <div key={stat.label} className="glass-card" style={{ padding: "1.25rem", display: "flex", alignItems: "center", gap: "1rem" }}>
+                            <div style={{
+                                width: "44px", height: "44px", borderRadius: "0.75rem", flexShrink: 0,
+                                background: stat.gradient,
+                                display: "flex", alignItems: "center", justifyContent: "center",
+                                fontSize: "1.2rem", boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                            }}>
+                                {stat.icon}
+                            </div>
+                            <div>
+                                <div style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.2rem", color: "white" }}>{stat.value}</div>
+                                <div style={{ color: "#64748b", fontSize: "0.72rem", fontFamily: "var(--font-heading)" }}>{stat.label}</div>
+                            </div>
                         </div>
                     ))}
                 </div>
