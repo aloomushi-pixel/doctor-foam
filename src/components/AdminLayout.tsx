@@ -13,6 +13,7 @@ type AdminLayoutProps = {
 
 const NAV_ITEMS = [
     { href: "/admin", label: "Dashboard", icon: "📊" },
+    { href: "/admin/servicios", label: "Servicios", icon: "🛠️" },
     { href: "/admin/usuarios", label: "Usuarios", icon: "👥" },
     { href: "/admin/invitaciones", label: "Invitaciones", icon: "✉️" },
     { href: "/admin/mensajes", label: "Mensajes", icon: "💬", badgeKey: "unread_messages" as const },
