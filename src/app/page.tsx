@@ -1069,14 +1069,7 @@ export default function HomePage() {
         </div>
       </footer>
 
-      {/* ─── CHAT FLOAT ─── */}
-      <Link
-        href="/mi-cuenta/chat"
-        className="chat-float"
-        aria-label="Abrir chat"
-      >
-        <ChatIcon />
-      </Link>
+      {/* Chat handled by GuestChat in layout */}
     </>
   );
 }
