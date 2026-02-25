@@ -139,7 +139,7 @@ function AdminCalendar({
 
 export default function AdminDashboardPage() {
     const router = useRouter();
-    const [session, setSession] = useState<{ access_token: string } | null>(null);
+    const [session, setSession] = useState<{ access_token: string; user: { id: string } } | null>(null);
     const [loadingAuth, setLoadingAuth] = useState(true);
 
     const [bookings, setBookings] = useState<Booking[]>([]);
@@ -155,6 +155,7 @@ export default function AdminDashboardPage() {
     const [listTab, setListTab] = useState<"confirmed" | "pending">("confirmed");
     const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
     const [refreshing, setRefreshing] = useState(false);
+    const [mySharePct, setMySharePct] = useState<number>(0);
 
     /* Service manager states */
     const [editMode, setEditMode] = useState(false);
@@ -185,6 +186,23 @@ export default function AdminDashboardPage() {
             setLoadingAuth(false);
         });
     }, [router]);
+
+    /* Fetch admin profile for revenue share */
+    useEffect(() => {
+        if (!session) return;
+        (async () => {
+            try {
+                const res = await fetch("/api/admin/users?role=admin", {
+                    headers: { Authorization: `Bearer ${session.access_token}` },
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    const me = (data.users || []).find((u: { id: string }) => u.id === session.user.id);
+                    if (me) setMySharePct(me.profit_share_pct ?? 0);
+                }
+            } catch { /* silent */ }
+        })();
+    }, [session]);
 
     /* Fetch data */
     const fetchData = useCallback(async () => {
@@ -422,6 +440,10 @@ export default function AdminDashboardPage() {
     confirmedBookings.forEach((b) => { packageCounts[b.package_name] = (packageCounts[b.package_name] || 0) + 1; });
     const topPackage = Object.entries(packageCounts).sort((a, b) => b[1] - a[1])[0];
 
+    /* Revenue share — weekly amount for logged-in admin */
+    const weeklyRevenue = totalRevenue / 4;
+    const myWeeklyShare = weeklyRevenue * (mySharePct / 100);
+
     /* Filtered bookings for list based on active tab */
     const tabBookings = listTab === "confirmed" ? confirmedBookings : pendingBookings;
     const filteredBookings = searchQuery
@@ -490,6 +512,7 @@ export default function AdminDashboardPage() {
                         { label: "Ingresos", value: `$${totalRevenue.toLocaleString("es-MX")}`, icon: "💰", gradient: "linear-gradient(135deg, #2f855a, #48bb78)" },
                         { label: "Próximo servicio", value: nextBooking ? new Date(nextBooking.service_date + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "short" }) : "—", icon: "🗓️", gradient: "linear-gradient(135deg, #805ad5, #b794f6)" },
                         { label: "Top Paquete", value: topPackage ? topPackage[0].split(" ").slice(0, 2).join(" ") : "—", icon: "🏆", gradient: "linear-gradient(135deg, #c53030, #fc8181)" },
+                        { label: `Tu parte (${mySharePct}%)`, value: `$${myWeeklyShare.toLocaleString("es-MX", { maximumFractionDigits: 0 })}`, icon: "🤝", gradient: "linear-gradient(135deg, #805ad5, #b794f6)" },
                     ].map((stat) => (
                         <div key={stat.label} className="glass-card" style={{ padding: "1.25rem", display: "flex", alignItems: "center", gap: "1rem" }}>
                             <div style={{

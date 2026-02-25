@@ -61,6 +61,8 @@ export type User = {
     name: string;
     phone: string;
     role: string;
+    display_role?: string;
+    profit_share_pct?: number;
     created_at: string;
     last_sign_in: string | null;
 };
