@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function AdminLoginPage() {
     const router = useRouter();
@@ -67,11 +67,11 @@ export default function AdminLoginPage() {
             minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
             background: "var(--color-bg-primary)",
         }}>
-            <div style={{ width: "100%", maxWidth: "420px", padding: "1.5rem" }}>
+            <div className="animate-fade-in-up" style={{ width: "100%", maxWidth: "420px", padding: "1.5rem" }}>
                 <div style={{ textAlign: "center", marginBottom: "2rem" }}>
                     <Link href="/" style={{ textDecoration: "none" }}>
-                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.5rem", color: "white" }}>
-                            DOCTOR <span className="gradient-text">FOAM</span>
+                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.8rem", color: "white" }}>
+                            DOCTOR <span className="shimmer-text">FOAM</span>
                         </span>
                     </Link>
                     <p style={{ color: "#64748b", fontSize: "0.9rem", marginTop: "0.5rem" }}>Panel de Administración</p>
@@ -113,7 +113,10 @@ export default function AdminLoginPage() {
                                 width: "100%", padding: "0.75rem 1rem", borderRadius: "0.5rem",
                                 border: "1px solid rgba(96, 165, 250, 0.2)", background: "rgba(10, 22, 40, 0.8)",
                                 color: "white", fontSize: "0.95rem", outline: "none",
+                                transition: "border-color 0.2s",
                             }}
+                            onFocus={e => e.target.style.borderColor = "rgba(59, 130, 246, 0.5)"}
+                            onBlur={e => e.target.style.borderColor = "rgba(96, 165, 250, 0.2)"}
                         />
                     </div>
 
@@ -129,7 +132,10 @@ export default function AdminLoginPage() {
                                     width: "100%", padding: "0.75rem 1rem", borderRadius: "0.5rem",
                                     border: "1px solid rgba(96, 165, 250, 0.2)", background: "rgba(10, 22, 40, 0.8)",
                                     color: "white", fontSize: "0.95rem", outline: "none",
+                                    transition: "border-color 0.2s",
                                 }}
+                                onFocus={e => e.target.style.borderColor = "rgba(59, 130, 246, 0.5)"}
+                                onBlur={e => e.target.style.borderColor = "rgba(96, 165, 250, 0.2)"}
                             />
                         </div>
                     )}
@@ -176,6 +182,10 @@ export default function AdminLoginPage() {
                         )}
                     </div>
                 </form>
+
+                <p style={{ textAlign: "center", color: "#475569", fontSize: "0.72rem", marginTop: "2rem", fontFamily: "var(--font-heading)" }}>
+                    © {new Date().getFullYear()} Doctor Foam · v2.0
+                </p>
             </div>
         </div>
     );

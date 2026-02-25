@@ -1,32 +1,14 @@
 "use client";
 
 import AdminLayout from "@/components/AdminLayout";
+import { getGreeting } from "@/lib/booking-utils";
 import { supabase } from "@/lib/supabase";
+import type { BlockedDate, Booking } from "@/lib/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 
-type Booking = {
-    id: string;
-    service_date: string;
-    package_name: string;
-    vehicle_size: string;
-    total_amount: number;
-    customer_name: string;
-    customer_email: string;
-    customer_phone: string;
-    address: string;
-    vehicle_info: string;
-    payment_status: string;
-    source: string;
-    notes: string;
-};
-
-type BlockedDate = {
-    id: string;
-    blocked_date: string;
-    reason: string;
-};
+/* Types imported from @/lib/types */
 
 /* ─── Calendar Component (Admin version) ─── */
 /* Confirmed statuses that occupy a calendar slot */
@@ -171,6 +153,8 @@ export default function AdminDashboardPage() {
     const [selectedDate, setSelectedDate] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     const [listTab, setListTab] = useState<"confirmed" | "pending">("confirmed");
+    const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+    const [refreshing, setRefreshing] = useState(false);
 
     /* Service manager states */
     const [editMode, setEditMode] = useState(false);
@@ -225,14 +209,20 @@ export default function AdminDashboardPage() {
 
             setBookings(bookingsData.bookings || []);
             setBlockedDates(blockedData.blocked_dates || []);
+            setLastUpdated(new Date());
         } catch (err) {
             console.error("Error fetching data:", err);
         }
         setLoadingData(false);
+        setRefreshing(false);
     }, [session]);
 
     useEffect(() => {
-        if (session) fetchData();
+        if (session) {
+            fetchData();
+            const interval = setInterval(() => { setRefreshing(true); fetchData(); }, 60000);
+            return () => clearInterval(interval);
+        }
     }, [session, fetchData]);
 
     /* Handle calendar day click */
@@ -454,9 +444,9 @@ export default function AdminDashboardPage() {
                             color: "white", fontSize: "1.5rem", margin: "0 0 0.25rem",
                             fontFamily: "var(--font-heading)", fontWeight: 800,
                         }}>
-                            Panel de Administración
+                            {getGreeting()} 👋
                         </h1>
-                        <p style={{ color: "#64748b", fontSize: "0.85rem", margin: 0, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <p style={{ color: "#64748b", fontSize: "0.85rem", margin: 0, display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
                             <span style={{
                                 padding: "0.15rem 0.5rem", borderRadius: "0.3rem",
                                 background: "rgba(124,58,237,0.15)", color: "#a78bfa",
@@ -464,10 +454,23 @@ export default function AdminDashboardPage() {
                             }}>
                                 🛡️ Administrador
                             </span>
-                            Doctor Foam — Gestión de servicios
+                            Doctor Foam — {new Date().toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" })}
                         </p>
                     </div>
-                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                    <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                        {lastUpdated && (
+                            <span style={{ color: "#475569", fontSize: "0.7rem", fontFamily: "var(--font-heading)" }}>
+                                {refreshing && <span className="spin" style={{ display: "inline-block", marginRight: "0.3rem" }}>🔄</span>}
+                                {!refreshing && `Actualizado ${lastUpdated.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" })}`}
+                            </span>
+                        )}
+                        <button onClick={() => { setRefreshing(true); fetchData(); }} style={{
+                            padding: "0.4rem 0.75rem", borderRadius: "0.5rem",
+                            background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.15)",
+                            color: "#64748b", cursor: "pointer", fontSize: "0.85rem",
+                        }}>
+                            ↻
+                        </button>
                         <Link href="/admin/reservas" style={{
                             padding: "0.5rem 1rem", borderRadius: "0.5rem",
                             background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.3)",
@@ -509,8 +512,12 @@ export default function AdminDashboardPage() {
                     {/* Calendar */}
                     <div className="glass-card" style={{ padding: "1.5rem" }}>
                         <h2 style={{ fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "var(--font-heading)" }}>Calendario</h2>
-                        {loadingData ? (
-                            <div style={{ textAlign: "center", padding: "2rem", color: "#94a3b8" }}>Cargando...</div>
+                        {loadingData && !refreshing ? (
+                            <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "0.3rem" }}>
+                                {Array.from({ length: 35 }).map((_, i) => (
+                                    <div key={i} className="skeleton" style={{ height: "36px" }} />
+                                ))}
+                            </div>
                         ) : (
                             <AdminCalendar bookings={bookings} blockedDates={blockedDates} onDayClick={handleDayClick} />
                         )}

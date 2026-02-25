@@ -1,52 +1,10 @@
 "use client";
 
 import AdminLayout from "@/components/AdminLayout";
+import { STATUSES, exportBookingsCSV, statusLabel, statusStyle } from "@/lib/booking-utils";
 import { supabase } from "@/lib/supabase";
+import type { Booking } from "@/lib/types";
 import React, { useCallback, useEffect, useState } from "react";
-
-type Booking = {
-    id: string;
-    service_date: string;
-    package_name: string;
-    vehicle_size: string;
-    total_amount: number;
-    customer_name: string;
-    customer_email: string;
-    customer_phone: string;
-    address: string;
-    vehicle_info: string;
-    payment_status: string;
-    source: string;
-    notes: string;
-    created_at: string;
-};
-
-const STATUSES = ["paid", "manual", "completed", "pending", "no-show", "rescheduled", "cancelled"] as const;
-
-const statusStyle = (s: string): React.CSSProperties => {
-    switch (s) {
-        case "completed": return { background: "rgba(16,185,129,0.15)", color: "#34d399", border: "1px solid rgba(16,185,129,0.25)" };
-        case "paid": return { background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.25)" };
-        case "manual": return { background: "rgba(168,85,247,0.15)", color: "#a78bfa", border: "1px solid rgba(168,85,247,0.25)" };
-        case "pending": return { background: "rgba(245,158,11,0.15)", color: "#fbbf24", border: "1px solid rgba(245,158,11,0.25)" };
-        case "no-show": return { background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.25)" };
-        case "rescheduled": return { background: "rgba(6,182,212,0.15)", color: "#22d3ee", border: "1px solid rgba(6,182,212,0.25)" };
-        case "cancelled": return { background: "rgba(100,116,139,0.15)", color: "#94a3b8", border: "1px solid rgba(100,116,139,0.25)" };
-        default: return { background: "rgba(245,158,11,0.15)", color: "#fbbf24", border: "1px solid rgba(245,158,11,0.25)" };
-    }
-};
-const statusLabel = (s: string): string => {
-    switch (s) {
-        case "completed": return "✅ Completado";
-        case "paid": return "💰 Pagado";
-        case "manual": return "🟣 Manual";
-        case "pending": return "⏳ Pendiente";
-        case "no-show": return "❌ No-show";
-        case "rescheduled": return "🔄 Reprogramado";
-        case "cancelled": return "🚫 Cancelado";
-        default: return "⏳ " + s;
-    }
-};
 
 export default function ReservasPage() {
     const [session, setSession] = useState<{ access_token: string } | null>(null);
@@ -63,6 +21,8 @@ export default function ReservasPage() {
     const [editData, setEditData] = useState<Partial<Booking>>({});
     const [saving, setSaving] = useState(false);
     const [bulkAction, setBulkAction] = useState("");
+    const [page, setPage] = useState(1);
+    const PER_PAGE = 20;
 
     useEffect(() => {
         supabase.auth.getSession().then(({ data }) => {
@@ -223,20 +183,30 @@ export default function ReservasPage() {
         <AdminLayout>
             <div>
                 {/* Header */}
-                <div style={{ marginBottom: "2rem" }}>
-                    <h1 className="gradient-text" style={{
-                        fontFamily: "var(--font-heading)", fontSize: "1.8rem",
-                        fontWeight: 800, marginBottom: "0.25rem",
+                <div style={{ marginBottom: "2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
+                    <div>
+                        <h1 className="gradient-text" style={{
+                            fontFamily: "var(--font-heading)", fontSize: "1.8rem",
+                            fontWeight: 800, marginBottom: "0.25rem",
+                        }}>
+                            Gestor de Reservas
+                        </h1>
+                        <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
+                            Administra todos los servicios programados
+                        </p>
+                    </div>
+                    <button onClick={() => exportBookingsCSV(filtered)} style={{
+                        padding: "0.5rem 1rem", borderRadius: "0.5rem",
+                        background: "rgba(16,185,129,0.12)", border: "1px solid rgba(16,185,129,0.3)",
+                        color: "#34d399", cursor: "pointer", fontSize: "0.8rem",
+                        fontWeight: 600, fontFamily: "var(--font-heading)",
                     }}>
-                        Gestor de Reservas
-                    </h1>
-                    <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
-                        Administra todos los servicios programados
-                    </p>
+                        📥 Exportar CSV ({filtered.length})
+                    </button>
                 </div>
 
                 {/* Quick stats */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem", marginBottom: "1.5rem" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "0.75rem", marginBottom: "1.5rem" }}>
                     {[
                         { label: "Total", value: stats.total, color: "#e2e8f0" },
                         { label: "Confirmados", value: stats.confirmed, color: "#34d399" },
@@ -320,7 +290,7 @@ export default function ReservasPage() {
                 ) : (
                     <div className="glass-card" style={{ overflow: "hidden" }}>
                         <div style={{ overflowX: "auto" }}>
-                            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                            <table className="admin-table-responsive" style={{ width: "100%", borderCollapse: "collapse" }}>
                                 <thead>
                                     <tr style={{ borderBottom: "1px solid rgba(96,165,250,0.1)" }}>
                                         <th style={{ ...thStyle, width: "40px" }}>
@@ -342,7 +312,7 @@ export default function ReservasPage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {filtered.map(b => (
+                                    {filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE).map(b => (
                                         <tr key={b.id} style={{
                                             borderBottom: "1px solid rgba(96,165,250,0.05)",
                                             background: selected.has(b.id) ? "rgba(59,130,246,0.06)" : "transparent",
@@ -392,8 +362,26 @@ export default function ReservasPage() {
                                 </tbody>
                             </table>
                         </div>
-                        <div style={{ padding: "0.75rem 1rem", borderTop: "1px solid rgba(96,165,250,0.08)", color: "#475569", fontSize: "0.78rem", fontFamily: "var(--font-heading)" }}>
-                            {filtered.length} reserva{filtered.length !== 1 ? "s" : ""}
+                        <div style={{ padding: "0.75rem 1rem", borderTop: "1px solid rgba(96,165,250,0.08)", color: "#475569", fontSize: "0.78rem", fontFamily: "var(--font-heading)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                            <span>{filtered.length} reserva{filtered.length !== 1 ? "s" : ""}</span>
+                            {filtered.length > PER_PAGE && (
+                                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                    <button disabled={page === 1} onClick={() => setPage(p => p - 1)} style={{
+                                        padding: "0.25rem 0.5rem", borderRadius: "0.35rem", border: "1px solid rgba(96,165,250,0.15)",
+                                        background: page === 1 ? "transparent" : "rgba(59,130,246,0.1)",
+                                        color: page === 1 ? "#334155" : "#60a5fa", cursor: page === 1 ? "default" : "pointer", fontSize: "0.75rem",
+                                    }}>← Ant.</button>
+                                    <span style={{ color: "#94a3b8", fontSize: "0.75rem" }}>
+                                        Pág. {page} de {Math.ceil(filtered.length / PER_PAGE)}
+                                    </span>
+                                    <button disabled={page >= Math.ceil(filtered.length / PER_PAGE)} onClick={() => setPage(p => p + 1)} style={{
+                                        padding: "0.25rem 0.5rem", borderRadius: "0.35rem", border: "1px solid rgba(96,165,250,0.15)",
+                                        background: page >= Math.ceil(filtered.length / PER_PAGE) ? "transparent" : "rgba(59,130,246,0.1)",
+                                        color: page >= Math.ceil(filtered.length / PER_PAGE) ? "#334155" : "#60a5fa",
+                                        cursor: page >= Math.ceil(filtered.length / PER_PAGE) ? "default" : "pointer", fontSize: "0.75rem",
+                                    }}>Sig. →</button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}

@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
-import { supabase } from "@/lib/supabase";
 import AdminLayout from "@/components/AdminLayout";
+import { supabase } from "@/lib/supabase";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Conversation = {
     id: string;
@@ -549,6 +549,11 @@ export default function AdminMensajes() {
                                 >
                                     {sending ? "..." : "Enviar"}
                                 </button>
+                            </div>
+                            <div style={{ padding: "0 1rem 0.5rem", textAlign: "right" }}>
+                                <span style={{ color: "#334155", fontSize: "0.65rem", fontFamily: "var(--font-heading)" }}>
+                                    ⏎ Enter para enviar
+                                </span>
                             </div>
                         </>
                     ) : (

@@ -1,22 +1,16 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import AdminLayout from "@/components/AdminLayout";
 import { supabase } from "@/lib/supabase";
+import type { User } from "@/lib/types";
+import React, { useCallback, useEffect, useState } from "react";
 
-type User = {
-    id: string;
-    email: string;
-    name: string;
-    phone: string;
-    role: string;
-    created_at: string;
-    last_sign_in: string | null;
-};
+/* User type from @/lib/types */
 
 export default function UsuariosPage() {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
+    const [expandedUser, setExpandedUser] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState<"admin" | "customer">("admin");
     const [search, setSearch] = useState("");
     const [token, setToken] = useState<string | null>(null);
@@ -125,7 +119,7 @@ export default function UsuariosPage() {
                         border: "1px solid rgba(96, 165, 250, 0.08)", overflow: "hidden",
                     }}>
                         <div style={{ overflowX: "auto" }}>
-                            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                            <table className="admin-table-responsive" style={{ width: "100%", borderCollapse: "collapse" }}>
                                 <thead>
                                     <tr style={{ borderBottom: "1px solid rgba(96, 165, 250, 0.1)" }}>
                                         {["Nombre", "Email", "Teléfono", "Creado", "Último login"].map(h => (
@@ -143,45 +137,87 @@ export default function UsuariosPage() {
                                 </thead>
                                 <tbody>
                                     {filtered.map(user => (
-                                        <tr key={user.id} style={{
-                                            borderBottom: "1px solid rgba(96, 165, 250, 0.05)",
-                                        }}>
-                                            <td style={{
-                                                padding: "0.75rem 1rem", color: "white",
-                                                fontSize: "0.9rem", fontWeight: 600,
-                                                fontFamily: "var(--font-heading)",
-                                            }}>
-                                                {user.name}
-                                            </td>
-                                            <td style={{
-                                                padding: "0.75rem 1rem", color: "#94a3b8",
-                                                fontSize: "0.85rem",
-                                            }}>
-                                                {user.email}
-                                            </td>
-                                            <td style={{
-                                                padding: "0.75rem 1rem", color: "#94a3b8",
-                                                fontSize: "0.85rem",
-                                            }}>
-                                                {user.phone}
-                                            </td>
-                                            <td style={{
-                                                padding: "0.75rem 1rem", color: "#64748b",
-                                                fontSize: "0.8rem",
-                                            }}>
-                                                {new Date(user.created_at).toLocaleDateString("es-MX")}
-                                            </td>
-                                            <td style={{
-                                                padding: "0.75rem 1rem", color: "#64748b",
-                                                fontSize: "0.8rem",
-                                            }}>
-                                                {user.last_sign_in
-                                                    ? new Date(user.last_sign_in).toLocaleDateString("es-MX", {
-                                                        day: "numeric", month: "short", hour: "2-digit", minute: "2-digit",
-                                                    })
-                                                    : "Nunca"}
-                                            </td>
-                                        </tr>
+                                        <React.Fragment key={user.id}>
+                                            <tr
+                                                onClick={() => setExpandedUser(expandedUser === user.id ? null : user.id)}
+                                                style={{
+                                                    borderBottom: "1px solid rgba(96, 165, 250, 0.05)",
+                                                    cursor: "pointer",
+                                                }}
+                                            >
+                                                <td style={{
+                                                    padding: "0.75rem 1rem", color: "white",
+                                                    fontSize: "0.9rem", fontWeight: 600,
+                                                    fontFamily: "var(--font-heading)",
+                                                }}>
+                                                    {user.name} {expandedUser === user.id ? "▾" : "▸"}
+                                                </td>
+                                                <td style={{
+                                                    padding: "0.75rem 1rem", color: "#94a3b8",
+                                                    fontSize: "0.85rem",
+                                                }}>
+                                                    {user.email}
+                                                </td>
+                                                <td style={{
+                                                    padding: "0.75rem 1rem", color: "#94a3b8",
+                                                    fontSize: "0.85rem",
+                                                }}>
+                                                    {user.phone}
+                                                </td>
+                                                <td style={{
+                                                    padding: "0.75rem 1rem", color: "#64748b",
+                                                    fontSize: "0.8rem",
+                                                }}>
+                                                    {new Date(user.created_at).toLocaleDateString("es-MX")}
+                                                </td>
+                                                <td style={{
+                                                    padding: "0.75rem 1rem", color: "#64748b",
+                                                    fontSize: "0.8rem",
+                                                }}>
+                                                    {user.last_sign_in
+                                                        ? new Date(user.last_sign_in).toLocaleDateString("es-MX", {
+                                                            day: "numeric", month: "short", hour: "2-digit", minute: "2-digit",
+                                                        })
+                                                        : "Nunca"}
+                                                </td>
+                                            </tr>
+                                            {expandedUser === user.id && (
+                                                <tr>
+                                                    <td colSpan={5} style={{
+                                                        padding: "0.75rem 1rem 1rem 2rem",
+                                                        background: "rgba(59,130,246,0.04)",
+                                                        borderBottom: "1px solid rgba(96,165,250,0.08)",
+                                                    }}>
+                                                        <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", alignItems: "center" }}>
+                                                            <div>
+                                                                <span style={{ color: "#475569", fontSize: "0.72rem", fontFamily: "var(--font-heading)", textTransform: "uppercase" }}>Rol</span>
+                                                                <div style={{
+                                                                    marginTop: "0.2rem", padding: "0.15rem 0.5rem", borderRadius: "0.3rem",
+                                                                    background: user.role === "admin" ? "rgba(124,58,237,0.15)" : "rgba(59,130,246,0.15)",
+                                                                    color: user.role === "admin" ? "#a78bfa" : "#60a5fa",
+                                                                    fontSize: "0.72rem", fontWeight: 700, fontFamily: "var(--font-heading)",
+                                                                    textTransform: "uppercase", display: "inline-block",
+                                                                }}>
+                                                                    {user.role}
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <span style={{ color: "#475569", fontSize: "0.72rem", fontFamily: "var(--font-heading)", textTransform: "uppercase" }}>ID</span>
+                                                                <div style={{ color: "#64748b", fontSize: "0.72rem", marginTop: "0.2rem", fontFamily: "monospace" }}>
+                                                                    {user.id.substring(0, 8)}...
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <span style={{ color: "#475569", fontSize: "0.72rem", fontFamily: "var(--font-heading)", textTransform: "uppercase" }}>Registrado</span>
+                                                                <div style={{ color: "#94a3b8", fontSize: "0.78rem", marginTop: "0.2rem" }}>
+                                                                    {new Date(user.created_at).toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            )}
+                                        </React.Fragment>
                                     ))}
                                 </tbody>
                             </table>

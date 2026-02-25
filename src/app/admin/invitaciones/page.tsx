@@ -1,17 +1,11 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import AdminLayout from "@/components/AdminLayout";
 import { supabase } from "@/lib/supabase";
+import type { Invitation } from "@/lib/types";
+import { useCallback, useEffect, useState } from "react";
 
-type Invitation = {
-    id: string;
-    email: string;
-    role: string;
-    status: string;
-    created_at: string;
-    expires_at: string;
-};
+/* Invitation type from @/lib/types */
 
 export default function InvitacionesPage() {
     const [invitations, setInvitations] = useState<Invitation[]>([]);

@@ -427,6 +427,80 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                 @media (max-width: 767px) {
                     .admin-main-content { margin-left: 0 !important; }
                 }
+                /* Sidebar nav hover */
+                nav a:hover {
+                    background: rgba(59, 130, 246, 0.08) !important;
+                    color: #cbd5e1 !important;
+                }
+                /* Table row hover (global for admin pages) */
+                .admin-main-content table tbody tr {
+                    transition: background 0.15s ease;
+                }
+                .admin-main-content table tbody tr:hover {
+                    background: rgba(59, 130, 246, 0.06) !important;
+                }
+                /* Skeleton pulse animation */
+                @keyframes skeletonPulse {
+                    0%, 100% { opacity: 0.4; }
+                    50% { opacity: 0.8; }
+                }
+                .skeleton {
+                    background: rgba(96, 165, 250, 0.08);
+                    border-radius: 0.5rem;
+                    animation: skeletonPulse 1.5s ease-in-out infinite;
+                }
+                /* Toast animations */
+                @keyframes toastSlideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes toastSlideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+                .toast-enter { animation: toastSlideIn 0.3s ease forwards; }
+                .toast-exit { animation: toastSlideOut 0.3s ease forwards; }
+                /* Login entrance animation */
+                @keyframes fadeInUp {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+                /* Gradient shimmer */
+                @keyframes gradientShimmer {
+                    0% { background-position: -200% center; }
+                    100% { background-position: 200% center; }
+                }
+                .shimmer-text {
+                    background: linear-gradient(90deg, #60a5fa, #a78bfa, #60a5fa, #a78bfa);
+                    background-size: 200% auto;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    animation: gradientShimmer 3s linear infinite;
+                }
+                /* Spin animation for refresh */
+                @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+                .spin { animation: spin 1s linear infinite; }
+                /* Mobile cards */
+                @media (max-width: 767px) {
+                    .admin-table-responsive thead { display: none; }
+                    .admin-table-responsive tbody tr {
+                        display: flex; flex-direction: column;
+                        padding: 1rem; margin-bottom: 0.75rem;
+                        border-radius: 0.75rem;
+                        background: rgba(15, 34, 64, 0.4) !important;
+                        border: 1px solid rgba(96, 165, 250, 0.1) !important;
+                    }
+                    .admin-table-responsive tbody tr td {
+                        padding: 0.3rem 0 !important; border: none !important;
+                    }
+                    .admin-table-responsive tbody tr td::before {
+                        content: attr(data-label);
+                        color: #64748b; font-size: 0.72rem; font-weight: 600;
+                        text-transform: uppercase; display: block; margin-bottom: 0.15rem;
+                        font-family: var(--font-heading); letter-spacing: 0.05em;
+                    }
+                }
             `}</style>
         </div>
     );
