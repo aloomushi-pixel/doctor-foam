@@ -1,5 +1,6 @@
 "use client";
 
+import Logo from "@/components/Logo";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -70,11 +71,9 @@ export default function AdminLoginPage() {
             <div className="animate-fade-in-up" style={{ width: "100%", maxWidth: "420px", padding: "1.5rem" }}>
                 <div style={{ textAlign: "center", marginBottom: "2rem" }}>
                     <Link href="/" style={{ textDecoration: "none" }}>
-                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.8rem", color: "white" }}>
-                            DOCTOR <span className="shimmer-text">FOAM</span>
-                        </span>
+                        <Logo size="lg" />
                     </Link>
-                    <p style={{ color: "#64748b", fontSize: "0.9rem", marginTop: "0.5rem" }}>Panel de Administración</p>
+                    <p style={{ color: "#64748b", fontSize: "0.9rem", marginTop: "0.75rem" }}>Panel de Administración</p>
                 </div>
 
                 <form onSubmit={mode === "login" ? handleLogin : handleResetPassword} className="glass-card" style={{ padding: "2rem" }}>
