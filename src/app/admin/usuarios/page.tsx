@@ -15,6 +15,7 @@ export default function UsuariosPage() {
     const [search, setSearch] = useState("");
     const [token, setToken] = useState<string | null>(null);
     const [saving, setSaving] = useState<string | null>(null); // user id being saved
+    const [actionError, setActionError] = useState<string | null>(null); // para mostrar mensajes de error
     const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
@@ -61,8 +62,9 @@ export default function UsuariosPage() {
         debounceRef.current = setTimeout(async () => {
             if (!token) return;
             setSaving(userId);
+            setActionError(null);
             try {
-                await fetch("/api/admin/users", {
+                const res = await fetch("/api/admin/users", {
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
@@ -73,10 +75,42 @@ export default function UsuariosPage() {
                         [field]: value,
                     }),
                 });
-            } catch { /* silent */ }
+                const data = await res.json();
+                if (!res.ok) {
+                    throw new Error(data.error || "Fallo por razones desconocidas.");
+                }
+            } catch (err: any) {
+                setActionError(`Error al guardar: ${err.message}. (Si dice 'relation does not exist', significa que aún debes crear la tabla en Supabase en Producción)`);
+                // Revert to original state by fetching
+                fetchUsers();
+            }
             setSaving(null);
         }, 600);
-    }, [token]);
+    }, [token, fetchUsers]);
+
+    const handleDeleteUser = async (user: User) => {
+        if (!confirm(`¿Estás 100% seguro de que deseas eliminar permanentemente a ${user.name || user.email}? Esta acción no se puede deshacer.`)) return;
+
+        if (!token) return;
+        setLoading(true);
+        setActionError(null);
+        try {
+            const res = await fetch(`/api/admin/users/${user.id}`, {
+                method: "DELETE",
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(data.error || "Fallo al eliminar.");
+            }
+            alert("Usuario eliminado correctamente.");
+            setUsers(prev => prev.filter(u => u.id !== user.id));
+        } catch (err: any) {
+            alert(`Error al eliminar: ${err.message}`);
+            setActionError(`Error al eliminar: ${err.message}`);
+        }
+        setLoading(false);
+    };
 
     return (
         <AdminLayout>
@@ -145,6 +179,17 @@ export default function UsuariosPage() {
                     </div>
                 )}
 
+                {/* Global Error Notice for Operations */}
+                {actionError && (
+                    <div style={{
+                        padding: "0.75rem 1rem", borderRadius: "0.5rem",
+                        background: "rgba(239, 68, 68, 0.1)", border: "1px solid rgba(239, 68, 68, 0.2)",
+                        color: "#ef4444", fontSize: "0.85rem", marginBottom: "1.5rem", fontWeight: 500
+                    }}>
+                        {actionError}
+                    </div>
+                )}
+
                 {/* Search */}
                 <div style={{ marginBottom: "1.5rem" }}>
                     <input
@@ -189,7 +234,7 @@ export default function UsuariosPage() {
                                         {[
                                             "Nombre", "Email",
                                             ...(activeTab === "admin" ? ["Rol", "%", "Teléfono"] : ["Teléfono"]),
-                                            "Creado", "Último login",
+                                            "Creado", "Último login", "Acciones"
                                         ].map(h => (
                                             <th key={h} style={{
                                                 padding: "0.75rem 1rem", textAlign: "left",
@@ -315,10 +360,32 @@ export default function UsuariosPage() {
                                                         })
                                                         : "Nunca"}
                                                 </td>
+                                                <td style={{ padding: "0.75rem 1rem", textAlign: "right" }}>
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            handleDeleteUser(user);
+                                                        }}
+                                                        style={{
+                                                            background: "rgba(239, 68, 68, 0.1)",
+                                                            color: "#ef4444",
+                                                            border: "1px solid rgba(239, 68, 68, 0.2)",
+                                                            padding: "0.4rem 0.6rem",
+                                                            borderRadius: "0.4rem",
+                                                            fontSize: "0.75rem",
+                                                            fontWeight: 600,
+                                                            cursor: "pointer",
+                                                            fontFamily: "var(--font-heading)"
+                                                        }}
+                                                        title="Eliminar permanentemente"
+                                                    >
+                                                        Eliminar
+                                                    </button>
+                                                </td>
                                             </tr>
                                             {expandedUser === user.id && (
                                                 <tr>
-                                                    <td colSpan={activeTab === "admin" ? 7 : 5} style={{
+                                                    <td colSpan={activeTab === "admin" ? 8 : 6} style={{
                                                         padding: "0.75rem 1rem 1rem 2rem",
                                                         background: "#eff6ff",
                                                         borderBottom: "1px solid #e2e8f0",

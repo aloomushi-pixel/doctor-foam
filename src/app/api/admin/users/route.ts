@@ -107,11 +107,15 @@ export async function PATCH(request: NextRequest) {
             .from("admin_profiles")
             .upsert(updateData, { onConflict: "id" });
 
-        if (error) throw error;
+        if (error) {
+            console.error("[admin/users PATCH] Supabase error:", error);
+            // Si la tabla no existe, Supabase devuelve un relation "admin_profiles" does not exist.
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
 
         return NextResponse.json({ success: true });
-    } catch (err) {
+    } catch (err: any) {
         console.error("[admin/users PATCH] Error:", err);
-        return NextResponse.json({ error: "Error al actualizar usuario" }, { status: 500 });
+        return NextResponse.json({ error: err.message || "Error al actualizar usuario" }, { status: 500 });
     }
 }
