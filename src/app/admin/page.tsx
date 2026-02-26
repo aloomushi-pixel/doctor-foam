@@ -54,24 +54,24 @@ function AdminCalendar({
         const isPast = date < today;
         const isToday = date.getTime() === today.getTime();
 
-        let bg = "rgba(15, 34, 64, 0.4)";
-        let color = "#e2e8f0";
-        let border = "1px solid rgba(96, 165, 250, 0.1)";
+        let bg = "#ffffff";
+        let color = "#475569";
+        let border = "1px solid #cbd5e1";
         let type: "booked" | "blocked" | "free" = "free";
 
         if (isBooked) {
-            bg = "rgba(59, 130, 246, 0.2)";
-            border = "2px solid rgba(59, 130, 246, 0.5)";
-            color = "#60a5fa";
+            bg = "#eff6ff";
+            border = "2px solid #3b82f6";
+            color = "#2563eb";
             type = "booked";
         } else if (isBlocked) {
-            bg = "rgba(239, 68, 68, 0.15)";
-            border = "1px solid rgba(239, 68, 68, 0.3)";
-            color = "#f87171";
+            bg = "#fef2f2";
+            border = "1px solid #fca5a5";
+            color = "#ef4444";
             type = "blocked";
         } else if (isPast || isSunday) {
-            bg = "rgba(15, 23, 42, 0.3)";
-            color = "#475569";
+            bg = "#f8fafc";
+            color = "#94a3b8";
         }
 
         days.push(
@@ -102,14 +102,14 @@ function AdminCalendar({
                 <button type="button" onClick={() => {
                     if (currentMonth === 0) { setCurrentMonth(11); setCurrentYear(currentYear - 1); }
                     else setCurrentMonth(currentMonth - 1);
-                }} style={{ background: "none", border: "none", color: "#e2e8f0", cursor: "pointer", fontSize: "1.2rem", padding: "0.5rem" }}>←</button>
-                <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, color: "white", fontSize: "1.1rem" }}>
+                }} style={{ background: "none", border: "none", color: "#475569", cursor: "pointer", fontSize: "1.2rem", padding: "0.5rem" }}>←</button>
+                <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, color: "#0f172a", fontSize: "1.1rem" }}>
                     {monthNames[currentMonth]} {currentYear}
                 </span>
                 <button type="button" onClick={() => {
                     if (currentMonth === 11) { setCurrentMonth(0); setCurrentYear(currentYear + 1); }
                     else setCurrentMonth(currentMonth + 1);
-                }} style={{ background: "none", border: "none", color: "#e2e8f0", cursor: "pointer", fontSize: "1.2rem", padding: "0.5rem" }}>→</button>
+                }} style={{ background: "none", border: "none", color: "#475569", cursor: "pointer", fontSize: "1.2rem", padding: "0.5rem" }}>→</button>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "0.25rem", marginBottom: "0.5rem" }}>
                 {dayNames.map((dn) => (
@@ -119,18 +119,18 @@ function AdminCalendar({
             <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "0.3rem" }}>
                 {days}
             </div>
-            <div style={{ display: "flex", gap: "1rem", marginTop: "1rem", fontSize: "0.75rem", color: "#94a3b8", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "1rem", marginTop: "1rem", fontSize: "0.75rem", color: "#475569", flexWrap: "wrap" }}>
                 <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "rgba(59, 130, 246, 0.3)", border: "1px solid rgba(59,130,246,0.5)" }} /> Confirmado
+                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#eff6ff", border: "1px solid #3b82f6" }} /> Confirmado
                 </span>
                 <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "rgba(239, 68, 68, 0.2)" }} /> Bloqueado
+                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#fef2f2", border: "1px solid #fca5a5" }} /> Bloqueado
                 </span>
                 <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "rgba(15, 34, 64, 0.4)", border: "1px solid rgba(96,165,250,0.1)" }} /> Disponible
+                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#ffffff", border: "1px solid #cbd5e1" }} /> Disponible
                 </span>
                 <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                    <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#fbbf24" }} /> Pendiente pago
+                    <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#f59e0b" }} /> Pendiente pago
                 </span>
             </div>
         </div>
@@ -426,7 +426,7 @@ export default function AdminDashboardPage() {
     };
 
     if (loadingAuth) {
-        return <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#94a3b8" }}>Verificando sesión...</div>;
+        return <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#475569" }}>Verificando sesión...</div>;
     }
 
     /* Stats */
@@ -463,15 +463,15 @@ export default function AdminDashboardPage() {
                 }}>
                     <div>
                         <h1 style={{
-                            color: "#f1f5f9", fontSize: "1.5rem", margin: "0 0 0.25rem",
+                            color: "#0f172a", fontSize: "1.5rem", margin: "0 0 0.25rem",
                             fontFamily: "var(--font-heading)", fontWeight: 800,
                         }}>
                             {getGreeting()} 👋
                         </h1>
-                        <p style={{ color: "#64748b", fontSize: "0.85rem", margin: 0, display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
+                        <p style={{ color: "#475569", fontSize: "0.85rem", margin: 0, display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
                             <span style={{
                                 padding: "0.15rem 0.5rem", borderRadius: "0.3rem",
-                                background: "rgba(183,148,246,0.15)", color: "#b794f6",
+                                background: "rgba(183,148,246,0.15)", color: "#9333ea",
                                 fontSize: "0.7rem", fontWeight: 700, fontFamily: "var(--font-heading)",
                             }}>
                                 🛡️ Administrador
@@ -481,22 +481,22 @@ export default function AdminDashboardPage() {
                     </div>
                     <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
                         {lastUpdated && (
-                            <span style={{ color: "#475569", fontSize: "0.7rem", fontFamily: "var(--font-heading)" }}>
+                            <span style={{ color: "#64748b", fontSize: "0.7rem", fontFamily: "var(--font-heading)" }}>
                                 {refreshing && <span className="spin" style={{ display: "inline-block", marginRight: "0.3rem" }}>🔄</span>}
                                 {!refreshing && `Actualizado ${lastUpdated.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" })}`}
                             </span>
                         )}
                         <button onClick={() => { setRefreshing(true); fetchData(); }} style={{
                             padding: "0.4rem 0.75rem", borderRadius: "0.5rem",
-                            background: "rgba(99,179,237,0.08)", border: "1px solid rgba(99,179,237,0.15)",
-                            color: "#64748b", cursor: "pointer", fontSize: "0.85rem",
+                            background: "#f8fafc", border: "1px solid #cbd5e1",
+                            color: "#475569", cursor: "pointer", fontSize: "0.85rem",
                         }}>
                             ↻
                         </button>
                         <Link href="/admin/reservas" style={{
                             padding: "0.5rem 1rem", borderRadius: "0.5rem",
-                            background: "rgba(99,179,237,0.12)", border: "1px solid rgba(99,179,237,0.25)",
-                            color: "#63b3ed", textDecoration: "none", fontSize: "0.8rem",
+                            background: "#eff6ff", border: "1px solid #bfdbfe",
+                            color: "#2563eb", textDecoration: "none", fontSize: "0.8rem",
                             fontWeight: 600, fontFamily: "var(--font-heading)",
                         }}>
                             📋 Ver todas las reservas
@@ -524,8 +524,8 @@ export default function AdminDashboardPage() {
                                 {stat.icon}
                             </div>
                             <div>
-                                <div style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.2rem", color: "#f1f5f9" }}>{stat.value}</div>
-                                <div style={{ color: "#64748b", fontSize: "0.72rem", fontFamily: "var(--font-heading)" }}>{stat.label}</div>
+                                <div style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.2rem", color: "#0f172a" }}>{stat.value}</div>
+                                <div style={{ color: "#475569", fontSize: "0.72rem", fontFamily: "var(--font-heading)" }}>{stat.label}</div>
                             </div>
                         </div>
                     ))}
@@ -560,9 +560,9 @@ export default function AdminDashboardPage() {
                                     style={{
                                         padding: "0.45rem 0.85rem", borderRadius: "999px", fontSize: "0.78rem", fontWeight: 600,
                                         fontFamily: "var(--font-heading)", cursor: "pointer", transition: "all 0.2s",
-                                        border: `1px solid ${listTab === tab.key ? (tab.key === "confirmed" ? "rgba(59,130,246,0.4)" : "rgba(245,158,11,0.4)") : "rgba(96,165,250,0.1)"}`,
-                                        background: listTab === tab.key ? (tab.key === "confirmed" ? "rgba(59,130,246,0.15)" : "rgba(245,158,11,0.15)") : "transparent",
-                                        color: listTab === tab.key ? (tab.key === "confirmed" ? "#60a5fa" : "#fbbf24") : "#64748b",
+                                        border: `1px solid ${listTab === tab.key ? (tab.key === "confirmed" ? "#bfdbfe" : "#fde68a") : "#e2e8f0"}`,
+                                        background: listTab === tab.key ? (tab.key === "confirmed" ? "#eff6ff" : "#fef3c7") : "transparent",
+                                        color: listTab === tab.key ? (tab.key === "confirmed" ? "#2563eb" : "#d97706") : "#475569",
                                     }}
                                 >
                                     {tab.label}
@@ -570,7 +570,7 @@ export default function AdminDashboardPage() {
                             ))}
                         </div>
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem", gap: "0.75rem" }}>
-                            <h2 style={{ fontSize: "1rem", margin: 0, fontFamily: "var(--font-heading)", whiteSpace: "nowrap" }}>
+                            <h2 style={{ fontSize: "1rem", margin: 0, fontFamily: "var(--font-heading)", whiteSpace: "nowrap", color: "#0f172a" }}>
                                 {listTab === "confirmed" ? "Servicios confirmados" : "Esperando pago"}
                             </h2>
                             <input
@@ -580,8 +580,8 @@ export default function AdminDashboardPage() {
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 style={{
                                     width: "100%", maxWidth: "180px", padding: "0.4rem 0.65rem",
-                                    borderRadius: "0.5rem", border: "1px solid rgba(96, 165, 250, 0.2)",
-                                    background: "rgba(10, 22, 40, 0.6)", color: "white", fontSize: "0.8rem",
+                                    borderRadius: "0.5rem", border: "1px solid #cbd5e1",
+                                    background: "#ffffff", color: "#0f172a", fontSize: "0.8rem",
                                     outline: "none",
                                 }}
                             />
@@ -600,16 +600,16 @@ export default function AdminDashboardPage() {
                                             onClick={() => openDetail(b)}
                                             style={{
                                                 padding: "1rem", borderRadius: "0.75rem", cursor: "pointer",
-                                                border: `1px solid ${isConfirmed ? "rgba(96, 165, 250, 0.15)" : "rgba(245, 158, 11, 0.15)"}`,
+                                                border: `1px solid ${isConfirmed ? "#e2e8f0" : "#fef3c7"}`,
                                                 textAlign: "left",
-                                                background: isConfirmed ? "rgba(15, 34, 64, 0.4)" : "rgba(30, 25, 10, 0.4)",
-                                                color: "white",
+                                                background: isConfirmed ? "#ffffff" : "#fffbeb",
+                                                color: "#0f172a",
                                                 display: "flex", justifyContent: "space-between", alignItems: "center",
                                             }}
                                         >
                                             <div>
                                                 <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{b.customer_name}</div>
-                                                <div style={{ color: "#94a3b8", fontSize: "0.8rem" }}>{b.package_name}</div>
+                                                <div style={{ color: "#475569", fontSize: "0.8rem" }}>{b.package_name}</div>
                                                 <div style={{ color: "#64748b", fontSize: "0.75rem" }}>
                                                     {new Date(b.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "short", day: "numeric", month: "short" })}
                                                 </div>
@@ -642,7 +642,7 @@ export default function AdminDashboardPage() {
                     <div style={overlayStyle}>
                         <div className="glass-card" style={{ maxWidth: "500px", width: "90%", padding: "2rem" }}>
                             <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "0.5rem" }}>Agregar servicio manual</h3>
-                            <p style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: "1.25rem" }}>
+                            <p style={{ color: "#475569", fontSize: "0.85rem", marginBottom: "1.25rem" }}>
                                 Fecha: {selectedDate && new Date(selectedDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" })}
                             </p>
                             <div style={{ display: "grid", gap: "0.75rem", marginBottom: "1.5rem" }}>
@@ -659,8 +659,8 @@ export default function AdminDashboardPage() {
                                 <textarea placeholder="Notas" value={newBooking.notes} onChange={(e) => setNewBooking({ ...newBooking, notes: e.target.value })} style={{ ...modalInputStyle, minHeight: "60px", resize: "vertical" as const }} />
                             </div>
                             <div style={{ display: "flex", gap: "0.75rem" }}>
-                                <button onClick={() => setShowAddModal(false)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(15, 34, 64, 0.6)", color: "#94a3b8" }}>Cancelar</button>
-                                <button onClick={() => { setShowAddModal(false); setShowBlockModal(true); }} style={{ ...modalBtnStyle, flex: 1, background: "rgba(239, 68, 68, 0.15)", color: "#f87171", border: "1px solid rgba(239, 68, 68, 0.3)" }}>Bloquear día</button>
+                                <button onClick={() => setShowAddModal(false)} style={{ ...modalBtnStyle, flex: 1, background: "#f8fafc", color: "#475569" }}>Cancelar</button>
+                                <button onClick={() => { setShowAddModal(false); setShowBlockModal(true); }} style={{ ...modalBtnStyle, flex: 1, background: "#fef2f2", color: "#ef4444", border: "1px solid #fecaca" }}>Bloquear día</button>
                                 <button onClick={handleAddBooking} className="btn-premium" style={{ flex: 1, justifyContent: "center", fontSize: "0.85rem" }}>Guardar</button>
                             </div>
                         </div>
@@ -671,14 +671,14 @@ export default function AdminDashboardPage() {
                 {showBlockModal && (
                     <div style={overlayStyle}>
                         <div className="glass-card" style={{ maxWidth: "400px", width: "90%", padding: "2rem" }}>
-                            <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "0.5rem", color: "#f87171" }}>🚫 Bloquear día</h3>
-                            <p style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: "1.25rem" }}>
+                            <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "0.5rem", color: "#ef4444" }}>🚫 Bloquear día</h3>
+                            <p style={{ color: "#475569", fontSize: "0.85rem", marginBottom: "1.25rem" }}>
                                 {selectedDate && new Date(selectedDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" })}
                             </p>
                             <input placeholder="Motivo (opcional)" value={blockReason} onChange={(e) => setBlockReason(e.target.value)} style={{ ...modalInputStyle, marginBottom: "1.5rem" }} />
                             <div style={{ display: "flex", gap: "0.75rem" }}>
-                                <button onClick={() => setShowBlockModal(false)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(15, 34, 64, 0.6)", color: "#94a3b8" }}>Cancelar</button>
-                                <button onClick={handleBlockDate} style={{ ...modalBtnStyle, flex: 1, background: "rgba(239, 68, 68, 0.2)", color: "#f87171", border: "1px solid rgba(239, 68, 68, 0.4)" }}>Bloquear</button>
+                                <button onClick={() => setShowBlockModal(false)} style={{ ...modalBtnStyle, flex: 1, background: "#f8fafc", color: "#475569" }}>Cancelar</button>
+                                <button onClick={handleBlockDate} style={{ ...modalBtnStyle, flex: 1, background: "#fef2f2", color: "#ef4444", border: "1px solid #fecaca" }}>Bloquear</button>
                             </div>
                         </div>
                     </div>
@@ -724,7 +724,7 @@ export default function AdminDashboardPage() {
                                         {showDetailModal.source === "online" ? "🌐 En línea" : "👤 Admin"}
                                     </span>
                                     {showDetailModal.total_amount > 0 && (
-                                        <span style={{ color: "#94a3b8", fontSize: "0.8rem", fontWeight: 600 }}>
+                                        <span style={{ color: "#475569", fontSize: "0.8rem", fontWeight: 600 }}>
                                             ${(showDetailModal.total_amount / 100).toLocaleString("es-MX")} MXN
                                         </span>
                                     )}
@@ -775,17 +775,17 @@ export default function AdminDashboardPage() {
                                         />
                                     </div>
                                     <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.5rem" }}>
-                                        <button onClick={() => setEditMode(false)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(15,34,64,0.6)", color: "#94a3b8" }}>Cancelar</button>
+                                        <button onClick={() => setEditMode(false)} style={{ ...modalBtnStyle, flex: 1, background: "#f8fafc", color: "#475569" }}>Cancelar</button>
                                         <button onClick={handleSaveEdit} disabled={saving} className="btn-premium" style={{ flex: 1, justifyContent: "center", fontSize: "0.85rem", opacity: saving ? 0.6 : 1 }}>
                                             {saving ? "Guardando..." : "💾 Guardar"}
                                         </button>
                                     </div>
                                 </div>
                             ) : showReschedule ? (
-                                /* Reschedule mode */
+                                /* Reschedule options */
                                 <div style={{ marginBottom: "1.25rem" }}>
-                                    <p style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: "0.75rem" }}>
-                                        Fecha actual: <strong style={{ color: "white" }}>
+                                    <p style={{ color: "#475569", fontSize: "0.85rem", marginBottom: "0.75rem" }}>
+                                        Fecha actual: <strong style={{ color: "#0f172a" }}>
                                             {new Date(showDetailModal.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" })}
                                         </strong>
                                     </p>
@@ -800,7 +800,7 @@ export default function AdminDashboardPage() {
                                         />
                                     </div>
                                     <div style={{ display: "flex", gap: "0.5rem" }}>
-                                        <button onClick={() => setShowReschedule(false)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(15,34,64,0.6)", color: "#94a3b8" }}>Cancelar</button>
+                                        <button onClick={() => setShowReschedule(false)} style={{ ...modalBtnStyle, flex: 1, background: "#f8fafc", color: "#475569" }}>Cancelar</button>
                                         <button onClick={handleReschedule} disabled={!rescheduleDate || saving} style={{
                                             ...modalBtnStyle, flex: 1,
                                             background: rescheduleDate ? "rgba(6,182,212,0.15)" : "rgba(96,165,250,0.05)",
@@ -826,9 +826,9 @@ export default function AdminDashboardPage() {
                                         { label: "Email", value: showDetailModal.customer_email || "—" },
                                         { label: "Notas", value: showDetailModal.notes || "—" },
                                     ].map((item) => (
-                                        <div key={item.label} style={{ display: "flex", justifyContent: "space-between", padding: "0.35rem 0", borderBottom: "1px solid rgba(96,165,250,0.06)" }}>
-                                            <span style={{ color: "#64748b", fontSize: "0.82rem" }}>{item.label}</span>
-                                            <span style={{ color: "white", fontSize: "0.82rem", fontWeight: 500, textAlign: "right", maxWidth: "62%" }}>{item.value}</span>
+                                        <div key={item.label} style={{ display: "flex", justifyContent: "space-between", padding: "0.35rem 0", borderBottom: "1px solid #e2e8f0" }}>
+                                            <span style={{ color: "#475569", fontSize: "0.82rem" }}>{item.label}</span>
+                                            <span style={{ color: "#0f172a", fontSize: "0.82rem", fontWeight: 500, textAlign: "right", maxWidth: "62%" }}>{item.value}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -869,13 +869,13 @@ export default function AdminDashboardPage() {
                             {/* ─── Action Buttons ─── */}
                             {!editMode && !showReschedule && (
                                 <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-                                    <button onClick={() => { setShowDetailModal(null); setEditMode(false); setShowReschedule(false); }} style={{ ...modalBtnStyle, flex: 2, background: "rgba(15,34,64,0.6)", color: "#94a3b8" }}>Cerrar</button>
-                                    <button onClick={startEdit} style={{ ...modalBtnStyle, flex: 1, background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}>✏️ Editar</button>
+                                    <button onClick={() => { setShowDetailModal(null); setEditMode(false); setShowReschedule(false); }} style={{ ...modalBtnStyle, flex: 2, background: "#f8fafc", color: "#475569" }}>Cerrar</button>
+                                    <button onClick={startEdit} style={{ ...modalBtnStyle, flex: 1, background: "#eff6ff", color: "#2563eb", border: "1px solid #bfdbfe" }}>✏️ Editar</button>
                                     {/* Reschedule only for confirmed */}
                                     {CONFIRMED_STATUSES.includes(showDetailModal.payment_status) && (
-                                        <button onClick={() => setShowReschedule(true)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(6,182,212,0.12)", color: "#22d3ee", border: "1px solid rgba(6,182,212,0.3)" }}>📅 Reprogramar</button>
+                                        <button onClick={() => setShowReschedule(true)} style={{ ...modalBtnStyle, flex: 1, background: "#ecfeff", color: "#0891b2", border: "1px solid #a5f3fc" }}>📅 Reprogramar</button>
                                     )}
-                                    <button onClick={() => handleCancelBooking(showDetailModal.id)} style={{ ...modalBtnStyle, flex: 1, background: "rgba(239,68,68,0.12)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}>🚫 Cancelar</button>
+                                    <button onClick={() => handleCancelBooking(showDetailModal.id)} style={{ ...modalBtnStyle, flex: 1, background: "#fef2f2", color: "#ef4444", border: "1px solid #fecaca" }}>🚫 Cancelar</button>
                                 </div>
                             )}
                         </div>
@@ -895,11 +895,11 @@ const overlayStyle: React.CSSProperties = {
 
 const modalInputStyle: React.CSSProperties = {
     width: "100%", padding: "0.75rem 1rem", borderRadius: "0.5rem",
-    border: "1px solid rgba(96, 165, 250, 0.2)", background: "rgba(10, 22, 40, 0.8)",
-    color: "white", fontSize: "0.9rem", outline: "none",
+    border: "1px solid #cbd5e1", background: "#ffffff",
+    color: "#0f172a", fontSize: "0.9rem", outline: "none",
 };
 
 const modalBtnStyle: React.CSSProperties = {
-    padding: "0.75rem 1rem", borderRadius: "0.5rem", border: "1px solid rgba(96, 165, 250, 0.15)",
+    padding: "0.75rem 1rem", borderRadius: "0.5rem", border: "1px solid #cbd5e1",
     cursor: "pointer", fontSize: "0.85rem", fontFamily: "var(--font-heading)", fontWeight: 600,
 };

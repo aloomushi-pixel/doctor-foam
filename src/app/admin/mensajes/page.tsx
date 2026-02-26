@@ -249,7 +249,7 @@ export default function AdminMensajes() {
     return (
         <AdminLayout>
             <div style={{ marginBottom: "1.5rem" }}>
-                <h1 style={{ color: "white", fontSize: "1.5rem", fontFamily: "var(--font-heading)", fontWeight: 800, margin: 0 }}>
+                <h1 style={{ color: "#0f172a", fontSize: "1.5rem", fontFamily: "var(--font-heading)", fontWeight: 800, margin: 0 }}>
                     💬 Mensajes
                     {(totalClientUnread + totalGuestUnread) > 0 && (
                         <span style={{
@@ -274,9 +274,9 @@ export default function AdminMensajes() {
                         onClick={() => switchTab(tab.key)}
                         style={{
                             padding: "0.55rem 1.1rem", borderRadius: "0.6rem",
-                            border: activeTab === tab.key ? "1px solid rgba(59,130,246,0.4)" : "1px solid rgba(96,165,250,0.1)",
-                            background: activeTab === tab.key ? "rgba(59,130,246,0.15)" : "rgba(10,22,40,0.4)",
-                            color: activeTab === tab.key ? "#60a5fa" : "#94a3b8",
+                            border: activeTab === tab.key ? "1px solid #bfdbfe" : "1px solid #e2e8f0",
+                            background: activeTab === tab.key ? "#eff6ff" : "#ffffff",
+                            color: activeTab === tab.key ? "#2563eb" : "#475569",
                             cursor: "pointer", fontWeight: 600, fontSize: "0.85rem",
                             fontFamily: "var(--font-heading)", transition: "all 0.2s",
                             display: "flex", alignItems: "center", gap: "0.4rem",
@@ -300,22 +300,22 @@ export default function AdminMensajes() {
             <div className="msg-layout" style={{
                 display: "flex", gap: "0", height: "calc(100vh - 230px)",
                 borderRadius: "1rem", overflow: "hidden",
-                border: "1px solid rgba(96,165,250,0.1)",
-                background: "rgba(10,22,40,0.5)",
+                border: "1px solid #e2e8f0",
+                background: "#f8fafc",
             }}>
                 {/* Conversation List */}
                 <div className="msg-list-panel" style={{
                     width: "340px", flexShrink: 0,
-                    borderRight: "1px solid rgba(96,165,250,0.08)",
+                    borderRight: "1px solid #e2e8f0",
                     display: "flex", flexDirection: "column",
-                    background: "rgba(10,22,40,0.6)",
+                    background: "#ffffff",
                 }}>
                     {/* Search */}
-                    <div style={{ padding: "1rem", borderBottom: "1px solid rgba(96,165,250,0.08)" }}>
+                    <div style={{ padding: "1rem", borderBottom: "1px solid #e2e8f0" }}>
                         <div style={{
                             display: "flex", alignItems: "center", gap: "0.5rem",
-                            background: "rgba(255,255,255,0.05)", borderRadius: "0.5rem",
-                            padding: "0.5rem 0.75rem", border: "1px solid rgba(96,165,250,0.1)",
+                            background: "#f8fafc", borderRadius: "0.5rem",
+                            padding: "0.5rem 0.75rem", border: "1px solid #e2e8f0",
                         }}>
                             <span style={{ color: "#64748b", fontSize: "0.9rem" }}>🔍</span>
                             <input
@@ -325,7 +325,7 @@ export default function AdminMensajes() {
                                 placeholder="Buscar conversación..."
                                 style={{
                                     flex: 1, background: "none", border: "none", outline: "none",
-                                    color: "white", fontSize: "0.85rem", fontFamily: "var(--font-body)",
+                                    color: "#0f172a", fontSize: "0.85rem", fontFamily: "var(--font-body)",
                                 }}
                             />
                         </div>
@@ -360,7 +360,7 @@ export default function AdminMensajes() {
                                         width: "100%", display: "flex", alignItems: "center", gap: "0.75rem",
                                         padding: "0.85rem 0.75rem", borderRadius: "0.75rem", marginBottom: "0.25rem",
                                         border: "none", cursor: "pointer", textAlign: "left",
-                                        background: selectedConv?.id === conv.id ? "rgba(59,130,246,0.15)" : "transparent",
+                                        background: selectedConv?.id === conv.id ? "#eff6ff" : "transparent",
                                         transition: "background 0.2s",
                                     }}
                                 >
@@ -371,9 +371,9 @@ export default function AdminMensajes() {
                                             ? activeTab === "invitados"
                                                 ? "linear-gradient(135deg, #10b981, #34d399)"
                                                 : "linear-gradient(135deg, #3b82f6, #8b5cf6)"
-                                            : "rgba(96,165,250,0.15)",
+                                            : "#f1f5f9",
                                         display: "flex", alignItems: "center", justifyContent: "center",
-                                        color: conv.unread_count > 0 ? "white" : "#64748b",
+                                        color: conv.unread_count > 0 ? "white" : "#475569",
                                         fontWeight: 700, fontSize: "1rem", fontFamily: "var(--font-heading)",
                                     }}>
                                         {getInitial(conv.customer_name)}
@@ -383,7 +383,7 @@ export default function AdminMensajes() {
                                     <div style={{ flex: 1, minWidth: 0 }}>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.5rem" }}>
                                             <span style={{
-                                                color: conv.unread_count > 0 ? "white" : "#cbd5e1",
+                                                color: conv.unread_count > 0 ? "#0f172a" : "#475569",
                                                 fontSize: "0.88rem", fontWeight: conv.unread_count > 0 ? 700 : 500,
                                                 whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                                             }}>
@@ -421,22 +421,22 @@ export default function AdminMensajes() {
                 {/* Chat Area */}
                 <div className="msg-chat-panel" style={{
                     flex: 1, display: "flex", flexDirection: "column",
-                    background: "rgba(10,22,40,0.3)",
+                    background: "#f8fafc",
                 }}>
                     {selectedConv ? (
                         <>
                             {/* Chat header */}
                             <div style={{
                                 padding: "0.85rem 1.25rem",
-                                borderBottom: "1px solid rgba(96,165,250,0.08)",
+                                borderBottom: "1px solid #e2e8f0",
                                 display: "flex", alignItems: "center", gap: "0.75rem",
-                                background: "rgba(10,22,40,0.8)",
+                                background: "#ffffff",
                             }}>
                                 <button
                                     className="msg-back-btn"
                                     onClick={handleBack}
                                     style={{
-                                        background: "none", border: "none", color: "#60a5fa",
+                                        background: "none", border: "none", color: "#2563eb",
                                         cursor: "pointer", fontSize: "1.1rem", padding: "0.25rem",
                                         display: "none",
                                     }}
@@ -452,7 +452,7 @@ export default function AdminMensajes() {
                                     {getInitial(selectedConv.customer_name)}
                                 </div>
                                 <div>
-                                    <div style={{ color: "white", fontWeight: 600, fontSize: "0.9rem", fontFamily: "var(--font-heading)", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                                    <div style={{ color: "#0f172a", fontWeight: 600, fontSize: "0.9rem", fontFamily: "var(--font-heading)", display: "flex", alignItems: "center", gap: "0.4rem" }}>
                                         {selectedConv.customer_name}
                                         <span style={{
                                             fontSize: "0.6rem", padding: "0.1rem 0.35rem", borderRadius: "0.3rem",
@@ -491,16 +491,16 @@ export default function AdminMensajes() {
                                                     maxWidth: "75%", padding: "0.7rem 1rem",
                                                     borderRadius: isAdmin ? "1rem 1rem 0.25rem 1rem" : "1rem 1rem 1rem 0.25rem",
                                                     background: isAdmin
-                                                        ? "linear-gradient(135deg, #3182ce, #63b3ed)"
-                                                        : "rgba(255,255,255,0.08)",
-                                                    color: isAdmin ? "white" : "#e2e8f0",
+                                                        ? "#2563eb"
+                                                        : "#ffffff",
+                                                    color: isAdmin ? "white" : "#0f172a",
                                                     fontSize: "0.88rem", lineHeight: "1.55",
-                                                    border: isAdmin ? "none" : "1px solid rgba(96,165,250,0.1)",
+                                                    border: isAdmin ? "none" : "1px solid #e2e8f0",
                                                 }}>
                                                     <div style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{msg.content}</div>
                                                     <div style={{
                                                         fontSize: "0.65rem",
-                                                        color: isAdmin ? "rgba(255,255,255,0.6)" : "#64748b",
+                                                        color: isAdmin ? "rgba(255,255,255,0.8)" : "#64748b",
                                                         marginTop: "0.35rem", textAlign: "right",
                                                         display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "0.3rem",
                                                     }}>
@@ -520,8 +520,8 @@ export default function AdminMensajes() {
                             {/* Input */}
                             <div style={{
                                 padding: "0.85rem 1rem",
-                                borderTop: "1px solid rgba(96,165,250,0.08)",
-                                background: "rgba(10,22,40,0.8)",
+                                borderTop: "1px solid #e2e8f0",
+                                background: "#ffffff",
                                 display: "flex", alignItems: "center", gap: "0.75rem",
                             }}>
                                 <input
@@ -530,9 +530,9 @@ export default function AdminMensajes() {
                                     onKeyDown={e => e.key === "Enter" && !e.shiftKey && sendMessage()}
                                     placeholder="Escribe un mensaje..."
                                     style={{
-                                        flex: 1, background: "rgba(255,255,255,0.06)",
-                                        border: "1px solid rgba(96,165,250,0.15)", borderRadius: "0.75rem",
-                                        padding: "0.65rem 1rem", color: "white", fontSize: "0.88rem",
+                                        flex: 1, background: "#f8fafc",
+                                        border: "1px solid #cbd5e1", borderRadius: "0.75rem",
+                                        padding: "0.65rem 1rem", color: "#0f172a", fontSize: "0.88rem",
                                         outline: "none", fontFamily: "var(--font-body)",
                                     }}
                                 />
@@ -541,8 +541,8 @@ export default function AdminMensajes() {
                                     disabled={!newMessage.trim() || sending}
                                     style={{
                                         padding: "0.65rem 1.25rem", borderRadius: "0.75rem",
-                                        background: newMessage.trim() ? "linear-gradient(135deg, #3182ce, #63b3ed)" : "rgba(99,179,237,0.1)",
-                                        color: "white", border: "none", cursor: newMessage.trim() ? "pointer" : "default",
+                                        background: newMessage.trim() ? "#2563eb" : "#e2e8f0",
+                                        color: newMessage.trim() ? "white" : "#94a3b8", border: "none", cursor: newMessage.trim() ? "pointer" : "default",
                                         fontWeight: 600, fontSize: "0.85rem", fontFamily: "var(--font-heading)",
                                         transition: "all 0.2s", opacity: sending ? 0.6 : 1,
                                     }}
@@ -564,7 +564,7 @@ export default function AdminMensajes() {
                             <div style={{ fontSize: "4rem", opacity: 0.25, marginBottom: "1rem" }}>
                                 {activeTab === "invitados" ? "🌐" : "💬"}
                             </div>
-                            <p style={{ fontSize: "1rem", fontWeight: 600, color: "#94a3b8", fontFamily: "var(--font-heading)" }}>
+                            <p style={{ fontSize: "1rem", fontWeight: 600, color: "#475569", fontFamily: "var(--font-heading)" }}>
                                 Selecciona una conversación
                             </p>
                             <p style={{ fontSize: "0.8rem", marginTop: "0.5rem" }}>

@@ -215,7 +215,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         return (
             <div style={{
                 minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
-                background: "var(--color-bg-primary)", color: "#94a3b8",
+                background: "#f8fafc", color: "#475569",
             }}>
                 Verificando sesión...
             </div>
@@ -225,7 +225,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     if (!session) return null;
 
     return (
-        <div style={{ minHeight: "100vh", background: "var(--color-bg-primary)", display: "flex" }}>
+        <div style={{ minHeight: "100vh", background: "#f8fafc", display: "flex" }}>
             {/* Mobile overlay */}
             {sidebarOpen && (
                 <div
@@ -240,8 +240,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             {/* Sidebar */}
             <aside style={{
                 width: "260px", position: "fixed", top: 0, left: sidebarOpen ? 0 : "-260px",
-                bottom: 0, zIndex: 200, background: "linear-gradient(180deg, #0b1120, #111a2e)",
-                borderRight: "1px solid rgba(148, 163, 184, 0.08)",
+                bottom: 0, zIndex: 200, background: "#ffffff",
+                borderRight: "1px solid #e2e8f0",
                 display: "flex", flexDirection: "column",
                 transition: "left 0.3s ease",
                 ...(typeof window !== "undefined" && window.innerWidth >= 768
@@ -250,13 +250,13 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             }}>
                 {/* Logo */}
                 <div style={{
-                    padding: "1.5rem", borderBottom: "1px solid rgba(148, 163, 184, 0.06)",
+                    padding: "1.5rem", borderBottom: "1px solid #e2e8f0",
                     display: "flex", alignItems: "center", justifyContent: "space-between",
                 }}>
                     <Link href="/" style={{ textDecoration: "none" }}>
                         <span style={{
                             fontFamily: "var(--font-heading)", fontWeight: 800,
-                            fontSize: "1.1rem", color: "#f1f5f9",
+                            fontSize: "1.1rem", color: "#0f172a",
                         }}>
                             DOCTOR <span className="gradient-text">FOAM</span>
                         </span>
@@ -289,9 +289,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                                     padding: "0.75rem 1rem", borderRadius: "0.5rem",
                                     textDecoration: "none", fontSize: "0.9rem",
                                     fontFamily: "var(--font-heading)", fontWeight: 600,
-                                    color: isActive ? "#f1f5f9" : "#94a3b8",
-                                    background: isActive ? "rgba(99, 179, 237, 0.12)" : "transparent",
-                                    border: isActive ? "1px solid rgba(99, 179, 237, 0.2)" : "1px solid transparent",
+                                    color: isActive ? "#2563eb" : "#475569",
+                                    background: isActive ? "#eff6ff" : "transparent",
+                                    border: isActive ? "1px solid #bfdbfe" : "1px solid transparent",
                                     transition: "all 0.2s",
                                 }}
                             >
@@ -313,7 +313,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
                 {/* Footer — User Info */}
                 <div style={{
-                    padding: "1rem 0.75rem", borderTop: "1px solid rgba(148, 163, 184, 0.06)",
+                    padding: "1rem 0.75rem", borderTop: "1px solid #e2e8f0",
                 }}>
                     {adminUser && (
                         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
@@ -328,7 +328,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                             <div style={{ flex: 1, overflow: "hidden" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                                     <span style={{
-                                        color: "#f1f5f9", fontSize: "0.8rem", fontWeight: 600,
+                                        color: "#0f172a", fontSize: "0.8rem", fontWeight: 600,
                                         textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden"
                                     }}>
                                         {adminUser.name}
@@ -372,8 +372,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                 {/* Top bar (mobile) */}
                 <div className="admin-topbar" style={{
                     position: "sticky", top: 0, zIndex: 100,
-                    background: "rgba(11, 17, 32, 0.95)", backdropFilter: "blur(20px)",
-                    borderBottom: "1px solid rgba(148, 163, 184, 0.08)",
+                    background: "#ffffff",
+                    borderBottom: "1px solid #e2e8f0",
                     padding: "0.75rem 1.5rem",
                     display: "flex", alignItems: "center", justifyContent: "space-between",
                 }}>
@@ -381,7 +381,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                         onClick={() => setSidebarOpen(true)}
                         className="sidebar-toggle-btn"
                         style={{
-                            background: "none", border: "none", color: "white",
+                            background: "none", border: "none", color: "#0f172a",
                             cursor: "pointer", fontSize: "1.3rem", padding: "0.25rem",
                         }}
                     >
@@ -389,7 +389,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                     </button>
                     <span style={{
                         fontFamily: "var(--font-heading)", fontSize: "0.85rem",
-                        color: "#94a3b8", fontWeight: 600,
+                        color: "#475569", fontWeight: 600,
                     }}>
                         Admin Panel
                     </span>
@@ -429,15 +429,15 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                 }
                 /* Sidebar nav hover */
                 nav a:hover {
-                    background: rgba(99, 179, 237, 0.08) !important;
-                    color: #e2e8f0 !important;
+                    background: #f1f5f9 !important;
+                    color: #0f172a !important;
                 }
                 /* Table row hover (global for admin pages) */
                 .admin-main-content table tbody tr {
                     transition: background 0.15s ease;
                 }
                 .admin-main-content table tbody tr:hover {
-                    background: rgba(99, 179, 237, 0.06) !important;
+                    background: #f8fafc !important;
                 }
                 /* Skeleton pulse animation */
                 @keyframes skeletonPulse {
@@ -488,8 +488,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                         display: flex; flex-direction: column;
                         padding: 1rem; margin-bottom: 0.75rem;
                         border-radius: 0.75rem;
-                        background: rgba(17, 26, 46, 0.5) !important;
-                        border: 1px solid rgba(148, 163, 184, 0.08) !important;
+                        background: #ffffff !important;
+                        border: 1px solid #e2e8f0 !important;
                     }
                     .admin-table-responsive tbody tr td {
                         padding: 0.3rem 0 !important; border: none !important;

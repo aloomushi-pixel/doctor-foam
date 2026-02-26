@@ -191,14 +191,14 @@ export default function ReservasPage() {
                         }}>
                             Gestor de Reservas
                         </h1>
-                        <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
+                        <p style={{ color: "#475569", fontSize: "0.85rem", margin: 0 }}>
                             Administra todos los servicios programados
                         </p>
                     </div>
                     <button onClick={() => exportBookingsCSV(filtered)} style={{
                         padding: "0.5rem 1rem", borderRadius: "0.5rem",
-                        background: "rgba(72,187,120,0.12)", border: "1px solid rgba(72,187,120,0.3)",
-                        color: "#48bb78", cursor: "pointer", fontSize: "0.8rem",
+                        background: "#f0fdf4", border: "1px solid #bbf7d0",
+                        color: "#16a34a", cursor: "pointer", fontSize: "0.8rem",
                         fontWeight: 600, fontFamily: "var(--font-heading)",
                     }}>
                         📥 Exportar CSV ({filtered.length})
@@ -215,7 +215,7 @@ export default function ReservasPage() {
                     ].map(s => (
                         <div key={s.label} style={{
                             padding: "0.75rem 1rem", borderRadius: "0.75rem",
-                            background: "rgba(17,26,46,0.5)", border: "1px solid rgba(148,163,184,0.08)",
+                            background: "#ffffff", border: "1px solid #e2e8f0",
                             textAlign: "center",
                         }}>
                             <div style={{ fontSize: "1.4rem", fontWeight: 800, color: s.color, fontFamily: "var(--font-heading)" }}>{s.value}</div>
@@ -231,8 +231,8 @@ export default function ReservasPage() {
                         value={search} onChange={e => setSearch(e.target.value)}
                         style={{
                             flex: "1 1 200px", padding: "0.5rem 0.75rem", borderRadius: "0.5rem",
-                            border: "1px solid rgba(96,165,250,0.15)", background: "rgba(10,22,40,0.6)",
-                            color: "white", fontSize: "0.85rem", outline: "none",
+                            border: "1px solid #cbd5e1", background: "#ffffff",
+                            color: "#0f172a", fontSize: "0.85rem", outline: "none",
                         }}
                     />
                     <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} style={selectStyle}>
@@ -251,7 +251,7 @@ export default function ReservasPage() {
                 {selected.size > 0 && (
                     <div style={{
                         padding: "0.75rem 1.25rem", borderRadius: "0.75rem", marginBottom: "1rem",
-                        background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.2)",
+                        background: "#eff6ff", border: "1px solid #bfdbfe",
                         display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap",
                     }}>
                         <span style={{ color: "#60a5fa", fontSize: "0.85rem", fontWeight: 600, fontFamily: "var(--font-heading)" }}>
@@ -265,9 +265,9 @@ export default function ReservasPage() {
                         </select>
                         <button onClick={handleBulkAction} disabled={!bulkAction || saving} style={{
                             padding: "0.45rem 1rem", borderRadius: "0.5rem",
-                            background: bulkAction ? "rgba(59,130,246,0.2)" : "rgba(96,165,250,0.05)",
-                            border: `1px solid ${bulkAction ? "rgba(59,130,246,0.4)" : "rgba(96,165,250,0.1)"}`,
-                            color: bulkAction ? "#60a5fa" : "#475569", cursor: bulkAction ? "pointer" : "default",
+                            background: bulkAction ? "#eff6ff" : "#f8fafc",
+                            border: `1px solid ${bulkAction ? "#bfdbfe" : "#e2e8f0"}`,
+                            color: bulkAction ? "#2563eb" : "#94a3b8", cursor: bulkAction ? "pointer" : "default",
                             fontSize: "0.8rem", fontWeight: 600, fontFamily: "var(--font-heading)",
                         }}>
                             {saving ? "Aplicando..." : "Aplicar"}
@@ -292,7 +292,7 @@ export default function ReservasPage() {
                         <div style={{ overflowX: "auto" }}>
                             <table className="admin-table-responsive" style={{ width: "100%", borderCollapse: "collapse" }}>
                                 <thead>
-                                    <tr style={{ borderBottom: "1px solid rgba(96,165,250,0.1)" }}>
+                                    <tr style={{ borderBottom: "1px solid #e2e8f0" }}>
                                         <th style={{ ...thStyle, width: "40px" }}>
                                             <input type="checkbox" checked={selected.size === filtered.length && filtered.length > 0}
                                                 onChange={toggleSelectAll}
@@ -314,8 +314,8 @@ export default function ReservasPage() {
                                 <tbody>
                                     {filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE).map(b => (
                                         <tr key={b.id} style={{
-                                            borderBottom: "1px solid rgba(96,165,250,0.05)",
-                                            background: selected.has(b.id) ? "rgba(59,130,246,0.06)" : "transparent",
+                                            borderBottom: "1px solid #e2e8f0",
+                                            background: selected.has(b.id) ? "#eff6ff" : "transparent",
                                             transition: "background 0.15s",
                                         }}>
                                             <td style={tdStyle}>
@@ -324,13 +324,13 @@ export default function ReservasPage() {
                                                     style={{ accentColor: "#3b82f6", cursor: "pointer" }} />
                                             </td>
                                             <td style={tdStyle}>
-                                                <div style={{ fontWeight: 600, color: "white", fontSize: "0.85rem" }}>{b.customer_name}</div>
+                                                <div style={{ fontWeight: 600, color: "#0f172a", fontSize: "0.85rem" }}>{b.customer_name}</div>
                                                 <div style={{ color: "#475569", fontSize: "0.72rem" }}>{b.customer_email}</div>
                                             </td>
-                                            <td style={{ ...tdStyle, color: "#94a3b8", fontSize: "0.82rem" }}>
+                                            <td style={{ ...tdStyle, color: "#475569", fontSize: "0.82rem" }}>
                                                 {b.package_name}
                                             </td>
-                                            <td style={{ ...tdStyle, color: "#94a3b8", fontSize: "0.82rem", whiteSpace: "nowrap" }}>
+                                            <td style={{ ...tdStyle, color: "#475569", fontSize: "0.82rem", whiteSpace: "nowrap" }}>
                                                 {new Date(b.service_date + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "short", year: "numeric" })}
                                             </td>
                                             <td style={tdStyle}>
@@ -351,8 +351,8 @@ export default function ReservasPage() {
                                             <td style={tdStyle}>
                                                 <button onClick={() => openDetail(b)} style={{
                                                     padding: "0.3rem 0.6rem", borderRadius: "0.4rem", fontSize: "0.75rem",
-                                                    background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.2)",
-                                                    color: "#60a5fa", cursor: "pointer", fontWeight: 600,
+                                                    background: "#eff6ff", border: "1px solid #bfdbfe",
+                                                    color: "#2563eb", cursor: "pointer", fontWeight: 600,
                                                 }}>
                                                     Ver
                                                 </button>
@@ -362,22 +362,22 @@ export default function ReservasPage() {
                                 </tbody>
                             </table>
                         </div>
-                        <div style={{ padding: "0.75rem 1rem", borderTop: "1px solid rgba(96,165,250,0.08)", color: "#475569", fontSize: "0.78rem", fontFamily: "var(--font-heading)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <div style={{ padding: "0.75rem 1rem", borderTop: "1px solid #e2e8f0", color: "#475569", fontSize: "0.78rem", fontFamily: "var(--font-heading)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                             <span>{filtered.length} reserva{filtered.length !== 1 ? "s" : ""}</span>
                             {filtered.length > PER_PAGE && (
                                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                                     <button disabled={page === 1} onClick={() => setPage(p => p - 1)} style={{
-                                        padding: "0.25rem 0.5rem", borderRadius: "0.35rem", border: "1px solid rgba(96,165,250,0.15)",
-                                        background: page === 1 ? "transparent" : "rgba(59,130,246,0.1)",
-                                        color: page === 1 ? "#334155" : "#60a5fa", cursor: page === 1 ? "default" : "pointer", fontSize: "0.75rem",
+                                        padding: "0.25rem 0.5rem", borderRadius: "0.35rem", border: "1px solid #cbd5e1",
+                                        background: page === 1 ? "transparent" : "#eff6ff",
+                                        color: page === 1 ? "#94a3b8" : "#2563eb", cursor: page === 1 ? "default" : "pointer", fontSize: "0.75rem",
                                     }}>← Ant.</button>
                                     <span style={{ color: "#94a3b8", fontSize: "0.75rem" }}>
                                         Pág. {page} de {Math.ceil(filtered.length / PER_PAGE)}
                                     </span>
                                     <button disabled={page >= Math.ceil(filtered.length / PER_PAGE)} onClick={() => setPage(p => p + 1)} style={{
-                                        padding: "0.25rem 0.5rem", borderRadius: "0.35rem", border: "1px solid rgba(96,165,250,0.15)",
-                                        background: page >= Math.ceil(filtered.length / PER_PAGE) ? "transparent" : "rgba(59,130,246,0.1)",
-                                        color: page >= Math.ceil(filtered.length / PER_PAGE) ? "#334155" : "#60a5fa",
+                                        padding: "0.25rem 0.5rem", borderRadius: "0.35rem", border: "1px solid #cbd5e1",
+                                        background: page >= Math.ceil(filtered.length / PER_PAGE) ? "transparent" : "#eff6ff",
+                                        color: page >= Math.ceil(filtered.length / PER_PAGE) ? "#94a3b8" : "#2563eb",
                                         cursor: page >= Math.ceil(filtered.length / PER_PAGE) ? "default" : "pointer", fontSize: "0.75rem",
                                     }}>Sig. →</button>
                                 </div>
@@ -410,7 +410,7 @@ export default function ReservasPage() {
                                     {detailModal.source === "online" ? "🌐 En línea" : "👤 Admin"}
                                 </span>
                                 {detailModal.total_amount > 0 && (
-                                    <span style={{ color: "#94a3b8", fontSize: "0.8rem", fontWeight: 600 }}>
+                                    <span style={{ color: "#475569", fontSize: "0.8rem", fontWeight: 600 }}>
                                         ${(detailModal.total_amount / 100).toLocaleString("es-MX")} MXN
                                     </span>
                                 )}
@@ -452,7 +452,7 @@ export default function ReservasPage() {
                                             style={{ ...inputStyle, minHeight: "50px", resize: "vertical" as const }} />
                                     </div>
                                     <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.5rem" }}>
-                                        <button onClick={() => setEditMode(false)} style={{ ...btnStyle, flex: 1, background: "rgba(15,34,64,0.6)", color: "#94a3b8" }}>Cancelar</button>
+                                        <button onClick={() => setEditMode(false)} style={{ ...btnStyle, flex: 1, background: "#f8fafc", color: "#475569" }}>Cancelar</button>
                                         <button onClick={saveEdit} disabled={saving} className="btn-premium" style={{ flex: 1, justifyContent: "center", fontSize: "0.85rem", opacity: saving ? 0.6 : 1 }}>
                                             {saving ? "Guardando..." : "💾 Guardar"}
                                         </button>
@@ -471,9 +471,9 @@ export default function ReservasPage() {
                                         { label: "Email", value: detailModal.customer_email || "—" },
                                         { label: "Notas", value: detailModal.notes || "—" },
                                     ].map(item => (
-                                        <div key={item.label} style={{ display: "flex", justifyContent: "space-between", padding: "0.35rem 0", borderBottom: "1px solid rgba(96,165,250,0.06)" }}>
-                                            <span style={{ color: "#64748b", fontSize: "0.82rem" }}>{item.label}</span>
-                                            <span style={{ color: "white", fontSize: "0.82rem", fontWeight: 500, textAlign: "right", maxWidth: "62%" }}>{item.value}</span>
+                                        <div key={item.label} style={{ display: "flex", justifyContent: "space-between", padding: "0.35rem 0", borderBottom: "1px solid #e2e8f0" }}>
+                                            <span style={{ color: "#475569", fontSize: "0.82rem" }}>{item.label}</span>
+                                            <span style={{ color: "#0f172a", fontSize: "0.82rem", fontWeight: 500, textAlign: "right", maxWidth: "62%" }}>{item.value}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -497,7 +497,7 @@ export default function ReservasPage() {
                                                     padding: "0.3rem 0.6rem", borderRadius: "0.5rem", fontSize: "0.72rem",
                                                     fontWeight: 600, cursor: detailModal.payment_status === st.value ? "default" : "pointer",
                                                     ...statusStyle(detailModal.payment_status === st.value ? st.value : ""),
-                                                    ...(detailModal.payment_status === st.value ? statusStyle(st.value) : { background: "rgba(15,34,64,0.4)", color: "#64748b", border: "1px solid rgba(96,165,250,0.1)" }),
+                                                    ...(detailModal.payment_status === st.value ? statusStyle(st.value) : { background: "#ffffff", color: "#64748b", border: "1px solid #cbd5e1" }),
                                                     transition: "all 0.2s",
                                                 }}>
                                                 {st.label}
@@ -510,9 +510,9 @@ export default function ReservasPage() {
                             {/* Action buttons */}
                             {!editMode && (
                                 <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-                                    <button onClick={() => { setDetailModal(null); }} style={{ ...btnStyle, flex: 2, background: "rgba(15,34,64,0.6)", color: "#94a3b8" }}>Cerrar</button>
-                                    <button onClick={startEdit} style={{ ...btnStyle, flex: 1, background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}>✏️ Editar</button>
-                                    <button onClick={cancelBooking} style={{ ...btnStyle, flex: 1, background: "rgba(239,68,68,0.12)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}>🚫 Cancelar</button>
+                                    <button onClick={() => { setDetailModal(null); }} style={{ ...btnStyle, flex: 2, background: "#f8fafc", color: "#475569" }}>Cerrar</button>
+                                    <button onClick={startEdit} style={{ ...btnStyle, flex: 1, background: "#eff6ff", color: "#2563eb", border: "1px solid #bfdbfe" }}>✏️ Editar</button>
+                                    <button onClick={cancelBooking} style={{ ...btnStyle, flex: 1, background: "#fef2f2", color: "#ef4444", border: "1px solid #fecaca" }}>🚫 Cancelar</button>
                                 </div>
                             )}
                         </div>
@@ -531,17 +531,17 @@ const overlayStyle: React.CSSProperties = {
 };
 const inputStyle: React.CSSProperties = {
     width: "100%", padding: "0.6rem 0.75rem", borderRadius: "0.5rem",
-    border: "1px solid rgba(96,165,250,0.2)", background: "rgba(10,22,40,0.8)",
-    color: "white", fontSize: "0.85rem", outline: "none",
+    border: "1px solid #cbd5e1", background: "#ffffff",
+    color: "#0f172a", fontSize: "0.85rem", outline: "none",
 };
 const btnStyle: React.CSSProperties = {
-    padding: "0.7rem 1rem", borderRadius: "0.5rem", border: "1px solid rgba(96,165,250,0.15)",
+    padding: "0.7rem 1rem", borderRadius: "0.5rem", border: "1px solid #cbd5e1",
     cursor: "pointer", fontSize: "0.85rem", fontFamily: "var(--font-heading)", fontWeight: 600,
 };
 const selectStyle: React.CSSProperties = {
     padding: "0.5rem 0.75rem", borderRadius: "0.5rem",
-    border: "1px solid rgba(96,165,250,0.15)", background: "rgba(10,22,40,0.6)",
-    color: "#94a3b8", fontSize: "0.82rem", outline: "none", cursor: "pointer",
+    border: "1px solid #cbd5e1", background: "#ffffff",
+    color: "#0f172a", fontSize: "0.82rem", outline: "none", cursor: "pointer",
 };
 const thStyle: React.CSSProperties = {
     padding: "0.75rem 1rem", textAlign: "left",

@@ -87,7 +87,7 @@ export default function UsuariosPage() {
                 }}>
                     Gestión de Usuarios
                 </h1>
-                <p style={{ color: "#94a3b8", fontSize: "0.9rem", marginBottom: "1.5rem" }}>
+                <p style={{ color: "#475569", fontSize: "0.9rem", marginBottom: "1.5rem" }}>
                     Administra roles y participación de socios
                 </p>
 
@@ -100,12 +100,12 @@ export default function UsuariosPage() {
                             style={{
                                 padding: "0.6rem 1.5rem", borderRadius: "0.5rem",
                                 border: activeTab === tab
-                                    ? "1px solid rgba(99, 179, 237, 0.3)"
-                                    : "1px solid rgba(148, 163, 184, 0.08)",
+                                    ? "1px solid #bfdbfe"
+                                    : "1px solid #e2e8f0",
                                 background: activeTab === tab
-                                    ? "rgba(99, 179, 237, 0.12)"
-                                    : "rgba(255, 255, 255, 0.03)",
-                                color: activeTab === tab ? "#63b3ed" : "#94a3b8",
+                                    ? "#eff6ff"
+                                    : "#ffffff",
+                                color: activeTab === tab ? "#2563eb" : "#475569",
                                 cursor: "pointer", fontFamily: "var(--font-heading)",
                                 fontWeight: 700, fontSize: "0.85rem",
                                 transition: "all 0.2s",
@@ -131,7 +131,7 @@ export default function UsuariosPage() {
                         }}>
                             {totalPct.toFixed(0)}%
                         </span>
-                        <span style={{ color: "#94a3b8", fontSize: "0.82rem" }}>
+                        <span style={{ color: "#475569", fontSize: "0.82rem" }}>
                             {pctIsValid
                                 ? "✓ Los porcentajes suman 100% correctamente"
                                 : `⚠ Los porcentajes deben sumar 100% (faltan ${(100 - totalPct).toFixed(0)}%)`}
@@ -155,9 +155,9 @@ export default function UsuariosPage() {
                         style={{
                             width: "100%", maxWidth: "400px",
                             padding: "0.7rem 1rem", borderRadius: "0.5rem",
-                            border: "1px solid rgba(148, 163, 184, 0.1)",
-                            background: "rgba(255, 255, 255, 0.03)",
-                            color: "white", fontSize: "0.9rem",
+                            border: "1px solid #cbd5e1",
+                            background: "#ffffff",
+                            color: "#0f172a", fontSize: "0.9rem",
                             fontFamily: "var(--font-heading)",
                             outline: "none",
                         }}
@@ -172,20 +172,20 @@ export default function UsuariosPage() {
                 ) : filtered.length === 0 ? (
                     <div style={{
                         padding: "3rem", textAlign: "center",
-                        background: "rgba(255, 255, 255, 0.02)", borderRadius: "0.75rem",
-                        border: "1px solid rgba(148, 163, 184, 0.08)", color: "#64748b",
+                        background: "#ffffff", borderRadius: "0.75rem",
+                        border: "1px solid #e2e8f0", color: "#64748b",
                     }}>
                         No se encontraron {activeTab === "admin" ? "administradores" : "clientes"}
                     </div>
                 ) : (
                     <div style={{
-                        background: "rgba(255, 255, 255, 0.02)", borderRadius: "0.75rem",
-                        border: "1px solid rgba(148, 163, 184, 0.08)", overflow: "hidden",
+                        background: "#ffffff", borderRadius: "0.75rem",
+                        border: "1px solid #e2e8f0", overflow: "hidden",
                     }}>
                         <div style={{ overflowX: "auto" }}>
                             <table className="admin-table-responsive" style={{ width: "100%", borderCollapse: "collapse" }}>
                                 <thead>
-                                    <tr style={{ borderBottom: "1px solid rgba(148, 163, 184, 0.08)" }}>
+                                    <tr style={{ borderBottom: "1px solid #e2e8f0" }}>
                                         {[
                                             "Nombre", "Email",
                                             ...(activeTab === "admin" ? ["Rol", "%", "Teléfono"] : ["Teléfono"]),
@@ -208,14 +208,14 @@ export default function UsuariosPage() {
                                         <React.Fragment key={user.id}>
                                             <tr
                                                 style={{
-                                                    borderBottom: "1px solid rgba(148, 163, 184, 0.05)",
+                                                    borderBottom: "1px solid #f1f5f9",
                                                     cursor: "pointer",
                                                 }}
                                             >
                                                 <td
                                                     onClick={() => setExpandedUser(expandedUser === user.id ? null : user.id)}
                                                     style={{
-                                                        padding: "0.75rem 1rem", color: "#f1f5f9",
+                                                        padding: "0.75rem 1rem", color: "#0f172a",
                                                         fontSize: "0.9rem", fontWeight: 600,
                                                         fontFamily: "var(--font-heading)",
                                                     }}
@@ -223,7 +223,7 @@ export default function UsuariosPage() {
                                                     {user.name} {expandedUser === user.id ? "▾" : "▸"}
                                                 </td>
                                                 <td style={{
-                                                    padding: "0.75rem 1rem", color: "#94a3b8",
+                                                    padding: "0.75rem 1rem", color: "#475569",
                                                     fontSize: "0.85rem",
                                                 }}>
                                                     {user.email}
@@ -241,16 +241,16 @@ export default function UsuariosPage() {
                                                             onClick={e => e.stopPropagation()}
                                                             style={{
                                                                 padding: "0.4rem 0.6rem", borderRadius: "0.4rem",
-                                                                background: "rgba(17, 26, 46, 0.8)",
-                                                                border: "1px solid rgba(148, 163, 184, 0.15)",
-                                                                color: "#f1f5f9", fontSize: "0.78rem",
+                                                                background: "#f8fafc",
+                                                                border: "1px solid #cbd5e1",
+                                                                color: "#0f172a", fontSize: "0.78rem",
                                                                 fontFamily: "var(--font-heading)", fontWeight: 600,
                                                                 outline: "none", cursor: "pointer",
                                                                 appearance: "auto",
                                                             }}
                                                         >
                                                             {DISPLAY_ROLES.map(r => (
-                                                                <option key={r} value={r} style={{ background: "#111a2e", color: "#f1f5f9" }}>
+                                                                <option key={r} value={r} style={{ background: "#ffffff", color: "#0f172a" }}>
                                                                     {r}
                                                                 </option>
                                                             ))}
@@ -277,9 +277,9 @@ export default function UsuariosPage() {
                                                                 style={{
                                                                     width: "60px", padding: "0.4rem 0.5rem",
                                                                     borderRadius: "0.4rem",
-                                                                    background: "rgba(17, 26, 46, 0.8)",
-                                                                    border: `1px solid ${(user.profit_share_pct || 0) > 0 ? "rgba(72,187,120,0.3)" : "rgba(148,163,184,0.15)"}`,
-                                                                    color: (user.profit_share_pct || 0) > 0 ? "#48bb78" : "#94a3b8",
+                                                                    background: "#f8fafc",
+                                                                    border: `1px solid ${(user.profit_share_pct || 0) > 0 ? "rgba(72,187,120,0.5)" : "#cbd5e1"}`,
+                                                                    color: (user.profit_share_pct || 0) > 0 ? "#16a34a" : "#475569",
                                                                     fontSize: "0.82rem", fontWeight: 700,
                                                                     fontFamily: "var(--font-heading)",
                                                                     textAlign: "center", outline: "none",
@@ -294,7 +294,7 @@ export default function UsuariosPage() {
                                                 )}
 
                                                 <td style={{
-                                                    padding: "0.75rem 1rem", color: "#94a3b8",
+                                                    padding: "0.75rem 1rem", color: "#475569",
                                                     fontSize: "0.85rem",
                                                 }}>
                                                     {user.phone}
@@ -320,8 +320,8 @@ export default function UsuariosPage() {
                                                 <tr>
                                                     <td colSpan={activeTab === "admin" ? 7 : 5} style={{
                                                         padding: "0.75rem 1rem 1rem 2rem",
-                                                        background: "rgba(99,179,237,0.04)",
-                                                        borderBottom: "1px solid rgba(148,163,184,0.08)",
+                                                        background: "#eff6ff",
+                                                        borderBottom: "1px solid #e2e8f0",
                                                     }}>
                                                         <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", alignItems: "center" }}>
                                                             <div>
@@ -369,7 +369,7 @@ export default function UsuariosPage() {
                                                             </div>
                                                             <div>
                                                                 <span style={{ color: "#475569", fontSize: "0.72rem", fontFamily: "var(--font-heading)", textTransform: "uppercase" }}>Registrado</span>
-                                                                <div style={{ color: "#94a3b8", fontSize: "0.78rem", marginTop: "0.2rem" }}>
+                                                                <div style={{ color: "#475569", fontSize: "0.78rem", marginTop: "0.2rem" }}>
                                                                     {new Date(user.created_at).toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
                                                                 </div>
                                                             </div>

@@ -25,8 +25,8 @@ export const PACKAGES: Record<string, PackageConfig> = {
     "deep-interior": {
         slug: "deep-interior",
         name: "Industrial Deep Interior",
-        priceBase: 3499,
-        priceCentavos: 349900,
+        priceBase: 2499,
+        priceCentavos: 249900,
         label: "Lavado a base de inyección y extracción",
         description:
             "Lavado a base de inyección y extracción, vapor seco industrial a 180°C, aspirado de alta potencia, hidratación de pieles, sanitización con ozono.",
@@ -41,8 +41,8 @@ export const PACKAGES: Record<string, PackageConfig> = {
     "signature-detail": {
         slug: "signature-detail",
         name: "Signature Detail",
-        priceBase: 9500,
-        priceCentavos: 950000,
+        priceBase: 7449,
+        priceCentavos: 744900,
         label: "Incluye Industrial Deep Interior completo",
         description:
             "Industrial Deep Interior completo + corrección de pintura en 2 etapas + sellador cerámico express. Técnicos certificados IDA.",
@@ -57,8 +57,8 @@ export const PACKAGES: Record<string, PackageConfig> = {
     "ceramic-coating": {
         slug: "ceramic-coating",
         name: "Ceramic Coating",
-        priceBase: 14999,
-        priceCentavos: 1499900,
+        priceBase: 11999,
+        priceCentavos: 1199900,
         label: "Protección cerámica profesional",
         description:
             "Signature Detail + recubrimiento cerámico profesional de larga duración + certificado Doctor Foam.",

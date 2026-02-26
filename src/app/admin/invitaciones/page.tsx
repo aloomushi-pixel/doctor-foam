@@ -138,7 +138,7 @@ export default function InvitacionesPage() {
                         }}>
                             Invitaciones
                         </h1>
-                        <p style={{ color: "#94a3b8", fontSize: "0.9rem" }}>
+                        <p style={{ color: "#475569", fontSize: "0.9rem" }}>
                             Invita nuevos administradores o clientes
                         </p>
                     </div>
@@ -148,9 +148,9 @@ export default function InvitacionesPage() {
                             padding: "0.7rem 1.5rem", borderRadius: "0.5rem",
                             border: "none", cursor: "pointer",
                             background: showForm
-                                ? "rgba(239, 68, 68, 0.15)"
-                                : "linear-gradient(135deg, #2563eb, #3b82f6)",
-                            color: showForm ? "#f87171" : "white",
+                                ? "#fef2f2"
+                                : "#2563eb",
+                            color: showForm ? "#ef4444" : "white",
                             fontFamily: "var(--font-heading)", fontWeight: 700,
                             fontSize: "0.85rem",
                         }}
@@ -162,15 +162,15 @@ export default function InvitacionesPage() {
                 {/* Create Form */}
                 {showForm && (
                     <div style={{
-                        background: "rgba(255, 255, 255, 0.03)",
-                        border: "1px solid rgba(96, 165, 250, 0.15)",
+                        background: "#ffffff",
+                        border: "1px solid #e2e8f0",
                         borderRadius: "0.75rem", padding: "1.5rem",
                         marginBottom: "1.5rem",
                     }}>
                         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "flex-end" }}>
                             <div style={{ flex: "1 1 250px" }}>
                                 <label style={{
-                                    display: "block", color: "#94a3b8", fontSize: "0.8rem",
+                                    display: "block", color: "#475569", fontSize: "0.8rem",
                                     fontWeight: 600, marginBottom: "0.4rem",
                                     fontFamily: "var(--font-heading)",
                                 }}>
@@ -184,16 +184,16 @@ export default function InvitacionesPage() {
                                     style={{
                                         width: "100%", padding: "0.65rem 1rem",
                                         borderRadius: "0.5rem",
-                                        border: "1px solid rgba(96, 165, 250, 0.15)",
-                                        background: "rgba(255, 255, 255, 0.03)",
-                                        color: "white", fontSize: "0.9rem",
+                                        border: "1px solid #cbd5e1",
+                                        background: "#ffffff",
+                                        color: "#0f172a", fontSize: "0.9rem",
                                         fontFamily: "var(--font-heading)", outline: "none",
                                     }}
                                 />
                             </div>
                             <div style={{ flex: "0 1 180px" }}>
                                 <label style={{
-                                    display: "block", color: "#94a3b8", fontSize: "0.8rem",
+                                    display: "block", color: "#475569", fontSize: "0.8rem",
                                     fontWeight: 600, marginBottom: "0.4rem",
                                     fontFamily: "var(--font-heading)",
                                 }}>
@@ -205,9 +205,9 @@ export default function InvitacionesPage() {
                                     style={{
                                         width: "100%", padding: "0.65rem 1rem",
                                         borderRadius: "0.5rem",
-                                        border: "1px solid rgba(96, 165, 250, 0.15)",
-                                        background: "rgba(10, 22, 40, 0.95)",
-                                        color: "white", fontSize: "0.9rem",
+                                        border: "1px solid #cbd5e1",
+                                        background: "#f8fafc",
+                                        color: "#0f172a", fontSize: "0.9rem",
                                         fontFamily: "var(--font-heading)", outline: "none",
                                     }}
                                 >
@@ -221,7 +221,7 @@ export default function InvitacionesPage() {
                                 style={{
                                     padding: "0.65rem 1.5rem", borderRadius: "0.5rem",
                                     border: "none", cursor: sending ? "not-allowed" : "pointer",
-                                    background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                                    background: "#2563eb",
                                     color: "white", fontFamily: "var(--font-heading)",
                                     fontWeight: 700, fontSize: "0.85rem",
                                     opacity: sending || !email.trim() ? 0.5 : 1,
@@ -241,20 +241,20 @@ export default function InvitacionesPage() {
                 ) : invitations.length === 0 ? (
                     <div style={{
                         padding: "3rem", textAlign: "center",
-                        background: "rgba(255, 255, 255, 0.02)", borderRadius: "0.75rem",
-                        border: "1px solid rgba(96, 165, 250, 0.08)", color: "#64748b",
+                        background: "#ffffff", borderRadius: "0.75rem",
+                        border: "1px solid #e2e8f0", color: "#64748b",
                     }}>
                         No hay invitaciones enviadas aún
                     </div>
                 ) : (
                     <div style={{
-                        background: "rgba(255, 255, 255, 0.02)", borderRadius: "0.75rem",
-                        border: "1px solid rgba(96, 165, 250, 0.08)", overflow: "hidden",
+                        background: "#ffffff", borderRadius: "0.75rem",
+                        border: "1px solid #e2e8f0", overflow: "hidden",
                     }}>
                         <div style={{ overflowX: "auto" }}>
                             <table style={{ width: "100%", borderCollapse: "collapse" }}>
                                 <thead>
-                                    <tr style={{ borderBottom: "1px solid rgba(96, 165, 250, 0.1)" }}>
+                                    <tr style={{ borderBottom: "1px solid #e2e8f0" }}>
                                         {["Email", "Rol", "Estado", "Enviada", "Expira", ""].map(h => (
                                             <th key={h} style={{
                                                 padding: "0.75rem 1rem", textAlign: "left",
@@ -271,9 +271,9 @@ export default function InvitacionesPage() {
                                 <tbody>
                                     {invitations.map(inv => (
                                         <tr key={inv.id} style={{
-                                            borderBottom: "1px solid rgba(96, 165, 250, 0.05)",
+                                            borderBottom: "1px solid #e2e8f0",
                                         }}>
-                                            <td style={{ padding: "0.75rem 1rem", color: "white", fontSize: "0.9rem", fontWeight: 600, fontFamily: "var(--font-heading)" }}>
+                                            <td style={{ padding: "0.75rem 1rem", color: "#0f172a", fontSize: "0.9rem", fontWeight: 600, fontFamily: "var(--font-heading)" }}>
                                                 {inv.email}
                                             </td>
                                             <td style={{ padding: "0.75rem 1rem", color: "#94a3b8", fontSize: "0.85rem" }}>
@@ -294,9 +294,9 @@ export default function InvitacionesPage() {
                                                         onClick={() => handleDelete(inv.id)}
                                                         style={{
                                                             padding: "0.3rem 0.75rem", borderRadius: "0.4rem",
-                                                            border: "1px solid rgba(239, 68, 68, 0.2)",
-                                                            background: "rgba(239, 68, 68, 0.05)",
-                                                            color: "#f87171", cursor: "pointer",
+                                                            border: "1px solid #fecaca",
+                                                            background: "#fef2f2",
+                                                            color: "#ef4444", cursor: "pointer",
                                                             fontSize: "0.75rem", fontWeight: 600,
                                                             fontFamily: "var(--font-heading)",
                                                         }}

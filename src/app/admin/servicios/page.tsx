@@ -64,12 +64,12 @@ export default function AdminServicios() {
         <AdminLayout>
             <div style={{ marginBottom: "1.5rem" }}>
                 <h1 style={{
-                    color: "white", fontSize: "1.5rem",
+                    color: "#0f172a", fontSize: "1.5rem",
                     fontFamily: "var(--font-heading)", fontWeight: 800, margin: 0,
                 }}>
                     🛠️ Administrador de Servicios
                 </h1>
-                <p style={{ color: "#64748b", fontSize: "0.85rem", marginTop: "0.5rem" }}>
+                <p style={{ color: "#475569", fontSize: "0.85rem", marginTop: "0.5rem" }}>
                     Gestiona paquetes, tamaños de vehículo y zonas de cobertura
                 </p>
             </div>
@@ -86,9 +86,9 @@ export default function AdminServicios() {
                         onClick={() => setActiveView(tab.key)}
                         style={{
                             padding: "0.6rem 1.2rem", borderRadius: "0.6rem",
-                            border: activeView === tab.key ? "1px solid rgba(59,130,246,0.4)" : "1px solid rgba(96,165,250,0.1)",
-                            background: activeView === tab.key ? "rgba(59,130,246,0.15)" : "rgba(10,22,40,0.4)",
-                            color: activeView === tab.key ? "#60a5fa" : "#94a3b8",
+                            border: activeView === tab.key ? "1px solid #bfdbfe" : "1px solid #e2e8f0",
+                            background: activeView === tab.key ? "#eff6ff" : "#ffffff",
+                            color: activeView === tab.key ? "#2563eb" : "#475569",
                             cursor: "pointer", fontWeight: 600, fontSize: "0.85rem",
                             fontFamily: "var(--font-heading)", transition: "all 0.2s",
                             display: "flex", alignItems: "center", gap: "0.4rem",
@@ -96,8 +96,8 @@ export default function AdminServicios() {
                     >
                         {tab.label}
                         <span style={{
-                            background: activeView === tab.key ? "rgba(59,130,246,0.3)" : "rgba(96,165,250,0.1)",
-                            color: activeView === tab.key ? "#93c5fd" : "#64748b",
+                            background: activeView === tab.key ? "#dbeafe" : "#f1f5f9",
+                            color: activeView === tab.key ? "#1d4ed8" : "#64748b",
                             fontSize: "0.7rem", fontWeight: 700,
                             padding: "0.1rem 0.4rem", borderRadius: "0.3rem",
                         }}>
@@ -114,8 +114,8 @@ export default function AdminServicios() {
                         <div
                             key={pkg.slug}
                             style={{
-                                background: "rgba(10,22,40,0.6)",
-                                border: "1px solid rgba(96,165,250,0.1)",
+                                background: "#ffffff",
+                                border: "1px solid #e2e8f0",
                                 borderRadius: "1rem",
                                 overflow: "hidden",
                                 transition: "all 0.3s",
@@ -142,7 +142,7 @@ export default function AdminServicios() {
                                     </div>
                                     <div style={{ minWidth: 0 }}>
                                         <div style={{
-                                            color: "white", fontWeight: 700, fontSize: "1rem",
+                                            color: "#0f172a", fontWeight: 700, fontSize: "1rem",
                                             fontFamily: "var(--font-heading)",
                                             display: "flex", alignItems: "center", gap: "0.5rem",
                                         }}>
@@ -157,7 +157,7 @@ export default function AdminServicios() {
                                                 </span>
                                             )}
                                         </div>
-                                        <div style={{ color: "#64748b", fontSize: "0.8rem", marginTop: "0.15rem" }}>
+                                        <div style={{ color: "#475569", fontSize: "0.8rem", marginTop: "0.15rem" }}>
                                             {pkg.label}
                                         </div>
                                     </div>
@@ -167,7 +167,7 @@ export default function AdminServicios() {
                                 <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexShrink: 0 }}>
                                     <div style={{ textAlign: "right" }}>
                                         <div style={{
-                                            color: "#60a5fa", fontWeight: 800, fontSize: "1.2rem",
+                                            color: "#2563eb", fontWeight: 800, fontSize: "1.2rem",
                                             fontFamily: "var(--font-heading)",
                                         }}>
                                             {formatPrice(pkg.priceCentavos)}
@@ -180,9 +180,9 @@ export default function AdminServicios() {
                                         onClick={() => handleEditPkg(pkg)}
                                         style={{
                                             padding: "0.5rem 1rem", borderRadius: "0.5rem",
-                                            background: "rgba(59,130,246,0.15)",
-                                            border: "1px solid rgba(59,130,246,0.25)",
-                                            color: "#60a5fa", cursor: "pointer",
+                                            background: "#eff6ff",
+                                            border: "1px solid #bfdbfe",
+                                            color: "#2563eb", cursor: "pointer",
                                             fontWeight: 600, fontSize: "0.8rem",
                                             fontFamily: "var(--font-heading)",
                                             transition: "all 0.2s",
@@ -202,10 +202,10 @@ export default function AdminServicios() {
                                     <span
                                         key={i}
                                         style={{
-                                            background: "rgba(96,165,250,0.08)",
-                                            color: "#94a3b8", fontSize: "0.72rem",
+                                            background: "#f8fafc",
+                                            color: "#475569", fontSize: "0.72rem",
                                             padding: "0.25rem 0.6rem", borderRadius: "0.3rem",
-                                            border: "1px solid rgba(96,165,250,0.08)",
+                                            border: "1px solid #e2e8f0",
                                         }}
                                     >
                                         ✓ {f}
@@ -220,11 +220,11 @@ export default function AdminServicios() {
             {/* ─── Vehicle Sizes View ─── */}
             {activeView === "sizes" && (
                 <div style={{
-                    background: "rgba(10,22,40,0.6)",
-                    border: "1px solid rgba(96,165,250,0.1)",
+                    background: "#ffffff",
+                    border: "1px solid #e2e8f0",
                     borderRadius: "1rem", padding: "1.5rem",
                 }}>
-                    <h3 style={{ color: "white", fontSize: "1rem", fontFamily: "var(--font-heading)", fontWeight: 700, marginBottom: "1rem" }}>
+                    <h3 style={{ color: "#0f172a", fontSize: "1rem", fontFamily: "var(--font-heading)", fontWeight: 700, marginBottom: "1rem" }}>
                         Tamaños y Coeficientes
                     </h3>
                     <div style={{ display: "grid", gap: "0.75rem" }}>
@@ -234,22 +234,22 @@ export default function AdminServicios() {
                                 style={{
                                     display: "flex", alignItems: "center", justifyContent: "space-between",
                                     padding: "1rem 1.25rem", borderRadius: "0.75rem",
-                                    background: "rgba(255,255,255,0.03)",
-                                    border: "1px solid rgba(96,165,250,0.08)",
+                                    background: "#f8fafc",
+                                    border: "1px solid #e2e8f0",
                                 }}
                             >
                                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                                     <span style={{ fontSize: "1.5rem" }}>{v.coefficient === 1 ? "🚗" : "🚙"}</span>
                                     <div>
-                                        <div style={{ color: "white", fontWeight: 600, fontSize: "0.9rem" }}>{v.label}</div>
-                                        <div style={{ color: "#64748b", fontSize: "0.75rem" }}>
+                                        <div style={{ color: "#0f172a", fontWeight: 600, fontSize: "0.9rem" }}>{v.label}</div>
+                                        <div style={{ color: "#475569", fontSize: "0.75rem" }}>
                                             {v.value}
                                         </div>
                                     </div>
                                 </div>
                                 <div style={{
-                                    background: v.coefficient > 1 ? "rgba(245,158,11,0.15)" : "rgba(16,185,129,0.15)",
-                                    color: v.coefficient > 1 ? "#fbbf24" : "#34d399",
+                                    background: v.coefficient > 1 ? "#fef3c7" : "#f0fdf4",
+                                    color: v.coefficient > 1 ? "#d97706" : "#16a34a",
                                     padding: "0.35rem 0.75rem", borderRadius: "0.5rem",
                                     fontWeight: 700, fontSize: "0.9rem", fontFamily: "var(--font-heading)",
                                 }}>
@@ -267,11 +267,11 @@ export default function AdminServicios() {
             {/* ─── Zones View ─── */}
             {activeView === "zones" && (
                 <div style={{
-                    background: "rgba(10,22,40,0.6)",
-                    border: "1px solid rgba(96,165,250,0.1)",
+                    background: "#ffffff",
+                    border: "1px solid #e2e8f0",
                     borderRadius: "1rem", padding: "1.5rem",
                 }}>
-                    <h3 style={{ color: "white", fontSize: "1rem", fontFamily: "var(--font-heading)", fontWeight: 700, marginBottom: "1rem" }}>
+                    <h3 style={{ color: "#0f172a", fontSize: "1rem", fontFamily: "var(--font-heading)", fontWeight: 700, marginBottom: "1rem" }}>
                         Zonas de Cobertura
                     </h3>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "0.75rem" }}>
@@ -280,10 +280,10 @@ export default function AdminServicios() {
                                 key={z}
                                 style={{
                                     padding: "0.85rem 1rem", borderRadius: "0.6rem",
-                                    background: "rgba(255,255,255,0.03)",
-                                    border: "1px solid rgba(96,165,250,0.08)",
+                                    background: "#ffffff",
+                                    border: "1px solid #e2e8f0",
                                     display: "flex", alignItems: "center", gap: "0.6rem",
-                                    color: "#cbd5e1", fontSize: "0.85rem",
+                                    color: "#475569", fontSize: "0.85rem",
                                 }}
                             >
                                 <span style={{ color: "#60a5fa" }}>📍</span>
@@ -308,15 +308,15 @@ export default function AdminServicios() {
                         position: "fixed", top: "50%", left: "50%",
                         transform: "translate(-50%, -50%)",
                         width: "min(550px, 92vw)", maxHeight: "85vh", overflowY: "auto",
-                        background: "rgba(15,30,55,0.98)",
-                        border: "1px solid rgba(96,165,250,0.15)",
+                        background: "#ffffff",
+                        border: "1px solid #e2e8f0",
                         borderRadius: "1.25rem", padding: "2rem",
                         zIndex: 600,
                         boxShadow: "0 25px 50px rgba(0,0,0,0.5)",
                     }}>
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
                             <h2 style={{
-                                color: "white", fontSize: "1.2rem",
+                                color: "#0f172a", fontSize: "1.2rem",
                                 fontFamily: "var(--font-heading)", fontWeight: 800, margin: 0,
                             }}>
                                 {getPackageIcon(editingPkg.slug)} Editar: {editingPkg.name}
@@ -335,7 +335,7 @@ export default function AdminServicios() {
                         {/* Fields */}
                         <div style={{ display: "grid", gap: "1rem" }}>
                             <div>
-                                <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.3rem", fontFamily: "var(--font-heading)" }}>
+                                <label style={{ display: "block", color: "#475569", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.3rem", fontFamily: "var(--font-heading)" }}>
                                     Nombre del servicio
                                 </label>
                                 <input
@@ -343,8 +343,8 @@ export default function AdminServicios() {
                                     onChange={(e) => setEditingPkg({ ...editingPkg, name: e.target.value })}
                                     style={{
                                         width: "100%", padding: "0.65rem 0.9rem", borderRadius: "0.5rem",
-                                        background: "rgba(255,255,255,0.05)", border: "1px solid rgba(96,165,250,0.15)",
-                                        color: "white", fontSize: "0.9rem", outline: "none",
+                                        background: "#ffffff", border: "1px solid #cbd5e1",
+                                        color: "#0f172a", fontSize: "0.9rem", outline: "none",
                                         fontFamily: "var(--font-body)",
                                     }}
                                 />
@@ -352,7 +352,7 @@ export default function AdminServicios() {
 
                             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                                 <div>
-                                    <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.3rem", fontFamily: "var(--font-heading)" }}>
+                                    <label style={{ display: "block", color: "#475569", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.3rem", fontFamily: "var(--font-heading)" }}>
                                         Precio Base (MXN)
                                     </label>
                                     <input
@@ -364,14 +364,14 @@ export default function AdminServicios() {
                                         }}
                                         style={{
                                             width: "100%", padding: "0.65rem 0.9rem", borderRadius: "0.5rem",
-                                            background: "rgba(255,255,255,0.05)", border: "1px solid rgba(96,165,250,0.15)",
-                                            color: "white", fontSize: "0.9rem", outline: "none",
+                                            background: "#ffffff", border: "1px solid #cbd5e1",
+                                            color: "#0f172a", fontSize: "0.9rem", outline: "none",
                                             fontFamily: "var(--font-body)",
                                         }}
                                     />
                                 </div>
                                 <div>
-                                    <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.3rem", fontFamily: "var(--font-heading)" }}>
+                                    <label style={{ display: "block", color: "#475569", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.3rem", fontFamily: "var(--font-heading)" }}>
                                         Precio Stripe (centavos)
                                     </label>
                                     <input
@@ -380,7 +380,7 @@ export default function AdminServicios() {
                                         disabled
                                         style={{
                                             width: "100%", padding: "0.65rem 0.9rem", borderRadius: "0.5rem",
-                                            background: "rgba(255,255,255,0.03)", border: "1px solid rgba(96,165,250,0.08)",
+                                            background: "#f1f5f9", border: "1px solid #e2e8f0",
                                             color: "#64748b", fontSize: "0.9rem", outline: "none",
                                             fontFamily: "var(--font-body)",
                                         }}
@@ -389,7 +389,7 @@ export default function AdminServicios() {
                             </div>
 
                             <div>
-                                <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.3rem", fontFamily: "var(--font-heading)" }}>
+                                <label style={{ display: "block", color: "#475569", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.3rem", fontFamily: "var(--font-heading)" }}>
                                     Etiqueta corta
                                 </label>
                                 <input
@@ -397,15 +397,15 @@ export default function AdminServicios() {
                                     onChange={(e) => setEditingPkg({ ...editingPkg, label: e.target.value })}
                                     style={{
                                         width: "100%", padding: "0.65rem 0.9rem", borderRadius: "0.5rem",
-                                        background: "rgba(255,255,255,0.05)", border: "1px solid rgba(96,165,250,0.15)",
-                                        color: "white", fontSize: "0.9rem", outline: "none",
+                                        background: "#ffffff", border: "1px solid #cbd5e1",
+                                        color: "#0f172a", fontSize: "0.9rem", outline: "none",
                                         fontFamily: "var(--font-body)",
                                     }}
                                 />
                             </div>
 
                             <div>
-                                <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.3rem", fontFamily: "var(--font-heading)" }}>
+                                <label style={{ display: "block", color: "#475569", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.3rem", fontFamily: "var(--font-heading)" }}>
                                     Descripción
                                 </label>
                                 <textarea
@@ -414,8 +414,8 @@ export default function AdminServicios() {
                                     rows={3}
                                     style={{
                                         width: "100%", padding: "0.65rem 0.9rem", borderRadius: "0.5rem",
-                                        background: "rgba(255,255,255,0.05)", border: "1px solid rgba(96,165,250,0.15)",
-                                        color: "white", fontSize: "0.9rem", outline: "none", resize: "vertical",
+                                        background: "#ffffff", border: "1px solid #cbd5e1",
+                                        color: "#0f172a", fontSize: "0.9rem", outline: "none", resize: "vertical",
                                         fontFamily: "var(--font-body)",
                                     }}
                                 />
@@ -423,7 +423,7 @@ export default function AdminServicios() {
 
                             {/* Features */}
                             <div>
-                                <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.5rem", fontFamily: "var(--font-heading)" }}>
+                                <label style={{ display: "block", color: "#475569", fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.5rem", fontFamily: "var(--font-heading)" }}>
                                     Características ({editingPkg.features.length})
                                 </label>
                                 <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem", marginBottom: "0.75rem" }}>
@@ -431,11 +431,11 @@ export default function AdminServicios() {
                                         <div key={i} style={{
                                             display: "flex", alignItems: "center", gap: "0.5rem",
                                             padding: "0.4rem 0.75rem", borderRadius: "0.4rem",
-                                            background: "rgba(255,255,255,0.03)",
-                                            border: "1px solid rgba(96,165,250,0.08)",
+                                            background: "#f8fafc",
+                                            border: "1px solid #e2e8f0",
                                         }}>
                                             <span style={{ color: "#34d399", fontSize: "0.8rem" }}>✓</span>
-                                            <span style={{ flex: 1, color: "#cbd5e1", fontSize: "0.82rem" }}>{f}</span>
+                                            <span style={{ flex: 1, color: "#475569", fontSize: "0.82rem" }}>{f}</span>
                                             <button
                                                 onClick={() => removeFeature(i)}
                                                 style={{
@@ -456,8 +456,8 @@ export default function AdminServicios() {
                                         placeholder="Nueva característica..."
                                         style={{
                                             flex: 1, padding: "0.5rem 0.75rem", borderRadius: "0.4rem",
-                                            background: "rgba(255,255,255,0.05)", border: "1px solid rgba(96,165,250,0.15)",
-                                            color: "white", fontSize: "0.82rem", outline: "none",
+                                            background: "#ffffff", border: "1px solid #cbd5e1",
+                                            color: "#0f172a", fontSize: "0.82rem", outline: "none",
                                             fontFamily: "var(--font-body)",
                                         }}
                                     />
@@ -466,9 +466,9 @@ export default function AdminServicios() {
                                         disabled={!editFeature.trim()}
                                         style={{
                                             padding: "0.5rem 1rem", borderRadius: "0.4rem",
-                                            background: editFeature.trim() ? "rgba(16,185,129,0.15)" : "rgba(96,165,250,0.05)",
-                                            border: "1px solid " + (editFeature.trim() ? "rgba(16,185,129,0.3)" : "rgba(96,165,250,0.08)"),
-                                            color: editFeature.trim() ? "#34d399" : "#475569",
+                                            background: editFeature.trim() ? "#dcfce7" : "#f1f5f9",
+                                            border: "1px solid " + (editFeature.trim() ? "#86efac" : "#e2e8f0"),
+                                            color: editFeature.trim() ? "#16a34a" : "#94a3b8",
                                             cursor: editFeature.trim() ? "pointer" : "default",
                                             fontWeight: 600, fontSize: "0.8rem",
                                         }}
@@ -485,8 +485,8 @@ export default function AdminServicios() {
                                 onClick={() => setEditingPkg(null)}
                                 style={{
                                     flex: 1, padding: "0.7rem", borderRadius: "0.6rem",
-                                    background: "rgba(255,255,255,0.05)", border: "1px solid rgba(96,165,250,0.15)",
-                                    color: "#94a3b8", cursor: "pointer", fontWeight: 600,
+                                    background: "#ffffff", border: "1px solid #cbd5e1",
+                                    color: "#475569", cursor: "pointer", fontWeight: 600,
                                     fontSize: "0.88rem", fontFamily: "var(--font-heading)",
                                 }}
                             >
@@ -496,10 +496,9 @@ export default function AdminServicios() {
                                 onClick={handleSavePkg}
                                 style={{
                                     flex: 2, padding: "0.7rem", borderRadius: "0.6rem",
-                                    background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                                    background: "#2563eb",
                                     border: "none", color: "white", cursor: "pointer", fontWeight: 700,
                                     fontSize: "0.88rem", fontFamily: "var(--font-heading)",
-                                    boxShadow: "0 4px 15px rgba(37,99,235,0.25)",
                                 }}
                             >
                                 💾 Guardar Cambios

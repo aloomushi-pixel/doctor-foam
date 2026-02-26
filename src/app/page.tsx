@@ -120,10 +120,10 @@ const vehicleSizes = [
 const packages = [
   {
     name: "Industrial Deep Interior",
-    price: "$3,499",
+    price: "$2,499",
     priceLabel: "Sedán / SUV 2 filas",
     subtitle: "Limpieza interior profesional",
-    prices: { sedan: "$3,499", pickup: "$4,024" },
+    prices: { sedan: "$2,499", pickup: "$2,874" },
     features: [
       "Vapor seco industrial a 180°C",
       "Aspirado de alta potencia",
@@ -136,10 +136,10 @@ const packages = [
   },
   {
     name: "Signature Detail",
-    price: "$9,500",
+    price: "$7,449",
     priceLabel: "Sedán / SUV 2 filas",
     subtitle: "El más popular",
-    prices: { sedan: "$9,500", pickup: "$10,925" },
+    prices: { sedan: "$7,449", pickup: "$8,566" },
     features: [
       "Incluye Industrial Deep Interior completo",
       "Corrección de pintura en 2-3 etapas",
@@ -153,10 +153,10 @@ const packages = [
   },
   {
     name: "Ceramic Coating",
-    price: "$14,999",
+    price: "$11,999",
     priceLabel: "Sedán / SUV 2 filas",
     subtitle: "Protección de nueva generación",
-    prices: { sedan: "$14,999", pickup: "$17,249" },
+    prices: { sedan: "$11,999", pickup: "$13,799" },
     features: [
       "Recubrimiento cerámico (3-5 años)",
       "Protección UV, lluvia ácida y contaminantes",
