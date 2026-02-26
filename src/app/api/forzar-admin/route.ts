@@ -30,12 +30,30 @@ export async function GET(request: NextRequest) {
 
     const user = usersData.users.find(u => u.email === email.toLowerCase());
 
+    let userId = "";
+
     if (!user) {
-        return NextResponse.json({ error: `Usuario ${email} no encontrado en la base de datos.` }, { status: 404 });
+        if (searchParams.get("create") === "true") {
+            const { data: newData, error: createError } = await supabaseAdmin.auth.admin.createUser({
+                email: email.toLowerCase(),
+                password: "Password123!",
+                email_confirm: true,
+                user_metadata: { full_name: "Test User" },
+                app_metadata: { role }
+            });
+            if (createError) {
+                return NextResponse.json({ error: "Fallo al crear usuario: " + createError.message }, { status: 500 });
+            }
+            userId = newData.user.id;
+        } else {
+            return NextResponse.json({ error: `Usuario ${email} no encontrado en la base de datos. Usa &create=true para crearlo.` }, { status: 404 });
+        }
+    } else {
+        userId = user.id;
     }
 
     // Actualizamos su metadata para asignarle el rol
-    const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(user.id, {
+    const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(userId, {
         app_metadata: { role } // "admin" o "customer" dependiento del parámetro ?role=
     });
 
