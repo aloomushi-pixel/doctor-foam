@@ -2,7 +2,7 @@ import { createServerSupabase } from "@/lib/supabase";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
+const getStripe = () => new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || "";
 
 export async function POST(request: NextRequest) {
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 
         if (endpointSecret && endpointSecret !== "whsec_placeholder" && sig) {
             try {
-                event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
+                event = getStripe().webhooks.constructEvent(body, sig, endpointSecret);
             } catch (err) {
                 console.error("Webhook signature verification failed:", err);
                 return NextResponse.json({ error: "Invalid signature" }, { status: 400 });

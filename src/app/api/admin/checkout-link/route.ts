@@ -2,7 +2,7 @@ import { createServerSupabase } from "@/lib/supabase";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
+const getStripe = () => new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
 
 export async function POST(request: NextRequest) {
     try {
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Create a new Stripe Checkout Session for this existing booking
-        const session = await stripe.checkout.sessions.create({
+        const session = await getStripe().checkout.sessions.create({
             payment_method_types: ["card"],
             mode: "payment",
             locale: "es",

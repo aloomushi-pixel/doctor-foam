@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import { createServerSupabase } from "@/lib/supabase";
 import { PACKAGES, SIZE_COEFFICIENTS, calculatePrice, getVehicleSizeLabel } from "@/lib/packages";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
+const getStripe = () => new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
 
 export async function POST(request: NextRequest) {
     try {
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         const isSubscription = !!pkg.isSubscription;
 
         // Create Stripe Checkout Session
-        const session = await stripe.checkout.sessions.create({
+        const session = await getStripe().checkout.sessions.create({
             payment_method_types: ["card"],
             mode: isSubscription ? "subscription" : "payment",
             locale: "es",
