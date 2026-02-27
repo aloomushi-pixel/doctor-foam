@@ -120,14 +120,22 @@ function GuestChatInner() {
                 }),
             });
             clearTimeout(timeoutId);
+
             if (res.ok) {
                 const data = await res.json();
                 setMessages(prev => [...prev, data.message]);
                 setInput("");
                 setHasConversation(true);
+            } else {
+                const errData = await res.json().catch(() => ({}));
+                alert("Error al enviar el mensaje: " + (errData.error || res.statusText || "Error del servidor"));
             }
-        } catch { /* silent */ }
-        setSending(false);
+        } catch (err: any) {
+            console.error("GuestChat error:", err);
+            alert("Hubo un problema de conexión. Intenta de nuevo.");
+        } finally {
+            setSending(false);
+        }
     };
 
     const formatTime = (iso: string) => {
