@@ -16,6 +16,24 @@ export type Booking = {
     notes: string;
     created_at: string;
     customer_id?: string;
+    expenses?: number;
+    liquidation_status?: "pending" | "liquidated";
+    liquidation_id?: string;
+};
+
+export type Liquidation = {
+    id: string;
+    created_at: string;
+    total_sold: number;
+    total_expenses: number;
+    total_profit: number;
+    partner_splits: {
+        user_id: string;
+        name: string;
+        display_role: string;
+        percentage: number;
+        amount: number;
+    }[];
 };
 
 export type BlockedDate = {

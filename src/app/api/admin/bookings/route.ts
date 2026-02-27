@@ -195,13 +195,13 @@ export async function PATCH(request: NextRequest) {
     const allowedFields = [
         "service_date", "package_name", "customer_name", "customer_phone",
         "customer_email", "vehicle_info", "vehicle_size", "address",
-        "notes", "payment_status",
+        "notes", "payment_status", "expenses"
     ];
 
-    const safeUpdates: Record<string, string> = {};
+    const safeUpdates: Record<string, any> = {};
     for (const key of allowedFields) {
         if (key in updates) {
-            safeUpdates[key] = updates[key];
+            safeUpdates[key] = key === "expenses" ? Number(updates[key]) : updates[key];
         }
     }
 

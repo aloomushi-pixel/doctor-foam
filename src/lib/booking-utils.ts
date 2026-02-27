@@ -1,12 +1,13 @@
 import React from "react";
 
 /* ─── Status Styles ─── */
-export const STATUSES = ["paid", "manual", "completed", "pending", "no-show", "rescheduled", "cancelled"] as const;
-export const CONFIRMED_STATUSES = ["paid", "manual", "completed"];
+export const STATUSES = ["ejecutado", "paid", "manual", "completed", "pending", "no-show", "rescheduled", "cancelled"] as const;
+export const CONFIRMED_STATUSES = ["paid", "manual", "completed", "ejecutado"];
 
 export const statusStyle = (s: string): React.CSSProperties => {
     switch (s) {
-        case "completed": return { background: "rgba(72,187,120,0.15)", color: "#48bb78", border: "1px solid rgba(72,187,120,0.25)" };
+        case "completed": return { background: "rgba(72,187,120,0.15)", color: "#16a34a", border: "1px solid rgba(72,187,120,0.25)" };
+        case "ejecutado": return { background: "rgba(249,115,22,0.15)", color: "#ea580c", border: "1px solid rgba(249,115,22,0.25)" };
         case "paid": return { background: "rgba(99,179,237,0.15)", color: "#63b3ed", border: "1px solid rgba(99,179,237,0.25)" };
         case "manual": return { background: "rgba(183,148,246,0.15)", color: "#b794f6", border: "1px solid rgba(183,148,246,0.25)" };
         case "pending": return { background: "rgba(236,201,75,0.15)", color: "#ecc94b", border: "1px solid rgba(236,201,75,0.25)" };
@@ -20,6 +21,7 @@ export const statusStyle = (s: string): React.CSSProperties => {
 export const statusLabel = (s: string): string => {
     switch (s) {
         case "completed": return "✅ Completado";
+        case "ejecutado": return "⚙️ Ejecutado";
         case "paid": return "💰 Pagado";
         case "manual": return "🟣 Manual";
         case "pending": return "⏳ Pendiente";
