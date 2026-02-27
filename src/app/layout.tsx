@@ -1,7 +1,12 @@
-import GuestChat from "@/components/GuestChat";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { DM_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 
+const GuestChat = dynamic(() => import("@/components/GuestChat"));
+
+const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"], variable: '--font-body', display: 'swap' });
+const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800", "900"], variable: '--font-heading', display: 'swap' });
 export const metadata: Metadata = {
   metadataBase: new URL("https://drfoam.com.mx"),
   title: "Doctor Foam México | Detallado Automotriz Premium a Domicilio",
@@ -70,18 +75,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${dmSans.variable} ${outfit.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
         {/* PWA */}
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0f2240" />

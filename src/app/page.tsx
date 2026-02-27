@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -513,9 +514,10 @@ export default function HomePage() {
 
       {/* ─── HERO ─── */}
       <section className="hero-section" id="inicio">
-        <div className="hero-bg" />
-        <div className="hero-glow hero-glow-gold" />
-        <div className="hero-glow hero-glow-blue" />
+        <Image src="/hero-bg.png" alt="Doctor Foam Automotriz Premium" fill priority style={{ objectFit: 'cover', zIndex: 0 }} />
+        <div className="hero-bg" style={{ zIndex: 1 }} />
+        <div className="hero-glow hero-glow-gold" style={{ zIndex: 1 }} />
+        <div className="hero-glow hero-glow-blue" style={{ zIndex: 1 }} />
 
         <div className="container" style={{ position: "relative", zIndex: 10, textAlign: "center" }}>
           <div className="animate-on-scroll">
@@ -735,7 +737,7 @@ export default function HomePage() {
           </div>
 
 
-                  </div>
+        </div>
       </section>
 
       {/* ─── PAGO RECURRENTE ─── */}
@@ -954,7 +956,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      
+
       {/* ─── BLOG CAROUSEL ─── */}
       <section className="section-padding" id="blog" style={{ background: "#ffffff" }}>
         <div className="container" style={{ textAlign: "center" }}>
@@ -965,11 +967,11 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div style={{ 
-            display: "flex", 
-            gap: "2rem", 
-            overflowX: "auto", 
-            paddingBottom: "2rem", 
+          <div style={{
+            display: "flex",
+            gap: "2rem",
+            overflowX: "auto",
+            paddingBottom: "2rem",
             marginTop: "3rem",
             scrollbarWidth: "none",
             msOverflowStyle: "none"
@@ -983,8 +985,8 @@ export default function HomePage() {
               { slug: "por-que-detallado-domicilio-mejor", title: "¿Por Qué el Detallado a Domicilio Supera al Taller?", cat: "Tendencias" },
               { slug: "mejores-ceras-selladores-mexico", title: "Las Mejores Ceras y Selladores en México", cat: "Productos" }
             ].map((b, i) => (
-              <a key={i} href={`/blog/${b.slug}`} className="glass-card animate-on-scroll" style={{ 
-                minWidth: "320px", 
+              <a key={i} href={`/blog/${b.slug}`} className="glass-card animate-on-scroll" style={{
+                minWidth: "320px",
                 maxWidth: "320px",
                 flexShrink: 0,
                 textAlign: "left",
@@ -1003,7 +1005,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-{/* ─── FAQ ─── */}
+      {/* ─── FAQ ─── */}
       <section className="section-padding" id="faq">
         <div className="container" style={{ maxWidth: "800px" }}>
           <div className="animate-on-scroll" style={{ textAlign: "center" }}>

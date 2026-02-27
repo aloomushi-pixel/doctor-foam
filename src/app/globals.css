@@ -228,7 +228,6 @@ h6 {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: url('/hero-bg.png') center center / cover no-repeat;
 }
 
 .hero-bg {
