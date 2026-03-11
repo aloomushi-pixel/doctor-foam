@@ -1,6 +1,6 @@
 "use client";
 
-import AdminLayout from "@/components/AdminLayout";
+import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { formatTimeAgo } from "@/lib/booking-utils";
 import { supabase } from "@/lib/supabase";
 import type { Booking, Liquidation } from "@/lib/types";
@@ -385,7 +385,7 @@ export default function LiquidacionesPage() {
     };
 
     return (
-        <AdminLayout>
+        <UnifiedDashboardLayout requiredRole="admin">
             <div style={{ padding: "2rem", maxWidth: "1200px", margin: "0 auto", fontFamily: "var(--font-body)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
                     <div>
@@ -427,7 +427,7 @@ export default function LiquidacionesPage() {
 
                 {renderTabContent()}
             </div>
-        </AdminLayout>
+        </UnifiedDashboardLayout>
     );
 }
 

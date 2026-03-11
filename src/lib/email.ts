@@ -91,7 +91,7 @@ export async function sendWelcomeEmail(data: WelcomeData) {
         <ul style="color:#cbd5e1;margin:0;padding-left:1.2rem;line-height:2;font-size:0.9rem;">
           <li>📋 Ver tus servicios contratados</li>
           <li>📅 Reservar nuevos servicios</li>
-          <li>💬 Chatear directamente con nuestro equipo</li>
+          <li>💬 Contactarnos por WhatsApp directo</li>
           <li>👤 Administrar tu perfil y vehículos</li>
         </ul>
       </div>
@@ -151,7 +151,7 @@ export async function sendBookingConfirmation(data: BookingData) {
 
       <div style="text-align:center;margin:1.5rem 0;">
         <a href="${SITE_URL}/mi-cuenta" style="display:inline-block;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;text-decoration:none;padding:0.75rem 2rem;border-radius:8px;font-weight:600;font-size:0.9rem;">📋 Ver mis servicios</a>
-        <a href="${SITE_URL}/?chat=open" style="display:inline-block;background:rgba(59,130,246,0.15);color:#60a5fa;text-decoration:none;padding:0.75rem 1.5rem;border-radius:8px;font-weight:600;font-size:0.9rem;margin-left:0.5rem;border:1px solid rgba(59,130,246,0.3);">💬 Chat con nosotros</a>
+        <a href="https://wa.me/525649663016" style="display:inline-block;background:rgba(59,130,246,0.15);color:#60a5fa;text-decoration:none;padding:0.75rem 1.5rem;border-radius:8px;font-weight:600;font-size:0.9rem;margin-left:0.5rem;border:1px solid rgba(59,130,246,0.3);">💬 WhatsApp con nosotros</a>
       </div>
     </div>${emailFooter()}`,
     });
@@ -190,7 +190,6 @@ export async function sendAdminNotification(data: BookingData) {
       </div>
       <div style="text-align:center;margin-top:1.25rem;">
         <a href="${SITE_URL}/admin" style="display:inline-block;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;text-decoration:none;padding:0.6rem 1.5rem;border-radius:8px;font-weight:600;font-size:0.85rem;">📊 Ver Dashboard</a>
-        <a href="${SITE_URL}/admin/mensajes" style="display:inline-block;background:rgba(59,130,246,0.15);color:#60a5fa;text-decoration:none;padding:0.6rem 1.5rem;border-radius:8px;font-weight:600;font-size:0.85rem;margin-left:0.5rem;border:1px solid rgba(59,130,246,0.3);">💬 Mensajes</a>
       </div>
     </div>${emailFooter()}`,
     });
@@ -200,35 +199,6 @@ export async function sendAdminNotification(data: BookingData) {
   }
 }
 
-/* ═══════════════════════════════════════════════
-   4. NOTIFICACIÓN DE NUEVO MENSAJE
-   ═══════════════════════════════════════════════ */
-export async function sendChatNotification(data: ChatNotificationData) {
-  const { recipientEmail, recipientName, senderName, messagePreview } = data;
-  const firstName = recipientName.split(" ")[0];
-
-  try {
-    await getResend().emails.send({
-      from: FROM_EMAIL,
-      to: recipientEmail,
-      subject: `💬 Nuevo mensaje de ${senderName} — Doctor Foam`,
-      html: `${emailHeader()}
-    <div style="padding:2rem;">
-      <h2 style="color:white;margin:0 0 1rem;font-size:1.1rem;">Hola ${firstName}, tienes un nuevo mensaje</h2>
-      <div style="background:rgba(15,34,64,0.6);border:1px solid rgba(96,165,250,0.2);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;">
-        <p style="color:#94a3b8;font-size:0.8rem;margin:0 0 0.5rem;">${senderName} escribió:</p>
-        <p style="color:#cbd5e1;font-size:0.95rem;margin:0;line-height:1.6;">"${messagePreview}"</p>
-      </div>
-      <div style="text-align:center;">
-        <a href="${SITE_URL}/?chat=open" style="display:inline-block;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;text-decoration:none;padding:0.75rem 2rem;border-radius:8px;font-weight:600;font-size:0.9rem;">💬 Responder</a>
-      </div>
-    </div>${emailFooter()}`,
-    });
-    console.log(`✅ Chat notification sent to ${recipientEmail}`);
-  } catch (error) {
-    console.error("❌ Error sending chat notification:", error);
-  }
-}
 
 /* ═══════════════════════════════════════════════
    5. RECORDATORIO PRE-SERVICIO (24h antes)
@@ -260,7 +230,7 @@ export async function sendServiceReminder(data: { customerName: string; customer
       </div>
 
       <div style="text-align:center;margin-top:1.5rem;">
-        <a href="${SITE_URL}/?chat=open" style="display:inline-block;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;text-decoration:none;padding:0.75rem 2rem;border-radius:8px;font-weight:600;font-size:0.9rem;">💬 Contactar al equipo</a>
+        <a href="https://wa.me/525649663016" style="display:inline-block;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;text-decoration:none;padding:0.75rem 2rem;border-radius:8px;font-weight:600;font-size:0.9rem;">💬 Contactar por WhatsApp</a>
       </div>
     </div>${emailFooter()}`,
     });
@@ -301,7 +271,7 @@ export async function sendPaymentReminderEmail(data: {
         </a>
       </div>
       
-      <p style="color:#94a3b8;font-size:0.8rem;text-align:center;margin-top:1rem;">Si tienes problemas con el link, contáctanos a través del chat de la plataforma.</p>
+      <p style="color:#94a3b8;font-size:0.8rem;text-align:center;margin-top:1rem;">Si tienes problemas con el link, contáctanos a través de WhatsApp.</p>
     </div>${emailFooter()}`,
     });
     console.log(`✅ Payment reminder sent to ${data.customerEmail}`);

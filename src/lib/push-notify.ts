@@ -51,7 +51,7 @@ export async function sendPushToAdmins(payload: PushPayload): Promise<void> {
     const notification = JSON.stringify({
         title: payload.title,
         body: payload.body,
-        url: payload.url || "/admin/mensajes",
+        url: payload.url || "/admin",
         icon: payload.icon || "/icon-192.png",
         badge: "/icon-192.png",
     });

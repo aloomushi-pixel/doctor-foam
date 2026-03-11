@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function CustomerLoginPage() {
+export default function UnifiedLoginPage() {
     const router = useRouter();
     const [mode, setMode] = useState<"login" | "reset">("login");
     const [email, setEmail] = useState("");
@@ -31,9 +31,7 @@ export default function CustomerLoginPage() {
         } else {
             const { data: { user } } = await supabase.auth.getUser();
             if (user?.app_metadata?.role === "admin") {
-                await supabase.auth.signOut();
-                setError("Acceso denegado. Para entrar al panel debes usar el link de Panel Administrativo.");
-                setLoading(false);
+                router.push("/admin");
             } else {
                 router.push("/mi-cuenta");
             }
@@ -69,7 +67,7 @@ export default function CustomerLoginPage() {
             minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
             background: "var(--color-bg-primary)", padding: "1rem",
         }}>
-            <div className="glass-card" style={{ maxWidth: "420px", width: "100%", padding: "2.5rem" }}>
+            <div className="glass-card animate-fade-in-up" style={{ maxWidth: "420px", width: "100%", padding: "2.5rem" }}>
                 {/* Logo */}
                 <div style={{ textAlign: "center", marginBottom: "2rem" }}>
                     <Link href="/" style={{ textDecoration: "none" }}>
@@ -94,8 +92,10 @@ export default function CustomerLoginPage() {
                                 style={{
                                     width: "100%", padding: "0.75rem 1rem", borderRadius: "0.5rem",
                                     border: "1px solid rgba(96, 165, 250, 0.2)", background: "rgba(10, 22, 40, 0.8)",
-                                    color: "white", fontSize: "0.9rem", outline: "none",
+                                    color: "white", fontSize: "0.9rem", outline: "none", transition: "border-color 0.2s",
                                 }}
+                                onFocus={e => e.target.style.borderColor = "rgba(59, 130, 246, 0.5)"}
+                                onBlur={e => e.target.style.borderColor = "rgba(96, 165, 250, 0.2)"}
                             />
                         </div>
 
@@ -111,8 +111,10 @@ export default function CustomerLoginPage() {
                                     style={{
                                         width: "100%", padding: "0.75rem 1rem", borderRadius: "0.5rem",
                                         border: "1px solid rgba(96, 165, 250, 0.2)", background: "rgba(10, 22, 40, 0.8)",
-                                        color: "white", fontSize: "0.9rem", outline: "none",
+                                        color: "white", fontSize: "0.9rem", outline: "none", transition: "border-color 0.2s"
                                     }}
+                                    onFocus={e => e.target.style.borderColor = "rgba(59, 130, 246, 0.5)"}
+                                    onBlur={e => e.target.style.borderColor = "rgba(96, 165, 250, 0.2)"}
                                 />
                             </div>
                         )}
@@ -134,7 +136,7 @@ export default function CustomerLoginPage() {
                         type="submit"
                         disabled={loading}
                         className="btn-premium"
-                        style={{ width: "100%", justifyContent: "center", fontSize: "0.9rem" }}
+                        style={{ width: "100%", justifyContent: "center", fontSize: "0.9rem", opacity: loading ? 0.6 : 1 }}
                     >
                         {loading ? "Procesando..." : mode === "login" ? "Iniciar sesión" : "Enviar instrucciones"}
                     </button>
@@ -157,14 +159,19 @@ export default function CustomerLoginPage() {
 
                 {/* Divider */}
                 <div style={{ borderTop: "1px solid rgba(96, 165, 250, 0.1)", marginTop: "1.5rem", paddingTop: "1rem", textAlign: "center" }}>
-                    <p style={{ color: "#475569", fontSize: "0.8rem", marginBottom: "0.75rem" }}>
+                    <p style={{ color: "#475569", fontSize: "0.8rem", marginBottom: "0" }}>
                         ¿Aún no tienes cuenta? <Link href="/reservar" style={{ color: "#60a5fa" }}>Reserva tu primer servicio</Link> y se creará automáticamente.
                     </p>
-                    <Link href="/admin/login" style={{ color: "#475569", fontSize: "0.75rem", textDecoration: "none", opacity: 0.7, transition: "opacity 0.2s" }} onMouseEnter={e => e.currentTarget.style.opacity = "1"} onMouseLeave={e => e.currentTarget.style.opacity = "0.7"}>
-                        Acceso Administradores
-                    </Link>
                 </div>
             </div>
+            {/* Adding the animation style directly in the page to ensure it runs like the admin page did */}
+            <style jsx global>{`
+                @keyframes fadeInUp {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .animate-fade-in-up { animation: fadeInUp 0.5s ease forwards; }
+            `}</style>
         </div>
     );
 }

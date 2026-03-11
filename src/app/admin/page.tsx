@@ -1,6 +1,6 @@
 "use client";
 
-import AdminLayout from "@/components/AdminLayout";
+import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { getGreeting } from "@/lib/booking-utils";
 import { supabase } from "@/lib/supabase";
 import type { BlockedDate, Booking } from "@/lib/types";
@@ -181,7 +181,7 @@ export default function AdminDashboardPage() {
             if (data.session) {
                 setSession(data.session);
             } else {
-                router.push("/admin/login");
+                router.push("/login");
             }
             setLoadingAuth(false);
         });
@@ -453,7 +453,7 @@ export default function AdminDashboardPage() {
         : tabBookings;
 
     return (
-        <AdminLayout>
+        <UnifiedDashboardLayout requiredRole="admin">
             <div>
 
                 {/* Admin Header */}
@@ -882,7 +882,7 @@ export default function AdminDashboardPage() {
                     </div>
                 )}
             </div>
-        </AdminLayout>
+        </UnifiedDashboardLayout>
     );
 }
 

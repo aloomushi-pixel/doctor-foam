@@ -1,6 +1,6 @@
 "use client";
 
-import AdminLayout from "@/components/AdminLayout";
+import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { PACKAGES, PREMIUM_ZONES, VEHICLE_SIZES, type PackageConfig } from "@/lib/packages";
 import { useState } from "react";
 
@@ -61,7 +61,7 @@ export default function AdminServicios() {
     };
 
     return (
-        <AdminLayout>
+        <UnifiedDashboardLayout requiredRole="admin">
             <div style={{ marginBottom: "1.5rem" }}>
                 <h1 style={{
                     color: "#0f172a", fontSize: "1.5rem",
@@ -511,6 +511,6 @@ export default function AdminServicios() {
                     </div>
                 </>
             )}
-        </AdminLayout>
+        </UnifiedDashboardLayout>
     );
 }

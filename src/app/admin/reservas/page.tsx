@@ -1,6 +1,6 @@
 "use client";
 
-import AdminLayout from "@/components/AdminLayout";
+import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { STATUSES, exportBookingsCSV, statusLabel, statusStyle } from "@/lib/booking-utils";
 import { supabase } from "@/lib/supabase";
 import type { Booking } from "@/lib/types";
@@ -202,7 +202,7 @@ export default function ReservasPage() {
     };
 
     return (
-        <AdminLayout>
+        <UnifiedDashboardLayout requiredRole="admin">
             <div>
                 {/* Header */}
                 <div style={{ marginBottom: "2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
@@ -546,7 +546,7 @@ export default function ReservasPage() {
                     </div>
                 )}
             </div>
-        </AdminLayout>
+        </UnifiedDashboardLayout>
     );
 }
 

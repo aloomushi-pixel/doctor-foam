@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 
 function ResetPasswordForm() {
     const router = useRouter();
@@ -53,7 +53,7 @@ function ResetPasswordForm() {
             }
 
             setSuccess(true);
-            setTimeout(() => router.push("/admin/login"), 3000);
+            setTimeout(() => router.push("/login"), 3000);
         } catch {
             setError("Error de conexión. Intenta de nuevo.");
             setLoading(false);
@@ -106,7 +106,7 @@ function ResetPasswordForm() {
                 <div style={{ textAlign: "center", padding: "2rem" }}>
                     <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>⚠️</div>
                     <p style={{ color: "#f87171", marginBottom: "1rem" }}>Enlace inválido o expirado.</p>
-                    <Link href="/admin/login" style={{ color: "#60a5fa", textDecoration: "none", fontSize: "0.9rem" }}>
+                    <Link href="/login" style={{ color: "#60a5fa", textDecoration: "none", fontSize: "0.9rem" }}>
                         Volver al login →
                     </Link>
                 </div>

@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import { DM_Sans, Outfit } from "next/font/google";
 import "./globals.css";
-
-const GuestChat = dynamic(() => import("@/components/GuestChat"));
 
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"], variable: '--font-body', display: 'swap' });
 const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800", "900"], variable: '--font-heading', display: 'swap' });
@@ -88,7 +85,6 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        <GuestChat />
         <script
           dangerouslySetInnerHTML={{
             __html: `

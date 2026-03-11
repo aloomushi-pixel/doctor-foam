@@ -1,6 +1,6 @@
 "use client";
 
-import AdminLayout from "@/components/AdminLayout";
+import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { supabase } from "@/lib/supabase";
 import type { Invitation } from "@/lib/types";
 import { useCallback, useEffect, useState } from "react";
@@ -105,7 +105,7 @@ export default function InvitacionesPage() {
     };
 
     return (
-        <AdminLayout>
+        <UnifiedDashboardLayout requiredRole="admin">
             <div>
                 {/* Toast */}
                 {toast && (
@@ -313,6 +313,6 @@ export default function InvitacionesPage() {
                     </div>
                 )}
             </div>
-        </AdminLayout>
+        </UnifiedDashboardLayout>
     );
 }

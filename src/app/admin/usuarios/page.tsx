@@ -1,6 +1,6 @@
 "use client";
 
-import AdminLayout from "@/components/AdminLayout";
+import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { supabase } from "@/lib/supabase";
 import type { User } from "@/lib/types";
 import React, { useCallback, useEffect, useRef, useState } from "react";
@@ -113,7 +113,7 @@ export default function UsuariosPage() {
     };
 
     return (
-        <AdminLayout>
+        <UnifiedDashboardLayout requiredRole="admin">
             <div>
                 <h1 className="gradient-text" style={{
                     fontFamily: "var(--font-heading)", fontSize: "1.8rem",
@@ -459,6 +459,6 @@ export default function UsuariosPage() {
                     {filtered.length} {activeTab === "admin" ? "administrador(es)" : "cliente(s)"}
                 </p>
             </div>
-        </AdminLayout>
+        </UnifiedDashboardLayout>
     );
 }
