@@ -16,11 +16,24 @@ export default function InstallPrompt() {
     const [pushPermission, setPushPermission] = useState<string>("default");
 
     useEffect(() => {
-        // Check if already dismissed
-        if (localStorage.getItem("pwa-install-dismissed")) {
-            // Even if PWA is dismissed, check if we need push permissions
+        // Check if already dismissed within the last 7 days
+        const dismissedAt = localStorage.getItem("pwa-install-dismissed-at");
+        const legacyDismissed = localStorage.getItem("pwa-install-dismissed");
+
+        // Clear legacy
+        if (legacyDismissed) {
+            localStorage.removeItem("pwa-install-dismissed");
+            localStorage.setItem("pwa-install-dismissed-at", Date.now().toString());
             checkPushPermission();
             return;
+        }
+
+        if (dismissedAt) {
+            const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+            if (Date.now() - parseInt(dismissedAt, 10) < SEVEN_DAYS_MS) {
+                checkPushPermission(); // Still check push in background just in case
+                return;
+            }
         }
 
         // Check if already installed (standalone mode)
@@ -44,7 +57,10 @@ export default function InstallPrompt() {
     const checkPushPermission = () => {
         if ("Notification" in window) {
             setPushPermission(Notification.permission);
-            if (Notification.permission === "default" && !localStorage.getItem("pwa-install-dismissed")) {
+            const dismissedAt = localStorage.getItem("pwa-install-dismissed-at");
+            const isDismissed = dismissedAt && (Date.now() - parseInt(dismissedAt, 10) < 7 * 24 * 60 * 60 * 1000);
+
+            if (Notification.permission === "default" && !isDismissed) {
                 setTimeout(() => setVisible(true), 2000);
             }
         }
@@ -121,7 +137,7 @@ export default function InstallPrompt() {
 
     const handleDismiss = () => {
         setVisible(false);
-        localStorage.setItem("pwa-install-dismissed", "1");
+        localStorage.setItem("pwa-install-dismissed-at", Date.now().toString());
     };
 
     if (!visible) return null;
@@ -135,40 +151,40 @@ export default function InstallPrompt() {
     return (
         <div style={{
             position: "fixed", bottom: "1.5rem", left: "50%", transform: "translateX(-50%)",
-            zIndex: 1000, width: "calc(100% - 2rem)", maxWidth: "420px",
-            background: "rgba(10,22,40,0.97)", backdropFilter: "blur(20px)",
-            border: "1px solid rgba(59,130,246,0.25)", borderRadius: "1rem",
-            padding: "1rem 1.25rem", boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
-            animation: "slideUp 0.5s cubic-bezier(0.16,1,0.3,1)",
+            zIndex: 1000, width: "calc(100% - 2rem)", maxWidth: "360px",
+            background: "rgba(10,22,40,0.92)", backdropFilter: "blur(24px)",
+            border: "1px solid rgba(255,255,255,0.08)", borderRadius: "1rem",
+            padding: "1rem", boxShadow: "0 20px 40px rgba(0,0,0,0.5)",
+            animation: "slideUp 0.6s cubic-bezier(0.16,1,0.3,1)",
         }}>
             {installed && !showPush ? (
-                <div style={{ textAlign: "center", color: "#10b981", fontWeight: 600, fontSize: "0.9rem" }}>
-                    ✅ ¡App instalada correctamente!
+                <div style={{ textAlign: "center", color: "#10b981", fontWeight: 600, fontSize: "0.85rem" }}>
+                    ✅ App instalada correctamente
                 </div>
             ) : (
-                <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", flexDirection: "column" }}>
-                    <div style={{ display: "flex", gap: "1rem", alignItems: "center", width: "100%" }}>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", flexDirection: "column" }}>
+                    <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", width: "100%" }}>
                         <div style={{
-                            width: "44px", height: "44px", borderRadius: "0.75rem", flexShrink: 0,
+                            width: "38px", height: "38px", borderRadius: "0.5rem", flexShrink: 0,
                             background: "linear-gradient(135deg, #2563eb, #3b82f6)",
                             display: "flex", alignItems: "center", justifyContent: "center",
-                            fontSize: "1.5rem",
+                            fontSize: "1.2rem",
                         }}>
-                            🚗
+                            🚀
                         </div>
                         <div style={{ flex: 1 }}>
-                            <div style={{ color: "white", fontWeight: 700, fontSize: "0.95rem", fontFamily: "var(--font-heading)" }}>
-                                Experiencia Completa
+                            <div style={{ color: "white", fontWeight: 600, fontSize: "0.9rem", fontFamily: "var(--font-heading)" }}>
+                                App Doctor Foam
                             </div>
-                            <div style={{ color: "#94a3b8", fontSize: "0.8rem", marginTop: "0.15rem", lineHeight: 1.4 }}>
-                                Instala la App y activa las notificaciones para estar al tanto de tus servicios.
+                            <div style={{ color: "#94a3b8", fontSize: "0.75rem", marginTop: "0.1rem", lineHeight: 1.3 }}>
+                                Más rápida y con alertas instantáneas.
                             </div>
                         </div>
                         <button
                             onClick={handleDismiss}
                             style={{
                                 background: "none", border: "none", color: "#64748b", flexShrink: 0,
-                                cursor: "pointer", fontSize: "0.8rem", padding: "0.4rem", alignSelf: "flex-start"
+                                cursor: "pointer", fontSize: "0.75rem", padding: "0.2rem", alignSelf: "flex-start"
                             }}
                         >
                             ✕
@@ -180,13 +196,13 @@ export default function InstallPrompt() {
                             <button
                                 onClick={requestPushPermission}
                                 style={{
-                                    background: "linear-gradient(135deg, #10b981, #059669)",
-                                    border: "none", borderRadius: "0.5rem", width: "100%",
-                                    color: "white", fontWeight: 700, fontSize: "0.8rem",
-                                    padding: "0.6rem 1rem", cursor: "pointer",
+                                    background: "rgba(16, 185, 129, 0.15)",
+                                    border: "1px solid rgba(16, 185, 129, 0.3)", borderRadius: "0.4rem", width: "100%",
+                                    color: "#10b981", fontWeight: 600, fontSize: "0.75rem",
+                                    padding: "0.5rem 1rem", cursor: "pointer", transition: "all 0.2s"
                                 }}
                             >
-                                🔔 Activar Notificaciones
+                                Activar Notificaciones
                             </button>
                         )}
                         {showInstall && (
@@ -194,12 +210,12 @@ export default function InstallPrompt() {
                                 onClick={handleInstall}
                                 style={{
                                     background: "linear-gradient(135deg, #2563eb, #3b82f6)",
-                                    border: "none", borderRadius: "0.5rem", width: "100%",
-                                    color: "white", fontWeight: 700, fontSize: "0.8rem",
-                                    padding: "0.6rem 1rem", cursor: "pointer",
+                                    border: "none", borderRadius: "0.4rem", width: "100%",
+                                    color: "white", fontWeight: 600, fontSize: "0.75rem",
+                                    padding: "0.5rem 1rem", cursor: "pointer", transition: "all 0.2s"
                                 }}
                             >
-                                📲 Instalar App
+                                Instalar App
                             </button>
                         )}
                     </div>
@@ -208,7 +224,7 @@ export default function InstallPrompt() {
 
             <style>{`
                 @keyframes slideUp {
-                    from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+                    from { transform: translateX(-50%) translateY(150%); opacity: 0; }
                     to { transform: translateX(-50%) translateY(0); opacity: 1; }
                 }
             `}</style>
