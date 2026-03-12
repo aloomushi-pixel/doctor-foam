@@ -2,11 +2,12 @@
 
 import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { getGreeting } from "@/lib/booking-utils";
-import { supabase } from "@/lib/supabase";
 import type { BlockedDate, Booking } from "@/lib/types";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 /* Types imported from @/lib/types */
 
@@ -139,12 +140,12 @@ function AdminCalendar({
 
 export default function AdminDashboardPage() {
     const router = useRouter();
-    const [session, setSession] = useState<{ access_token: string; user: { id: string } } | null>(null);
-    const [loadingAuth, setLoadingAuth] = useState(true);
+    const { data: session, status } = useSession();
 
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [blockedDates, setBlockedDates] = useState<BlockedDate[]>([]);
     const [loadingData, setLoadingData] = useState(false);
+    const [hasMounted, setHasMounted] = useState(false);
 
     /* Modal states */
     const [showAddModal, setShowAddModal] = useState(false);
@@ -177,24 +178,18 @@ export default function AdminDashboardPage() {
 
     /* Check auth */
     useEffect(() => {
-        supabase.auth.getSession().then(({ data }) => {
-            if (data.session) {
-                setSession(data.session);
-            } else {
-                router.push("/login");
-            }
-            setLoadingAuth(false);
-        });
-    }, [router]);
+        setHasMounted(true);
+        if (status === "unauthenticated") {
+            router.push("/login");
+        }
+    }, [status, router]);
 
     /* Fetch admin profile for revenue share */
     useEffect(() => {
-        if (!session) return;
+        if (!session?.user?.id) return;
         (async () => {
             try {
-                const res = await fetch("/api/admin/users?role=admin", {
-                    headers: { Authorization: `Bearer ${session.access_token}` },
-                });
+                const res = await fetch("/api/admin/users?role=admin");
                 if (res.ok) {
                     const data = await res.json();
                     const me = (data.users || []).find((u: { id: string }) => u.id === session.user.id);
@@ -214,12 +209,8 @@ export default function AdminDashboardPage() {
 
         try {
             const [bookingsRes, blockedRes] = await Promise.all([
-                fetch(`/api/admin/bookings?month=${month}&year=${year}`, {
-                    headers: { Authorization: `Bearer ${session.access_token}` },
-                }),
-                fetch(`/api/admin/blocked-dates?month=${month}&year=${year}`, {
-                    headers: { Authorization: `Bearer ${session.access_token}` },
-                }),
+                fetch(`/api/admin/bookings?month=${month}&year=${year}`),
+                fetch(`/api/admin/blocked-dates?month=${month}&year=${year}`),
             ]);
 
             const bookingsData = await bookingsRes.json();
@@ -267,7 +258,7 @@ export default function AdminDashboardPage() {
         try {
             const res = await fetch("/api/admin/bookings", {
                 method: "POST",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ service_date: selectedDate, ...newBooking }),
             });
             const data = await res.json();
@@ -284,7 +275,7 @@ export default function AdminDashboardPage() {
         try {
             await fetch("/api/admin/blocked-dates", {
                 method: "POST",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ blocked_date: selectedDate, reason: blockReason }),
             });
             setShowBlockModal(false);
@@ -299,7 +290,6 @@ export default function AdminDashboardPage() {
         try {
             await fetch(`/api/admin/blocked-dates?id=${id}`, {
                 method: "DELETE",
-                headers: { Authorization: `Bearer ${session.access_token}` },
             });
             fetchData();
         } catch { alert("Error al desbloquear fecha"); }
@@ -311,7 +301,6 @@ export default function AdminDashboardPage() {
         try {
             await fetch(`/api/admin/bookings?id=${id}`, {
                 method: "DELETE",
-                headers: { Authorization: `Bearer ${session.access_token}` },
             });
             setShowDetailModal(null);
             fetchData();
@@ -349,7 +338,7 @@ export default function AdminDashboardPage() {
         try {
             const res = await fetch("/api/admin/bookings", {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id: showDetailModal.id, ...editData }),
             });
             const data = await res.json();
@@ -368,7 +357,7 @@ export default function AdminDashboardPage() {
         try {
             const res = await fetch("/api/admin/bookings", {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id: showDetailModal.id, service_date: rescheduleDate }),
             });
             const data = await res.json();
@@ -388,7 +377,7 @@ export default function AdminDashboardPage() {
         try {
             const res = await fetch("/api/admin/bookings", {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id: showDetailModal.id, payment_status: newStatus }),
             });
             const data = await res.json();
@@ -421,19 +410,19 @@ export default function AdminDashboardPage() {
             case "no-show": return "❌ No-show";
             case "rescheduled": return "🔄 Reprogramado";
             case "cancelled": return "🚫 Cancelado";
-            default: return "⏳ " + s;
+            default: return "⏳ " + (s || "Sin estado");
         }
     };
 
-    if (loadingAuth) {
-        return <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#475569" }}>Verificando sesión...</div>;
+    if (status === "loading" || status === "unauthenticated" || !hasMounted) {
+        return <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#475569" }}>Cargando panel...</div>;
     }
 
     /* Stats */
     const confirmedBookings = bookings.filter((b) => CONFIRMED_STATUSES.includes(b.payment_status));
     const pendingBookings = bookings.filter((b) => b.payment_status === "pending");
     const totalRevenue = confirmedBookings.filter((b) => b.payment_status === "paid").reduce((sum, b) => sum + b.total_amount, 0) / 100;
-    const nextBooking = confirmedBookings.filter((b) => b.service_date >= new Date().toISOString().split("T")[0]).sort((a, b) => a.service_date.localeCompare(b.service_date))[0];
+    const nextBooking = confirmedBookings.filter((b) => b.service_date && b.service_date >= new Date().toISOString().split("T")[0]).sort((a, b) => (a.service_date || "").localeCompare(b.service_date || ""))[0];
 
     /* Top package */
     const packageCounts: Record<string, number> = {};
@@ -451,6 +440,29 @@ export default function AdminDashboardPage() {
             b.customer_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             b.package_name.toLowerCase().includes(searchQuery.toLowerCase()))
         : tabBookings;
+
+    /* Chart Data Preparation */
+    // 1. Revenue over time (Last 7 Days)
+    const last7Days = Array.from({ length: 7 }).map((_, i) => {
+        const d = new Date();
+        d.setDate(d.getDate() - (6 - i));
+        return d.toISOString().split("T")[0];
+    });
+
+    const revenueData = last7Days.map(dateStr => {
+        const dayBookings = confirmedBookings.filter(b => b.service_date === dateStr && b.payment_status === "paid");
+        const revenue = dayBookings.reduce((sum, b) => sum + b.total_amount, 0) / 100;
+        return {
+            date: new Date(dateStr + "T12:00:00").toLocaleDateString("es-MX", { weekday: "short", day: "numeric" }),
+            ingresos: revenue
+        };
+    });
+
+    // 2. Bookings by Package
+    const chartPackageData = Object.entries(packageCounts).map(([name, count]) => ({
+        name: name.split(" ").slice(0, 2).join(" "), // Shorten name
+        reservas: count
+    })).sort((a, b) => b.reservas - a.reservas);
 
     return (
         <UnifiedDashboardLayout requiredRole="admin">
@@ -531,6 +543,48 @@ export default function AdminDashboardPage() {
                     ))}
                 </div>
 
+                {/* Dashboards Row */}
+                <div className="admin-grid-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
+                    <div className="glass-card" style={{ padding: "1.5rem", height: "350px" }}>
+                        <h2 style={{ fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "var(--font-heading)" }}>📈 Tendencia de Ingresos</h2>
+                        {loadingData && !refreshing ? (
+                            <div className="skeleton" style={{ width: "100%", height: "250px" }} />
+                        ) : (
+                            <ResponsiveContainer width="100%" height="85%">
+                                <AreaChart data={revenueData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                                    <defs>
+                                        <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
+                                            <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                                        </linearGradient>
+                                    </defs>
+                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                                    <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} dy={10} />
+                                    <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} tickFormatter={(value) => `$${value}`} />
+                                    <Tooltip contentStyle={{ borderRadius: "0.5rem", border: "none", boxShadow: "0 4px 15px rgba(0,0,0,0.1)" }} formatter={(value: number) => [`$${value.toLocaleString("es-MX")}`, 'Ingresos']} />
+                                    <Area type="monotone" dataKey="ingresos" stroke="#3b82f6" strokeWidth={3} fillOpacity={1} fill="url(#colorRevenue)" />
+                                </AreaChart>
+                            </ResponsiveContainer>
+                        )}
+                    </div>
+                    <div className="glass-card" style={{ padding: "1.5rem", height: "350px" }}>
+                        <h2 style={{ fontSize: "1.1rem", marginBottom: "1rem", fontFamily: "var(--font-heading)" }}>📊 Distribución por Paquete</h2>
+                        {loadingData && !refreshing ? (
+                            <div className="skeleton" style={{ width: "100%", height: "250px" }} />
+                        ) : (
+                            <ResponsiveContainer width="100%" height="85%">
+                                <BarChart data={chartPackageData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#64748b' }} dy={10} />
+                                    <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} allowDecimals={false} />
+                                    <Tooltip cursor={{ fill: 'rgba(99, 179, 237, 0.1)' }} contentStyle={{ borderRadius: "0.5rem", border: "none", boxShadow: "0 4px 15px rgba(0,0,0,0.1)" }} formatter={(value: number) => [value, 'Reservas']} />
+                                    <Bar dataKey="reservas" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        )}
+                    </div>
+                </div>
+
                 <div className="admin-grid-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
                     {/* Calendar */}
                     <div className="glass-card" style={{ padding: "1.5rem" }}>
@@ -586,7 +640,13 @@ export default function AdminDashboardPage() {
                                 }}
                             />
                         </div>
-                        {filteredBookings.length === 0 ? (
+                        {loadingData && !refreshing ? (
+                            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                                {Array.from({ length: 5 }).map((_, i) => (
+                                    <div key={i} className="skeleton" style={{ height: "90px" }} />
+                                ))}
+                            </div>
+                        ) : filteredBookings.length === 0 ? (
                             <div style={{ textAlign: "center", padding: "2rem", color: "#64748b" }}>
                                 {searchQuery ? "Sin resultados" : listTab === "confirmed" ? "No hay servicios confirmados" : "No hay solicitudes pendientes"}
                             </div>
@@ -611,7 +671,7 @@ export default function AdminDashboardPage() {
                                                 <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{b.customer_name}</div>
                                                 <div style={{ color: "#475569", fontSize: "0.8rem" }}>{b.package_name}</div>
                                                 <div style={{ color: "#64748b", fontSize: "0.75rem" }}>
-                                                    {new Date(b.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "short", day: "numeric", month: "short" })}
+                                                    {b.service_date ? new Date(b.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "short", day: "numeric", month: "short" }) : "Fecha pendiente"}
                                                 </div>
                                             </div>
                                             <div style={{ textAlign: "right" }}>
@@ -818,7 +878,7 @@ export default function AdminDashboardPage() {
                                     {[
                                         { label: "Cliente", value: showDetailModal.customer_name },
                                         { label: "Servicio", value: showDetailModal.package_name },
-                                        { label: "Fecha", value: new Date(showDetailModal.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) },
+                                        { label: "Fecha", value: showDetailModal.service_date ? new Date(showDetailModal.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : "Sin fecha asignada" },
                                         { label: "Vehículo", value: showDetailModal.vehicle_info || "—" },
                                         { label: "Tamaño", value: showDetailModal.vehicle_size || "—" },
                                         { label: "Dirección", value: showDetailModal.address || "—" },

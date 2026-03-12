@@ -1,0 +1,162 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id               String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email            String    @unique
+  password         String?   // bcrypt hashed password
+  name             String?
+  phone            String?
+  role             String    @default("customer") // "admin" | "customer"
+  createdAt        DateTime  @default(now())
+  lastSignIn       DateTime?
+
+  // Password Recovery
+  resetToken       String?   @unique
+  resetTokenExpiry DateTime?
+
+  // Profiles
+  customerProfile  CustomerProfile?
+  adminProfile     AdminProfile?
+
+  // Relations
+  bookings         Booking[]          @relation("CustomerBookings")
+  pushSubscriptions PushSubscription[]
+  messages         Message[]          @relation("SenderMessages")
+}
+
+model CustomerProfile {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String   @unique @db.Uuid
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName  String?
+  phone     String?
+  address   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AdminProfile {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId         String   @unique @db.Uuid
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  displayRole    String   @default("Administrador")
+  profitSharePct Float    @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  partnerSplits  PartnerSplit[]
+}
+
+model Booking {
+  id                String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  serviceDate       String
+  packageName       String
+  vehicleSize       String
+  totalAmount       Float
+  customerName      String
+  customerEmail     String
+  customerPhone     String
+  address           String
+  vehicleInfo       String
+  stripeSessionId   String?  @unique
+  paymentStatus     String
+  source            String
+  notes             String?
+  createdAt         DateTime @default(now())
+  
+  customerId        String?  @db.Uuid
+  customer          User?    @relation("CustomerBookings", fields: [customerId], references: [id], onDelete: SetNull)
+
+  expenses          Float     @default(0)
+  liquidationStatus String   @default("pending") // "pending" | "liquidated"
+  liquidationId     String?  @db.Uuid
+  liquidation       Liquidation? @relation(fields: [liquidationId], references: [id], onDelete: SetNull)
+}
+
+model Liquidation {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt     DateTime @default(now())
+  totalSold     Float    @default(0)
+  totalExpenses Float    @default(0)
+  totalProfit   Float    @default(0)
+
+  partnerSplits PartnerSplit[]
+  bookings      Booking[]
+}
+
+model PartnerSplit {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  liquidationId String   @db.Uuid
+  liquidation   Liquidation @relation(fields: [liquidationId], references: [id], onDelete: Cascade)
+  
+  adminId       String   @db.Uuid
+  admin         AdminProfile @relation(fields: [adminId], references: [userId], onDelete: Cascade)
+
+  name          String
+  displayRole   String
+  percentage    Float
+  amount        Float
+}
+
+model BlockedDate {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  blockedDate String   @unique
+  reason      String?
+  createdAt   DateTime @default(now())
+}
+
+model Conversation {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  customerId      String?
+  customerName    String
+  customerEmail   String
+  lastMessageAt   DateTime @default(now())
+  unreadCount     Int      @default(0)
+  status          String   @default("open")
+  guestName       String?
+  guestEmail      String?
+  createdAt       DateTime @default(now())
+
+  messages        Message[]
+}
+
+model Message {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  conversationId String   @db.Uuid
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  
+  senderId       String?  @db.Uuid
+  sender         User?    @relation("SenderMessages", fields: [senderId], references: [id], onDelete: SetNull)
+  
+  senderRole     String   // "admin" | "customer" | "guest"
+  content        String
+  createdAt      DateTime @default(now())
+  read           Boolean  @default(false)
+}
+
+model Invitation {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email     String   @unique
+  role      String
+  status    String   @default("pending")
+  token     String   @unique
+  invitedBy String?  @db.Uuid
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+model PushSubscription {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId           String   @db.Uuid
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscriptionData Json
+  endpoint         String   @unique
+  createdAt        DateTime @default(now())
+}

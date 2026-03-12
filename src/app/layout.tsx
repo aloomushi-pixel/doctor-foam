@@ -1,3 +1,4 @@
+import AuthProvider from "@/components/AuthProvider";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Metadata } from "next";
 import { DM_Sans, Outfit } from "next/font/google";
@@ -85,19 +86,21 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body>
-        {children}
-        <WhatsAppButton />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                  navigator.serviceWorker.register('/sw.js').catch(() => {});
-                });
-              }
-            `,
-          }}
-        />
+        <AuthProvider>
+          {children}
+          <WhatsAppButton />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                if ('serviceWorker' in navigator) {
+                  window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js').catch(() => {});
+                  });
+                }
+              `,
+            }}
+          />
+        </AuthProvider>
       </body>
     </html>
   );

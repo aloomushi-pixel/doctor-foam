@@ -1,28 +1,15 @@
 export const dynamic = "force-dynamic";
 
+import { getSession } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-async function authenticateAdmin(request: NextRequest) {
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader?.startsWith("Bearer ")) return null;
-    const token = authHeader.split(" ")[1];
-    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-        global: { headers: { Authorization: `Bearer ${token}` } },
-    });
-    const { data: { user }, error } = await supabase.auth.getUser(token);
-    if (error || !user) return null;
-    if (user.app_metadata?.role !== "admin") return null;
-    return { supabase, user };
-}
 
 /* GET — List blocked dates */
 export async function GET(request: NextRequest) {
-    const auth = await authenticateAdmin(request);
-    if (!auth) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
+        return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    }
 
     const { searchParams } = new URL(request.url);
     const month = parseInt(searchParams.get("month") || String(new Date().getMonth() + 1));
@@ -31,49 +18,79 @@ export async function GET(request: NextRequest) {
     const firstDay = new Date(year, month - 1, 1).toISOString().split("T")[0];
     const lastDay = new Date(year, month, 0).toISOString().split("T")[0];
 
-    const { data, error } = await auth.supabase
-        .from("blocked_dates")
-        .select("*")
-        .gte("blocked_date", firstDay)
-        .lte("blocked_date", lastDay)
-        .order("blocked_date", { ascending: true });
+    try {
+        const blockedDates = await prisma.blockedDate.findMany({
+            where: {
+                blockedDate: {
+                    gte: firstDay,
+                    lte: lastDay
+                }
+            },
+            orderBy: { blockedDate: "asc" }
+        });
 
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-    return NextResponse.json({ blocked_dates: data });
+        return NextResponse.json({
+            blocked_dates: blockedDates.map(bd => ({
+                id: bd.id,
+                blocked_date: bd.blockedDate,
+                reason: bd.reason,
+                created_at: bd.createdAt
+            }))
+        });
+    } catch (err: any) {
+        return NextResponse.json({ error: err.message }, { status: 500 });
+    }
 }
 
 /* POST — Block a date */
 export async function POST(request: NextRequest) {
-    const auth = await authenticateAdmin(request);
-    if (!auth) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
+        return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    }
 
     const { blocked_date, reason } = await request.json();
     if (!blocked_date) return NextResponse.json({ error: "Falta fecha" }, { status: 400 });
 
-    const { data, error } = await auth.supabase
-        .from("blocked_dates")
-        .insert({ blocked_date, reason: reason || "Bloqueado por admin" })
-        .select()
-        .single();
+    try {
+        const blockedDate = await prisma.blockedDate.create({
+            data: {
+                blockedDate: blocked_date,
+                reason: reason || "Bloqueado por admin"
+            }
+        });
 
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-    return NextResponse.json({ blocked_date: data });
+        return NextResponse.json({
+            blocked_date: {
+                id: blockedDate.id,
+                blocked_date: blockedDate.blockedDate,
+                reason: blockedDate.reason,
+                created_at: blockedDate.createdAt
+            }
+        });
+    } catch (err: any) {
+        return NextResponse.json({ error: err.message }, { status: 500 });
+    }
 }
 
 /* DELETE — Unblock a date */
 export async function DELETE(request: NextRequest) {
-    const auth = await authenticateAdmin(request);
-    if (!auth) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
+        return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    }
 
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
     if (!id) return NextResponse.json({ error: "Falta ID" }, { status: 400 });
 
-    const { error } = await auth.supabase
-        .from("blocked_dates")
-        .delete()
-        .eq("id", id);
+    try {
+        await prisma.blockedDate.delete({
+            where: { id }
+        });
 
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-    return NextResponse.json({ success: true });
+        return NextResponse.json({ success: true });
+    } catch (err: any) {
+        return NextResponse.json({ error: err.message }, { status: 500 });
+    }
 }

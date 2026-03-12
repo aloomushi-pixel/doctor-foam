@@ -1,7 +1,7 @@
 "use client";
 
 import Logo from "@/components/Logo";
-import { supabase } from "@/lib/supabase";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -20,21 +20,18 @@ export default function UnifiedLoginPage() {
         setLoading(true);
         setError("");
 
-        const { error: authError } = await supabase.auth.signInWithPassword({
+        const res = await signIn("credentials", {
+            redirect: false,
             email,
             password,
         });
 
-        if (authError) {
-            setError("Email o contraseña incorrectos");
+        if (res?.error) {
+            setError(res.error);
             setLoading(false);
         } else {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (user?.app_metadata?.role === "admin") {
-                router.push("/admin");
-            } else {
-                router.push("/mi-cuenta");
-            }
+            router.push("/mi-cuenta");
+            router.refresh();
         }
     };
 

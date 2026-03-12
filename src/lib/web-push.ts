@@ -1,5 +1,5 @@
 import webPush from "web-push";
-import { createServerSupabase } from "./supabase";
+import prisma from "./prisma";
 
 const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || "";
 const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY || "";
@@ -15,9 +15,7 @@ if (VAPID_PUBLIC_KEY && VAPID_PRIVATE_KEY) {
 }
 
 /**
- * Sends a Push Notification to a specific user using their stored subscriptions in Supabase.
- * @param userId The UUID of the user to notify
- * @param payload Object containing title, body, url, icon, badge
+ * Sends a Push Notification to a specific user using their stored subscriptions in Prisma.
  */
 export async function sendPushNotification(
     userId: string,
@@ -29,18 +27,10 @@ export async function sendPushNotification(
     }
 
     try {
-        const supabaseAdmin = createServerSupabase();
-
         // Fetch all active subscriptions for this user
-        const { data: subscriptions, error } = await supabaseAdmin
-            .from("push_subscriptions")
-            .select("*")
-            .eq("user_id", userId);
-
-        if (error) {
-            console.error("Error fetching subscriptions:", error);
-            return;
-        }
+        const subscriptions = await prisma.pushSubscription.findMany({
+            where: { userId: userId }
+        });
 
         if (!subscriptions || subscriptions.length === 0) {
             return; // No devices registered
@@ -54,18 +44,24 @@ export async function sendPushNotification(
             badge: payload.badge || "/icon-192.png"
         });
 
-        const promises = subscriptions.map(async (row) => {
-            const pushSubscription = row.subscription_data;
+        const promises = subscriptions.map(async (row: { id: string; endpoint: string; subscriptionData: any }) => {
+            const pushSubscription = {
+                endpoint: row.endpoint,
+                keys: {
+                    p256dh: row.subscriptionData?.keys?.p256dh || "",
+                    auth: row.subscriptionData?.keys?.auth || "",
+                },
+            };
             try {
+                // @ts-ignore
                 await webPush.sendNotification(pushSubscription, stringifiedPayload);
             } catch (err: any) {
                 // If standard 410 or 404 error, the subscription has expired or been revoked
                 if (err.statusCode === 410 || err.statusCode === 404) {
                     console.log(`Subscription deleted (status: ${err.statusCode}) for user ${userId}`);
-                    await supabaseAdmin
-                        .from("push_subscriptions")
-                        .delete()
-                        .eq("id", row.id);
+                    await prisma.pushSubscription.delete({
+                        where: { id: row.id }
+                    });
                 } else {
                     console.error("Error sending push to a specific subscription:", err);
                 }
@@ -80,7 +76,6 @@ export async function sendPushNotification(
 
 /**
  * Sends a push notification to ALL users with the "admin" role.
- * Extremely useful for triggering "New Chat Message" or "New Sale" alerts.
  */
 export async function sendPushToAdmins(
     payload: { title: string; body: string; url?: string; icon?: string; badge?: string }
@@ -90,22 +85,17 @@ export async function sendPushToAdmins(
     }
 
     try {
-        const supabaseAdmin = createServerSupabase();
+        const adminProfiles = await prisma.user.findMany({
+            where: { role: "admin" },
+            select: { id: true }
+        });
 
-        // We know admins have 'role: admin' on auth.users app_metadata
-        // But since we can't easily query auth.users from Supabase client directly with filtering 
-        // without listUsers(), we can query the admin_profiles table as a proxy for admins.
-
-        const { data: adminProfiles, error: profilesError } = await supabaseAdmin
-            .from("admin_profiles")
-            .select("id");
-
-        if (profilesError || !adminProfiles) {
-            console.error("Could not fetch admins for push notification", profilesError);
+        if (!adminProfiles) {
+            console.error("Could not fetch admins for push notification");
             return;
         }
 
-        const promises = adminProfiles.map((admin) =>
+        const promises = adminProfiles.map((admin: { id: string }) =>
             sendPushNotification(admin.id, payload)
         );
 

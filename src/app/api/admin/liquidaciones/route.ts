@@ -1,101 +1,64 @@
 export const dynamic = "force-dynamic";
 
-import { createClient } from "@supabase/supabase-js";
+import { getSession } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-/* Helper: authenticate admin from Authorization header */
-async function authenticateAdmin(request: NextRequest) {
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-        return null;
-    }
-    const token = authHeader.split(" ")[1];
-    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-        global: { headers: { Authorization: `Bearer ${token}` } },
-    });
-    const { data: { user }, error } = await supabase.auth.getUser(token);
-    if (error || !user) return null;
-    if (user.app_metadata?.role !== "admin") return null;
-
-    // Check service role key for admin-level operations
-    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    const supabaseAdmin = serviceRoleKey
-        ? createClient(supabaseUrl, serviceRoleKey)
-        : supabase;
-
-    return { supabase, supabaseAdmin, user };
-}
 
 /* GET — Fetch Pending Liquidations Info */
 export async function GET(request: NextRequest) {
-    const auth = await authenticateAdmin(request);
-    if (!auth) {
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
         return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
     try {
-        // 1. Get all pending AND completed bookings.
-        // Even if they are still "ejecutado", if liquidation_status is pending, we can optionally fetch them 
-        // depending on the UI needs. The prompt says "completed services that have liquidation_status === pending".
-        const { data: bookings, error: bookingsError } = await auth.supabase
-            .from("bookings")
-            .select("*")
-            .eq("liquidation_status", "pending")
-            .eq("payment_status", "completed");
-
-        if (bookingsError) throw bookingsError;
-
-        // 2. Fetch admins with profit_share_pct > 0
-        const { data: profiles, error: profilesError } = await auth.supabaseAdmin
-            .from("admin_profiles")
-            .select("id, display_role, profit_share_pct")
-            .gt("profit_share_pct", 0);
-
-        if (profilesError) throw profilesError;
-
-        // Ensure we join with auth.users to get names (auth.users doesn't have name directly if not queried from server layer, 
-        // but let's query the specific users endpoint or rely on user metadata).
-        // Since we need names, let's fetch users via auth admin API.
-        const { data: usersData, error: usersError } = await auth.supabaseAdmin.auth.admin.listUsers();
-        if (usersError) throw usersError;
-
-        const admins = profiles.map(p => {
-            const userObj = usersData.users.find(u => u.id === p.id);
-            return {
-                user_id: p.id,
-                name: userObj?.user_metadata?.name || userObj?.email || "Administrador",
-                display_role: p.display_role,
-                profit_share_pct: Number(p.profit_share_pct)
-            };
+        const bookings = await prisma.booking.findMany({
+            where: {
+                liquidationStatus: "pending",
+                paymentStatus: "completed"
+            }
         });
 
-        // 3. Calculate Totals
+        const admins = await prisma.adminProfile.findMany({
+            where: {
+                profitSharePct: { gt: 0 }
+            },
+            include: {
+                user: true
+            }
+        });
+
         let total_sold = 0;
         let total_expenses = 0;
 
-        for (const b of bookings || []) {
-            total_sold += Number(b.total_amount) / 100; // Assuming total_amount is in cents as standard in project 
-            total_expenses += Number(b.expenses || 0);
+        for (const b of bookings) {
+            total_sold += b.totalAmount / 100;
+            total_expenses += b.expenses || 0;
         }
 
         const total_profit = total_sold - total_expenses;
 
-        // 4. Calculate Splits
         const partner_splits = admins.map(admin => {
             return {
-                user_id: admin.user_id,
-                name: admin.name,
-                display_role: admin.display_role,
-                percentage: admin.profit_share_pct,
-                amount: Number((total_profit * (admin.profit_share_pct / 100)).toFixed(2))
+                user_id: admin.userId,
+                name: admin.user.name || admin.user.email || "Administrador",
+                display_role: admin.displayRole,
+                percentage: admin.profitSharePct,
+                amount: Number((total_profit * (admin.profitSharePct / 100)).toFixed(2))
             };
         });
 
         return NextResponse.json({
-            pending_bookings: bookings,
+            pending_bookings: bookings.map(b => ({
+                ...b,
+                total_amount: b.totalAmount,
+                service_date: b.serviceDate,
+                package_name: b.packageName,
+                customer_name: b.customerName,
+                payment_status: b.paymentStatus,
+                liquidation_status: b.liquidationStatus,
+                created_at: b.createdAt
+            })),
             totals: {
                 total_sold,
                 total_expenses,
@@ -112,8 +75,8 @@ export async function GET(request: NextRequest) {
 
 /* POST — Execute Mass Liquidation */
 export async function POST(request: NextRequest) {
-    const auth = await authenticateAdmin(request);
-    if (!auth) {
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
         return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
@@ -125,33 +88,35 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "No hay servicios seleccionados para liquidar" }, { status: 400 });
         }
 
-        // 1. Create a row in liquidations table
-        const { data: liquidation, error: liqError } = await auth.supabaseAdmin
-            .from("liquidations")
-            .insert({
-                total_sold: totals.total_sold,
-                total_expenses: totals.total_expenses,
-                total_profit: totals.total_profit,
-                partner_splits: partner_splits
-            })
-            .select()
-            .single();
+        const liquidation = await prisma.$transaction(async (tx) => {
+            const liq = await tx.liquidation.create({
+                data: {
+                    totalSold: totals.total_sold,
+                    totalExpenses: totals.total_expenses,
+                    totalProfit: totals.total_profit,
+                    partnerSplits: {
+                        create: partner_splits.map((split: any) => ({
+                            adminId: split.user_id,
+                            name: split.name,
+                            displayRole: split.display_role,
+                            percentage: split.percentage,
+                            amount: split.amount
+                        }))
+                    }
+                },
+                include: { partnerSplits: true }
+            });
 
-        if (liqError) throw liqError;
+            await tx.booking.updateMany({
+                where: { id: { in: booking_ids } },
+                data: {
+                    liquidationStatus: "liquidated",
+                    liquidationId: liq.id
+                }
+            });
 
-        // 2. Update all pending bookings to "liquidated" and attach the liquidation_id
-        const { error: updateError } = await auth.supabaseAdmin
-            .from("bookings")
-            .update({
-                liquidation_status: "liquidated",
-                liquidation_id: liquidation.id
-            })
-            .in("id", booking_ids);
-
-        if (updateError) {
-            // Rollback liquidation record ideally, but for now just throw
-            throw updateError;
-        }
+            return liq;
+        });
 
         return NextResponse.json({ success: true, liquidation });
 

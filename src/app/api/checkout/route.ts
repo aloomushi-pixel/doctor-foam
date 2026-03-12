@@ -1,7 +1,8 @@
 export const dynamic = "force-dynamic";
 
+import { getSession } from "@/lib/auth";
 import { PACKAGES, calculatePrice, getVehicleSizeLabel } from "@/lib/packages";
-import { createServerSupabase } from "@/lib/supabase";
+import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -33,23 +34,23 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Paquete no válido" }, { status: 400 });
         }
 
-        // Validate date is provided
         if (!serviceDate) {
             return NextResponse.json({ error: "Selecciona una fecha de servicio" }, { status: 400 });
         }
 
         // Check date availability
-        const supabase = createServerSupabase();
-        const { data: existingBookings } = await supabase
-            .from("bookings")
-            .select("id")
-            .eq("service_date", serviceDate)
-            .in("payment_status", ["paid", "manual"]);
+        const existingBookings = await prisma.booking.findMany({
+            where: {
+                serviceDate: serviceDate,
+                paymentStatus: { in: ["paid", "manual"] },
+            },
+            select: { id: true },
+        });
 
-        const { data: blockedDates } = await supabase
-            .from("blocked_dates")
-            .select("id")
-            .eq("blocked_date", serviceDate);
+        const blockedDates = await prisma.blockedDate.findMany({
+            where: { blockedDate: serviceDate },
+            select: { id: true },
+        });
 
         if ((existingBookings && existingBookings.length > 0) || (blockedDates && blockedDates.length > 0)) {
             return NextResponse.json({ error: "La fecha seleccionada ya no está disponible" }, { status: 409 });
@@ -57,16 +58,17 @@ export async function POST(request: NextRequest) {
 
         // Check for membership discount
         let isMember = false;
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-            const { data: memberData } = await supabase
-                .from("bookings")
-                .select("id")
-                .eq("customer_id", user.id)
-                .neq("payment_status", "cancelled")
-                .ilike("package_name", "%Membres%");
+        const sessionAuth = await getSession();
+        if (sessionAuth && sessionAuth.user.id) {
+            const memberCount = await prisma.booking.count({
+                where: {
+                    customerId: sessionAuth.user.id,
+                    paymentStatus: { not: "cancelled" },
+                    packageName: { contains: "Membres" },
+                },
+            });
 
-            if (memberData && memberData.length > 0) {
+            if (memberCount > 0) {
                 isMember = true;
             }
         }
@@ -116,20 +118,22 @@ export async function POST(request: NextRequest) {
             cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/reservar?paquete=${packageId}&cancelled=true`,
         });
 
-        // Create pending booking in Supabase
-        await supabase.from("bookings").insert({
-            service_date: serviceDate,
-            package_name: pkg.name,
-            vehicle_size: vehicleSizeLabel,
-            total_amount: totalCentavos,
-            customer_name: customerName,
-            customer_email: customerEmail,
-            customer_phone: customerPhone,
-            address: address || "Por definir",
-            vehicle_info: `${vehicleBrand} ${vehicleModel} ${vehicleYear} ${vehicleColor}`,
-            stripe_session_id: session.id,
-            payment_status: "pending",
-            source: "online",
+        // Create pending booking in DB
+        await prisma.booking.create({
+            data: {
+                serviceDate: serviceDate,
+                packageName: pkg.name,
+                vehicleSize: vehicleSizeLabel,
+                totalAmount: totalCentavos,
+                customerName: customerName,
+                customerEmail: customerEmail,
+                customerPhone: customerPhone,
+                address: address || "Por definir",
+                vehicleInfo: `${vehicleBrand} ${vehicleModel} ${vehicleYear} ${vehicleColor}`,
+                paymentStatus: "pending",
+                source: "online",
+                stripeSessionId: session.id,
+            }
         });
 
         return NextResponse.json({ url: session.url });

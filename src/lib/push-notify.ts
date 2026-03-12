@@ -1,10 +1,5 @@
-import { createClient } from "@supabase/supabase-js";
+import prisma from "@/lib/prisma";
 import webpush from "web-push";
-
-const supabaseAdmin = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
 
 // Configure VAPID
 const VAPID_PUBLIC = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!;
@@ -32,19 +27,16 @@ export async function sendPushToAdmins(payload: PushPayload): Promise<void> {
         return;
     }
 
-    // Get all admin users first
-    const { data: adminUsers } = await supabaseAdmin
-        .from("customer_profiles")
-        .select("id")
-        .or("role.eq.admin");
+    // Get all push subscriptions for admins
+    const subscriptions = await prisma.pushSubscription.findMany({
+        where: {
+            user: {
+                role: "admin"
+            }
+        }
+    });
 
-    // Fallback: if no admin profile filter works, get all subscriptions
-    // (since only admins subscribe from the admin panel)
-    const { data: subscriptions, error } = await supabaseAdmin
-        .from("push_subscriptions")
-        .select("*");
-
-    if (error || !subscriptions?.length) {
+    if (!subscriptions.length) {
         return;
     }
 
@@ -59,16 +51,18 @@ export async function sendPushToAdmins(payload: PushPayload): Promise<void> {
     const expiredIds: string[] = [];
 
     await Promise.allSettled(
-        subscriptions.map(async (sub) => {
+        subscriptions.map(async (sub: { id: string; endpoint: string; subscriptionData: any }) => {
+            const subData = sub.subscriptionData as { keys?: { p256dh?: string; auth?: string } };
             const pushSubscription = {
                 endpoint: sub.endpoint,
                 keys: {
-                    p256dh: sub.p256dh,
-                    auth: sub.auth,
+                    p256dh: subData?.keys?.p256dh || "",
+                    auth: subData?.keys?.auth || "",
                 },
             };
 
             try {
+                // @ts-ignore - web-push types can be tricky
                 await webpush.sendNotification(pushSubscription, notification);
             } catch (err: unknown) {
                 const pushErr = err as { statusCode?: number };
@@ -84,9 +78,10 @@ export async function sendPushToAdmins(payload: PushPayload): Promise<void> {
 
     // Clean up expired subscriptions
     if (expiredIds.length > 0) {
-        await supabaseAdmin
-            .from("push_subscriptions")
-            .delete()
-            .in("id", expiredIds);
+        await prisma.pushSubscription.deleteMany({
+            where: {
+                id: { in: expiredIds }
+            }
+        });
     }
 }

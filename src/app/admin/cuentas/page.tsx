@@ -2,8 +2,8 @@
 
 import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { formatTimeAgo } from "@/lib/booking-utils";
-import { supabase } from "@/lib/supabase";
 import type { Booking, Liquidation } from "@/lib/types";
+import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
 type PartnerSplit = {
@@ -16,7 +16,7 @@ type PartnerSplit = {
 
 export default function LiquidacionesPage() {
     const [activeTab, setActiveTab] = useState<"ejecucion" | "por-pagar" | "historial">("ejecucion");
-    const [token, setToken] = useState<string | null>(null);
+    const { data: session } = useSession();
 
     // Ejecucion Data
     const [activeBookings, setActiveBookings] = useState<Booking[]>([]);
@@ -34,20 +34,13 @@ export default function LiquidacionesPage() {
     const [actionLoading, setActionLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    // Auth handled by session hook and UnifiedDashboardLayout
     useEffect(() => {
-        supabase.auth.getSession().then(({ data }) => {
-            if (data.session) {
-                setToken(data.session.access_token);
-            }
-        });
-    }, []);
-
-    useEffect(() => {
-        if (token) {
+        if (session) {
             fetchData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token, activeTab]);
+    }, [session, activeTab]);
 
     const fetchData = async () => {
         setLoading(true);
@@ -55,9 +48,7 @@ export default function LiquidacionesPage() {
         try {
             if (activeTab === "ejecucion") {
                 // Fetch bookings that are paid, manual or ejecutado
-                const res = await fetch("/api/admin/bookings?all=true", {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
+                const res = await fetch("/api/admin/bookings?all=true");
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error || "Fallo al cargar reservas");
 
@@ -67,9 +58,7 @@ export default function LiquidacionesPage() {
                 setActiveBookings(valid);
             }
             else if (activeTab === "por-pagar") {
-                const res = await fetch("/api/admin/liquidaciones", {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
+                const res = await fetch("/api/admin/liquidaciones");
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error || "Fallo al cargar liquidaciones pendientes");
 
@@ -80,9 +69,7 @@ export default function LiquidacionesPage() {
                 setSelectedBookings(new Set((data.pending_bookings || []).map((b: Booking) => b.id)));
             }
             else if (activeTab === "historial") {
-                const res = await fetch("/api/admin/liquidaciones/historial", {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
+                const res = await fetch("/api/admin/liquidaciones/historial");
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error || "Fallo al cargar historial");
 
@@ -98,11 +85,11 @@ export default function LiquidacionesPage() {
     const [editingExpense, setEditingExpense] = useState<{ id: string, amount: string } | null>(null);
 
     const updateBookingStatus = async (id: string, newStatus: string) => {
-        if (!token) return;
+        if (!session) return;
         try {
             const res = await fetch("/api/admin/bookings", {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id, payment_status: newStatus })
             });
             if (!res.ok) throw new Error("Error actualizando estado");
@@ -113,11 +100,11 @@ export default function LiquidacionesPage() {
     };
 
     const saveExpenses = async (id: string, newStatus: string, expenses: number) => {
-        if (!token) return;
+        if (!session) return;
         try {
             const res = await fetch("/api/admin/bookings", {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id, payment_status: newStatus, expenses })
             });
             if (!res.ok) throw new Error("Error actualizando gastos");
@@ -130,7 +117,7 @@ export default function LiquidacionesPage() {
 
     // ------------- Acciones Por Pagar -------------
     const executeLiquidation = async () => {
-        if (!token || selectedBookings.size === 0) return;
+        if (!session || selectedBookings.size === 0) return;
         if (!confirm(`¿Estás seguro de liquidar y registrar el pago de ${selectedBookings.size} servicios?`)) return;
 
         setActionLoading(true);
@@ -152,7 +139,7 @@ export default function LiquidacionesPage() {
 
             const res = await fetch("/api/admin/liquidaciones", {
                 method: "POST",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     booking_ids: Array.from(selectedBookings),
                     totals: { total_sold: tSold, total_expenses: tExp, total_profit: tProf },

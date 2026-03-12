@@ -1,6 +1,6 @@
 "use client";
 
-import { supabase } from "@/lib/supabase";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -20,33 +20,32 @@ export default function PortalDashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
+            try {
+                const [profileRes, bookingsRes, membershipRes] = await Promise.all([
+                    fetch("/api/customer/profile"),
+                    fetch("/api/customer/bookings"),
+                    fetch("/api/customer/membership")
+                ]);
 
-            setUserName(user.user_metadata?.full_name || user.email || "Cliente");
+                if (profileRes.ok) {
+                    const pData = await profileRes.json();
+                    setUserName(pData.profile?.full_name || pData.profile?.email || "Cliente");
+                }
 
-            // Fetch bookings linked to this customer
-            const { data } = await supabase
-                .from("bookings")
-                .select("id, service_date, package_name, payment_status, total_amount")
-                .eq("customer_id", user.id)
-                .neq("payment_status", "cancelled")
-                .order("service_date", { ascending: false })
-                .limit(5);
+                if (bookingsRes.ok) {
+                    const bData = await bookingsRes.json();
+                    setBookings((bData.bookings || []).slice(0, 5));
+                }
 
-            setBookings(data || []);
-
-            // Check if user is a member
-            const { data: memberData } = await supabase
-                .from("bookings")
-                .select("id")
-                .eq("customer_id", user.id)
-                .neq("payment_status", "cancelled")
-                .ilike("package_name", "%Membres%");
-
-            setIsMember(!!(memberData && memberData.length > 0));
-
-            setLoading(false);
+                if (membershipRes.ok) {
+                    const mData = await membershipRes.json();
+                    setIsMember(mData.isMember);
+                }
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
         };
         fetchData();
     }, []);

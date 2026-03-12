@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
-import { createServerSupabase } from "@/lib/supabase";
+import { getSession } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -8,11 +9,8 @@ const getStripe = () => new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
 
 export async function POST(request: NextRequest) {
     try {
-        const supabase = createServerSupabase();
-
-        // Ensure admin is logged in (basic check, could be more robust with admin metadata)
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
-        if (authError || !user) {
+        const sessionAuth = await getSession();
+        if (!sessionAuth || sessionAuth.user.role !== "admin") {
             return NextResponse.json({ error: "No autorizado" }, { status: 401 });
         }
 
@@ -23,17 +21,15 @@ export async function POST(request: NextRequest) {
         }
 
         // Fetch the booking details
-        const { data: booking, error: fetchError } = await supabase
-            .from("bookings")
-            .select("*")
-            .eq("id", bookingId)
-            .single();
+        const booking = await prisma.booking.findUnique({
+            where: { id: bookingId }
+        });
 
-        if (fetchError || !booking) {
+        if (!booking) {
             return NextResponse.json({ error: "Reserva no encontrada" }, { status: 404 });
         }
 
-        if (booking.payment_status === "paid") {
+        if (booking.paymentStatus === "paid") {
             return NextResponse.json({ error: "La reserva ya está pagada" }, { status: 400 });
         }
 
@@ -42,44 +38,41 @@ export async function POST(request: NextRequest) {
             payment_method_types: ["card"],
             mode: "payment",
             locale: "es",
-            customer_email: booking.customer_email || undefined,
+            customer_email: booking.customerEmail || undefined,
             line_items: [
                 {
                     price_data: {
                         currency: "mxn",
                         product_data: {
-                            name: booking.package_name || "Servicio de Limpieza",
-                            description: `Pago manual | Fecha: ${booking.service_date}`,
+                            name: booking.packageName || "Servicio de Limpieza",
+                            description: `Pago manual | Fecha: ${booking.serviceDate}`,
                         },
-                        unit_amount: booking.total_amount || 0,
+                        unit_amount: booking.totalAmount || 0,
                     },
                     quantity: 1,
                 },
             ],
             metadata: {
                 bookingId: booking.id, // Reference to existing
-                customerName: booking.customer_name || "N/A",
-                serviceDate: booking.service_date || "N/A",
+                customerName: booking.customerName || "N/A",
+                serviceDate: booking.serviceDate ? booking.serviceDate.toString() : "N/A",
             },
             success_url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/pago-exitoso?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/`,
         });
 
-        // Update the booking with the new session ID so the webhook catches it
-        await supabase
-            .from("bookings")
-            .update({ stripe_session_id: session.id })
-            .eq("id", booking.id);
+        // The Stripe Session ID will be tracked by Stripe Webhooks natively using the bookingId metadata.
+        // Prisma schema does not store this directly.
 
         // Send the Reminder Email
-        if (booking.customer_email) {
+        if (booking.customerEmail) {
             try {
                 const { sendPaymentReminderEmail } = await import("@/lib/email");
                 await sendPaymentReminderEmail({
-                    customerName: booking.customer_name || "Cliente",
-                    customerEmail: booking.customer_email,
-                    packageName: booking.package_name || "Servicio",
-                    totalAmount: booking.total_amount || 0,
+                    customerName: booking.customerName || "Cliente",
+                    customerEmail: booking.customerEmail,
+                    packageName: booking.packageName || "Servicio",
+                    totalAmount: booking.totalAmount || 0,
                     paymentLink: session.url as string,
                 });
             } catch (emailErr) {

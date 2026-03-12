@@ -1,0 +1,451 @@
+
+> doctor-foam@0.1.0 build
+> next build
+
+Ôû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+ÔÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 18 errors:
+./src/lib/web-push.ts:2:1
+Module not found: Can't resolve './supabase'
+  1 | import webPush from "web-push";
+> 2 | import { createServerSupabase } from "./supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || "";
+  5 | const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY || "";
+
+
+
+Import trace:
+  App Route:
+    ./src/lib/web-push.ts
+    ./src/app/api/cron/reminders/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/admin/cuentas/page.tsx:5:1
+Module not found: Can't resolve '@/lib/supabase'
+  3 | import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
+  4 | import { formatTimeAgo } from "@/lib/booking-utils";
+> 5 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import type { Booking, Liquidation } from "@/lib/types";
+  7 | import React, { useEffect, useState } from "react";
+  8 |
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/cuentas/page.tsx [Client Component Browser]
+    ./src/app/admin/cuentas/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/cuentas/page.tsx [Client Component SSR]
+    ./src/app/admin/cuentas/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/admin/invitaciones/page.tsx:4:1
+Module not found: Can't resolve '@/lib/supabase'
+  2 |
+  3 | import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
+> 4 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import type { Invitation } from "@/lib/types";
+  6 | import { useCallback, useEffect, useState } from "react";
+  7 |
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/invitaciones/page.tsx [Client Component Browser]
+    ./src/app/admin/invitaciones/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/invitaciones/page.tsx [Client Component SSR]
+    ./src/app/admin/invitaciones/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/admin/page.tsx:5:1
+Module not found: Can't resolve '@/lib/supabase'
+  3 | import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
+  4 | import { getGreeting } from "@/lib/booking-utils";
+> 5 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import type { BlockedDate, Booking } from "@/lib/types";
+  7 | import Link from "next/link";
+  8 | import { useRouter } from "next/navigation";
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/admin/reservas/page.tsx:5:1
+Module not found: Can't resolve '@/lib/supabase'
+  3 | import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
+  4 | import { STATUSES, exportBookingsCSV, statusLabel, statusStyle } from "@/lib/booking-utils";
+> 5 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | import type { Booking } from "@/lib/types";
+  7 | import React, { useCallback, useEffect, useState } from "react";
+  8 |
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/reservas/page.tsx [Client Component Browser]
+    ./src/app/admin/reservas/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/reservas/page.tsx [Client Component SSR]
+    ./src/app/admin/reservas/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/admin/usuarios/page.tsx:4:1
+Module not found: Can't resolve '@/lib/supabase'
+  2 |
+  3 | import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
+> 4 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import type { User } from "@/lib/types";
+  6 | import React, { useCallback, useEffect, useRef, useState } from "react";
+  7 |
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/usuarios/page.tsx [Client Component Browser]
+    ./src/app/admin/usuarios/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/usuarios/page.tsx [Client Component SSR]
+    ./src/app/admin/usuarios/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/api/admin/checkout-link/route.ts:3:1
+Module not found: Can't resolve '@/lib/supabase'
+  1 | export const dynamic = "force-dynamic";
+  2 |
+> 3 | import { createServerSupabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { NextRequest, NextResponse } from "next/server";
+  5 | import Stripe from "stripe";
+  6 |
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/api/bookings/availability/route.ts:4:1
+Module not found: Can't resolve '@/lib/supabase'
+  2 |
+  3 | import { NextRequest, NextResponse } from "next/server";
+> 4 | import { createServerSupabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export async function GET(request: NextRequest) {
+  7 |     try {
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/api/checkout/route.ts:4:1
+Module not found: Can't resolve '@/lib/supabase'
+  2 |
+  3 | import { PACKAGES, calculatePrice, getVehicleSizeLabel } from "@/lib/packages";
+> 4 | import { createServerSupabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { NextRequest, NextResponse } from "next/server";
+  6 | import Stripe from "stripe";
+  7 |
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/api/cron/reminders/route.ts:3:1
+Module not found: Can't resolve '@/lib/supabase'
+  1 | export const dynamic = "force-dynamic";
+  2 |
+> 3 | import { createServerSupabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { NextResponse } from "next/server";
+  5 |
+  6 | export async function GET(request: Request) {
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/api/webhooks/stripe/route.ts:3:1
+Module not found: Can't resolve '@/lib/supabase'
+  1 | export const dynamic = "force-dynamic";
+  2 |
+> 3 | import { createServerSupabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { NextRequest, NextResponse } from "next/server";
+  5 | import Stripe from "stripe";
+  6 |
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/invitacion/page.tsx:6:1
+Module not found: Can't resolve '@/lib/supabase'
+  4 | import { useSearchParams, useRouter } from "next/navigation";
+  5 | import Link from "next/link";
+> 6 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | function InvitacionContent() {
+  9 |     const searchParams = useSearchParams();
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/invitacion/page.tsx [Client Component Browser]
+    ./src/app/invitacion/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/invitacion/page.tsx [Client Component SSR]
+    ./src/app/invitacion/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/mi-cuenta/page.tsx:3:1
+Module not found: Can't resolve '@/lib/supabase'
+  1 | "use client";
+  2 |
+> 3 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import Link from "next/link";
+  5 | import { useEffect, useState } from "react";
+  6 |
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/mi-cuenta/page.tsx [Client Component Browser]
+    ./src/app/mi-cuenta/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/mi-cuenta/page.tsx [Client Component SSR]
+    ./src/app/mi-cuenta/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/mi-cuenta/perfil/page.tsx:4:1
+Module not found: Can't resolve '@/lib/supabase'
+  2 |
+  3 | import { useEffect, useState } from "react";
+> 4 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function ProfilePage() {
+  7 |     const [profile, setProfile] = useState({ full_name: "", phone: "", default_address: "", default_vehicle: "" });
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/mi-cuenta/perfil/page.tsx [Client Component Browser]
+    ./src/app/mi-cuenta/perfil/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/mi-cuenta/perfil/page.tsx [Client Component SSR]
+    ./src/app/mi-cuenta/perfil/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/mi-cuenta/reservar/page.tsx:5:1
+Module not found: Can't resolve '@/lib/supabase'
+  3 | import { useEffect, useState } from "react";
+  4 | import { useRouter } from "next/navigation";
+> 5 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function ReservarMiCuenta() {
+  8 |     const router = useRouter();
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/mi-cuenta/reservar/page.tsx [Client Component Browser]
+    ./src/app/mi-cuenta/reservar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/mi-cuenta/reservar/page.tsx [Client Component SSR]
+    ./src/app/mi-cuenta/reservar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/mi-cuenta/servicios/page.tsx:4:1
+Module not found: Can't resolve '@/lib/supabase'
+  2 |
+  3 | import { useEffect, useState } from "react";
+> 4 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | type Booking = {
+  7 |     id: string;
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/mi-cuenta/servicios/page.tsx [Client Component Browser]
+    ./src/app/mi-cuenta/servicios/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/mi-cuenta/servicios/page.tsx [Client Component SSR]
+    ./src/app/mi-cuenta/servicios/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/app/reservar/page.tsx:19:1
+Module not found: Can't resolve '@/lib/supabase'
+  17 | const premiumZones = PREMIUM_ZONES;
+  18 |
+> 19 | import { supabase } from "@/lib/supabase";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  20 |
+  21 | /* ÔöÇÔöÇÔöÇ Calendar Component ÔöÇÔöÇÔöÇ */
+  22 | function Calendar({
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/reservar/page.tsx [Client Component Browser]
+    ./src/app/reservar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/reservar/page.tsx [Client Component SSR]
+    ./src/app/reservar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/components/InstallPrompt.tsx:3:1
+Module not found: Can't resolve '@/lib/supabase'
+  1 | "use client";
+  2 |
+> 3 | import { supabase } from "@/lib/supabase";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { useEffect, useState } from "react";
+  5 |
+  6 | interface BeforeInstallPromptEvent extends Event {
+
+Import map: aliased to relative './src/lib/supabase' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/InstallPrompt.tsx [Client Component Browser]
+    ./src/components/UnifiedDashboardLayout.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/InstallPrompt.tsx [Client Component SSR]
+    ./src/components/UnifiedDashboardLayout.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./src/lib/web-push.ts:2:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/admin/cuentas/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/admin/invitaciones/page.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/admin/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/admin/reservas/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/admin/usuarios/page.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/api/admin/checkout-link/route.ts:3:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/api/bookings/availability/route.ts:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/api/checkout/route.ts:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/api/cron/reminders/route.ts:3:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/api/webhooks/stripe/route.ts:3:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/invitacion/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/mi-cuenta/page.tsx:3:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/mi-cuenta/perfil/page.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/mi-cuenta/reservar/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/mi-cuenta/servicios/page.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/app/reservar/page.tsx:19:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/components/InstallPrompt.tsx:3:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)

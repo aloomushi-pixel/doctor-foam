@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { supabase } from "@/lib/supabase";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 
 function InvitacionContent() {
     const searchParams = useSearchParams();
@@ -49,9 +49,9 @@ function InvitacionContent() {
                 // Auto-login
                 if (data.role === "admin") {
                     setTimeout(() => {
-                        supabase.auth.signInWithPassword({ email: emailParam, password })
-                            .then(({ error }) => {
-                                if (!error) router.push("/admin");
+                        signIn("credentials", { email: emailParam, password, redirect: false })
+                            .then((result) => {
+                                if (!result?.error) router.push("/admin");
                             });
                     }, 2000);
                 }

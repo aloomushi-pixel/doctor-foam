@@ -1,138 +1,172 @@
 export const dynamic = "force-dynamic";
 
-import { createClient } from "@supabase/supabase-js";
+import { getSession } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-/* Helper: authenticate admin from Authorization header */
-async function authenticateAdmin(request: NextRequest) {
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-        return null;
-    }
-    const token = authHeader.split(" ")[1];
-    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-        global: { headers: { Authorization: `Bearer ${token}` } },
-    });
-    const { data: { user }, error } = await supabase.auth.getUser(token);
-    if (error || !user) return null;
-    if (user.app_metadata?.role !== "admin") return null;
-    return { supabase, user };
-}
 
 /* GET — List all bookings */
 export async function GET(request: NextRequest) {
-    const auth = await authenticateAdmin(request);
-    if (!auth) {
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
         return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
     const { searchParams } = new URL(request.url);
     const fetchAll = searchParams.get("all") === "true";
 
-    let query = auth.supabase.from("bookings").select("*");
+    try {
+        let bookings;
 
-    if (fetchAll) {
-        // Return ALL bookings (for the booking manager page)
-        query = query.order("service_date", { ascending: false });
-    } else {
-        // Monthly filter (for the dashboard calendar)
-        const month = parseInt(searchParams.get("month") || String(new Date().getMonth() + 1));
-        const year = parseInt(searchParams.get("year") || String(new Date().getFullYear()));
-        const firstDay = new Date(year, month - 1, 1).toISOString().split("T")[0];
-        const lastDay = new Date(year, month, 0).toISOString().split("T")[0];
+        if (fetchAll) {
+            // Return ALL bookings (for the booking manager page)
+            bookings = await prisma.booking.findMany({
+                orderBy: { serviceDate: "desc" },
+            });
+        } else {
+            // Monthly filter (for the dashboard calendar)
+            const month = parseInt(searchParams.get("month") || String(new Date().getMonth() + 1));
+            const year = parseInt(searchParams.get("year") || String(new Date().getFullYear()));
 
-        query = query
-            .gte("service_date", firstDay)
-            .lte("service_date", lastDay)
-            .neq("payment_status", "cancelled")
-            .order("service_date", { ascending: true });
-    }
+            const firstDay = new Date(year, month - 1, 1).toISOString().split("T")[0];
+            const lastDay = new Date(year, month, 0).toISOString().split("T")[0];
 
-    const { data, error } = await query;
+            bookings = await prisma.booking.findMany({
+                where: {
+                    serviceDate: {
+                        gte: firstDay,
+                        lte: lastDay,
+                    },
+                    paymentStatus: {
+                        not: "cancelled",
+                    },
+                },
+                orderBy: { serviceDate: "asc" },
+            });
+        }
 
-    if (error) {
+        return NextResponse.json({ bookings });
+    } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
-
-    return NextResponse.json({ bookings: data });
 }
 
 /* POST — Create manual booking */
 export async function POST(request: NextRequest) {
-    const auth = await authenticateAdmin(request);
-    if (!auth) {
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
         return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
-    const body = await request.json();
-    const { service_date, package_name, customer_name, customer_phone, vehicle_info, notes } = body;
-
-    if (!service_date || !package_name || !customer_name) {
-        return NextResponse.json({ error: "Faltan campos requeridos" }, { status: 400 });
-    }
-
-    // Check if date is already occupied
-    const { data: existing } = await auth.supabase
-        .from("bookings")
-        .select("id")
-        .eq("service_date", service_date)
-        .in("payment_status", ["paid", "manual"]);
-
-    if (existing && existing.length > 0) {
-        return NextResponse.json({ error: "Esta fecha ya está ocupada" }, { status: 409 });
-    }
-
-    const { data, error } = await auth.supabase
-        .from("bookings")
-        .insert({
+    try {
+        const body = await request.json();
+        const {
             service_date,
             package_name,
+            vehicle_size,
             customer_name,
-            customer_phone: customer_phone || "",
-            vehicle_info: vehicle_info || "",
-            notes: notes || "",
-            payment_status: "manual",
-            source: "admin",
-            total_amount: 0,
-            vehicle_size: "sedan",
-        })
-        .select()
-        .single();
+            customer_phone,
+            customer_email,
+            vehicle_info,
+            address,
+            notes,
+            agreed_amount
+        } = body;
 
-    if (error) {
+        if (!service_date || !package_name || !customer_name || !vehicle_size) {
+            return NextResponse.json({ error: "Faltan campos requeridos" }, { status: 400 });
+        }
+
+        // Check if date is already occupied
+        const existing = await prisma.booking.findFirst({
+            where: {
+                serviceDate: service_date,
+                paymentStatus: { in: ["paid", "manual", "completed"] }
+            }
+        });
+
+        if (existing) {
+            return NextResponse.json({ error: "Esta fecha ya está ocupada" }, { status: 409 });
+        }
+
+        // Check if date is blocked
+        const blocked = await prisma.blockedDate.findFirst({
+            where: { blockedDate: service_date }
+        });
+
+        if (blocked) {
+            return NextResponse.json({ error: "Esta fecha está bloqueada para servicios" }, { status: 409 });
+        }
+
+        // Calculate amount if agreed_amount is not passed or is 0
+        let finalAmount = Number(agreed_amount) || 0;
+        if (finalAmount <= 0) {
+            // Base Prices (Hardcoded reference to align with business logic)
+            const packagePrices = {
+                "Industrial Deep Interior": 169000,
+                "Signature Detail": 178000,
+                "Ceramic + Graphene Shield": 420000,
+                "Ceramic Coating": 250000,
+                "Foam Maintenance": 70000,
+            };
+
+            const sizeMultipliers = {
+                "sedan": 1,
+                "suv": 1.25,
+                "truck": 1.45,
+            };
+
+            const baseP = packagePrices[package_name as keyof typeof packagePrices] || 169000;
+            const mult = sizeMultipliers[vehicle_size as keyof typeof sizeMultipliers] || 1;
+            finalAmount = Math.round(baseP * mult);
+        }
+
+        const newBooking = await prisma.booking.create({
+            data: {
+                serviceDate: service_date,
+                packageName: package_name,
+                vehicleSize: vehicle_size,
+                customerName: customer_name,
+                customerEmail: customer_email || "",
+                customerPhone: customer_phone || "",
+                address: address || "",
+                vehicleInfo: vehicle_info || "",
+                notes: notes || "",
+                paymentStatus: "manual",
+                source: "admin",
+                totalAmount: finalAmount, // Saved in cents
+            }
+        });
+
+        // Send admin notification for manual booking
+        try {
+            const { sendAdminNotification } = await import("@/lib/email");
+            await sendAdminNotification({
+                customerName: customer_name,
+                customerEmail: customer_email || "N/A",
+                customerPhone: customer_phone || "N/A",
+                packageName: package_name,
+                serviceDate: service_date,
+                vehicleInfo: vehicle_info || "No especificado",
+                vehicleSize: vehicle_size,
+                address: address || "No especificado",
+                totalAmount: finalAmount,
+                paymentStatus: "manual",
+                source: "admin",
+            });
+        } catch (emailErr) {
+            console.error("Error sending admin email:", emailErr);
+        }
+
+        return NextResponse.json({ booking: newBooking });
+    } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
-
-    // Send admin notification for manual booking
-    try {
-        const { sendAdminNotification } = await import("@/lib/email");
-        await sendAdminNotification({
-            customerName: customer_name,
-            customerEmail: "",
-            customerPhone: customer_phone || "",
-            packageName: package_name,
-            serviceDate: service_date,
-            vehicleInfo: vehicle_info || "",
-            vehicleSize: "N/A",
-            address: "",
-            totalAmount: 0,
-            paymentStatus: "manual",
-            source: "admin",
-        });
-    } catch (emailErr) {
-        console.error("Error sending admin email:", emailErr);
-    }
-
-    return NextResponse.json({ booking: data });
 }
 
 /* DELETE — Cancel a booking */
 export async function DELETE(request: NextRequest) {
-    const auth = await authenticateAdmin(request);
-    if (!auth) {
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
         return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
@@ -143,84 +177,94 @@ export async function DELETE(request: NextRequest) {
         return NextResponse.json({ error: "Falta ID" }, { status: 400 });
     }
 
-    const { error } = await auth.supabase
-        .from("bookings")
-        .update({ payment_status: "cancelled" })
-        .eq("id", id);
-
-    if (error) {
+    try {
+        await prisma.booking.update({
+            where: { id },
+            data: { paymentStatus: "cancelled" }
+        });
+        return NextResponse.json({ success: true });
+    } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
-
-    return NextResponse.json({ success: true });
 }
 
 /* PATCH — Update/reschedule a booking */
 export async function PATCH(request: NextRequest) {
-    const auth = await authenticateAdmin(request);
-    if (!auth) {
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
         return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
-    const body = await request.json();
-    const { id, ...updates } = body;
+    try {
+        const body = await request.json();
+        const { id, ...updates } = body;
 
-    if (!id) {
-        return NextResponse.json({ error: "Falta ID" }, { status: 400 });
-    }
-
-    // If rescheduling, check new date availability
-    if (updates.service_date) {
-        const { data: existing } = await auth.supabase
-            .from("bookings")
-            .select("id")
-            .eq("service_date", updates.service_date)
-            .neq("id", id)
-            .in("payment_status", ["paid", "manual", "completed"]);
-
-        if (existing && existing.length > 0) {
-            return NextResponse.json({ error: "La nueva fecha ya está ocupada" }, { status: 409 });
+        if (!id) {
+            return NextResponse.json({ error: "Falta ID" }, { status: 400 });
         }
 
-        // Check if date is blocked
-        const { data: blocked } = await auth.supabase
-            .from("blocked_dates")
-            .select("id")
-            .eq("blocked_date", updates.service_date);
+        // If rescheduling, check new date availability
+        if (updates.service_date) {
+            const existing = await prisma.booking.findFirst({
+                where: {
+                    serviceDate: updates.service_date,
+                    id: { not: id },
+                    paymentStatus: { in: ["paid", "manual", "completed"] }
+                }
+            });
 
-        if (blocked && blocked.length > 0) {
-            return NextResponse.json({ error: "La nueva fecha está bloqueada" }, { status: 409 });
+            if (existing) {
+                return NextResponse.json({ error: "La nueva fecha ya está ocupada" }, { status: 409 });
+            }
+
+            // Check if date is blocked
+            const blocked = await prisma.blockedDate.findFirst({
+                where: { blockedDate: updates.service_date }
+            });
+
+            if (blocked) {
+                return NextResponse.json({ error: "La nueva fecha está bloqueada" }, { status: 409 });
+            }
         }
-    }
 
-    // Only allow safe fields
-    const allowedFields = [
-        "service_date", "package_name", "customer_name", "customer_phone",
-        "customer_email", "vehicle_info", "vehicle_size", "address",
-        "notes", "payment_status", "expenses"
-    ];
+        const allowedFieldsMap: Record<string, string> = {
+            service_date: "serviceDate",
+            package_name: "packageName",
+            customer_name: "customerName",
+            customer_phone: "customerPhone",
+            customer_email: "customerEmail",
+            vehicle_info: "vehicleInfo",
+            vehicle_size: "vehicleSize",
+            address: "address",
+            notes: "notes",
+            payment_status: "paymentStatus",
+            expenses: "expenses"
+        };
 
-    const safeUpdates: Record<string, any> = {};
-    for (const key of allowedFields) {
-        if (key in updates) {
-            safeUpdates[key] = key === "expenses" ? Number(updates[key]) : updates[key];
+        const safeUpdates: any = {};
+        for (const [snakeKey, camelKey] of Object.entries(allowedFieldsMap)) {
+            if (snakeKey in updates) {
+                safeUpdates[camelKey] = snakeKey === "expenses" ? Number(updates[snakeKey]) : updates[snakeKey];
+            }
         }
-    }
 
-    if (Object.keys(safeUpdates).length === 0) {
-        return NextResponse.json({ error: "No hay campos para actualizar" }, { status: 400 });
-    }
+        for (const camelKey of Object.values(allowedFieldsMap)) {
+            if (camelKey in updates && !(camelKey in safeUpdates)) {
+                safeUpdates[camelKey] = camelKey === "expenses" ? Number(updates[camelKey]) : updates[camelKey];
+            }
+        }
 
-    const { data, error } = await auth.supabase
-        .from("bookings")
-        .update(safeUpdates)
-        .eq("id", id)
-        .select()
-        .single();
+        if (Object.keys(safeUpdates).length === 0) {
+            return NextResponse.json({ error: "No hay campos para actualizar" }, { status: 400 });
+        }
 
-    if (error) {
+        const updatedBooking = await prisma.booking.update({
+            where: { id },
+            data: safeUpdates
+        });
+
+        return NextResponse.json({ booking: updatedBooking });
+    } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
-
-    return NextResponse.json({ booking: data });
 }

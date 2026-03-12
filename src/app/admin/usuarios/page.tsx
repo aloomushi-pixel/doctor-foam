@@ -1,8 +1,8 @@
 "use client";
 
 import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
-import { supabase } from "@/lib/supabase";
 import type { User } from "@/lib/types";
+import { useSession } from "next-auth/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const DISPLAY_ROLES = ["Administrador", "Operador", "Proveedor"] as const;
@@ -13,40 +13,49 @@ export default function UsuariosPage() {
     const [expandedUser, setExpandedUser] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState<"admin" | "customer">("admin");
     const [search, setSearch] = useState("");
-    const [token, setToken] = useState<string | null>(null);
+    const [debouncedSearch, setDebouncedSearch] = useState("");
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [totalUsers, setTotalUsers] = useState(0);
+    const PER_PAGE = 20;
+
+    const { data: session } = useSession();
     const [saving, setSaving] = useState<string | null>(null); // user id being saved
     const [actionError, setActionError] = useState<string | null>(null); // para mostrar mensajes de error
+    const [hasMounted, setHasMounted] = useState(false);
     const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    // Auth configuration from NextAuth hook is handled by session and UnifiedDashboardLayout
     useEffect(() => {
-        supabase.auth.getSession().then(({ data }) => {
-            if (data.session) setToken(data.session.access_token);
-        });
+        setHasMounted(true);
     }, []);
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearch(search);
+            setPage(1); // Reset page on new search
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [search]);
+
     const fetchUsers = useCallback(async () => {
-        if (!token) return;
+        if (!session) return;
         setLoading(true);
         try {
-            const res = await fetch(`/api/admin/users?role=${activeTab}`, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const res = await fetch(`/api/admin/users?role=${activeTab}&page=${page}&limit=${PER_PAGE}&search=${encodeURIComponent(debouncedSearch)}`);
             if (res.ok) {
                 const data = await res.json();
                 setUsers(data.users || []);
+                setTotalPages(data.totalPages || 1);
+                setTotalUsers(data.total || 0);
             }
         } catch { /* silent */ }
         setLoading(false);
-    }, [token, activeTab]);
+    }, [session, activeTab, page, debouncedSearch]);
 
     useEffect(() => { fetchUsers(); }, [fetchUsers]);
 
-    const filtered = users.filter(u =>
-        u.email.toLowerCase().includes(search.toLowerCase()) ||
-        u.name.toLowerCase().includes(search.toLowerCase())
-    );
-
-    // Total percentage across all admin users
+    // Total percentage across all admin users (only accurate for current page, but acceptable for this view)
     const totalPct = users.reduce((sum, u) => sum + (u.profit_share_pct || 0), 0);
     const pctIsValid = Math.abs(totalPct - 100) < 0.01;
 
@@ -60,7 +69,7 @@ export default function UsuariosPage() {
         // Debounced save
         if (debounceRef.current) clearTimeout(debounceRef.current);
         debounceRef.current = setTimeout(async () => {
-            if (!token) return;
+            if (!session) return;
             setSaving(userId);
             setActionError(null);
             try {
@@ -68,7 +77,6 @@ export default function UsuariosPage() {
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
                     },
                     body: JSON.stringify({
                         user_id: userId,
@@ -86,18 +94,17 @@ export default function UsuariosPage() {
             }
             setSaving(null);
         }, 600);
-    }, [token, fetchUsers]);
+    }, [session, fetchUsers]);
 
     const handleDeleteUser = async (user: User) => {
         if (!confirm(`¿Estás 100% seguro de que deseas eliminar permanentemente a ${user.name || user.email}? Esta acción no se puede deshacer.`)) return;
 
-        if (!token) return;
+        if (!session) return;
         setLoading(true);
         setActionError(null);
         try {
             const res = await fetch(`/api/admin/users/${user.id}`, {
                 method: "DELETE",
-                headers: { Authorization: `Bearer ${token}` }
             });
             const data = await res.json();
             if (!res.ok) {
@@ -111,6 +118,14 @@ export default function UsuariosPage() {
         }
         setLoading(false);
     };
+
+    if (!hasMounted) {
+        return (
+            <UnifiedDashboardLayout requiredRole="admin">
+                <div style={{ textAlign: "center", padding: "3rem", color: "#64748b" }}>Cargando Gestor de Usuarios...</div>
+            </UnifiedDashboardLayout>
+        );
+    }
 
     return (
         <UnifiedDashboardLayout requiredRole="admin">
@@ -130,7 +145,12 @@ export default function UsuariosPage() {
                     {(["admin", "customer"] as const).map(tab => (
                         <button
                             key={tab}
-                            onClick={() => setActiveTab(tab)}
+                            onClick={() => {
+                                setActiveTab(tab);
+                                setPage(1);
+                                setSearch("");
+                                setDebouncedSearch("");
+                            }}
                             style={{
                                 padding: "0.6rem 1.5rem", borderRadius: "0.5rem",
                                 border: activeTab === tab
@@ -211,10 +231,12 @@ export default function UsuariosPage() {
 
                 {/* Users Table */}
                 {loading ? (
-                    <div style={{ color: "#64748b", padding: "2rem", textAlign: "center" }}>
-                        Cargando usuarios...
+                    <div className="glass-card" style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                        {Array.from({ length: 10 }).map((_, i) => (
+                            <div key={i} className="skeleton" style={{ height: "60px", width: "100%" }} />
+                        ))}
                     </div>
-                ) : filtered.length === 0 ? (
+                ) : users.length === 0 ? (
                     <div style={{
                         padding: "3rem", textAlign: "center",
                         background: "#ffffff", borderRadius: "0.75rem",
@@ -249,7 +271,7 @@ export default function UsuariosPage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {filtered.map(user => (
+                                    {users.map(user => (
                                         <React.Fragment key={user.id}>
                                             <tr
                                                 style={{
@@ -348,13 +370,13 @@ export default function UsuariosPage() {
                                                     padding: "0.75rem 1rem", color: "#64748b",
                                                     fontSize: "0.8rem",
                                                 }}>
-                                                    {new Date(user.created_at).toLocaleDateString("es-MX")}
+                                                    {user.created_at ? new Date(user.created_at).toLocaleDateString("es-MX") : "—"}
                                                 </td>
                                                 <td style={{
                                                     padding: "0.75rem 1rem", color: "#64748b",
                                                     fontSize: "0.8rem",
                                                 }}>
-                                                    {user.last_sign_in
+                                                    {user.last_sign_in && new Date(user.last_sign_in).getTime() > 0
                                                         ? new Date(user.last_sign_in).toLocaleDateString("es-MX", {
                                                             day: "numeric", month: "short", hour: "2-digit", minute: "2-digit",
                                                         })
@@ -437,7 +459,7 @@ export default function UsuariosPage() {
                                                             <div>
                                                                 <span style={{ color: "#475569", fontSize: "0.72rem", fontFamily: "var(--font-heading)", textTransform: "uppercase" }}>Registrado</span>
                                                                 <div style={{ color: "#475569", fontSize: "0.78rem", marginTop: "0.2rem" }}>
-                                                                    {new Date(user.created_at).toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+                                                                    {user.created_at ? new Date(user.created_at).toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : "—"}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -452,11 +474,51 @@ export default function UsuariosPage() {
                     </div>
                 )}
 
+                {/* Pagination Controls */}
+                {!loading && totalPages > 1 && (
+                    <div style={{
+                        display: "flex", gap: "0.5rem", alignItems: "center", justifyContent: "center",
+                        marginTop: "1.5rem", fontFamily: "var(--font-heading)"
+                    }}>
+                        <button
+                            onClick={() => setPage(p => Math.max(1, p - 1))}
+                            disabled={page === 1}
+                            style={{
+                                padding: "0.5rem 1rem", borderRadius: "0.5rem",
+                                background: page === 1 ? "#f1f5f9" : "#ffffff",
+                                border: "1px solid #cbd5e1",
+                                color: page === 1 ? "#94a3b8" : "#0f172a",
+                                cursor: page === 1 ? "not-allowed" : "pointer",
+                                transition: "all 0.2s"
+                            }}
+                        >
+                            Anterior
+                        </button>
+                        <span style={{ fontSize: "0.9rem", color: "#475569", fontWeight: 600 }}>
+                            Página {page} de {totalPages}
+                        </span>
+                        <button
+                            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                            disabled={page === totalPages}
+                            style={{
+                                padding: "0.5rem 1rem", borderRadius: "0.5rem",
+                                background: page === totalPages ? "#f1f5f9" : "#ffffff",
+                                border: "1px solid #cbd5e1",
+                                color: page === totalPages ? "#94a3b8" : "#0f172a",
+                                cursor: page === totalPages ? "not-allowed" : "pointer",
+                                transition: "all 0.2s"
+                            }}
+                        >
+                            Siguiente
+                        </button>
+                    </div>
+                )}
+
                 <p style={{
                     color: "#475569", fontSize: "0.8rem", marginTop: "1rem",
                     fontFamily: "var(--font-heading)",
                 }}>
-                    {filtered.length} {activeTab === "admin" ? "administrador(es)" : "cliente(s)"}
+                    Mostrando {users.length} de {totalUsers} {activeTab === "admin" ? "administrador(es)" : "cliente(s)"}
                 </p>
             </div>
         </UnifiedDashboardLayout>

@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 
+import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabase } from "@/lib/supabase";
 
 export async function GET(request: NextRequest) {
     try {
@@ -13,27 +13,35 @@ export async function GET(request: NextRequest) {
         const firstDay = new Date(year, month - 1, 1).toISOString().split("T")[0];
         const lastDay = new Date(year, month, 0).toISOString().split("T")[0];
 
-        const supabase = createServerSupabase();
-
         // Get booked dates (paid or manual only — pending don't block)
-        const { data: bookings } = await supabase
-            .from("bookings")
-            .select("service_date")
-            .gte("service_date", firstDay)
-            .lte("service_date", lastDay)
-            .in("payment_status", ["paid", "manual"]);
+        const bookings = await prisma.booking.findMany({
+            where: {
+                serviceDate: {
+                    gte: firstDay,
+                    lte: lastDay,
+                },
+                paymentStatus: {
+                    in: ["paid", "manual"],
+                },
+            },
+            select: { serviceDate: true },
+        });
 
         // Get blocked dates
-        const { data: blocked } = await supabase
-            .from("blocked_dates")
-            .select("blocked_date")
-            .gte("blocked_date", firstDay)
-            .lte("blocked_date", lastDay);
+        const blocked = await prisma.blockedDate.findMany({
+            where: {
+                blockedDate: {
+                    gte: firstDay,
+                    lte: lastDay,
+                },
+            },
+            select: { blockedDate: true },
+        });
 
         const occupiedDates = new Set<string>();
 
-        bookings?.forEach((b) => occupiedDates.add(b.service_date));
-        blocked?.forEach((b) => occupiedDates.add(b.blocked_date));
+        bookings?.forEach((b: { serviceDate: string }) => occupiedDates.add(b.serviceDate));
+        blocked?.forEach((b: { blockedDate: string }) => occupiedDates.add(b.blockedDate));
 
         return NextResponse.json({
             occupied: Array.from(occupiedDates),

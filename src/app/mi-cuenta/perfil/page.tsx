@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+
 
 export default function ProfilePage() {
     const [profile, setProfile] = useState({ full_name: "", phone: "", default_address: "", default_vehicle: "" });
@@ -12,25 +12,25 @@ export default function ProfilePage() {
 
     useEffect(() => {
         const fetchProfile = async () => {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
-            setEmail(user.email || "");
-
-            const { data } = await supabase
-                .from("customer_profiles")
-                .select("*")
-                .eq("id", user.id)
-                .single();
-
-            if (data) {
-                setProfile({
-                    full_name: data.full_name || "",
-                    phone: data.phone || "",
-                    default_address: data.default_address || "",
-                    default_vehicle: data.default_vehicle || "",
-                });
+            try {
+                const res = await fetch("/api/customer/profile");
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.profile) {
+                        setEmail(data.profile.email || "");
+                        setProfile({
+                            full_name: data.profile.full_name || "",
+                            phone: data.profile.phone || "",
+                            default_address: data.profile.address || data.profile.default_address || "",
+                            default_vehicle: data.profile.vehicle_type || data.profile.default_vehicle || "",
+                        });
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
         };
         fetchProfile();
     }, []);
@@ -40,25 +40,22 @@ export default function ProfilePage() {
         setSaving(true);
         setSuccess(false);
 
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) return;
-
-        const { error } = await supabase
-            .from("customer_profiles")
-            .upsert({
-                id: user.id,
-                ...profile,
+        try {
+            const res = await fetch("/api/customer/profile", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(profile),
             });
 
-        if (!error) {
-            // Also update user metadata
-            await supabase.auth.updateUser({
-                data: { full_name: profile.full_name },
-            });
-            setSuccess(true);
-            setTimeout(() => setSuccess(false), 3000);
+            if (res.ok) {
+                setSuccess(true);
+                setTimeout(() => setSuccess(false), 3000);
+            }
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setSaving(false);
         }
-        setSaving(false);
     };
 
     if (loading) return <p style={{ color: "#94a3b8" }}>Cargando...</p>;

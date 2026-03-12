@@ -16,7 +16,7 @@ const vehicleSizes = VEHICLE_SIZES;
 
 const premiumZones = PREMIUM_ZONES;
 
-import { supabase } from "@/lib/supabase";
+
 
 /* ─── Calendar Component ─── */
 function Calendar({
@@ -232,18 +232,13 @@ function BookingForm() {
         if (paquete && packagesData[paquete]) setSelectedPackage(paquete);
 
         const checkMembership = async () => {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
-
-            const { data: memberData } = await supabase
-                .from("bookings")
-                .select("id")
-                .eq("customer_id", user.id)
-                .neq("payment_status", "cancelled")
-                .ilike("package_name", "%Membres%");
-
-            if (memberData && memberData.length > 0) {
-                setIsMember(true);
+            try {
+                const res = await fetch("/api/customer/membership");
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.isMember) setIsMember(true);
+            } catch (err) {
+                console.error("Error checking membership", err);
             }
         };
         checkMembership();

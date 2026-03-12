@@ -2,12 +2,12 @@
 
 import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { STATUSES, exportBookingsCSV, statusLabel, statusStyle } from "@/lib/booking-utils";
-import { supabase } from "@/lib/supabase";
 import type { Booking } from "@/lib/types";
+import { useSession } from "next-auth/react";
 import React, { useCallback, useEffect, useState } from "react";
 
 export default function ReservasPage() {
-    const [session, setSession] = useState<{ access_token: string } | null>(null);
+    const { data: session } = useSession();
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
@@ -22,12 +22,14 @@ export default function ReservasPage() {
     const [saving, setSaving] = useState(false);
     const [bulkAction, setBulkAction] = useState("");
     const [page, setPage] = useState(1);
+    const [hasMounted, setHasMounted] = useState(false);
+    const [createModal, setCreateModal] = useState(false);
+    const [newData, setNewData] = useState<Partial<Booking> & { agreed_amount?: number }>({ package_name: "Signature Detail", vehicle_size: "sedan" });
     const PER_PAGE = 20;
 
+    // handle NextAuth session internally with useSession hooks.
     useEffect(() => {
-        supabase.auth.getSession().then(({ data }) => {
-            if (data.session) setSession(data.session);
-        });
+        setHasMounted(true);
     }, []);
 
     const fetchBookings = useCallback(async () => {
@@ -35,9 +37,7 @@ export default function ReservasPage() {
         setLoading(true);
         try {
             // Fetch ALL bookings (not just current month)
-            const res = await fetch("/api/admin/bookings?all=true", {
-                headers: { Authorization: `Bearer ${session.access_token}` },
-            });
+            const res = await fetch("/api/admin/bookings?all=true");
             const data = await res.json();
             setBookings(data.bookings || []);
         } catch { /* silent */ }
@@ -93,7 +93,7 @@ export default function ReservasPage() {
             for (const id of selected) {
                 await fetch("/api/admin/bookings", {
                     method: "PATCH",
-                    headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ id, payment_status: bulkAction }),
                 });
             }
@@ -130,7 +130,7 @@ export default function ReservasPage() {
         try {
             const res = await fetch("/api/admin/bookings", {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id: detailModal.id, ...editData }),
             });
             const data = await res.json();
@@ -141,13 +141,32 @@ export default function ReservasPage() {
         } catch { alert("Error al guardar"); }
         setSaving(false);
     };
+
+    const saveNewBooking = async () => {
+        if (!session) return;
+        setSaving(true);
+        try {
+            const res = await fetch("/api/admin/bookings", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newData),
+            });
+            const data = await res.json();
+            if (data.error) { alert(data.error); setSaving(false); return; }
+            setCreateModal(false);
+            setNewData({ package_name: "Signature Detail", vehicle_size: "sedan" });
+            fetchBookings();
+        } catch { alert("Error al guardar la nueva reserva"); }
+        setSaving(false);
+    };
+
     const changeStatus = async (newStatus: string) => {
         if (!session || !detailModal) return;
         setSaving(true);
         try {
             const res = await fetch("/api/admin/bookings", {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id: detailModal.id, payment_status: newStatus }),
             });
             const data = await res.json();
@@ -160,7 +179,6 @@ export default function ReservasPage() {
         try {
             await fetch(`/api/admin/bookings?id=${detailModal.id}`, {
                 method: "DELETE",
-                headers: { Authorization: `Bearer ${session.access_token}` },
             });
             setDetailModal(null);
             fetchBookings();
@@ -173,7 +191,7 @@ export default function ReservasPage() {
         try {
             const res = await fetch("/api/admin/checkout-link", {
                 method: "POST",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ bookingId: detailModal.id }),
             });
             const data = await res.json();
@@ -201,6 +219,14 @@ export default function ReservasPage() {
         cancelled: bookings.filter(b => b.payment_status === "cancelled").length,
     };
 
+    if (!hasMounted) {
+        return (
+            <UnifiedDashboardLayout requiredRole="admin">
+                <div style={{ textAlign: "center", padding: "3rem", color: "#64748b" }}>Cargando Gestor de Reservas...</div>
+            </UnifiedDashboardLayout>
+        );
+    }
+
     return (
         <UnifiedDashboardLayout requiredRole="admin">
             <div>
@@ -217,14 +243,24 @@ export default function ReservasPage() {
                             Administra todos los servicios programados
                         </p>
                     </div>
-                    <button onClick={() => exportBookingsCSV(filtered)} style={{
-                        padding: "0.5rem 1rem", borderRadius: "0.5rem",
-                        background: "#f0fdf4", border: "1px solid #bbf7d0",
-                        color: "#16a34a", cursor: "pointer", fontSize: "0.8rem",
-                        fontWeight: 600, fontFamily: "var(--font-heading)",
-                    }}>
-                        📥 Exportar CSV ({filtered.length})
-                    </button>
+                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                        <button onClick={() => setCreateModal(true)} style={{
+                            padding: "0.5rem 1rem", borderRadius: "0.5rem",
+                            background: "#2563eb", border: "1px solid #1d4ed8",
+                            color: "#ffffff", cursor: "pointer", fontSize: "0.8rem",
+                            fontWeight: 600, fontFamily: "var(--font-heading)",
+                        }}>
+                            ➕ Nueva Reserva
+                        </button>
+                        <button onClick={() => exportBookingsCSV(filtered)} style={{
+                            padding: "0.5rem 1rem", borderRadius: "0.5rem",
+                            background: "#f0fdf4", border: "1px solid #bbf7d0",
+                            color: "#16a34a", cursor: "pointer", fontSize: "0.8rem",
+                            fontWeight: 600, fontFamily: "var(--font-heading)",
+                        }}>
+                            📥 Exportar CSV ({filtered.length})
+                        </button>
+                    </div>
                 </div>
 
                 {/* Quick stats */}
@@ -304,7 +340,11 @@ export default function ReservasPage() {
 
                 {/* Table */}
                 {loading ? (
-                    <div style={{ textAlign: "center", padding: "3rem", color: "#64748b" }}>Cargando reservas...</div>
+                    <div className="glass-card" style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                        {Array.from({ length: 15 }).map((_, i) => (
+                            <div key={i} className="skeleton" style={{ height: "60px", width: "100%" }} />
+                        ))}
+                    </div>
                 ) : filtered.length === 0 ? (
                     <div className="glass-card" style={{ padding: "3rem", textAlign: "center", color: "#64748b" }}>
                         {search || filterStatus !== "all" || filterDate !== "all" ? "Sin resultados para los filtros actuales" : "No hay reservas"}
@@ -353,7 +393,7 @@ export default function ReservasPage() {
                                                 {b.package_name}
                                             </td>
                                             <td style={{ ...tdStyle, color: "#475569", fontSize: "0.82rem", whiteSpace: "nowrap" }}>
-                                                {new Date(b.service_date + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "short", year: "numeric" })}
+                                                {b.service_date ? new Date(b.service_date + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "short", year: "numeric" }) : "Sin fecha"}
                                             </td>
                                             <td style={tdStyle}>
                                                 <span style={{
@@ -404,6 +444,82 @@ export default function ReservasPage() {
                                     }}>Sig. →</button>
                                 </div>
                             )}
+                        </div>
+                    </div>
+                )}
+
+                {/* Create Modal */}
+                {createModal && (
+                    <div style={overlayStyle}>
+                        <div className="glass-card" style={{ maxWidth: "580px", width: "92%", padding: "2rem", maxHeight: "90vh", overflowY: "auto" }}>
+                            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
+                                <h3 style={{ fontFamily: "var(--font-heading)", margin: 0, fontSize: "1.1rem" }}>
+                                    ➕ Nueva Reserva Manual
+                                </h3>
+                                <button onClick={() => setCreateModal(false)} style={{ background: "none", border: "none", color: "#64748b", cursor: "pointer", fontSize: "1.3rem" }}>✕</button>
+                            </div>
+
+                            <div style={{ display: "grid", gap: "0.6rem", marginBottom: "1.25rem" }}>
+                                {[
+                                    { key: "customer_name", label: "Cliente *" },
+                                    { key: "customer_phone", label: "Teléfono" },
+                                    { key: "customer_email", label: "Email" },
+                                    { key: "vehicle_info", label: "Vehículo *" },
+                                    { key: "address", label: "Dirección *" },
+                                    { key: "service_date", label: "Fecha *", type: "date" },
+                                ].map(f => (
+                                    <div key={f.key} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                        <label style={{ color: "#64748b", fontSize: "0.8rem", width: "80px", flexShrink: 0 }}>{f.label}</label>
+                                        <input
+                                            type={f.type || "text"}
+                                            value={(newData as Record<string, string>)[f.key] || ""}
+                                            onChange={e => setNewData({ ...newData, [f.key]: e.target.value })}
+                                            style={inputStyle}
+                                        />
+                                    </div>
+                                ))}
+
+                                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                    <label style={{ color: "#64748b", fontSize: "0.8rem", width: "80px", flexShrink: 0 }}>Paquete *</label>
+                                    <select value={newData.package_name || "Signature Detail"} onChange={e => setNewData({ ...newData, package_name: e.target.value })} style={inputStyle}>
+                                        <option value="Industrial Deep Interior">Industrial Deep Interior</option>
+                                        <option value="Signature Detail">Signature Detail</option>
+                                        <option value="Ceramic Coating">Ceramic Coating</option>
+                                        <option value="Ceramic + Graphene Shield">Ceramic + Graphene Shield</option>
+                                        <option value="Foam Maintenance">Foam Maintenance</option>
+                                    </select>
+                                </div>
+                                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                    <label style={{ color: "#64748b", fontSize: "0.8rem", width: "80px", flexShrink: 0 }}>Tamaño *</label>
+                                    <select value={newData.vehicle_size || "sedan"} onChange={e => setNewData({ ...newData, vehicle_size: e.target.value })} style={inputStyle}>
+                                        <option value="sedan">Sedán (Auto Compacto)</option>
+                                        <option value="suv">SUV / Camioneta Mediana</option>
+                                        <option value="truck">Pickup / Camioneta Grande</option>
+                                    </select>
+                                </div>
+                                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                    <label style={{ color: "#64748b", fontSize: "0.8rem", width: "80px", flexShrink: 0 }}>Monto</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Automático (Cents)"
+                                        value={newData.agreed_amount || ""}
+                                        onChange={e => setNewData({ ...newData, agreed_amount: e.target.value ? Number(e.target.value) : undefined } as any)}
+                                        style={inputStyle}
+                                    />
+                                </div>
+                                <div style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
+                                    <label style={{ color: "#64748b", fontSize: "0.8rem", width: "80px", flexShrink: 0, marginTop: "0.5rem" }}>Notas</label>
+                                    <textarea value={newData.notes || ""} onChange={e => setNewData({ ...newData, notes: e.target.value })}
+                                        style={{ ...inputStyle, minHeight: "50px", resize: "vertical" as const }} />
+                                </div>
+
+                                <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.5rem" }}>
+                                    <button onClick={() => setCreateModal(false)} style={{ ...btnStyle, flex: 1, background: "#f8fafc", color: "#475569" }}>Cancelar</button>
+                                    <button onClick={saveNewBooking} disabled={saving} className="btn-premium" style={{ flex: 1, justifyContent: "center", fontSize: "0.85rem", opacity: saving ? 0.6 : 1 }}>
+                                        {saving ? "Guardando..." : "💾 Crear Reserva"}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )}
@@ -485,7 +601,7 @@ export default function ReservasPage() {
                                     {[
                                         { label: "Cliente", value: detailModal.customer_name },
                                         { label: "Servicio", value: detailModal.package_name },
-                                        { label: "Fecha", value: new Date(detailModal.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) },
+                                        { label: "Fecha", value: detailModal.service_date ? new Date(detailModal.service_date + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : "Sin fecha" },
                                         { label: "Vehículo", value: detailModal.vehicle_info || "—" },
                                         { label: "Tamaño", value: detailModal.vehicle_size || "—" },
                                         { label: "Dirección", value: detailModal.address || "—" },

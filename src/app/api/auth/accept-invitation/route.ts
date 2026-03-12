@@ -1,12 +1,8 @@
 export const dynamic = "force-dynamic";
 
+import prisma from "@/lib/prisma";
+import bcrypt from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-
-const getSupabaseAdmin = () => createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
 
 export async function POST(request: NextRequest) {
     try {
@@ -21,59 +17,74 @@ export async function POST(request: NextRequest) {
         }
 
         // Verify invitation
-        const { data: invitation, error: invError } = await getSupabaseAdmin()
-            .from("invitations")
-            .select("*")
-            .eq("token", token)
-            .eq("email", email.toLowerCase())
-            .eq("status", "pending")
-            .single();
+        const invitation = await prisma.invitation.findFirst({
+            where: {
+                token,
+                email: email.toLowerCase(),
+                status: "pending"
+            }
+        });
 
-        if (invError || !invitation) {
+        if (!invitation) {
             return NextResponse.json({ error: "Invitación inválida o ya utilizada" }, { status: 400 });
         }
 
         // Check expiration
-        if (new Date(invitation.expires_at) < new Date()) {
-            await getSupabaseAdmin()
-                .from("invitations")
-                .update({ status: "expired" })
-                .eq("id", invitation.id);
+        if (new Date(invitation.expiresAt) < new Date()) {
+            await prisma.invitation.update({
+                where: { id: invitation.id },
+                data: { status: "expired" }
+            });
             return NextResponse.json({ error: "La invitación ha expirado" }, { status: 400 });
         }
 
-        // Create user via GoTrue
-        const { data: newUser, error: createError } = await getSupabaseAdmin().auth.admin.createUser({
-            email: email.toLowerCase(),
-            password,
-            email_confirm: true,
-            user_metadata: { name, full_name: name },
-            app_metadata: { role: invitation.role },
+        // Check if email is already in use
+        const existingUser = await prisma.user.findUnique({
+            where: { email: email.toLowerCase() }
         });
 
-        if (createError) {
-            if (createError.message?.includes("already been registered")) {
-                return NextResponse.json({ error: "Este email ya está registrado" }, { status: 400 });
-            }
-            console.error("[accept-invitation] Create user error:", createError);
-            return NextResponse.json({ error: "Error al crear la cuenta" }, { status: 500 });
+        if (existingUser) {
+            return NextResponse.json({ error: "Este email ya está registrado" }, { status: 400 });
         }
 
-        // If customer, create customer profile
-        if (invitation.role === "customer" && newUser.user) {
-            await getSupabaseAdmin()
-                .from("customer_profiles")
-                .upsert({
-                    id: newUser.user.id,
-                    full_name: name,
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Create user via Prisma in a transaction
+        await prisma.$transaction(async (tx) => {
+            const newUser = await tx.user.create({
+                data: {
+                    email: email.toLowerCase(),
+                    password: hashedPassword,
+                    name: name,
+                    role: invitation.role,
+                }
+            });
+
+            // Make the profile
+            if (invitation.role === "customer") {
+                await tx.customerProfile.create({
+                    data: {
+                        userId: newUser.id,
+                        fullName: name
+                    }
                 });
-        }
+            } else if (invitation.role === "admin") {
+                await tx.adminProfile.create({
+                    data: {
+                        userId: newUser.id,
+                        displayRole: "Administrador",
+                        profitSharePct: 0
+                    }
+                });
+            }
 
-        // Mark invitation as accepted
-        await getSupabaseAdmin()
-            .from("invitations")
-            .update({ status: "accepted" })
-            .eq("id", invitation.id);
+            // Mark invitation as accepted
+            await tx.invitation.update({
+                where: { id: invitation.id },
+                data: { status: "accepted" }
+            });
+        });
 
         return NextResponse.json({
             success: true,

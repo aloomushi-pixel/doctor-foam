@@ -1,8 +1,7 @@
 "use client";
 
 import InstallPrompt from "@/components/InstallPrompt";
-import { supabase } from "@/lib/supabase";
-import type { User } from "@supabase/supabase-js";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -27,59 +26,38 @@ const CUSTOMER_NAV_ITEMS = [
     { href: `https://wa.me/${WHATSAPP_NUMBER}`, label: "WhatsApp", icon: "💬", external: true },
 ];
 
+const OPERATOR_NAV_ITEMS = [
+    { href: "/admin", label: "Dashboard", icon: "📊" },
+    { href: "/admin/reservas", label: "Mis Asignaciones", icon: "📋" },
+    { href: `https://wa.me/${WHATSAPP_NUMBER}`, label: "Soporte", icon: "💬", external: true },
+];
+
 export default function UnifiedDashboardLayout({ children, requiredRole }: { children: React.ReactNode, requiredRole?: "admin" | "customer" }) {
     const router = useRouter();
     const pathname = usePathname();
-    const [user, setUser] = useState<User | null>(null);
-    const [role, setRole] = useState<"admin" | "customer" | null>(null);
-    const [loading, setLoading] = useState(true);
+    const { data: session, status } = useSession();
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
-        const checkAuth = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (!session?.user) {
-                router.push("/login");
-                return;
-            }
+        if (status === "unauthenticated") {
+            router.push("/login");
+        } else if (status === "authenticated") {
+            const userRole = session?.user?.role || "customer";
 
-            const userRole = session.user.app_metadata?.role === "admin" ? "admin" : "customer";
-
-            // Route guarding
-            if (requiredRole && userRole !== requiredRole) {
-                if (userRole === "admin") {
-                    router.push("/admin");
-                } else {
-                    router.push("/mi-cuenta");
-                }
-                return;
-            }
-
-            // Also check pathname manually just in case
-            if (pathname.startsWith("/admin") && userRole !== "admin") {
+            if (requiredRole && requiredRole === "admin" && userRole === "customer") {
                 router.push("/mi-cuenta");
-                return;
+            } else if (requiredRole && requiredRole === "customer" && userRole !== "customer") {
+                router.push("/admin");
             }
-
-            setUser(session.user);
-            setRole(userRole);
-            setLoading(false);
-        };
-        checkAuth();
-
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            if (!session) router.push("/login");
-        });
-
-        return () => subscription.unsubscribe();
-    }, [router, pathname, requiredRole]);
+        }
+    }, [status, session, router, requiredRole]);
 
     const handleLogout = async () => {
-        await supabase.auth.signOut();
+        await signOut({ redirect: false });
         router.push("/login");
     };
 
-    if (loading || !role) {
+    if (status === "loading" || status === "unauthenticated") {
         return (
             <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#f8fafc" }}>
                 <div style={{ textAlign: "center", width: "100%" }}>
@@ -91,7 +69,11 @@ export default function UnifiedDashboardLayout({ children, requiredRole }: { chi
         );
     }
 
-    const currentNavItems = role === "admin" ? ADMIN_NAV_ITEMS : CUSTOMER_NAV_ITEMS;
+    const role = session?.user?.role || "customer";
+
+    let currentNavItems = CUSTOMER_NAV_ITEMS;
+    if (role === "admin") currentNavItems = ADMIN_NAV_ITEMS;
+    else if (role === "operator" || role === "provider") currentNavItems = OPERATOR_NAV_ITEMS;
 
     return (
         <div style={{ minHeight: "100vh", background: "#f8fafc", display: "flex" }}>
@@ -141,7 +123,7 @@ export default function UnifiedDashboardLayout({ children, requiredRole }: { chi
                             DOCTOR <span className="gradient-text">FOAM</span>
                         </h1>
                         <p style={{ color: "#64748b", fontSize: "0.7rem", margin: "0.25rem 0 0" }}>
-                            {role === "admin" ? "Admin Panel" : "Mi cuenta"}
+                            {role === "customer" ? "Mi cuenta" : "Admin Panel"}
                         </p>
                     </Link>
                     <button className="sidebar-close-btn" onClick={() => setSidebarOpen(false)} style={{ background: "none", border: "none", fontSize: "1.2rem", cursor: "pointer", color: "#64748b" }}>
@@ -184,28 +166,28 @@ export default function UnifiedDashboardLayout({ children, requiredRole }: { chi
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
                         <div style={{
                             width: "36px", height: "36px", borderRadius: "50%", flexShrink: 0,
-                            background: role === "admin" ? "linear-gradient(135deg, #3182ce, #b794f6)" : "linear-gradient(135deg, #3b82f6, #8b5cf6)",
+                            background: role !== "customer" ? "linear-gradient(135deg, #3182ce, #b794f6)" : "linear-gradient(135deg, #3b82f6, #8b5cf6)",
                             display: "flex", alignItems: "center", justifyContent: "center",
                             color: "white", fontWeight: 700, fontSize: "0.85rem",
                         }}>
-                            {(user?.user_metadata?.full_name || user?.email || "?")[0].toUpperCase()}
+                            {(session?.user?.name || session?.user?.email || "?")[0].toUpperCase()}
                         </div>
                         <div style={{ flex: 1, overflow: "hidden" }}>
                             <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                                 <p style={{ color: "#0f172a", fontSize: "0.8rem", margin: 0, fontWeight: 600, textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}>
-                                    {user?.user_metadata?.full_name || (role === "admin" ? "Admin" : "Cliente")}
+                                    {session?.user?.name || (role !== "customer" ? "Operador" : "Cliente")}
                                 </p>
-                                {role === "admin" && (
+                                {role !== "customer" && (
                                     <span style={{
                                         fontSize: "0.55rem", padding: "0.1rem 0.35rem", borderRadius: "0.25rem",
                                         background: "rgba(183, 148, 246, 0.18)", color: "#b794f6", fontWeight: 700, textTransform: "uppercase"
                                     }}>
-                                        Admin
+                                        {role}
                                     </span>
                                 )}
                             </div>
                             <p style={{ color: "#64748b", fontSize: "0.7rem", margin: 0, textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}>
-                                {user?.email}
+                                {session?.user?.email}
                             </p>
                         </div>
                     </div>
@@ -225,7 +207,7 @@ export default function UnifiedDashboardLayout({ children, requiredRole }: { chi
 
             {/* Main content */}
             <main className="unified-main-content" style={{ flex: 1, background: "#f8fafc", minHeight: "100vh" }}>
-                <div style={{ maxWidth: role === "admin" ? "1200px" : "1000px", margin: "0 auto", padding: "1.5rem" }}>
+                <div style={{ maxWidth: role !== "customer" ? "1200px" : "1000px", margin: "0 auto", padding: "1.5rem" }}>
                     {children}
                 </div>
             </main>

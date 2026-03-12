@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
 
 type Booking = {
     id: string;
@@ -23,17 +22,19 @@ export default function ServicesPage() {
 
     useEffect(() => {
         const fetchBookings = async () => {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
-
-            const { data } = await supabase
-                .from("bookings")
-                .select("*")
-                .eq("customer_id", user.id)
-                .order("service_date", { ascending: false });
-
-            setBookings(data || []);
-            setLoading(false);
+            try {
+                const res = await fetch("/api/customer/bookings");
+                if (!res.ok) {
+                    setLoading(false);
+                    return;
+                }
+                const data = await res.json();
+                setBookings(data.bookings || []);
+            } catch (err) {
+                console.error("Error fetching bookings", err);
+            } finally {
+                setLoading(false);
+            }
         };
         fetchBookings();
     }, []);
@@ -49,11 +50,9 @@ export default function ServicesPage() {
         if (!confirm("¿Estás seguro de cancelar esta reserva? Esta acción no se puede deshacer.")) return;
         setCancelling(bookingId);
         try {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (!session) return;
             const res = await fetch("/api/bookings/cancel", {
                 method: "POST",
-                headers: { Authorization: `Bearer ${session.access_token}`, "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ booking_id: bookingId }),
             });
             const data = await res.json();

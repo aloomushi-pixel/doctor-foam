@@ -1,73 +1,70 @@
 export const dynamic = "force-dynamic";
 
-import { createClient } from "@supabase/supabase-js";
+import { getSession } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-const getSupabaseAdmin = () => createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
-async function verifyAdmin(request: NextRequest) {
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader?.startsWith("Bearer ")) return false;
-    const token = authHeader.split(" ")[1];
-    const supabase = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-        { global: { headers: { Authorization: `Bearer ${token}` } } }
-    );
-    const { data: { user } } = await supabase.auth.getUser(token);
-    if (!user) return false;
-    return user.app_metadata?.role === "admin";
-}
-
 export async function GET(request: NextRequest) {
-    const isAdmin = await verifyAdmin(request);
-    if (!isAdmin) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
+        return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    }
 
     const { searchParams } = new URL(request.url);
-    const role = searchParams.get("role") || "all";
+    const roleParam = searchParams.get("role") || "all";
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = parseInt(searchParams.get("limit") || "50");
+    const search = searchParams.get("search") || "";
+    const skip = (page - 1) * limit;
 
     try {
-        // Get all users from auth
-        const { data: { users }, error } = await getSupabaseAdmin().auth.admin.listUsers({ perPage: 1000 });
-        if (error) throw error;
-
-        let filtered = users || [];
-
-        if (role === "admin") {
-            filtered = filtered.filter(u => u.app_metadata?.role === "admin");
-        } else if (role === "customer") {
-            filtered = filtered.filter(u => u.app_metadata?.role !== "admin");
+        let whereClause: any = {};
+        if (roleParam === "admin") {
+            whereClause.role = "admin";
+        } else if (roleParam === "customer") {
+            whereClause.role = "customer";
         }
 
-        // Get customer profiles
-        const { data: profiles } = await getSupabaseAdmin()
-            .from("customer_profiles")
-            .select("*");
+        if (search) {
+            whereClause.OR = [
+                { email: { contains: search, mode: "insensitive" } },
+                { name: { contains: search, mode: "insensitive" } },
+                { customerProfile: { fullName: { contains: search, mode: "insensitive" } } },
+            ];
+        }
 
-        // Get admin profiles (profit share + display role)
-        const { data: adminProfiles } = await getSupabaseAdmin()
-            .from("admin_profiles")
-            .select("*");
+        const [users, total] = await Promise.all([
+            prisma.user.findMany({
+                where: whereClause,
+                include: {
+                    adminProfile: true,
+                    customerProfile: true,
+                },
+                orderBy: { createdAt: "desc" },
+                skip,
+                take: limit,
+            }),
+            prisma.user.count({ where: whereClause })
+        ]);
 
-        const profileMap = new Map((profiles || []).map(p => [p.id, p]));
-        const adminProfileMap = new Map((adminProfiles || []).map(p => [p.id, p]));
-
-        const result = filtered.map(u => ({
+        const result = users.map(u => ({
             id: u.id,
             email: u.email,
-            name: u.user_metadata?.name || u.user_metadata?.full_name || profileMap.get(u.id)?.full_name || "—",
-            phone: profileMap.get(u.id)?.phone || u.phone || "—",
-            role: u.app_metadata?.role || "customer",
-            display_role: adminProfileMap.get(u.id)?.display_role || "Administrador",
-            profit_share_pct: adminProfileMap.get(u.id)?.profit_share_pct ?? 0,
-            created_at: u.created_at,
-            last_sign_in: u.last_sign_in_at,
+            name: u.name || u.customerProfile?.fullName || "—",
+            phone: u.customerProfile?.phone || u.phone || "—",
+            role: u.role || "customer",
+            display_role: u.adminProfile?.displayRole || "Administrador",
+            profit_share_pct: u.adminProfile?.profitSharePct ?? 0,
+            created_at: u.createdAt,
+            last_sign_in: u.lastSignIn,
         }));
 
-        return NextResponse.json({ users: result });
+        return NextResponse.json({
+            users: result,
+            total,
+            page,
+            totalPages: Math.ceil(total / limit)
+        });
     } catch (err) {
         console.error("[admin/users] Error:", err);
         return NextResponse.json({ error: "Error al obtener usuarios" }, { status: 500 });
@@ -75,8 +72,10 @@ export async function GET(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
-    const isAdmin = await verifyAdmin(request);
-    if (!isAdmin) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    const session = await getSession();
+    if (!session || session.user.role !== "admin") {
+        return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+    }
 
     try {
         const body = await request.json();
@@ -100,20 +99,18 @@ export async function PATCH(request: NextRequest) {
             }
         }
 
-        // Upsert admin profile
-        const updateData: Record<string, unknown> = { id: user_id, updated_at: new Date().toISOString() };
-        if (display_role) updateData.display_role = display_role;
-        if (profit_share_pct !== undefined) updateData.profit_share_pct = Number(profit_share_pct);
+        const updateData: any = {};
+        if (display_role) updateData.displayRole = display_role;
+        if (profit_share_pct !== undefined) updateData.profitSharePct = Number(profit_share_pct);
 
-        const { error } = await getSupabaseAdmin()
-            .from("admin_profiles")
-            .upsert(updateData, { onConflict: "id" });
-
-        if (error) {
-            console.error("[admin/users PATCH] Supabase error:", error);
-            // Si la tabla no existe, Supabase devuelve un relation "admin_profiles" does not exist.
-            return NextResponse.json({ error: error.message }, { status: 500 });
-        }
+        await prisma.adminProfile.upsert({
+            where: { userId: user_id },
+            update: updateData,
+            create: {
+                userId: user_id,
+                ...updateData,
+            },
+        });
 
         return NextResponse.json({ success: true });
     } catch (err: any) {

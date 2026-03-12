@@ -1,6 +1,5 @@
 "use client";
 
-import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
 
 interface BeforeInstallPromptEvent extends Event {
@@ -108,14 +107,10 @@ export default function InstallPrompt() {
 
     const sendSubscriptionToServer = async (subscription: PushSubscription) => {
         try {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (!session?.access_token) return;
-
             await fetch("/api/web-push/subscribe", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${session.access_token}`
                 },
                 body: JSON.stringify({ subscription }),
             });

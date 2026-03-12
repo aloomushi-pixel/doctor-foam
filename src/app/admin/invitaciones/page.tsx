@@ -1,8 +1,8 @@
 "use client";
 
 import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
-import { supabase } from "@/lib/supabase";
 import type { Invitation } from "@/lib/types";
+import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 
 /* Invitation type from @/lib/types */
@@ -10,33 +10,27 @@ import { useCallback, useEffect, useState } from "react";
 export default function InvitacionesPage() {
     const [invitations, setInvitations] = useState<Invitation[]>([]);
     const [loading, setLoading] = useState(true);
-    const [token, setToken] = useState<string | null>(null);
+    const { data: session } = useSession();
     const [showForm, setShowForm] = useState(false);
     const [email, setEmail] = useState("");
     const [role, setRole] = useState<"admin" | "customer">("customer");
     const [sending, setSending] = useState(false);
     const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
 
-    useEffect(() => {
-        supabase.auth.getSession().then(({ data }) => {
-            if (data.session) setToken(data.session.access_token);
-        });
-    }, []);
+    // Auth handled by useSession and UnifiedDashboardLayout
 
     const fetchInvitations = useCallback(async () => {
-        if (!token) return;
+        if (!session) return;
         setLoading(true);
         try {
-            const res = await fetch("/api/admin/invitations", {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const res = await fetch("/api/admin/invitations");
             if (res.ok) {
                 const data = await res.json();
                 setInvitations(data.invitations || []);
             }
         } catch { /* silent */ }
         setLoading(false);
-    }, [token]);
+    }, [session]);
 
     useEffect(() => { fetchInvitations(); }, [fetchInvitations]);
 
@@ -46,14 +40,13 @@ export default function InvitacionesPage() {
     };
 
     const handleSend = async () => {
-        if (!email.trim() || !token) return;
+        if (!email.trim() || !session) return;
         setSending(true);
         try {
             const res = await fetch("/api/admin/invitations", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({ email: email.trim(), role }),
             });
@@ -73,11 +66,10 @@ export default function InvitacionesPage() {
     };
 
     const handleDelete = async (id: string) => {
-        if (!token) return;
+        if (!session) return;
         try {
             const res = await fetch(`/api/admin/invitations?id=${id}`, {
                 method: "DELETE",
-                headers: { Authorization: `Bearer ${token}` },
             });
             if (res.ok) {
                 showToast("Invitación cancelada", "success");

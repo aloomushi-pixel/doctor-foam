@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
-import { createServerSupabase } from "@/lib/supabase";
+import prisma from "@/lib/prisma";
+import bcrypt from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -27,91 +28,73 @@ export async function POST(request: NextRequest) {
 
         if (event.type === "checkout.session.completed") {
             const session = event.data.object as Stripe.Checkout.Session;
-            const supabase = createServerSupabase();
 
             if (session.id) {
                 // 1. Update booking status to paid
-                const { data: booking, error } = await supabase
-                    .from("bookings")
-                    .update({ payment_status: "paid" })
-                    .eq("stripe_session_id", session.id)
-                    .select()
-                    .single();
+                const bookingBeforeUpdate = await prisma.booking.findFirst({
+                    where: { stripeSessionId: session.id }
+                });
 
-                if (error) {
-                    console.error("Error updating booking:", error);
-                } else if (booking) {
+                if (bookingBeforeUpdate) {
+                    const booking = await prisma.booking.update({
+                        where: { id: bookingBeforeUpdate.id },
+                        data: { paymentStatus: "paid" }
+                    });
+
                     console.log(`Booking confirmed for session ${session.id}`);
 
                     // 2. Auto-create customer account if doesn't exist
                     let customerId: string | null = null;
 
-                    if (booking.customer_email) {
+                    if (booking.customerEmail) {
                         // Check if user already exists
-                        const { data: existingUsers } = await supabase.auth.admin.listUsers();
-                        const existingUser = existingUsers?.users?.find(
-                            (u) => u.email === booking.customer_email
-                        );
+                        const existingUser = await prisma.user.findUnique({
+                            where: { email: booking.customerEmail }
+                        });
 
                         if (existingUser) {
                             customerId = existingUser.id;
                         } else {
                             // Create new customer account
                             const tempPassword = `DF${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
-                            const { data: newUser, error: createError } = await supabase.auth.admin.createUser({
-                                email: booking.customer_email,
-                                password: tempPassword,
-                                email_confirm: true,
-                                user_metadata: {
-                                    full_name: booking.customer_name,
+                            const hashedPassword = await bcrypt.hash(tempPassword, 10);
+
+                            const newUser = await prisma.user.create({
+                                data: {
+                                    email: booking.customerEmail,
+                                    password: hashedPassword,
                                     role: "customer",
-                                },
+                                    customerProfile: {
+                                        create: {
+                                            fullName: booking.customerName || "",
+                                            phone: booking.customerPhone || "",
+                                            address: booking.address || "",
+                                        }
+                                    }
+                                }
                             });
 
-                            if (newUser?.user) {
-                                customerId = newUser.user.id;
+                            customerId = newUser.id;
 
-                                // Create customer profile
-                                await supabase.from("customer_profiles").insert({
-                                    id: newUser.user.id,
-                                    full_name: booking.customer_name || "",
-                                    phone: booking.customer_phone || "",
-                                    default_address: booking.address || "",
-                                    default_vehicle: booking.vehicle_info || "",
+                            // Send welcome email with password setup link - No longer native to Supabase! Generate magic link equivalent
+                            try {
+                                const { sendWelcomeEmail } = await import("@/lib/email");
+                                await sendWelcomeEmail({
+                                    customerName: booking.customerName,
+                                    customerEmail: booking.customerEmail,
+                                    setupPasswordLink: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/login`,
                                 });
-
-                                // Send welcome email with password setup link
-                                try {
-                                    const { data: linkData } = await supabase.auth.admin.generateLink({
-                                        type: "recovery",
-                                        email: booking.customer_email,
-                                        options: {
-                                            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/restablecer-password`,
-                                        },
-                                    });
-
-                                    if (linkData?.properties?.action_link) {
-                                        const { sendWelcomeEmail } = await import("@/lib/email");
-                                        await sendWelcomeEmail({
-                                            customerName: booking.customer_name,
-                                            customerEmail: booking.customer_email,
-                                            setupPasswordLink: linkData.properties.action_link,
-                                        });
-                                    }
-                                } catch (welcomeErr) {
-                                    console.error("Error sending welcome email:", welcomeErr);
-                                }
-                            } else {
-                                console.error("Error creating customer:", createError);
+                            } catch (welcomeErr) {
+                                console.error("Error sending welcome email:", welcomeErr);
                             }
                         }
 
                         // Link booking to customer
                         if (customerId) {
-                            await supabase
-                                .from("bookings")
-                                .update({ customer_id: customerId })
-                                .eq("id", booking.id);
+                            await prisma.booking.update({
+                                where: { id: booking.id },
+                                data: { customerId: customerId }
+                            });
                         }
                     }
 
@@ -119,15 +102,15 @@ export async function POST(request: NextRequest) {
                     try {
                         const { sendBookingEmails } = await import("@/lib/email");
                         await sendBookingEmails({
-                            customerName: booking.customer_name,
-                            customerEmail: booking.customer_email,
-                            customerPhone: booking.customer_phone || "",
-                            packageName: booking.package_name,
-                            serviceDate: booking.service_date,
-                            vehicleInfo: booking.vehicle_info || "",
-                            vehicleSize: booking.vehicle_size || "",
+                            customerName: booking.customerName || "",
+                            customerEmail: booking.customerEmail || "",
+                            customerPhone: booking.customerPhone || "",
+                            packageName: booking.packageName,
+                            serviceDate: booking.serviceDate,
+                            vehicleInfo: booking.vehicleInfo || "",
+                            vehicleSize: booking.vehicleSize || "",
                             address: booking.address || "",
-                            totalAmount: booking.total_amount || 0,
+                            totalAmount: booking.totalAmount || 0,
                             paymentStatus: "paid",
                             source: "online",
                         });
@@ -142,7 +125,7 @@ export async function POST(request: NextRequest) {
                         // Notify Admins
                         await sendPushToAdmins({
                             title: "💰 ¡Nueva Venta Exclusiva!",
-                            body: `Se ha confirmado el pago de ${booking.customer_name} por $${((booking.total_amount || 0) / 100).toFixed(2)} MXN.`,
+                            body: `Se ha confirmado el pago de ${booking.customerName} por $${((booking.totalAmount || 0) / 100).toFixed(2)} MXN.`,
                             url: "/admin/reservas",
                         });
 
@@ -150,7 +133,7 @@ export async function POST(request: NextRequest) {
                         if (customerId) {
                             await sendPushNotification(customerId, {
                                 title: "✅ ¡Reserva Confirmada!",
-                                body: `Tu cita para ${booking.package_name} ha sido agendada con éxito.`,
+                                body: `Tu cita para ${booking.packageName} ha sido agendada con éxito.`,
                                 url: "/mi-cuenta/servicios",
                             });
                         }
