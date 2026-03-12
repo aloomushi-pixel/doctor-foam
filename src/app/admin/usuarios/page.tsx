@@ -1,5 +1,6 @@
 "use client";
 
+import Spinner from "@/components/Spinner";
 import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import type { User } from "@/lib/types";
 import { useSession } from "next-auth/react";
@@ -21,6 +22,7 @@ export default function UsuariosPage() {
 
     const { data: session } = useSession();
     const [saving, setSaving] = useState<string | null>(null); // user id being saved
+    const [deleting, setDeleting] = useState<string | null>(null); // user id being deleted
     const [actionError, setActionError] = useState<string | null>(null); // para mostrar mensajes de error
     const [hasMounted, setHasMounted] = useState(false);
     const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -100,7 +102,7 @@ export default function UsuariosPage() {
         if (!confirm(`¿Estás 100% seguro de que deseas eliminar permanentemente a ${user.name || user.email}? Esta acción no se puede deshacer.`)) return;
 
         if (!session) return;
-        setLoading(true);
+        setDeleting(user.id);
         setActionError(null);
         try {
             const res = await fetch(`/api/admin/users/${user.id}`, {
@@ -116,7 +118,7 @@ export default function UsuariosPage() {
             alert(`Error al eliminar: ${err.message}`);
             setActionError(`Error al eliminar: ${err.message}`);
         }
-        setLoading(false);
+        setDeleting(null);
     };
 
     if (!hasMounted) {
@@ -354,7 +356,7 @@ export default function UsuariosPage() {
                                                             />
                                                             <span style={{ color: "#64748b", fontSize: "0.78rem", fontWeight: 600 }}>%</span>
                                                             {saving === user.id && (
-                                                                <span style={{ color: "#63b3ed", fontSize: "0.65rem" }}>💾</span>
+                                                                <span style={{ marginLeft: "4px" }}><Spinner size={14} color="#2563eb" /></span>
                                                             )}
                                                         </div>
                                                     </td>
@@ -388,6 +390,7 @@ export default function UsuariosPage() {
                                                             e.stopPropagation();
                                                             handleDeleteUser(user);
                                                         }}
+                                                        disabled={deleting === user.id}
                                                         style={{
                                                             background: "rgba(239, 68, 68, 0.1)",
                                                             color: "#ef4444",
@@ -396,12 +399,16 @@ export default function UsuariosPage() {
                                                             borderRadius: "0.4rem",
                                                             fontSize: "0.75rem",
                                                             fontWeight: 600,
-                                                            cursor: "pointer",
-                                                            fontFamily: "var(--font-heading)"
+                                                            cursor: deleting === user.id ? "default" : "pointer",
+                                                            fontFamily: "var(--font-heading)",
+                                                            opacity: deleting === user.id ? 0.6 : 1,
+                                                            display: "flex",
+                                                            alignItems: "center",
+                                                            gap: "0.35rem"
                                                         }}
                                                         title="Eliminar permanentemente"
                                                     >
-                                                        Eliminar
+                                                        {deleting === user.id ? <><Spinner size={12} color="#ef4444" /> Eliminando</> : "Eliminar"}
                                                     </button>
                                                 </td>
                                             </tr>

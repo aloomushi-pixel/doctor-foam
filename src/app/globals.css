@@ -837,3 +837,18 @@ h6 {
     grid-template-columns: 1fr;
   }
 }
+
+/* Spinner Animation */
+@keyframes spin-linear {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-rotate {
+  animation: spin-linear 1s linear infinite;
+}

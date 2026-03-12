@@ -1,5 +1,6 @@
 "use client";
 
+import Spinner from "@/components/Spinner";
 import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { STATUSES, exportBookingsCSV, statusLabel, statusStyle } from "@/lib/booking-utils";
 import type { Booking } from "@/lib/types";
@@ -20,6 +21,7 @@ export default function ReservasPage() {
     const [editMode, setEditMode] = useState(false);
     const [editData, setEditData] = useState<Partial<Booking>>({});
     const [saving, setSaving] = useState(false);
+    const [exportingCSV, setExportingCSV] = useState(false);
     const [bulkAction, setBulkAction] = useState("");
     const [page, setPage] = useState(1);
     const [hasMounted, setHasMounted] = useState(false);
@@ -212,6 +214,13 @@ export default function ReservasPage() {
         else { setSortField(field); setSortDir("asc"); }
     };
 
+    const handleExportCSV = async () => {
+        setExportingCSV(true);
+        await new Promise(r => setTimeout(r, 150));
+        exportBookingsCSV(filtered);
+        setExportingCSV(false);
+    };
+
     const stats = {
         total: bookings.length,
         confirmed: bookings.filter(b => ["paid", "manual", "completed"].includes(b.payment_status)).length,
@@ -252,13 +261,13 @@ export default function ReservasPage() {
                         }}>
                             ➕ Nueva Reserva
                         </button>
-                        <button onClick={() => exportBookingsCSV(filtered)} style={{
+                        <button onClick={() => !exportingCSV && handleExportCSV()} disabled={exportingCSV} style={{
                             padding: "0.5rem 1rem", borderRadius: "0.5rem",
                             background: "#f0fdf4", border: "1px solid #bbf7d0",
-                            color: "#16a34a", cursor: "pointer", fontSize: "0.8rem",
-                            fontWeight: 600, fontFamily: "var(--font-heading)",
+                            color: "#16a34a", cursor: exportingCSV ? "default" : "pointer", fontSize: "0.8rem",
+                            fontWeight: 600, fontFamily: "var(--font-heading)", opacity: exportingCSV ? 0.7 : 1,
                         }}>
-                            📥 Exportar CSV ({filtered.length})
+                            {exportingCSV ? <><Spinner size={14} color="#16a34a" /> Exportando...</> : `📥 Exportar CSV (${filtered.length})`}
                         </button>
                     </div>
                 </div>
@@ -327,8 +336,9 @@ export default function ReservasPage() {
                             border: `1px solid ${bulkAction ? "#bfdbfe" : "#e2e8f0"}`,
                             color: bulkAction ? "#2563eb" : "#94a3b8", cursor: bulkAction ? "pointer" : "default",
                             fontSize: "0.8rem", fontWeight: 600, fontFamily: "var(--font-heading)",
+                            opacity: saving ? 0.6 : 1
                         }}>
-                            {saving ? "Aplicando..." : "Aplicar"}
+                            {saving ? <><Spinner size={14} color="#2563eb" /> Aplicando...</> : "Aplicar"}
                         </button>
                         <button onClick={() => setSelected(new Set())} style={{
                             background: "none", border: "none", color: "#64748b", cursor: "pointer", fontSize: "0.8rem",
@@ -515,8 +525,8 @@ export default function ReservasPage() {
 
                                 <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.5rem" }}>
                                     <button onClick={() => setCreateModal(false)} style={{ ...btnStyle, flex: 1, background: "#f8fafc", color: "#475569" }}>Cancelar</button>
-                                    <button onClick={saveNewBooking} disabled={saving} className="btn-premium" style={{ flex: 1, justifyContent: "center", fontSize: "0.85rem", opacity: saving ? 0.6 : 1 }}>
-                                        {saving ? "Guardando..." : "💾 Crear Reserva"}
+                                    <button onClick={saveNewBooking} disabled={saving} className="btn-premium" style={{ flex: 1, justifyContent: "center", fontSize: "0.85rem", opacity: saving ? 0.6 : 1, display: "flex", gap: "0.4rem", alignItems: "center" }}>
+                                        {saving ? <><Spinner size={14} color="#ffffff" /> Guardando...</> : "💾 Crear Reserva"}
                                     </button>
                                 </div>
                             </div>
@@ -591,8 +601,8 @@ export default function ReservasPage() {
                                     </div>
                                     <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.5rem" }}>
                                         <button onClick={() => setEditMode(false)} style={{ ...btnStyle, flex: 1, background: "#f8fafc", color: "#475569" }}>Cancelar</button>
-                                        <button onClick={saveEdit} disabled={saving} className="btn-premium" style={{ flex: 1, justifyContent: "center", fontSize: "0.85rem", opacity: saving ? 0.6 : 1 }}>
-                                            {saving ? "Guardando..." : "💾 Guardar"}
+                                        <button onClick={saveEdit} disabled={saving} className="btn-premium" style={{ flex: 1, justifyContent: "center", fontSize: "0.85rem", opacity: saving ? 0.6 : 1, display: "flex", gap: "0.4rem", alignItems: "center" }}>
+                                            {saving ? <><Spinner size={14} color="#ffffff" /> Guardando...</> : "💾 Guardar"}
                                         </button>
                                     </div>
                                 </div>
@@ -649,8 +659,8 @@ export default function ReservasPage() {
                             {!editMode && (
                                 <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
                                     {detailModal.payment_status === "pending" && (
-                                        <button onClick={sendPaymentReminder} disabled={saving} style={{ ...btnStyle, flex: "1 1 100%", background: "#fef3c7", color: "#d97706", border: "1px solid #fde68a" }}>
-                                            {saving ? "Enviando..." : "📧 Enviar Enlace de Pago Automatico"}
+                                        <button onClick={sendPaymentReminder} disabled={saving} style={{ ...btnStyle, flex: "1 1 100%", background: "#fef3c7", color: "#d97706", border: "1px solid #fde68a", display: "flex", gap: "0.4rem", alignItems: "center", justifyContent: "center", opacity: saving ? 0.7 : 1 }}>
+                                            {saving ? <><Spinner size={14} color="#d97706" /> Enviando...</> : "📧 Enviar Enlace de Pago Automatico"}
                                         </button>
                                     )}
                                     <button onClick={() => { setDetailModal(null); }} style={{ ...btnStyle, flex: 2, background: "#f8fafc", color: "#475569" }}>Cerrar</button>
