@@ -1,11 +1,14 @@
 "use client";
 
+import ReceiptPDFTemplate from "@/components/ReceiptPDFTemplate";
 import Spinner from "@/components/Spinner";
 import UnifiedDashboardLayout from "@/components/UnifiedDashboardLayout";
 import { STATUSES, exportBookingsCSV, statusLabel, statusStyle } from "@/lib/booking-utils";
 import type { Booking } from "@/lib/types";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import { useSession } from "next-auth/react";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export default function ReservasPage() {
     const { data: session } = useSession();
@@ -28,6 +31,8 @@ export default function ReservasPage() {
     const [createModal, setCreateModal] = useState(false);
     const [newData, setNewData] = useState<Partial<Booking> & { agreed_amount?: number }>({ package_name: "Signature Detail", vehicle_size: "sedan" });
     const PER_PAGE = 20;
+    const receiptRef = useRef<HTMLDivElement>(null);
+    const [downloadingPDF, setDownloadingPDF] = useState(false);
 
     // handle NextAuth session internally with useSession hooks.
     useEffect(() => {
@@ -219,6 +224,25 @@ export default function ReservasPage() {
         await new Promise(r => setTimeout(r, 150));
         exportBookingsCSV(filtered);
         setExportingCSV(false);
+    };
+
+    const handleDownloadPDF = async () => {
+        if (!detailModal || !receiptRef.current) return;
+        setDownloadingPDF(true);
+        try {
+            const canvas = await html2canvas(receiptRef.current, { scale: 2 } as any);
+            const imgData = canvas.toDataURL("image/png");
+            const pdf = new jsPDF("p", "mm", "a4");
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+            pdf.save(`Recibo_DrFoam_${detailModal.id.slice(0, 8).toUpperCase()}.pdf`);
+        } catch (err) {
+            alert("Error al generar el recibo.");
+        }
+        setDownloadingPDF(false);
     };
 
     const stats = {
@@ -663,6 +687,11 @@ export default function ReservasPage() {
                                             {saving ? <><Spinner size={14} color="#d97706" /> Enviando...</> : "📧 Enviar Enlace de Pago Automatico"}
                                         </button>
                                     )}
+                                    {detailModal.payment_status !== "cancelled" && (
+                                        <button onClick={handleDownloadPDF} disabled={downloadingPDF || saving} style={{ ...btnStyle, flex: "1 1 100%", background: "#f0fdf4", color: "#16a34a", border: "1px solid #bbf7d0", display: "flex", gap: "0.4rem", alignItems: "center", justifyContent: "center", opacity: (downloadingPDF || saving) ? 0.7 : 1 }}>
+                                            {downloadingPDF ? <><Spinner size={14} color="#16a34a" /> Generando PDF...</> : "📥 Descargar Recibo (PDF)"}
+                                        </button>
+                                    )}
                                     <button onClick={() => { setDetailModal(null); }} style={{ ...btnStyle, flex: 2, background: "#f8fafc", color: "#475569" }}>Cerrar</button>
                                     <button onClick={startEdit} style={{ ...btnStyle, flex: 1, background: "#eff6ff", color: "#2563eb", border: "1px solid #bfdbfe" }}>✏️ Editar</button>
                                     <button onClick={cancelBooking} style={{ ...btnStyle, flex: 1, background: "#fef2f2", color: "#ef4444", border: "1px solid #fecaca" }}>🚫 Cancelar</button>
@@ -671,6 +700,11 @@ export default function ReservasPage() {
                         </div>
                     </div>
                 )}
+
+                {/* Hidden Receipt Template */}
+                <div style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
+                    {detailModal && <ReceiptPDFTemplate ref={receiptRef} booking={detailModal} />}
+                </div>
             </div>
         </UnifiedDashboardLayout>
     );
