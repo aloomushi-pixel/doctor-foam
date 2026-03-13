@@ -40,12 +40,17 @@ export async function POST(request: NextRequest) {
 
                 // Evitar doble procesamiento si ya está pagado
                 if (bookingBeforeUpdate && bookingBeforeUpdate.paymentStatus !== "paid") {
+                    const stripeEmail = session.customer_details?.email;
+
                     const booking = await prisma.booking.update({
                         where: { id: bookingBeforeUpdate.id },
-                        data: { paymentStatus: "paid" }
+                        data: {
+                            paymentStatus: "paid",
+                            ...(stripeEmail ? { customerEmail: stripeEmail } : {})
+                        }
                     });
 
-                    console.log(`Booking confirmed for session ${session.id}`);
+                    console.log(`Booking confirmed for session ${session.id}. Real email updated to ${booking.customerEmail}`);
 
                     // 2. Auto-create customer account if doesn't exist
                     let customerId: string | null = null;

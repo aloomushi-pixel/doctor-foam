@@ -206,10 +206,10 @@ function BookingForm() {
 
     /* Form fields — pre-fill from query params if available */
     const [customerName, setCustomerName] = useState(searchParams.get("nombre") || "");
-    const [customerEmail, setCustomerEmail] = useState(searchParams.get("email") || "");
     const [customerPhone, setCustomerPhone] = useState(searchParams.get("telefono") || "");
-    const [address, setAddress] = useState(searchParams.get("direccion") || "");
-    const [addressColonia, setAddressColonia] = useState("");
+    const [addressCalle, setAddressCalle] = useState(searchParams.get("direccion") || "");
+    const [addressCP, setAddressCP] = useState("");
+    const [addressTipo, setAddressTipo] = useState("Casa");
     const [vehicleBrand, setVehicleBrand] = useState("");
     const [vehicleModel, setVehicleModel] = useState("");
     const [vehicleYear, setVehicleYear] = useState("");
@@ -217,6 +217,10 @@ function BookingForm() {
     const [needsFactura, setNeedsFactura] = useState(false);
     const [rfc, setRfc] = useState("");
     const [razonSocial, setRazonSocial] = useState("");
+    const [facturaRegimen, setFacturaRegimen] = useState("");
+    const [facturaCP, setFacturaCP] = useState("");
+    const [facturaEmail, setFacturaEmail] = useState("");
+    const [facturaUsoCFDI, setFacturaUsoCFDI] = useState("G03");
 
     const pkg = packagesData[selectedPackage];
     const coeff = vehicleSizes.find((v) => v.value === vehicleSize)?.coefficient || 1.0;
@@ -254,13 +258,16 @@ function BookingForm() {
                     vehicleSize,
                     serviceDate,
                     customerName,
-                    customerEmail,
                     customerPhone,
-                    address: `${address}, ${addressColonia}`,
+                    address: `${addressCalle}, CP: ${addressCP}, Tipo: ${addressTipo}`,
                     vehicleBrand, vehicleModel, vehicleYear, vehicleColor,
+                    needsFactura,
                     rfc: needsFactura ? rfc : "",
                     razonSocial: needsFactura ? razonSocial : "",
-                    needsFactura,
+                    facturaRegimen: needsFactura ? facturaRegimen : "",
+                    facturaCP: needsFactura ? facturaCP : "",
+                    facturaEmail: needsFactura ? facturaEmail : "",
+                    facturaUsoCFDI: needsFactura ? facturaUsoCFDI : "",
                 }),
             });
 
@@ -465,11 +472,7 @@ function BookingForm() {
                                 <label style={labelStyle}>Nombre completo *</label>
                                 <input type="text" placeholder="Tu nombre" value={customerName} onChange={(e) => setCustomerName(e.target.value)} style={inputStyle} required />
                             </div>
-                            <div>
-                                <label style={labelStyle}>Email *</label>
-                                <input type="email" placeholder="tu@email.com" value={customerEmail} onChange={(e) => setCustomerEmail(e.target.value)} style={inputStyle} required />
-                            </div>
-                            <div>
+                            <div style={{ gridColumn: "span 2" }}>
                                 <label style={labelStyle}>WhatsApp *</label>
                                 <input type="tel" placeholder="55 1234 5678" value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} style={inputStyle} required />
                             </div>
@@ -491,13 +494,24 @@ function BookingForm() {
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                             <div style={{ gridColumn: "span 2" }}>
                                 <label style={labelStyle}>Calle y número *</label>
-                                <input type="text" placeholder="Av. Masaryk 123" value={address} onChange={(e) => setAddress(e.target.value)} style={inputStyle} required />
+                                <input type="text" placeholder="Ej. Av. Chapultepec 123, Int 4" value={addressCalle} onChange={(e) => setAddressCalle(e.target.value)} style={inputStyle} required />
                             </div>
-                            <div style={{ gridColumn: "span 2" }}>
-                                <label style={labelStyle}>Colonia / Zona *</label>
-                                <input type="text" placeholder="Ej. Polanco, Roma, Lomas..." value={addressColonia} onChange={(e) => setAddressColonia(e.target.value)} style={inputStyle} required />
+                            <div>
+                                <label style={labelStyle}>Código Postal *</label>
+                                <input type="text" placeholder="Ej. 11000" value={addressCP} onChange={(e) => setAddressCP(e.target.value)} style={inputStyle} required />
+                            </div>
+                            <div>
+                                <label style={labelStyle}>Tipo de domicilio *</label>
+                                <select value={addressTipo} onChange={(e) => setAddressTipo(e.target.value)} style={inputStyle} required>
+                                    <option value="Casa">Casa</option>
+                                    <option value="Trabajo">Trabajo</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
                             </div>
                         </div>
+                        <p style={{ color: "#64748b", fontSize: "0.8rem", marginTop: "1rem", fontStyle: "italic" }}>
+                            (Podrás administrar tus direcciones en "Mi Cuenta" después de reservar)
+                        </p>
                     </div>
 
                     <div className="glass-card" style={{ padding: "2rem", marginBottom: "1.5rem" }}>
@@ -510,6 +524,17 @@ function BookingForm() {
                             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                                 <div><label style={labelStyle}>RFC *</label><input type="text" placeholder="XAXX010101000" value={rfc} onChange={(e) => setRfc(e.target.value.toUpperCase())} style={inputStyle} required={needsFactura} maxLength={13} /></div>
                                 <div><label style={labelStyle}>Razón Social *</label><input type="text" placeholder="Nombre o Razón Social" value={razonSocial} onChange={(e) => setRazonSocial(e.target.value)} style={inputStyle} required={needsFactura} /></div>
+                                <div><label style={labelStyle}>Régimen Fiscal *</label><input type="text" placeholder="Ej. 601 General de Ley..." value={facturaRegimen} onChange={(e) => setFacturaRegimen(e.target.value)} style={inputStyle} required={needsFactura} /></div>
+                                <div><label style={labelStyle}>Código Postal (Fiscal) *</label><input type="text" placeholder="11000" value={facturaCP} onChange={(e) => setFacturaCP(e.target.value)} style={inputStyle} required={needsFactura} /></div>
+                                <div style={{ gridColumn: "span 2" }}><label style={labelStyle}>Email para Factura *</label><input type="email" placeholder="facturacion@empresa.com" value={facturaEmail} onChange={(e) => setFacturaEmail(e.target.value)} style={inputStyle} required={needsFactura} /></div>
+                                <div style={{ gridColumn: "span 2" }}>
+                                    <label style={labelStyle}>Uso de CFDI *</label>
+                                    <select value={facturaUsoCFDI} onChange={(e) => setFacturaUsoCFDI(e.target.value)} style={inputStyle} required={needsFactura}>
+                                        <option value="G01">G01 - Adquisición de mercancías</option>
+                                        <option value="G03">G03 - Gastos en general</option>
+                                        <option value="P01">P01 - Por definir</option>
+                                    </select>
+                                </div>
                             </div>
                         )}
                     </div>
@@ -518,7 +543,11 @@ function BookingForm() {
                         <button type="button" onClick={() => setStep(2)} className="btn-outline" style={{ flex: 1 }}>← Atrás</button>
                         <button
                             type="button"
-                            onClick={() => customerName && customerEmail && customerPhone && vehicleBrand && vehicleModel && address && addressColonia && setStep(4)}
+                            onClick={() => {
+                                const baseValid = customerName && customerPhone && vehicleBrand && vehicleModel && addressCalle && addressCP && vehicleYear && vehicleColor;
+                                const facturaValid = !needsFactura || (rfc && razonSocial && facturaRegimen && facturaCP && facturaEmail && facturaUsoCFDI);
+                                if (baseValid && facturaValid) setStep(4);
+                            }}
                             className="btn-premium" style={{ flex: 2, justifyContent: "center" }}
                         >
                             Continuar → Resumen
@@ -538,8 +567,9 @@ function BookingForm() {
                             { label: "Vehículo", value: `${vehicleBrand} ${vehicleModel} ${vehicleYear} (${vehicleColor})` },
                             { label: "Tamaño", value: vehicleSizes.find((v) => v.value === vehicleSize)?.label || "" },
                             { label: "Fecha", value: serviceDate ? new Date(serviceDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : "" },
-                            { label: "Dirección", value: `${address}, ${addressColonia}` },
+                            { label: "Dirección", value: `${addressCalle}, CP: ${addressCP} (${addressTipo})` },
                             { label: "Contacto", value: `${customerName} · ${customerPhone}` },
+                            ...(needsFactura ? [{ label: "Facturación", value: `Solicitada (${rfc})` }] : []),
                         ].map((item) => (
                             <div key={item.label} style={{ display: "flex", justifyContent: "space-between", padding: "0.5rem 0", borderBottom: "1px solid #f1f5f9" }}>
                                 <span style={{ color: "#64748b", fontSize: "0.85rem" }}>{item.label}</span>

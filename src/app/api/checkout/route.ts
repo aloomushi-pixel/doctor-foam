@@ -16,7 +16,6 @@ export async function POST(request: NextRequest) {
             vehicleSize = "sedan-2filas",
             serviceDate,
             customerName,
-            customerEmail,
             customerPhone,
             address,
             vehicleBrand,
@@ -26,6 +25,10 @@ export async function POST(request: NextRequest) {
             rfc,
             razonSocial,
             needsFactura,
+            facturaRegimen,
+            facturaCP,
+            facturaEmail,
+            facturaUsoCFDI,
         } = body;
 
         // Validate package
@@ -82,12 +85,10 @@ export async function POST(request: NextRequest) {
 
         const vehicleSizeLabel = getVehicleSizeLabel(vehicleSize);
 
-        // Create Stripe Checkout Session
-        const session = await getStripe().checkout.sessions.create({
+        const sessionPayload: any = {
             payment_method_types: ["card"],
             mode: isSubscription ? "subscription" : "payment",
             locale: "es",
-            customer_email: customerEmail,
             line_items: [
                 {
                     price_data: {
@@ -111,12 +112,25 @@ export async function POST(request: NextRequest) {
                 vehicleSize,
                 serviceDate,
                 needsFactura: needsFactura ? "sí" : "no",
-                rfc: rfc || "N/A",
-                razonSocial: razonSocial || "N/A",
+                rfc: needsFactura ? rfc : "N/A",
+                razonSocial: needsFactura ? razonSocial : "N/A",
+                facturaRegimen: needsFactura ? facturaRegimen : "N/A",
+                facturaCP: needsFactura ? facturaCP : "N/A",
+                facturaEmail: needsFactura ? facturaEmail : "N/A",
+                facturaUsoCFDI: needsFactura ? facturaUsoCFDI : "N/A",
             },
             success_url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/pago-exitoso?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/reservar?paquete=${packageId}&cancelled=true`,
-        });
+        };
+
+        if (needsFactura && facturaEmail) {
+            sessionPayload.customer_email = facturaEmail;
+        }
+
+        const session = await getStripe().checkout.sessions.create(sessionPayload);
+
+        // Generate a temporary email if none is provided to satisfy Prisma schema, Webhook will replace this
+        const finalEmail = (needsFactura && facturaEmail) ? facturaEmail : `pending-${Date.now()}@doctorfoam.com`;
 
         // Create pending booking in DB
         await prisma.booking.create({
@@ -126,7 +140,7 @@ export async function POST(request: NextRequest) {
                 vehicleSize: vehicleSizeLabel,
                 totalAmount: totalCentavos,
                 customerName: customerName,
-                customerEmail: customerEmail,
+                customerEmail: finalEmail,
                 customerPhone: customerPhone,
                 address: address || "Por definir",
                 vehicleInfo: `${vehicleBrand} ${vehicleModel} ${vehicleYear} ${vehicleColor}`,
