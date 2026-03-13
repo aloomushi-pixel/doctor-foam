@@ -26,16 +26,20 @@ export async function POST(request: NextRequest) {
             event = JSON.parse(body) as Stripe.Event;
         }
 
-        if (event.type === "checkout.session.completed") {
+        if (
+            event.type === "checkout.session.completed" ||
+            event.type === "checkout.session.async_payment_succeeded"
+        ) {
             const session = event.data.object as Stripe.Checkout.Session;
 
-            if (session.id) {
+            if (session.id && session.payment_status === "paid") {
                 // 1. Update booking status to paid
                 const bookingBeforeUpdate = await prisma.booking.findFirst({
                     where: { stripeSessionId: session.id }
                 });
 
-                if (bookingBeforeUpdate) {
+                // Evitar doble procesamiento si ya está pagado
+                if (bookingBeforeUpdate && bookingBeforeUpdate.paymentStatus !== "paid") {
                     const booking = await prisma.booking.update({
                         where: { id: bookingBeforeUpdate.id },
                         data: { paymentStatus: "paid" }
@@ -76,7 +80,7 @@ export async function POST(request: NextRequest) {
 
                             customerId = newUser.id;
 
-                            // Send welcome email with password setup link - No longer native to Supabase! Generate magic link equivalent
+                            // Send welcome email with password setup link
                             try {
                                 const { sendWelcomeEmail } = await import("@/lib/email");
                                 await sendWelcomeEmail({
@@ -141,6 +145,9 @@ export async function POST(request: NextRequest) {
                         console.error("Error sending push to admins/customer:", pushErr);
                     }
                 }
+            } else if (session.payment_status === "unpaid") {
+                // El pago es asíncrono (ej. SPEI) o falló
+                console.log(`Checkout session ${session.id} completed but payment status is unpaid. Waiting for async_payment_succeeded event.`);
             }
         }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { PACKAGES, PREMIUM_ZONES, VEHICLE_SIZES } from "@/lib/packages";
+import { PACKAGES, VEHICLE_SIZES } from "@/lib/packages";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useState } from "react";
@@ -13,10 +13,6 @@ const packagesData = Object.fromEntries(
 );
 
 const vehicleSizes = VEHICLE_SIZES;
-
-const premiumZones = PREMIUM_ZONES;
-
-
 
 /* ─── Calendar Component ─── */
 function Calendar({
@@ -499,10 +495,7 @@ function BookingForm() {
                             </div>
                             <div style={{ gridColumn: "span 2" }}>
                                 <label style={labelStyle}>Colonia / Zona *</label>
-                                <select value={addressColonia} onChange={(e) => setAddressColonia(e.target.value)} style={inputStyle} required>
-                                    <option value="">Selecciona zona</option>
-                                    {premiumZones.map((z) => (<option key={z} value={z}>{z}</option>))}
-                                </select>
+                                <input type="text" placeholder="Ej. Polanco, Roma, Lomas..." value={addressColonia} onChange={(e) => setAddressColonia(e.target.value)} style={inputStyle} required />
                             </div>
                         </div>
                     </div>
