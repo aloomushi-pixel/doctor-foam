@@ -109,11 +109,6 @@ export default function GuestChat() {
         return d.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" });
     };
 
-    // Don't render on admin pages
-    if (typeof window !== "undefined" && window.location.pathname.startsWith("/admin")) return null;
-    // Don't render if user is on mi-cuenta (they have their own chat)
-    if (typeof window !== "undefined" && window.location.pathname.startsWith("/mi-cuenta")) return null;
-
     return (
         <>
             {/* Floating Bubble */}

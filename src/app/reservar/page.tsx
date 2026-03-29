@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { PACKAGES, VEHICLE_SIZES, PREMIUM_ZONES } from "@/lib/packages";
@@ -15,183 +15,6 @@ const packagesData = Object.fromEntries(
 const vehicleSizes = VEHICLE_SIZES;
 
 const premiumZones = PREMIUM_ZONES;
-
-/* ─── Calendar Component ─── */
-function Calendar({
-    selectedDate,
-    onSelectDate,
-}: {
-    selectedDate: string;
-    onSelectDate: (date: string) => void;
-}) {
-    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-    const [occupiedDates, setOccupiedDates] = useState<string[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    const fetchAvailability = useCallback(async () => {
-        setLoading(true);
-        try {
-            const res = await fetch(
-                `/api/bookings/availability?month=${currentMonth + 1}&year=${currentYear}`
-            );
-            const data = await res.json();
-            setOccupiedDates(data.occupied || []);
-        } catch {
-            console.error("Error fetching availability");
-        }
-        setLoading(false);
-    }, [currentMonth, currentYear]);
-
-    useEffect(() => {
-        fetchAvailability();
-    }, [fetchAvailability]);
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-    const firstDayOfWeek = new Date(currentYear, currentMonth, 1).getDay();
-    const monthNames = [
-        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
-    ];
-    const dayNames = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
-
-    const canGoPrev = currentYear > today.getFullYear() || (currentYear === today.getFullYear() && currentMonth > today.getMonth());
-
-    const goToPrev = () => {
-        if (!canGoPrev) return;
-        if (currentMonth === 0) {
-            setCurrentMonth(11);
-            setCurrentYear(currentYear - 1);
-        } else {
-            setCurrentMonth(currentMonth - 1);
-        }
-    };
-
-    const goToNext = () => {
-        if (currentMonth === 11) {
-            setCurrentMonth(0);
-            setCurrentYear(currentYear + 1);
-        } else {
-            setCurrentMonth(currentMonth + 1);
-        }
-    };
-
-    const days = [];
-    for (let i = 0; i < firstDayOfWeek; i++) {
-        days.push(<div key={`empty-${i}`} />);
-    }
-
-    for (let d = 1; d <= daysInMonth; d++) {
-        const date = new Date(currentYear, currentMonth, d);
-        const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
-        const isPast = date < today;
-        const isSunday = date.getDay() === 0;
-        const isOccupied = occupiedDates.includes(dateStr);
-        const isSelected = dateStr === selectedDate;
-        const isDisabled = isPast || isSunday || isOccupied;
-        const isToday = date.getTime() === today.getTime();
-
-        days.push(
-            <button
-                key={d}
-                type="button"
-                disabled={isDisabled}
-                onClick={() => !isDisabled && onSelectDate(dateStr)}
-                style={{
-                    width: "100%",
-                    aspectRatio: "1",
-                    border: isSelected ? "2px solid #2563eb" : "1px solid #e2e8f0",
-                    borderRadius: "0.5rem",
-                    background: isSelected
-                        ? "linear-gradient(135deg, #2563eb, #3b82f6)"
-                        : isOccupied
-                            ? "rgba(239, 68, 68, 0.08)"
-                            : isPast || isSunday
-                                ? "#f1f5f9"
-                                : "#ffffff",
-                    color: isSelected ? "#ffffff" : isDisabled ? "#94a3b8" : isOccupied ? "#ef4444" : "#0f172a",
-                    cursor: isDisabled ? "not-allowed" : "pointer",
-                    fontWeight: isSelected || isToday ? 700 : 500,
-                    fontSize: "0.9rem",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transition: "all 0.2s",
-                    position: "relative" as const,
-                }}
-            >
-                {d}
-                {isToday && !isSelected && (
-                    <span style={{ position: "absolute", bottom: "3px", width: "4px", height: "4px", borderRadius: "50%", background: "#2563eb" }} />
-                )}
-            </button>
-        );
-    }
-
-    return (
-        <div>
-            {/* Month Navigation */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
-                <button
-                    type="button"
-                    onClick={goToPrev}
-                    disabled={!canGoPrev}
-                    style={{
-                        background: "none", border: "none", color: canGoPrev ? "#0f172a" : "#cbd5e1",
-                        cursor: canGoPrev ? "pointer" : "not-allowed", fontSize: "1.2rem", padding: "0.5rem",
-                    }}
-                >
-                    ←
-                </button>
-                <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, color: "#0f172a", fontSize: "1.05rem" }}>
-                    {monthNames[currentMonth]} {currentYear}
-                </span>
-                <button
-                    type="button" onClick={goToNext}
-                    style={{ background: "none", border: "none", color: "#0f172a", cursor: "pointer", fontSize: "1.2rem", padding: "0.5rem" }}
-                >
-                    →
-                </button>
-            </div>
-
-            {/* Day names */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "0.25rem", marginBottom: "0.5rem" }}>
-                {dayNames.map((day) => (
-                    <div key={day} style={{ textAlign: "center", fontSize: "0.75rem", fontWeight: 600, color: "#64748b", padding: "0.25rem" }}>
-                        {day}
-                    </div>
-                ))}
-            </div>
-
-            {/* Days Grid */}
-            <div style={{
-                display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "0.3rem",
-                opacity: loading ? 0.5 : 1, transition: "opacity 0.3s",
-            }}>
-                {days}
-            </div>
-
-            {/* Legend */}
-            <div style={{ display: "flex", gap: "1rem", marginTop: "1rem", fontSize: "0.75rem", color: "#64748b", flexWrap: "wrap" }}>
-                <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "linear-gradient(135deg, #2563eb, #3b82f6)" }} />
-                    Seleccionado
-                </span>
-                <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "rgba(239, 68, 68, 0.15)", border: "1px solid rgba(239,68,68,0.3)" }} />
-                    Ocupado
-                </span>
-                <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                    <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#ffffff", border: "1px solid #e2e8f0" }} />
-                    Disponible
-                </span>
-            </div>
-        </div>
-    );
-}
 
 /* ─── Main Booking Form ─── */
 function BookingForm() {
@@ -210,7 +33,7 @@ function BookingForm() {
     const [customerEmail, setCustomerEmail] = useState(searchParams.get("email") || "");
     const [customerPhone, setCustomerPhone] = useState(searchParams.get("telefono") || "");
     const [address, setAddress] = useState(searchParams.get("direccion") || "");
-    const [addressColonia, setAddressColonia] = useState("");
+    const [postalCode, setPostalCode] = useState("");
     const [vehicleBrand, setVehicleBrand] = useState("");
     const [vehicleModel, setVehicleModel] = useState("");
     const [vehicleYear, setVehicleYear] = useState("");
@@ -223,10 +46,12 @@ function BookingForm() {
     const coeff = vehicleSizes.find((v) => v.value === vehicleSize)?.coefficient || 1.0;
     const currentPrice = pkg ? Math.round(pkg.priceBase * coeff) : 0;
 
-    useEffect(() => {
-        const paquete = searchParams.get("paquete");
-        if (paquete && packagesData[paquete]) setSelectedPackage(paquete);
-    }, [searchParams]);
+    // Get min date (tomorrow)
+    const getMinDate = () => {
+        const d = new Date();
+        d.setDate(d.getDate() + 1);
+        return d.toISOString().split("T")[0];
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -244,7 +69,7 @@ function BookingForm() {
                     customerName,
                     customerEmail,
                     customerPhone,
-                    address: `${address}, ${addressColonia}`,
+                    address: postalCode ? `${address}, C.P. ${postalCode}` : address,
                     vehicleBrand, vehicleModel, vehicleYear, vehicleColor,
                     rfc: needsFactura ? rfc : "",
                     razonSocial: needsFactura ? razonSocial : "",
@@ -403,17 +228,40 @@ function BookingForm() {
                 </div>
             )}
 
-            {/* ─── STEP 2: Calendar ─── */}
+            {/* ─── STEP 2: Date picker (free input) ─── */}
             {step === 2 && (
                 <div className="glass-card" style={{ padding: "2rem" }}>
                     <h2 style={{ fontSize: "1.2rem", marginBottom: "0.5rem", color: "#0f172a" }}>2. Elige la fecha de tu servicio</h2>
                     <p style={{ color: "#64748b", fontSize: "0.85rem", marginBottom: "1.5rem" }}>
-                        Atendemos de lunes a sábado. Los días en rojo ya están reservados.
+                        Selecciona la fecha en que te gustaría recibir el servicio. Atendemos de lunes a sábado.
                     </p>
-                    <Calendar selectedDate={serviceDate} onSelectDate={setServiceDate} />
+
+                    <div style={{ marginBottom: "1.5rem" }}>
+                        <label style={{
+                            display: "block", fontFamily: "var(--font-heading)", fontSize: "0.85rem",
+                            fontWeight: 600, color: "#334155", marginBottom: "0.5rem",
+                        }}>
+                            Fecha deseada *
+                        </label>
+                        <input
+                            type="date"
+                            value={serviceDate}
+                            onChange={(e) => setServiceDate(e.target.value)}
+                            min={getMinDate()}
+                            required
+                            style={{
+                                width: "100%", padding: "0.85rem 1rem", borderRadius: "0.75rem",
+                                border: serviceDate ? "2px solid #2563eb" : "1.5px solid #e2e8f0",
+                                background: serviceDate ? "rgba(37, 99, 235, 0.04)" : "#ffffff",
+                                color: "#0f172a", fontSize: "1rem", fontFamily: "var(--font-body)",
+                                outline: "none", transition: "all 0.2s ease",
+                                cursor: "pointer",
+                            }}
+                        />
+                    </div>
 
                     {serviceDate && (
-                        <div style={{ marginTop: "1.25rem", padding: "1rem", background: "rgba(37, 99, 235, 0.06)", borderRadius: "0.75rem", border: "1px solid rgba(37, 99, 235, 0.15)", textAlign: "center" }}>
+                        <div style={{ marginBottom: "1.5rem", padding: "1rem", background: "rgba(37, 99, 235, 0.06)", borderRadius: "0.75rem", border: "1px solid rgba(37, 99, 235, 0.15)", textAlign: "center" }}>
                             <span style={{ color: "#64748b", fontSize: "0.85rem" }}>Fecha seleccionada: </span>
                             <span style={{ color: "#0f172a", fontWeight: 700 }}>
                                 {new Date(serviceDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
@@ -421,7 +269,13 @@ function BookingForm() {
                         </div>
                     )}
 
-                    <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem" }}>
+                    <div style={{ background: "rgba(251, 191, 36, 0.06)", borderRadius: "0.75rem", padding: "0.75rem 1rem", marginBottom: "1.5rem", border: "1px solid rgba(251, 191, 36, 0.15)" }}>
+                        <p style={{ color: "#92400e", fontSize: "0.8rem", margin: 0 }}>
+                            💡 Después de tu pago, un asesor te contactará por WhatsApp para confirmar horario y disponibilidad.
+                        </p>
+                    </div>
+
+                    <div style={{ display: "flex", gap: "1rem" }}>
                         <button type="button" onClick={() => setStep(1)} className="btn-outline" style={{ flex: 1 }}>
                             ← Atrás
                         </button>
@@ -447,8 +301,8 @@ function BookingForm() {
                                 <input type="text" placeholder="Tu nombre" value={customerName} onChange={(e) => setCustomerName(e.target.value)} style={inputStyle} required />
                             </div>
                             <div>
-                                <label style={labelStyle}>Email *</label>
-                                <input type="email" placeholder="tu@email.com" value={customerEmail} onChange={(e) => setCustomerEmail(e.target.value)} style={inputStyle} required />
+                                <label style={labelStyle}>Email <span style={{ color: "#94a3b8", fontWeight: 400 }}>(opcional)</span></label>
+                                <input type="email" placeholder="tu@email.com" value={customerEmail} onChange={(e) => setCustomerEmail(e.target.value)} style={inputStyle} />
                             </div>
                             <div>
                                 <label style={labelStyle}>WhatsApp *</label>
@@ -458,28 +312,26 @@ function BookingForm() {
                     </div>
 
                     <div className="glass-card" style={{ padding: "2rem", marginBottom: "1.5rem" }}>
-                        <h2 style={{ fontSize: "1.2rem", marginBottom: "1.25rem", color: "#0f172a" }}>Datos del vehículo</h2>
+                        <h2 style={{ fontSize: "1.2rem", marginBottom: "0.5rem", color: "#0f172a" }}>Datos del vehículo <span style={{ color: "#94a3b8", fontSize: "0.85rem", fontWeight: 400 }}>(opcional)</span></h2>
+                        <p style={{ color: "#64748b", fontSize: "0.8rem", marginBottom: "1.25rem" }}>Si los tienes a la mano, ayúdanos con estos datos.</p>
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                            <div><label style={labelStyle}>Marca *</label><input type="text" placeholder="BMW, Mercedes..." value={vehicleBrand} onChange={(e) => setVehicleBrand(e.target.value)} style={inputStyle} required /></div>
-                            <div><label style={labelStyle}>Modelo *</label><input type="text" placeholder="X5, Clase C..." value={vehicleModel} onChange={(e) => setVehicleModel(e.target.value)} style={inputStyle} required /></div>
-                            <div><label style={labelStyle}>Año *</label><input type="number" placeholder="2024" value={vehicleYear} onChange={(e) => setVehicleYear(e.target.value)} style={inputStyle} required min="2000" max="2027" /></div>
-                            <div><label style={labelStyle}>Color *</label><input type="text" placeholder="Negro, Blanco..." value={vehicleColor} onChange={(e) => setVehicleColor(e.target.value)} style={inputStyle} required /></div>
+                            <div><label style={labelStyle}>Marca</label><input type="text" placeholder="BMW, Mercedes..." value={vehicleBrand} onChange={(e) => setVehicleBrand(e.target.value)} style={inputStyle} /></div>
+                            <div><label style={labelStyle}>Modelo</label><input type="text" placeholder="X5, Clase C..." value={vehicleModel} onChange={(e) => setVehicleModel(e.target.value)} style={inputStyle} /></div>
+                            <div><label style={labelStyle}>Año</label><input type="number" placeholder="2024" value={vehicleYear} onChange={(e) => setVehicleYear(e.target.value)} style={inputStyle} min="2000" max="2027" /></div>
+                            <div><label style={labelStyle}>Color</label><input type="text" placeholder="Negro, Blanco..." value={vehicleColor} onChange={(e) => setVehicleColor(e.target.value)} style={inputStyle} /></div>
                         </div>
                     </div>
 
                     <div className="glass-card" style={{ padding: "2rem", marginBottom: "1.5rem" }}>
                         <h2 style={{ fontSize: "1.2rem", marginBottom: "1.25rem", color: "#0f172a" }}>Dirección del servicio</h2>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                            <div style={{ gridColumn: "span 2" }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "3fr 1fr", gap: "1rem" }}>
+                            <div>
                                 <label style={labelStyle}>Calle y número *</label>
                                 <input type="text" placeholder="Av. Masaryk 123" value={address} onChange={(e) => setAddress(e.target.value)} style={inputStyle} required />
                             </div>
-                            <div style={{ gridColumn: "span 2" }}>
-                                <label style={labelStyle}>Colonia / Zona *</label>
-                                <select value={addressColonia} onChange={(e) => setAddressColonia(e.target.value)} style={inputStyle} required>
-                                    <option value="">Selecciona zona</option>
-                                    {premiumZones.map((z) => (<option key={z} value={z}>{z}</option>))}
-                                </select>
+                            <div>
+                                <label style={labelStyle}>C.P. *</label>
+                                <input type="text" placeholder="11560" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} style={inputStyle} required maxLength={5} />
                             </div>
                         </div>
                     </div>
@@ -502,7 +354,7 @@ function BookingForm() {
                         <button type="button" onClick={() => setStep(2)} className="btn-outline" style={{ flex: 1 }}>← Atrás</button>
                         <button
                             type="button"
-                            onClick={() => customerName && customerEmail && customerPhone && vehicleBrand && vehicleModel && address && addressColonia && setStep(4)}
+                            onClick={() => customerName && customerPhone && address && postalCode && setStep(4)}
                             className="btn-premium" style={{ flex: 2, justifyContent: "center" }}
                         >
                             Continuar → Resumen
@@ -519,11 +371,11 @@ function BookingForm() {
                     <div style={{ display: "grid", gap: "0.75rem", marginBottom: "1.5rem" }}>
                         {[
                             { label: "Servicio", value: pkg.name },
-                            { label: "Vehículo", value: `${vehicleBrand} ${vehicleModel} ${vehicleYear} (${vehicleColor})` },
+                            ...(vehicleBrand || vehicleModel ? [{ label: "Vehículo", value: [vehicleBrand, vehicleModel, vehicleYear, vehicleColor].filter(Boolean).join(" ") }] : []),
                             { label: "Tamaño", value: vehicleSizes.find((v) => v.value === vehicleSize)?.label || "" },
                             { label: "Fecha", value: serviceDate ? new Date(serviceDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : "" },
-                            { label: "Dirección", value: `${address}, ${addressColonia}` },
-                            { label: "Contacto", value: `${customerName} · ${customerPhone}` },
+                            { label: "Dirección", value: postalCode ? `${address}, C.P. ${postalCode}` : address },
+                            { label: "Contacto", value: [customerName, customerPhone, customerEmail].filter(Boolean).join(" · ") },
                         ].map((item) => (
                             <div key={item.label} style={{ display: "flex", justifyContent: "space-between", padding: "0.5rem 0", borderBottom: "1px solid #f1f5f9" }}>
                                 <span style={{ color: "#64748b", fontSize: "0.85rem" }}>{item.label}</span>
@@ -561,11 +413,11 @@ function BookingForm() {
                 </div>
             )}
 
-            {/* Chat */}
+            {/* WhatsApp */}
             <div style={{ textAlign: "center", marginTop: "2rem" }}>
                 <p style={{ color: "#94a3b8", fontSize: "0.9rem", marginBottom: "0.75rem" }}>¿Tienes dudas?</p>
-                <a href="/mi-cuenta/chat" className="btn-outline" style={{ display: "inline-flex" }}>
-                    💬 Escríbenos por chat
+                <a href="https://wa.me/525559624800?text=Hola%2C%20tengo%20una%20duda%20sobre%20los%20servicios%20de%20Doctor%20Foam" className="btn-outline" style={{ display: "inline-flex" }} target="_blank" rel="noopener noreferrer">
+                    📱 Escríbenos por WhatsApp
                 </a>
             </div>
         </form>
@@ -613,7 +465,7 @@ export default function ReservarPage() {
                                 <span className="gradient-text">detallado premium</span>
                             </h1>
                             <p className="section-subtitle" style={{ maxWidth: "600px" }}>
-                                Selecciona tu paquete, elige una fecha disponible y paga en línea de forma segura.
+                                Selecciona tu paquete, elige una fecha y paga en línea de forma segura.
                             </p>
                         </div>
 

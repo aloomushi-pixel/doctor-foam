@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createServerSupabase } from "@/lib/supabase";
-import { PACKAGES, SIZE_COEFFICIENTS, calculatePrice, getVehicleSizeLabel } from "@/lib/packages";
+import { PACKAGES, calculatePrice, getVehicleSizeLabel } from "@/lib/packages";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
 
@@ -34,23 +34,6 @@ export async function POST(request: NextRequest) {
         // Validate date is provided
         if (!serviceDate) {
             return NextResponse.json({ error: "Selecciona una fecha de servicio" }, { status: 400 });
-        }
-
-        // Check date availability
-        const supabase = createServerSupabase();
-        const { data: existingBookings } = await supabase
-            .from("bookings")
-            .select("id")
-            .eq("service_date", serviceDate)
-            .in("payment_status", ["paid", "manual"]);
-
-        const { data: blockedDates } = await supabase
-            .from("blocked_dates")
-            .select("id")
-            .eq("blocked_date", serviceDate);
-
-        if ((existingBookings && existingBookings.length > 0) || (blockedDates && blockedDates.length > 0)) {
-            return NextResponse.json({ error: "La fecha seleccionada ya no está disponible" }, { status: 409 });
         }
 
         // Calculate price with vehicle size coefficient
@@ -95,6 +78,7 @@ export async function POST(request: NextRequest) {
         });
 
         // Create pending booking in Supabase
+        const supabase = createServerSupabase();
         await supabase.from("bookings").insert({
             service_date: serviceDate,
             package_name: pkg.name,

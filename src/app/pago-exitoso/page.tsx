@@ -80,8 +80,8 @@ function SuccessContent() {
                                 opacity: 0,
                             }}
                         >
-                            Tu pago ha sido procesado exitosamente. En las próximas horas, un
-                            asesor de ventas de Doctor Foam se comunicará contigo por nuestro chat interno
+                            Tu pago ha sido procesado exitosamente. En las próximas horas,
+                            un asesor de Doctor Foam se comunicará contigo por WhatsApp
                             para{" "}
                             <strong style={{ color: "white" }}>
                                 agendar día y hora de tu servicio
@@ -117,7 +117,7 @@ function SuccessContent() {
                                     },
                                     {
                                         step: "2",
-                                        title: "Te contactamos por chat",
+                                        title: "Te contactamos por WhatsApp",
                                         desc: "Un asesor de Doctor Foam se comunicará contigo en máximo 4 horas hábiles.",
                                     },
                                     {
@@ -198,9 +198,9 @@ function SuccessContent() {
                             <Link href="/" className="btn-premium">
                                 Volver al inicio
                             </Link>
-                            <Link href="/mi-cuenta/chat" className="btn-outline">
-                                💬 Ir al chat
-                            </Link>
+                            <a href="https://wa.me/525559624800?text=Hola%2C%20acabo%20de%20pagar%20mi%20servicio%20de%20Doctor%20Foam" className="btn-outline" target="_blank" rel="noopener noreferrer">
+                                📱 WhatsApp
+                            </a>
                         </div>
                     </div>
                 </section>

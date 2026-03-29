@@ -94,18 +94,9 @@ export async function POST(request: NextRequest) {
         .update({ last_message_at: new Date().toISOString(), status: "open" })
         .eq("id", conv!.id);
 
-    // Email notification to admin (async)
-    try {
-        const { sendChatNotification } = await import("@/lib/email");
-        await sendChatNotification({
-            recipientEmail: process.env.ADMIN_EMAIL || "info@drfoam.com.mx",
-            recipientName: "Admin",
-            senderName: guest_name || "Visitante",
-            messagePreview: content.trim().slice(0, 100),
-        });
-    } catch (emailErr) {
-        console.error("Guest chat email error:", emailErr);
-    }
+    // Guest chat message stored — admin can view in Supabase directly
+    console.log(`💬 New guest message from ${guest_name || "Visitante"} (session: ${session_id})`);
+
 
     return NextResponse.json({ message, conversation: conv });
 }

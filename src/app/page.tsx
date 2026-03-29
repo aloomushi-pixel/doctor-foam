@@ -45,16 +45,6 @@ function Logo({ className = "" }: { className?: string }) {
   );
 }
 
-/* ─── Chat Icon ─── */
-function ChatIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
-      <path d="M7 9h10v2H7zm0-3h10v2H7zm0 6h7v2H7z" />
-    </svg>
-  );
-}
-
 /* ─── Main Service Packages ─── */
 const mainServices = [
   {
@@ -993,9 +983,9 @@ export default function HomePage() {
               <Link href="/reservar" className="btn-premium">
                 💳 Reservar y Pagar en Línea
               </Link>
-              <Link href="/mi-cuenta/chat" className="btn-outline">
-                💬 Chat para dudas
-              </Link>
+              <a href="https://wa.me/525559624800?text=Hola%2C%20me%20interesa%20un%20servicio%20de%20Doctor%20Foam" className="btn-outline" target="_blank" rel="noopener noreferrer">
+                📱 WhatsApp para dudas
+              </a>
             </div>
             <p style={{ color: "#475569", fontSize: "0.8rem", marginTop: "1rem" }}>
               🔒 Pago seguro con Stripe · Facturación CFDI disponible
@@ -1037,8 +1027,8 @@ export default function HomePage() {
           <div>
             <h4 className="footer-title">Contacto</h4>
             <ul className="footer-links">
-              <li><Link href="/mi-cuenta/chat">Chat en línea</Link></li>
-              <li><a href="tel:+5215500000000">+52 55 0000 0000</a></li>
+              <li><a href="https://wa.me/525559624800" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+              <li><a href="tel:+525559624800">+52 55 5962 4800</a></li>
               <li><a href="mailto:hola@doctorfoam.mx">hola@doctorfoam.mx</a></li>
               <li><a href="https://instagram.com/doctorfoam.mx">Instagram</a></li>
               <li><a href="https://facebook.com/doctorfoam.mx">Facebook</a></li>
@@ -1059,14 +1049,7 @@ export default function HomePage() {
         </div>
       </footer>
 
-      {/* ─── CHAT FLOAT ─── */}
-      <Link
-        href="/mi-cuenta/chat"
-        className="chat-float"
-        aria-label="Abrir chat"
-      >
-        <ChatIcon />
-      </Link>
+      {/* GuestChat widget is rendered globally via layout.tsx */}
     </>
   );
 }
