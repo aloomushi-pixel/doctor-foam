@@ -3,7 +3,9 @@ import Stripe from "stripe";
 import { PACKAGES, calculatePrice, getVehicleSizeLabel } from "@/lib/packages";
 import { sendBookingEmails } from "@/lib/email";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
+function getStripe() {
+    return new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
+}
 
 export async function POST(request: NextRequest) {
     try {
@@ -63,7 +65,7 @@ export async function POST(request: NextRequest) {
         }
 
         // 2) Create Stripe Checkout session so client can pay
-        const session = await stripe.checkout.sessions.create({
+        const session = await getStripe().checkout.sessions.create({
             payment_method_types: ["card"],
             mode: isSubscription ? "subscription" : "payment",
             locale: "es",
