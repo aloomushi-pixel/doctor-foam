@@ -18,6 +18,8 @@ type BookingData = {
   totalAmount: number; // in centavos
   paymentStatus: string;
   source: string;
+  rfc?: string;
+  razonSocial?: string;
 };
 
 /* ─── Format helpers ─── */
@@ -80,7 +82,7 @@ export async function sendBookingConfirmation(data: BookingData) {
           <tr><td style="padding:0.5rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Fecha</td><td style="padding:0.5rem 0;color:#60a5fa;text-align:right;font-weight:600;border-top:1px solid rgba(96,165,250,0.1);">📅 ${formatDate(serviceDate)}</td></tr>
           <tr><td style="padding:0.5rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Vehículo</td><td style="padding:0.5rem 0;color:white;text-align:right;border-top:1px solid rgba(96,165,250,0.1);">🚗 ${vehicleInfo}</td></tr>
           <tr><td style="padding:0.5rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Dirección</td><td style="padding:0.5rem 0;color:white;text-align:right;border-top:1px solid rgba(96,165,250,0.1);">📍 ${address}</td></tr>
-          <tr><td style="padding:0.5rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Total pagado</td><td style="padding:0.5rem 0;color:#34d399;text-align:right;font-weight:700;font-size:1.1rem;border-top:1px solid rgba(96,165,250,0.1);">💳 ${formatCurrency(totalAmount)}</td></tr>
+          <tr><td style="padding:0.5rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Precio cotizado</td><td style="padding:0.5rem 0;color:#34d399;text-align:right;font-weight:700;font-size:1.1rem;border-top:1px solid rgba(96,165,250,0.1);">💳 ${formatCurrency(totalAmount)}</td></tr>
         </table>
       </div>
 
@@ -108,7 +110,7 @@ export async function sendBookingConfirmation(data: BookingData) {
    2. NOTIFICACIÓN AL ADMIN (NUEVA RESERVA)
    ═══════════════════════════════════════════════ */
 export async function sendAdminNotification(data: BookingData) {
-  const { customerName, customerEmail, customerPhone, packageName, serviceDate, vehicleInfo, vehicleSize, address, totalAmount, source } = data;
+  const { customerName, customerEmail, customerPhone, packageName, serviceDate, vehicleInfo, vehicleSize, address, totalAmount, paymentStatus, rfc, razonSocial } = data;
 
   try {
     await resend.emails.send({
@@ -127,8 +129,9 @@ export async function sendAdminNotification(data: BookingData) {
           <tr><td style="padding:0.4rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Fecha</td><td style="padding:0.4rem 0;color:#fbbf24;text-align:right;font-weight:700;border-top:1px solid rgba(96,165,250,0.1);">📅 ${formatDate(serviceDate)}</td></tr>
           <tr><td style="padding:0.4rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Vehículo</td><td style="padding:0.4rem 0;color:white;text-align:right;border-top:1px solid rgba(96,165,250,0.1);">${vehicleInfo} (${vehicleSize})</td></tr>
           <tr><td style="padding:0.4rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Dirección</td><td style="padding:0.4rem 0;color:white;text-align:right;border-top:1px solid rgba(96,165,250,0.1);">📍 ${address}</td></tr>
-          <tr><td style="padding:0.4rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Total</td><td style="padding:0.4rem 0;color:#34d399;text-align:right;font-weight:700;font-size:1.1rem;border-top:1px solid rgba(96,165,250,0.1);">${formatCurrency(totalAmount)}</td></tr>
-          <tr><td style="padding:0.4rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Origen</td><td style="padding:0.4rem 0;color:#94a3b8;text-align:right;border-top:1px solid rgba(96,165,250,0.1);">${source === "online" ? "🌐 En línea (Stripe)" : "📋 Manual"}</td></tr>
+          <tr><td style="padding:0.4rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Total cotizado</td><td style="padding:0.4rem 0;color:#34d399;text-align:right;font-weight:700;font-size:1.1rem;border-top:1px solid rgba(96,165,250,0.1);">${formatCurrency(totalAmount)}</td></tr>
+          <tr><td style="padding:0.4rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Pago</td><td style="padding:0.4rem 0;color:${paymentStatus === "paid" ? "#34d399" : "#fbbf24"};text-align:right;font-weight:600;border-top:1px solid rgba(96,165,250,0.1);">${paymentStatus === "paid" ? "✅ Pagado" : "⏳ Pendiente — verificar en Stripe"}</td></tr>
+          ${rfc ? `<tr><td style="padding:0.4rem 0;color:#64748b;font-size:0.85rem;border-top:1px solid rgba(96,165,250,0.1);">Facturación</td><td style="padding:0.4rem 0;color:#f59e0b;text-align:right;border-top:1px solid rgba(96,165,250,0.1);">🧾 RFC: ${rfc}${razonSocial ? ` — ${razonSocial}` : ""}</td></tr>` : ""}
         </table>
       </div>
       <div style="text-align:center;margin-top:1.25rem;">

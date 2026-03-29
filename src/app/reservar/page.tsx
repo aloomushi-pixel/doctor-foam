@@ -81,7 +81,7 @@ function BookingForm() {
             if (data.url) {
                 window.location.href = data.url;
             } else {
-                setError(data.error || "Error al procesar el pago");
+                setError(data.error || "Error al procesar la reserva");
                 setLoading(false);
             }
         } catch {
@@ -95,7 +95,7 @@ function BookingForm() {
         { num: 1, label: "Servicio" },
         { num: 2, label: "Fecha" },
         { num: 3, label: "Datos" },
-        { num: 4, label: "Pagar" },
+        { num: 4, label: "Confirmar" },
     ];
 
     return (
@@ -385,7 +385,7 @@ function BookingForm() {
                     </div>
 
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem 1.25rem", background: "rgba(37, 99, 235, 0.06)", borderRadius: "0.75rem", marginBottom: "1.5rem", border: "1px solid rgba(37,99,235,0.1)" }}>
-                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, color: "#0f172a", fontSize: "1.1rem" }}>Total (IVA incluido)</span>
+                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, color: "#0f172a", fontSize: "1.1rem" }}>Total cotizado</span>
                         <span className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.5rem" }}>
                             ${currentPrice.toLocaleString("es-MX")} MXN
                         </span>
@@ -400,11 +400,11 @@ function BookingForm() {
                     </ul>
 
                     <button type="submit" className="btn-premium" disabled={loading} style={{ width: "100%", justifyContent: "center", fontSize: "1.1rem", padding: "1.1rem 2rem", opacity: loading ? 0.6 : 1, cursor: loading ? "not-allowed" : "pointer" }}>
-                        {loading ? "Procesando..." : `🔒 Pagar $${currentPrice.toLocaleString("es-MX")} MXN`}
+                        {loading ? "Procesando..." : `Reservar y Pagar $${currentPrice.toLocaleString("es-MX")} MXN →`}
                     </button>
 
                     <p style={{ color: "#94a3b8", fontSize: "0.8rem", textAlign: "center", marginTop: "1rem" }}>
-                        Pago seguro procesado por Stripe. Una vez confirmado, tu servicio queda agendado para la fecha seleccionada.
+                        Serás redirigido a Stripe para completar el pago de forma segura.
                     </p>
 
                     <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
@@ -459,13 +459,13 @@ export default function ReservarPage() {
                 <section className="section-padding">
                     <div className="container" style={{ maxWidth: "900px" }}>
                         <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-                            <span className="section-label">Reservar y Pagar</span>
+                            <span className="section-label">Reservar</span>
                             <h1 className="section-title" style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)" }}>
                                 Agenda tu servicio de{" "}
                                 <span className="gradient-text">detallado premium</span>
                             </h1>
                             <p className="section-subtitle" style={{ maxWidth: "600px" }}>
-                                Selecciona tu paquete, elige una fecha y paga en línea de forma segura.
+                                Selecciona tu paquete, elige una fecha y agenda tu servicio.
                             </p>
                         </div>
 
