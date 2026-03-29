@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { createServerSupabase } from "@/lib/supabase";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {});
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || "";
@@ -25,42 +24,30 @@ export async function POST(request: NextRequest) {
 
         if (event.type === "checkout.session.completed") {
             const session = event.data.object as Stripe.Checkout.Session;
-            const supabase = createServerSupabase();
+            const meta = session.metadata || {};
 
-            if (session.id) {
-                // 1. Update booking status to paid
-                const { data: booking, error } = await supabase
-                    .from("bookings")
-                    .update({ payment_status: "paid" })
-                    .eq("stripe_session_id", session.id)
-                    .select()
-                    .single();
+            console.log(`✅ Payment completed — session ${session.id}`);
+            console.log(`   Customer: ${meta.customerName} | Phone: ${meta.customerPhone}`);
+            console.log(`   Service date: ${meta.serviceDate} | Address: ${meta.address}`);
 
-                if (error) {
-                    console.error("Error updating booking:", error);
-                } else if (booking) {
-                    console.log(`Booking confirmed for session ${session.id}`);
-
-                    // 2. Send confirmation emails (customer + admin)
-                    try {
-                        const { sendBookingEmails } = await import("@/lib/email");
-                        await sendBookingEmails({
-                            customerName: booking.customer_name,
-                            customerEmail: booking.customer_email,
-                            customerPhone: booking.customer_phone || "",
-                            packageName: booking.package_name,
-                            serviceDate: booking.service_date,
-                            vehicleInfo: booking.vehicle_info || "",
-                            vehicleSize: booking.vehicle_size || "",
-                            address: booking.address || "",
-                            totalAmount: booking.total_amount || 0,
-                            paymentStatus: "paid",
-                            source: "online",
-                        });
-                    } catch (emailErr) {
-                        console.error("Error sending emails:", emailErr);
-                    }
-                }
+            // Send confirmation emails (customer + admin)
+            try {
+                const { sendBookingEmails } = await import("@/lib/email");
+                await sendBookingEmails({
+                    customerName: meta.customerName || "Cliente",
+                    customerEmail: meta.customerEmail || session.customer_email || "",
+                    customerPhone: meta.customerPhone || "",
+                    packageName: session.line_items?.data?.[0]?.description || meta.vehicleSize || "Servicio",
+                    serviceDate: meta.serviceDate || "",
+                    vehicleInfo: meta.vehicleInfo || "",
+                    vehicleSize: meta.vehicleSize || "",
+                    address: meta.address || "",
+                    totalAmount: session.amount_total || 0,
+                    paymentStatus: "paid",
+                    source: "online",
+                });
+            } catch (emailErr) {
+                console.error("Error sending emails:", emailErr);
             }
         }
 
