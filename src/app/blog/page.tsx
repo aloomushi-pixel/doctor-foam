@@ -92,7 +92,7 @@ export default function BlogPage() {
             <nav className="navbar navbar-scrolled">
                 <div className="navbar-inner">
                     <Link href="/" style={{ textDecoration: "none" }}>
-                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
                             DOCTOR <span className="gradient-text">FOAM</span>
                         </span>
                     </Link>
@@ -125,12 +125,12 @@ export default function BlogPage() {
                                     <h2 style={{ fontSize: "1.2rem", marginBottom: "0.75rem", lineHeight: "1.4" }}>
                                         <Link
                                             href={`/blog/${post.slug}`}
-                                            style={{ color: "white", textDecoration: "none" }}
+                                            style={{ color: "#0f172a", textDecoration: "none" }}
                                         >
                                             {post.title}
                                         </Link>
                                     </h2>
-                                    <p style={{ color: "#94a3b8", fontSize: "0.9rem", lineHeight: "1.7", marginBottom: "1rem" }}>
+                                    <p style={{ color: "#475569", fontSize: "0.9rem", lineHeight: "1.7", marginBottom: "1rem" }}>
                                         {post.excerpt}
                                     </p>
                                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>

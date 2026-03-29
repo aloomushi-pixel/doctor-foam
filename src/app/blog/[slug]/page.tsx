@@ -255,7 +255,7 @@ export default async function BlogPost({ params }: PageProps) {
             <nav className="navbar navbar-scrolled">
                 <div className="navbar-inner">
                     <Link href="/" style={{ textDecoration: "none" }}>
-                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
                             DOCTOR <span className="gradient-text">FOAM</span>
                         </span>
                     </Link>
@@ -287,13 +287,13 @@ export default async function BlogPost({ params }: PageProps) {
 
                     <div
                         className="blog-content"
-                        style={{ color: "#cbd5e1", fontSize: "1rem", lineHeight: "1.9" }}
+                        style={{ color: "#475569", fontSize: "1rem", lineHeight: "1.9" }}
                         dangerouslySetInnerHTML={{ __html: formatMarkdown(post.content) }}
                     />
 
                     <div className="glass-card" style={{ padding: "2rem", marginTop: "3rem", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)" }}>
                         <h3 style={{ marginBottom: "1rem" }}>¿Buscas una <span className="gradient-text">restauración completa</span>?</h3>
-                        <p style={{ color: "#94a3b8", marginBottom: "1.5rem" }}>Conoce nuestros paquetes de detallado automotriz con precios transparentes.</p>
+                        <p style={{ color: "#475569", marginBottom: "1.5rem" }}>Conoce nuestros paquetes de detallado automotriz con precios transparentes.</p>
                         <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
                             📋 Conoce nuestros Planes de Detallado Automotriz
                         </Link>
@@ -309,7 +309,7 @@ function formatMarkdown(md: string): string {
     return md
         .replace(/^### (.+)$/gm, '<h3 style="margin-top:2rem;margin-bottom:0.75rem;font-size:1.15rem;">$1</h3>')
         .replace(/^## (.+)$/gm, '<h2 style="margin-top:2.5rem;margin-bottom:1rem;font-size:1.4rem;">$1</h2>')
-        .replace(/\*\*(.+?)\*\*/g, "<strong style='color:white'>$1</strong>")
+        .replace(/\*\*(.+?)\*\*/g, "<strong style='color:#0f172a'>$1</strong>")
         .replace(/\*(.+?)\*/g, "<em>$1</em>")
         .replace(/^\d+\. (.+)$/gm, '<li style="margin-bottom:0.5rem;margin-left:1.5rem;">$1</li>')
         .replace(/^- (.+)$/gm, '<li style="margin-bottom:0.5rem;margin-left:1.5rem;list-style:disc;">$1</li>')

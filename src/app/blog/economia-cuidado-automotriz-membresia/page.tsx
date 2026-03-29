@@ -32,7 +32,7 @@ export default function BlogEconomiaCuidado() {
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
@@ -59,14 +59,14 @@ export default function BlogEconomiaCuidado() {
             La Economía del Cuidado Automotriz: ¿Conviene una Membresía de Lavado?
           </h1>
 
-          <div className="blog-content" style={{ color: "#cbd5e1", fontSize: "1rem", lineHeight: "1.9" }}>
+          <div className="blog-content" style={{ color: "#475569", fontSize: "1rem", lineHeight: "1.9" }}>
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>El Costo Real de NO Mantener tu Auto</h2>
-            <p>La mayoría de los propietarios de autos de gama media-alta gastan en promedio <strong style={{ color: "white" }}>$2,500-$4,000 MXN al mes</strong> en lavados esporádicos sin protocolo profesional. Cada visita a un autolavado de rodillos genera micro-rayones que degradan la pintura y disminuyen el valor de reventa hasta un <strong style={{ color: "white" }}>15%</strong>.</p>
+            <p>La mayoría de los propietarios de autos de gama media-alta gastan en promedio <strong style={{ color: "#0f172a" }}>$2,500-$4,000 MXN al mes</strong> en lavados esporádicos sin protocolo profesional. Cada visita a un autolavado de rodillos genera micro-rayones que degradan la pintura y disminuyen el valor de reventa hasta un <strong style={{ color: "#0f172a" }}>15%</strong>.</p>
 
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>Membresía vs. Lavados Esporádicos: Los Números</h2>
             <div className="glass-card" style={{ padding: "1.5rem", marginBottom: "1.5rem" }}>
-              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Sin membresía:</strong> 4 lavados/mes × $600 = $2,400/mes + daño acumulado a pintura</p>
-              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Con Membresía Doctor Foam:</strong> $1,160/mes. Incluye Foam Maintenance bimestral + 10% descuento en paquetes.</p>
+              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Sin membresía:</strong> 4 lavados/mes × $600 = $2,400/mes + daño acumulado a pintura</p>
+              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Con Membresía Doctor Foam:</strong> $1,160/mes. Incluye Foam Maintenance bimestral + 10% descuento en paquetes.</p>
               <p style={{ color: "#22c55e", fontWeight: 600 }}>Ahorro anual: ~$14,880 MXN + preservación del valor del vehículo</p>
             </div>
 
@@ -96,7 +96,7 @@ export default function BlogEconomiaCuidado() {
           {/* CTA */}
           <div className="glass-card" style={{ padding: "2rem", marginTop: "3rem", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)" }}>
             <h3 style={{ marginBottom: "1rem" }}>¿Listo para <span className="gradient-text">proteger tu inversión</span>?</h3>
-            <p style={{ color: "#94a3b8", marginBottom: "1.5rem" }}>Conoce nuestra membresía y deja de preocuparte por el mantenimiento.</p>
+            <p style={{ color: "#475569", marginBottom: "1.5rem" }}>Conoce nuestra membresía y deja de preocuparte por el mantenimiento.</p>
             <Link href="/membresia-doctor-foam" className="btn-premium">
               🔄 Conocer la Membresía Doctor Foam
             </Link>

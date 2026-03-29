@@ -155,7 +155,7 @@ export default async function ZonePage({ params }: PageProps) {
             <nav className="navbar navbar-scrolled">
                 <div className="navbar-inner">
                     <Link href="/" style={{ textDecoration: "none" }}>
-                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
                             DOCTOR <span className="gradient-text">FOAM</span>
                         </span>
                     </Link>
@@ -183,7 +183,7 @@ export default async function ZonePage({ params }: PageProps) {
                 <section className="section-padding" style={{ paddingTop: 0 }}>
                     <div className="container" style={{ maxWidth: "800px" }}>
                         <div className="glass-card" style={{ padding: "2.5rem" }}>
-                            <p style={{ color: "#cbd5e1", fontSize: "1.05rem", lineHeight: "1.9" }}>
+                            <p style={{ color: "#475569", fontSize: "1.05rem", lineHeight: "1.9" }}>
                                 {z.intro}
                             </p>
                         </div>

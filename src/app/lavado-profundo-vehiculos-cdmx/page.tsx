@@ -59,7 +59,7 @@ export default function LavadoProfundoPage() {
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
@@ -92,10 +92,10 @@ export default function LavadoProfundoPage() {
                   {s.featured && <span className="badge">Más Popular</span>}
                   <div style={{ fontSize: "2.5rem", marginBottom: "0.75rem" }}>{s.icon}</div>
                   <h3 style={{ fontSize: "1.3rem", marginBottom: "0.25rem" }}>{s.name}</h3>
-                  <p style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: "0.75rem" }}>{s.tagline}</p>
+                  <p style={{ color: "#475569", fontSize: "0.85rem", marginBottom: "0.75rem" }}>{s.tagline}</p>
                   <div className="price-amount gradient-text">{s.price}</div>
-                  <p style={{ color: "#94a3b8", fontSize: "0.8rem", marginBottom: "1rem" }}>Sedán / SUV 2 filas · IVA incluido</p>
-                  <p style={{ color: "#cbd5e1", fontSize: "0.88rem", lineHeight: "1.7", marginBottom: "1.25rem" }}>{s.desc}</p>
+                  <p style={{ color: "#475569", fontSize: "0.8rem", marginBottom: "1rem" }}>Sedán / SUV 2 filas · IVA incluido</p>
+                  <p style={{ color: "#475569", fontSize: "0.88rem", lineHeight: "1.7", marginBottom: "1.25rem" }}>{s.desc}</p>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "1.5rem" }}>
                     {s.highlights.map((h, j) => (
                       <span key={j} style={{ background: "rgba(37,99,235,0.08)", color: "#2563eb", fontSize: "0.72rem", fontWeight: 600, padding: "0.25rem 0.7rem", borderRadius: "2rem" }}>{h}</span>
@@ -120,12 +120,12 @@ export default function LavadoProfundoPage() {
               <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="glass-card" style={{ padding: "2rem", textDecoration: "none", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)" }}>
                 <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>📋</span>
                 <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>Paquetes y Precios</h3>
-                <p style={{ color: "#94a3b8", fontSize: "0.85rem" }}>Comparativa completa de nuestros 3 planes</p>
+                <p style={{ color: "#475569", fontSize: "0.85rem" }}>Comparativa completa de nuestros 3 planes</p>
               </Link>
               <Link href="/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" className="glass-card" style={{ padding: "2rem", textDecoration: "none", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)" }}>
                 <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>🔍</span>
                 <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>Diferencias entre Servicios</h3>
-                <p style={{ color: "#94a3b8", fontSize: "0.85rem" }}>Qué incluye exactamente cada paquete</p>
+                <p style={{ color: "#475569", fontSize: "0.85rem" }}>Qué incluye exactamente cada paquete</p>
               </Link>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default function LavadoProfundoPage() {
             <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
               ¿Listo para la <span className="gradient-text">restauración definitiva</span>?
             </h2>
-            <p style={{ color: "#94a3b8", marginBottom: "2rem" }}>Elige tu paquete y paga en línea de forma segura.</p>
+            <p style={{ color: "#475569", marginBottom: "2rem" }}>Elige tu paquete y paga en línea de forma segura.</p>
             <Link href="/reservar" className="btn-premium">💳 Reservar y Pagar en Línea</Link>
           </div>
         </section>

@@ -32,7 +32,7 @@ export default function BlogLavadoProfundoVsDetallado() {
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
@@ -59,10 +59,10 @@ export default function BlogLavadoProfundoVsDetallado() {
             Lavado Profundo vs Detallado Automotriz: ¿Cuál Necesitas?
           </h1>
 
-          <div className="blog-content" style={{ color: "#cbd5e1", fontSize: "1rem", lineHeight: "1.9" }}>
+          <div className="blog-content" style={{ color: "#475569", fontSize: "1rem", lineHeight: "1.9" }}>
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>¿Por Qué un Detallado Toma 4-8 Horas?</h2>
             <p>Una pregunta que recibimos constantemente: <em>&ldquo;¿Por qué cobran $9,500 si en el autolavado me lo hacen en 30 minutos por $200?&rdquo;</em></p>
-            <p>La respuesta corta: porque son servicios completamente diferentes. Un autolavado de cadena limpía la superficie visible. Un detallado profesional <strong style={{ color: "white" }}>restaura cada componente del vehículo a nivel molecular</strong>.</p>
+            <p>La respuesta corta: porque son servicios completamente diferentes. Un autolavado de cadena limpía la superficie visible. Un detallado profesional <strong style={{ color: "#0f172a" }}>restaura cada componente del vehículo a nivel molecular</strong>.</p>
 
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>Los 3 Niveles de &ldquo;Lavado&rdquo;</h2>
 
@@ -72,37 +72,37 @@ export default function BlogLavadoProfundoVsDetallado() {
             <h3 style={{ marginTop: "2rem", marginBottom: "0.75rem", fontSize: "1.15rem" }}>Nivel 2: Lavado Profundo Interior (3-4 hrs)</h3>
             <p>Aquí es donde la diferencia se hace evidente. Un lavado profundo incluye:</p>
             <ul style={{ marginLeft: "1.5rem", marginBottom: "1.5rem" }}>
-              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Vapor seco a 180°C</strong> — penetra fibras del tapizado, elimina bacterias sin químicos</li>
-              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Extracción por inyección</strong> — inyecta solución limpiadora y la aspira con toda la suciedad</li>
-              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Hidratación de pieles</strong> — productos especializados para cada tipo de cuero</li>
-              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Ozono médico</strong> — elimina 99.9% de patógenos, hongos y olores</li>
+              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Vapor seco a 180°C</strong> — penetra fibras del tapizado, elimina bacterias sin químicos</li>
+              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Extracción por inyección</strong> — inyecta solución limpiadora y la aspira con toda la suciedad</li>
+              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Hidratación de pieles</strong> — productos especializados para cada tipo de cuero</li>
+              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Ozono médico</strong> — elimina 99.9% de patógenos, hongos y olores</li>
             </ul>
 
             <h3 style={{ marginTop: "2rem", marginBottom: "0.75rem", fontSize: "1.15rem" }}>Nivel 3: Detallado y Restauración Completa (5-10 hrs)</h3>
             <p>El servicio más completo incluye todo lo anterior más:</p>
             <ul style={{ marginLeft: "1.5rem", marginBottom: "1.5rem" }}>
-              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Descontaminación química</strong> — disuelve partículas de hierro, savia y contaminantes industriales adheridos</li>
-              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Barra de arcilla sintética</strong> — remueve contaminación mecánica que el lavado no alcanza</li>
-              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Corrección de pintura</strong> — pulidora de triple acción en 2-3 etapas, elimina 95% de swirls</li>
-              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Recubrimiento cerámico/grafeno</strong> — protección de 3-7 años con dureza 9H-10H</li>
+              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Descontaminación química</strong> — disuelve partículas de hierro, savia y contaminantes industriales adheridos</li>
+              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Barra de arcilla sintética</strong> — remueve contaminación mecánica que el lavado no alcanza</li>
+              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Corrección de pintura</strong> — pulidora de triple acción en 2-3 etapas, elimina 95% de swirls</li>
+              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Recubrimiento cerámico/grafeno</strong> — protección de 3-7 años con dureza 9H-10H</li>
             </ul>
 
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>El Mito de los &ldquo;30 Minutos&rdquo;</h2>
             <p>Un autolavado de rodillos mueve tu auto a través de cepillos de tela que hacen exactamente lo contrario de lo que debería hacerse: friccionan la suciedad contra la pintura. Cada lavado de rodillos genera miles de micro-rayones (swirls) que hacen que tu pintura luzca opaca bajo la luz directa.</p>
-            <p>Esos &ldquo;30 minutos&rdquo; no solo no limpian realmente — <strong style={{ color: "white" }}>dañan tu auto progresivamente</strong>.</p>
+            <p>Esos &ldquo;30 minutos&rdquo; no solo no limpian realmente — <strong style={{ color: "#0f172a" }}>dañan tu auto progresivamente</strong>.</p>
 
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>¿Cada Cuánto Necesito Cada Servicio?</h2>
             <div className="glass-card" style={{ padding: "1.5rem", marginBottom: "1.5rem" }}>
-              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Lavado de mantenimiento:</strong> Cada 2-4 semanas (ideal con membresía)</p>
-              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "white" }}>Lavado profundo interior:</strong> Cada 3-6 meses según uso</p>
-              <p style={{ marginBottom: "0" }}><strong style={{ color: "white" }}>Detallado + cerámico:</strong> Una vez al año o al adquirir el vehículo</p>
+              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Lavado de mantenimiento:</strong> Cada 2-4 semanas (ideal con membresía)</p>
+              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Lavado profundo interior:</strong> Cada 3-6 meses según uso</p>
+              <p style={{ marginBottom: "0" }}><strong style={{ color: "#0f172a" }}>Detallado + cerámico:</strong> Una vez al año o al adquirir el vehículo</p>
             </div>
           </div>
 
           {/* CTA */}
           <div className="glass-card" style={{ padding: "2rem", marginTop: "3rem", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)" }}>
             <h3 style={{ marginBottom: "1rem" }}>¿Listo para el <span className="gradient-text">nivel profesional</span>?</h3>
-            <p style={{ color: "#94a3b8", marginBottom: "1.5rem" }}>Conoce nuestros planes de detallado con precios y comparativas detalladas.</p>
+            <p style={{ color: "#475569", marginBottom: "1.5rem" }}>Conoce nuestros planes de detallado con precios y comparativas detalladas.</p>
             <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
               📋 Conoce nuestros Planes de Detallado Automotriz
             </Link>

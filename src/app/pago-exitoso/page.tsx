@@ -71,7 +71,7 @@ function SuccessContent() {
 
                         <p
                             style={{
-                                color: "#94a3b8",
+                                color: "#475569",
                                 fontSize: "1.1rem",
                                 lineHeight: "1.8",
                                 maxWidth: "500px",
@@ -162,7 +162,7 @@ function SuccessContent() {
                                             >
                                                 {item.title}
                                             </div>
-                                            <div style={{ color: "#94a3b8", fontSize: "0.85rem" }}>
+                                            <div style={{ color: "#475569", fontSize: "0.85rem" }}>
                                                 {item.desc}
                                             </div>
                                         </div>
@@ -228,7 +228,7 @@ export default function PagoExitosoPage() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        color: "#94a3b8",
+                        color: "#475569",
                     }}
                 >
                     Cargando...

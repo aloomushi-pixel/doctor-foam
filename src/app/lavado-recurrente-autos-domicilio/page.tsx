@@ -40,7 +40,7 @@ export default function LavadoRecurrentePage() {
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
@@ -72,7 +72,7 @@ export default function LavadoRecurrentePage() {
                 <div key={i} className="glass-card" style={{ padding: "2rem", textAlign: "left" }}>
                   <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>{b.icon}</span>
                   <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>{b.title}</h3>
-                  <p style={{ color: "#94a3b8", fontSize: "0.9rem", lineHeight: "1.7" }}>{b.desc}</p>
+                  <p style={{ color: "#475569", fontSize: "0.9rem", lineHeight: "1.7" }}>{b.desc}</p>
                 </div>
               ))}
             </div>
@@ -89,12 +89,12 @@ export default function LavadoRecurrentePage() {
               <Link href="/membresia-doctor-foam" className="glass-card" style={{ padding: "2rem", textDecoration: "none", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)", transition: "border-color 0.3s" }}>
                 <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>🔄</span>
                 <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>Membresía Doctor Foam</h3>
-                <p style={{ color: "#94a3b8", fontSize: "0.85rem" }}>Planes, precios y beneficios exclusivos</p>
+                <p style={{ color: "#475569", fontSize: "0.85rem" }}>Planes, precios y beneficios exclusivos</p>
               </Link>
               <Link href="/lavado-recurrente-autos-domicilio/que-incluye-mantenimiento" className="glass-card" style={{ padding: "2rem", textDecoration: "none", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)", transition: "border-color 0.3s" }}>
                 <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>🧽</span>
                 <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>¿Qué Incluye el Mantenimiento?</h3>
-                <p style={{ color: "#94a3b8", fontSize: "0.85rem" }}>Cada detalle de nuestro servicio técnico</p>
+                <p style={{ color: "#475569", fontSize: "0.85rem" }}>Cada detalle de nuestro servicio técnico</p>
               </Link>
             </div>
           </div>
@@ -106,7 +106,7 @@ export default function LavadoRecurrentePage() {
             <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
               ¿Listo para el <span className="gradient-text">mantenimiento perfecto</span>?
             </h2>
-            <p style={{ color: "#94a3b8", marginBottom: "2rem" }}>
+            <p style={{ color: "#475569", marginBottom: "2rem" }}>
               Agenda tu primer lavado recurrente o conoce nuestra membresía.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>

@@ -76,7 +76,7 @@ export default function PaquetesDetallado() {
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
@@ -121,14 +121,14 @@ export default function PaquetesDetallado() {
                     <p style={{ color: "#64748b", fontSize: "0.75rem" }}>Sedán · Pick Up: {p.price.pickup}</p>
                   </div>
                 </div>
-                <p style={{ color: "#cbd5e1", fontSize: "0.95rem", marginBottom: "1.5rem", padding: "1rem", background: "rgba(37,99,235,0.04)", borderRadius: "0.75rem", borderLeft: "3px solid #2563eb" }}>
+                <p style={{ color: "#475569", fontSize: "0.95rem", marginBottom: "1.5rem", padding: "1rem", background: "rgba(37,99,235,0.04)", borderRadius: "0.75rem", borderLeft: "3px solid #2563eb" }}>
                   <strong>Ideal si:</strong> {p.ideal}
                 </p>
 
                 <h3 style={{ fontSize: "1rem", marginBottom: "0.75rem", color: "#e2e8f0" }}>✅ Incluye:</h3>
                 <ul style={{ listStyle: "none", padding: 0, marginBottom: "1.5rem" }}>
                   {p.includes.map((f, j) => (
-                    <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.5rem", color: "#cbd5e1", fontSize: "0.88rem" }}>
+                    <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.5rem", color: "#475569", fontSize: "0.88rem" }}>
                       <span style={{ color: "#22c55e", flexShrink: 0 }}>✓</span> {f}
                     </li>
                   ))}
@@ -136,7 +136,7 @@ export default function PaquetesDetallado() {
 
                 {p.notIncludes.length > 0 && (
                   <>
-                    <h3 style={{ fontSize: "1rem", marginBottom: "0.75rem", color: "#94a3b8" }}>❌ No incluye:</h3>
+                    <h3 style={{ fontSize: "1rem", marginBottom: "0.75rem", color: "#475569" }}>❌ No incluye:</h3>
                     <ul style={{ listStyle: "none", padding: 0, marginBottom: "1.5rem" }}>
                       {p.notIncludes.map((f, j) => (
                         <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.5rem", color: "#64748b", fontSize: "0.85rem" }}>
@@ -150,7 +150,7 @@ export default function PaquetesDetallado() {
                 {p.upgrade && (
                   <div style={{ padding: "1.25rem", background: "rgba(37,99,235,0.06)", borderRadius: "0.75rem", border: "1px solid rgba(37,99,235,0.15)", marginBottom: "1.5rem" }}>
                     <p style={{ fontWeight: 700, color: "#e2e8f0", marginBottom: "0.25rem" }}>⬆️ Upgrade: {p.upgrade.name}</p>
-                    <p style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: "0.25rem" }}>{p.upgrade.desc}</p>
+                    <p style={{ color: "#475569", fontSize: "0.85rem", marginBottom: "0.25rem" }}>{p.upgrade.desc}</p>
                     <p style={{ color: "#2563eb", fontWeight: 700 }}>{p.upgrade.price.sedan} MXN (Sedán) · {p.upgrade.price.pickup} MXN (Pick Up)</p>
                   </div>
                 )}

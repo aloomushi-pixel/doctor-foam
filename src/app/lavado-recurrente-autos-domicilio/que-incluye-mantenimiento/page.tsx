@@ -25,7 +25,7 @@ export default function QueIncluyeMantenimientoPage() {
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
@@ -60,7 +60,7 @@ export default function QueIncluyeMantenimientoPage() {
                 <div>
                   <p style={{ color: "#2563eb", fontSize: "0.75rem", fontWeight: 700, fontFamily: "var(--font-heading)", marginBottom: "0.25rem" }}>PASO {s.num}</p>
                   <h3 style={{ fontSize: "1.15rem", marginBottom: "0.5rem" }}>{s.title}</h3>
-                  <p style={{ color: "#94a3b8", fontSize: "0.9rem", lineHeight: "1.7" }}>{s.desc}</p>
+                  <p style={{ color: "#475569", fontSize: "0.9rem", lineHeight: "1.7" }}>{s.desc}</p>
                 </div>
               </div>
             ))}
@@ -73,7 +73,7 @@ export default function QueIncluyeMantenimientoPage() {
               <h2 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
                 Este protocolo es parte de nuestra <span className="gradient-text">Membresía</span>
               </h2>
-              <p style={{ color: "#94a3b8", marginBottom: "1.5rem", fontSize: "0.9rem" }}>
+              <p style={{ color: "#475569", marginBottom: "1.5rem", fontSize: "0.9rem" }}>
                 Accede al mantenimiento preventivo con pagos mensuales automáticos y descuentos exclusivos.
               </p>
               <Link href="/membresia-doctor-foam" className="btn-premium">

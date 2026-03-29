@@ -65,7 +65,7 @@ export default function MembresiaPage() {
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
@@ -97,7 +97,7 @@ export default function MembresiaPage() {
                 <div key={i} className="glass-card" style={{ padding: "1.75rem", textAlign: "center" }}>
                   <div className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "2.5rem", marginBottom: "0.25rem" }}>{r.value}</div>
                   <h3 style={{ fontSize: "1rem", marginBottom: "0.5rem" }}>{r.label}</h3>
-                  <p style={{ color: "#94a3b8", fontSize: "0.85rem", lineHeight: "1.6" }}>{r.desc}</p>
+                  <p style={{ color: "#475569", fontSize: "0.85rem", lineHeight: "1.6" }}>{r.desc}</p>
                 </div>
               ))}
             </div>
@@ -130,13 +130,13 @@ export default function MembresiaPage() {
                       </span>
                     </div>
                   </div>
-                  <p style={{ color: "#cbd5e1", fontSize: "0.88rem", lineHeight: "1.7", marginBottom: "1rem" }}>{p.desc}</p>
+                  <p style={{ color: "#475569", fontSize: "0.88rem", lineHeight: "1.7", marginBottom: "1rem" }}>{p.desc}</p>
 
                   <div style={{ marginBottom: "0.25rem" }}>
                     <span className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "2rem" }}>{p.price}</span>
                     <span style={{ color: "#64748b", fontSize: "0.9rem", marginLeft: "0.25rem" }}>{p.period}</span>
                   </div>
-                  <p style={{ color: "#94a3b8", fontSize: "0.75rem", marginBottom: "1rem" }}>{p.frequency}</p>
+                  <p style={{ color: "#475569", fontSize: "0.75rem", marginBottom: "1rem" }}>{p.frequency}</p>
 
                   <ul style={{ listStyle: "none", padding: 0, flex: 1 }}>
                     {p.features.map((f, j) => (
@@ -165,7 +165,7 @@ export default function MembresiaPage() {
         {/* CTA */}
         <section className="section-padding" style={{ textAlign: "center" }}>
           <div className="container" style={{ maxWidth: "600px" }}>
-            <p style={{ color: "#94a3b8", marginBottom: "1.5rem" }}>
+            <p style={{ color: "#475569", marginBottom: "1.5rem" }}>
               ¿Tienes dudas? Escríbenos por WhatsApp y te asesoramos sin compromiso.
             </p>
             <a href="https://wa.me/525559624800?text=Hola%2C%20me%20interesa%20la%20membresía%20Doctor%20Foam" className="btn-outline" target="_blank" rel="noopener noreferrer">

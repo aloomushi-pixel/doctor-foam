@@ -34,7 +34,7 @@ export default function EstacionamientoCorporativoPage() {
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
@@ -69,7 +69,7 @@ export default function EstacionamientoCorporativoPage() {
                 <div key={i} className="glass-card" style={{ padding: "1.5rem", textAlign: "center" }}>
                   <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "0.5rem" }}>{a.icon}</span>
                   <h3 style={{ fontSize: "1rem", marginBottom: "0.5rem", color: "#e2e8f0" }}>{a.label}</h3>
-                  <p style={{ color: "#94a3b8", fontSize: "0.82rem", lineHeight: "1.6" }}>{a.desc}</p>
+                  <p style={{ color: "#475569", fontSize: "0.82rem", lineHeight: "1.6" }}>{a.desc}</p>
                 </div>
               ))}
             </div>
@@ -87,7 +87,7 @@ export default function EstacionamientoCorporativoPage() {
                 <div key={i} className="glass-card" style={{ padding: "2rem" }}>
                   <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>{u.icon}</span>
                   <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>{u.title}</h3>
-                  <p style={{ color: "#94a3b8", fontSize: "0.88rem", lineHeight: "1.7" }}>{u.desc}</p>
+                  <p style={{ color: "#475569", fontSize: "0.88rem", lineHeight: "1.7" }}>{u.desc}</p>
                 </div>
               ))}
             </div>
@@ -104,7 +104,7 @@ export default function EstacionamientoCorporativoPage() {
               <h2 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
                 Ideal para <span className="gradient-text">Corporativos y Condominios</span>
               </h2>
-              <p style={{ color: "#94a3b8", fontSize: "0.9rem", lineHeight: "1.7", marginBottom: "1.5rem" }}>
+              <p style={{ color: "#475569", fontSize: "0.9rem", lineHeight: "1.7", marginBottom: "1.5rem" }}>
                 Muchos edificios y fraccionamientos restringen el uso de mangueras y el vertido de agua en estacionamientos. Nuestro sistema ecológico no genera escurrimientos y cumple con todas las normativas ambientales.
               </p>
               <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>

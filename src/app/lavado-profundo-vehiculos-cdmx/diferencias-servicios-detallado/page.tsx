@@ -32,7 +32,7 @@ export default function DiferenciasServiciosPage() {
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
@@ -69,7 +69,7 @@ export default function DiferenciasServiciosPage() {
                   <h3 style={{ fontSize: "1.1rem", marginBottom: "1rem", color: "#fca5a5" }}>❌ {c.basic.title}</h3>
                   <ul style={{ listStyle: "none", padding: 0 }}>
                     {c.basic.items.map((item, j) => (
-                      <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.6rem", color: "#94a3b8", fontSize: "0.9rem" }}>
+                      <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.6rem", color: "#475569", fontSize: "0.9rem" }}>
                         <span style={{ color: "#ef4444", flexShrink: 0 }}>✗</span> {item}
                       </li>
                     ))}
@@ -97,7 +97,7 @@ export default function DiferenciasServiciosPage() {
               <h2 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
                 ¿Listo para ver la <span className="gradient-text">diferencia real</span>?
               </h2>
-              <p style={{ color: "#94a3b8", marginBottom: "1.5rem" }}>Compara nuestros paquetes con precios detallados.</p>
+              <p style={{ color: "#475569", marginBottom: "1.5rem" }}>Compara nuestros paquetes con precios detallados.</p>
               <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
                 <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">📋 Ver Paquetes y Precios</Link>
                 <Link href="/reservar" className="btn-outline">📅 Agendar Servicio</Link>

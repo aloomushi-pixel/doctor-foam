@@ -112,7 +112,7 @@ function BookingForm() {
                             background: step === s.num ? "rgba(37, 99, 235, 0.1)" : step > s.num ? "rgba(16, 185, 129, 0.08)" : "#f1f5f9",
                             border: step === s.num ? "1.5px solid #2563eb" : step > s.num ? "1.5px solid #10b981" : "1.5px solid #e2e8f0",
                             borderRadius: "2rem", padding: "0.5rem 1rem",
-                            color: step === s.num ? "#2563eb" : step > s.num ? "#10b981" : "#94a3b8",
+                            color: step === s.num ? "#2563eb" : step > s.num ? "#10b981" : "#475569",
                             fontSize: "0.8rem", fontWeight: 600, cursor: s.num < step ? "pointer" : "default",
                             fontFamily: "var(--font-heading)",
                             transition: "all 0.3s ease",
@@ -301,7 +301,7 @@ function BookingForm() {
                                 <input type="text" placeholder="Tu nombre" value={customerName} onChange={(e) => setCustomerName(e.target.value)} style={inputStyle} required />
                             </div>
                             <div>
-                                <label style={labelStyle}>Email <span style={{ color: "#94a3b8", fontWeight: 400 }}>(opcional)</span></label>
+                                <label style={labelStyle}>Email <span style={{ color: "#475569", fontWeight: 400 }}>(opcional)</span></label>
                                 <input type="email" placeholder="tu@email.com" value={customerEmail} onChange={(e) => setCustomerEmail(e.target.value)} style={inputStyle} />
                             </div>
                             <div>
@@ -312,7 +312,7 @@ function BookingForm() {
                     </div>
 
                     <div className="glass-card" style={{ padding: "2rem", marginBottom: "1.5rem" }}>
-                        <h2 style={{ fontSize: "1.2rem", marginBottom: "0.5rem", color: "#0f172a" }}>Datos del vehículo <span style={{ color: "#94a3b8", fontSize: "0.85rem", fontWeight: 400 }}>(opcional)</span></h2>
+                        <h2 style={{ fontSize: "1.2rem", marginBottom: "0.5rem", color: "#0f172a" }}>Datos del vehículo <span style={{ color: "#475569", fontSize: "0.85rem", fontWeight: 400 }}>(opcional)</span></h2>
                         <p style={{ color: "#64748b", fontSize: "0.8rem", marginBottom: "1.25rem" }}>Si los tienes a la mano, ayúdanos con estos datos.</p>
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                             <div><label style={labelStyle}>Marca</label><input type="text" placeholder="BMW, Mercedes..." value={vehicleBrand} onChange={(e) => setVehicleBrand(e.target.value)} style={inputStyle} /></div>
@@ -403,7 +403,7 @@ function BookingForm() {
                         {loading ? "Procesando..." : `Reservar y Pagar $${currentPrice.toLocaleString("es-MX")} MXN →`}
                     </button>
 
-                    <p style={{ color: "#94a3b8", fontSize: "0.8rem", textAlign: "center", marginTop: "1rem" }}>
+                    <p style={{ color: "#475569", fontSize: "0.8rem", textAlign: "center", marginTop: "1rem" }}>
                         Serás redirigido a Stripe para completar el pago de forma segura.
                     </p>
 
@@ -415,7 +415,7 @@ function BookingForm() {
 
             {/* WhatsApp */}
             <div style={{ textAlign: "center", marginTop: "2rem" }}>
-                <p style={{ color: "#94a3b8", fontSize: "0.9rem", marginBottom: "0.75rem" }}>¿Tienes dudas?</p>
+                <p style={{ color: "#475569", fontSize: "0.9rem", marginBottom: "0.75rem" }}>¿Tienes dudas?</p>
                 <a href="https://wa.me/525559624800?text=Hola%2C%20tengo%20una%20duda%20sobre%20los%20servicios%20de%20Doctor%20Foam" className="btn-outline" style={{ display: "inline-flex" }} target="_blank" rel="noopener noreferrer">
                     📱 Escríbenos por WhatsApp
                 </a>

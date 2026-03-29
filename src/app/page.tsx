@@ -663,7 +663,7 @@ export default function HomePage() {
                   <span className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "2rem" }}>$1,800</span>
                   <span style={{ color: "#64748b", fontSize: "0.9rem", marginLeft: "0.25rem" }}>MXN / mes</span>
                 </div>
-                <p style={{ color: "#94a3b8", fontSize: "0.75rem", marginBottom: "1.25rem" }}>IVA incluido · Facturable · {foamMaintenance.note}</p>
+                <p style={{ color: "#475569", fontSize: "0.75rem", marginBottom: "1.25rem" }}>IVA incluido · Facturable · {foamMaintenance.note}</p>
                 <Link
                   href="/membresia-doctor-foam"
                   className="btn-premium"
@@ -734,9 +734,9 @@ export default function HomePage() {
                 <div key={i} className={`glass-card price-card animate-on-scroll ${p.featured ? "featured" : ""}`}>
                   {p.featured && <span className="badge">Más Popular</span>}
                   <h3 style={{ fontSize: "1.3rem", marginBottom: "0.25rem" }}>{p.name}</h3>
-                  <p style={{ color: "#94a3b8", fontSize: "0.85rem" }}>{displaySubtitle}</p>
+                  <p style={{ color: "#475569", fontSize: "0.85rem" }}>{displaySubtitle}</p>
                   <div className="price-amount gradient-text" style={{ transition: "all 0.3s ease" }}>{displayPrice}</div>
-                  <p style={{ color: "#94a3b8", fontSize: "0.8rem", marginBottom: "0.5rem" }}>{p.priceLabel} · IVA incluido</p>
+                  <p style={{ color: "#475569", fontSize: "0.8rem", marginBottom: "0.5rem" }}>{p.priceLabel} · IVA incluido</p>
                   <ul className="price-list">
                     {p.features.map((f, fi) => (
                       <li key={fi}>{f}</li>
@@ -828,12 +828,12 @@ export default function HomePage() {
                   <span className="zone-name">{z.name}</span>
                   <span className={`zone-tag ${z.tagClass}`}>{z.tag}</span>
                 </div>
-                <p style={{ color: "#94a3b8", fontSize: "0.85rem" }}>{z.desc}</p>
+                <p style={{ color: "#475569", fontSize: "0.85rem" }}>{z.desc}</p>
               </div>
             ))}
           </div>
 
-          <p className="animate-on-scroll" style={{ marginTop: "2rem", color: "#94a3b8", fontSize: "0.9rem" }}>
+          <p className="animate-on-scroll" style={{ marginTop: "2rem", color: "#475569", fontSize: "0.9rem" }}>
             ¿Tu zona no aparece? <a href="#contacto" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>Contáctanos</a> —
             posiblemente también te cubrimos.
           </p>
@@ -854,7 +854,7 @@ export default function HomePage() {
                     {s.num}
                   </div>
                   <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "0.85rem", color: "#0f172a", marginBottom: "0.2rem" }}>{s.title}</p>
-                  <p style={{ color: "#94a3b8", fontSize: "0.75rem", lineHeight: "1.4" }}>{s.desc}</p>
+                  <p style={{ color: "#475569", fontSize: "0.75rem", lineHeight: "1.4" }}>{s.desc}</p>
                 </div>
                 {i < processSteps.length - 1 && (
                   <div style={{ width: "40px", height: "2px", background: "linear-gradient(90deg, #2563eb, #60a5fa)", marginTop: "1.25rem", flexShrink: 0, opacity: 0.3 }} />
@@ -1015,7 +1015,7 @@ export default function HomePage() {
         <div className="footer-grid">
           <div>
             <Logo />
-            <p style={{ color: "#94a3b8", fontSize: "0.875rem", marginTop: "1rem", maxWidth: "320px", lineHeight: "1.7" }}>
+            <p style={{ color: "#475569", fontSize: "0.875rem", marginTop: "1rem", maxWidth: "320px", lineHeight: "1.7" }}>
               Lavado de autos a domicilio y detallado automotriz premium en CDMX y Valle de México. Equipo industrial, químicos
               profesionales, resultados extraordinarios.
             </p>

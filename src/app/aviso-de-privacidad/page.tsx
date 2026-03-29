@@ -13,7 +13,7 @@ export default function AvisoDePrivacidad() {
             <nav className="navbar navbar-scrolled">
                 <div className="navbar-inner">
                     <Link href="/" style={{ textDecoration: "none" }}>
-                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
                             DOCTOR <span className="gradient-text">FOAM</span>
                         </span>
                     </Link>
@@ -27,13 +27,13 @@ export default function AvisoDePrivacidad() {
                             Aviso de Privacidad
                         </h1>
 
-                        <div style={{ color: "#cbd5e1", lineHeight: "1.9", fontSize: "0.95rem" }}>
+                        <div style={{ color: "#475569", lineHeight: "1.9", fontSize: "0.95rem" }}>
                             <p style={{ marginBottom: "1.5rem" }}>
-                                <strong style={{ color: "white" }}>Doctor Foam México</strong>, con domicilio en la Ciudad de México,
+                                <strong style={{ color: "#0f172a" }}>Doctor Foam México</strong>, con domicilio en la Ciudad de México,
                                 es responsable del uso y protección de sus datos personales, y al respecto le informamos lo siguiente:
                             </p>
 
-                            <h2 style={{ fontSize: "1.2rem", color: "white", marginTop: "2rem", marginBottom: "1rem" }}>
+                            <h2 style={{ fontSize: "1.2rem", color: "#0f172a", marginTop: "2rem", marginBottom: "1rem" }}>
                                 ¿Para qué fines utilizaremos sus datos personales?
                             </h2>
                             <p style={{ marginBottom: "1rem" }}>
@@ -48,7 +48,7 @@ export default function AvisoDePrivacidad() {
                                 <li style={{ marginBottom: "0.5rem" }}>Realizar encuestas de satisfacción</li>
                             </ul>
 
-                            <h2 style={{ fontSize: "1.2rem", color: "white", marginTop: "2rem", marginBottom: "1rem" }}>
+                            <h2 style={{ fontSize: "1.2rem", color: "#0f172a", marginTop: "2rem", marginBottom: "1rem" }}>
                                 ¿Qué datos personales utilizaremos?
                             </h2>
                             <p style={{ marginBottom: "1rem" }}>
@@ -62,7 +62,7 @@ export default function AvisoDePrivacidad() {
                                 <li style={{ marginBottom: "0.5rem" }}>Datos del vehículo (marca, modelo, año, color)</li>
                             </ul>
 
-                            <h2 style={{ fontSize: "1.2rem", color: "white", marginTop: "2rem", marginBottom: "1rem" }}>
+                            <h2 style={{ fontSize: "1.2rem", color: "#0f172a", marginTop: "2rem", marginBottom: "1rem" }}>
                                 ¿Cómo puede acceder, rectificar o cancelar sus datos personales?
                             </h2>
                             <p style={{ marginBottom: "1.5rem" }}>
@@ -79,7 +79,7 @@ export default function AvisoDePrivacidad() {
                                 del correo electrónico <strong style={{ color: "var(--color-gold-400)" }}>privacidad@doctorfoam.mx</strong>.
                             </p>
 
-                            <h2 style={{ fontSize: "1.2rem", color: "white", marginTop: "2rem", marginBottom: "1rem" }}>
+                            <h2 style={{ fontSize: "1.2rem", color: "#0f172a", marginTop: "2rem", marginBottom: "1rem" }}>
                                 Cambios al aviso de privacidad
                             </h2>
                             <p style={{ marginBottom: "1.5rem" }}>
@@ -89,7 +89,7 @@ export default function AvisoDePrivacidad() {
                             </p>
 
                             <p style={{ marginBottom: "1.5rem" }}>
-                                Fecha de última actualización: <strong style={{ color: "white" }}>Febrero 2026</strong>.
+                                Fecha de última actualización: <strong style={{ color: "#0f172a" }}>Febrero 2026</strong>.
                             </p>
                         </div>
 
