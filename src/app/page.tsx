@@ -840,27 +840,68 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── PROCESS ─── */}
+      {/* ─── BLOG CAROUSEL ─── */}
       <section style={{ padding: "3rem 1.5rem", background: "#ffffff" }} id="proceso">
         <div className="container">
           <div className="animate-on-scroll" style={{ textAlign: "center", marginBottom: "2rem" }}>
-            <span className="section-label">¿Cómo Funciona?</span>
+            <span className="section-label">Blog & Guías</span>
+            <h2 className="section-title">
+              Recursos de <span className="gradient-text">cuidado automotriz</span>
+            </h2>
+            <p className="section-subtitle">Guías, tips y comparativas de nuestros expertos para que cuides tu auto como se merece.</p>
           </div>
-          <div className="animate-on-scroll" style={{ display: "flex", alignItems: "flex-start", justifyContent: "center", gap: "0", maxWidth: "900px", margin: "0 auto", flexWrap: "wrap" }}>
-            {processSteps.map((s, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "flex-start" }}>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", width: "160px" }}>
-                  <div style={{ width: "2.5rem", height: "2.5rem", borderRadius: "50%", background: "linear-gradient(135deg, #2563eb, #3b82f6)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1rem", marginBottom: "0.5rem", flexShrink: 0 }}>
-                    {s.num}
+
+          {/* Horizontal Scrollable Carousel */}
+          <div style={{ overflow: "hidden", position: "relative" }}>
+            {/* Fade edges */}
+            <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "40px", background: "linear-gradient(90deg, #ffffff, transparent)", zIndex: 2, pointerEvents: "none" }} />
+            <div style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: "40px", background: "linear-gradient(270deg, #ffffff, transparent)", zIndex: 2, pointerEvents: "none" }} />
+
+            <div style={{ display: "flex", gap: "1.25rem", overflowX: "auto", scrollSnapType: "x mandatory", paddingBottom: "1rem", WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}>
+              {[
+                { slug: "economia-cuidado-automotriz-membresia", title: "La Economía del Cuidado Automotriz", image: "/seo/blog-economia.png", category: "Finanzas", readTime: "10 min" },
+                { slug: "lavado-profundo-vs-detallado-automotriz", title: "Lavado Profundo vs Detallado: ¿Cuál Necesitas?", image: "/seo/blog-vs-detallado.png", category: "Educación", readTime: "8 min" },
+                { slug: "guia-completa-recubrimiento-ceramico", title: "Guía Completa: Recubrimiento Cerámico", image: "/seo/blog-ceramico.png", category: "Protección", readTime: "8 min" },
+                { slug: "5-errores-lavado-auto-premium", title: "5 Errores que Arruinan tu Pintura", image: "/seo/blog-errores.png", category: "Cuidado", readTime: "6 min" },
+                { slug: "detallado-interior-profundo-que-incluye", title: "¿Qué Incluye un Detallado Interior?", image: "/seo/blog-interior.png", category: "Servicios", readTime: "7 min" },
+                { slug: "correccion-pintura-swirls-guia", title: "Corrección de Pintura: Eliminar Swirls", image: "/seo/blog-correccion.png", category: "Corrección", readTime: "9 min" },
+                { slug: "por-que-detallado-domicilio-mejor", title: "¿Por Qué el Detallado a Domicilio Supera al Taller?", image: "/seo/blog-domicilio.png", category: "Tendencias", readTime: "5 min" },
+                { slug: "mejores-ceras-selladores-mexico", title: "Las Mejores Ceras y Selladores en México", image: "/seo/blog-ceras.png", category: "Productos", readTime: "10 min" },
+              ].map((post, i) => (
+                <Link
+                  key={i}
+                  href={`/blog/${post.slug}`}
+                  style={{ scrollSnapAlign: "start", minWidth: "280px", maxWidth: "280px", flexShrink: 0, textDecoration: "none", color: "inherit" }}
+                >
+                  <div className="glass-card" style={{ overflow: "hidden", height: "100%", transition: "transform 0.3s ease, box-shadow 0.3s ease" }}>
+                    {/* Thumbnail */}
+                    <div style={{
+                      width: "100%",
+                      height: "160px",
+                      backgroundImage: `url(${post.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }} />
+                    {/* Content */}
+                    <div style={{ padding: "1.25rem" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.6rem" }}>
+                        <span className="zone-tag zone-tag-gold" style={{ fontSize: "0.65rem" }}>{post.category}</span>
+                        <span style={{ color: "#64748b", fontSize: "0.72rem" }}>{post.readTime}</span>
+                      </div>
+                      <h3 style={{ fontSize: "0.95rem", lineHeight: "1.4", margin: 0, color: "#0f172a" }}>{post.title}</h3>
+                    </div>
                   </div>
-                  <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "0.85rem", color: "#0f172a", marginBottom: "0.2rem" }}>{s.title}</p>
-                  <p style={{ color: "#475569", fontSize: "0.75rem", lineHeight: "1.4" }}>{s.desc}</p>
-                </div>
-                {i < processSteps.length - 1 && (
-                  <div style={{ width: "40px", height: "2px", background: "linear-gradient(90deg, #2563eb, #60a5fa)", marginTop: "1.25rem", flexShrink: 0, opacity: 0.3 }} />
-                )}
-              </div>
-            ))}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* View All Link */}
+          <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
+            <Link href="/blog" style={{ color: "var(--color-gold-400)", fontWeight: 600, fontSize: "0.9rem", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
+              Ver todos los artículos
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+            </Link>
           </div>
         </div>
       </section>

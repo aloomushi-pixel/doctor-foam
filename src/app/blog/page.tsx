@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "Blog | Doctor Foam México — Consejos de Detallado Automotriz",
@@ -10,6 +11,24 @@ export const metadata: Metadata = {
 
 const blogPosts = [
     {
+        slug: "economia-cuidado-automotriz-membresia",
+        title: "La Economía del Cuidado Automotriz: ¿Conviene una Membresía?",
+        excerpt: "Descubre cuánto ahorras con una membresía de mantenimiento automotriz vs. lavados esporádicos. Tips de limpieza interior + análisis financiero.",
+        date: "2026-03-29",
+        category: "Finanzas",
+        readTime: "10 min",
+        image: "/seo/blog-economia.png",
+    },
+    {
+        slug: "lavado-profundo-vs-detallado-automotriz",
+        title: "Lavado Profundo vs Detallado Automotriz: ¿Cuál Necesitas?",
+        excerpt: "Entiende la diferencia entre un lavado profundo y un detallado automotriz profesional. Descontaminación química, arcilla, corrección de pintura explicados.",
+        date: "2026-03-29",
+        category: "Educación",
+        readTime: "8 min",
+        image: "/seo/blog-vs-detallado.png",
+    },
+    {
         slug: "guia-completa-recubrimiento-ceramico",
         title: "Guía Completa: Recubrimiento Cerámico para tu Auto en CDMX",
         excerpt:
@@ -17,6 +36,7 @@ const blogPosts = [
         date: "2026-02-15",
         category: "Protección",
         readTime: "8 min",
+        image: "/seo/blog-ceramico.png",
     },
     {
         slug: "5-errores-lavado-auto-premium",
@@ -26,6 +46,7 @@ const blogPosts = [
         date: "2026-02-10",
         category: "Cuidado",
         readTime: "6 min",
+        image: "/seo/blog-errores.png",
     },
     {
         slug: "detallado-interior-profundo-que-incluye",
@@ -35,6 +56,7 @@ const blogPosts = [
         date: "2026-02-05",
         category: "Servicios",
         readTime: "7 min",
+        image: "/seo/blog-interior.png",
     },
     {
         slug: "correccion-pintura-swirls-guia",
@@ -44,6 +66,7 @@ const blogPosts = [
         date: "2026-01-28",
         category: "Corrección",
         readTime: "9 min",
+        image: "/seo/blog-correccion.png",
     },
     {
         slug: "por-que-detallado-domicilio-mejor",
@@ -53,6 +76,7 @@ const blogPosts = [
         date: "2026-01-20",
         category: "Tendencias",
         readTime: "5 min",
+        image: "/seo/blog-domicilio.png",
     },
     {
         slug: "mejores-ceras-selladores-mexico",
@@ -62,6 +86,7 @@ const blogPosts = [
         date: "2026-01-15",
         category: "Productos",
         readTime: "10 min",
+        image: "/seo/blog-ceras.png",
     },
 ];
 
@@ -115,34 +140,45 @@ export default function BlogPage() {
                             </p>
                         </div>
 
-                        <div className="services-grid" style={{ maxWidth: "1000px", margin: "0 auto" }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "1.5rem", maxWidth: "1100px", margin: "0 auto" }}>
                             {blogPosts.map((post, i) => (
-                                <article key={i} className="glass-card" style={{ padding: "2rem" }}>
-                                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-                                        <span className="zone-tag zone-tag-gold">{post.category}</span>
-                                        <span style={{ color: "#64748b", fontSize: "0.8rem" }}>{post.readTime}</span>
-                                    </div>
-                                    <h2 style={{ fontSize: "1.2rem", marginBottom: "0.75rem", lineHeight: "1.4" }}>
-                                        <Link
-                                            href={`/blog/${post.slug}`}
-                                            style={{ color: "#0f172a", textDecoration: "none" }}
-                                        >
-                                            {post.title}
-                                        </Link>
-                                    </h2>
-                                    <p style={{ color: "#475569", fontSize: "0.9rem", lineHeight: "1.7", marginBottom: "1rem" }}>
-                                        {post.excerpt}
-                                    </p>
-                                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                        <span style={{ color: "#475569", fontSize: "0.8rem" }}>
-                                            {new Date(post.date).toLocaleDateString("es-MX", { year: "numeric", month: "long", day: "numeric" })}
-                                        </span>
-                                        <Link
-                                            href={`/blog/${post.slug}`}
-                                            style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.9rem", fontWeight: 600 }}
-                                        >
-                                            Leer más →
-                                        </Link>
+                                <article key={i} className="glass-card" style={{ overflow: "hidden" }}>
+                                    {/* Thumbnail */}
+                                    <Image
+                                        src={post.image}
+                                        alt={post.title}
+                                        width={400}
+                                        height={220}
+                                        style={{ width: "100%", height: "200px", objectFit: "cover" }}
+                                    />
+                                    {/* Content */}
+                                    <div style={{ padding: "1.5rem" }}>
+                                        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
+                                            <span className="zone-tag zone-tag-gold">{post.category}</span>
+                                            <span style={{ color: "#64748b", fontSize: "0.8rem" }}>{post.readTime}</span>
+                                        </div>
+                                        <h2 style={{ fontSize: "1.1rem", marginBottom: "0.75rem", lineHeight: "1.4" }}>
+                                            <Link
+                                                href={`/blog/${post.slug}`}
+                                                style={{ color: "#0f172a", textDecoration: "none" }}
+                                            >
+                                                {post.title}
+                                            </Link>
+                                        </h2>
+                                        <p style={{ color: "#475569", fontSize: "0.88rem", lineHeight: "1.7", marginBottom: "1rem" }}>
+                                            {post.excerpt}
+                                        </p>
+                                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                            <span style={{ color: "#475569", fontSize: "0.8rem" }}>
+                                                {new Date(post.date).toLocaleDateString("es-MX", { year: "numeric", month: "long", day: "numeric" })}
+                                            </span>
+                                            <Link
+                                                href={`/blog/${post.slug}`}
+                                                style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.9rem", fontWeight: 600 }}
+                                            >
+                                                Leer más →
+                                            </Link>
+                                        </div>
                                     </div>
                                 </article>
                             ))}
