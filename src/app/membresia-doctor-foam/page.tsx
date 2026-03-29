@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Membresía Lavado de Auto a Domicilio | Doctor Foam México",
@@ -89,8 +90,20 @@ export default function MembresiaPage() {
           </div>
         </section>
 
+        {/* Hero Image */}
+        <div style={{ maxWidth: "900px", margin: "-2rem auto 0", padding: "0 1.5rem" }}>
+          <Image
+            src="/seo/hero-membresia.png"
+            alt="Cofre de auto de lujo negro con acabado espejo reflejando el atardecer — resultado de membresía Doctor Foam"
+            width={1200}
+            height={600}
+            style={{ width: "100%", height: "auto", borderRadius: "1.25rem", boxShadow: "0 4px 25px rgba(0,0,0,0.08)" }}
+            priority
+          />
+        </div>
+
         {/* ROI Section */}
-        <section className="section-padding" style={{ paddingTop: 0 }}>
+        <section className="section-padding" style={{ paddingTop: "3rem" }}>
           <div className="container" style={{ maxWidth: "900px" }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
               {roi.map((r, i) => (

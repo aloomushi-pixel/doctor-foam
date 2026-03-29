@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Lavado Profundo vs Detallado Automotriz: ¿Cuál Necesitas? | Doctor Foam",
@@ -55,9 +56,18 @@ export default function BlogLavadoProfundoVsDetallado() {
             <span style={{ color: "#64748b", fontSize: "0.85rem" }}>8 min de lectura</span>
           </div>
 
-          <h1 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", marginBottom: "2rem", lineHeight: "1.3" }}>
+          <h1 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", marginBottom: "1.5rem", lineHeight: "1.3" }}>
             Lavado Profundo vs Detallado Automotriz: ¿Cuál Necesitas?
           </h1>
+
+          <Image
+            src="/seo/blog-vs-detallado.png"
+            alt="Infografía de 3 capas de cuidado de pintura automotriz: suciedad, contaminantes y restauración cerámica"
+            width={800}
+            height={500}
+            style={{ width: "100%", height: "auto", borderRadius: "1rem", marginBottom: "2rem", boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}
+            priority
+          />
 
           <div className="blog-content" style={{ color: "#475569", fontSize: "1rem", lineHeight: "1.9" }}>
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>¿Por Qué un Detallado Toma 4-8 Horas?</h2>

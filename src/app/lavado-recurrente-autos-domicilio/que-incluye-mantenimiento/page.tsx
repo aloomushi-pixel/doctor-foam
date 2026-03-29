@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "¿Qué Incluye Nuestro Lavado de Mantenimiento? | Doctor Foam",
@@ -50,7 +51,19 @@ export default function QueIncluyeMantenimientoPage() {
           </div>
         </section>
 
-        <section className="section-padding" style={{ paddingTop: 0 }}>
+        {/* Service Image */}
+        <div style={{ maxWidth: "900px", margin: "0 auto 2rem", padding: "0 1.5rem" }}>
+          <Image
+            src="/seo/detalle-servicio.png"
+            alt="Primer plano de aplicación de cera de carnauba sobre pintura negra con reflejos perfectos"
+            width={800}
+            height={500}
+            style={{ width: "100%", height: "auto", borderRadius: "1.25rem", boxShadow: "0 4px 25px rgba(0,0,0,0.08)" }}
+            priority
+          />
+        </div>
+
+        <section className="section-padding" style={{ paddingTop: "1rem" }}>
           <div className="container" style={{ maxWidth: "900px" }}>
             {steps.map((s, i) => (
               <div key={i} className="glass-card" style={{ padding: "2rem", marginBottom: "1.25rem", display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>

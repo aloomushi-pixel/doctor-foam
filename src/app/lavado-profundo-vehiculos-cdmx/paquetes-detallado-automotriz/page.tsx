@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Paquetes de Detallado Automotriz CDMX | Precios Doctor Foam",
@@ -101,8 +102,20 @@ export default function PaquetesDetallado() {
           </div>
         </section>
 
+        {/* Hero Image */}
+        <div style={{ maxWidth: "900px", margin: "0 auto 2rem", padding: "0 1.5rem" }}>
+          <Image
+            src="/seo/hero-paquetes.png"
+            alt="Tres autos con diferentes niveles de acabado de detallado automotriz en estudio profesional"
+            width={1200}
+            height={600}
+            style={{ width: "100%", height: "auto", borderRadius: "1.25rem", boxShadow: "0 4px 25px rgba(0,0,0,0.08)" }}
+            priority
+          />
+        </div>
+
         {packages.map((p, i) => (
-          <section key={i} className="section-padding" style={{ paddingTop: i === 0 ? 0 : undefined }}>
+          <section key={i} className="section-padding" style={{ paddingTop: i === 0 ? "1rem" : undefined }}>
             <div className="container" style={{ maxWidth: "900px" }}>
               <div className="glass-card" style={{ padding: "2.5rem", border: p.featured ? "2px solid rgba(37,99,235,0.2)" : undefined }}>
                 {p.featured && (

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Lavado de Vestiduras y Detallado: Diferencias | Doctor Foam",
@@ -57,8 +58,20 @@ export default function DiferenciasServiciosPage() {
           </div>
         </section>
 
+        {/* Before/After Image */}
+        <div style={{ maxWidth: "900px", margin: "0 auto 2rem", padding: "0 1.5rem" }}>
+          <Image
+            src="/seo/antes-despues.png"
+            alt="Comparación antes y después: puerta de auto con swirl marks vs acabado pulido espejo"
+            width={800}
+            height={500}
+            style={{ width: "100%", height: "auto", borderRadius: "1.25rem", boxShadow: "0 4px 25px rgba(0,0,0,0.08)" }}
+            priority
+          />
+        </div>
+
         {comparisons.map((c, i) => (
-          <section key={i} className="section-padding" style={{ paddingTop: i === 0 ? 0 : undefined }}>
+          <section key={i} className="section-padding" style={{ paddingTop: i === 0 ? "1rem" : undefined }}>
             <div className="container" style={{ maxWidth: "1000px" }}>
               <h2 style={{ fontSize: "1.4rem", marginBottom: "1.5rem", textAlign: "center" }}>
                 {c.aspect}: <span className="gradient-text">La Diferencia</span>

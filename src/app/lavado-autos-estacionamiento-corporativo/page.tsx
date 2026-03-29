@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Lavado de Autos en Estacionamiento Corporativo CDMX | Sin Agua",
@@ -58,8 +59,20 @@ export default function EstacionamientoCorporativoPage() {
           </div>
         </section>
 
+        {/* Hero Image */}
+        <div style={{ maxWidth: "1000px", margin: "-2rem auto 0", padding: "0 1.5rem" }}>
+          <Image
+            src="/seo/hero-corporativo.png"
+            alt="Equipo de lavado profesional Doctor Foam operando en estacionamiento corporativo moderno en CDMX"
+            width={1200}
+            height={600}
+            style={{ width: "100%", height: "auto", borderRadius: "1.25rem", boxShadow: "0 4px 25px rgba(0,0,0,0.08)" }}
+            priority
+          />
+        </div>
+
         {/* Autonomy */}
-        <section className="section-padding" style={{ paddingTop: 0 }}>
+        <section className="section-padding" style={{ paddingTop: "3rem" }}>
           <div className="container" style={{ maxWidth: "900px" }}>
             <h2 style={{ fontSize: "1.5rem", marginBottom: "1.5rem", textAlign: "center" }}>
               Somos <span className="gradient-text">100% Autónomos</span>
