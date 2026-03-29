@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+
+/* ─── Slug to featured image map ─── */
+const blogImages: Record<string, string> = {
+    "guia-completa-recubrimiento-ceramico": "/seo/blog-ceramico.png",
+    "5-errores-lavado-auto-premium": "/seo/blog-errores.png",
+    "detallado-interior-profundo-que-incluye": "/seo/blog-interior.png",
+    "correccion-pintura-swirls-guia": "/seo/blog-correccion.png",
+    "por-que-detallado-domicilio-mejor": "/seo/blog-domicilio.png",
+    "mejores-ceras-selladores-mexico": "/seo/blog-ceras.png",
+};
 
 /* ─── Blog content database ─── */
 const blogContent: Record<string, { title: string; date: string; category: string; readTime: string; content: string; metaDesc: string }> = {
@@ -272,6 +283,20 @@ export default async function BlogPost({ params }: PageProps) {
                             ← Volver al blog
                         </Link>
                     </div>
+
+                    {/* Featured Image */}
+                    {blogImages[slug] && (
+                        <div style={{ borderRadius: "1rem", overflow: "hidden", marginBottom: "2rem" }}>
+                            <Image
+                                src={blogImages[slug]}
+                                alt={post.title}
+                                width={800}
+                                height={400}
+                                style={{ width: "100%", height: "auto", objectFit: "cover" }}
+                                priority
+                            />
+                        </div>
+                    )}
 
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}>
                         <span className="zone-tag zone-tag-gold">{post.category}</span>
