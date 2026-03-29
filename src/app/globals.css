@@ -768,6 +768,49 @@ h6 {
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.12);
 }
 
+/* Dark variant for zone pills */
+.zone-pill-dark.zone-tag-gold {
+  background: rgba(245, 158, 11, 0.1);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.zone-pill-dark.zone-tag-gold:hover {
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.2);
+}
+
+.zone-pill-dark.zone-tag-blue {
+  background: rgba(96, 165, 250, 0.08);
+  color: #93c5fd;
+  border-color: rgba(96, 165, 250, 0.2);
+}
+
+.zone-pill-dark.zone-tag-blue:hover {
+  box-shadow: 0 4px 16px rgba(96, 165, 250, 0.15);
+}
+
+/* Reviews marquee rows */
+.reviews-marquee-left,
+.reviews-marquee-right {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  padding: 0.5rem 0;
+}
+
+.reviews-marquee-left {
+  animation: zones-scroll-left 45s linear infinite;
+}
+
+.reviews-marquee-right {
+  animation: zones-scroll-right 40s linear infinite;
+}
+
+.reviews-marquee-left:hover,
+.reviews-marquee-right:hover {
+  animation-play-state: paused;
+}
+
 /* Scroll animation base */
 .animate-on-scroll {
   opacity: 0;

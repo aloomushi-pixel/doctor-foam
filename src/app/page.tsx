@@ -833,14 +833,14 @@ export default function HomePage() {
       </section>
 
       {/* ─── COVERAGE ZONES — MARQUEE ─── */}
-      <section className="section-padding" id="cobertura" style={{ background: "#f8fafc", overflow: "hidden" }}>
+      <section className="section-padding" id="cobertura" style={{ background: "#0f172a", overflow: "hidden" }}>
         <div className="container" style={{ textAlign: "center" }}>
           <div className="animate-on-scroll">
-            <span className="section-label">Zonas de Cobertura</span>
-            <h2 className="section-title">
+            <span className="section-label" style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.12)", color: "#93c5fd" }}>Zonas de Cobertura</span>
+            <h2 className="section-title" style={{ color: "#ffffff" }}>
               Presentes en las zonas más <span className="gradient-text">exclusivas</span>
             </h2>
-            <p className="section-subtitle">
+            <p className="section-subtitle" style={{ color: "rgba(255,255,255,0.6)" }}>
               Operamos en las colonias y fraccionamientos más premium de CDMX y el Estado de México.
             </p>
           </div>
@@ -851,29 +851,16 @@ export default function HomePage() {
           {zoneRows.map((row, rowIdx) => (
             <div key={rowIdx} style={{ overflow: "hidden", position: "relative" }}>
               {/* Fade edges */}
-              <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "60px", background: "linear-gradient(90deg, #f8fafc, transparent)", zIndex: 2, pointerEvents: "none" }} />
-              <div style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: "60px", background: "linear-gradient(270deg, #f8fafc, transparent)", zIndex: 2, pointerEvents: "none" }} />
+              <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "60px", background: "linear-gradient(90deg, #0f172a, transparent)", zIndex: 2, pointerEvents: "none" }} />
+              <div style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: "60px", background: "linear-gradient(270deg, #0f172a, transparent)", zIndex: 2, pointerEvents: "none" }} />
 
               <div className={rowIdx % 2 === 0 ? "zones-marquee-left" : "zones-marquee-right"}>
-                {/* Duplicate for seamless loop */}
                 {[...row, ...row].map((z, i) => (
-                  <span
-                    key={i}
-                    className={`zone-pill ${z.tagClass}`}
-                  >
-                    {z.name}
-                  </span>
+                  <span key={i} className={`zone-pill zone-pill-dark ${z.tagClass}`}>{z.name}</span>
                 ))}
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="container" style={{ textAlign: "center" }}>
-          <p className="animate-on-scroll" style={{ marginTop: "2rem", color: "#475569", fontSize: "0.9rem" }}>
-            ¿Tu zona no aparece? <a href="#contacto" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>Contáctanos</a> —
-            posiblemente también te cubrimos.
-          </p>
         </div>
       </section>
 
@@ -943,17 +930,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── GOOGLE REVIEWS ─── */}
-      <section className="section-padding" id="resenas" style={{ background: "#f1f5f9" }}>
+      {/* ─── GOOGLE REVIEWS — MARQUEE ─── */}
+      <section className="section-padding" id="resenas" style={{ background: "#0f172a", overflow: "hidden" }}>
         <div className="container" style={{ textAlign: "center" }}>
           <div className="animate-on-scroll">
-            <span className="section-label">Reseñas Verificadas</span>
-            <h2 className="section-title">
+            <span className="section-label" style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.12)", color: "#93c5fd" }}>Reseñas Verificadas</span>
+            <h2 className="section-title" style={{ color: "#ffffff" }}>
               Lo que dicen nuestros <span className="gradient-text">clientes</span>
             </h2>
 
             {/* Google Rating Badge */}
-            <div style={{ display: "inline-flex", alignItems: "center", gap: "1.5rem", background: "white", padding: "1.25rem 2rem", borderRadius: "1rem", marginTop: "1.5rem", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", flexWrap: "wrap", justifyContent: "center" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: "1.5rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", padding: "1.25rem 2rem", borderRadius: "1rem", marginTop: "1.5rem", flexWrap: "wrap", justifyContent: "center" }}>
               {/* Google Logo */}
               <svg viewBox="0 0 272 92" width="80" height="27" xmlns="http://www.w3.org/2000/svg">
                 <path d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z" fill="#EA4335" />
@@ -965,54 +952,65 @@ export default function HomePage() {
               </svg>
 
               <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "2rem", color: "#0f172a" }}>{googleOverallRating}</span>
+                <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "2rem", color: "#ffffff" }}>{googleOverallRating}</span>
                 <div>
                   <div style={{ color: "#FBBC05", fontSize: "1.1rem", letterSpacing: "2px" }}>
                     {"★".repeat(Math.floor(googleOverallRating))}{googleOverallRating % 1 >= 0.5 ? "★" : ""}
                   </div>
-                  <p style={{ color: "#64748b", fontSize: "0.75rem", margin: 0 }}>{googleTotalReviews} reseñas</p>
+                  <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.75rem", margin: 0 }}>{googleTotalReviews} reseñas</p>
                 </div>
               </div>
 
-              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", background: "#e8f5e9", padding: "0.35rem 0.75rem", borderRadius: "2rem", fontSize: "0.78rem", color: "#2e7d32", fontWeight: 600 }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#2e7d32"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" /></svg>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", background: "rgba(46,125,50,0.15)", border: "1px solid rgba(46,125,50,0.3)", padding: "0.35rem 0.75rem", borderRadius: "2rem", fontSize: "0.78rem", color: "#4ade80", fontWeight: 600 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#4ade80"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" /></svg>
                 Verificado
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Reviews Infinite Carousel */}
-          <div style={{ overflow: "hidden", marginTop: "2.5rem", position: "relative" }}>
-            {/* Fade edges */}
-            <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "60px", background: "linear-gradient(90deg, #f1f5f9, transparent)", zIndex: 2, pointerEvents: "none" }} />
-            <div style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: "60px", background: "linear-gradient(270deg, #f1f5f9, transparent)", zIndex: 2, pointerEvents: "none" }} />
-            <div className="reviews-marquee">
-              {[...googleReviews, ...googleReviews].map((r, i) => (
-                <div key={i} className="glass-card" style={{ padding: "1.25rem", textAlign: "left", minWidth: "320px", maxWidth: "320px", flexShrink: 0 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.6rem" }}>
-                    <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "linear-gradient(135deg, #4285F4, #34A853)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 700, fontSize: "0.85rem", flexShrink: 0 }}>
-                      {r.author.charAt(0).toUpperCase()}
+        {/* Reviews 3-Row Marquee */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "2.5rem" }}>
+          {[0, 1, 2].map((rowIdx) => {
+            const reviewsPerRow = Math.ceil(googleReviews.length / 3);
+            const rowReviews = googleReviews.slice(rowIdx * reviewsPerRow, (rowIdx + 1) * reviewsPerRow);
+            return (
+              <div key={rowIdx} style={{ overflow: "hidden", position: "relative" }}>
+                {/* Fade edges */}
+                <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "60px", background: "linear-gradient(90deg, #0f172a, transparent)", zIndex: 2, pointerEvents: "none" }} />
+                <div style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: "60px", background: "linear-gradient(270deg, #0f172a, transparent)", zIndex: 2, pointerEvents: "none" }} />
+
+                <div className={rowIdx % 2 === 0 ? "reviews-marquee-left" : "reviews-marquee-right"}>
+                  {[...rowReviews, ...rowReviews].map((r, i) => (
+                    <div key={i} style={{ padding: "1.25rem", textAlign: "left", minWidth: "320px", maxWidth: "320px", flexShrink: 0, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "1rem" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.6rem" }}>
+                        <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "linear-gradient(135deg, #4285F4, #34A853)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 700, fontSize: "0.85rem", flexShrink: 0 }}>
+                          {r.author.charAt(0).toUpperCase()}
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <p style={{ fontWeight: 600, fontSize: "0.82rem", color: "#e2e8f0", margin: 0 }}>{r.author}</p>
+                          <div style={{ color: "#FBBC05", fontSize: "0.75rem", letterSpacing: "1px" }}>{"★".repeat(r.stars)}</div>
+                        </div>
+                      </div>
+                      <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.82rem", lineHeight: "1.6", margin: 0, display: "-webkit-box", WebkitLineClamp: 4, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>
+                        &ldquo;{r.text}&rdquo;
+                      </p>
                     </div>
-                    <div style={{ flex: 1 }}>
-                      <p style={{ fontWeight: 600, fontSize: "0.82rem", color: "#0f172a", margin: 0 }}>{r.author}</p>
-                      <div style={{ color: "#FBBC05", fontSize: "0.75rem", letterSpacing: "1px" }}>{"★".repeat(r.stars)}</div>
-                    </div>
-                  </div>
-                  <p style={{ color: "#334155", fontSize: "0.82rem", lineHeight: "1.6", margin: 0, display: "-webkit-box", WebkitLineClamp: 4, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>
-                    &ldquo;{r.text}&rdquo;
-                  </p>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            );
+          })}
+        </div>
 
-          {/* Link to Google Maps */}
+        {/* Link to Google Maps */}
+        <div className="container" style={{ textAlign: "center" }}>
           <a
             href="https://maps.app.goo.gl/Hw6CwVxJrAPP6ASZ6"
             target="_blank"
             rel="noopener noreferrer"
             className="animate-on-scroll"
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginTop: "2rem", color: "#4285F4", fontWeight: 600, fontSize: "0.9rem", textDecoration: "none" }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginTop: "2rem", color: "#60a5fa", fontWeight: 600, fontSize: "0.9rem", textDecoration: "none" }}
           >
             Ver todas las reseñas en Google Maps
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M17 7H7M17 7v10" /></svg>
@@ -1020,46 +1018,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── FAQ ─── */}
-      <section className="section-padding" id="faq">
-        <div className="container" style={{ maxWidth: "800px" }}>
-          <div className="animate-on-scroll" style={{ textAlign: "center" }}>
-            <span className="section-label">Preguntas Frecuentes</span>
-            <h2 className="section-title">
-              Todo lo que necesitas <span className="gradient-text">saber</span>
-            </h2>
-          </div>
 
-          <div className="animate-on-scroll">
-            {faqs.map((f, i) => (
-              <div key={i} className="faq-item">
-                <button
-                  className="faq-question"
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  aria-expanded={openFaq === i}
-                >
-                  {f.q}
-                  <svg
-                    className={`faq-icon ${openFaq === i ? "open" : ""}`}
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <line x1="12" y1="5" x2="12" y2="19" />
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                  </svg>
-                </button>
-                <div className={`faq-answer ${openFaq === i ? "open" : ""}`}>
-                  {f.a}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ─── CTA / CONTACT ─── */}
       <section className="section-padding" id="contacto" style={{ background: "linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%)" }}>
