@@ -1,6 +1,8 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 const FROM_EMAIL = "Doctor Foam <info@drfoam.com.mx>";
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "aloomushi@gmail.com";
@@ -67,7 +69,7 @@ export async function sendBookingConfirmation(data: BookingData) {
   const firstName = customerName.split(" ")[0];
 
   try {
-    await resend.emails.send({
+    await getResend().emails.send({
       from: FROM_EMAIL,
       to: customerEmail,
       subject: `✅ Tu servicio ${packageName} está confirmado — Doctor Foam`,
@@ -113,7 +115,7 @@ export async function sendAdminNotification(data: BookingData) {
   const { customerName, customerEmail, customerPhone, packageName, serviceDate, vehicleInfo, vehicleSize, address, totalAmount, paymentStatus, rfc, razonSocial } = data;
 
   try {
-    await resend.emails.send({
+    await getResend().emails.send({
       from: FROM_EMAIL,
       to: ADMIN_EMAIL,
       subject: `🆕 Nueva reserva: ${packageName} — ${customerName}`,
@@ -152,7 +154,7 @@ export async function sendServiceReminder(data: { customerName: string; customer
   const firstName = data.customerName.split(" ")[0];
 
   try {
-    await resend.emails.send({
+    await getResend().emails.send({
       from: FROM_EMAIL,
       to: data.customerEmail,
       subject: `⏰ Tu servicio es mañana — Doctor Foam`,
