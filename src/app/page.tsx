@@ -302,44 +302,64 @@ function JsonLd() {
     "@type": "AutoRepair",
     name: "Doctor Foam México",
     description:
-      "Servicio de detallado automotriz premium a domicilio en CDMX y Valle de México",
+      "Lavado de autos a domicilio y detallado automotriz premium en CDMX y Valle de México",
     url: "https://doctorfoam.mx",
-    telephone: "+52-55-0000-0000",
+    telephone: "+525559624800",
     areaServed: [
       { "@type": "City", name: "Ciudad de México" },
       { "@type": "AdministrativeArea", name: "Estado de México" },
     ],
     serviceType: [
+      "Lavado de autos a domicilio",
       "Detallado automotriz",
       "Recubrimiento cerámico",
       "Corrección de pintura",
-      "Lavado premium a domicilio",
+      "Lavado profundo de vehículos",
+      "Lavado recurrente a domicilio",
     ],
     priceRange: "$$$",
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.9",
-      reviewCount: "127",
+      reviewCount: "34",
     },
   };
 
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: f.a,
+    mainEntity: [
+      ...faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: f.a,
+        },
+      })),
+      {
+        "@type": "Question",
+        name: "¿Cuál es la diferencia entre un autolavado tradicional y un detallado a domicilio?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "El detallado a domicilio corrige la pintura, usa arcilla sintética para descontaminación, toma de 4 a 8 horas y sella la pintura con cerámico o grafeno, evitando los micro-rayones que causan los rodillos de autolavado.",
+        },
       },
-    })),
+      {
+        "@type": "Question",
+        name: "¿Dejan residuos de agua en el estacionamiento?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. Usamos menos de 20 litros de agua con polímeros encapsuladores, sin dejar escurrimientos ni charcos. Es ideal para estacionamientos corporativos y condominios con restricciones hídricas.",
+        },
+      },
+    ],
   };
 
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Mobile Auto Detailing",
+    serviceType: "Lavado de Autos a Domicilio",
     provider: {
       "@type": "LocalBusiness",
       name: "Doctor Foam México",
@@ -355,7 +375,7 @@ function JsonLd() {
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Servicios de Detallado",
+      name: "Servicios de Lavado y Detallado",
       itemListElement: packages.map((p) => ({
         "@type": "Offer",
         itemOffered: {
@@ -435,11 +455,11 @@ export default function HomePage() {
             <Logo />
           </Link>
           <ul className="nav-links">
-            <li><a href="#servicios">Servicios</a></li>
+            <li><Link href="/lavado-recurrente-autos-domicilio">Lavado Recurrente</Link></li>
+            <li><Link href="/lavado-profundo-vehiculos-cdmx">Lavado Profundo</Link></li>
+            <li><Link href="/lavado-autos-estacionamiento-corporativo">Corporativo</Link></li>
             <li><a href="#precios">Precios</a></li>
-            <li><a href="#cobertura">Cobertura</a></li>
-            <li><a href="#proceso">Proceso</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><Link href="/blog">Blog</Link></li>
             <li>
               <Link href="/reservar" className="btn-premium" style={{ padding: "0.6rem 1.5rem", fontSize: "0.85rem" }}>
                 Reservar y Pagar
@@ -479,11 +499,11 @@ export default function HomePage() {
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
-        <a href="#servicios" onClick={() => setMobileMenuOpen(false)}>Servicios</a>
+        <Link href="/lavado-recurrente-autos-domicilio" onClick={() => setMobileMenuOpen(false)}>Lavado Recurrente</Link>
+        <Link href="/lavado-profundo-vehiculos-cdmx" onClick={() => setMobileMenuOpen(false)}>Lavado Profundo</Link>
+        <Link href="/lavado-autos-estacionamiento-corporativo" onClick={() => setMobileMenuOpen(false)}>Corporativo</Link>
         <a href="#precios" onClick={() => setMobileMenuOpen(false)}>Precios</a>
-        <a href="#cobertura" onClick={() => setMobileMenuOpen(false)}>Cobertura</a>
-        <a href="#proceso" onClick={() => setMobileMenuOpen(false)}>Proceso</a>
-        <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
+        <Link href="/blog" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
         <Link href="/reservar" className="btn-premium" onClick={() => setMobileMenuOpen(false)}>
           Reservar y Pagar
         </Link>
@@ -497,13 +517,13 @@ export default function HomePage() {
 
         <div className="container" style={{ position: "relative", zIndex: 10, textAlign: "center" }}>
           <div className="animate-on-scroll">
-            <span className="section-label" style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)", color: "#93c5fd" }}>Detallado Automotriz Premium a Domicilio</span>
+            <span className="section-label" style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)", color: "#93c5fd" }}>Lavado de Autos a Domicilio en CDMX</span>
             <h1 className="section-title" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", marginBottom: "1.5rem", maxWidth: "900px", marginLeft: "auto", marginRight: "auto", color: "#ffffff" }}>
-              Llevamos el <span className="gradient-text">taller perfecto</span> hasta la puerta de tu casa
+              <span className="gradient-text">Lavado de Autos a Domicilio</span> en CDMX: Detallado Automotriz Premium
             </h1>
             <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.85)", maxWidth: "700px", margin: "0 auto 2.5rem", lineHeight: "1.8" }}>
-              Equipo industrial de grado profesional. Químicos especializados. Resultados iguales o superiores
-              a cualquier taller de estética automotriz. Todo en un solo día, sin mover tu auto.
+              Llevamos un estudio de detallado de lujo hasta tu casa, oficina o estacionamiento.
+              Equipo industrial, químicos profesionales y resultados superiores a cualquier taller. Todo en un solo día, sin mover tu auto.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/reservar" className="btn-premium">
@@ -644,15 +664,13 @@ export default function HomePage() {
                   <span style={{ color: "#64748b", fontSize: "0.9rem", marginLeft: "0.25rem" }}>MXN / mes</span>
                 </div>
                 <p style={{ color: "#94a3b8", fontSize: "0.75rem", marginBottom: "1.25rem" }}>IVA incluido · Facturable · {foamMaintenance.note}</p>
-                <a
-                  href="https://buy.stripe.com/4gM00kclRcDc8e92Zg3ZK03"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/membresia-doctor-foam"
                   className="btn-premium"
                   style={{ width: "100%", justifyContent: "center", textAlign: "center" }}
                 >
-                  🔄 Suscribirme
-                </a>
+                  🔄 Conocer Membresía
+                </Link>
               </div>
 
               {/* Membresía Card */}
@@ -677,15 +695,13 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href="https://buy.stripe.com/cNi28s71x8mW0LH43k3ZK04"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/membresia-doctor-foam"
                   className="btn-premium"
                   style={{ width: "100%", justifyContent: "center", textAlign: "center" }}
                 >
-                  🔄 Suscribirme
-                </a>
+                  🔄 Conocer Membresía
+                </Link>
               </div>
             </div>
           </div>
@@ -1000,18 +1016,18 @@ export default function HomePage() {
           <div>
             <Logo />
             <p style={{ color: "#94a3b8", fontSize: "0.875rem", marginTop: "1rem", maxWidth: "320px", lineHeight: "1.7" }}>
-              Servicio de detallado automotriz premium a domicilio. Equipo industrial, químicos
-              profesionales, resultados extraordinarios. Valle de México.
+              Lavado de autos a domicilio y detallado automotriz premium en CDMX y Valle de México. Equipo industrial, químicos
+              profesionales, resultados extraordinarios.
             </p>
           </div>
           <div>
             <h4 className="footer-title">Servicios</h4>
             <ul className="footer-links">
-              <li><a href="#servicios">Lavado Premium</a></li>
-              <li><a href="#servicios">Detallado Interior</a></li>
-              <li><a href="#servicios">Corrección de Pintura</a></li>
-              <li><a href="#servicios">Recubrimiento Cerámico</a></li>
-              <li><a href="#servicios">Membresía</a></li>
+              <li><Link href="/lavado-recurrente-autos-domicilio">Lavado Recurrente</Link></li>
+              <li><Link href="/lavado-profundo-vehiculos-cdmx">Lavado Profundo</Link></li>
+              <li><Link href="/membresia-doctor-foam">Membresía</Link></li>
+              <li><Link href="/lavado-autos-estacionamiento-corporativo">Corporativo</Link></li>
+              <li><Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz">Paquetes y Precios</Link></li>
             </ul>
           </div>
           <div>

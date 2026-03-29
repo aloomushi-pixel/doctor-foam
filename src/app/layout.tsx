@@ -3,26 +3,27 @@ import "./globals.css";
 import GuestChat from "@/components/GuestChat";
 
 export const metadata: Metadata = {
-  title: "Doctor Foam México | Detallado Automotriz Premium a Domicilio",
+  title: "Lavado de Autos a Domicilio CDMX | Detallado Premium en tu Garage",
   description:
-    "Servicio de detallado automotriz premium a domicilio en CDMX y Valle de México. Acabados de nivel industrial con resultados superiores a talleres de estética automotriz. Polanco, Lomas, Santa Fe y más.",
+    "Evita las filas y el daño a tu pintura. Llevamos el mejor lavado de autos a domicilio y un estudio de detallado de lujo a tu casa u oficina en CDMX. Agenda hoy.",
   keywords: [
-    "detallado automotriz",
-    "car detailing CDMX",
-    "lavado premium a domicilio",
-    "estética automotriz México",
-    "Doctor Foam",
-    "detallado a domicilio Polanco",
-    "detallado automotriz Santa Fe",
-    "limpieza automotriz premium",
+    "lavado de autos a domicilio",
+    "lavado de autos a domicilio cdmx",
+    "detallado automotriz cdmx",
+    "estética automotriz a domicilio",
+    "lavado profundo de autos",
+    "membresía lavado de auto",
+    "lavado de vestiduras a domicilio cdmx",
     "recubrimiento cerámico CDMX",
     "corrección de pintura México",
+    "lavado ecológico autos",
+    "Doctor Foam",
   ],
   authors: [{ name: "Doctor Foam México" }],
   openGraph: {
-    title: "Doctor Foam México | Detallado Automotriz Premium a Domicilio",
+    title: "Lavado de Autos a Domicilio CDMX | Doctor Foam México",
     description:
-      "Llevamos el taller a tu puerta. Detallado automotriz con equipo industrial y químicos especializados. Resultados superiores a cualquier taller.",
+      "Llevamos un estudio de detallado automotriz premium a tu casa u oficina. Equipo industrial, químicos profesionales y resultados superiores a cualquier taller.",
     url: "https://doctorfoam.mx",
     siteName: "Doctor Foam México",
     locale: "es_MX",
@@ -30,9 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Doctor Foam México | Detallado Automotriz Premium a Domicilio",
+    title: "Lavado de Autos a Domicilio CDMX | Doctor Foam México",
     description:
-      "Servicio de detallado automotriz premium a domicilio en CDMX. Equipo industrial + químicos especializados = resultados superiores.",
+      "Evita las filas y el daño a tu pintura. Lavado de autos a domicilio con equipo industrial en CDMX. Agenda hoy.",
   },
   alternates: {
     canonical: "https://doctorfoam.mx",
