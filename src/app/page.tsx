@@ -164,16 +164,41 @@ const packages = [
   },
 ];
 
-/* ─── Zones ─── */
-const zones = [
-  { name: "Bosque Real", tag: "Máximo Potencial", tagClass: "zone-tag-gold", desc: "Torres de ultra-lujo, SUVs exóticos, eléctricos de alta gama" },
-  { name: "Polanco", tag: "Ultra Premium", tagClass: "zone-tag-gold", desc: "Campos Elíseos, Masaryk — Sedanes europeos, super-deportivos" },
-  { name: "Zona Esmeralda", tag: "Alto Potencial", tagClass: "zone-tag-gold", desc: "Condado de Sayavedra, Chiluca — SUVs familiares de lujo, blindados" },
-  { name: "Santa Fe", tag: "Premium", tagClass: "zone-tag-blue", desc: "Corporativos y lofts — Ejecutivos, Tesla, Audi e-tron" },
-  { name: "Lomas de Chapultepec", tag: "Ultra Premium", tagClass: "zone-tag-gold", desc: "Virreyes, Barrilaco — SUVs de lujo, vehículos blindados" },
-  { name: "Pedregal", tag: "Premium", tagClass: "zone-tag-blue", desc: "San Ángel — Autos clásicos, colección, preservación" },
-  { name: "Interlomas", tag: "Premium", tagClass: "zone-tag-blue", desc: "Bosque Real, Hacienda Palmas — BMW, Mercedes, Land Rover" },
-  { name: "Metepec", tag: "Nuevo", tagClass: "zone-tag-blue", desc: "Zona ejecutiva Toluca — Mercado desatendido, alto potencial" },
+/* ─── Zones — 3 rows for marquee ─── */
+const zoneRows = [
+  // Row 1 → moves LEFT
+  [
+    { name: "Polanco", tagClass: "zone-tag-gold" },
+    { name: "Lomas de Chapultepec", tagClass: "zone-tag-gold" },
+    { name: "Santa Fe", tagClass: "zone-tag-blue" },
+    { name: "Bosque Real", tagClass: "zone-tag-gold" },
+    { name: "Interlomas", tagClass: "zone-tag-blue" },
+    { name: "Tecamachalco", tagClass: "zone-tag-blue" },
+    { name: "Pedregal", tagClass: "zone-tag-blue" },
+    { name: "Condesa", tagClass: "zone-tag-blue" },
+  ],
+  // Row 2 → moves RIGHT
+  [
+    { name: "Zona Esmeralda", tagClass: "zone-tag-gold" },
+    { name: "Huixquilucan", tagClass: "zone-tag-blue" },
+    { name: "Satélite", tagClass: "zone-tag-blue" },
+    { name: "Naucalpan", tagClass: "zone-tag-blue" },
+    { name: "Hacienda de las Palmas", tagClass: "zone-tag-gold" },
+    { name: "Lomas Verdes", tagClass: "zone-tag-blue" },
+    { name: "Condado de Sayavedra", tagClass: "zone-tag-gold" },
+    { name: "Jardines de la Montaña", tagClass: "zone-tag-blue" },
+  ],
+  // Row 3 → moves LEFT
+  [
+    { name: "Metepec", tagClass: "zone-tag-blue" },
+    { name: "Del Valle", tagClass: "zone-tag-blue" },
+    { name: "Coyoacán", tagClass: "zone-tag-blue" },
+    { name: "San Ángel", tagClass: "zone-tag-blue" },
+    { name: "Bosques de las Lomas", tagClass: "zone-tag-gold" },
+    { name: "Tlalpan", tagClass: "zone-tag-blue" },
+    { name: "Roma Norte", tagClass: "zone-tag-blue" },
+    { name: "Atizapán", tagClass: "zone-tag-blue" },
+  ],
 ];
 
 /* ─── Process Steps ─── */
@@ -807,8 +832,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── COVERAGE ZONES ─── */}
-      <section className="section-padding" id="cobertura" style={{ background: "#f8fafc" }}>
+      {/* ─── COVERAGE ZONES — MARQUEE ─── */}
+      <section className="section-padding" id="cobertura" style={{ background: "#f8fafc", overflow: "hidden" }}>
         <div className="container" style={{ textAlign: "center" }}>
           <div className="animate-on-scroll">
             <span className="section-label">Zonas de Cobertura</span>
@@ -816,23 +841,35 @@ export default function HomePage() {
               Presentes en las zonas más <span className="gradient-text">exclusivas</span>
             </h2>
             <p className="section-subtitle">
-              Operamos en las colonias y fraccionamientos más premium de la Ciudad de México
-              y el Estado de México.
+              Operamos en las colonias y fraccionamientos más premium de CDMX y el Estado de México.
             </p>
           </div>
+        </div>
 
-          <div className="zones-grid">
-            {zones.map((z, i) => (
-              <div key={i} className="glass-card zone-card animate-on-scroll">
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                  <span className="zone-name">{z.name}</span>
-                  <span className={`zone-tag ${z.tagClass}`}>{z.tag}</span>
-                </div>
-                <p style={{ color: "#475569", fontSize: "0.85rem" }}>{z.desc}</p>
+        {/* 3 Marquee Rows */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "2rem" }}>
+          {zoneRows.map((row, rowIdx) => (
+            <div key={rowIdx} style={{ overflow: "hidden", position: "relative" }}>
+              {/* Fade edges */}
+              <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "60px", background: "linear-gradient(90deg, #f8fafc, transparent)", zIndex: 2, pointerEvents: "none" }} />
+              <div style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: "60px", background: "linear-gradient(270deg, #f8fafc, transparent)", zIndex: 2, pointerEvents: "none" }} />
+
+              <div className={rowIdx % 2 === 0 ? "zones-marquee-left" : "zones-marquee-right"}>
+                {/* Duplicate for seamless loop */}
+                {[...row, ...row].map((z, i) => (
+                  <span
+                    key={i}
+                    className={`zone-pill ${z.tagClass}`}
+                  >
+                    {z.name}
+                  </span>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
 
+        <div className="container" style={{ textAlign: "center" }}>
           <p className="animate-on-scroll" style={{ marginTop: "2rem", color: "#475569", fontSize: "0.9rem" }}>
             ¿Tu zona no aparece? <a href="#contacto" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>Contáctanos</a> —
             posiblemente también te cubrimos.
