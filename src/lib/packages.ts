@@ -25,8 +25,8 @@ export const PACKAGES: Record<string, PackageConfig> = {
     "deep-interior": {
         slug: "deep-interior",
         name: "Industrial Deep Interior",
-        priceBase: 3499,
-        priceCentavos: 349900,
+        priceBase: 2400,
+        priceCentavos: 240000,
         label: "Lavado a base de inyección y extracción",
         description:
             "Lavado a base de inyección y extracción, vapor seco industrial a 180°C, aspirado de alta potencia, hidratación de pieles, sanitización con ozono.",
@@ -41,8 +41,8 @@ export const PACKAGES: Record<string, PackageConfig> = {
     "signature-detail": {
         slug: "signature-detail",
         name: "Signature Detail",
-        priceBase: 9500,
-        priceCentavos: 950000,
+        priceBase: 7499,
+        priceCentavos: 749900,
         label: "Incluye Industrial Deep Interior completo",
         description:
             "Industrial Deep Interior completo + corrección de pintura en 2 etapas + sellador cerámico express. Técnicos certificados IDA.",
@@ -57,8 +57,8 @@ export const PACKAGES: Record<string, PackageConfig> = {
     "ceramic-coating": {
         slug: "ceramic-coating",
         name: "Ceramic Coating",
-        priceBase: 14999,
-        priceCentavos: 1499900,
+        priceBase: 10999,
+        priceCentavos: 1099900,
         label: "Protección cerámica profesional",
         description:
             "Signature Detail + recubrimiento cerámico profesional de larga duración + certificado Doctor Foam.",
@@ -72,15 +72,15 @@ export const PACKAGES: Record<string, PackageConfig> = {
     },
     "graphene-upgrade": {
         slug: "graphene-upgrade",
-        name: "Ceramic + Graphene Shield",
-        priceBase: 17999,
-        priceCentavos: 1799900,
-        label: "Protección de grafeno 5-7 años",
+        name: "Ceramic + Cristal líquido",
+        priceBase: 13999,
+        priceCentavos: 1399900,
+        label: "Protección de cristal líquido 5-7 años",
         description:
-            "Signature Detail + recubrimiento de grafeno 5-7 años + PPF en zonas de alto impacto + certificado Doctor Foam.",
+            "Signature Detail + recubrimiento de cristal líquido 5-7 años + PPF en zonas de alto impacto + certificado Doctor Foam.",
         features: [
             "Todo lo del Signature Detail",
-            "Recubrimiento de grafeno (5-7 años)",
+            "Recubrimiento de cristal líquido (5-7 años)",
             "PPF en zonas de alto impacto",
             "Certificado Doctor Foam",
             "Seguimiento personalizado 30 días",

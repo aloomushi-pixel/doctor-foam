@@ -94,7 +94,7 @@ export default function BlogLavadoProfundoVsDetallado() {
               <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Descontaminación química</strong> — disuelve partículas de hierro, savia y contaminantes industriales adheridos</li>
               <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Barra de arcilla sintética</strong> — remueve contaminación mecánica que el lavado no alcanza</li>
               <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Corrección de pintura</strong> — pulidora de triple acción en 2-3 etapas, elimina 95% de swirls</li>
-              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Recubrimiento cerámico/grafeno</strong> — protección de 3-7 años con dureza 9H-10H</li>
+              <li style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Recubrimiento cerámico/cristal líquido</strong> — protección de 3-7 años con dureza 9H-10H</li>
             </ul>
 
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>El Mito de los &ldquo;30 Minutos&rdquo;</h2>

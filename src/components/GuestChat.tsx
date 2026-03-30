@@ -1,6 +1,6 @@
 "use client";
 
-const WHATSAPP_URL = "https://wa.me/525559624800?text=Hola%2C%20me%20interesa%20un%20servicio%20de%20Doctor%20Foam";
+const WHATSAPP_URL = "https://wa.me/525610846022?text=Hola%2C%20me%20interesa%20un%20servicio%20de%20Doctor%20Foam";
 
 export default function GuestChat() {
     return (

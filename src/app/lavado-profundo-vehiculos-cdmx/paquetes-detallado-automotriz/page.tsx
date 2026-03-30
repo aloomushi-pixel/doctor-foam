@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const packages = [
   {
     name: "Industrial Deep Interior",
-    price: { sedan: "$3,499", pickup: "$4,024" },
+    price: { sedan: "$2,400", pickup: "$2,760" },
     time: "3-4 horas",
     icon: "♨️",
     ideal: "Tu interior necesita una restauración seria — manchas, olores, bacterias acumuladas.",
@@ -30,7 +30,7 @@ const packages = [
   },
   {
     name: "Signature Detail",
-    price: { sedan: "$9,500", pickup: "$10,925" },
+    price: { sedan: "$7,499", pickup: "$8,624" },
     time: "5-6 horas",
     icon: "💎",
     ideal: "Quieres la restauración completa: interior + corrección de pintura + sellado.",
@@ -45,11 +45,11 @@ const packages = [
       "Limpieza de vidrios exterior e interior",
       "Técnicos certificados IDA (International Detailing Association)",
     ],
-    notIncludes: ["Recubrimiento cerámico de larga duración", "Protección de grafeno"],
+    notIncludes: ["Recubrimiento cerámico de larga duración", "Protección de cristal líquido"],
   },
   {
     name: "Ceramic Coating",
-    price: { sedan: "$14,999", pickup: "$17,249" },
+    price: { sedan: "$10,999", pickup: "$12,649" },
     time: "8-10 horas",
     icon: "🛡️",
     ideal: "Quieres protección de largo plazo (3-5 años). Inversión en la preservación de tu auto.",
@@ -64,8 +64,8 @@ const packages = [
     ],
     notIncludes: [],
     upgrade: {
-      name: "Graphene Shield",
-      price: { sedan: "$17,999", pickup: "$20,699" },
+      name: "Cristal líquido",
+      price: { sedan: "$13,999", pickup: "$16,099" },
       desc: "Supera al cerámico en dureza (10H) e hidrofobicidad. Protección de 5 a 7 años.",
     },
   },

@@ -69,8 +69,8 @@ const mainServices = [
     icon: "🛡️",
     title: "Ceramic Coating",
     tagline: "Protección de nueva generación",
-    desc: "La pintura de tu auto enfrenta lluvia ácida, rayos UV, contaminantes industriales y excrementos de aves — todos degradan el clear coat silenciosamente. Nuestro recubrimiento cerámico profesional crea un escudo invisible de dureza 9H que repele agua, suciedad y químicos durante 3 a 5 años. Incluye preparación completa de superficie y certificado Doctor Foam. ¿Quieres más? El upgrade Graphene Shield ofrece 5-7 años de protección con dureza 10H y efecto hidrofóbico superior.",
-    highlights: ["Protección 3-5 años", "Dureza 9H", "Certificado incluido", "Upgrade Graphene disponible"],
+    desc: "La pintura de tu auto enfrenta lluvia ácida, rayos UV, contaminantes industriales y excrementos de aves — todos degradan el clear coat silenciosamente. Nuestro recubrimiento cerámico profesional crea un escudo invisible de dureza 9H que repele agua, suciedad y químicos durante 3 a 5 años. Incluye preparación completa de superficie y certificado Doctor Foam. ¿Quieres más? El upgrade a Cristal líquido ofrece 5-7 años de protección con dureza 10H y efecto hidrofóbico superior.",
+    highlights: ["Protección 3-5 años", "Dureza 9H", "Certificado incluido", "Upgrade Cristal líquido disponible"],
     image: "/services/ceramic-coating.jpg",
     bookingId: "ceramic-coating",
   },
@@ -110,10 +110,10 @@ const vehicleSizes = [
 const packages = [
   {
     name: "Industrial Deep Interior",
-    price: "$3,499",
+    price: "$2,400",
     priceLabel: "Sedán / SUV 2 filas",
     subtitle: "Limpieza interior profesional",
-    prices: { sedan: "$3,499", pickup: "$4,024" },
+    prices: { sedan: "$2,400", pickup: "$2,760" },
     features: [
       "Vapor seco industrial a 180°C",
       "Aspirado de alta potencia",
@@ -126,10 +126,10 @@ const packages = [
   },
   {
     name: "Signature Detail",
-    price: "$9,500",
+    price: "$7,499",
     priceLabel: "Sedán / SUV 2 filas",
-    subtitle: "El más popular",
-    prices: { sedan: "$9,500", pickup: "$10,925" },
+    subtitle: "Negro o SUV sube 15%",
+    prices: { sedan: "$7,499", pickup: "$8,624" },
     features: [
       "Incluye Industrial Deep Interior completo",
       "Corrección de pintura en 2-3 etapas",
@@ -143,10 +143,10 @@ const packages = [
   },
   {
     name: "Ceramic Coating",
-    price: "$14,999",
+    price: "$10,999",
     priceLabel: "Sedán / SUV 2 filas",
     subtitle: "Protección de nueva generación",
-    prices: { sedan: "$14,999", pickup: "$17,249" },
+    prices: { sedan: "$10,999", pickup: "$12,649" },
     features: [
       "Recubrimiento cerámico (3-5 años)",
       "Protección UV, lluvia ácida y contaminantes",
@@ -155,10 +155,10 @@ const packages = [
       "Seguimiento post-servicio 30 días",
     ],
     upgrade: {
-      name: "Graphene Shield",
-      price: "$17,999",
-      pickupPrice: "$20,699",
-      desc: "Supera al cerámico en dureza e hidrofobicidad. Protección de 5 a 7 años.",
+      name: "Cristal líquido",
+      price: "$13,999",
+      pickupPrice: "$16,099",
+      desc: "Supera al cerámico en dureza e hidrofobicidad. Protección de cristal líquido de 5 a 7 años.",
     },
     featured: false,
   },
@@ -304,7 +304,7 @@ const faqs = [
   },
   {
     q: "¿Cuánto tiempo toma el servicio?",
-    a: "Foam Maintenance: 2-3 horas. Signature Detail: 5-6 horas. Graphene Shield: 8-10 horas. Todo se completa en un solo día sin mover tu auto. Nuestras unidades traen tanque de 400 litros, generador eléctrico y compresor propio.",
+    a: "Foam Maintenance: 2-3 horas. Signature Detail: 5-6 horas. Cristal líquido: 8-10 horas. Todo se completa en un solo día sin mover tu auto. Nuestras unidades traen tanque de 400 litros, generador eléctrico y compresor propio.",
   },
   {
     q: "¿Necesito proporcionar agua o electricidad?",
@@ -315,8 +315,8 @@ const faqs = [
     a: "Sí. Tenemos protocolos específicos para vehículos blindados usando químicos que no degradan los materiales balísticos ni el policarbonato de los vidrios. También atendemos autos exóticos (Ferrari, Lamborghini, McLaren), eléctricos (Tesla, Lucid, Rivian) y vehículos clásicos de colección.",
   },
   {
-    q: "¿Qué es el Graphene Shield y cómo supera al cerámico?",
-    a: "El recubrimiento de grafeno es la nueva generación de protección automotriz. Supera al cerámico tradicional en dureza (10H vs 9H), efecto hidrofóbico y resistencia a químicos. Dura 5 a 7 años vs 2-3 del cerámico convencional. Incluimos certificado de aplicación y seguimiento post-servicio.",
+    q: "¿Qué es el Cristal líquido y cómo supera al cerámico?",
+    a: "El Cristal líquido es la nueva generación de protección automotriz. Supera al cerámico tradicional en dureza (10H vs 9H), efecto hidrofóbico y resistencia a químicos. Dura 5 a 7 años vs 2-3 del cerámico convencional. Incluimos certificado de aplicación y seguimiento post-servicio.",
   },
 ];
 
@@ -329,7 +329,7 @@ function JsonLd() {
     description:
       "Lavado de autos a domicilio y detallado automotriz premium en CDMX y Valle de México",
     url: "https://drfoam.com.mx",
-    telephone: "+525559624800",
+    telephone: "+525610846022",
     areaServed: [
       { "@type": "City", name: "Ciudad de México" },
       { "@type": "AdministrativeArea", name: "Estado de México" },
@@ -751,8 +751,8 @@ export default function HomePage() {
             {packages.map((p, i) => {
               const isGrapheneActive = p.upgrade && grapheneUpgrade;
               const displayPrice = isGrapheneActive ? p.upgrade!.price : p.price;
-              const displayName = isGrapheneActive ? "Graphene Shield" : p.name;
-              const displaySubtitle = isGrapheneActive ? "Protección superior de grafeno 5-7 años" : p.subtitle;
+              const displayName = isGrapheneActive ? "Cristal líquido" : p.name;
+              const displaySubtitle = isGrapheneActive ? "Protección superior de cristal líquido 5-7 años" : p.subtitle;
               const bookingSlug = isGrapheneActive ? "graphene-upgrade" : p.name.toLowerCase().replace(/ /g, '-');
 
               return (
@@ -1036,7 +1036,7 @@ export default function HomePage() {
               <Link href="/reservar" className="btn-premium">
                 💳 Reservar y Pagar en Línea
               </Link>
-              <a href="https://wa.me/525559624800?text=Hola%2C%20me%20interesa%20un%20servicio%20de%20Doctor%20Foam" className="btn-outline" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/525610846022?text=Hola%2C%20me%20interesa%20un%20servicio%20de%20Doctor%20Foam" className="btn-outline" target="_blank" rel="noopener noreferrer">
                 📱 WhatsApp para dudas
               </a>
             </div>
@@ -1080,8 +1080,8 @@ export default function HomePage() {
           <div>
             <h4 className="footer-title">Contacto</h4>
             <ul className="footer-links">
-              <li><a href="https://wa.me/525559624800" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-              <li><a href="tel:+525559624800">+52 55 5962 4800</a></li>
+              <li><a href="https://wa.me/525610846022" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+              <li><a href="tel:+525610846022">+52 55 5962 4800</a></li>
               <li><a href="mailto:hola@drfoam.com.mx">hola@drfoam.com.mx</a></li>
               <li><a href="https://instagram.com/drfoam.com.mx">Instagram</a></li>
               <li><a href="https://facebook.com/drfoam.com.mx">Facebook</a></li>

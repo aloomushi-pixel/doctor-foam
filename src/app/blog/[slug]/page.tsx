@@ -41,7 +41,7 @@ A diferencia de las ceras y selladores tradicionales que duran semanas o meses, 
 - **Dificultad**: Requiere certificación
 - **Resultado**: Excepcional
 
-### Cerámico de Grafeno (Nueva Generación)
+### Cerámico de Cristal líquido (Nueva Generación)
 - **Duración**: 3 - 7 años
 - **Precio**: $10,000 - $25,000 MXN
 - **Dificultad**: Especialista
@@ -74,7 +74,7 @@ En Doctor Foam seguimos un protocolo de 7 pasos:
 | Cerámico 1 año | $3,000 - $5,000 | $6,400 |
 | Cerámico 3 años | $6,000 - $9,000 | $10,500 |
 | Cerámico 5 años | $10,000 - $15,000 | $16,500 |
-| Grafeno Premium | $15,000 - $25,000 | $22,000 |
+| Cristal líquido Premium | $15,000 - $25,000 | $22,000 |
 
 *Precios para sedán. SUV y camionetas +20%.*
 
@@ -202,7 +202,7 @@ const defaultContent: Record<string, { title: string; date: string; category: st
     "mejores-ceras-selladores-mexico": {
         title: "Las Mejores Ceras y Selladores Disponibles en México",
         date: "2026-01-15", category: "Productos", readTime: "10 min",
-        metaDesc: "Comparativa de ceras y selladores automotrices en México: carnaubas, selladores cerámicos y grafeno. Por los expertos de Doctor Foam.",
+        metaDesc: "Comparativa de ceras y selladores automotrices en México: carnaubas, selladores cerámicos y cristal líquido. Por los expertos de Doctor Foam.",
         content: `## Ceras Carnauba\n\n### Collinite 845\n- **Duración**: 3-4 meses\n- **Precio**: ~$600 MXN\n- **Brillo**: Excelente\n\n### Meguiar's Gold Class\n- **Duración**: 1-2 meses\n- **Precio**: ~$350 MXN\n- **Brillo**: Muy bueno\n\n## Selladores Sintéticos\n\n### Jescar Power Lock Plus\n- **Duración**: 6 meses\n- **Precio**: ~$800 MXN\n- **Protección**: Excelente\n\n### Menzerna Power Lock\n- **Duración**: 4-6 meses\n- **Precio**: ~$700 MXN\n- **Protección**: Muy buena\n\n## Cerámicos Spray\n\n### CarPro Reload\n- **Duración**: 3-4 meses\n- **Precio**: ~$500 MXN\n- **Facilidad**: Muy fácil\n\n---\n\n*¿Quieres protección profesional? Nuestros recubrimientos cerámicos duran años, no meses. [Cotiza aquí](/reservar).*`,
     },
 };

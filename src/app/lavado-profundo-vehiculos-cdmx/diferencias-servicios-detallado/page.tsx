@@ -23,7 +23,7 @@ const comparisons = [
   {
     aspect: "Protección",
     basic: { title: "Cera de Supermercado", items: ["Protección de 2-4 semanas", "Se degrada con lluvia", "Sin protección UV real", "Aplicación amateur con riesgo de hologramas"] },
-    drfoam: { title: "Doctor Foam (Ceramic Coating)", items: ["Protección de 3-7 años", "Dureza 9H-10H (grafeno)", "Resistencia a lluvia ácida y UV", "Efecto hidrofóbico permanente", "Certificado de aplicación incluido", "8-10 horas de preparación y aplicación"] },
+    drfoam: { title: "Doctor Foam (Ceramic Coating)", items: ["Protección de 3-7 años", "Dureza 9H-10H (cristal líquido)", "Resistencia a lluvia ácida y UV", "Efecto hidrofóbico permanente", "Certificado de aplicación incluido", "8-10 horas de preparación y aplicación"] },
   },
 ];
 

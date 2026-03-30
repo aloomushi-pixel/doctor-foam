@@ -198,7 +198,7 @@ function SuccessContent() {
                             <Link href="/" className="btn-premium">
                                 Volver al inicio
                             </Link>
-                            <a href="https://wa.me/525559624800?text=Hola%2C%20acabo%20de%20pagar%20mi%20servicio%20de%20Doctor%20Foam" className="btn-outline" target="_blank" rel="noopener noreferrer">
+                            <a href="https://wa.me/525610846022?text=Hola%2C%20acabo%20de%20pagar%20mi%20servicio%20de%20Doctor%20Foam" className="btn-outline" target="_blank" rel="noopener noreferrer">
                                 📱 WhatsApp
                             </a>
                         </div>

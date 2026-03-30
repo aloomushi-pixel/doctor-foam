@@ -6,7 +6,7 @@ function getResend() {
 
 const FROM_EMAIL = "Doctor Foam <info@drfoam.com.mx>";
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "aloomushi@gmail.com";
-const WHATSAPP_URL = "https://wa.me/525559624800";
+const WHATSAPP_URL = "https://wa.me/525610846022";
 
 type BookingData = {
   customerName: string;

@@ -122,7 +122,7 @@ export default function EstacionamientoCorporativoPage() {
               </p>
               <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
                 <Link href="/reservar" className="btn-premium">📅 Agendar donde sea</Link>
-                <a href="https://wa.me/525559624800?text=Hola%2C%20me%20interesa%20el%20servicio%20corporativo" className="btn-outline" target="_blank" rel="noopener noreferrer">📱 Cotizar para Empresas</a>
+                <a href="https://wa.me/525610846022?text=Hola%2C%20me%20interesa%20el%20servicio%20corporativo" className="btn-outline" target="_blank" rel="noopener noreferrer">📱 Cotizar para Empresas</a>
               </div>
             </div>
           </div>

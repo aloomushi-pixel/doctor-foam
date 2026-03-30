@@ -17,7 +17,7 @@ const services = [
   {
     icon: "♨️",
     name: "Industrial Deep Interior",
-    price: "$3,499",
+    price: "$2,400",
     tagline: "Restauración interior completa",
     highlights: ["Vapor seco 180°C", "Extracción profunda de manchas", "Hidratación de pieles", "Sanitización con ozono"],
     desc: "Tu interior absorbe todo: polvo, bacterias, ácaros, derrames invisibles. Nuestro vapor seco industrial a 180°C penetra cada fibra del tapizado y elimina lo que una aspiradora jamás alcanza.",
@@ -25,8 +25,8 @@ const services = [
   {
     icon: "💎",
     name: "Signature Detail",
-    price: "$9,500",
-    tagline: "Corrección de pintura + interior completo",
+    price: "$7,499",
+    tagline: "Corrección de pintura + interior completo (SUV o Negro +15%)",
     highlights: ["Corrección 2-3 etapas", "Eliminación de swirls 95%", "Interior completo incluido", "Sellador cerámico 6 meses"],
     desc: "Los micro-rayones hacen que tu pintura luzca opaca. Nuestros técnicos certificados IDA corrigen la pintura eliminando hasta el 95% de imperfecciones. Incluye el Interior completo.",
     featured: true,
@@ -34,9 +34,9 @@ const services = [
   {
     icon: "🛡️",
     name: "Ceramic Coating",
-    price: "$14,999",
+    price: "$10,999",
     tagline: "Protección de nueva generación",
-    highlights: ["Protección 3-5 años", "Dureza 9H", "Certificado incluido", "Upgrade Graphene disponible"],
+    highlights: ["Protección 3-5 años", "Dureza 9H", "Certificado incluido", "Upgrade Cristal líquido disponible"],
     desc: "Escudo invisible de dureza 9H que repele agua, suciedad y químicos durante 3 a 5 años. Incluye preparación completa de superficie y certificado Doctor Foam.",
   },
 ];

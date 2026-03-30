@@ -181,7 +181,7 @@ export default function MembresiaPage() {
             <p style={{ color: "#475569", marginBottom: "1.5rem" }}>
               ¿Tienes dudas? Escríbenos por WhatsApp y te asesoramos sin compromiso.
             </p>
-            <a href="https://wa.me/525559624800?text=Hola%2C%20me%20interesa%20la%20membresía%20Doctor%20Foam" className="btn-outline" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/525610846022?text=Hola%2C%20me%20interesa%20la%20membresía%20Doctor%20Foam" className="btn-outline" target="_blank" rel="noopener noreferrer">
               📱 WhatsApp para dudas
             </a>
           </div>

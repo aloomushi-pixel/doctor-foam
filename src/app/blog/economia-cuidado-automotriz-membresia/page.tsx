@@ -98,7 +98,7 @@ export default function BlogEconomiaCuidado() {
             <ul style={{ marginLeft: "1.5rem", marginBottom: "1.5rem" }}>
               <li style={{ marginBottom: "0.5rem" }}>Tienen un auto de gama media-alta que quieren preservar</li>
               <li style={{ marginBottom: "0.5rem" }}>Valoran su tiempo y prefieren delegar el mantenimiento</li>
-              <li style={{ marginBottom: "0.5rem" }}>Ya invirtieron en cerámico o grafeno y necesitan mantenimiento especializado</li>
+              <li style={{ marginBottom: "0.5rem" }}>Ya invirtieron en cerámico o cristal líquido y necesitan mantenimiento especializado</li>
               <li style={{ marginBottom: "0.5rem" }}>Buscan un servicio recurrente confiable, no lavados improvisados</li>
             </ul>
           </div>
