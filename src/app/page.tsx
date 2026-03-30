@@ -530,9 +530,25 @@ export default function HomePage() {
 
       {/* ─── HERO ─── */}
       <section className="hero-section" id="inicio">
-        <div className="hero-bg" />
-        <div className="hero-glow hero-glow-gold" />
-        <div className="hero-glow hero-glow-blue" />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: 0,
+          }}
+        >
+          <source src="/video-hero.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-bg" style={{ zIndex: 1 }} />
+        <div className="hero-glow hero-glow-gold" style={{ zIndex: 1 }} />
+        <div className="hero-glow hero-glow-blue" style={{ zIndex: 1 }} />
 
         <div className="container" style={{ position: "relative", zIndex: 10, textAlign: "center" }}>
           <div className="animate-on-scroll">
