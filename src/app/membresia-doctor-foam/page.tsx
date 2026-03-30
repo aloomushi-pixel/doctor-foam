@@ -14,34 +14,15 @@ export const metadata: Metadata = {
 };
 
 const plans = [
-  {
-    name: "Foam Maintenance",
-    price: "$1,800",
-    period: "MXN / mes",
-    icon: "🧽",
-    desc: "Lavado con foam cannon industrial, descontaminación química, barra de arcilla y sellador UV. El mantenimiento estándar Doctor Foam.",
-    features: [
-      "Foam cannon industrial de alta presión",
-      "Champú de pH neutro (sin dañar cerámico)",
-      "Método de dos cubetas (cero swirls)",
-      "Descontaminación química del clear coat",
-      "Barra de arcilla sintética",
-      "Sellador UV de mantenimiento",
-      "Secado con microfibras 500 GSM",
-      "Acondicionamiento de llantas",
-    ],
-    frequency: "Recomendación: 1 a 2 veces al mes",
-    stripeUrl: "https://buy.stripe.com/4gM00kclRcDc8e92Zg3ZK03",
-    featured: false,
-  },
+
   {
     name: "Membresía Doctor Foam",
     price: "$1,160",
     period: "MXN / mes",
     icon: "🔄",
-    desc: "El plan definitivo. Foam Maintenance bimestral incluido más descuentos exclusivos en todos los servicios. La membresía es por cliente, no importa cuántos autos tengas.",
+    desc: "El plan definitivo. Lavado de mantenimiento bimestral incluido más descuentos exclusivos en todos los servicios. La membresía es por cliente, no importa cuántos autos tengas.",
     features: [
-      "Foam Maintenance bimestral incluido",
+      "Lavado de mantenimiento bimestral incluido",
       "10% de descuento en cualquier paquete",
       "Membresía por cliente (todos tus autos)",
       "Prioridad en agendamiento",
@@ -126,7 +107,7 @@ export default function MembresiaPage() {
             </h2>
             <p className="section-subtitle">Pago mensual automático · IVA incluido · Facturación CFDI · Cancela cuando quieras</p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "2rem", marginTop: "2rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2rem", marginTop: "2rem", maxWidth: "450px", margin: "2rem auto 0 auto" }}>
               {plans.map((p, i) => (
                 <div key={i} className={`glass-card ${p.featured ? "" : ""}`} style={{ padding: "2rem", textAlign: "left", border: p.featured ? "2px solid rgba(37,99,235,0.15)" : undefined, display: "flex", flexDirection: "column" }}>
                   {p.featured && (

@@ -86,22 +86,7 @@ export const PACKAGES: Record<string, PackageConfig> = {
             "Seguimiento personalizado 30 días",
         ],
     },
-    "foam-maintenance": {
-        slug: "foam-maintenance",
-        name: "Foam Maintenance",
-        priceBase: 1800,
-        priceCentavos: 180000,
-        label: "Mantenimiento post-servicio",
-        description:
-            "Foam cannon industrial, descontaminación química, barra de arcilla, sellador UV. Mantenimiento para clientes existentes.",
-        features: [
-            "Foam cannon industrial de alta presión",
-            "Descontaminación química completa",
-            "Barra de arcilla profesional",
-            "Sellador UV de larga duración",
-            "Limpieza de vidrios y rines",
-        ],
-    },
+
     membresia: {
         slug: "membresia",
         name: "Membresía Doctor Foam",
@@ -109,9 +94,9 @@ export const PACKAGES: Record<string, PackageConfig> = {
         priceCentavos: 116000,
         label: "Membresía mensual",
         description:
-            "Foam Maintenance bimestral + 10% descuento en cualquier paquete. Por cliente, independientemente del vehículo.",
+            "Lavado de mantenimiento bimestral + 10% descuento en cualquier paquete. Por cliente, independientemente del vehículo.",
         features: [
-            "Foam Maintenance bimestral incluido",
+            "Lavado de mantenimiento bimestral incluido",
             "10% descuento en cualquier paquete",
             "Prioridad en agenda",
             "Seguimiento personalizado",

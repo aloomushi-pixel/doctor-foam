@@ -79,15 +79,6 @@ const mainServices = [
   },
 ];
 
-/* ─── Foam Maintenance (Post-Service) ─── */
-const foamMaintenance = {
-  icon: "🧽",
-  title: "Foam Maintenance",
-  desc: "Servicio de mantenimiento posterior a tu primer paquete. Lavado con foam cannon industrial, descontaminación química, barra de arcilla y sellador UV. El estándar Doctor Foam para preservar tu inversión.",
-  price: "Desde $1,800 MXN",
-  bookingId: "foam-maintenance",
-  note: "Recomendación: 1 a 2 veces al mes.",
-};
 
 /* ─── Membership ─── */
 const membership = {
@@ -96,7 +87,7 @@ const membership = {
   price: "$1,160",
   priceLabel: "MXN / mes",
   features: [
-    "Foam Maintenance bimestral incluido",
+    "Lavado de mantenimiento bimestral incluido",
     "10% de descuento en cualquier paquete",
     "Membresía por cliente, no importa el vehículo",
   ],
@@ -307,7 +298,7 @@ const faqs = [
   },
   {
     q: "¿Cuánto tiempo toma el servicio?",
-    a: "Foam Maintenance: 2-3 horas. Signature Detail: 5-6 horas. Cristal líquido: 8-10 horas. Todo se completa en un solo día sin mover tu auto. Nuestras unidades traen tanque de 400 litros, generador eléctrico y compresor propio.",
+    a: "Signature Detail: 5-6 horas. Cristal líquido: 8-10 horas. Todo se completa en un solo día sin mover tu auto. Nuestras unidades traen tanque de 400 litros, generador eléctrico y compresor propio.",
   },
   {
     q: "¿Necesito proporcionar agua o electricidad?",
@@ -674,34 +665,8 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem", maxWidth: "900px", margin: "0 auto" }}>
-              {/* Foam Maintenance Card */}
-              <div className="glass-card animate-on-scroll" style={{ padding: "2rem", textAlign: "left", display: "flex", flexDirection: "column" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
-                  <span style={{ fontSize: "2.5rem" }}>{foamMaintenance.icon}</span>
-                  <div>
-                    <h3 style={{ fontSize: "1.2rem", marginBottom: "0.25rem" }}>{foamMaintenance.title}</h3>
-                    <span style={{ color: "#16a34a", fontSize: "0.75rem", fontWeight: 600, background: "#dcfce7", padding: "0.2rem 0.6rem", borderRadius: "1rem" }}>
-                      Pago mensual · Recurrente
-                    </span>
-                  </div>
-                </div>
-                <p style={{ color: "#475569", fontSize: "0.88rem", marginBottom: "1rem", lineHeight: "1.7", flex: 1 }}>{foamMaintenance.desc}</p>
-                <div style={{ marginBottom: "0.25rem" }}>
-                  <span className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "2rem" }}>$1,800</span>
-                  <span style={{ color: "#64748b", fontSize: "0.9rem", marginLeft: "0.25rem" }}>MXN / mes</span>
-                </div>
-                <p style={{ color: "#475569", fontSize: "0.75rem", marginBottom: "1.25rem" }}>IVA incluido · Facturable · {foamMaintenance.note}</p>
-                <Link
-                  href="/membresia-doctor-foam"
-                  className="btn-premium"
-                  style={{ width: "100%", justifyContent: "center", textAlign: "center" }}
-                >
-                  🔄 Conocer Membresía
-                </Link>
-              </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem", maxWidth: "500px", margin: "0 auto" }}>
 
-              {/* Membresía Card */}
               <div className="glass-card animate-on-scroll" style={{ padding: "2rem", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)", display: "flex", flexDirection: "column" }}>
                 <span style={{ display: "inline-block", padding: "0.25rem 1rem", background: "linear-gradient(135deg, #2563eb, #3b82f6)", color: "#ffffff", fontFamily: "var(--font-heading)", fontSize: "0.7rem", fontWeight: 700, borderRadius: "2rem", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1rem", alignSelf: "center" }}>
                   Mejor Valor

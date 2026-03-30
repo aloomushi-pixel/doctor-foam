@@ -76,7 +76,7 @@ export default function BlogEconomiaCuidado() {
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>Membresía vs. Lavados Esporádicos: Los Números</h2>
             <div className="glass-card" style={{ padding: "1.5rem", marginBottom: "1.5rem" }}>
               <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Sin membresía:</strong> 4 lavados/mes × $600 = $2,400/mes + daño acumulado a pintura</p>
-              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Con Membresía Doctor Foam:</strong> $1,160/mes. Incluye Foam Maintenance bimestral + 10% descuento en paquetes.</p>
+              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Con Membresía Doctor Foam:</strong> $1,160/mes. Incluye lavado de mantenimiento bimestral + 10% descuento en paquetes.</p>
               <p style={{ color: "#22c55e", fontWeight: 600 }}>Ahorro anual: ~$14,880 MXN + preservación del valor del vehículo</p>
             </div>
 
