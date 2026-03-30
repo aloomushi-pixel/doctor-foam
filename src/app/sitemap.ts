@@ -17,7 +17,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const blogPosts = [
         "guia-completa-recubrimiento-ceramico",
         "5-errores-lavado-auto-premium",
+        "detallado-interior-profundo-que-incluye",
         "correccion-pintura-swirls-guia",
+        "por-que-detallado-domicilio-mejor",
         "mejores-ceras-selladores-mexico",
         "economia-cuidado-automotriz-membresia",
         "lavado-profundo-vs-detallado-automotriz",
