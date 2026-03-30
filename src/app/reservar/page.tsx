@@ -3,7 +3,7 @@
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { PACKAGES, VEHICLE_SIZES, PREMIUM_ZONES } from "@/lib/packages";
+import { PACKAGES, VEHICLE_SIZES, PREMIUM_ZONES, calculatePrice } from "@/lib/packages";
 
 /* ─── Re-export for component use (aligned shapes) ─── */
 const packagesData = Object.fromEntries(
@@ -38,13 +38,13 @@ function BookingForm() {
     const [vehicleModel, setVehicleModel] = useState("");
     const [vehicleYear, setVehicleYear] = useState("");
     const [vehicleColor, setVehicleColor] = useState("");
+    const [isBlackColor, setIsBlackColor] = useState(false);
     const [needsFactura, setNeedsFactura] = useState(false);
     const [rfc, setRfc] = useState("");
     const [razonSocial, setRazonSocial] = useState("");
 
     const pkg = packagesData[selectedPackage];
-    const coeff = vehicleSizes.find((v) => v.value === vehicleSize)?.coefficient || 1.0;
-    const currentPrice = pkg ? Math.round(pkg.priceBase * coeff) : 0;
+    const currentPrice = pkg ? calculatePrice(selectedPackage, vehicleSize, isBlackColor) / 100 : 0;
 
     // Get min date (tomorrow)
     const getMinDate = () => {
@@ -65,6 +65,7 @@ function BookingForm() {
                 body: JSON.stringify({
                     packageId: selectedPackage,
                     vehicleSize,
+                    isBlackColor,
                     serviceDate,
                     customerName,
                     customerEmail,
@@ -190,7 +191,7 @@ function BookingForm() {
                                         </div>
                                     </div>
                                     <div className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.2rem", whiteSpace: "nowrap" }}>
-                                        ${p.priceBase.toLocaleString("es-MX")}
+                                        ${(calculatePrice(key, vehicleSize, isBlackColor) / 100).toLocaleString("es-MX")}
                                     </div>
                                 </button>
                             );
@@ -217,6 +218,38 @@ function BookingForm() {
                                 </div>
                             </button>
                         ))}
+                    </div>
+
+                    <h3 style={{ fontSize: "1rem", marginBottom: "0.75rem", color: "#334155" }}>Pintura del vehículo</h3>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "1.5rem" }}>
+                        <button
+                            type="button" onClick={() => setIsBlackColor(false)}
+                            style={{
+                                padding: "1rem", borderRadius: "0.75rem",
+                                border: !isBlackColor ? "2px solid #2563eb" : "1.5px solid #e2e8f0",
+                                background: !isBlackColor ? "rgba(37, 99, 235, 0.06)" : "#ffffff",
+                                cursor: "pointer", color: "#0f172a", textAlign: "center",
+                                transition: "all 0.3s ease",
+                                boxShadow: !isBlackColor ? "0 2px 12px rgba(37,99,235,0.1)" : "none",
+                            }}
+                        >
+                            <div style={{ fontWeight: 600, fontSize: "0.9rem", color: !isBlackColor ? "#1e40af" : "#0f172a" }}>Cualquier otro color</div>
+                            <div style={{ color: "#64748b", fontSize: "0.75rem", marginTop: "0.25rem" }}>Precio sin recargo extra</div>
+                        </button>
+                        <button
+                            type="button" onClick={() => setIsBlackColor(true)}
+                            style={{
+                                padding: "1rem", borderRadius: "0.75rem",
+                                border: isBlackColor ? "2px solid #2563eb" : "1.5px solid #e2e8f0",
+                                background: isBlackColor ? "rgba(37, 99, 235, 0.06)" : "#ffffff",
+                                cursor: "pointer", color: "#0f172a", textAlign: "center",
+                                transition: "all 0.3s ease",
+                                boxShadow: isBlackColor ? "0 2px 12px rgba(37,99,235,0.1)" : "none",
+                            }}
+                        >
+                            <div style={{ fontWeight: 600, fontSize: "0.9rem", color: isBlackColor ? "#1e40af" : "#0f172a" }}>Color Negro</div>
+                            <div style={{ color: "#64748b", fontSize: "0.75rem", marginTop: "0.25rem" }}>Requiere extra descontaminación</div>
+                        </button>
                     </div>
 
                     <button
@@ -373,6 +406,7 @@ function BookingForm() {
                             { label: "Servicio", value: pkg.name },
                             ...(vehicleBrand || vehicleModel ? [{ label: "Vehículo", value: [vehicleBrand, vehicleModel, vehicleYear, vehicleColor].filter(Boolean).join(" ") }] : []),
                             { label: "Tamaño", value: vehicleSizes.find((v) => v.value === vehicleSize)?.label || "" },
+                            { label: "Color Negro", value: isBlackColor ? "Sí (+15% aplicable)" : "No" },
                             { label: "Fecha", value: serviceDate ? new Date(serviceDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : "" },
                             { label: "Dirección", value: postalCode ? `${address}, C.P. ${postalCode}` : address },
                             { label: "Contacto", value: [customerName, customerPhone, customerEmail].filter(Boolean).join(" · ") },

@@ -142,10 +142,24 @@ export function getPackageBySlug(slug: string): PackageConfig | undefined {
     return PACKAGES[slug];
 }
 
-export function calculatePrice(slug: string, vehicleSize: string): number {
+export function calculatePrice(slug: string, vehicleSize: string, isBlackColor: boolean = false): number {
     const pkg = PACKAGES[slug];
     if (!pkg) return 0;
-    const coeff = SIZE_COEFFICIENTS[vehicleSize] || 1.0;
+    
+    // El "deep-interior" nunca tiene recargos por tamaño o color
+    if (slug === 'deep-interior') {
+        return pkg.priceCentavos;
+    }
+
+    // Para los demás: si es pickup/SUV o si es negro, sube 15%. 
+    // Si son AMBOS, sigue siendo sólo 15%.
+    let coeff = 1.0;
+    const isPickUp = vehicleSize === 'pickup-3filas';
+    
+    if (isPickUp || isBlackColor) {
+        coeff = 1.15;
+    }
+    
     return Math.round(pkg.priceCentavos * coeff);
 }
 

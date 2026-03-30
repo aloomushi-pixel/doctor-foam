@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const packages = [
   {
     name: "Industrial Deep Interior",
-    price: { sedan: "$2,400", pickup: "$2,760" },
+    price: { sedan: "$2,400", pickup: "$2,400" },
     time: "3-4 horas",
     icon: "♨️",
     ideal: "Tu interior necesita una restauración seria — manchas, olores, bacterias acumuladas.",

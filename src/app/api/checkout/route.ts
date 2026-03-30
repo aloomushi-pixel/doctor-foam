@@ -22,6 +22,7 @@ export async function POST(request: NextRequest) {
             vehicleModel,
             vehicleYear,
             vehicleColor,
+            isBlackColor,
             rfc,
             razonSocial,
             needsFactura,
@@ -38,9 +39,9 @@ export async function POST(request: NextRequest) {
         }
 
         // Calculate price
-        const totalCentavos = calculatePrice(packageId, vehicleSize);
+        const totalCentavos = calculatePrice(packageId, vehicleSize, isBlackColor);
         const vehicleSizeLabel = getVehicleSizeLabel(vehicleSize);
-        const vehicleInfo = [vehicleBrand, vehicleModel, vehicleYear, vehicleColor].filter(Boolean).join(" ");
+        const vehicleInfo = [vehicleBrand, vehicleModel, vehicleYear, vehicleColor, isBlackColor ? "(Color Negro)" : ""].filter(Boolean).join(" ");
         const isSubscription = !!pkg.isSubscription;
 
         // 1) Send email notification to admin immediately
@@ -76,7 +77,7 @@ export async function POST(request: NextRequest) {
                         currency: "mxn",
                         product_data: {
                             name: pkg.name,
-                            description: `${pkg.description} | ${vehicleSizeLabel} | Fecha: ${serviceDate}`,
+                            description: `${pkg.description} | ${vehicleSizeLabel}${isBlackColor ? ' | Color Negro' : ''} | Fecha: ${serviceDate}`,
                         },
                         unit_amount: totalCentavos,
                         ...(isSubscription ? { recurring: { interval: "month" as const } } : {}),

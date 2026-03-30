@@ -113,7 +113,7 @@ const packages = [
     price: "$2,400",
     priceLabel: "Sedán / SUV 2 filas",
     subtitle: "Limpieza interior profesional",
-    prices: { sedan: "$2,400", pickup: "$2,760" },
+    prices: { sedan: "$2,400", pickup: "$2,400" },
     features: [
       "Vapor seco industrial a 180°C",
       "Aspirado de alta potencia",
