@@ -76,7 +76,7 @@ export default function AvisoDePrivacidad() {
 
                             <p style={{ marginBottom: "1.5rem" }}>
                                 Para el ejercicio de cualquiera de los derechos ARCO, usted deberá enviar su solicitud a través
-                                del correo electrónico <strong style={{ color: "var(--color-gold-400)" }}>privacidad@doctorfoam.mx</strong>.
+                                del correo electrónico <strong style={{ color: "var(--color-gold-400)" }}>privacidad@drfoam.com.mx</strong>.
                             </p>
 
                             <h2 style={{ fontSize: "1.2rem", color: "#0f172a", marginTop: "2rem", marginBottom: "1rem" }}>

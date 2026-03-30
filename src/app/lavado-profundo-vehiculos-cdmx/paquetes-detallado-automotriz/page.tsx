@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Paquetes de Detallado Automotriz CDMX | Precios Doctor Foam",
   description:
     "Compara nuestros 3 planes de detallado automotriz: Industrial Deep Interior, Signature Detail y Ceramic Coating. Precios, diferencias y beneficios en CDMX.",
-  alternates: { canonical: "https://doctorfoam.mx/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" },
+  alternates: { canonical: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" },
 };
 
 const packages = [

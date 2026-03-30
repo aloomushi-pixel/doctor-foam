@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Lavado de Autos en Estacionamiento Corporativo CDMX | Sin Agua",
   description:
     "Llevamos nuestro lavado premium a tu oficina en CDMX. Sistema de encapsulamiento sin agua, sin ruido ni escurrimientos. Ideal para corporativos y condominios.",
-  alternates: { canonical: "https://doctorfoam.mx/lavado-autos-estacionamiento-corporativo" },
+  alternates: { canonical: "https://drfoam.com.mx/lavado-autos-estacionamiento-corporativo" },
   openGraph: {
     title: "Lavado de Autos en Estacionamiento Corporativo | Doctor Foam",
     description: "Limpiamos tu auto mientras trabajas. Sin usar tu agua ni electricidad. Sin dejar escurrimientos.",

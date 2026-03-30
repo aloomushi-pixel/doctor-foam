@@ -328,7 +328,7 @@ function JsonLd() {
     name: "Doctor Foam México",
     description:
       "Lavado de autos a domicilio y detallado automotriz premium en CDMX y Valle de México",
-    url: "https://doctorfoam.mx",
+    url: "https://drfoam.com.mx",
     telephone: "+525559624800",
     areaServed: [
       { "@type": "City", name: "Ciudad de México" },
@@ -1082,9 +1082,9 @@ export default function HomePage() {
             <ul className="footer-links">
               <li><a href="https://wa.me/525559624800" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
               <li><a href="tel:+525559624800">+52 55 5962 4800</a></li>
-              <li><a href="mailto:hola@doctorfoam.mx">hola@doctorfoam.mx</a></li>
-              <li><a href="https://instagram.com/doctorfoam.mx">Instagram</a></li>
-              <li><a href="https://facebook.com/doctorfoam.mx">Facebook</a></li>
+              <li><a href="mailto:hola@drfoam.com.mx">hola@drfoam.com.mx</a></li>
+              <li><a href="https://instagram.com/drfoam.com.mx">Instagram</a></li>
+              <li><a href="https://facebook.com/drfoam.com.mx">Facebook</a></li>
             </ul>
           </div>
         </div>

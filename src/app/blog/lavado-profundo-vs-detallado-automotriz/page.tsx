@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Lavado Profundo vs Detallado Automotriz: ¿Cuál Necesitas? | Doctor Foam",
   description:
     "Entiende la diferencia entre un lavado profundo y un detallado automotriz profesional. Descontaminación química, arcilla, corrección de pintura explicados.",
-  alternates: { canonical: "https://doctorfoam.mx/blog/lavado-profundo-vs-detallado-automotriz" },
+  alternates: { canonical: "https://drfoam.com.mx/blog/lavado-profundo-vs-detallado-automotriz" },
   openGraph: {
     title: "Lavado Profundo vs Detallado Automotriz | Doctor Foam",
     description: "¿Por qué un detallado toma 4-8 horas? Explicamos cada proceso profesional.",
@@ -22,7 +22,7 @@ const articleJsonLd = {
   datePublished: "2026-03-29",
   author: { "@type": "Organization", name: "Doctor Foam México" },
   publisher: { "@type": "Organization", name: "Doctor Foam México" },
-  url: "https://doctorfoam.mx/blog/lavado-profundo-vs-detallado-automotriz",
+  url: "https://drfoam.com.mx/blog/lavado-profundo-vs-detallado-automotriz",
 };
 
 export default function BlogLavadoProfundoVsDetallado() {

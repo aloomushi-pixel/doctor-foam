@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     title: "Blog | Doctor Foam México — Consejos de Detallado Automotriz",
     description:
         "Tips, guías y artículos sobre cuidado automotriz, detallado premium, recubrimientos cerámicos y mantenimiento de vehículos de lujo en México.",
-    alternates: { canonical: "https://doctorfoam.mx/blog" },
+    alternates: { canonical: "https://drfoam.com.mx/blog" },
 };
 
 const blogPosts = [
@@ -96,7 +96,7 @@ export default function BlogPage() {
         "@type": "Blog",
         name: "Blog Doctor Foam México",
         description: "Artículos sobre detallado automotriz premium, cuidado de autos de lujo",
-        url: "https://doctorfoam.mx/blog",
+        url: "https://drfoam.com.mx/blog",
         publisher: {
             "@type": "Organization",
             name: "Doctor Foam México",
@@ -106,7 +106,7 @@ export default function BlogPage() {
             headline: post.title,
             description: post.excerpt,
             datePublished: post.date,
-            url: `https://doctorfoam.mx/blog/${post.slug}`,
+            url: `https://drfoam.com.mx/blog/${post.slug}`,
         })),
     };
 

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Lavado de Autos a Domicilio CDMX | Doctor Foam México",
     description:
       "Llevamos un estudio de detallado automotriz premium a tu casa u oficina. Equipo industrial, químicos profesionales y resultados superiores a cualquier taller.",
-    url: "https://doctorfoam.mx",
+    url: "https://drfoam.com.mx",
     siteName: "Doctor Foam México",
     locale: "es_MX",
     type: "website",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
       "Evita las filas y el daño a tu pintura. Lavado de autos a domicilio con equipo industrial en CDMX. Agenda hoy.",
   },
   alternates: {
-    canonical: "https://doctorfoam.mx",
+    canonical: "https://drfoam.com.mx",
   },
   robots: {
     index: true,

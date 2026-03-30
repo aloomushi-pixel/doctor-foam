@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "¿Qué Incluye Nuestro Lavado de Mantenimiento? | Doctor Foam",
   description:
     "Conoce cada detalle de nuestro servicio de mantenimiento preventivo: champú pH neutro, método dos cubetas, sellador UV y más. Lavado seguro para autos con cerámico.",
-  alternates: { canonical: "https://doctorfoam.mx/lavado-recurrente-autos-domicilio/que-incluye-mantenimiento" },
+  alternates: { canonical: "https://drfoam.com.mx/lavado-recurrente-autos-domicilio/que-incluye-mantenimiento" },
 };
 
 const steps = [

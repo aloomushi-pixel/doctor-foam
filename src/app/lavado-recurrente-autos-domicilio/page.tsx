@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Membresía de Lavado de Auto a Domicilio | Mantenimiento Premium",
   description:
     "Protege el valor de reventa de tu auto y ahorra tiempo. Conoce nuestro servicio exclusivo de lavado recurrente a domicilio para vehículos de alta gama en CDMX.",
-  alternates: { canonical: "https://doctorfoam.mx/lavado-recurrente-autos-domicilio" },
+  alternates: { canonical: "https://drfoam.com.mx/lavado-recurrente-autos-domicilio" },
   openGraph: {
     title: "Lavado Recurrente para Vehículos a Domicilio | Doctor Foam",
     description: "Mantén tu auto impecable con nuestro plan de lavado recurrente a domicilio. Sin filas, sin riesgos, sin esfuerzo.",
@@ -30,7 +30,7 @@ const jsonLd = {
   provider: { "@type": "LocalBusiness", name: "Doctor Foam México" },
   serviceType: "Lavado recurrente de autos a domicilio",
   areaServed: { "@type": "City", name: "Ciudad de México" },
-  url: "https://doctorfoam.mx/lavado-recurrente-autos-domicilio",
+  url: "https://drfoam.com.mx/lavado-recurrente-autos-domicilio",
 };
 
 export default function LavadoRecurrentePage() {

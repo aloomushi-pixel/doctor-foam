@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Lavado Profundo de Autos CDMX | Extracción Térmica y Detallado",
   description:
     "Restaura tu auto a nivel de exhibición. Lavado profundo a domicilio con extracción térmica, desinfección UV y corrección de pintura profesional en CDMX.",
-  alternates: { canonical: "https://doctorfoam.mx/lavado-profundo-vehiculos-cdmx" },
+  alternates: { canonical: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx" },
   openGraph: {
     title: "Lavado Profundo de Vehículos | Doctor Foam México",
     description: "Detallado y restauración completa a domicilio. Extracción térmica, corrección de pintura y recubrimiento cerámico.",
@@ -49,7 +49,7 @@ const jsonLd = {
   provider: { "@type": "LocalBusiness", name: "Doctor Foam México" },
   serviceType: "Lavado profundo y detallado automotriz",
   areaServed: { "@type": "City", name: "Ciudad de México" },
-  url: "https://doctorfoam.mx/lavado-profundo-vehiculos-cdmx",
+  url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx",
 };
 
 export default function LavadoProfundoPage() {

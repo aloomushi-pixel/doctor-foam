@@ -225,7 +225,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: `${post.title} | Doctor Foam México`,
         description: post.metaDesc,
-        alternates: { canonical: `https://doctorfoam.mx/blog/${slug}` },
+        alternates: { canonical: `https://drfoam.com.mx/blog/${slug}` },
         openGraph: {
             title: post.title,
             description: post.metaDesc,
@@ -256,7 +256,7 @@ export default async function BlogPost({ params }: PageProps) {
         datePublished: post.date,
         author: { "@type": "Organization", name: "Doctor Foam México" },
         publisher: { "@type": "Organization", name: "Doctor Foam México" },
-        url: `https://doctorfoam.mx/blog/${slug}`,
+        url: `https://drfoam.com.mx/blog/${slug}`,
     };
 
     return (

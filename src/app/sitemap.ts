@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = "https://doctorfoam.mx";
+    const baseUrl = "https://drfoam.com.mx";
 
     const zones = [
         "polanco",

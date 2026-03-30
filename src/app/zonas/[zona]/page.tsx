@@ -110,7 +110,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: `Detallado Automotriz en ${z.name} | Doctor Foam México`,
         description: z.metaDesc,
-        alternates: { canonical: `https://doctorfoam.mx/zonas/${zona}` },
+        alternates: { canonical: `https://drfoam.com.mx/zonas/${zona}` },
         openGraph: {
             title: `Detallado Premium a Domicilio en ${z.name}`,
             description: z.metaDesc,
@@ -145,7 +145,7 @@ export default async function ZonePage({ params }: PageProps) {
             },
         },
         serviceType: "Mobile Auto Detailing",
-        url: `https://doctorfoam.mx/zonas/${zona}`,
+        url: `https://drfoam.com.mx/zonas/${zona}`,
     };
 
     return (

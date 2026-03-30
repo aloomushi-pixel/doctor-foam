@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: ["/api/", "/_next/"],
             },
         ],
-        sitemap: "https://doctorfoam.mx/sitemap.xml",
+        sitemap: "https://drfoam.com.mx/sitemap.xml",
     };
 }

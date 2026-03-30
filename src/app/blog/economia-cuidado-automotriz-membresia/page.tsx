@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "La Economía del Cuidado Automotriz: ¿Conviene una Membresía? | Doctor Foam",
   description:
     "Descubre cuánto ahorras con una membresía de mantenimiento automotriz vs. lavados esporádicos. Tips de limpieza interior + análisis financiero del cuidado de tu auto.",
-  alternates: { canonical: "https://doctorfoam.mx/blog/economia-cuidado-automotriz-membresia" },
+  alternates: { canonical: "https://drfoam.com.mx/blog/economia-cuidado-automotriz-membresia" },
   openGraph: {
     title: "¿Conviene una Membresía de Lavado de Auto? | Doctor Foam",
     description: "Análisis financiero del cuidado automotriz recurrente vs. esporádico. Plus: tips profesionales de limpieza interior.",
@@ -22,7 +22,7 @@ const articleJsonLd = {
   datePublished: "2026-03-29",
   author: { "@type": "Organization", name: "Doctor Foam México" },
   publisher: { "@type": "Organization", name: "Doctor Foam México" },
-  url: "https://doctorfoam.mx/blog/economia-cuidado-automotriz-membresia",
+  url: "https://drfoam.com.mx/blog/economia-cuidado-automotriz-membresia",
 };
 
 export default function BlogEconomiaCuidado() {

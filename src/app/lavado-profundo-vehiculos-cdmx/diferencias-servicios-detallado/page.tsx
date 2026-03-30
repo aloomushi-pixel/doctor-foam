@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Lavado de Vestiduras y Detallado: Diferencias | Doctor Foam",
   description:
     "Conoce las diferencias entre lavado de vestiduras, detallado interior y restauración completa. Extracción térmica, corrección de pintura y más explicado a detalle.",
-  alternates: { canonical: "https://doctorfoam.mx/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" },
+  alternates: { canonical: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" },
 };
 
 const comparisons = [

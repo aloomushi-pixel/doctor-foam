@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Membresía Lavado de Auto a Domicilio | Doctor Foam México",
   description:
     "Mantén tu auto impecable con la Membresía Doctor Foam. Lavado recurrente a domicilio con equipo industrial, químicos premium y descuentos exclusivos. Desde $1,160 MXN/mes.",
-  alternates: { canonical: "https://doctorfoam.mx/membresia-doctor-foam" },
+  alternates: { canonical: "https://drfoam.com.mx/membresia-doctor-foam" },
   openGraph: {
     title: "Membresía Doctor Foam | Lavado Recurrente Premium",
     description: "El cuidado definitivo para tu auto. Planes de mantenimiento con pagos mensuales automáticos.",
