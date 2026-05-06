@@ -41,47 +41,6 @@ Cuando un vehículo presenta un acristalamiento impecable y una limpieza quirúr
 *Protege tu inversión patrimonial hoy. [Agenda un diagnóstico especializado con Doctor Foam](/reservar).*
         `
     },
-    "plusvalia-estructural-impermeabilizacion-alto-desempeno": {
-        title: "Plusvalía Estructural: El Impacto Oculto de la Impermeabilización de Alto Desempeño",
-        date: "2026-05-06",
-        category: "Economía del Patrimonio",
-        readTime: "7 min",
-        metaDesc: "Conoce cómo el poliuretano espreado genera plusvalía inmobiliaria residencial al brindar protección hermética y eficiencia energética en tu inmueble.",
-        content: `
-La arquitectura residencial de alto valor neto exige un enfoque de preservación que trascienda la corrección cosmética. En la gestión de portafolios inmobiliarios, la envolvente del edificio es la primera línea de defensa contra la entropía termodinámica. La impermeabilización avanzada, frecuentemente malinterpretada como una partida de mantenimiento correctivo, debe reclasificarse como un **inyector directo de plusvalía estructural**.
-
-## La Física de la Degradación Estructural
-
-El agua es el vector de deterioro más agresivo en cualquier obra civil. La infiltración capilar en losas de concreto desencadena una serie de reacciones físico-químicas devastadoras:
-
-1.  **Carbonatación del Concreto:** La humedad facilita la penetración de CO2, reduciendo el pH del concreto y destruyendo la capa pasivadora del acero de refuerzo.
-2.  **Corrosión del Acero (Oxidación):** La expansión volumétrica del óxido de hierro genera esfuerzos de tensión internos que terminan fracturando y desprendiendo el recubrimiento (spalling).
-3.  **Fatiga Térmica:** La contracción y expansión cíclica de los materiales por cambios bruscos de temperatura acelera la fatiga estructural.
-
-## Ingeniería de Materiales: El Poliuretano Espreado
-
-Las emulsiones acrílicas convencionales o los prefabricados asfálticos son soluciones transaccionales de bajo rendimiento que ofrecen protección fragmentada. Para asegurar la integridad patrimonial, la ingeniería moderna recurre al **poliuretano espreado** de alta densidad.
-
-*   **Hermeticidad Monolítica:** A diferencia de los sistemas en rollo que presentan juntas y traslapes (puntos críticos de falla), el elastómero de poliuretano se aplica en fase líquida, curando para formar una membrana continua, monolítica y sin costuras que se adhiere a nivel molecular al sustrato.
-*   **Resistencia Termodinámica:** Su elongación superior al 400% le permite absorber los movimientos estructurales por choque térmico sin fisurarse, manteniendo su módulo de elasticidad bajo condiciones extremas.
-
-## Inyección a la Tasación y Plusvalía Inmobiliaria
-
-La aplicación de **poliuretano espreado genera una plusvalía inmobiliaria residencial** cuantificable a través de dos ejes principales:
-
-### 1. Preservación de la Vida Útil del Activo
-Al sellar herméticamente la estructura y prevenir la degradación del acero y el concreto, se elimina el riesgo de vicios ocultos y costosas reparaciones estructurales futuras. Durante un *Due Diligence* técnico para la venta de la propiedad, una cubierta protegida con polímeros de alto desempeño certifica la salud estructural del inmueble, incrementando su calificación crediticia y valor de tasación.
-
-### 2. Eficiencia Energética y Valor de Capitalización
-El poliuretano de celda cerrada actúa no solo como barrera hidrófuga, sino como un puente de ruptura térmica excepcional (Alto Valor R). Esto reduce drásticamente la transferencia termodinámica, minimizando el consumo energético de los sistemas HVAC (Calefacción, Ventilación y Aire Acondicionado). En propiedades *Prime*, la eficiencia energética certificable es un multiplicador de valor creciente.
-
----
-
-> **Veredicto Financiero:** La impermeabilización con elastómeros de poliuretano es una intervención de ingeniería preventiva. Su aplicación blinda la estructura contra la depreciación ambiental y capitaliza directamente en la plusvalía del inmueble.
-
-*Salvaguarda tu inversión inmobiliaria. [Consulta nuestros servicios de aislamiento y recubrimientos aquí](/reservar).*
-        `
-    },
     "guia-completa-recubrimiento-ceramico": {
         title: "Guía Completa: Recubrimiento Cerámico para tu Auto en CDMX",
         date: "2026-02-15",
