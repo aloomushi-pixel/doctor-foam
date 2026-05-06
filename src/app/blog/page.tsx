@@ -11,6 +11,22 @@ export const metadata: Metadata = {
 
 const blogPosts = [
     {
+        slug: "detallado-profesional-multiplicador-financiero-vehiculos-lujo",
+        title: "El Detallado Profesional como Multiplicador Financiero en Vehículos de Lujo",
+        excerpt: "Análisis financiero: cómo una inversión en detallado automotriz genera un incremento sustancial en el valor de reventa. El efecto halo y el retorno de inversión.",
+        date: "2026-05-06",
+        category: "Economía del Patrimonio",
+        readTime: "8 min",
+    },
+    {
+        slug: "plusvalia-estructural-impermeabilizacion-alto-desempeno",
+        title: "Plusvalía Estructural: El Impacto Oculto de la Impermeabilización",
+        excerpt: "Cómo la impermeabilización con poliuretano espreado trasciende el mantenimiento para convertirse en una inyección directa de plusvalía inmobiliaria residencial.",
+        date: "2026-05-06",
+        category: "Economía del Patrimonio",
+        readTime: "7 min",
+    },
+    {
         slug: "guia-completa-recubrimiento-ceramico",
         title: "Guía Completa: Recubrimiento Cerámico para tu Auto en CDMX",
         excerpt:
