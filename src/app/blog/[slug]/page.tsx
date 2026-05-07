@@ -126,50 +126,6 @@ Los ductos del sistema de aire acondicionado (HVAC) son el pulmón del vehículo
 *Eleva la bioseguridad de tu patrimonio. [Agenda una esterilización clínica de interiores con Doctor Foam](/reservar).*
         `
     },
-    "poliuretano-espreado-celda-cerrada-termodinamica-aislamiento": {
-        title: "Poliuretano Espreado de Celda Cerrada: Termodinámica Aplicada al Aislamiento",
-        date: "2026-05-06",
-        category: "Ingeniería de Aislamiento",
-        readTime: "12 min",
-        metaDesc: "Descubre las ventajas del poliuretano espreado de celda cerrada en aislamiento industrial y residencial de alto perfil. Valor R supremo y reducción de costos.",
-        content: `
-En la gestión de activos inmobiliarios e industriales de alto perfil, el control térmico ineficiente representa una fuga de capital constante. Los sistemas de aislamiento tradicionales, como las membranas acrílicas, fibratadas o la fibra de vidrio, sufren de limitaciones mecánicas y termodinámicas fundamentales. La respuesta definitiva de la ingeniería de materiales a este desafío es el **Poliuretano Espreado de Celda Cerrada (SPF, por sus siglas en inglés)**.
-
-## La Falsa Economía de los Sistemas Acrílicos Convencionales
-
-El mercado está inundado de impermeabilizantes y aislantes acrílicos de bajo costo que prometen reducciones térmicas significativas. Sin embargo, desde una óptica de ingeniería financiera, representan una falsa economía:
-
-1.  **Deterioro por Ciclos Térmicos:** Los acrílicos tienen una elasticidad limitada. Frente a la expansión y contracción de la losa por el impacto UV (ciclos de calor diurno y frío nocturno), el material se fatiga, fisura y permite la infiltración higroscópica.
-2.  **Conductividad Térmica (Falta de Valor R):** Un recubrimiento blanco acrílico solo proporciona *reflectancia* solar, no aislamiento térmico. El calor por conducción penetra irremediablemente el sustrato, forzando a los sistemas HVAC a operar a su máxima capacidad.
-
-## Los Pilares Termodinámicos del Poliuretano de Celda Cerrada
-
-El SPF de celda cerrada es una matriz polimérica rígida que se expande hasta 30 veces su volumen líquido original en segundos. Su superioridad se fundamenta en tres pilares de ingeniería:
-
-### 1. Monolitismo y Supresión de Puentes Térmicos
-A diferencia de los paneles rígidos de poliestireno (EPS) que requieren juntas y fijaciones, el poliuretano espreado es monolítico. Se adhiere al 100% de la superficie a nivel microscópico, sellando huecos, grietas y contornos irregulares. Esto erradica los *puentes térmicos*, puntos de fuga donde el calor entra o escapa, bloqueando además la infiltración de aire (air sealing).
-
-### 2. El Valor R Supremo
-La eficiencia de un aislante se mide en su "Valor R" (resistencia térmica). El poliuretano de celda cerrada posee el **Valor R por pulgada más alto de la industria** (aprox. R-6.0 a R-7.0 por pulgada). Este nivel de resistencia es posible porque las "celdas" de la espuma están encapsuladas, atrapando gases aislantes que tienen una conductividad térmica mucho menor que el aire.
-
-### 3. Impermeabilidad Total (Barrera de Vapor)
-Debido a la densidad de su estructura de celdas cerradas, el agua líquida y el vapor de agua no pueden penetrar la matriz. El SPF funciona simultáneamente como aislante térmico, barrera de aire y barrera de vapor, previniendo la condensación intersticial que oxida el acero estructural y pudre las cubiertas.
-
-## El Impacto Financiero (ROI y Plusvalía)
-
-La instalación de poliuretano espreado no es un gasto de mantenimiento, es una actualización de capital (CapEx). 
-
-*   **Reducción Drástica de Facturación:** Al sellar la envolvente térmica del edificio, se mitiga el intercambio de calor. La carga operativa del sistema HVAC (aire acondicionado o calefacción) se reduce entre un **30% y un 50%**, generando ahorros masivos en la facturación eléctrica a perpetuidad.
-*   **Vida Útil del Sistema HVAC:** Menor carga térmica significa menor tiempo de compresión y, por ende, una extensión sustancial en la vida útil de las unidades climáticas industriales.
-*   **Apreciación del Activo:** Un inmueble con eficiencia térmica optimizada atrae certificaciones de sustentabilidad (LEED) y retiene un valor de mercado significativamente superior frente a propiedades con envolventes defectuosas.
-
----
-
-> **Veredicto Clínico:** Optar por aislamientos convencionales en proyectos patrimoniales es ignorar los principios básicos de la termodinámica. El Poliuretano Espreado de Celda Cerrada es el estándar dorado para la conservación de energía, la integridad estructural y la maximización del ROI.
-
-*Optimiza la eficiencia térmica de tus activos con los especialistas en ingeniería de materiales. [Consulta a Doctor Foam](/reservar).*
-        `
-    },
     "mitigacion-grabado-lluvia-acida-autos": {
         title: "Lluvia Ácida vs. Manchas de Agua en la CDMX: La Cinética de la Destrucción",
         date: "2026-05-06",
