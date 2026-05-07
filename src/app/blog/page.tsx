@@ -11,6 +11,22 @@ export const metadata: Metadata = {
 
 const blogPosts = [
     {
+        slug: "detallado-movil-grado-clinico-vs-lavado-convencional",
+        title: "Detallado Móvil de Grado Clínico vs. Lavado a Domicilio Convencional",
+        excerpt: "Análisis de la infraestructura logística necesaria para la intervención a domicilio. Ósmosis inversa, iluminación CRI y protocolos de contaminación cruzada cero.",
+        date: "2026-05-07",
+        category: "Logística y Operaciones",
+        readTime: "9 min",
+    },
+    {
+        slug: "innovacion-2025-2026-escaneres-3d-polimeros-auto-regenerables",
+        title: "Innovación 2025-2026: Escáneres 3D y Polímeros Auto-Regenerables",
+        excerpt: "El futuro de la protección automotriz: metrología algorítmica, PPF viscoelástico reactivo al calor y el impacto directo en la conservación del valor patrimonial.",
+        date: "2026-05-07",
+        category: "Innovación Tecnológica",
+        readTime: "10 min",
+    },
+    {
         slug: "desnaturalizacion-termica-180c-fin-extraccion-humeda",
         title: "Desnaturalización Térmica a 180°C: El Fin de la Extracción Húmeda",
         excerpt: "Análisis de los riesgos de inyección/succión frente al choque térmico del vapor seco. Esterilización clínica de ductos HVAC y nula huella hídrica.",

@@ -5,6 +5,90 @@ import Link from "next/link";
 
 /* ─── Blog content database ─── */
 const blogContent: Record<string, { title: string; date: string; category: string; readTime: string; content: string; metaDesc: string }> = {
+    "detallado-movil-grado-clinico-vs-lavado-convencional": {
+        title: "Detallado Móvil de Grado Clínico vs. Lavado a Domicilio Convencional",
+        date: "2026-05-07",
+        category: "Logística y Operaciones",
+        readTime: "9 min",
+        metaDesc: "Descubre la diferencia en infraestructura logística. Plantas insonorizadas, agua por ósmosis inversa y protocolos contra la contaminación cruzada en Polanco.",
+        content: `
+En los sectores residenciales de alta plusvalía de la Ciudad de México, como Polanco o las Lomas de Chapultepec, el servicio de "lavado a domicilio" se ha comoditizado. Sin embargo, para la custodia de activos automotrices que superan los cientos de miles de dólares, la intervención amateur en el garaje de una residencia representa un riesgo operacional inaceptable. Existe una asimetría logística absoluta entre un servicio convencional y el **Detallado Móvil de Grado Clínico**.
+
+## La Falacia de la Logística Convencional
+
+El modelo tradicional de lavado a domicilio está plagado de deficiencias estructurales que comprometen la integridad de la pintura y los interiores:
+
+1.  **Contaminación Cruzada Endémica:** El uso de toallas de microfibra de bajo gramaje, recicladas vehículo tras vehículo sin esterilización térmica, asegura la transferencia de contaminantes férricos y sílice directamente a la capa de barniz de su automóvil.
+2.  **Solventes no Estabilizados y Agua Dura:** La utilización del suministro de agua residencial introduce carbonato de calcio y magnesio a la ecuación. Al evaporarse, estos minerales generan depósitos alcalinos (water spots) que requieren abrasión mecánica para ser eliminados.
+3.  **Contaminación Acústica:** El uso de generadores a combustión e hidrolavadoras de bajo estándar irrumpe la paz y el silencio de las zonas residenciales exclusivas.
+
+## Ingeniería Logística: El Estándar Doctor Foam
+
+Doctor Foam ha redefinido la intervención a domicilio, elevándola a un procedimiento de quirófano móvil. Nuestra arquitectura de servicio se fundamenta en la previsión, el control de variables y la tecnología de punta:
+
+### 1. Filtración por Ósmosis Inversa (RO)
+Nuestras unidades móviles están equipadas con plantas de purificación de agua de múltiples etapas, culminando en **Ósmosis Inversa (RO)**. Este proceso desioniza el agua, reduciendo las Partículas Por Millón (PPM) a niveles cercanos a cero. El resultado: un lavado libre de minerales, que permite un secado perfecto sin dejar un solo depósito alcalino en los paneles de la carrocería.
+
+### 2. Iluminación LED de Alto CRI (Metrología Óptica)
+Para ejecutar correcciones de pintura en un entorno no controlado (el garaje del cliente), la iluminación es crítica. Empleamos sistemas de iluminación LED direccional con un **Índice de Reproducción Cromática (CRI) superior a 95**. Esto nos permite replicar el espectro de luz solar directa y revelar micro-fisuras, *swirls* y hologramas que el ojo humano o luces estándar no pueden detectar.
+
+### 3. Aislamiento Acústico Activo
+Respetamos la tranquilidad de su patrimonio inmobiliario. Nuestras plantas de energía e hidrolavadoras de grado industrial están contenidas en **módulos insonorizados**. El impacto acústico es mínimo, operando dentro de los decibeles permitidos para zonas residenciales premium, permitiéndole continuar con su agenda sin distracciones operativas.
+
+### 4. Protocolo Clínico de Contaminación Cruzada Cero
+El instrumental utilizado (pinceles de cerdas de jabalí, pads de pulido, y microfibras de 500+ GSM) se clasifica y se aísla de forma rigurosa. Por política corporativa, un insumo que ha tocado rines o pasos de rueda *nunca* entrará en contacto con la pintura o los interiores.
+
+---
+
+> **Veredicto Operacional:** Confiar el cuidado de un activo de ultra-lujo a una logística no estandarizada es un riesgo financiero. El Detallado Móvil de Grado Clínico es la única aproximación metódica que asegura la preservación del valor estético y monetario de su vehículo desde la comodidad de su residencia.
+
+*Eleva el estándar de protección para tu flota vehicular. [Agenda una intervención clínica móvil con Doctor Foam](/reservar).*
+        `
+    },
+    "innovacion-2025-2026-escaneres-3d-polimeros-auto-regenerables": {
+        title: "Innovación 2025-2026: Escáneres 3D y Polímeros Auto-Regenerables",
+        date: "2026-05-07",
+        category: "Innovación Tecnológica",
+        readTime: "10 min",
+        metaDesc: "El futuro de la protección automotriz: metrología algorítmica, PPF viscoelástico reactivo al calor y el resguardo de la plusvalía patrimonial.",
+        content: `
+La intersección entre la ciencia de materiales y la protección automotriz está experimentando un cambio de paradigma. Para el segmento *Ultra-High Net Worth* (UHNW), un vehículo representa más que movilidad; es un activo patrimonial con una curva de depreciación que puede mitigarse activamente. La respuesta técnica para los años 2025-2026 trasciende los recubrimientos líquidos convencionales y entra en el terreno de la **metrología algorítmica y los polímeros elastoméricos reactivos**.
+
+## Metrología Algorítmica y Escaneo 3D
+
+El paradigma tradicional para la aplicación de *Paint Protection Film* (PPF) dependía del corte manual sobre el vehículo, un proceso que introducía un margen de error humano (cortes accidentales en el barniz o desalineación milimétrica). 
+
+En el horizonte de la innovación actual, Doctor Foam integra la **Metrología Algorítmica**. Utilizando **escáneres 3D LiDAR y fotogrametría de precisión**, se genera un gemelo digital (Digital Twin) de la topografía del vehículo. 
+
+1.  **Corte por Plotter CNC:** Estos datos alimentan algoritmos vectoriales que instruyen a plotters computarizados (CNC) para cortar el film de poliuretano con una tolerancia sub-milimétrica. 
+2.  ***Wrapped Edges* Perfectos:** El resultado es un panel donde el film abraza los bordes (*wrapped edges*) a la perfección, eliminando las uniones visibles y el riesgo de infiltración de polvo, proporcionando un acabado "invisible".
+
+## La Arquitectura Viscoelástica del PPF de Próxima Generación
+
+El PPF contemporáneo ya no es un simple plástico adhesivo; es una obra maestra de la ingeniería de polímeros. Nos referimos a una **armadura viscoelástica de poliuretano alifático**.
+
+### Polímeros Auto-Regenerables (Self-Healing)
+El avance tecnológico más contundente reside en la formulación de la capa superior (*top-coat*). Está compuesta por polímeros con *memoria de forma*. A nivel molecular, cuando la superficie sufre un traumatismo mecánico leve (como el impacto de gravilla a alta velocidad o un micro-rayón durante el lavado), las cadenas poliméricas son desplazadas, no rotas.
+
+Al aplicar energía térmica (ya sea radiación infrarroja del sol o la inducción térmica de un motor), las moléculas se re-alinean para retornar a su estado base (de menor entropía). **El rayón "sana" o desaparece ante los ojos del espectador**.
+
+### Hiper-Resistencia Estructural y Química
+*   **Absorción Cinética:** A diferencia de un recubrimiento cerámico (que ofrece dureza, pero es frágil frente a impactos de alta masa), el PPF actúa como un disipador de energía cinética. Absorbe y dispersa la fuerza del impacto de la grava, protegiendo la pintura original intacta debajo.
+*   **Impermeabilidad Química Absoluta:** Los polímeros de última generación son completamente inertes a ácidos (lluvia ácida, excremento de aves) y solventes orgánicos (savia de árboles).
+
+## El Resguardo de la Plusvalía del Activo
+
+Desde una óptica financiera, instalar PPF en las áreas de alto impacto (cofre, fascia frontal, espejos) o en toda la carrocería (*Full Body Wrap*), transforma un gasto de protección en un **seguro contra la depreciación óptica**. 
+
+Al mantener la pintura original de fábrica (Original Equipment Manufacturer - OEM) inmaculada a lo largo del ciclo de propiedad del vehículo, se maximiza el valor de tasación y de reventa. Los peritos valuadores bonifican de forma sistemática los vehículos que han conservado su pintura OEM intacta, un logro mecánicamente imposible en el tránsito urbano sin una barrera polimérica de sacrificio.
+
+---
+
+> **Veredicto Clínico:** La protección automotriz del 2025 no admite la improvisación. La combinación de precisión algorítmica y poliuretano reactivo térmicamente establece un nuevo estándar en el blindaje de inversiones vehiculares.
+
+*Asegura tu vehículo con la tecnología del futuro hoy mismo. [Contacta a los ingenieros de protección de Doctor Foam](/reservar).*
+        `
+    },
     "desnaturalizacion-termica-180c-fin-extraccion-humeda": {
         title: "Desnaturalización Térmica a 180°C: El Fin de la Extracción Húmeda",
         date: "2026-05-06",
