@@ -43,7 +43,7 @@ const blogPosts = [
         readTime: "12 min",
     },
     {
-        slug: "mitigacion-grabado-lluvia-acida-autos-interlomas",
+        slug: "mitigacion-grabado-lluvia-acida-autos",
         title: "Lluvia Ácida vs. Manchas de Agua en la CDMX: La Cinética de la Destrucción",
         excerpt: "Diferenciación clínica entre depósitos alcalinos y grabado químico causado por SO2 y NOx. Estrategias de mitigación en el microclima del Valle de México para vehículos de alto valor.",
         date: "2026-05-06",

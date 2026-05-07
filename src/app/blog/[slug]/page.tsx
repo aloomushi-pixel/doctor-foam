@@ -170,7 +170,7 @@ La instalación de poliuretano espreado no es un gasto de mantenimiento, es una 
 *Optimiza la eficiencia térmica de tus activos con los especialistas en ingeniería de materiales. [Consulta a Doctor Foam](/reservar).*
         `
     },
-    "mitigacion-grabado-lluvia-acida-autos-interlomas": {
+    "mitigacion-grabado-lluvia-acida-autos": {
         title: "Lluvia Ácida vs. Manchas de Agua en la CDMX: La Cinética de la Destrucción",
         date: "2026-05-06",
         category: "Defensa Ambiental",
