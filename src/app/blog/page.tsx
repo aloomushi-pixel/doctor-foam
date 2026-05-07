@@ -11,6 +11,38 @@ export const metadata: Metadata = {
 
 const blogPosts = [
     {
+        slug: "desnaturalizacion-termica-180c-fin-extraccion-humeda",
+        title: "Desnaturalización Térmica a 180°C: El Fin de la Extracción Húmeda",
+        excerpt: "Análisis de los riesgos de inyección/succión frente al choque térmico del vapor seco. Esterilización clínica de ductos HVAC y nula huella hídrica.",
+        date: "2026-05-06",
+        category: "Bioseguridad",
+        readTime: "10 min",
+    },
+    {
+        slug: "poliuretano-espreado-celda-cerrada-termodinamica-aislamiento",
+        title: "Poliuretano Espreado de Celda Cerrada: Termodinámica Aplicada al Aislamiento",
+        excerpt: "Deficiencias de los acrílicos vs poliuretano: monolitismo, Valor R supremo, supresión de puentes térmicos y reducción drástica en costos HVAC.",
+        date: "2026-05-06",
+        category: "Ingeniería de Aislamiento",
+        readTime: "12 min",
+    },
+    {
+        slug: "mitigacion-grabado-lluvia-acida-autos-interlomas",
+        title: "Lluvia Ácida vs. Manchas de Agua en la CDMX: La Cinética de la Destrucción",
+        excerpt: "Diferenciación clínica entre depósitos alcalinos y grabado químico causado por SO2 y NOx. Estrategias de mitigación en el microclima del Valle de México para vehículos de alto valor.",
+        date: "2026-05-06",
+        category: "Defensa Ambiental",
+        readTime: "11 min",
+    },
+    {
+        slug: "verdad-recubrimiento-ceramico-9h-autos-premium",
+        title: "El Mito del '9H': La Realidad Científica de los Recubrimientos Nanocerámicos",
+        excerpt: "Desmantelando la falacia de la escala de dureza en cerámicos automotrices. La ingeniería de materiales detrás de la hiper-hidrofobicidad y la tensión superficial.",
+        date: "2026-05-06",
+        category: "Ingeniería de Materiales",
+        readTime: "9 min",
+    },
+    {
         slug: "detallado-profesional-multiplicador-financiero-vehiculos-lujo",
         title: "El Detallado Profesional como Multiplicador Financiero en Vehículos de Lujo",
         excerpt: "Análisis financiero: cómo una inversión en detallado automotriz genera un incremento sustancial en el valor de reventa. El efecto halo y el retorno de inversión.",
