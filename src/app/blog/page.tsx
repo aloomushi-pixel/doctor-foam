@@ -35,14 +35,6 @@ const blogPosts = [
         readTime: "10 min",
     },
     {
-        slug: "poliuretano-espreado-celda-cerrada-termodinamica-aislamiento",
-        title: "Poliuretano Espreado de Celda Cerrada: Termodinámica Aplicada al Aislamiento",
-        excerpt: "Deficiencias de los acrílicos vs poliuretano: monolitismo, Valor R supremo, supresión de puentes térmicos y reducción drástica en costos HVAC.",
-        date: "2026-05-06",
-        category: "Ingeniería de Aislamiento",
-        readTime: "12 min",
-    },
-    {
         slug: "mitigacion-grabado-lluvia-acida-autos",
         title: "Lluvia Ácida vs. Manchas de Agua en la CDMX: La Cinética de la Destrucción",
         excerpt: "Diferenciación clínica entre depósitos alcalinos y grabado químico causado por SO2 y NOx. Estrategias de mitigación en el microclima del Valle de México para vehículos de alto valor.",
