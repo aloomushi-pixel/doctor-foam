@@ -567,7 +567,7 @@ export default async function BlogPost({ params }: PageProps) {
 
                     <div style={{ marginBottom: "2.5rem", borderRadius: "1rem", overflow: "hidden", position: "relative", width: "100%", height: "400px" }}>
                         <Image
-                            src={`/blog/${slug}.png`}
+                            src={`/blog/${slug}.png?v=2`}
                             alt={post.title}
                             fill
                             style={{ objectFit: "cover" }}
@@ -595,7 +595,7 @@ export default async function BlogPost({ params }: PageProps) {
                                     background: "#e2e8f0"
                                 }}>
                                     <Image
-                                        src={`/blog/${slug}-inner-${i}.png`}
+                                        src={`/blog/${slug}-inner-${i}.png?v=2`}
                                         alt={`Detalle ${i} - ${post.title}`}
                                         fill
                                         style={{ objectFit: "cover" }}
