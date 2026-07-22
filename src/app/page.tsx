@@ -516,7 +516,7 @@ export default function HomePage() {
 
       {/* ─── HERO ─── */}
       <section className="hero-section" id="inicio">
-        <Image src="/hero-bg.png" alt="Doctor Foam Automotriz Premium" fill priority style={{ objectFit: 'cover', zIndex: 0 }} />
+        <img src="https://drfoam.com.mx/hero-bg.png" alt="Doctor Foam Automotriz Premium" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
         <div className="hero-bg" style={{ zIndex: 1 }} />
         <div className="hero-glow hero-glow-gold" style={{ zIndex: 1 }} />
         <div className="hero-glow hero-glow-blue" style={{ zIndex: 1 }} />
