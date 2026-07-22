@@ -279,16 +279,11 @@ Detalles:
 - Dirección: ${addressCalle}, CP: ${addressCP}
 - Fecha: ${serviceDate}
 - Paquete: ${selectedPackage}`;
+            
             localStorage.setItem("waMessage", waMessage);
+            localStorage.setItem("bookingPayload", JSON.stringify(payload));
 
-            // 2. Enviar correo silenciosamente (Resend)
-            fetch("/api/booking", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
-            }).catch(err => console.error("Error al enviar correo", err));
-
-            // 3. Crear sesión de pago en Stripe
+            // 2. Crear sesión de pago en Stripe (sin Prisma)
             const res = await fetch("/api/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

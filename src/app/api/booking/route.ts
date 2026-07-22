@@ -72,7 +72,7 @@ export async function POST(req: Request) {
 
     const { data, error } = await resend.emails.send({
       from: 'Reservas Doctor Foam <noreply@drfoam.com.mx>',
-      to: ['caballeroangela@gmail.com'],
+      to: ['caballeroangela49@gmail.com'],
       cc: customerEmail ? [customerEmail] : [],
       subject: `Nueva Reserva: ${pkg?.name || 'Servicio'} - ${customerName}`,
       html: htmlContent,
