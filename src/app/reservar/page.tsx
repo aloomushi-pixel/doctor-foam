@@ -252,36 +252,54 @@ function BookingForm() {
         setError("");
 
         try {
-            const res = await fetch("/api/booking", {
+            const payload = {
+                packageId: selectedPackage,
+                vehicleSize,
+                serviceDate,
+                customerName,
+                customerEmail,
+                customerPhone,
+                address: `${addressCalle}, CP: ${addressCP}, Tipo: ${addressTipo}`,
+                vehicleBrand, vehicleModel, vehicleYear, vehicleColor,
+                needsFactura,
+                rfc: needsFactura ? rfc : "",
+                razonSocial: needsFactura ? razonSocial : "",
+                facturaRegimen: needsFactura ? facturaRegimen : "",
+                facturaCP: needsFactura ? facturaCP : "",
+                facturaEmail: needsFactura ? facturaEmail : "",
+                facturaUsoCFDI: needsFactura ? facturaUsoCFDI : "",
+            };
+
+            // 1. Guardar mensaje para WhatsApp en localStorage
+            const waMessage = `¡Hola! Acabo de pagar mi reserva en Doctor Foam.
+Detalles:
+- Cliente: ${customerName}
+- Teléfono: ${customerPhone}
+- Vehículo: ${vehicleBrand} ${vehicleModel} ${vehicleYear} (${vehicleColor})
+- Dirección: ${addressCalle}, CP: ${addressCP}
+- Fecha: ${serviceDate}
+- Paquete: ${selectedPackage}`;
+            localStorage.setItem("waMessage", waMessage);
+
+            // 2. Enviar correo silenciosamente (Resend)
+            fetch("/api/booking", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    packageId: selectedPackage,
-                    vehicleSize,
-                    serviceDate,
-                    customerName,
-                    customerEmail,
-                    customerPhone,
-                    address: `${addressCalle}, CP: ${addressCP}, Tipo: ${addressTipo}`,
-                    vehicleBrand, vehicleModel, vehicleYear, vehicleColor,
-                    needsFactura,
-                    rfc: needsFactura ? rfc : "",
-                    razonSocial: needsFactura ? razonSocial : "",
-                    facturaRegimen: needsFactura ? facturaRegimen : "",
-                    facturaCP: needsFactura ? facturaCP : "",
-                    facturaEmail: needsFactura ? facturaEmail : "",
-                    facturaUsoCFDI: needsFactura ? facturaUsoCFDI : "",
-                }),
+                body: JSON.stringify(payload),
+            }).catch(err => console.error("Error al enviar correo", err));
+
+            // 3. Crear sesión de pago en Stripe
+            const res = await fetch("/api/checkout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
             });
 
             const data = await res.json();
-            if (res.ok && data.success) {
-                setSuccess(true);
-                setStep(5); // Show success screen
-                setLoading(false);
-                window.scrollTo(0, 0);
+            if (data.url) {
+                window.location.href = data.url;
             } else {
-                setError(data.error || "Error al procesar la reserva");
+                setError(data.error || "Error al procesar el pago");
                 setLoading(false);
             }
         } catch {
@@ -639,11 +657,11 @@ function BookingForm() {
                         ))}
                     </ul>
                     <button type="submit" className="btn-premium" disabled={loading} style={{ width: "100%", justifyContent: "center", fontSize: "1.1rem", padding: "1.1rem 2rem", opacity: loading ? 0.6 : 1, cursor: loading ? "not-allowed" : "pointer" }}>
-                        {loading ? "Enviando..." : `✉️ Enviar Solicitud`}
+                        {loading ? "Procesando..." : `🔒 Pagar $${currentPrice.toLocaleString("es-MX")} MXN`}
                     </button>
 
                     <p style={{ color: "#94a3b8", fontSize: "0.8rem", textAlign: "center", marginTop: "1rem" }}>
-                        Al enviar la solicitud, un asesor se contactará contigo para confirmar disponibilidad y finalizar el proceso.
+                        Pago seguro procesado por Stripe. Una vez confirmado, tu servicio queda agendado para la fecha seleccionada.
                     </p>
                     <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
                         <button type="button" onClick={() => setStep(3)} className="btn-outline" style={{ flex: 1 }}>← Modificar datos</button>
