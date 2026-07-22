@@ -200,12 +200,14 @@ function BookingForm() {
     const [serviceDate, setServiceDate] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState(false);
     const cancelled = searchParams.get("cancelled");
     const [hoveredPkg, setHoveredPkg] = useState<string | null>(null);
     const [isMember, setIsMember] = useState(false);
 
     /* Form fields — pre-fill from query params if available */
     const [customerName, setCustomerName] = useState(searchParams.get("nombre") || "");
+    const [customerEmail, setCustomerEmail] = useState(searchParams.get("email") || "");
     const [customerPhone, setCustomerPhone] = useState(searchParams.get("telefono") || "");
     const [addressCalle, setAddressCalle] = useState(searchParams.get("direccion") || "");
     const [addressCP, setAddressCP] = useState("");
@@ -250,7 +252,7 @@ function BookingForm() {
         setError("");
 
         try {
-            const res = await fetch("/api/checkout", {
+            const res = await fetch("/api/booking", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -258,6 +260,7 @@ function BookingForm() {
                     vehicleSize,
                     serviceDate,
                     customerName,
+                    customerEmail,
                     customerPhone,
                     address: `${addressCalle}, CP: ${addressCP}, Tipo: ${addressTipo}`,
                     vehicleBrand, vehicleModel, vehicleYear, vehicleColor,
@@ -272,10 +275,13 @@ function BookingForm() {
             });
 
             const data = await res.json();
-            if (data.url) {
-                window.location.href = data.url;
+            if (res.ok && data.success) {
+                setSuccess(true);
+                setStep(5); // Show success screen
+                setLoading(false);
+                window.scrollTo(0, 0);
             } else {
-                setError(data.error || "Error al procesar el pago");
+                setError(data.error || "Error al procesar la reserva");
                 setLoading(false);
             }
         } catch {
@@ -289,8 +295,29 @@ function BookingForm() {
         { num: 1, label: "Servicio" },
         { num: 2, label: "Fecha" },
         { num: 3, label: "Datos" },
-        { num: 4, label: "Pagar" },
+        { num: 4, label: "Confirmar" },
     ];
+
+    if (success || step === 5) {
+        return (
+            <div className="glass-card" style={{ padding: "4rem 2rem", textAlign: "center", maxWidth: "600px", margin: "0 auto" }}>
+                <div style={{ width: "80px", height: "80px", background: "rgba(16, 185, 129, 0.1)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem" }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <h2 style={{ fontSize: "1.8rem", color: "#0f172a", marginBottom: "1rem" }}>¡Solicitud Enviada!</h2>
+                <p style={{ color: "#475569", fontSize: "1.1rem", lineHeight: "1.6", marginBottom: "2rem" }}>
+                    Hemos recibido tus datos correctamente. Nuestro equipo se pondrá en contacto contigo muy pronto para confirmar los detalles de tu cita.
+                    Se ha enviado una copia a tu correo electrónico.
+                </p>
+                <Link href="/" className="btn-premium" style={{ display: "inline-block" }}>
+                    Volver al Inicio
+                </Link>
+            </div>
+        );
+    }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -473,6 +500,10 @@ function BookingForm() {
                                 <input type="text" placeholder="Tu nombre" value={customerName} onChange={(e) => setCustomerName(e.target.value)} style={inputStyle} required />
                             </div>
                             <div style={{ gridColumn: "span 2" }}>
+                                <label style={labelStyle}>Email *</label>
+                                <input type="email" placeholder="Tu correo electrónico" value={customerEmail} onChange={(e) => setCustomerEmail(e.target.value)} style={inputStyle} required />
+                            </div>
+                            <div style={{ gridColumn: "span 2" }}>
                                 <label style={labelStyle}>WhatsApp *</label>
                                 <input type="tel" placeholder="55 1234 5678" value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} style={inputStyle} required />
                             </div>
@@ -544,7 +575,7 @@ function BookingForm() {
                         <button
                             type="button"
                             onClick={() => {
-                                const baseValid = customerName && customerPhone && vehicleBrand && vehicleModel && addressCalle && addressCP && vehicleYear && vehicleColor;
+                                const baseValid = customerName && customerEmail && customerPhone && vehicleBrand && vehicleModel && addressCalle && addressCP && vehicleYear && vehicleColor;
                                 const facturaValid = !needsFactura || (rfc && razonSocial && facturaRegimen && facturaCP && facturaEmail && facturaUsoCFDI);
                                 if (baseValid && facturaValid) setStep(4);
                             }}
@@ -607,15 +638,13 @@ function BookingForm() {
                             </li>
                         ))}
                     </ul>
-
                     <button type="submit" className="btn-premium" disabled={loading} style={{ width: "100%", justifyContent: "center", fontSize: "1.1rem", padding: "1.1rem 2rem", opacity: loading ? 0.6 : 1, cursor: loading ? "not-allowed" : "pointer" }}>
-                        {loading ? "Procesando..." : `🔒 Pagar $${currentPrice.toLocaleString("es-MX")} MXN`}
+                        {loading ? "Enviando..." : `✉️ Enviar Solicitud`}
                     </button>
 
                     <p style={{ color: "#94a3b8", fontSize: "0.8rem", textAlign: "center", marginTop: "1rem" }}>
-                        Pago seguro procesado por Stripe. Una vez confirmado, tu servicio queda agendado para la fecha seleccionada.
+                        Al enviar la solicitud, un asesor se contactará contigo para confirmar disponibilidad y finalizar el proceso.
                     </p>
-
                     <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
                         <button type="button" onClick={() => setStep(3)} className="btn-outline" style={{ flex: 1 }}>← Modificar datos</button>
                     </div>
