@@ -2,7 +2,7 @@
 
 
 export default function WhatsAppButton() {
-    const whatsappUrl = "https://wa.me/525649663016";
+    const whatsappUrl = "https://wa.me/525610846022";
 
     return (
         <a

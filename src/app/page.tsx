@@ -449,7 +449,7 @@ export default function HomePage() {
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#precios">Precios</a></li>
             <li><a href="#cobertura">Cobertura</a></li>
-            <li><a href="#proceso">Proceso</a></li>
+            {/* <li><a href="#proceso">Proceso</a></li> */}
             <li><a href="#faq">Dudas frecuentes</a></li>
             {/* <li><a href="#membresia">Membresía</a></li> */}
             <li><Link href="/blog">Blog</Link></li>
@@ -501,7 +501,7 @@ export default function HomePage() {
         <a href="#servicios" onClick={() => setMobileMenuOpen(false)}>Servicios</a>
         <a href="#precios" onClick={() => setMobileMenuOpen(false)}>Precios</a>
         <a href="#cobertura" onClick={() => setMobileMenuOpen(false)}>Cobertura</a>
-        <a href="#proceso" onClick={() => setMobileMenuOpen(false)}>Proceso</a>
+        {/* <a href="#proceso" onClick={() => setMobileMenuOpen(false)}>Proceso</a> */}
         <a href="#faq" onClick={() => setMobileMenuOpen(false)}>Dudas frecuentes</a>
         {/* <a href="#membresia" onClick={() => setMobileMenuOpen(false)}>Membresía</a> */}
         <Link href="/blog" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
@@ -538,9 +538,9 @@ export default function HomePage() {
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
-              <a href="#proceso" className="btn-outline" style={{ color: "#ffffff", borderColor: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.08)" }}>
-                ¿Cómo funciona?
-              </a>
+              {/* <a href="#proceso" className="btn-outline" style={{ color: "#ffffff", borderColor: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.08)" }}>
+                Conoce el Proceso
+              </a> */}
             </div>
           </div>
 
@@ -857,7 +857,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── PROCESS ─── */}
-      <section style={{ padding: "3rem 1.5rem", background: "#ffffff" }} id="proceso">
+      <section style={{ display: "none" }} id="proceso">
         <div className="container">
           <div className="animate-on-scroll" style={{ textAlign: "center", marginBottom: "2rem" }}>
             <span className="section-label">¿Cómo Funciona?</span>
@@ -1049,7 +1049,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── CTA / CONTACT ─── */}
-      <section className="section-padding" id="contacto" style={{ background: "linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%)" }}>
+      <section className="section-padding" id="contacto" style={{ display: "none" }}>
         <div className="container" style={{ textAlign: "center" }}>
           <div className="animate-on-scroll">
             <span className="section-label">Reserva Tu Servicio</span>
@@ -1109,7 +1109,7 @@ export default function HomePage() {
             <h4 className="footer-title">Contacto</h4>
             <ul className="footer-links">
               <li><Link href="?chat=open">Chat en línea</Link></li>
-              <li><a href="tel:+5215500000000">+52 55 0000 0000</a></li>
+              <li><a href="https://wa.me/525610846022" target="_blank" rel="noopener noreferrer">+52 56 1084 6022 (WhatsApp)</a></li>
               <li><a href="mailto:hola@doctorfoam.mx">hola@doctorfoam.mx</a></li>
               <li><a href="https://instagram.com/doctorfoam.mx">Instagram</a></li>
               <li><a href="https://facebook.com/doctorfoam.mx">Facebook</a></li>

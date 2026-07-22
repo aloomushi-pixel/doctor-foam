@@ -151,7 +151,7 @@ export async function sendBookingConfirmation(data: BookingData) {
 
       <div style="text-align:center;margin:1.5rem 0;">
         <a href="${SITE_URL}/mi-cuenta" style="display:inline-block;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;text-decoration:none;padding:0.75rem 2rem;border-radius:8px;font-weight:600;font-size:0.9rem;">📋 Ver mis servicios</a>
-        <a href="https://wa.me/525649663016" style="display:inline-block;background:rgba(59,130,246,0.15);color:#60a5fa;text-decoration:none;padding:0.75rem 1.5rem;border-radius:8px;font-weight:600;font-size:0.9rem;margin-left:0.5rem;border:1px solid rgba(59,130,246,0.3);">💬 WhatsApp con nosotros</a>
+        <a href="https://wa.me/525610846022" style="display:inline-block;background:rgba(59,130,246,0.15);color:#60a5fa;text-decoration:none;padding:0.75rem 1.5rem;border-radius:8px;font-weight:600;font-size:0.9rem;margin-left:0.5rem;border:1px solid rgba(59,130,246,0.3);">💬 WhatsApp con nosotros</a>
       </div>
     </div>${emailFooter()}`,
     });
@@ -230,7 +230,7 @@ export async function sendServiceReminder(data: { customerName: string; customer
       </div>
 
       <div style="text-align:center;margin-top:1.5rem;">
-        <a href="https://wa.me/525649663016" style="display:inline-block;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;text-decoration:none;padding:0.75rem 2rem;border-radius:8px;font-weight:600;font-size:0.9rem;">💬 Contactar por WhatsApp</a>
+        <a href="https://wa.me/525610846022" style="display:inline-block;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;text-decoration:none;padding:0.75rem 2rem;border-radius:8px;font-weight:600;font-size:0.9rem;">💬 Contactar por WhatsApp</a>
       </div>
     </div>${emailFooter()}`,
     });

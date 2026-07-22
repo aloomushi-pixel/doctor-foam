@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const WHATSAPP_NUMBER = "525649663016";
+const WHATSAPP_NUMBER = "525610846022";
 
 const ADMIN_NAV_ITEMS = [
     { href: "/admin", label: "Dashboard", icon: "📊" },
