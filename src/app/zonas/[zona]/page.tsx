@@ -108,7 +108,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     if (!z) return { title: "Zona no encontrada" };
 
     return {
-        title: `Detallado Automotriz en ${z.name} | Doctor Foam México`,
+        title: `Lavado de Autos a Domicilio y Detallado Automotriz en ${z.name} | Doctor Foam`,
         description: z.metaDesc,
         alternates: { canonical: `https://drfoam.com.mx/zonas/${zona}` },
         openGraph: {
@@ -171,7 +171,7 @@ export default async function ZonePage({ params }: PageProps) {
                     <div className="container">
                         <span className="section-label">{z.state}</span>
                         <h1 className="section-title">
-                            Detallado Automotriz Premium en <span className="gradient-text">{z.name}</span>
+                            Lavado de Autos a Domicilio y Detallado Premium en <span className="gradient-text">{z.name}</span>
                         </h1>
                         <p className="section-subtitle" style={{ maxWidth: "700px" }}>
                             {z.description}

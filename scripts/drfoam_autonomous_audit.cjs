@@ -1,8 +1,9 @@
 /**
- * Doctor Foam México — Script de Auditoría Autónoma (Estándar Maestro v2.1)
- * 1. Consulta Google Search Console API (filtrando exclusivamente drfoam.com.mx / doctorfoam.mx)
- * 2. Consulta Telemetría UX & Conversiones WhatsApp en public.drfoam_ux_events (Supabase J. Denis)
- * 3. Verifica salud de producción en https://drfoam.com.mx
+ * Doctor Foam México — Script de Auditoría Autónoma (Estándar Maestro v2.1 + GSC siteOwner Activo)
+ * 1. Consulta Google Search Console API (sc-domain:drfoam.com.mx y https://drfoam.com.mx/)
+ * 2. Envía/actualiza sitemap.xml automáticamente vía webmasters/v3
+ * 3. Sincroniza el snapshot de Search Console en la tabla única public.drfoam_ux_events
+ * 4. Consulta Telemetría UX & Conversiones WhatsApp en public.drfoam_ux_events (Supabase J. Denis)
  */
 const fs = require("fs");
 const path = require("path");
@@ -43,18 +44,18 @@ async function auditGsc() {
   const claim = Buffer.from(
     JSON.stringify({
       iss: creds.client_email,
-      scope: "https://www.googleapis.com/auth/webmasters.readonly",
+      scope: "https://www.googleapis.com/auth/webmasters",
       aud: creds.token_uri,
       exp: now + 3600,
       iat: now,
     })
   ).toString("base64url");
   const sign = crypto.createSign("RSA-SHA256");
-  sign.update(`${header}.${claim}`);
+  sign.update(header + '.' + claim);
   const signature = sign.sign(creds.private_key, "base64url");
-  const jwt = `${header}.${claim}.${signature}`;
+  const jwt = header + '.' + claim + '.' + signature;
 
-  const tokenBody = `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${jwt}`;
+  const tokenBody = "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=" + jwt;
   const tokenRes = await httpJson(
     creds.token_uri,
     {
@@ -74,7 +75,7 @@ async function auditGsc() {
   const accessToken = tokenRes.data.access_token;
   const sitesRes = await httpJson("https://www.googleapis.com/webmasters/v3/sites", {
     method: "GET",
-    headers: { Authorization: `Bearer ${accessToken}` },
+    headers: { Authorization: "Bearer " + accessToken },
   });
 
   const allSites = (sitesRes.data && sitesRes.data.siteEntry) || [];
@@ -82,49 +83,132 @@ async function auditGsc() {
     (s) => s.siteUrl.includes("drfoam") || s.siteUrl.includes("doctorfoam")
   );
 
-  const verifiedSite = drfoamSites.find((s) => s.permissionLevel !== "siteUnverifiedUser");
-  let analytics = null;
+  const verifiedSite =
+    drfoamSites.find(
+      (s) => s.siteUrl === "sc-domain:drfoam.com.mx" && s.permissionLevel !== "siteUnverifiedUser"
+    ) || drfoamSites.find((s) => s.permissionLevel !== "siteUnverifiedUser");
+
+  let summary = null;
 
   if (verifiedSite) {
+    await httpJson(
+      "https://www.googleapis.com/webmasters/v3/sites/" +
+        encodeURIComponent(verifiedSite.siteUrl) +
+        "/sitemaps/" +
+        encodeURIComponent("https://drfoam.com.mx/sitemap.xml"),
+      {
+        method: "PUT",
+        headers: { Authorization: "Bearer " + accessToken },
+      }
+    );
+
     const endDate = new Date().toISOString().slice(0, 10);
-    const startDate = new Date(Date.now() - 28 * 86400000).toISOString().slice(0, 10);
+    const startDate = "2025-01-01";
+
     const queryBody = JSON.stringify({
       startDate,
       endDate,
       dimensions: ["query", "page"],
-      rowLimit: 25,
+      rowLimit: 50,
     });
     const qRes = await httpJson(
-      `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(verifiedSite.siteUrl)}/searchAnalytics/query`,
+      "https://www.googleapis.com/webmasters/v3/sites/" +
+        encodeURIComponent(verifiedSite.siteUrl) +
+        "/searchAnalytics/query",
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: "Bearer " + accessToken,
           "Content-Type": "application/json",
           "Content-Length": Buffer.byteLength(queryBody),
         },
       },
       queryBody
     );
-    analytics = qRes.data;
+
+    const rows = (qRes.data && qRes.data.rows) || [];
+    let totalClicks = 0;
+    let totalImpressions = 0;
+    let weightedPosSum = 0;
+
+    rows.forEach((r) => {
+      totalClicks += r.clicks || 0;
+      totalImpressions += r.impressions || 0;
+      weightedPosSum += (r.position || 0) * (r.impressions || 1);
+    });
+
+    const avgCtr = totalImpressions > 0 ? Math.round((totalClicks / totalImpressions) * 1000) / 10 : 0;
+    const avgPosition =
+      totalImpressions > 0 ? Math.round((weightedPosSum / totalImpressions) * 10) / 10 : 0;
+
+    const topQueries = rows.slice(0, 20).map((r) => ({
+      query: r.keys[0],
+      page: r.keys[1] ? r.keys[1].replace("https://drfoam.com.mx", "") || "/" : "/",
+      clicks: r.clicks,
+      impressions: r.impressions,
+      ctr: Math.round((r.ctr || 0) * 1000) / 10,
+      position: Math.round((r.position || 0) * 10) / 10,
+    }));
+
+    summary = {
+      property: verifiedSite.siteUrl,
+      permissionLevel: verifiedSite.permissionLevel,
+      sitemapSubmitted: "https://drfoam.com.mx/sitemap.xml",
+      totalClicks,
+      totalImpressions,
+      avgCtr,
+      avgPosition,
+      topQueries,
+      syncedAt: new Date().toISOString(),
+    };
+
+    const syncBody = JSON.stringify([
+      {
+        session_id: "gsc-sync-" + Date.now(),
+        visitor_id: "google-search-console-bot",
+        event_name: "gsc_search_analytics_sync",
+        event_category: "autonomous_cycle",
+        path: "/admin",
+        attribution_channel: "organic_search",
+        device_type: "desktop",
+        is_bot: true,
+        bot_name: "GoogleSearchConsoleAPI",
+        element_text: "GSC Sync: " + totalClicks + " clics / " + totalImpressions + " impresiones",
+        metadata: summary,
+      },
+    ]);
+
+    await httpJson(
+      SUPABASE_URL + "/rest/v1/drfoam_ux_events",
+      {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: "Bearer " + SUPABASE_ANON_KEY,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+      },
+      syncBody
+    );
   }
 
   return {
     status: verifiedSite ? "verified_active" : "awaiting_gsc_property_verification",
     serviceAccount: creds.client_email,
     drfoamSites,
-    analytics,
+    summary,
   };
 }
 
 async function auditSupabaseUx() {
   const res = await httpJson(
-    `${SUPABASE_URL}/rest/v1/drfoam_ux_events?select=*&order=created_at.desc&limit=1000`,
+    SUPABASE_URL + "/rest/v1/drfoam_ux_events?select=*&order=created_at.desc&limit=1000",
     {
       method: "GET",
       headers: {
         apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        Authorization: "Bearer " + SUPABASE_ANON_KEY,
       },
     }
   );

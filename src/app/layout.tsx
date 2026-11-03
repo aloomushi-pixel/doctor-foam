@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     shortcut: "/icon-192.png",
   },
   alternates: {
-    canonical: "https://drfoam.com.mx",
+    canonical: "./",
   },
   robots: {
     index: true,

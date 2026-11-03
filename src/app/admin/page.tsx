@@ -25,6 +25,10 @@ interface AutonomousLogRow {
     id: string;
     cycle_number: number;
     project_name: string;
+    version_tag?: string | null;
+    short_summary?: string | null;
+    changes_applied?: string[] | null;
+    deployment_uuid?: string | null;
     commit_hash: string | null;
     Build_status: string | null;
     deploy_status: string | null;
@@ -32,6 +36,27 @@ interface AutonomousLogRow {
     email_sent: boolean | null;
     report_summary: Record<string, unknown> | null;
     created_at: string;
+}
+
+interface GscQueryRow {
+    query: string;
+    page: string;
+    clicks: number;
+    impressions: number;
+    ctr: number;
+    position: number;
+}
+
+interface GscSyncMetadata {
+    property?: string;
+    permissionLevel?: string;
+    sitemapSubmitted?: string;
+    totalClicks?: number;
+    totalImpressions?: number;
+    avgCtr?: number;
+    avgPosition?: number;
+    topQueries?: GscQueryRow[];
+    syncedAt?: string;
 }
 
 type DateFilter = "today" | "7d" | "30d" | "all";
@@ -142,6 +167,13 @@ export default function AdminDashboardPage() {
             return true;
         });
     }, [events, dateFilter, includeBots]);
+
+    /* ─── Latest Google Search Console Sync from public.drfoam_ux_events ─── */
+    const latestGsc = useMemo<GscSyncMetadata | null>(() => {
+        const gscEvent = events.find((e) => e.event_name === "gsc_search_analytics_sync");
+        if (!gscEvent || !gscEvent.metadata) return null;
+        return gscEvent.metadata as unknown as GscSyncMetadata;
+    }, [events]);
 
     /* ─── Core Executive Aggregations ─── */
     const stats = useMemo(() => {
@@ -1617,6 +1649,125 @@ export default function AdminDashboardPage() {
                                 </tbody>
                             </table>
                         </div>
+
+                        {/* Google Search Console Live Section */}
+                        {latestGsc && (
+                            <div
+                                style={{
+                                    marginTop: "1.5rem",
+                                    background: "#ffffff",
+                                    borderRadius: "1rem",
+                                    padding: "1.5rem",
+                                    border: "1px solid #e2e8f0",
+                                    overflowX: "auto",
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                        flexWrap: "wrap",
+                                        gap: "0.75rem",
+                                        marginBottom: "1rem",
+                                    }}
+                                >
+                                    <div>
+                                        <h2 style={{ fontSize: "1.1rem", fontWeight: 800, margin: "0 0 0.25rem", color: "#0f172a" }}>
+                                            🔍 Google Search Console en Vivo ({latestGsc.property || "sc-domain:drfoam.com.mx"})
+                                        </h2>
+                                        <p style={{ fontSize: "0.82rem", color: "#64748b", margin: 0 }}>
+                                            Métricas orgánicas reales sincronizadas en <code>public.drfoam_ux_events</code> · Permiso:{" "}
+                                            <strong>{latestGsc.permissionLevel || "siteOwner"}</strong> · Sitemap enviado:{" "}
+                                            <code>{latestGsc.sitemapSubmitted || "https://drfoam.com.mx/sitemap.xml"}</code>
+                                        </p>
+                                    </div>
+                                    <span
+                                        style={{
+                                            padding: "0.3rem 0.75rem",
+                                            borderRadius: "999px",
+                                            background: "rgba(16, 185, 129, 0.14)",
+                                            color: "#047857",
+                                            fontWeight: 800,
+                                            fontSize: "0.76rem",
+                                        }}
+                                    >
+                                        ✅ Conectado a Google Search Console API
+                                    </span>
+                                </div>
+
+                                <div
+                                    style={{
+                                        display: "grid",
+                                        gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                                        gap: "1rem",
+                                        marginBottom: "1.25rem",
+                                    }}
+                                >
+                                    <div style={{ padding: "1rem", borderRadius: "0.75rem", background: "#eff6ff", border: "1px solid #bfdbfe" }}>
+                                        <div style={{ fontSize: "0.76rem", fontWeight: 700, color: "#1d4ed8", textTransform: "uppercase" }}>
+                                            Clics Orgánicos Google
+                                        </div>
+                                        <div style={{ fontSize: "1.65rem", fontWeight: 900, color: "#1e3a8a", marginTop: "0.25rem" }}>
+                                            {latestGsc.totalClicks ?? 0}
+                                        </div>
+                                    </div>
+                                    <div style={{ padding: "1rem", borderRadius: "0.75rem", background: "#f5f3ff", border: "1px solid #ddd6fe" }}>
+                                        <div style={{ fontSize: "0.76rem", fontWeight: 700, color: "#6d28d9", textTransform: "uppercase" }}>
+                                            Impresiones en Google
+                                        </div>
+                                        <div style={{ fontSize: "1.65rem", fontWeight: 900, color: "#4c1d95", marginTop: "0.25rem" }}>
+                                            {latestGsc.totalImpressions ?? 0}
+                                        </div>
+                                    </div>
+                                    <div style={{ padding: "1rem", borderRadius: "0.75rem", background: "#ecfdf5", border: "1px solid #a7f3d0" }}>
+                                        <div style={{ fontSize: "0.76rem", fontWeight: 700, color: "#047857", textTransform: "uppercase" }}>
+                                            CTR Orgánico Promedio
+                                        </div>
+                                        <div style={{ fontSize: "1.65rem", fontWeight: 900, color: "#065f46", marginTop: "0.25rem" }}>
+                                            {latestGsc.avgCtr ?? 0}%
+                                        </div>
+                                    </div>
+                                    <div style={{ padding: "1rem", borderRadius: "0.75rem", background: "#fffbeb", border: "1px solid #fde68a" }}>
+                                        <div style={{ fontSize: "0.76rem", fontWeight: 700, color: "#b45309", textTransform: "uppercase" }}>
+                                            Posición Promedio Google
+                                        </div>
+                                        <div style={{ fontSize: "1.65rem", fontWeight: 900, color: "#78350f", marginTop: "0.25rem" }}>
+                                            #{latestGsc.avgPosition ?? 0}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {Array.isArray(latestGsc.topQueries) && latestGsc.topQueries.length > 0 && (
+                                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem" }}>
+                                        <thead>
+                                            <tr style={{ borderBottom: "2px solid #e2e8f0", textAlign: "left", color: "#475569" }}>
+                                                <th style={{ padding: "0.65rem" }}>Búsqueda en Google (Query)</th>
+                                                <th style={{ padding: "0.65rem" }}>Página que Posiciona</th>
+                                                <th style={{ padding: "0.65rem" }}>Clics</th>
+                                                <th style={{ padding: "0.65rem" }}>Impresiones</th>
+                                                <th style={{ padding: "0.65rem" }}>CTR</th>
+                                                <th style={{ padding: "0.65rem" }}>Posición</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {latestGsc.topQueries.slice(0, 12).map((q, idx) => (
+                                                <tr key={`${q.query}-${q.page}-${idx}`} style={{ borderBottom: "1px solid #f1f5f9" }}>
+                                                    <td style={{ padding: "0.65rem", fontWeight: 700, color: "#0f172a" }}>{q.query}</td>
+                                                    <td style={{ padding: "0.65rem", color: "#475569" }}>
+                                                        <code>{q.page}</code>
+                                                    </td>
+                                                    <td style={{ padding: "0.65rem", fontWeight: 800, color: "#2563eb" }}>{q.clicks}</td>
+                                                    <td style={{ padding: "0.65rem", fontWeight: 700, color: "#6d28d9" }}>{q.impressions}</td>
+                                                    <td style={{ padding: "0.65rem", color: "#047857", fontWeight: 700 }}>{q.ctr}%</td>
+                                                    <td style={{ padding: "0.65rem", fontWeight: 800, color: "#b45309" }}>#{q.position}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                )}
+                            </div>
+                        )}
                     </>
                 )}
 
@@ -1943,7 +2094,14 @@ export default function AdminDashboardPage() {
                                             </span>
                                         </div>
 
-                                        {Array.isArray(log.fixes_applied) && log.fixes_applied.length > 0 && (
+                                        {log.short_summary && (
+                                            <p style={{ margin: "0 0 0.5rem", color: "#0f172a", fontWeight: 600, fontSize: "0.88rem" }}>
+                                                {log.short_summary}
+                                            </p>
+                                        )}
+
+                                        {Array.isArray(log.changes_applied || log.fixes_applied) &&
+                                            (log.changes_applied || log.fixes_applied)!.length > 0 && (
                                             <ul
                                                 style={{
                                                     margin: "0.5rem 0 0",
@@ -1953,7 +2111,7 @@ export default function AdminDashboardPage() {
                                                     lineHeight: "1.6",
                                                 }}
                                             >
-                                                {log.fixes_applied.map((fix, i) => (
+                                                {(log.changes_applied || log.fixes_applied)!.map((fix, i) => (
                                                     <li key={i}>{fix}</li>
                                                 ))}
                                             </ul>
