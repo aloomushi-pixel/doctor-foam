@@ -44,7 +44,7 @@ const blogPosts = [
     },
     {
         slug: "verdad-recubrimiento-ceramico-9h-autos-premium",
-        title: "El Mito del '9H': La Realidad Científica de los Recubrimientos Nanocerámicos",
+        title: "Recubrimiento Cerámico 9H: Qué Significa Realmente, Duración y Precios en CDMX",
         excerpt: "Desmantelando la falacia de la escala de dureza en cerámicos automotrices. La ingeniería de materiales detrás de la hiper-hidrofobicidad y la tensión superficial.",
         date: "2026-05-06",
         category: "Ingeniería de Materiales",
@@ -87,7 +87,7 @@ const blogPosts = [
     },
     {
         slug: "correccion-pintura-swirls-guia",
-        title: "Corrección de Pintura: Cómo Eliminar Swirls y Micro-rayones",
+        title: "Swirls en la Pintura Automotriz: Qué Son, Cómo Eliminarlos y Corrección en CDMX",
         excerpt:
             "Tu auto tiene más swirls de los que crees. Aprende sobre los niveles de corrección y cuándo necesitas un pulido profesional.",
         date: "2026-01-28",
@@ -201,8 +201,16 @@ export default function BlogPage() {
             <footer className="footer">
                 <div className="footer-bottom" style={{ borderTop: "none", marginTop: 0 }}>
                     <p>&copy; {new Date().getFullYear()} Doctor Foam México. Todos los derechos reservados.</p>
-                    <p style={{ marginTop: "0.5rem" }}>
+                                        <p style={{ marginTop: "0.5rem" }}>
                         <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>
+                        {" · "}
+                        <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>
+                        {" · "}
+                        <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Profundo</Link>
+                        {" · "}
+                        <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#64748b", textDecoration: "underline" }}>Estacionamiento Corporativo</Link>
+                        {" · "}
+                        <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>
                     </p>
                 </div>
             </footer>

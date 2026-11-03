@@ -1,5 +1,6 @@
 "use client";
 
+import { trackDrFoamEvent } from "@/lib/telemetry";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
@@ -17,6 +18,20 @@ function SuccessContent() {
         const payload = localStorage.getItem("bookingPayload");
         if (msg) setWaMessage(msg);
         if (payload) setBookingPayload(payload);
+        try {
+            const parsed = payload ? JSON.parse(payload) : {};
+            trackDrFoamEvent({
+                event_name: "checkout_completed",
+                event_category: "conversion_booking",
+                path: "/pago-exitoso",
+                package_name: parsed.packageId || "Reserva Pagada",
+                vehicle_size: parsed.vehicleSize || undefined,
+                booking_step: 5,
+                metadata: { stripe_session_id: sessionId || "client_success" },
+            });
+        } catch {
+            // ignore
+        }
     }, []);
 
     const handleSendEmail = async () => {
@@ -99,7 +114,7 @@ function SuccessContent() {
 
                         <p
                             style={{
-                                color: "#94a3b8",
+                                color: "#475569",
                                 fontSize: "1.1rem",
                                 lineHeight: "1.8",
                                 maxWidth: "500px",
@@ -128,6 +143,7 @@ function SuccessContent() {
                                 href={`https://api.whatsapp.com/send?phone=525610846022&text=${encodeURIComponent(waMessage || "¡Hola! Acabo de pagar mi reserva en Doctor Foam.")}`} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
+                                data-cta-location="post_pago_whatsapp_confirm"
                                 className="btn-premium"
                                 style={{ display: "inline-flex", width: "100%", maxWidth: "300px", justifyContent: "center", alignItems: "center", gap: "0.5rem", fontSize: "1.1rem", padding: "1rem 2rem", background: "#25D366", color: "white", textDecoration: "none", borderRadius: "12px", fontWeight: "bold" }}
                             >
@@ -211,7 +227,7 @@ function SuccessContent() {
                                             >
                                                 {item.title}
                                             </div>
-                                            <div style={{ color: "#94a3b8", fontSize: "0.85rem" }}>
+                                            <div style={{ color: "#475569", fontSize: "0.85rem" }}>
                                                 {item.desc}
                                             </div>
                                         </div>
@@ -277,7 +293,7 @@ export default function PagoExitosoPage() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        color: "#94a3b8",
+                        color: "#475569",
                     }}
                 >
                     Cargando...
