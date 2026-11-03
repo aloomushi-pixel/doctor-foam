@@ -44,18 +44,28 @@ const services = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Lavado Profundo de Vehículos — Doctor Foam",
-  description: "Servicio de lavado profundo, detallado automotriz y restauración de vehículos a domicilio en CDMX.",
-  provider: { "@type": "LocalBusiness", name: "Doctor Foam México" },
-  serviceType: "Lavado profundo y detallado automotriz",
+  name: "Lavado Profundo de Vehículos y Detallado Automotriz a Domicilio — Doctor Foam",
+  description: "Servicio de lavado profundo de vestiduras y asientos de auto, detallado automotriz y restauración de vehículos a domicilio en CDMX.",
+  provider: { "@type": "LocalBusiness", name: "Doctor Foam México", telephone: "+52-56-1084-6022" },
+  serviceType: "Lavado profundo y detallado automotriz a domicilio",
   areaServed: { "@type": "City", name: "Ciudad de México" },
   url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx",
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://drfoam.com.mx/" },
+    { "@type": "ListItem", position: 2, name: "Lavado Profundo y Detallado Automotriz CDMX", item: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx" },
+  ],
 };
 
 export default function LavadoProfundoPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
@@ -159,7 +169,7 @@ export default function LavadoProfundoPage() {
       <footer className="footer">
         <div className="footer-bottom" style={{ borderTop: "none", marginTop: 0 }}>
           <p>&copy; {new Date().getFullYear()} Doctor Foam México. Todos los derechos reservados.</p>
-                    <p style={{ marginTop: "0.5rem" }}>
+          <p style={{ marginTop: "0.5rem" }}>
             <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>
             {" · "}
             <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>

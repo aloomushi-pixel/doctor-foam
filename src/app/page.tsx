@@ -177,14 +177,14 @@ const packages = [
 
 /* ─── Zones ─── */
 const zones = [
-  { name: "Bosque Real", tag: "Máximo Potencial", tagClass: "zone-tag-gold", desc: "Torres de ultra-lujo, SUVs exóticos, eléctricos de alta gama" },
-  { name: "Polanco", tag: "Ultra Premium", tagClass: "zone-tag-gold", desc: "Campos Elíseos, Masaryk — Sedanes europeos, super-deportivos" },
-  { name: "Zona Esmeralda", tag: "Alto Potencial", tagClass: "zone-tag-gold", desc: "Condado de Sayavedra, Chiluca — SUVs familiares de lujo, blindados" },
-  { name: "Santa Fe", tag: "Premium", tagClass: "zone-tag-blue", desc: "Corporativos y lofts — Ejecutivos, Tesla, Audi e-tron" },
-  { name: "Lomas de Chapultepec", tag: "Ultra Premium", tagClass: "zone-tag-gold", desc: "Virreyes, Barrilaco — SUVs de lujo, vehículos blindados" },
-  { name: "Pedregal", tag: "Premium", tagClass: "zone-tag-blue", desc: "San Ángel — Autos clásicos, colección, preservación" },
-  { name: "Interlomas", tag: "Premium", tagClass: "zone-tag-blue", desc: "Bosque Real, Hacienda Palmas — BMW, Mercedes, Land Rover" },
-  { name: "Metepec", tag: "Nuevo", tagClass: "zone-tag-blue", desc: "Zona ejecutiva Toluca — Mercado desatendido, alto potencial" },
+  { name: "Polanco", href: "/zonas/polanco", tag: "Ultra Premium", tagClass: "zone-tag-gold", desc: "Campos Elíseos, Masaryk — Sedanes europeos, super-deportivos" },
+  { name: "Lomas de Chapultepec", href: "/zonas/lomas-de-chapultepec", tag: "Ultra Premium", tagClass: "zone-tag-gold", desc: "Virreyes, Barrilaco — SUVs de lujo, vehículos blindados" },
+  { name: "Santa Fe", href: "/zonas/santa-fe", tag: "Premium", tagClass: "zone-tag-blue", desc: "Corporativos y lofts — Ejecutivos, Tesla, Audi e-tron" },
+  { name: "Bosques de las Lomas", href: "/zonas/bosques-de-las-lomas", tag: "Máximo Potencial", tagClass: "zone-tag-gold", desc: "Tecamachalco, La Herradura — SUVs familiares de lujo y flotillas" },
+  { name: "Pedregal", href: "/zonas/pedregal", tag: "Premium", tagClass: "zone-tag-blue", desc: "San Ángel — Autos clásicos, colección, preservación" },
+  { name: "Interlomas y Bosque Real", href: "/zonas/interlomas", tag: "Máximo Potencial", tagClass: "zone-tag-gold", desc: "Bosque Real, Hacienda de las Palmas — BMW, Mercedes, Land Rover" },
+  { name: "Zona Esmeralda y Huixquilucan", href: "/zonas/huixquilucan", tag: "Alto Potencial", tagClass: "zone-tag-gold", desc: "Condado de Sayavedra, Jesús del Monte — SUVs de alta gama" },
+  { name: "Coyoacán Premium", href: "/zonas/coyoacan", tag: "Premium", tagClass: "zone-tag-blue", desc: "Country Club Churubusco, Del Carmen — Detallado residencial a domicilio" },
 ];
 
 /* ─── Process Steps ─── */
@@ -465,7 +465,7 @@ export default function HomePage() {
             <li><a href="#precios">Precios</a></li>
             <li><Link href="/blog">Blog</Link></li>
             <li>
-              <Link href="/mi-cuenta" style={{ display: "flex", alignItems: "center", gap: "0.4rem", color: "#94a3b8", textDecoration: "none", fontSize: "0.9rem", fontWeight: 500, transition: "color 0.2s" }}>
+              <Link href="/mi-cuenta" style={{ display: "flex", alignItems: "center", gap: "0.4rem", color: "#475569", textDecoration: "none", fontSize: "0.9rem", fontWeight: 500, transition: "color 0.2s" }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                 Mi Cuenta
               </Link>
@@ -609,9 +609,9 @@ export default function HomePage() {
                 <div key={i} className={`glass-card price-card animate-on-scroll ${p.featured ? "featured" : ""}`}>
                   {p.featured && <span className="badge">Más Popular</span>}
                   <h3 style={{ fontSize: "1.3rem", marginBottom: "0.25rem" }}>{p.name}</h3>
-                  <p style={{ color: "#94a3b8", fontSize: "0.85rem" }}>{displaySubtitle}</p>
+                  <p style={{ color: "#475569", fontSize: "0.85rem" }}>{displaySubtitle}</p>
                   <div className="price-amount gradient-text" style={{ transition: "all 0.3s ease" }}>{displayPrice}</div>
-                  <p style={{ color: "#94a3b8", fontSize: "0.8rem", marginBottom: "0.5rem" }}>{p.priceLabel} · IVA incluido</p>
+                  <p style={{ color: "#475569", fontSize: "0.8rem", marginBottom: "0.5rem" }}>{p.priceLabel} · IVA incluido</p>
                   <ul className="price-list">
                     {p.features.map((f, fi) => (
                       <li key={fi}>{f}</li>
@@ -791,7 +791,7 @@ export default function HomePage() {
                   <span className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "2rem" }}>$1,800</span>
                   <span style={{ color: "#64748b", fontSize: "0.9rem", marginLeft: "0.25rem" }}>MXN / mes</span>
                 </div>
-                <p style={{ color: "#94a3b8", fontSize: "0.75rem", marginBottom: "1.25rem" }}>IVA incluido · Facturable · {foamMaintenance.note}</p>
+                <p style={{ color: "#475569", fontSize: "0.75rem", marginBottom: "1.25rem" }}>IVA incluido · Facturable · {foamMaintenance.note}</p>
                 <a
                   href="/membresia-doctor-foam"
                   target="_blank"
@@ -856,17 +856,25 @@ export default function HomePage() {
 
           <div className="zones-grid">
             {zones.map((z, i) => (
-              <div key={i} className="glass-card zone-card animate-on-scroll">
+              <Link
+                key={i}
+                href={z.href}
+                className="glass-card zone-card animate-on-scroll"
+                style={{ textDecoration: "none", display: "block" }}
+              >
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.5rem" }}>
                   <span className="zone-name">{z.name}</span>
                   <span className={`zone-tag ${z.tagClass}`}>{z.tag}</span>
                 </div>
-                <p style={{ color: "#94a3b8", fontSize: "0.85rem" }}>{z.desc}</p>
-              </div>
+                <p style={{ color: "#475569", fontSize: "0.85rem", marginBottom: "0.5rem" }}>{z.desc}</p>
+                <span style={{ color: "#2563eb", fontSize: "0.78rem", fontWeight: 700 }}>
+                  Ver cobertura en {z.name} →
+                </span>
+              </Link>
             ))}
           </div>
 
-          <p className="animate-on-scroll" style={{ marginTop: "2rem", color: "#94a3b8", fontSize: "0.9rem" }}>
+          <p className="animate-on-scroll" style={{ marginTop: "2rem", color: "#475569", fontSize: "0.9rem" }}>
             ¿Tu zona no aparece? <a href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20consultar%20cobertura%20en%20mi%20zona" target="_blank" rel="noopener noreferrer" data-cta-location="cobertura_whatsapp" style={{ color: "var(--color-gold-400)", textDecoration: "underline", fontWeight: 700 }}>Escríbenos por WhatsApp</a> —
             posiblemente también te cubrimos.
           </p>
@@ -887,7 +895,7 @@ export default function HomePage() {
                     {s.num}
                   </div>
                   <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "0.85rem", color: "#0f172a", marginBottom: "0.2rem" }}>{s.title}</p>
-                  <p style={{ color: "#94a3b8", fontSize: "0.75rem", lineHeight: "1.4" }}>{s.desc}</p>
+                  <p style={{ color: "#475569", fontSize: "0.75rem", lineHeight: "1.4" }}>{s.desc}</p>
                 </div>
                 {i < processSteps.length - 1 && (
                   <div style={{ width: "40px", height: "2px", background: "linear-gradient(90deg, #2563eb, #60a5fa)", marginTop: "1.25rem", flexShrink: 0, opacity: 0.3 }} />
@@ -1097,7 +1105,7 @@ export default function HomePage() {
         <div className="footer-grid">
           <div>
             <Logo />
-            <p style={{ color: "#94a3b8", fontSize: "0.875rem", marginTop: "1rem", maxWidth: "320px", lineHeight: "1.7" }}>
+            <p style={{ color: "#475569", fontSize: "0.875rem", marginTop: "1rem", maxWidth: "320px", lineHeight: "1.7" }}>
               Servicio de detallado automotriz premium a domicilio. Equipo industrial, químicos
               profesionales, resultados extraordinarios. Valle de México.
             </p>

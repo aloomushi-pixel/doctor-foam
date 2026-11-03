@@ -134,23 +134,84 @@ export default async function ZonePage({ params }: PageProps) {
     const localBusinessJsonLd = {
         "@context": "https://schema.org",
         "@type": "Service",
-        name: `Doctor Foam — Detallado Automotriz en ${z.name}`,
+        name: `Doctor Foam — Lavado de Autos a Domicilio y Detallado Automotriz en ${z.name}`,
         description: z.metaDesc,
         provider: {
             "@type": "LocalBusiness",
             name: "Doctor Foam México",
+            telephone: "+52-56-1084-6022",
             areaServed: {
                 "@type": "Place",
                 name: `${z.fullName}, ${z.state}`,
             },
         },
-        serviceType: "Mobile Auto Detailing",
+        serviceType: "Lavado de autos a domicilio y detallado automotriz",
         url: `https://drfoam.com.mx/zonas/${zona}`,
+        hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: `Servicios Doctor Foam en ${z.name}`,
+            itemListElement: [
+                {
+                    "@type": "Offer",
+                    itemOffered: { "@type": "Service", name: "Membresía de Lavado Recurrente a Domicilio" },
+                    price: "990",
+                    priceCurrency: "MXN",
+                    url: "https://drfoam.com.mx/membresia-doctor-foam",
+                },
+                {
+                    "@type": "Offer",
+                    itemOffered: { "@type": "Service", name: "Industrial Deep Interior (Lavado de Vestiduras y Vapor 180°C)" },
+                    price: "2400",
+                    priceCurrency: "MXN",
+                    url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx",
+                },
+                {
+                    "@type": "Offer",
+                    itemOffered: { "@type": "Service", name: "Signature Detail (Corrección de Pintura + Interior)" },
+                    price: "7499",
+                    priceCurrency: "MXN",
+                    url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz",
+                },
+                {
+                    "@type": "Offer",
+                    itemOffered: { "@type": "Service", name: "Ceramic Coating 9H" },
+                    price: "10999",
+                    priceCurrency: "MXN",
+                    url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado",
+                },
+            ],
+        },
+    };
+
+    const breadcrumbJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Inicio",
+                item: "https://drfoam.com.mx/",
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Zonas de Cobertura",
+                item: "https://drfoam.com.mx/#cobertura",
+            },
+            {
+                "@type": "ListItem",
+                position: 3,
+                name: `Detallado a Domicilio en ${z.name}`,
+                item: `https://drfoam.com.mx/zonas/${zona}`,
+            },
+        ],
     };
 
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
             <nav className="navbar navbar-scrolled">
                 <div className="navbar-inner">
@@ -159,9 +220,9 @@ export default async function ZonePage({ params }: PageProps) {
                             DOCTOR <span className="gradient-text">FOAM</span>
                         </span>
                     </Link>
-                    <a href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+                    <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
                         Agendar Cita
-                    </a>
+                    </Link>
                 </div>
             </nav>
 
@@ -224,25 +285,37 @@ export default async function ZonePage({ params }: PageProps) {
                     </div>
                 </section>
 
-                {/* Services preview */}
+                {/* Services preview linked to the 4 SEO Pillars */}
                 <section className="section-padding" style={{ paddingTop: 0 }}>
-                    <div className="container" style={{ maxWidth: "800px" }}>
+                    <div className="container" style={{ maxWidth: "900px" }}>
                         <h2 style={{ fontSize: "1.5rem", marginBottom: "1.5rem", textAlign: "center" }}>
-                            Servicios Disponibles en {z.name}
+                            Servicios a Domicilio Disponibles en {z.name}
                         </h2>
-                        <div className="services-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))" }}>
+                        <div className="services-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))" }}>
                             {[
-                                { icon: "🧽", title: "Lavado Premium", price: "Desde $1,800" },
-                                { icon: "🪑", title: "Detallado Interior", price: "Desde $2,500" },
-                                { icon: "💎", title: "Corrección de Pintura", price: "Desde $4,500" },
-                                { icon: "🛡️", title: "Recubrimiento Cerámico", price: "Desde $8,500" },
+                                { icon: "🧽", title: "Lavado Recurrente", price: "Desde $990/mes", desc: "Mantenimiento periódico con método 2 cubetas y pH neutro", href: "/lavado-recurrente-autos-domicilio" },
+                                { icon: "🪑", title: "Industrial Deep Interior", price: "$2,400 MXN", desc: "Lavado de vestiduras, vapor a 180°C, pieles y ozono", href: "/lavado-profundo-vehiculos-cdmx" },
+                                { icon: "💎", title: "Signature Detail", price: "$7,499 MXN", desc: "Corrección de pintura (95% swirls) + interior completo", href: "/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" },
+                                { icon: "🛡️", title: "Ceramic Coating 9H", price: "$10,999 MXN", desc: "Blindaje cerámico de 3 a 5 años con certificado", href: "/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" },
                             ].map((s, i) => (
-                                <div key={i} className="glass-card" style={{ padding: "1.5rem", textAlign: "center" }}>
+                                <Link key={i} href={s.href} className="glass-card" style={{ padding: "1.5rem", textAlign: "center", textDecoration: "none", display: "block" }}>
                                     <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>{s.icon}</div>
-                                    <h3 style={{ fontSize: "1rem", marginBottom: "0.5rem" }}>{s.title}</h3>
-                                    <span className="gradient-text" style={{ fontWeight: 700, fontFamily: "var(--font-heading)" }}>{s.price}</span>
-                                </div>
+                                    <h3 style={{ fontSize: "1rem", marginBottom: "0.35rem", color: "#0f172a" }}>{s.title}</h3>
+                                    <p style={{ color: "#475569", fontSize: "0.78rem", marginBottom: "0.6rem", lineHeight: "1.45" }}>{s.desc}</p>
+                                    <span className="gradient-text" style={{ fontWeight: 700, fontFamily: "var(--font-heading)", display: "block", marginBottom: "0.35rem" }}>{s.price}</span>
+                                    <span style={{ color: "#2563eb", fontSize: "0.75rem", fontWeight: 700 }}>Ver detalles →</span>
+                                </Link>
                             ))}
+                        </div>
+                        <div style={{ marginTop: "1.25rem", textAlign: "center", fontSize: "0.85rem", color: "#475569" }}>
+                            ¿Atendemos estacionamientos residenciales y corporativos en {z.name}? Sí — conoce nuestro{" "}
+                            <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#2563eb", fontWeight: 700, textDecoration: "underline" }}>
+                                servicio en estacionamiento corporativo
+                            </Link>{" "}
+                            y la{" "}
+                            <Link href="/membresia-doctor-foam" style={{ color: "#2563eb", fontWeight: 700, textDecoration: "underline" }}>
+                                Membresía Doctor Foam
+                            </Link>.
                         </div>
                     </div>
                 </section>
@@ -253,8 +326,8 @@ export default async function ZonePage({ params }: PageProps) {
                         <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
                             ¿Estás en <span className="gradient-text">{z.name}</span>?
                         </h2>
-                        <p style={{ color: "#94a3b8", marginBottom: "2rem" }}>
-                            Agenda tu cita y lleva la experiencia Doctor Foam a la puerta de tu casa.
+                        <p style={{ color: "#475569", marginBottom: "2rem" }}>
+                            Agenda tu cita en línea y lleva la experiencia Doctor Foam a la puerta de tu casa u oficina.
                         </p>
                         <Link
                             href="/reservar"
@@ -268,7 +341,7 @@ export default async function ZonePage({ params }: PageProps) {
                 {/* Other zones */}
                 <section className="section-padding" style={{ paddingTop: 0 }}>
                     <div className="container" style={{ maxWidth: "800px", textAlign: "center" }}>
-                        <h3 style={{ fontSize: "1.1rem", marginBottom: "1rem", color: "#94a3b8" }}>
+                        <h3 style={{ fontSize: "1.1rem", marginBottom: "1rem", color: "#475569" }}>
                             También estamos en:
                         </h3>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
@@ -294,6 +367,14 @@ export default async function ZonePage({ params }: PageProps) {
                     <p>&copy; {new Date().getFullYear()} Doctor Foam México. Todos los derechos reservados.</p>
                     <p style={{ marginTop: "0.5rem" }}>
                         <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>
+                        {" · "}
+                        <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>
+                        {" · "}
+                        <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Profundo</Link>
+                        {" · "}
+                        <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#64748b", textDecoration: "underline" }}>Estacionamiento Corporativo</Link>
+                        {" · "}
+                        <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>
                         {" · "}
                         <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>
                     </p>

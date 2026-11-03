@@ -717,7 +717,7 @@ Detalles:
                         {loading ? "Procesando..." : `🔒 Pagar $${currentPrice.toLocaleString("es-MX")} MXN`}
                     </button>
 
-                    <p style={{ color: "#94a3b8", fontSize: "0.8rem", textAlign: "center", marginTop: "1rem" }}>
+                    <p style={{ color: "#475569", fontSize: "0.8rem", textAlign: "center", marginTop: "1rem" }}>
                         Pago seguro procesado por Stripe. Una vez confirmado, tu servicio queda agendado para la fecha seleccionada.
                     </p>
                     <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
