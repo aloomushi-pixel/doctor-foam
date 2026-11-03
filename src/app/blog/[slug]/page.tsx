@@ -452,7 +452,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: `${post.title} | Doctor Foam México`,
         description: post.metaDesc,
-        alternates: { canonical: `https://doctorfoam.mx/blog/${slug}` },
+        alternates: { canonical: `https://drfoam.com.mx/blog/${slug}` },
         openGraph: {
             title: post.title,
             description: post.metaDesc,
@@ -483,7 +483,7 @@ export default async function BlogPost({ params }: PageProps) {
         datePublished: post.date,
         author: { "@type": "Organization", name: "Doctor Foam México" },
         publisher: { "@type": "Organization", name: "Doctor Foam México" },
-        url: `https://doctorfoam.mx/blog/${slug}`,
+        url: `https://drfoam.com.mx/blog/${slug}`,
     };
 
     return (
@@ -495,7 +495,7 @@ export default async function BlogPost({ params }: PageProps) {
                     <Link href="/" style={{ textDecoration: "none" }}>
                         <Logo size="sm" />
                     </Link>
-                    <a href="/#contacto" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+                    <a href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
                         Agendar Cita
                     </a>
                 </div>

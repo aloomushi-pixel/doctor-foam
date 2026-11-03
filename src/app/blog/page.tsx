@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     title: "Blog | Doctor Foam México — Consejos de Detallado Automotriz",
     description:
         "Tips, guías y artículos sobre cuidado automotriz, detallado premium, recubrimientos cerámicos y mantenimiento de vehículos de lujo en México.",
-    alternates: { canonical: "https://doctorfoam.mx/blog" },
+    alternates: { canonical: "https://drfoam.com.mx/blog" },
 };
 
 const blogPosts = [
@@ -120,7 +120,7 @@ export default function BlogPage() {
         "@type": "Blog",
         name: "Blog Doctor Foam México",
         description: "Artículos sobre detallado automotriz premium, cuidado de autos de lujo",
-        url: "https://doctorfoam.mx/blog",
+        url: "https://drfoam.com.mx/blog",
         publisher: {
             "@type": "Organization",
             name: "Doctor Foam México",
@@ -130,7 +130,7 @@ export default function BlogPage() {
             headline: post.title,
             description: post.excerpt,
             datePublished: post.date,
-            url: `https://doctorfoam.mx/blog/${post.slug}`,
+            url: `https://drfoam.com.mx/blog/${post.slug}`,
         })),
     };
 
@@ -143,7 +143,7 @@ export default function BlogPage() {
                     <Link href="/" style={{ textDecoration: "none" }}>
                         <Logo size="sm" />
                     </Link>
-                    <a href="/#contacto" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+                    <a href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
                         Agendar Cita
                     </a>
                 </div>
@@ -172,12 +172,12 @@ export default function BlogPage() {
                                     <h2 style={{ fontSize: "1.2rem", marginBottom: "0.75rem", lineHeight: "1.4" }}>
                                         <Link
                                             href={`/blog/${post.slug}`}
-                                            style={{ color: "white", textDecoration: "none" }}
+                                            style={{ color: "#0f172a", textDecoration: "none" }}
                                         >
                                             {post.title}
                                         </Link>
                                     </h2>
-                                    <p style={{ color: "#94a3b8", fontSize: "0.9rem", lineHeight: "1.7", marginBottom: "1rem" }}>
+                                    <p style={{ color: "#475569", fontSize: "0.9rem", lineHeight: "1.7", marginBottom: "1rem" }}>
                                         {post.excerpt}
                                     </p>
                                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>

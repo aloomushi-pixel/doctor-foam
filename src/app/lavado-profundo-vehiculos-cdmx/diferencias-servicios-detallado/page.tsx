@@ -79,7 +79,7 @@ export default function DiferenciasServiciosPage() {
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "1.5rem" }}>
                 {/* Traditional */}
                 <div className="glass-card" style={{ padding: "2rem", borderTop: "3px solid #ef4444" }}>
-                  <h3 style={{ fontSize: "1.1rem", marginBottom: "1rem", color: "#fca5a5" }}>❌ {c.basic.title}</h3>
+                  <h3 style={{ fontSize: "1.1rem", marginBottom: "1rem", color: "#dc2626" }}>❌ {c.basic.title}</h3>
                   <ul style={{ listStyle: "none", padding: 0 }}>
                     {c.basic.items.map((item, j) => (
                       <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.6rem", color: "#475569", fontSize: "0.9rem" }}>
@@ -90,10 +90,10 @@ export default function DiferenciasServiciosPage() {
                 </div>
                 {/* Doctor Foam */}
                 <div className="glass-card" style={{ padding: "2rem", borderTop: "3px solid #2563eb" }}>
-                  <h3 style={{ fontSize: "1.1rem", marginBottom: "1rem", color: "#93c5fd" }}>✅ {c.drfoam.title}</h3>
+                  <h3 style={{ fontSize: "1.1rem", marginBottom: "1rem", color: "#1d4ed8" }}>✅ {c.drfoam.title}</h3>
                   <ul style={{ listStyle: "none", padding: 0 }}>
                     {c.drfoam.items.map((item, j) => (
-                      <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.6rem", color: "#e2e8f0", fontSize: "0.9rem" }}>
+                      <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.6rem", color: "#1e293b", fontSize: "0.9rem" }}>
                         <span style={{ color: "#22c55e", flexShrink: 0 }}>✓</span> {item}
                       </li>
                     ))}

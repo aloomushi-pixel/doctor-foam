@@ -134,7 +134,7 @@ export default function MembresiaPage() {
 
                   <ul style={{ listStyle: "none", padding: 0, flex: 1 }}>
                     {p.features.map((f, j) => (
-                      <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.6rem", color: "#e2e8f0", fontSize: "0.88rem" }}>
+                      <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.6rem", color: "#1e293b", fontSize: "0.88rem" }}>
                         <span style={{ color: "#2563eb", fontWeight: 700, flexShrink: 0 }}>✓</span>
                         {f}
                       </li>

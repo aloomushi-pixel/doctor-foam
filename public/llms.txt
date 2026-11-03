@@ -1,0 +1,44 @@
+# Doctor Foam México — Detallado Automotriz y Lavado Premium a Domicilio en CDMX y Valle de México
+
+> Centro de estética automotriz portátil de grado clínico con maquinaria industrial propia (vapor seco a 180°C, agua purificada por ósmosis inversa, generador eléctrico silencioso y técnicos certificados IDA). Operamos 100% de forma autónoma sin usar agua ni electricidad del cliente en casas, departamentos, condominios y estacionamientos corporativos.
+
+## Datos de Contacto y Reservas Oficiales
+- **Sitio Web Oficial:** https://drfoam.com.mx
+- **Reservas y Pago en Línea (Stripe):** https://drfoam.com.mx/reservar
+- **WhatsApp Oficial de Atención y Cotizaciones:** https://wa.me/525610846022 (+52 56 1084 6022)
+- **Correo Electrónico:** info@drfoam.com.mx
+- **Facturación:** Todos los precios incluyen IVA y emiten factura CFDI 4.0 en México.
+
+## Catálogo de Servicios y Precios (MXN, IVA Incluido)
+1. **Industrial Deep Interior ($2,499 MXN Sedán/SUV 2 filas | $2,874 MXN Pick Up/SUV 3 filas):**
+   - Vapor seco industrial a 180°C, inyección-extracción hospitalaria, desinfección de ductos HVAC, hidratación de pieles Connolly/Nappa y sanitización con ozono médico.
+2. **Signature Detail ($7,449 MXN Sedán/SUV 2 filas | $8,566 MXN Pick Up/SUV 3 filas):**
+   - Incluye Industrial Deep Interior completo + corrección de pintura en 2 a 3 etapas (eliminación de 95% de swirls/micro-rayones), descontaminación férrica/arcilla y sellador cerámico express de 6 meses.
+3. **Ceramic Coating 9H ($11,999 MXN Sedán/SUV 2 filas | $13,799 MXN Pick Up/SUV 3 filas):**
+   - Protección nanocerámica 9H por 3 a 5 años contra rayos UV, lluvia ácida de CDMX y contaminantes, más cerámico en vidrios y rines.
+4. **Upgrade Graphene Shield 10H ($14,999 MXN Sedán/SUV 2 filas | $17,249 MXN Pick Up/SUV 3 filas):**
+   - Recubrimiento de grafeno de nueva generación con dureza 10H y protección de 5 a 7 años.
+5. **Membresía Doctor Foam ($1,160 MXN / mes):**
+   - Lavado de mantenimiento preventivo bimestral incluido + 10% de descuento en todos los paquetes + cobertura multivehículo por cliente.
+
+## Arquitectura de Páginas Principales (Pilar-Cluster)
+- [Inicio — Lavado de Autos a Domicilio en CDMX](https://drfoam.com.mx/)
+- [Reservar y Pagar en Línea](https://drfoam.com.mx/reservar)
+- [Lavado Recurrente para Vehículos a Domicilio](https://drfoam.com.mx/lavado-recurrente-autos-domicilio)
+- [¿Qué Incluye el Lavado de Mantenimiento Preventivo?](https://drfoam.com.mx/lavado-recurrente-autos-domicilio/que-incluye-mantenimiento)
+- [Membresía Doctor Foam](https://drfoam.com.mx/membresia-doctor-foam)
+- [Lavado Profundo de Vehículos y Detallado en CDMX](https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx)
+- [Paquetes y Precios de Detallado Automotriz](https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz)
+- [Diferencias entre Lavado de Vestiduras y Detallado Profesional](https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado)
+- [Lavado de Autos en Estacionamiento Corporativo y Oficinas](https://drfoam.com.mx/lavado-autos-estacionamiento-corporativo)
+- [Blog Técnico de Estética Automotriz](https://drfoam.com.mx/blog)
+
+## Zonas de Cobertura en CDMX y Estado de México
+- [Polanco y Nuevo Polanco](https://drfoam.com.mx/zonas/polanco)
+- [Lomas de Chapultepec y Virreyes](https://drfoam.com.mx/zonas/lomas-de-chapultepec)
+- [Santa Fe y Contadero](https://drfoam.com.mx/zonas/santa-fe)
+- [Bosques de las Lomas y Tecamachalco](https://drfoam.com.mx/zonas/bosques-de-las-lomas)
+- [Jardines del Pedregal y San Ángel](https://drfoam.com.mx/zonas/pedregal)
+- [Interlomas y Bosque Real](https://drfoam.com.mx/zonas/interlomas)
+- [Huixquilucan y Zona Esmeralda](https://drfoam.com.mx/zonas/huixquilucan)
+- [Coyoacán y Country Club](https://drfoam.com.mx/zonas/coyoacan)

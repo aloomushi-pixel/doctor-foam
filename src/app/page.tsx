@@ -314,8 +314,8 @@ function JsonLd() {
     name: "Doctor Foam México",
     description:
       "Servicio de detallado automotriz premium a domicilio en CDMX y Valle de México",
-    url: "https://doctorfoam.mx",
-    telephone: "+52-55-0000-0000",
+    url: "https://drfoam.com.mx",
+    telephone: "+525610846022",
     areaServed: [
       { "@type": "City", name: "Ciudad de México" },
       { "@type": "AdministrativeArea", name: "Estado de México" },
@@ -325,12 +325,16 @@ function JsonLd() {
       "Recubrimiento cerámico",
       "Corrección de pintura",
       "Lavado premium a domicilio",
+      "Lavado de autos a domicilio en CDMX",
+      "Lavado recurrente de autos a domicilio",
+      "Lavado profundo de vehículos",
+      "Lavado de autos en estacionamiento corporativo",
     ],
     priceRange: "$$$",
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.9",
-      reviewCount: "127",
+      reviewCount: "34",
     },
   };
 
@@ -538,9 +542,16 @@ export default function HomePage() {
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
-              {/* <a href="#proceso" className="btn-outline" style={{ color: "#ffffff", borderColor: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.08)" }}>
-                Conoce el Proceso
-              </a> */}
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20cotizar%20un%20servicio%20de%20detallado%20a%20domicilio"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="hero_cta"
+                className="btn-outline"
+                style={{ color: "#ffffff", borderColor: "rgba(255,255,255,0.35)", background: "rgba(16, 185, 129, 0.22)" }}
+              >
+                💬 Cotizar por WhatsApp
+              </a>
             </div>
           </div>
 
@@ -850,7 +861,7 @@ export default function HomePage() {
           </div>
 
           <p className="animate-on-scroll" style={{ marginTop: "2rem", color: "#94a3b8", fontSize: "0.9rem" }}>
-            ¿Tu zona no aparece? <a href="#contacto" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>Contáctanos</a> —
+            ¿Tu zona no aparece? <a href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20consultar%20cobertura%20en%20mi%20zona" target="_blank" rel="noopener noreferrer" data-cta-location="cobertura_whatsapp" style={{ color: "var(--color-gold-400)", textDecoration: "underline", fontWeight: 700 }}>Escríbenos por WhatsApp</a> —
             posiblemente también te cubrimos.
           </p>
         </div>
@@ -1088,29 +1099,30 @@ export default function HomePage() {
           <div>
             <h4 className="footer-title">Servicios</h4>
             <ul className="footer-links">
-              <li><a href="#servicios">Lavado Premium</a></li>
-              <li><a href="#servicios">Detallado Interior</a></li>
-              <li><a href="#servicios">Corrección de Pintura</a></li>
-              <li><a href="#servicios">Recubrimiento Cerámico</a></li>
-              {/* <li><a href="#servicios">Membresía</a></li> */}
+              <li><Link href="/lavado-recurrente-autos-domicilio">Lavado Recurrente a Domicilio</Link></li>
+              <li><Link href="/lavado-profundo-vehiculos-cdmx">Lavado Profundo y Detallado</Link></li>
+              <li><Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz">Paquetes y Precios</Link></li>
+              <li><Link href="/membresia-doctor-foam">Membresía Doctor Foam</Link></li>
+              <li><Link href="/lavado-autos-estacionamiento-corporativo">Corporativos y Oficinas</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="footer-title">Cobertura</h4>
             <ul className="footer-links">
-              <li><a href="#cobertura">Polanco</a></li>
-              <li><a href="#cobertura">Lomas de Chapultepec</a></li>
-              <li><a href="#cobertura">Santa Fe</a></li>
-              <li><a href="#cobertura">Bosques de las Lomas</a></li>
-              <li><a href="#cobertura">Pedregal</a></li>
+              <li><Link href="/zonas/polanco">Polanco</Link></li>
+              <li><Link href="/zonas/lomas-de-chapultepec">Lomas de Chapultepec</Link></li>
+              <li><Link href="/zonas/santa-fe">Santa Fe</Link></li>
+              <li><Link href="/zonas/bosques-de-las-lomas">Bosques de las Lomas</Link></li>
+              <li><Link href="/zonas/pedregal">Pedregal</Link></li>
+              <li><Link href="/zonas/interlomas">Interlomas y Bosque Real</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="footer-title">Contacto</h4>
             <ul className="footer-links">
-              <li><Link href="?chat=open">Chat en línea</Link></li>
+              <li><a href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20tengo%20una%20consulta" target="_blank" rel="noopener noreferrer" data-cta-location="footer_cta">WhatsApp Directo</a></li>
               <li><a href="https://wa.me/525610846022" target="_blank" rel="noopener noreferrer">+52 56 1084 6022 (WhatsApp)</a></li>
-              <li><a href="mailto:hola@doctorfoam.mx">hola@doctorfoam.mx</a></li>
+              <li><a href="mailto:info@drfoam.com.mx">info@drfoam.com.mx</a></li>
               <li><a href="https://instagram.com/doctorfoam.mx">Instagram</a></li>
               <li><a href="https://facebook.com/doctorfoam.mx">Facebook</a></li>
             </ul>

@@ -81,7 +81,7 @@ export default function EstacionamientoCorporativoPage() {
               {autonomy.map((a, i) => (
                 <div key={i} className="glass-card" style={{ padding: "1.5rem", textAlign: "center" }}>
                   <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "0.5rem" }}>{a.icon}</span>
-                  <h3 style={{ fontSize: "1rem", marginBottom: "0.5rem", color: "#e2e8f0" }}>{a.label}</h3>
+                  <h3 style={{ fontSize: "1rem", marginBottom: "0.5rem", color: "#0f172a" }}>{a.label}</h3>
                   <p style={{ color: "#475569", fontSize: "0.82rem", lineHeight: "1.6" }}>{a.desc}</p>
                 </div>
               ))}

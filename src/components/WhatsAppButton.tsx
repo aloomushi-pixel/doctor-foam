@@ -1,11 +1,12 @@
 "use client";
 
-
 export default function WhatsAppButton() {
-    const whatsappUrl = "https://wa.me/525610846022";
+    const whatsappUrl =
+        "https://wa.me/525610846022?text=Hola%2C%20me%20interesa%20un%20servicio%20de%20detallado%20a%20domicilio%20de%20Doctor%20Foam";
 
     return (
         <a
+            id="drfoam-floating-whatsapp"
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"

@@ -110,7 +110,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: `Detallado Automotriz en ${z.name} | Doctor Foam México`,
         description: z.metaDesc,
-        alternates: { canonical: `https://doctorfoam.mx/zonas/${zona}` },
+        alternates: { canonical: `https://drfoam.com.mx/zonas/${zona}` },
         openGraph: {
             title: `Detallado Premium a Domicilio en ${z.name}`,
             description: z.metaDesc,
@@ -145,7 +145,7 @@ export default async function ZonePage({ params }: PageProps) {
             },
         },
         serviceType: "Mobile Auto Detailing",
-        url: `https://doctorfoam.mx/zonas/${zona}`,
+        url: `https://drfoam.com.mx/zonas/${zona}`,
     };
 
     return (
@@ -155,11 +155,11 @@ export default async function ZonePage({ params }: PageProps) {
             <nav className="navbar navbar-scrolled">
                 <div className="navbar-inner">
                     <Link href="/" style={{ textDecoration: "none" }}>
-                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "white" }}>
+                        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.3rem", color: "#0f172a" }}>
                             DOCTOR <span className="gradient-text">FOAM</span>
                         </span>
                     </Link>
-                    <a href="/#contacto" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+                    <a href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
                         Agendar Cita
                     </a>
                 </div>
@@ -183,7 +183,7 @@ export default async function ZonePage({ params }: PageProps) {
                 <section className="section-padding" style={{ paddingTop: 0 }}>
                     <div className="container" style={{ maxWidth: "800px" }}>
                         <div className="glass-card" style={{ padding: "2.5rem" }}>
-                            <p style={{ color: "#cbd5e1", fontSize: "1.05rem", lineHeight: "1.9" }}>
+                            <p style={{ color: "#334155", fontSize: "1.05rem", lineHeight: "1.9" }}>
                                 {z.intro}
                             </p>
                         </div>

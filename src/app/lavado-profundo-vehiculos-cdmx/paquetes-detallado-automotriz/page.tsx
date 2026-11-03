@@ -138,7 +138,7 @@ export default function PaquetesDetallado() {
                   <strong>Ideal si:</strong> {p.ideal}
                 </p>
 
-                <h3 style={{ fontSize: "1rem", marginBottom: "0.75rem", color: "#e2e8f0" }}>✅ Incluye:</h3>
+                <h3 style={{ fontSize: "1rem", marginBottom: "0.75rem", color: "#0f172a" }}>✅ Incluye:</h3>
                 <ul style={{ listStyle: "none", padding: 0, marginBottom: "1.5rem" }}>
                   {p.includes.map((f, j) => (
                     <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.5rem", color: "#475569", fontSize: "0.88rem" }}>
@@ -162,7 +162,7 @@ export default function PaquetesDetallado() {
 
                 {p.upgrade && (
                   <div style={{ padding: "1.25rem", background: "rgba(37,99,235,0.06)", borderRadius: "0.75rem", border: "1px solid rgba(37,99,235,0.15)", marginBottom: "1.5rem" }}>
-                    <p style={{ fontWeight: 700, color: "#e2e8f0", marginBottom: "0.25rem" }}>⬆️ Upgrade: {p.upgrade.name}</p>
+                    <p style={{ fontWeight: 700, color: "#0f172a", marginBottom: "0.25rem" }}>⬆️ Upgrade: {p.upgrade.name}</p>
                     <p style={{ color: "#475569", fontSize: "0.85rem", marginBottom: "0.25rem" }}>{p.upgrade.desc}</p>
                     <p style={{ color: "#2563eb", fontWeight: 700 }}>{p.upgrade.price.sedan} MXN (Sedán) · {p.upgrade.price.pickup} MXN (Pick Up)</p>
                   </div>

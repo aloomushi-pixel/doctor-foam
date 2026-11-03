@@ -1,6 +1,7 @@
 "use client";
 
 import { PACKAGES, VEHICLE_SIZES } from "@/lib/packages";
+import { trackDrFoamEvent } from "@/lib/telemetry";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useState } from "react";
@@ -200,7 +201,7 @@ function BookingForm() {
     const [serviceDate, setServiceDate] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const [success, setSuccess] = useState(false);
+    const [success] = useState(false);
     const cancelled = searchParams.get("cancelled");
     const [hoveredPkg, setHoveredPkg] = useState<string | null>(null);
     const [isMember, setIsMember] = useState(false);
@@ -246,6 +247,29 @@ function BookingForm() {
         checkMembership();
     }, [searchParams]);
 
+    /* Track booking funnel step views */
+    useEffect(() => {
+        const stepLabels: Record<number, string> = {
+            1: "step_1_servicio",
+            2: "step_2_fecha",
+            3: "step_3_datos",
+            4: "step_4_confirmar",
+        };
+        trackDrFoamEvent({
+            event_name: "booking_step_view",
+            event_category: "conversion_booking",
+            booking_step: step,
+            package_name: pkg?.name || selectedPackage,
+            vehicle_size: vehicleSize,
+            estimated_value_mxn: currentPrice,
+            metadata: {
+                step_label: stepLabels[step] || `step_${step}`,
+                package_id: selectedPackage,
+                service_date: serviceDate || null,
+            },
+        });
+    }, [step]);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -269,6 +293,27 @@ function BookingForm() {
                 facturaEmail: needsFactura ? facturaEmail : "",
                 facturaUsoCFDI: needsFactura ? facturaUsoCFDI : "",
             };
+
+            // Track checkout initiation in Supabase UX table
+            trackDrFoamEvent({
+                event_name: "checkout_initiated",
+                event_category: "conversion_booking",
+                booking_step: 4,
+                element_id: "reservar_step4_pagar",
+                element_text: `Pagar ${currentPrice.toLocaleString("es-MX")} MXN`,
+                package_name: pkg?.name || selectedPackage,
+                vehicle_size: vehicleSize,
+                estimated_value_mxn: currentPrice,
+                metadata: {
+                    package_id: selectedPackage,
+                    service_date: serviceDate,
+                    postal_code: addressCP,
+                    address_type: addressTipo,
+                    vehicle_brand: vehicleBrand,
+                    vehicle_model: vehicleModel,
+                    needs_factura: needsFactura,
+                },
+            });
 
             // 1. Guardar mensaje para WhatsApp en localStorage
             const waMessage = `¡Hola! Acabo de pagar mi reserva en Doctor Foam.
@@ -340,7 +385,12 @@ Detalles:
                     <button
                         key={s.num}
                         type="button"
-                        onClick={() => s.num < step && setStep(s.num)}
+                        onClick={() => {
+                            if (s.num < step) {
+                                setError("");
+                                setStep(s.num);
+                            }
+                        }}
                         style={{
                             display: "flex", alignItems: "center", gap: "0.4rem",
                             background: step === s.num ? "rgba(37, 99, 235, 0.1)" : step > s.num ? "rgba(16, 185, 129, 0.08)" : "#f1f5f9",
@@ -360,7 +410,7 @@ Detalles:
 
             {cancelled && (
                 <div style={{ background: "rgba(239, 68, 68, 0.06)", border: "1px solid rgba(239, 68, 68, 0.2)", borderRadius: "0.75rem", padding: "1rem 1.5rem", marginBottom: "2rem", color: "#dc2626", fontSize: "0.9rem" }}>
-                    El pago fue cancelado. Puedes intentar de nuevo.
+                    El pago fue cancelado. Puedes intentar de nuevo o escribirnos por WhatsApp para asistirte.
                 </div>
             )}
             {error && (
@@ -461,7 +511,7 @@ Detalles:
                     </div>
 
                     <button
-                        type="button" onClick={() => setStep(2)}
+                        type="button" onClick={() => { setError(""); setStep(2); }}
                         className="btn-premium" style={{ width: "100%", justifyContent: "center" }}
                     >
                         Continuar → Elegir fecha
@@ -488,11 +538,18 @@ Detalles:
                     )}
 
                     <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem" }}>
-                        <button type="button" onClick={() => setStep(1)} className="btn-outline" style={{ flex: 1 }}>
+                        <button type="button" onClick={() => { setError(""); setStep(1); }} className="btn-outline" style={{ flex: 1 }}>
                             ← Atrás
                         </button>
                         <button
-                            type="button" onClick={() => serviceDate && setStep(3)}
+                            type="button" onClick={() => {
+                                if (serviceDate) {
+                                    setError("");
+                                    setStep(3);
+                                } else {
+                                    setError("Por favor selecciona una fecha disponible en el calendario.");
+                                }
+                            }}
                             className="btn-premium" disabled={!serviceDate}
                             style={{ flex: 2, justifyContent: "center", opacity: serviceDate ? 1 : 0.5 }}
                         >
@@ -554,7 +611,7 @@ Detalles:
                             </div>
                         </div>
                         <p style={{ color: "#64748b", fontSize: "0.8rem", marginTop: "1rem", fontStyle: "italic" }}>
-                            (Podrás administrar tus direcciones en "Mi Cuenta" después de reservar)
+                            (Podrás administrar tus direcciones en &quot;Mi Cuenta&quot; después de reservar)
                         </p>
                     </div>
 
@@ -584,13 +641,18 @@ Detalles:
                     </div>
 
                     <div style={{ display: "flex", gap: "1rem" }}>
-                        <button type="button" onClick={() => setStep(2)} className="btn-outline" style={{ flex: 1 }}>← Atrás</button>
+                        <button type="button" onClick={() => { setError(""); setStep(2); }} className="btn-outline" style={{ flex: 1 }}>← Atrás</button>
                         <button
                             type="button"
                             onClick={() => {
                                 const baseValid = customerName && customerEmail && customerPhone && vehicleBrand && vehicleModel && addressCalle && addressCP && vehicleYear && vehicleColor;
                                 const facturaValid = !needsFactura || (rfc && razonSocial && facturaRegimen && facturaCP && facturaEmail && facturaUsoCFDI);
-                                if (baseValid && facturaValid) setStep(4);
+                                if (baseValid && facturaValid) {
+                                    setError("");
+                                    setStep(4);
+                                } else {
+                                    setError("Por favor completa todos los campos obligatorios (*) para continuar al resumen.");
+                                }
                             }}
                             className="btn-premium" style={{ flex: 2, justifyContent: "center" }}
                         >
@@ -664,11 +726,18 @@ Detalles:
                 </div>
             )}
 
-            {/* Chat */}
+            {/* Chat / WhatsApp Help */}
             <div style={{ textAlign: "center", marginTop: "2rem" }}>
-                <p style={{ color: "#94a3b8", fontSize: "0.9rem", marginBottom: "0.75rem" }}>¿Tienes dudas?</p>
-                <a href="?chat=open" className="btn-outline" style={{ display: "inline-flex" }}>
-                    💬 Escríbenos por chat
+                <p style={{ color: "#64748b", fontSize: "0.9rem", marginBottom: "0.75rem" }}>¿Tienes dudas o prefieres agendar por mensaje?</p>
+                <a
+                    href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy en la página de reservas viendo el paquete ${pkg?.name || selectedPackage} y tengo una duda.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cta-location="reservar_ayuda_whatsapp"
+                    className="btn-outline"
+                    style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
+                >
+                    💬 Escríbenos por WhatsApp
                 </a>
             </div>
         </form>

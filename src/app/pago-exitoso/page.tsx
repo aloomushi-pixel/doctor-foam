@@ -46,7 +46,7 @@ function SuccessContent() {
                                 fontFamily: "var(--font-heading)",
                                 fontWeight: 800,
                                 fontSize: "1.3rem",
-                                color: "white",
+                                color: "#0f172a",
                             }}
                         >
                             DOCTOR <span className="gradient-text">FOAM</span>
@@ -204,7 +204,7 @@ function SuccessContent() {
                                             <div
                                                 style={{
                                                     fontWeight: 700,
-                                                    color: "white",
+                                                    color: "#0f172a",
                                                     fontSize: "0.95rem",
                                                     fontFamily: "var(--font-heading)",
                                                 }}
@@ -247,7 +247,7 @@ function SuccessContent() {
                             <Link href="/" className="btn-premium">
                                 Volver al inicio
                             </Link>
-                            <Link href="?chat=open" className="btn-outline">
+                            <Link href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20acabo%20de%20realizar%20mi%20pago" target="_blank" rel="noopener noreferrer" data-cta-location="pago_exitoso_whatsapp" className="btn-outline">
                                 💬 Ir al chat
                             </Link>
                         </div>
