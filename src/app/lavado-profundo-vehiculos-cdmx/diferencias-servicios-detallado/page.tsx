@@ -27,9 +27,19 @@ const comparisons = [
   },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Lavado de Vestiduras de Auto y Detallado Interior Profundo a Domicilio CDMX",
+  description: "Comparativa técnica entre autolavado tradicional y detallado automotriz profesional con vapor seco a 180°C, extracción profunda y corrección de pintura.",
+  provider: { "@type": "LocalBusiness", name: "Doctor Foam México" },
+  url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado",
+};
+
 export default function DiferenciasServiciosPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>

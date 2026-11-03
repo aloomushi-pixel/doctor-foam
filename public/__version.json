@@ -1,9 +1,9 @@
 {
   "project": "Doctor Foam México",
   "domain": "https://drfoam.com.mx",
-  "version": "1.3.0-auto",
-  "cycle": 3,
+  "version": "1.4.0-auto",
+  "cycle": 4,
   "standard": "Estándar Maestro v2.1 + GSC siteOwner Activo (sc-domain:drfoam.com.mx) + Gobernanza de Planes",
   "telemetry_table": "public.drfoam_ux_events",
-  "updated_at": "2026-11-03T06:40:26.525Z"
+  "updated_at": "2026-11-03T10:48:03.064Z"
 }

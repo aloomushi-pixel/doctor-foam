@@ -20,9 +20,23 @@ const steps = [
   { num: 8, title: "Limpieza Interior Express", desc: "Aspirado de alfombras, limpieza de tablero y vidrios interiores. Mantenimiento básico del interior entre detallados profundos.", icon: "✨" },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Protocolo de 8 Pasos de Lavado de Mantenimiento Preventivo — Doctor Foam",
+  description: "Proceso profesional de lavado recurrente a domicilio libre de swirls con foam cannon, método de dos cubetas, descontaminación y sellador UV.",
+  step: steps.map((s) => ({
+    "@type": "HowToStep",
+    position: s.num,
+    name: s.title,
+    text: s.desc,
+  })),
+};
+
 export default function QueIncluyeMantenimientoPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>

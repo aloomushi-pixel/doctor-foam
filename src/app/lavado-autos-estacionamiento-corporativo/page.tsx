@@ -29,9 +29,21 @@ const autonomy = [
   { icon: "🔇", label: "Bajo Ruido", desc: "Equipo diseñado para operar en estacionamientos subterráneos sin generar molestias a vecinos." },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Lavado de Autos en Estacionamiento Corporativo CDMX — Doctor Foam",
+  description: "Lavado y detallado automotriz en estacionamientos corporativos y residenciales en CDMX sin usar tu agua ni electricidad y sin escurrimientos.",
+  provider: { "@type": "LocalBusiness", name: "Doctor Foam México" },
+  serviceType: "Lavado ecológico de autos en estacionamiento corporativo",
+  areaServed: { "@type": "City", name: "Ciudad de México" },
+  url: "https://drfoam.com.mx/lavado-autos-estacionamiento-corporativo",
+};
+
 export default function EstacionamientoCorporativoPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
@@ -132,10 +144,18 @@ export default function EstacionamientoCorporativoPage() {
       <footer className="footer">
         <div className="footer-bottom" style={{ borderTop: "none", marginTop: 0 }}>
           <p>&copy; {new Date().getFullYear()} Doctor Foam México.</p>
-          <p style={{ marginTop: "0.5rem" }}>
-            <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>{" · "}
-            <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>{" · "}
+                    <p style={{ marginTop: "0.5rem" }}>
+            <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>
+            {" · "}
+            <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>
+            {" · "}
             <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Profundo</Link>
+            {" · "}
+            <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#64748b", textDecoration: "underline" }}>Estacionamiento Corporativo</Link>
+            {" · "}
+            <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>
+            {" · "}
+            <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>
           </p>
         </div>
       </footer>

@@ -41,9 +41,25 @@ const roi = [
   { label: "Menos reparaciones de pintura", value: "-70%", desc: "El mantenimiento preventivo evita daños costosos por oxidación y swirls." },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Membresía Doctor Foam — Lavado Recurrente a Domicilio CDMX",
+  description: "Membresía mensual de mantenimiento automotriz a domicilio con equipo industrial, lavado bimestral incluido y 10% de descuento en todos los paquetes.",
+  brand: { "@type": "Brand", name: "Doctor Foam México" },
+  offers: {
+    "@type": "Offer",
+    price: "1160.00",
+    priceCurrency: "MXN",
+    availability: "https://schema.org/InStock",
+    url: "https://drfoam.com.mx/membresia-doctor-foam",
+  },
+};
+
 export default function MembresiaPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
@@ -172,12 +188,18 @@ export default function MembresiaPage() {
       <footer className="footer">
         <div className="footer-bottom" style={{ borderTop: "none", marginTop: 0 }}>
           <p>&copy; {new Date().getFullYear()} Doctor Foam México. Todos los derechos reservados.</p>
-          <p style={{ marginTop: "0.5rem" }}>
+                    <p style={{ marginTop: "0.5rem" }}>
             <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>
             {" · "}
             <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>
             {" · "}
             <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Profundo</Link>
+            {" · "}
+            <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#64748b", textDecoration: "underline" }}>Estacionamiento Corporativo</Link>
+            {" · "}
+            <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>
+            {" · "}
+            <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>
           </p>
         </div>
       </footer>

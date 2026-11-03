@@ -71,9 +71,22 @@ const packages = [
   },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: "Paquetes de Detallado Automotriz en CDMX — Doctor Foam",
+  url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz",
+  itemListElement: [
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Industrial Deep Interior (Vapor Seco 180°C + Ozono)" }, price: "2400.00", priceCurrency: "MXN" },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Signature Detail (Corrección de Pintura + Interior Completo)" }, price: "7499.00", priceCurrency: "MXN" },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ceramic Coating 9H (Protección 3-5 Años)" }, price: "10999.00", priceCurrency: "MXN" },
+  ],
+};
+
 export default function PaquetesDetallado() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
