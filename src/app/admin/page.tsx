@@ -110,6 +110,11 @@ export default function AdminDashboardPage() {
     const [activeTab, setActiveTab] = useState<ActiveTab>("resumen");
     const [sessionFilter, setSessionFilter] = useState<SessionFilter>("all");
     const [includeBots, setIncludeBots] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const loadAllData = useCallback(async () => {
         setRefreshing(true);
@@ -1229,7 +1234,8 @@ export default function AdminDashboardPage() {
                                         Comparativa diaria de visitantes únicos, salidas a WhatsApp e intentos de reserva
                                     </p>
                                 </div>
-                                <ResponsiveContainer width="100%" height="80%">
+                                {mounted && (
+                                <ResponsiveContainer width="100%" height={250} minWidth={0} minHeight={240}>
                                     <AreaChart data={dailyTrendData} margin={{ top: 10, right: 15, left: -20, bottom: 0 }}>
                                         <defs>
                                             <linearGradient id="gradEntraron" x1="0" y1="0" x2="0" y2="1">
@@ -1280,6 +1286,7 @@ export default function AdminDashboardPage() {
                                         />
                                     </AreaChart>
                                 </ResponsiveContainer>
+                                )}
                             </div>
 
                             {/* Chart 2: WhatsApp Clicks by Button Location */}
@@ -1300,7 +1307,7 @@ export default function AdminDashboardPage() {
                                         Desglose de clics a WhatsApp según el botón o sección utilizada por el cliente
                                     </p>
                                 </div>
-                                {stats.whatsappLocationList.length === 0 ? (
+                                {stats.whatsappLocationList.length === 0 || !mounted ? (
                                     <div
                                         style={{
                                             height: "75%",
@@ -1314,7 +1321,7 @@ export default function AdminDashboardPage() {
                                         Aún no hay clics registrados a WhatsApp en este periodo.
                                     </div>
                                 ) : (
-                                    <ResponsiveContainer width="100%" height="80%">
+                                    <ResponsiveContainer width="100%" height={250} minWidth={0} minHeight={240}>
                                         <BarChart
                                             data={stats.whatsappLocationList}
                                             layout="vertical"
