@@ -77,12 +77,12 @@ const blogPosts = [
         readTime: "6 min",
     },
     {
-        slug: "detallado-interior-profundo-que-incluye",
-        title: "¿Qué Incluye un Detallado Interior Profundo Profesional?",
+        slug: "economia-cuidado-automotriz-membresia",
+        title: "La Economía del Cuidado Automotriz: Cómo Mantener tu Auto Impecable Protege tu Patrimonio",
         excerpt:
-            "Aspirado industrial, vapor, ozono, hidratación de pieles... ¿Qué realmente debería incluir un detallado interior de calidad? Te lo explicamos paso a paso.",
-        date: "2026-02-05",
-        category: "Servicios",
+            "Descubre cómo el mantenimiento interior y exterior preventivo contra la radiación UV y la lluvia ácida protege hasta el 20% del valor de reventa de tu vehículo.",
+        date: "2026-03-01",
+        category: "Patrimonio",
         readTime: "7 min",
     },
     {
@@ -95,13 +95,13 @@ const blogPosts = [
         readTime: "9 min",
     },
     {
-        slug: "por-que-detallado-domicilio-mejor",
-        title: "¿Por Qué el Detallado a Domicilio Supera al Taller?",
+        slug: "lavado-profundo-vs-detallado-automotriz",
+        title: "Lavado Profundo vs. Detallado Automotriz: La Verdad que los Autolavados No te Dicen",
         excerpt:
-            "Conveniencia, atención personalizada, equipo industrial portátil. Descubre por qué cada vez más dueños de autos premium prefieren el servicio a domicilio.",
-        date: "2026-01-20",
-        category: "Tendencias",
-        readTime: "5 min",
+            "¿Por qué un detallado profesional toma de 4 a 8 horas frente a los 30 minutos de un autolavado de cadena? Conoce la diferencia técnica real.",
+        date: "2026-02-25",
+        category: "Educación",
+        readTime: "8 min",
     },
     {
         slug: "mejores-ceras-selladores-mexico",

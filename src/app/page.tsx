@@ -281,6 +281,14 @@ const googleTotalReviews = 34;
 /* ─── FAQ Data ─── */
 const faqs = [
   {
+    q: "¿Cuál es la diferencia entre un autolavado tradicional y un detallado a domicilio?",
+    a: "El detallado profesional corrige la pintura en múltiples etapas, descontamina con arcilla sintética, esteriliza interiores con vapor seco a 180°C y sella la carrocería durante 4 a 8 horas de intervención técnica, evitando los micro-rayones (swirls) que provocan los rodillos y franelas de un autolavado tradicional.",
+  },
+  {
+    q: "¿Dejan residuos de agua en el estacionamiento?",
+    a: "No. Usamos menos de 20 litros de agua purificada con polímeros encapsuladores y vapor seco sin dejar charcos ni escurrimientos, por lo que nuestro servicio es 100% apto para estacionamientos subterráneos, condominios residenciales y corporativos en CDMX.",
+  },
+  {
     q: "¿Qué diferencia a Doctor Foam de otros servicios de detallado?",
     a: "Utilizamos maquinaria industrial de grado hospitalario — generadores de vapor seco a 180°C, pulidoras de triple acción y compresores industriales — que llevamos hasta tu puerta. Nuestros técnicos cuentan con certificación IDA (International Detailing Association). No somos un lavado a domicilio: somos un centro de estética automotriz portátil.",
   },
@@ -450,12 +458,11 @@ export default function HomePage() {
             <Logo />
           </Link>
           <ul className="nav-links">
-            <li><a href="#servicios">Servicios</a></li>
+            <li><Link href="/lavado-recurrente-autos-domicilio">Lavado Recurrente</Link></li>
+            <li><Link href="/lavado-profundo-vehiculos-cdmx">Lavado Profundo</Link></li>
+            <li><Link href="/lavado-autos-estacionamiento-corporativo">Corporativos</Link></li>
+            <li><Link href="/membresia-doctor-foam">Membresía</Link></li>
             <li><a href="#precios">Precios</a></li>
-            <li><a href="#cobertura">Cobertura</a></li>
-            {/* <li><a href="#proceso">Proceso</a></li> */}
-            <li><a href="#faq">Dudas frecuentes</a></li>
-            {/* <li><a href="#membresia">Membresía</a></li> */}
             <li><Link href="/blog">Blog</Link></li>
             <li>
               <Link href="/mi-cuenta" style={{ display: "flex", alignItems: "center", gap: "0.4rem", color: "#94a3b8", textDecoration: "none", fontSize: "0.9rem", fontWeight: 500, transition: "color 0.2s" }}>
@@ -502,12 +509,12 @@ export default function HomePage() {
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
-        <a href="#servicios" onClick={() => setMobileMenuOpen(false)}>Servicios</a>
+        <Link href="/lavado-recurrente-autos-domicilio" onClick={() => setMobileMenuOpen(false)}>Lavado Recurrente</Link>
+        <Link href="/lavado-profundo-vehiculos-cdmx" onClick={() => setMobileMenuOpen(false)}>Lavado Profundo</Link>
+        <Link href="/lavado-autos-estacionamiento-corporativo" onClick={() => setMobileMenuOpen(false)}>Corporativos y Oficinas</Link>
+        <Link href="/membresia-doctor-foam" onClick={() => setMobileMenuOpen(false)}>Membresía</Link>
         <a href="#precios" onClick={() => setMobileMenuOpen(false)}>Precios</a>
         <a href="#cobertura" onClick={() => setMobileMenuOpen(false)}>Cobertura</a>
-        {/* <a href="#proceso" onClick={() => setMobileMenuOpen(false)}>Proceso</a> */}
-        <a href="#faq" onClick={() => setMobileMenuOpen(false)}>Dudas frecuentes</a>
-        {/* <a href="#membresia" onClick={() => setMobileMenuOpen(false)}>Membresía</a> */}
         <Link href="/blog" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
         <Link href="/mi-cuenta" onClick={() => setMobileMenuOpen(false)} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
@@ -528,12 +535,11 @@ export default function HomePage() {
         <div className="container" style={{ position: "relative", zIndex: 10, textAlign: "center" }}>
           <div className="animate-on-scroll">
             <span className="section-label" style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)", color: "#93c5fd" }}>Detallado Automotriz Premium a Domicilio</span>
-            <h1 className="section-title" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", marginBottom: "1.5rem", maxWidth: "900px", marginLeft: "auto", marginRight: "auto", color: "#ffffff" }}>
-              Llevamos el <span className="gradient-text">taller perfecto</span> hasta la puerta de tu casa
+            <h1 className="section-title" style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)", marginBottom: "1.5rem", maxWidth: "920px", marginLeft: "auto", marginRight: "auto", color: "#ffffff" }}>
+              Lavado de Autos a Domicilio en CDMX: <span className="gradient-text">Detallado Automotriz Premium</span>
             </h1>
-            <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.85)", maxWidth: "700px", margin: "0 auto 2.5rem", lineHeight: "1.8" }}>
-              Equipo industrial de grado profesional. Químicos especializados. Resultados iguales o superiores
-              a cualquier taller de estética automotriz. Todo en un solo día, sin mover tu auto.
+            <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.88)", maxWidth: "720px", margin: "0 auto 2.5rem", lineHeight: "1.8" }}>
+              Llevamos el taller perfecto hasta la puerta de tu casa u oficina. Equipo industrial de grado profesional, químicos especializados y resultados superiores en un solo día, sin mover tu auto.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/reservar" className="btn-premium">
@@ -787,7 +793,7 @@ export default function HomePage() {
                 </div>
                 <p style={{ color: "#94a3b8", fontSize: "0.75rem", marginBottom: "1.25rem" }}>IVA incluido · Facturable · {foamMaintenance.note}</p>
                 <a
-                  href="https://buy.stripe.com/4gM00kclRcDc8e92Zg3ZK03"
+                  href="/membresia-doctor-foam"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-premium"
@@ -820,7 +826,7 @@ export default function HomePage() {
                   ))}
                 </ul>
                 <a
-                  href="https://buy.stripe.com/cNi28s71x8mW0LH43k3ZK04"
+                  href="/membresia-doctor-foam"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-premium"
@@ -993,9 +999,9 @@ export default function HomePage() {
             {[
               { slug: "guia-completa-recubrimiento-ceramico", title: "Guía Completa: Recubrimiento Cerámico en CDMX", cat: "Protección" },
               { slug: "5-errores-lavado-auto-premium", title: "5 Errores que Arruinan la Pintura de tu Auto", cat: "Cuidado" },
-              { slug: "detallado-interior-profundo-que-incluye", title: "¿Qué Incluye un Detallado Interior Profundo?", cat: "Servicios" },
+              { slug: "economia-cuidado-automotriz-membresia", title: "La Economía del Cuidado Automotriz: Membresía vs. Descuido", cat: "Patrimonio" },
               { slug: "correccion-pintura-swirls-guia", title: "Cómo Eliminar Swirls y Micro-rayones", cat: "Corrección" },
-              { slug: "por-que-detallado-domicilio-mejor", title: "¿Por Qué el Detallado a Domicilio Supera al Taller?", cat: "Tendencias" },
+              { slug: "lavado-profundo-vs-detallado-automotriz", title: "Lavado Profundo vs. Detallado Automotriz: La Verdad", cat: "Educación" },
               { slug: "mejores-ceras-selladores-mexico", title: "Las Mejores Ceras y Selladores en México", cat: "Productos" }
             ].map((b, i) => (
               <a key={i} href={`/blog/${b.slug}`} className="glass-card animate-on-scroll" style={{

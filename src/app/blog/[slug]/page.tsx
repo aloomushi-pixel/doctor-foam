@@ -562,11 +562,18 @@ export default async function BlogPost({ params }: PageProps) {
                     </div>
 
                     <div className="glass-card" style={{ padding: "2rem", marginTop: "3rem", textAlign: "center" }}>
-                        <h3 style={{ marginBottom: "1rem" }}>¿Listo para la experiencia <span className="gradient-text">Doctor Foam</span>?</h3>
-                        <p style={{ color: "#94a3b8", marginBottom: "1.5rem" }}>Agenda tu cita hoy y transforma tu auto.</p>
-                        <a href="/reservar" className="btn-premium">
-                            📅 Agendar servicio
-                        </a>
+                        <h3 style={{ marginBottom: "0.75rem", color: "#0f172a" }}>¿Buscas una restauración completa para tu vehículo?</h3>
+                        <p style={{ color: "#475569", marginBottom: "1.5rem" }}>
+                            Conoce nuestros paquetes con vapor seco a 180°C, corrección de pintura y protección nanocerámica a domicilio.
+                        </p>
+                        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+                            <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
+                                📋 Conoce nuestros Planes de Detallado Automotriz
+                            </Link>
+                            <Link href="/reservar" className="btn-outline">
+                                📅 Agendar servicio
+                            </Link>
+                        </div>
                     </div>
                 </article>
             </main>

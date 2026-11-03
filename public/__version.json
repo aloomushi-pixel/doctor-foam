@@ -1,9 +1,9 @@
 {
   "project": "Doctor Foam México",
   "domain": "https://drfoam.com.mx",
-  "version": "1.1.0-auto",
-  "cycle": 1,
-  "standard": "Estándar Maestro v2.1 + GSC API + Gobernanza de Planes",
+  "version": "1.2.0-auto",
+  "cycle": 2,
+  "standard": "Estándar Maestro v2.1 + GSC API + Gobernanza de Planes (Nivel 3 Autorizado)",
   "telemetry_table": "public.drfoam_ux_events",
-  "updated_at": "2026-11-03T04:10:00Z"
+  "updated_at": "2026-11-03T05:07:52.631Z"
 }
