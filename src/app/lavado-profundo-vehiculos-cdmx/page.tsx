@@ -156,12 +156,56 @@ export default function LavadoProfundoPage() {
 
         {/* CTA */}
         <section className="section-padding" style={{ textAlign: "center" }}>
-          <div className="container" style={{ maxWidth: "600px" }}>
+          <div className="container" style={{ maxWidth: "650px" }}>
             <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
               ¿Listo para la <span className="gradient-text">restauración definitiva</span>?
             </h2>
-            <p style={{ color: "#475569", marginBottom: "2rem" }}>Elige tu paquete y paga en línea de forma segura.</p>
-            <Link href="/reservar" className="btn-premium">💳 Reservar y Pagar en Línea</Link>
+            <p style={{ color: "#475569", marginBottom: "2rem" }}>Elige tu paquete y reserva en línea o cotiza hoy mismo por WhatsApp.</p>
+            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link href="/reservar" className="btn-premium">💳 Reservar y Pagar en Línea</Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20un%20lavado%20profundo%20de%20vestiduras%20o%20detallado%20a%20domicilio"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="pillar_profundo_whatsapp"
+                className="btn-outline"
+              >
+                💬 Cotizar por WhatsApp
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Zonas de Cobertura Hub */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "900px", textAlign: "center" }}>
+            <h3 style={{ fontSize: "1.1rem", marginBottom: "0.75rem", color: "#0f172a" }}>
+              Lavado Profundo y Detallado a Domicilio por Zona en CDMX y EdoMex
+            </h3>
+            <p style={{ fontSize: "0.85rem", color: "#475569", marginBottom: "1rem" }}>
+              Llevamos vapor a 180°C, extracción industrial y corrección de pintura sin requerir agua ni luz de tu domicilio en:
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
+              {[
+                { slug: "polanco", label: "Polanco" },
+                { slug: "lomas-de-chapultepec", label: "Lomas de Chapultepec" },
+                { slug: "santa-fe", label: "Santa Fe" },
+                { slug: "bosques-de-las-lomas", label: "Bosques de las Lomas" },
+                { slug: "pedregal", label: "Pedregal y San Ángel" },
+                { slug: "interlomas", label: "Interlomas" },
+                { slug: "huixquilucan", label: "Huixquilucan y Zona Esmeralda" },
+                { slug: "coyoacan", label: "Coyoacán" },
+              ].map((z) => (
+                <Link
+                  key={z.slug}
+                  href={`/zonas/${z.slug}`}
+                  className="zone-tag zone-tag-blue"
+                  style={{ textDecoration: "none", fontSize: "0.8rem", padding: "0.35rem 0.8rem" }}
+                >
+                  📍 {z.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       </main>

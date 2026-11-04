@@ -149,6 +149,39 @@ export default function EstacionamientoCorporativoPage() {
             </div>
           </div>
         </section>
+
+        {/* Zonas de Cobertura Hub */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "900px", textAlign: "center" }}>
+            <h3 style={{ fontSize: "1.1rem", marginBottom: "0.75rem", color: "#0f172a" }}>
+              Corredores Corporativos y Residenciales Atendidos en CDMX y EdoMex
+            </h3>
+            <p style={{ fontSize: "0.85rem", color: "#475569", marginBottom: "1rem" }}>
+              Operamos en sótanos y estacionamientos sin tomas de agua ni luz en:
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
+              {[
+                { slug: "polanco", label: "Polanco y Nuevo Polanco" },
+                { slug: "lomas-de-chapultepec", label: "Lomas y Palmas" },
+                { slug: "santa-fe", label: "Corporativos Santa Fe" },
+                { slug: "bosques-de-las-lomas", label: "Bosques y Tamarindos" },
+                { slug: "pedregal", label: "Pedregal y Perisur" },
+                { slug: "interlomas", label: "Interlomas" },
+                { slug: "huixquilucan", label: "Bosque Real y Huixquilucan" },
+                { slug: "coyoacan", label: "Coyoacán" },
+              ].map((z) => (
+                <Link
+                  key={z.slug}
+                  href={`/zonas/${z.slug}`}
+                  className="zone-tag zone-tag-blue"
+                  style={{ textDecoration: "none", fontSize: "0.8rem", padding: "0.35rem 0.8rem" }}
+                >
+                  📍 {z.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="footer">

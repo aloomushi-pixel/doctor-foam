@@ -149,14 +149,23 @@ export function detectBot(ua: string): { is_bot: boolean; bot_name: string | nul
     { pattern: /claudebot|anthropic-ai/i, name: "ClaudeBot" },
     { pattern: /perplexitybot/i, name: "PerplexityBot" },
     { pattern: /google-extended/i, name: "Google-Extended" },
+    { pattern: /google-inspectiontool|googleother|adsbot-google|apis-google|mediapartners-google/i, name: "Googlebot-WRS" },
     { pattern: /googlebot/i, name: "Googlebot" },
     { pattern: /bingbot/i, name: "Bingbot" },
+    { pattern: /applebot/i, name: "AppleBot" },
+    { pattern: /ahrefsbot|semrushbot|dotbot|mj12bot|petalbot|bytespider|yandexbot|baiduspider/i, name: "SEOBot" },
+    { pattern: /lighthouse|pagespeed|chrome-lighthouse|gtmetrix|pingdom|uptimerobot/i, name: "PerfAuditBot" },
     { pattern: /meta-externalagent|facebookexternalhit/i, name: "MetaBot" },
     { pattern: /bot|crawler|spider|headlesschrome/i, name: "GenericBot" },
   ];
   for (const b of bots) {
     if (b.pattern.test(lower)) {
       return { is_bot: true, bot_name: b.name };
+    }
+  }
+  if (typeof window !== "undefined") {
+    if (navigator.webdriver === true || (window.innerHeight && window.innerHeight >= 5000)) {
+      return { is_bot: true, bot_name: "Googlebot-WRS" };
     }
   }
   return { is_bot: false, bot_name: null };

@@ -125,12 +125,12 @@ export default function LavadoRecurrentePage() {
 
         {/* CTA */}
         <section className="section-padding" style={{ textAlign: "center" }}>
-          <div className="container" style={{ maxWidth: "600px" }}>
+          <div className="container" style={{ maxWidth: "650px" }}>
             <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
               ¿Listo para el <span className="gradient-text">mantenimiento perfecto</span>?
             </h2>
             <p style={{ color: "#475569", marginBottom: "2rem" }}>
-              Agenda tu primer lavado recurrente o conoce nuestra membresía.
+              Agenda tu primer lavado recurrente, conoce nuestra membresía o cotiza directo por WhatsApp.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/membresia-doctor-foam" className="btn-premium">
@@ -139,6 +139,48 @@ export default function LavadoRecurrentePage() {
               <Link href="/reservar" className="btn-outline">
                 📅 Agendar Servicio
               </Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20el%20lavado%20recurrente%20a%20domicilio"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="pillar_recurrente_whatsapp"
+                className="btn-outline"
+              >
+                💬 WhatsApp Directo
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Zonas de Cobertura Hub */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "900px", textAlign: "center" }}>
+            <h3 style={{ fontSize: "1.1rem", marginBottom: "0.75rem", color: "#0f172a" }}>
+              Zonas de Cobertura de Lavado Recurrente a Domicilio (CDMX y EdoMex)
+            </h3>
+            <p style={{ fontSize: "0.85rem", color: "#475569", marginBottom: "1rem" }}>
+              Unidades móviles 100% autónomas con agua filtrada y generador propio en:
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
+              {[
+                { slug: "polanco", label: "Polanco" },
+                { slug: "lomas-de-chapultepec", label: "Lomas de Chapultepec" },
+                { slug: "santa-fe", label: "Santa Fe" },
+                { slug: "bosques-de-las-lomas", label: "Bosques de las Lomas" },
+                { slug: "pedregal", label: "Pedregal y San Ángel" },
+                { slug: "interlomas", label: "Interlomas" },
+                { slug: "huixquilucan", label: "Huixquilucan y Zona Esmeralda" },
+                { slug: "coyoacan", label: "Coyoacán" },
+              ].map((z) => (
+                <Link
+                  key={z.slug}
+                  href={`/zonas/${z.slug}`}
+                  className="zone-tag zone-tag-blue"
+                  style={{ textDecoration: "none", fontSize: "0.8rem", padding: "0.35rem 0.8rem" }}
+                >
+                  📍 {z.label}
+                </Link>
+              ))}
             </div>
           </div>
         </section>

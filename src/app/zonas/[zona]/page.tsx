@@ -10,86 +10,104 @@ const zonesData: Record<string, {
     neighborhoods: string[];
     metaDesc: string;
     intro: string;
+    logistics: string;
+    landmarks: string[];
     carBrands: string[];
 }> = {
     polanco: {
         name: "Polanco",
-        fullName: "Polanco, Miguel Hidalgo",
+        fullName: "Polanco, Alcaldía Miguel Hidalgo",
         state: "Ciudad de México",
-        description: "La zona más exclusiva de CDMX con la mayor concentración de autos de lujo",
-        neighborhoods: ["Campos Elíseos", "Polanco I Sección", "Polanco II Sección", "Polanco III Sección", "Polanco IV Sección", "Polanco V Sección", "Granadas", "Irrigación"],
-        metaDesc: "Detallado automotriz premium a domicilio en Polanco, CDMX. Doctor Foam lleva equipo industrial a tu puerta. Servicio para BMW, Porsche, Mercedes y más.",
-        intro: "Polanco es sinónimo de lujo y exclusividad en la Ciudad de México. Con calles como Masaryk, Campos Elíseos y Anatole France, esta zona concentra algunos de los vehículos más valiosos del país. En Doctor Foam, entendemos que un auto de lujo merece un cuidado excepcional.",
+        description: "La zona más exclusiva de CDMX con la mayor concentración de autos de lujo y corporativos AAA",
+        neighborhoods: ["Campos Elíseos", "Polanco I Sección", "Polanco II Sección", "Polanco III Sección", "Polanco IV Sección", "Polanco V Sección", "Granadas (Nuevo Polanco)", "Irrigación"],
+        metaDesc: "Lavado de autos a domicilio y detallado automotriz en Polanco, Miguel Hidalgo CDMX. Unidades 100% autónomas con agua y luz propia para estacionamientos subterráneos.",
+        intro: "Polanco es sinónimo de lujo y exclusividad en la Alcaldía Miguel Hidalgo de la Ciudad de México. Con arterias icónicas como Presidente Masaryk, Campos Elíseos, Horacio, Homero y Anatole France, además del corredor corporativo y residencial de Nuevo Polanco (Miyana, Antara, Plaza Carso), esta zona concentra algunos de los vehículos más valiosos del país.",
+        logistics: "Sabemos que la mayoría de los edificios residenciales y corporativos en Polanco y Nuevo Polanco cuentan con estacionamientos subterráneos donde no existen tomas de agua ni se permite escurrimiento. Nuestras unidades móviles ingresan con altura controlada y operan de forma 100% autónoma con generador eléctrico silencioso, tanque de agua filtrada y protocolo libre de charcos, cumpliendo con los reglamentos de administración condominial de Miguel Hidalgo.",
+        landmarks: ["Av. Presidente Masaryk", "Campos Elíseos y Reforma", "Nuevo Polanco (Miyana / Antara / Carso)", "Parque Lincoln y Polanquito", "Horacio y Homero"],
         carBrands: ["BMW", "Mercedes-Benz", "Porsche", "Audi", "Range Rover", "Ferrari", "Lamborghini"],
     },
     "lomas-de-chapultepec": {
         name: "Lomas de Chapultepec",
-        fullName: "Lomas de Chapultepec, Miguel Hidalgo",
+        fullName: "Lomas de Chapultepec, Alcaldía Miguel Hidalgo",
         state: "Ciudad de México",
-        description: "Residencial premium con vehículos de la más alta gama",
-        neighborhoods: ["Lomas Altas", "Lomas Virreyes", "Barrilaco", "Lomas de Bezares", "Prados de la Montaña"],
-        metaDesc: "Servicio de detallado automotriz premium a domicilio en Lomas de Chapultepec. Equipo industrial, químicos profesionales. Doctor Foam México.",
-        intro: "Lomas de Chapultepec es una de las zonas residenciales más prestigiosas de México. Sus amplias residencias y cocheras albergan colecciones de autos que merecen el mejor cuidado posible. Doctor Foam ofrece servicio a domicilio con la comodidad y discreción que esta zona exige.",
+        description: "Residencial diplomático y patrimonial con colecciones privadas de alta gama",
+        neighborhoods: ["Lomas Altas", "Lomas Virreyes", "Barrilaco", "Lomas de Bezares", "Prados de la Montaña", "Reforma Social"],
+        metaDesc: "Servicio de detallado automotriz premium y lavado de vestiduras a domicilio en Lomas de Chapultepec, Miguel Hidalgo. Equipo industrial autónomo. Doctor Foam México.",
+        intro: "Lomas de Chapultepec es la zona residencial más prestigiosa de la Alcaldía Miguel Hidalgo. Sus residencias sobre Paseo de la Reforma, Monte Athos, Prado Norte y Paseo de las Palmas albergan colecciones de vehículos exóticos, clásicos y blindados que exigen un tratamiento clínico sin salir de casa.",
+        logistics: "En Lomas de Chapultepec atendemos tanto en cocheras residenciales privadas como en torres corporativas de Palmas y Virreyes. Nuestro personal acude identificado previamente para el registro en caseta o seguridad privada, llevando desinfección por vapor a 180°C, corrección de pintura y recubrimiento cerámico 9H directamente a tu residencia sin requerir agua ni electricidad de tu domicilio.",
+        landmarks: ["Paseo de las Palmas", "Prado Norte y Monte Athos", "Paseo de la Reforma Lomas", "Torre Virreyes / Pedregal 24", "Lomas Altas y Bezares"],
         carBrands: ["Mercedes-Benz", "BMW", "Porsche", "Bentley", "Maserati", "Audi"],
     },
     "santa-fe": {
         name: "Santa Fe",
-        fullName: "Santa Fe, Álvaro Obregón / Cuajimalpa",
+        fullName: "Santa Fe, Álvaro Obregón y Cuajimalpa",
         state: "Ciudad de México",
-        description: "Centro corporativo y residencial moderno de alto nivel",
-        neighborhoods: ["Centro de Ciudad Santa Fe", "Lomas de Santa Fe", "Santa Fe Cuajimalpa", "Contadero", "Cruz Manca"],
-        metaDesc: "Detallado automotriz a domicilio en Santa Fe CDMX. Servicio premium con equipo industrial para ejecutivos y residentes. Doctor Foam.",
-        intro: "Santa Fe es el corazón corporativo de la Ciudad de México y hogar de ejecutivos que valoran su tiempo tanto como sus vehículos. Nuestro servicio a domicilio es perfecto para quienes desean que su auto sea detallado mientras trabajan o descansan en su departamento.",
+        description: "El principal distrito financiero, corporativo y residencial moderno del poniente de CDMX",
+        neighborhoods: ["Centro de Ciudad Santa Fe", "Lomas de Santa Fe", "La Mexicana", "Santa Fe Cuajimalpa", "Contadero", "Cruz Manca"],
+        metaDesc: "Detallado automotriz y lavado de autos a domicilio en Santa Fe CDMX. Servicio autónomo en estacionamientos corporativos y torres residenciales. Doctor Foam.",
+        intro: "Santa Fe es el corazón financiero y corporativo de la Ciudad de México y hogar de residentes frente al Parque La Mexicana, Club de Golf Bosques y Contadero que valoran cada minuto de su agenda. Nuestro servicio permite detallar tu auto o SUV mientras estás en juntas o descansando en tu departamento.",
+        logistics: "Operamos diariamente en sótanos de torres residenciales sobre Av. Santa Fe y Tamaulipas, así como en estacionamientos corporativos de Cruz Manca y Prolongación Paseo de la Reforma. Nuestro sistema Sello ECO ahorra 45% de agua y no deja residuos de jabón en el cajón de estacionamiento, siendo autorizado por administraciones de edificios AAA en Santa Fe.",
+        landmarks: ["Av. Vasco de Quiroga y Centro Santa Fe", "Parque La Mexicana y Av. Santa Fe", "Corredor Corporativo Cruz Manca", "Lomas de Santa Fe y Contadero", "Universidad Iberoamericana / Tec Santa Fe"],
         carBrands: ["BMW", "Audi", "Mercedes-Benz", "Volvo", "Porsche", "Tesla"],
     },
     "bosques-de-las-lomas": {
         name: "Bosques de las Lomas",
-        fullName: "Bosques de las Lomas, Cuajimalpa",
+        fullName: "Bosques de las Lomas, Cuajimalpa y Miguel Hidalgo",
         state: "Ciudad de México",
-        description: "Zona residencial exclusiva entre la ciudad y la naturaleza",
-        neighborhoods: ["Bosques de las Lomas", "Tecamachalco", "La Herradura", "Palo Alto"],
-        metaDesc: "Detallado automotriz premium en Bosques de las Lomas y Tecamachalco. Servicio a domicilio con equipo industrial. Doctor Foam CDMX.",
-        intro: "Bosques de las Lomas y sus colonias aledañas como Tecamachalco y La Herradura representan lo mejor de la vida residencial premium en la CDMX. Aquí, Doctor Foam atiende a familias exigentes que buscan lo mejor para sus flotillas personales.",
+        description: "Privadas residenciales y torres de ultra-lujo al poniente de la Ciudad de México",
+        neighborhoods: ["Bosques de las Lomas", "Tecamachalco", "La Herradura", "Palo Alto", "Lomas del Chamizal", "Vista Hermosa"],
+        metaDesc: "Detallado automotriz a domicilio y lavado profundo de vestiduras en Bosques de las Lomas, Tecamachalco y La Herradura. Unidad móvil 100% autónoma. Doctor Foam.",
+        intro: "Bosques de las Lomas y sus colonias colindantes como Lomas de Tecamachalco, La Herradura y Vista Hermosa concentran flotillas familiares, camionetas blindadas y deportivos de colección que requieren mantenimiento con pH neutro y técnica de dos cubetas para evitar micro-rayones (swirls).",
+        logistics: "Conocemos la topografía y los protocolos de acceso de las privadas en Paseo de los Tamarindos, Bosques de Reforma, Ahuehuetes y Arcos Bosques. Nuestras unidades están equipadas con mangueras de largo alcance, generador propio y agua desmineralizada para trabajar en cocheras techadas o sótanos condominiales sin conectar nada a tu casa.",
+        landmarks: ["Paseo de los Tamarindos y Arcos Bosques", "Bosques de Reforma y Ahuehuetes", "Lomas de Tecamachalco", "La Herradura y Lomas del Chamizal", "Club de Golf Bosques"],
         carBrands: ["Range Rover", "BMW", "Mercedes-Benz", "Porsche", "Audi", "Cadillac"],
     },
     pedregal: {
         name: "Pedregal",
-        fullName: "Jardines del Pedregal, Coyoacán",
+        fullName: "Jardines del Pedregal y San Ángel, Coyoacán / Álvaro Obregón",
         state: "Ciudad de México",
-        description: "Zona residencial icónica del sur de la ciudad",
-        neighborhoods: ["Jardines del Pedregal", "Pedregal de San Ángel", "San Ángel Inn", "Ex Hacienda de Guadalupe Chimalistac"],
-        metaDesc: "Servicio de detallado automotriz premium a domicilio en Pedregal y San Ángel, CDMX. Equipo industrial profesional. Doctor Foam.",
-        intro: "El Pedregal de San Ángel es una de las zonas residenciales más emblemáticas de la Ciudad de México. Con sus casas arquitectónicas y jardines amplios, es el escenario perfecto para nuestro servicio de detallado a domicilio.",
+        description: "Zona residencial icónica del sur de la CDMX con amplias cocheras y residencias patrimoniales",
+        neighborhoods: ["Jardines del Pedregal", "Pedregal de San Ángel", "San Ángel Inn", "Tlacopac", "Fuentes del Pedregal", "San Jerónimo Lídice"],
+        metaDesc: "Servicio de detallado automotriz premium y lavado de vestiduras a domicilio en Jardines del Pedregal y San Ángel, sur de CDMX. Equipo industrial. Doctor Foam.",
+        intro: "Jardines del Pedregal y San Ángel representan la excelencia residencial del sur de la Ciudad de México. Con sus amplias cocheras sobre Av. de las Fuentes, Cráter y Paseos del Pedregal, es el entorno ideal para realizar correcciones de pintura, aplicación de cerámico 9H y sanitización de vestiduras a domicilio.",
+        logistics: "Atendemos residencias con acceso controlado en Jardines del Pedregal, San Ángel Inn y San Jerónimo. Nuestro equipo traslada hidrolavadora industrial, compresor de aire, máquina de vapor a 180°C e iluminación de inspección de pintura para dejar cada vehículo en estado de agencia sin que tengas que cruzar el tráfico de Periférico o Insurgentes Sur.",
+        landmarks: ["Av. de las Fuentes y Cráter", "Paseos del Pedregal y Perisur", "San Ángel Inn y Altavista", "San Jerónimo Lídice", "Artz Pedregal"],
         carBrands: ["BMW", "Mercedes-Benz", "Audi", "Mini", "Porsche", "Lexus"],
     },
     interlomas: {
         name: "Interlomas",
-        fullName: "Interlomas, Huixquilucan",
+        fullName: "Interlomas y Jesús del Monte, Huixquilucan",
         state: "Estado de México",
-        description: "Desarrollo residencial moderno de alto nivel en Huixquilucan",
-        neighborhoods: ["Interlomas", "Bosque Real", "Hacienda de las Palmas", "La Estadía", "Villa Florence"],
-        metaDesc: "Detallado automotriz premium a domicilio en Interlomas y Bosque Real. Equipo industrial con químicos profesionales. Doctor Foam.",
-        intro: "Interlomas y Bosque Real son de los desarrollos residenciales más modernos y exclusivos del área metropolitana. Doctor Foam atiende estos fraccionamientos con la misma calidad premium que ofrecemos en toda la zona del Valle de México.",
+        description: "Clúster residencial vertical y fraccionamientos de alto nivel en el poniente metropolitano",
+        neighborhoods: ["Interlomas", "Bosque Real", "Hacienda de las Palmas", "La Estadía", "Villa Florence", "Jesús del Monte"],
+        metaDesc: "Detallado automotriz premium y lavado recurrente a domicilio en Interlomas, Hacienda de las Palmas y Bosque Real. Unidades autónomas Doctor Foam.",
+        intro: "Interlomas, Hacienda de las Palmas y Jesús del Monte concentran decenas de torres residenciales y fraccionamientos cerrados donde el cuidado automotriz a domicilio ahorra horas de traslados. Doctor Foam opera rutas diarias en toda la zona de Interlomas.",
+        logistics: "Enviamos con anticipación las placas de nuestra unidad móvil y nombres de los técnicos para autorización por QR o caseta en fraccionamientos de Hacienda de las Palmas, Villa Florence y torres sobre Blvd. Interlomas. Trabajamos en tus cajones de estacionamiento con suministro propio de agua y energía.",
+        landmarks: ["Blvd. Interlomas y Paseo Interlomas", "Hacienda de las Palmas", "Jesús del Monte y Villa Florence", "Parque Interlomas", "Vialidad de la Barranca"],
         carBrands: ["Audi", "BMW", "Mercedes-Benz", "Porsche", "Volkswagen Premium", "Mini"],
     },
     huixquilucan: {
         name: "Huixquilucan",
-        fullName: "Huixquilucan de Degollado",
+        fullName: "Huixquilucan (Bosque Real, Zona Esmeralda y Lomas Country)",
         state: "Estado de México",
-        description: "Municipio con los fraccionamientos más exclusivos del EdoMex",
-        neighborhoods: ["Zona Esmeralda", "La Herradura", "Jesús del Monte", "Hacienda de las Palmas", "Bosque Real"],
-        metaDesc: "Detallado automotriz a domicilio en Huixquilucan, Zona Esmeralda y alrededores. Servicio premium industrial. Doctor Foam México.",
-        intro: "Huixquilucan es el municipio con mayor ingreso per cápita del Estado de México. Sus fraccionamientos cerrados y residenciales premium son ideales para nuestro servicio de detallado a domicilio, donde la seguridad y la privacidad son prioridad.",
+        description: "Fraccionamientos campestres y clubes de golf más exclusivos del Estado de México",
+        neighborhoods: ["Bosque Real", "Lomas Country Club", "Zona Esmeralda", "La Herradura", "Club de Golf Bellavista", "El Olivo"],
+        metaDesc: "Lavado de autos a domicilio y detallado automotriz en Huixquilucan: Bosque Real, Lomas Country Club y Zona Esmeralda. Unidades 100% autónomas. Doctor Foam.",
+        intro: "Huixquilucan alberga los desarrollos residenciales con mayor seguridad y privacidad del área metropolitana, incluyendo Bosque Real, Lomas Country Club y Zona Esmeralda. Para los residentes de estos clubes de golf y privadas, llevar un vehículo a un taller externo implica perder medio día; Doctor Foam lleva el taller clínico a tu cochera.",
+        logistics: "Nuestras unidades móviles están preparadas para recorridos de larga estancia en Bosque Real, Lomas Country Club y Zona Esmeralda, atendiendo desde 1 vehículo hasta flotillas familiares de 4 o más autos en una misma visita, con facturación CFDI y planes de Membresía mensual recurrente.",
+        landmarks: ["Bosque Real Country Club", "Lomas Country Club", "Zona Esmeralda y Chiluca", "La Herradura Huixquilucan", "Paseo de la Asunción"],
         carBrands: ["BMW", "Audi", "Mercedes-Benz", "Porsche", "Range Rover", "Jeep Premium"],
     },
     coyoacan: {
         name: "Coyoacán Premium",
-        fullName: "Coyoacán",
+        fullName: "Coyoacán y Del Valle Sur",
         state: "Ciudad de México",
-        description: "Zonas selectas del sur de la Ciudad de México",
-        neighborhoods: ["Country Club Churubusco", "Del Carmen", "Campestre Churubusco", "Villa Coyoacán", "Los Reyes"],
-        metaDesc: "Servicio de detallado automotriz premium a domicilio en Coyoacán y sur de CDMX. Doctor Foam: equipo industrial y resultados garantizados.",
-        intro: "Coyoacán combina tradición con zonas residenciales de alto nivel como el Country Club Churubusco. Es una zona con alto poder adquisitivo y amantes de los autos bien cuidados. Doctor Foam llega hasta la puerta de tu casa con equipo profesional.",
+        description: "Colonias residenciales arboladas y tradicionales de alto valor en el sur de CDMX",
+        neighborhoods: ["Country Club Churubusco", "Del Carmen Coyoacán", "Campestre Churubusco", "Villa Coyoacán", "Chimalistac", "Romero de Terreros"],
+        metaDesc: "Servicio de detallado automotriz premium y lavado de vestiduras a domicilio en Coyoacán, Country Club y sur de CDMX. Doctor Foam: equipo industrial autónomo.",
+        intro: "En Coyoacán, colonias arboladas como Del Carmen, Country Club Churubusco, Campestre Churubusco y Chimalistac exponen los vehículos a savia de árboles, polvo orgánico y lluvia ácida que degradan el transparente de la pintura si no se descontamina profesionalmente.",
+        logistics: "Nuestro tratamiento a domicilio en Coyoacán incluye descontaminación férrica y con barra de arcilla (clay bar), selladores hidrofóbicos y limpieza profunda de vestiduras con vapor a 180°C, operando directamente en tu cochera o calle residencial con nuestro propio suministro de agua y electricidad.",
+        landmarks: ["Country Club y Campestre Churubusco", "Colonia Del Carmen y Centro de Coyoacán", "Chimalistac y Miguel Ángel de Quevedo", "Romero de Terreros", "División del Norte y Río Churubusco"],
         carBrands: ["BMW", "Audi", "Mercedes-Benz", "Volkswagen", "Mini", "Volvo"],
     },
 };
@@ -208,10 +226,43 @@ export default async function ZonePage({ params }: PageProps) {
         ],
     };
 
+    const zoneFaqs = [
+        {
+            q: `¿Necesitan toma de agua o luz en mi estacionamiento en ${z.name}?`,
+            a: `No. Nuestras unidades móviles acuden a ${z.fullName} de forma 100% autónoma con generador eléctrico propio, tanque de agua filtrada, hidrolavadora industrial y máquina de vapor a 180°C. Podemos trabajar en sótanos condominiales, torres corporativas y cocheras privadas sin conectar nada a tu domicilio.`,
+        },
+        {
+            q: `¿Qué colonias y puntos de ${z.name} cubre Doctor Foam a domicilio?`,
+            a: `Atendemos sin cargo extra por traslado en ${z.neighborhoods.join(", ")}, incluyendo puntos de referencia como ${z.landmarks.join(", ")}. Enviamos previamente placas de la unidad y nombres de técnicos para acceso rápido en caseta o recepción.`,
+        },
+        {
+            q: `¿Cuáles son los precios de lavado profundo y detallado automotriz a domicilio en ${z.name}?`,
+            a: `En ${z.name} ofrecemos la Membresía de Lavado Recurrente desde $990 MXN/mes, el lavado profundo de vestiduras con vapor a 180°C (Industrial Deep Interior) desde $2,400 MXN, corrección de pintura Signature Detail desde $7,499 MXN y blindaje Ceramic Coating 9H desde $10,999 MXN (IVA incluido y facturación CFDI).`,
+        },
+    ];
+
+    const faqJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: zoneFaqs.map((item) => ({
+            "@type": "Question",
+            name: item.q,
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: item.a,
+            },
+        })),
+    };
+
+    const whatsappHref = `https://wa.me/525610846022?text=${encodeURIComponent(
+        `Hola Doctor Foam, estoy en ${z.name} y me gustaría cotizar / agendar un servicio de detallado a domicilio.`
+    )}`;
+
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
             <nav className="navbar navbar-scrolled">
                 <div className="navbar-inner">
@@ -220,9 +271,21 @@ export default async function ZonePage({ params }: PageProps) {
                             DOCTOR <span className="gradient-text">FOAM</span>
                         </span>
                     </Link>
-                    <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
-                        Agendar Cita
-                    </Link>
+                    <div style={{ display: "flex", gap: "0.6rem", alignItems: "center" }}>
+                        <a
+                            href={whatsappHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-cta-location={`zone_nav_${zona}_whatsapp`}
+                            className="btn-outline"
+                            style={{ padding: "0.45rem 0.95rem", fontSize: "0.78rem" }}
+                        >
+                            💬 WhatsApp
+                        </a>
+                        <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+                            Agendar Cita
+                        </Link>
+                    </div>
                 </div>
             </nav>
 
@@ -230,23 +293,66 @@ export default async function ZonePage({ params }: PageProps) {
                 {/* Hero */}
                 <section className="section-padding" style={{ textAlign: "center" }}>
                     <div className="container">
-                        <span className="section-label">{z.state}</span>
+                        <span className="section-label">{z.fullName} · {z.state}</span>
                         <h1 className="section-title">
-                            Lavado de Autos a Domicilio y Detallado Premium en <span className="gradient-text">{z.name}</span>
+                            Lavado de Autos a Domicilio y Detallado Automotriz en <span className="gradient-text">{z.name}</span>
                         </h1>
-                        <p className="section-subtitle" style={{ maxWidth: "700px" }}>
-                            {z.description}
+                        <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "1.75rem" }}>
+                            {z.description}. Unidades móviles 100% autónomas con agua y luz propia.
                         </p>
+                        <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+                            <Link href="/reservar" className="btn-premium">
+                                📅 Agendar en {z.name}
+                            </Link>
+                            <a
+                                href={whatsappHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location={`zone_hero_${zona}_whatsapp`}
+                                className="btn-outline"
+                            >
+                                💬 Cotizar por WhatsApp en {z.name}
+                            </a>
+                        </div>
                     </div>
                 </section>
 
-                {/* Intro */}
+                {/* Intro + Local Logistics */}
                 <section className="section-padding" style={{ paddingTop: 0 }}>
-                    <div className="container" style={{ maxWidth: "800px" }}>
+                    <div className="container" style={{ maxWidth: "850px" }}>
                         <div className="glass-card" style={{ padding: "2.5rem" }}>
-                            <p style={{ color: "#334155", fontSize: "1.05rem", lineHeight: "1.9" }}>
+                            <h2 style={{ fontSize: "1.35rem", marginBottom: "1rem", color: "#0f172a" }}>
+                                Operación Autónoma a Domicilio en {z.fullName}
+                            </h2>
+                            <p style={{ color: "#334155", fontSize: "1.02rem", lineHeight: "1.85", marginBottom: "1.25rem" }}>
                                 {z.intro}
                             </p>
+                            <p style={{ color: "#334155", fontSize: "1.02rem", lineHeight: "1.85", marginBottom: "1.5rem" }}>
+                                {z.logistics}
+                            </p>
+                            <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: "1.25rem" }}>
+                                <div style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#2563eb", marginBottom: "0.65rem" }}>
+                                    📍 Corredores, Vialidades y Puntos Clave en {z.name}
+                                </div>
+                                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                                    {z.landmarks.map((lm, i) => (
+                                        <span
+                                            key={i}
+                                            style={{
+                                                fontSize: "0.82rem",
+                                                padding: "0.35rem 0.8rem",
+                                                borderRadius: "2rem",
+                                                background: "#f8fafc",
+                                                border: "1px solid #cbd5e1",
+                                                color: "#1e293b",
+                                                fontWeight: 600,
+                                            }}
+                                        >
+                                            {lm}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -320,21 +426,53 @@ export default async function ZonePage({ params }: PageProps) {
                     </div>
                 </section>
 
+                {/* Local FAQ Section */}
+                <section className="section-padding" style={{ paddingTop: 0 }}>
+                    <div className="container" style={{ maxWidth: "850px" }}>
+                        <h2 style={{ fontSize: "1.45rem", marginBottom: "1.25rem", textAlign: "center", color: "#0f172a" }}>
+                            Preguntas Frecuentes sobre Servicio a Domicilio en {z.name}
+                        </h2>
+                        <div style={{ display: "grid", gap: "1rem" }}>
+                            {zoneFaqs.map((item, idx) => (
+                                <div key={idx} className="glass-card" style={{ padding: "1.5rem" }}>
+                                    <h3 style={{ fontSize: "1.02rem", fontWeight: 700, color: "#0f172a", marginBottom: "0.5rem" }}>
+                                        {item.q}
+                                    </h3>
+                                    <p style={{ color: "#334155", fontSize: "0.92rem", lineHeight: "1.7", margin: 0 }}>
+                                        {item.a}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 {/* CTA */}
                 <section className="section-padding" style={{ textAlign: "center" }}>
-                    <div className="container" style={{ maxWidth: "600px" }}>
+                    <div className="container" style={{ maxWidth: "650px" }}>
                         <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
                             ¿Estás en <span className="gradient-text">{z.name}</span>?
                         </h2>
                         <p style={{ color: "#475569", marginBottom: "2rem" }}>
-                            Agenda tu cita en línea y lleva la experiencia Doctor Foam a la puerta de tu casa u oficina.
+                            Agenda tu cita en línea o cotiza directo por WhatsApp y lleva la experiencia Doctor Foam a la puerta de tu casa u oficina en {z.name}.
                         </p>
-                        <Link
-                            href="/reservar"
-                            className="btn-premium"
-                        >
-                            Agendar en {z.name}
-                        </Link>
+                        <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+                            <Link
+                                href="/reservar"
+                                className="btn-premium"
+                            >
+                                📅 Agendar en {z.name}
+                            </Link>
+                            <a
+                                href={whatsappHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location={`zone_bottom_${zona}_whatsapp`}
+                                className="btn-outline"
+                            >
+                                💬 WhatsApp Directo ({z.name})
+                            </a>
+                        </div>
                     </div>
                 </section>
 

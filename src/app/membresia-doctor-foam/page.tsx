@@ -193,6 +193,39 @@ export default function MembresiaPage() {
             </a>
           </div>
         </section>
+
+        {/* Zonas de Cobertura Hub */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "900px", textAlign: "center" }}>
+            <h3 style={{ fontSize: "1.1rem", marginBottom: "0.75rem", color: "#0f172a" }}>
+              Zonas con Rutas Activas de Membresía Doctor Foam
+            </h3>
+            <p style={{ fontSize: "0.85rem", color: "#475569", marginBottom: "1rem" }}>
+              Visitas programadas quincenales o semanales sin cargo por traslado en:
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
+              {[
+                { slug: "polanco", label: "Polanco" },
+                { slug: "lomas-de-chapultepec", label: "Lomas de Chapultepec" },
+                { slug: "santa-fe", label: "Santa Fe" },
+                { slug: "bosques-de-las-lomas", label: "Bosques de las Lomas" },
+                { slug: "pedregal", label: "Pedregal" },
+                { slug: "interlomas", label: "Interlomas" },
+                { slug: "huixquilucan", label: "Huixquilucan" },
+                { slug: "coyoacan", label: "Coyoacán" },
+              ].map((z) => (
+                <Link
+                  key={z.slug}
+                  href={`/zonas/${z.slug}`}
+                  className="zone-tag zone-tag-blue"
+                  style={{ textDecoration: "none", fontSize: "0.8rem", padding: "0.35rem 0.8rem" }}
+                >
+                  📍 {z.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="footer">
