@@ -2,17 +2,17 @@
  * Doctor Foam México — Script de Auditoría Autónoma (Estándar Maestro v2.1 + GSC siteOwner Activo)
  * 1. Consulta Google Search Console API (sc-domain:drfoam.com.mx y https://drfoam.com.mx/)
  * 2. Envía/actualiza sitemap.xml automáticamente vía webmasters/v3
- * 3. Sincroniza el snapshot de Search Console en la tabla única public.drfoam_ux_events
- * 4. Consulta Telemetría UX & Conversiones WhatsApp en public.drfoam_ux_events (Supabase J. Denis)
+ * 3. Sincroniza el snapshot de Search Console y el resumen ejecutivo de clientes/WhatsApp
+ *    en la ÚNICA tabla aislada: public.drfoam_ux_events en el proyecto Supabase de Tres Raíces (pghqeoijbtzipzziezmn)
  */
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const https = require("https");
 
-const SUPABASE_URL = "https://zdciwzeokkrwcxvsgusc.supabase.co";
+const SUPABASE_URL = "https://pghqeoijbtzipzziezmn.supabase.co";
 const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpkY2l3emVva2tyd2N4dnNndXNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2NTM3NTksImV4cCI6MjA4ODIyOTc1OX0.qbXG0M2Zsjz-rOXY0CgAV2RfLledS67nqBw_dnvzkbg";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnaHFlb2lqYnR6aXB6emllem1uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2NTY1MzAsImV4cCI6MjA5MDIzMjUzMH0.e7YfCBC9diL1KDaKz52EBPfEUa8R2iahXpXF0xctsNg";
 
 function httpJson(url, options = {}, body = null) {
   return new Promise((resolve, reject) => {
@@ -51,9 +51,9 @@ async function auditGsc() {
     })
   ).toString("base64url");
   const sign = crypto.createSign("RSA-SHA256");
-  sign.update(header + '.' + claim);
+  sign.update(header + "." + claim);
   const signature = sign.sign(creds.private_key, "base64url");
-  const jwt = header + '.' + claim + '.' + signature;
+  const jwt = header + "." + claim + "." + signature;
 
   const tokenBody = "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=" + jwt;
   const tokenRes = await httpJson(
@@ -168,7 +168,7 @@ async function auditGsc() {
         visitor_id: "google-search-console-bot",
         event_name: "gsc_search_analytics_sync",
         event_category: "autonomous_cycle",
-        path: "/admin",
+        path: "/",
         attribution_channel: "organic_search",
         device_type: "desktop",
         is_bot: true,
@@ -226,7 +226,18 @@ async function auditSupabaseUx() {
   );
   const rageRows = humanRows.filter((r) => r.event_name === "rage_click");
 
-  return {
+  const whatsappByButton = {};
+  const whatsappByPage = {};
+  waRows.forEach((r) => {
+    const btn = r.element_text || r.element_id || "WhatsApp CTA";
+    const pg = r.path || "/";
+    whatsappByButton[btn] = (whatsappByButton[btn] || 0) + 1;
+    whatsappByPage[pg] = (whatsappByPage[pg] || 0) + 1;
+  });
+
+  const uxSummary = {
+    supabaseProject: "pghqeoijbtzipzziezmn (Tres Raices)",
+    isolatedTable: "public.drfoam_ux_events",
     totalEventsStored: rows.length,
     humanVisitorsEntered: visitors.size,
     humanSessions: sessions.size,
@@ -234,9 +245,42 @@ async function auditSupabaseUx() {
     whatsappTotalClicks: waRows.length,
     whatsappConversionPct:
       visitors.size > 0 ? Math.round((waVisitors.size / visitors.size) * 1000) / 10 : 0,
+    whatsappByButton,
+    whatsappByPage,
     bookingFunnelEvents: bookingRows.length,
     rageClicks: rageRows.length,
   };
+
+  // Persist latest executive summary snapshot directly inside public.drfoam_ux_events
+  const execSummaryBody = JSON.stringify([
+    {
+      session_id: "exec-summary-" + Date.now(),
+      visitor_id: "drfoam-executive-summary",
+      event_name: "drfoam_executive_summary",
+      event_category: "autonomous_cycle",
+      path: "/",
+      is_bot: true,
+      bot_name: "DrFoamExecutiveSummary",
+      element_text: `Clientes que entraron: ${visitors.size} | Se fueron por WhatsApp: ${waVisitors.size} (${uxSummary.whatsappConversionPct}%)`,
+      metadata: uxSummary,
+    },
+  ]);
+
+  await httpJson(
+    SUPABASE_URL + "/rest/v1/drfoam_ux_events",
+    {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: "Bearer " + SUPABASE_ANON_KEY,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal",
+      },
+    },
+    execSummaryBody
+  );
+
+  return uxSummary;
 }
 
 async function main() {

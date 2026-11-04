@@ -1,16 +1,16 @@
 /**
  * Doctor Foam — Motor de Telemetría UX, Embudo y Conversión WhatsApp
- * Almacenado en una única tabla dedicada en el proyecto Supabase de J. Denis:
- * Tabla: public.drfoam_ux_events (https://zdciwzeokkrwcxvsgusc.supabase.co)
+ * Almacenado en una única tabla aislada en el proyecto Supabase de Tres Raíces:
+ * Tabla: public.drfoam_ux_events (https://pghqeoijbtzipzziezmn.supabase.co)
  */
 
 export const SUPABASE_TELEMETRY_URL =
-  process.env.NEXT_PUBLIC_JDENIS_SUPABASE_URL ||
-  "https://zdciwzeokkrwcxvsgusc.supabase.co";
+  process.env.NEXT_PUBLIC_TRES_RAICES_SUPABASE_URL ||
+  "https://pghqeoijbtzipzziezmn.supabase.co";
 
 export const SUPABASE_TELEMETRY_ANON_KEY =
-  process.env.NEXT_PUBLIC_JDENIS_SUPABASE_ANON_KEY ||
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpkY2l3emVva2tyd2N4dnNndXNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2NTM3NTksImV4cCI6MjA4ODIyOTc1OX0.qbXG0M2Zsjz-rOXY0CgAV2RfLledS67nqBw_dnvzkbg";
+  process.env.NEXT_PUBLIC_TRES_RAICES_SUPABASE_ANON_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnaHFlb2lqYnR6aXB6emllem1uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2NTY1MzAsImV4cCI6MjA5MDIzMjUzMH0.e7YfCBC9diL1KDaKz52EBPfEUa8R2iahXpXF0xctsNg";
 
 export const TELEMETRY_TABLE = "drfoam_ux_events";
 
