@@ -40,10 +40,20 @@ const jsonLd = {
   url: "https://drfoam.com.mx/lavado-autos-estacionamiento-corporativo",
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://drfoam.com.mx/" },
+    { "@type": "ListItem", position: 2, name: "Lavado de Autos en Estacionamiento Corporativo CDMX", item: "https://drfoam.com.mx/lavado-autos-estacionamiento-corporativo" },
+  ],
+};
+
 export default function EstacionamientoCorporativoPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>

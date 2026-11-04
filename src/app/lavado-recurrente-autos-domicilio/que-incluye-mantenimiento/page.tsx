@@ -33,10 +33,21 @@ const jsonLd = {
   })),
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://drfoam.com.mx/" },
+    { "@type": "ListItem", position: 2, name: "Lavado Recurrente a Domicilio", item: "https://drfoam.com.mx/lavado-recurrente-autos-domicilio" },
+    { "@type": "ListItem", position: 3, name: "¿Qué Incluye el Mantenimiento Preventivo?", item: "https://drfoam.com.mx/lavado-recurrente-autos-domicilio/que-incluye-mantenimiento" },
+  ],
+};
+
 export default function QueIncluyeMantenimientoPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>

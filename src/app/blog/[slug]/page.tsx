@@ -298,12 +298,11 @@ En Doctor Foam seguimos un protocolo de 7 pasos:
 
 | Servicio | Precio Mercado | Precio Doctor Foam |
 |----------|---------------|-------------------|
-| Cerámico 1 año | $3,000 - $5,000 | $6,400 |
-| Cerámico 3 años | $6,000 - $9,000 | $10,500 |
-| Cerámico 5 años | $10,000 - $15,000 | $16,500 |
-| Grafeno Premium | $15,000 - $25,000 | $22,000 |
+| Signature Detail + Sellador Cerámico 6 meses | $4,000 - $6,000 | $7,499 (incluye corrección 2-3 etapas + interior) |
+| Ceramic Coating 9H (3 a 5 años) | $9,000 - $14,000 | $10,999 (con preparación y certificado) |
+| Graphene Shield Premium (5 a 7 años) | $14,000 - $22,000 | $14,999 (máxima dureza e hidrofobicidad) |
 
-*Precios para sedán. SUV y camionetas +20%.*
+*Precios base para sedán y SUV de 2 filas (IVA incluido). Pick Ups y SUV de 3 filas +15%.*
 
 ## ¿Por Qué Elegir Doctor Foam?
 
@@ -486,9 +485,20 @@ export default async function BlogPost({ params }: PageProps) {
         url: `https://drfoam.com.mx/blog/${slug}`,
     };
 
+    const breadcrumbJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Inicio", item: "https://drfoam.com.mx/" },
+            { "@type": "ListItem", position: 2, name: "Blog de Estética Automotriz", item: "https://drfoam.com.mx/blog" },
+            { "@type": "ListItem", position: 3, name: post.title, item: `https://drfoam.com.mx/blog/${slug}` },
+        ],
+    };
+
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
             <nav className="navbar navbar-scrolled">
                 <div className="navbar-inner">
@@ -575,8 +585,52 @@ export default async function BlogPost({ params }: PageProps) {
                             </Link>
                         </div>
                     </div>
+
+                    {/* Enlaces de Autoridad a los 4 Pilares SEO */}
+                    <div style={{ marginTop: "2.5rem" }}>
+                        <h3 style={{ fontSize: "1.2rem", color: "#0f172a", marginBottom: "1rem", textAlign: "center" }}>
+                            Explora las Soluciones a Domicilio de Doctor Foam
+                        </h3>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "0.85rem" }}>
+                            <Link href="/lavado-recurrente-autos-domicilio" className="glass-card" style={{ padding: "1.1rem", textDecoration: "none", textAlign: "center" }}>
+                                <strong style={{ color: "#0f172a", fontSize: "0.9rem", display: "block", marginBottom: "0.25rem" }}>🧽 Lavado Recurrente</strong>
+                                <span style={{ color: "#475569", fontSize: "0.78rem" }}>Mantenimiento pH neutro a domicilio</span>
+                            </Link>
+                            <Link href="/lavado-profundo-vehiculos-cdmx" className="glass-card" style={{ padding: "1.1rem", textDecoration: "none", textAlign: "center" }}>
+                                <strong style={{ color: "#0f172a", fontSize: "0.9rem", display: "block", marginBottom: "0.25rem" }}>♨️ Lavado Profundo</strong>
+                                <span style={{ color: "#475569", fontSize: "0.78rem" }}>Vestiduras con vapor 180°C y ozono</span>
+                            </Link>
+                            <Link href="/lavado-autos-estacionamiento-corporativo" className="glass-card" style={{ padding: "1.1rem", textDecoration: "none", textAlign: "center" }}>
+                                <strong style={{ color: "#0f172a", fontSize: "0.9rem", display: "block", marginBottom: "0.25rem" }}>🏢 Corporativos</strong>
+                                <span style={{ color: "#475569", fontSize: "0.78rem" }}>Sin usar tu agua ni electricidad</span>
+                            </Link>
+                            <Link href="/membresia-doctor-foam" className="glass-card" style={{ padding: "1.1rem", textDecoration: "none", textAlign: "center" }}>
+                                <strong style={{ color: "#0f172a", fontSize: "0.9rem", display: "block", marginBottom: "0.25rem" }}>🔄 Membresía</strong>
+                                <span style={{ color: "#475569", fontSize: "0.78rem" }}>Planes mensuales con descuento</span>
+                            </Link>
+                        </div>
+                    </div>
                 </article>
             </main>
+
+            <footer className="footer">
+                <div className="footer-bottom" style={{ borderTop: "none", marginTop: 0 }}>
+                    <p>&copy; {new Date().getFullYear()} Doctor Foam México. Todos los derechos reservados.</p>
+                    <p style={{ marginTop: "0.5rem" }}>
+                        <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>
+                        {" · "}
+                        <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>
+                        {" · "}
+                        <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Profundo</Link>
+                        {" · "}
+                        <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#64748b", textDecoration: "underline" }}>Estacionamiento Corporativo</Link>
+                        {" · "}
+                        <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>
+                        {" · "}
+                        <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>
+                    </p>
+                </div>
+            </footer>
         </>
     );
 }
