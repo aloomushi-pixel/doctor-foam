@@ -688,11 +688,11 @@ export default function HomePage() {
           <div className="animate-on-scroll">
             <span className="section-label">Nuestros Paquetes</span>
             <h2 className="section-title">
-              Cada servicio, un <span className="gradient-text">estándar superior</span>
+              Detallado Automotriz en CDMX: <span className="gradient-text">Estándar Clínico a Domicilio</span>
             </h2>
             <p className="section-subtitle">
-              No somos un lavado de autos. Somos un centro de estética automotriz portátil con
-              maquinaria industrial y técnicos certificados IDA.
+              No somos un autolavado tradicional. Somos un estudio de detailing a domicilio en CDMX especializado en
+              lavado de asientos y vestiduras con vapor a 180°C, corrección de pintura certificada IDA y recubrimiento cerámico 9H.
             </p>
             {/* ECO Badge */}
             <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "linear-gradient(135deg, #dcfce7, #bbf7d0)", padding: "0.5rem 1.2rem", borderRadius: "2rem", marginTop: "1rem", fontSize: "0.85rem", color: "#166534", fontWeight: 600 }}>
@@ -744,15 +744,56 @@ export default function HomePage() {
                     ))}
                   </div>
 
-                  <Link href={`/reservar?paquete=${s.bookingId}`} className="btn-premium" style={{ alignSelf: "flex-start", padding: "0.7rem 2rem", fontSize: "0.85rem" }}>
-                    Reservar {s.title}
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+                  <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "center" }}>
+                    <Link href={`/reservar?paquete=${s.bookingId}`} className="btn-premium" style={{ padding: "0.7rem 1.8rem", fontSize: "0.85rem" }}>
+                      Reservar {s.title}
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, quiero cotizar el paquete ${s.title} a domicilio`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`service_card_${s.bookingId}_whatsapp`}
+                      className="btn-outline"
+                      style={{ padding: "0.65rem 1.3rem", fontSize: "0.82rem" }}
+                    >
+                      💬 Preguntar por WhatsApp
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* 4-Pillar Authority Hub */}
+          <div className="animate-on-scroll" style={{ marginTop: "3rem" }}>
+            <h3 style={{ fontSize: "1.3rem", color: "#0f172a", marginBottom: "1.25rem", fontFamily: "var(--font-heading)" }}>
+              Soluciones Especializadas de Lavado y Detallado a Domicilio
+            </h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1rem", textAlign: "left" }}>
+              <Link href="/lavado-recurrente-autos-domicilio" className="glass-card" style={{ padding: "1.25rem", textDecoration: "none", display: "block" }}>
+                <strong style={{ color: "#0f172a", fontSize: "0.95rem", display: "block", marginBottom: "0.3rem" }}>🧽 Lavado Recurrente a Domicilio</strong>
+                <span style={{ color: "#475569", fontSize: "0.82rem", display: "block", marginBottom: "0.4rem" }}>Mantenimiento periódico con método de dos cubetas y pH neutro.</span>
+                <span style={{ color: "#2563eb", fontSize: "0.78rem", fontWeight: 700 }}>Explorar plan →</span>
+              </Link>
+              <Link href="/lavado-profundo-vehiculos-cdmx" className="glass-card" style={{ padding: "1.25rem", textDecoration: "none", display: "block" }}>
+                <strong style={{ color: "#0f172a", fontSize: "0.95rem", display: "block", marginBottom: "0.3rem" }}>♨️ Lavado Profundo y Vestiduras</strong>
+                <span style={{ color: "#475569", fontSize: "0.82rem", display: "block", marginBottom: "0.4rem" }}>Limpieza de asientos con vapor a 180°C, ozono y corrección de pintura.</span>
+                <span style={{ color: "#2563eb", fontSize: "0.78rem", fontWeight: 700 }}>Ver paquetes →</span>
+              </Link>
+              <Link href="/lavado-autos-estacionamiento-corporativo" className="glass-card" style={{ padding: "1.25rem", textDecoration: "none", display: "block" }}>
+                <strong style={{ color: "#0f172a", fontSize: "0.95rem", display: "block", marginBottom: "0.3rem" }}>🏢 Estacionamiento Corporativo</strong>
+                <span style={{ color: "#475569", fontSize: "0.82rem", display: "block", marginBottom: "0.4rem" }}>Detallamos tu auto en tu oficina o condominio sin usar tu agua ni luz.</span>
+                <span style={{ color: "#2563eb", fontSize: "0.78rem", fontWeight: 700 }}>Conocer sistema →</span>
+              </Link>
+              <Link href="/membresia-doctor-foam" className="glass-card" style={{ padding: "1.25rem", textDecoration: "none", display: "block" }}>
+                <strong style={{ color: "#0f172a", fontSize: "0.95rem", display: "block", marginBottom: "0.3rem" }}>🔄 Membresía Doctor Foam</strong>
+                <span style={{ color: "#475569", fontSize: "0.82rem", display: "block", marginBottom: "0.4rem" }}>Mantenimiento incluido y descuentos permanentes para todos tus autos.</span>
+                <span style={{ color: "#2563eb", fontSize: "0.78rem", fontWeight: 700 }}>Ver beneficios →</span>
+              </Link>
+            </div>
           </div>
 
 
@@ -1005,14 +1046,15 @@ export default function HomePage() {
           }}>
             {/* Array is mapped over statically to prevent build errors since it's a client component */}
             {[
-              { slug: "guia-completa-recubrimiento-ceramico", title: "Guía Completa: Recubrimiento Cerámico en CDMX", cat: "Protección" },
-              { slug: "5-errores-lavado-auto-premium", title: "5 Errores que Arruinan la Pintura de tu Auto", cat: "Cuidado" },
-              { slug: "economia-cuidado-automotriz-membresia", title: "La Economía del Cuidado Automotriz: Membresía vs. Descuido", cat: "Patrimonio" },
-              { slug: "correccion-pintura-swirls-guia", title: "Cómo Eliminar Swirls y Micro-rayones", cat: "Corrección" },
-              { slug: "lavado-profundo-vs-detallado-automotriz", title: "Lavado Profundo vs. Detallado Automotriz: La Verdad", cat: "Educación" },
-              { slug: "mejores-ceras-selladores-mexico", title: "Las Mejores Ceras y Selladores en México", cat: "Productos" }
+              { slug: "correccion-pintura-swirls-guia", title: "Swirls en la Pintura Automotriz: Qué Son y Cómo Eliminarlos", cat: "Corrección", img: "/blog/correccion-pintura-swirls-guia.png" },
+              { slug: "verdad-recubrimiento-ceramico-9h-autos-premium", title: "Recubrimiento Cerámico 9H: Qué Significa Realmente y Precios", cat: "Protección 9H", img: "/blog/verdad-recubrimiento-ceramico-9h-autos-premium.png" },
+              { slug: "guia-completa-recubrimiento-ceramico", title: "Guía Completa: Recubrimiento Cerámico en CDMX", cat: "Protección", img: "/blog/guia-completa-recubrimiento-ceramico.png" },
+              { slug: "5-errores-lavado-auto-premium", title: "5 Errores que Arruinan la Pintura de tu Auto", cat: "Cuidado", img: "/blog/5-errores-lavado-auto-premium.png" },
+              { slug: "economia-cuidado-automotriz-membresia", title: "La Economía del Cuidado Automotriz: Membresía vs. Descuido", cat: "Patrimonio", img: "/seo/blog-economia.png" },
+              { slug: "lavado-profundo-vs-detallado-automotriz", title: "Lavado Profundo vs. Detallado Automotriz: La Verdad", cat: "Educación", img: "/seo/blog-vs-detallado.png" },
+              { slug: "mejores-ceras-selladores-mexico", title: "Las Mejores Ceras y Selladores en México", cat: "Productos", img: "/blog/mejores-ceras-selladores-mexico.png" }
             ].map((b, i) => (
-              <a key={i} href={`/blog/${b.slug}`} className="glass-card animate-on-scroll" style={{
+              <Link key={i} href={`/blog/${b.slug}`} className="glass-card animate-on-scroll" style={{
                 minWidth: "320px",
                 maxWidth: "320px",
                 flexShrink: 0,
@@ -1021,13 +1063,13 @@ export default function HomePage() {
                 display: "block",
                 overflow: "hidden"
               }}>
-                <div style={{ height: "200px", backgroundImage: `url(/blog/${b.slug}.png)`, backgroundSize: "cover", backgroundPosition: "center" }} />
+                <div style={{ height: "200px", backgroundImage: `url(${b.img})`, backgroundSize: "cover", backgroundPosition: "center" }} />
                 <div style={{ padding: "1.5rem" }}>
                   <span className="zone-tag zone-tag-gold" style={{ marginBottom: "0.5rem" }}>{b.cat}</span>
                   <h3 style={{ fontSize: "1.1rem", color: "#0f172a", marginTop: "0.5rem" }}>{b.title}</h3>
                   <p style={{ color: "var(--color-gold-400)", fontSize: "0.85rem", marginTop: "1rem", fontWeight: 600 }}>Leer artículo →</p>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
