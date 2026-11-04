@@ -31,6 +31,19 @@ const jsonLd = {
   serviceType: "Lavado recurrente de autos a domicilio",
   areaServed: { "@type": "City", name: "Ciudad de México" },
   url: "https://drfoam.com.mx/lavado-recurrente-autos-domicilio",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Planes de Lavado Recurrente a Domicilio en CDMX",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Membresía Mensual de Lavado Recurrente a Domicilio (Método Dos Cubetas y pH Neutro)" },
+        price: "990",
+        priceCurrency: "MXN",
+        url: "https://drfoam.com.mx/membresia-doctor-foam",
+      },
+    ],
+  },
 };
 
 const breadcrumbJsonLd = {
@@ -42,11 +55,37 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const recurrenteFaqs = [
+  {
+    q: "¿Cuánto cuesta el servicio de lavado recurrente de autos a domicilio en CDMX?",
+    a: "Nuestra Membresía de Mantenimiento Doctor Foam inicia desde $990 MXN al mes (IVA incluido y facturación CFDI). Incluye lavado exterior con método de dos cubetas, champú de pH neutro que protege ceras y cerámicos, aspirado profundo e hidratación de interiores directamente en tu domicilio u oficina.",
+  },
+  {
+    q: "¿Por qué el lavado recurrente de Doctor Foam no raya la pintura como los autolavados?",
+    a: "Utilizamos pre-lavado con espuma activa (snow foam), técnica de dos cubetas con rejillas atrapa-partículas (Grit Guard), guantes de microfibra coreana de alto gramaje y secado con aire filtrado y toallas limpias por vehículo, eliminando el riesgo de micro-rayones (swirls).",
+  },
+  {
+    q: "¿Pueden lavar mi auto de forma recurrente en el estacionamiento de mi edificio o corporativo?",
+    a: "Sí. Nuestras unidades móviles son 100% autónomas con agua filtrada y energía propia, y cuentan con certificación Sello ECO (45% menos agua y cero escurrimientos), ideal para condominios y edificios corporativos en Polanco, Santa Fe, Lomas, Bosques, Interlomas y Pedregal.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: recurrenteFaqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function LavadoRecurrentePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
@@ -55,9 +94,30 @@ export default function LavadoRecurrentePage() {
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
-          <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
-            Agendar Servicio
-          </Link>
+          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Lavado Profundo
+            </Link>
+            <Link href="/membresia-doctor-foam" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Membresía $990
+            </Link>
+            <Link href="/lavado-autos-estacionamiento-corporativo" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Corporativo
+            </Link>
+            <a
+              href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20el%20lavado%20recurrente%20a%20domicilio"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta-location="pillar_recurrente_nav_whatsapp"
+              className="btn-outline"
+              style={{ padding: "0.45rem 0.9rem", fontSize: "0.78rem" }}
+            >
+              💬 WhatsApp
+            </a>
+            <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+              Agendar Servicio
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -65,13 +125,27 @@ export default function LavadoRecurrentePage() {
         {/* Hero */}
         <section className="section-padding" style={{ textAlign: "center" }}>
           <div className="container">
-            <span className="section-label">Mantenimiento Premium</span>
+            <span className="section-label">Mantenimiento Premium desde $990/mes</span>
             <h1 className="section-title">
               Lavado Recurrente para Vehículos a Domicilio: <span className="gradient-text">Mantenimiento Premium</span>
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "750px" }}>
+            <p className="section-subtitle" style={{ maxWidth: "750px", marginBottom: "1.75rem" }}>
               Tu auto merece un cuidado constante, no esporádico. Nuestro programa de <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link> recurrente mantiene tu vehículo impecable semana tras semana con el estándar Doctor Foam.
             </p>
+            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link href="/membresia-doctor-foam" className="btn-premium">
+                🔄 Ver Membresía ($990/mes)
+              </Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20el%20lavado%20recurrente%20a%20domicilio"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="pillar_recurrente_hero_whatsapp"
+                className="btn-outline"
+              >
+                💬 WhatsApp Directo
+              </a>
+            </div>
           </div>
         </section>
 
@@ -119,6 +193,27 @@ export default function LavadoRecurrentePage() {
                 <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>¿Qué Incluye el Mantenimiento?</h3>
                 <p style={{ color: "#475569", fontSize: "0.85rem" }}>Cada detalle de nuestro servicio técnico</p>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "850px" }}>
+            <h2 style={{ fontSize: "1.45rem", marginBottom: "1.25rem", textAlign: "center", color: "#0f172a" }}>
+              Preguntas Frecuentes sobre Lavado Recurrente a Domicilio
+            </h2>
+            <div style={{ display: "grid", gap: "1rem" }}>
+              {recurrenteFaqs.map((item, idx) => (
+                <div key={idx} className="glass-card" style={{ padding: "1.5rem" }}>
+                  <h3 style={{ fontSize: "1.02rem", fontWeight: 700, color: "#0f172a", marginBottom: "0.5rem" }}>
+                    {item.q}
+                  </h3>
+                  <p style={{ color: "#334155", fontSize: "0.92rem", lineHeight: "1.7", margin: 0 }}>
+                    {item.a}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

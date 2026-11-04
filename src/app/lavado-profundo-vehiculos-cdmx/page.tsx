@@ -50,6 +50,33 @@ const jsonLd = {
   serviceType: "Lavado profundo y detallado automotriz a domicilio",
   areaServed: { "@type": "City", name: "Ciudad de México" },
   url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Paquetes de Lavado Profundo y Detallado Automotriz en CDMX",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Industrial Deep Interior (Lavado de Vestiduras y Asientos con Vapor a 180°C)" },
+        price: "2400",
+        priceCurrency: "MXN",
+        url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Signature Detail (Corrección de Pintura + Interior Profundo)" },
+        price: "7499",
+        priceCurrency: "MXN",
+        url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Ceramic Coating 9H (Blindaje Cerámico 3-5 Años)" },
+        price: "10999",
+        priceCurrency: "MXN",
+        url: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado",
+      },
+    ],
+  },
 };
 
 const breadcrumbJsonLd = {
@@ -61,11 +88,37 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const profundoFaqs = [
+  {
+    q: "¿Cuánto cuesta el lavado de asientos y vestiduras de auto a domicilio en CDMX?",
+    a: "Nuestro paquete Industrial Deep Interior tiene un precio desde $2,400 MXN (IVA incluido) para sedán o SUV de 2 filas. Incluye desinfección con vapor seco a 180°C, extracción térmica de manchas en asientos, alfombra y cielo, hidratación de pieles y sanitización con ozono.",
+  },
+  {
+    q: "¿Cuánto tiempo tarda un lavado profundo o detallado automotriz a domicilio?",
+    a: "El lavado profundo interior (Industrial Deep Interior) toma entre 3 y 4 horas con secado acelerado para que uses tu auto el mismo día. El paquete Signature Detail con corrección de pintura de 2 a 3 etapas toma de 6 a 8 horas directamente en tu estacionamiento.",
+  },
+  {
+    q: "¿Necesitan toma de agua o luz en mi departamento o corporativo?",
+    a: "No. Las unidades móviles de Doctor Foam son 100% autónomas: cuentan con generador eléctrico propio y tanque de agua desmineralizada, por lo que operamos en sótanos residenciales y corporativos de Polanco, Santa Fe, Lomas, Bosques, Interlomas y Pedregal sin conectar nada a tu domicilio.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: profundoFaqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function LavadoProfundoPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
@@ -74,9 +127,30 @@ export default function LavadoProfundoPage() {
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
-          <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
-            Agendar Servicio
-          </Link>
+          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+            <Link href="/lavado-recurrente-autos-domicilio" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Lavado Recurrente
+            </Link>
+            <Link href="/membresia-doctor-foam" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Membresía $990
+            </Link>
+            <Link href="/lavado-autos-estacionamiento-corporativo" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Corporativo
+            </Link>
+            <a
+              href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20cotizar%20un%20lavado%20profundo%20o%20detallado%20a%20domicilio"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta-location="pillar_profundo_nav_whatsapp"
+              className="btn-outline"
+              style={{ padding: "0.45rem 0.9rem", fontSize: "0.78rem" }}
+            >
+              💬 WhatsApp
+            </a>
+            <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+              Agendar Servicio
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -84,13 +158,27 @@ export default function LavadoProfundoPage() {
         {/* Hero */}
         <section className="section-padding" style={{ textAlign: "center" }}>
           <div className="container">
-            <span className="section-label">Restauración Premium</span>
+            <span className="section-label">Restauración Premium en CDMX y EdoMex</span>
             <h1 className="section-title">
-              Lavado Profundo de Vehículos: <span className="gradient-text">Detallado y Restauración</span> a Domicilio
+              Lavado Profundo de Vehículos y Vestiduras: <span className="gradient-text">Detallado y Restauración</span> a Domicilio
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "750px" }}>
-              No somos un autolavado. Somos un centro de estética automotriz portátil que lleva el mejor <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link> con maquinaria industrial y técnicos certificados IDA.
+            <p className="section-subtitle" style={{ maxWidth: "750px", marginBottom: "1.75rem" }}>
+              No somos un autolavado. Somos un estudio clínico de estética automotriz portátil que lleva el mejor <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link>, limpieza de asientos con vapor a 180°C, corrección de pintura y cerámico 9H sin usar tu agua ni electricidad.
             </p>
+            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link href="/reservar" className="btn-premium">
+                💳 Reservar Paquete en Línea
+              </Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20cotizar%20un%20lavado%20profundo%20de%20vestiduras%20o%20detallado%20a%20domicilio"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="pillar_profundo_hero_whatsapp"
+                className="btn-outline"
+              >
+                💬 Cotizar por WhatsApp
+              </a>
+            </div>
           </div>
         </section>
 
@@ -124,9 +212,33 @@ export default function LavadoProfundoPage() {
                       <span key={j} style={{ background: "rgba(37,99,235,0.08)", color: "#2563eb", fontSize: "0.72rem", fontWeight: 600, padding: "0.25rem 0.7rem", borderRadius: "2rem" }}>{h}</span>
                     ))}
                   </div>
-                  <Link href={`/reservar?paquete=${s.name.toLowerCase().replace(/ /g, "-")}`} className={s.featured ? "btn-premium" : "btn-outline"} style={{ width: "100%", justifyContent: "center" }}>
-                    Reservar {s.name}
-                  </Link>
+                  <div style={{ display: "grid", gap: "0.5rem" }}>
+                    <Link href={`/reservar?paquete=${s.name.toLowerCase().replace(/ /g, "-")}`} className={s.featured ? "btn-premium" : "btn-outline"} style={{ width: "100%", justifyContent: "center" }}>
+                      Reservar {s.name}
+                    </Link>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, quiero cotizar el paquete ${s.name} (${s.price}) a domicilio`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`pillar_profundo_card_${s.name.toLowerCase().replace(/ /g, "_")}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "100%",
+                        padding: "0.55rem 1rem",
+                        borderRadius: "9999px",
+                        fontSize: "0.8rem",
+                        fontWeight: 700,
+                        color: "#15803d",
+                        background: "#f0fdf4",
+                        border: "1px solid #bbf7d0",
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Preguntar por WhatsApp
+                    </a>
+                  </div>
                 </div>
               ))}
             </div>
@@ -150,6 +262,27 @@ export default function LavadoProfundoPage() {
                 <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem" }}>Diferencias entre Servicios</h3>
                 <p style={{ color: "#475569", fontSize: "0.85rem" }}>Qué incluye exactamente cada paquete</p>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "850px" }}>
+            <h2 style={{ fontSize: "1.45rem", marginBottom: "1.25rem", textAlign: "center", color: "#0f172a" }}>
+              Preguntas Frecuentes sobre Lavado Profundo y Vestiduras en CDMX
+            </h2>
+            <div style={{ display: "grid", gap: "1rem" }}>
+              {profundoFaqs.map((item, idx) => (
+                <div key={idx} className="glass-card" style={{ padding: "1.5rem" }}>
+                  <h3 style={{ fontSize: "1.02rem", fontWeight: 700, color: "#0f172a", marginBottom: "0.5rem" }}>
+                    {item.q}
+                  </h3>
+                  <p style={{ color: "#334155", fontSize: "0.92rem", lineHeight: "1.7", margin: 0 }}>
+                    {item.a}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

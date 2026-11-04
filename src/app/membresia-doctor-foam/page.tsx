@@ -77,9 +77,30 @@ export default function MembresiaPage() {
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
-          <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
-            Agendar Servicio
-          </Link>
+          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+            <Link href="/lavado-recurrente-autos-domicilio" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Lavado Recurrente
+            </Link>
+            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Lavado Profundo
+            </Link>
+            <Link href="/lavado-autos-estacionamiento-corporativo" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Corporativo
+            </Link>
+            <a
+              href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20la%20Membres%C3%ADa%20de%20Mantenimiento%20Mensual%20(%24990%2Fmes)"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta-location="pillar_membresia_nav_whatsapp"
+              className="btn-outline"
+              style={{ padding: "0.45rem 0.9rem", fontSize: "0.78rem" }}
+            >
+              💬 WhatsApp
+            </a>
+            <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+              Agendar Servicio
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -87,13 +108,32 @@ export default function MembresiaPage() {
         {/* Hero */}
         <section className="section-padding" style={{ textAlign: "center" }}>
           <div className="container">
-            <span className="section-label">Membresía Premium</span>
+            <span className="section-label">Membresía Premium desde $990/mes</span>
             <h1 className="section-title">
               Membresía Doctor Foam: El <span className="gradient-text">Cuidado Definitivo</span> para tu Auto
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "750px" }}>
+            <p className="section-subtitle" style={{ maxWidth: "750px", marginBottom: "1.75rem" }}>
               Deja de preocuparte por el mantenimiento de tu vehículo. Nuestro programa de <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado recurrente a domicilio</Link> con pagos mensuales automáticos mantiene tu auto impecable todo el año.
             </p>
+            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <a
+                href="https://buy.stripe.com/28E6oH1b45aI1LddT83Ru00"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-premium"
+              >
+                🔄 Suscribirme ($990/mes)
+              </a>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20la%20Membres%C3%ADa%20Doctor%20Foam%20de%20%24990%2Fmes"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="pillar_membresia_hero_whatsapp"
+                className="btn-outline"
+              >
+                💬 Preguntar por WhatsApp
+              </a>
+            </div>
           </div>
         </section>
 

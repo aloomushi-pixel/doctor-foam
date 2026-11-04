@@ -61,9 +61,30 @@ export default function EstacionamientoCorporativoPage() {
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
-          <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
-            Agendar Servicio
-          </Link>
+          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Lavado Profundo
+            </Link>
+            <Link href="/lavado-recurrente-autos-domicilio" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Lavado Recurrente
+            </Link>
+            <Link href="/membresia-doctor-foam" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Membresía $990
+            </Link>
+            <a
+              href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20el%20servicio%20en%20estacionamiento%20corporativo%20o%20condominio"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta-location="pillar_corporativo_nav_whatsapp"
+              className="btn-outline"
+              style={{ padding: "0.45rem 0.9rem", fontSize: "0.78rem" }}
+            >
+              💬 WhatsApp
+            </a>
+            <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+              Agendar Servicio
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -71,13 +92,27 @@ export default function EstacionamientoCorporativoPage() {
         {/* Hero */}
         <section className="section-padding" style={{ textAlign: "center" }}>
           <div className="container">
-            <span className="section-label">Servicio Donde Estés</span>
+            <span className="section-label">Servicio 100% Autónomo Donde Estés</span>
             <h1 className="section-title">
               Lavado de Autos en Estacionamiento Corporativo: <span className="gradient-text">Ecológico y Sin Agua</span>
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "750px" }}>
-              No solo vamos a tu casa. Llevamos nuestro <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link> a donde tú estés: oficina, estacionamiento, gym, casa de tus papás... donde nos cites, ahí lo lavamos. Somos 100% autónomos.
+            <p className="section-subtitle" style={{ maxWidth: "750px", marginBottom: "1.75rem" }}>
+              No solo vamos a tu casa. Llevamos nuestro <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link> a donde tú estés: oficina, estacionamiento subterráneo, corporativo o condominio. Somos 100% autónomos con agua y electricidad propia.
             </p>
+            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link href="/reservar" className="btn-premium">
+                📅 Agendar en mi Oficina / Condominio
+              </Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20cotizar%20el%20servicio%20en%20estacionamiento%20corporativo"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="pillar_corporativo_hero_whatsapp"
+                className="btn-outline"
+              >
+                💬 Cotizar por WhatsApp
+              </a>
+            </div>
           </div>
         </section>
 
