@@ -234,6 +234,15 @@ async function auditSupabaseUx() {
       r.event_name === "checkout_initiated"
   );
   const rageRows = humanRows.filter((r) => r.event_name === "rage_click");
+  const aiGeoRows = humanRows.filter(
+    (r) => r.attribution_channel === "geo_ai" || Boolean(r.ai_engine)
+  );
+  const aiGeoVisitors = new Set(aiGeoRows.map((r) => r.visitor_id || r.session_id));
+  const aiEngines = {};
+  aiGeoRows.forEach((r) => {
+    const eng = r.ai_engine || r.utm_source || "AI";
+    aiEngines[eng] = (aiEngines[eng] || 0) + 1;
+  });
 
   const whatsappByButton = {};
   const whatsappByPage = {};
@@ -254,6 +263,8 @@ async function auditSupabaseUx() {
     whatsappTotalClicks: waRows.length,
     whatsappConversionPct:
       visitors.size > 0 ? Math.round((waVisitors.size / visitors.size) * 1000) / 10 : 0,
+    aiGeoVisitors: aiGeoVisitors.size,
+    aiEngines,
     whatsappByButton,
     whatsappByPage,
     bookingFunnelEvents: bookingRows.length,
@@ -272,7 +283,7 @@ async function auditSupabaseUx() {
       path: "/",
       is_bot: true,
       bot_name: "DrFoamExecutiveSummary",
-      element_text: `Clientes que entraron: ${visitors.size} | Se fueron por WhatsApp: ${waVisitors.size} (${uxSummary.whatsappConversionPct}%)`,
+      element_text: `Clientes que entraron: ${visitors.size} (IA/ChatGPT: ${aiGeoVisitors.size}) | Se fueron por WhatsApp: ${waVisitors.size} (${uxSummary.whatsappConversionPct}%)`,
       metadata: uxSummary,
     },
   ]);

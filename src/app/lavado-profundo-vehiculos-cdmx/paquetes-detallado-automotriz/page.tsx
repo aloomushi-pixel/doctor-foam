@@ -173,7 +173,7 @@ export default function PaquetesDetallado() {
             <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "1.5rem" }}>
               Tres niveles de servicio para tres necesidades diferentes. Todos incluyen IVA, son facturables (CFDI) y se realizan a domicilio con equipo industrial 100% autónomo.
             </p>
-            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "2rem" }}>
               <Link href="/reservar" className="btn-premium">
                 📅 Agendar Paquete en Línea
               </Link>
@@ -186,6 +186,100 @@ export default function PaquetesDetallado() {
               >
                 💬 Asesoría por WhatsApp
               </a>
+            </div>
+
+            {/* Resumen Rápido Above-the-Fold para Visitantes Móviles y ChatGPT/GEO */}
+            <div
+              style={{
+                maxWidth: "920px",
+                margin: "0 auto",
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(205px, 1fr))",
+                gap: "0.85rem",
+                textAlign: "left",
+              }}
+            >
+              {[
+                {
+                  icon: "♨️",
+                  name: "Industrial Deep Interior",
+                  price: "$2,400 MXN",
+                  sub: "3-4 hrs · Vapor 180°C + Ozono",
+                  wa: "Hola Doctor Foam, quiero cotizar el paquete Industrial Deep Interior ($2,400 MXN) a domicilio",
+                  slug: "industrial-deep-interior",
+                },
+                {
+                  icon: "💎",
+                  name: "Signature Detail (Completo)",
+                  price: "$7,499 MXN",
+                  sub: "5-6 hrs · Interior + Pulido Espejo",
+                  wa: "Hola Doctor Foam, quiero cotizar el paquete Signature Detail Completo ($7,499 MXN) a domicilio",
+                  slug: "signature-detail",
+                  highlight: true,
+                },
+                {
+                  icon: "🛡️",
+                  name: "Ceramic Coating 9H",
+                  price: "$10,999 MXN",
+                  sub: "8-10 hrs · Blindaje 3 a 5 Años",
+                  wa: "Hola Doctor Foam, quiero cotizar el paquete Ceramic Coating 9H ($10,999 MXN) a domicilio",
+                  slug: "ceramic-coating",
+                },
+                {
+                  icon: "🔄",
+                  name: "Lavado Recurrente",
+                  price: "$990 / mes",
+                  sub: "Mantenimiento mensual sin swirls",
+                  wa: "Hola Doctor Foam, quiero información del Plan de Lavado Recurrente ($990/mes) a domicilio",
+                  slug: "membresia",
+                },
+              ].map((q, idx) => (
+                <div
+                  key={idx}
+                  className="glass-card"
+                  style={{
+                    padding: "1.1rem",
+                    border: q.highlight ? "2px solid rgba(37,99,235,0.35)" : "1px solid rgba(148,163,184,0.22)",
+                    background: q.highlight ? "rgba(239,246,255,0.9)" : undefined,
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.25rem" }}>
+                    <span style={{ fontWeight: 700, fontSize: "0.88rem", color: "#0f172a" }}>
+                      {q.icon} {q.name}
+                    </span>
+                  </div>
+                  <div className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.35rem" }}>
+                    {q.price}
+                  </div>
+                  <p style={{ fontSize: "0.76rem", color: "#475569", margin: "0.2rem 0 0.75rem" }}>{q.sub}</p>
+                  <div style={{ display: "flex", gap: "0.45rem" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(q.wa)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`cluster_paquetes_quickstrip_${q.slug}_whatsapp`}
+                      className="btn-premium"
+                      style={{
+                        flex: 1,
+                        padding: "0.42rem 0.6rem",
+                        fontSize: "0.74rem",
+                        justifyContent: "center",
+                        textAlign: "center",
+                        background: "linear-gradient(135deg, #16a34a, #15803d)",
+                      }}
+                    >
+                      💬 WhatsApp
+                    </a>
+                    <Link
+                      href={q.slug === "membresia" ? "/membresia-doctor-foam" : `/reservar?paquete=${q.slug}`}
+                      className="btn-outline"
+                      style={{ padding: "0.42rem 0.6rem", fontSize: "0.74rem", justifyContent: "center", textAlign: "center" }}
+                    >
+                      Reservar
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -217,9 +311,30 @@ export default function PaquetesDetallado() {
                     <h2 style={{ fontSize: "1.5rem" }}>{p.name}</h2>
                     <p style={{ color: "#64748b", fontSize: "0.85rem" }}>Duración: {p.time}</p>
                   </div>
-                  <div style={{ marginLeft: "auto", textAlign: "right" }}>
-                    <span className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "2rem" }}>{p.price.sedan}</span>
-                    <p style={{ color: "#64748b", fontSize: "0.75rem" }}>Sedán · Pick Up: {p.price.pickup}</p>
+                  <div style={{ marginLeft: "auto", textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.35rem" }}>
+                    <span className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "2rem", lineHeight: 1.1 }}>{p.price.sedan}</span>
+                    <p style={{ color: "#64748b", fontSize: "0.75rem", margin: 0 }}>Sedán · Pick Up: {p.price.pickup}</p>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, me interesa el paquete ${p.name} (${p.price.sedan}) a domicilio`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`cluster_paquetes_header_${p.name.toLowerCase().replace(/ /g, "_")}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        padding: "0.32rem 0.75rem",
+                        borderRadius: "2rem",
+                        background: "rgba(22, 163, 74, 0.12)",
+                        border: "1px solid rgba(22, 163, 74, 0.35)",
+                        color: "#15803d",
+                        fontSize: "0.76rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
                   </div>
                 </div>
                 <p style={{ color: "#475569", fontSize: "0.95rem", marginBottom: "1.5rem", padding: "1rem", background: "rgba(37,99,235,0.04)", borderRadius: "0.75rem", borderLeft: "3px solid #2563eb" }}>
