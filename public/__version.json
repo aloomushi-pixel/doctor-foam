@@ -1,11 +1,11 @@
 {
-  "version": "1.15.0-auto",
-  "cycle": 15,
-  "deployedAt": "2026-11-05T14:27:00Z",
+  "version": "1.16.0-auto",
+  "cycle": 16,
+  "deployedAt": "2026-11-05T18:36:30Z",
   "highlights": [
-    "Upgraded scripts/drfoam_autonomous_audit.cjs rowLimit to 500, uncovering and syncing the full 2,375-impression GSC footprint across 14 pages",
-    "Optimized Home (/) FAQs, FAQPage JSON-LD, and LocalBusiness serviceType for 'limpieza de motores de coches' (90 imp at #1.7), 'lavado de asientos de auto' (24 imp at #3.7), 'pulido de autos a domicilio cdmx' (31 imp), and 'estetica automotriz cdmx' (27 imp)",
-    "Enriched /lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz with Precios de Detallado Automotriz & Costo de Detailing de Auto Completo comparison table + FAQPage JSON-LD",
-    "Enhanced /blog/guia-completa-recubrimiento-ceramico for 278 GSC impressions ('que es el recubrimiento cerámico para autos', 'coating ceramico', 'tratamiento ceramico auto')"
+    "Confirmed via GSC URL Inspection API that Googlebot re-crawled /blog/guia-completa-recubrimiento-ceramico and /blog/verdad-recubrimiento-ceramico-9h-autos-premium today (verdict: PASS, Submitted and indexed)",
+    "Unified /membresia-doctor-foam with dual plans ($990/mes Lavado Recurrente + $1,160/mes Membresía VIP Multi-Auto), WhatsApp CTAs, and FAQPage JSON-LD targeting 'membresía de autolavado a domicilio'",
+    "Added FAQPage JSON-LD and visible FAQs to /lavado-autos-estacionamiento-corporativo (Submitted and indexed)",
+    "Added FAQPage JSON-LD and visible FAQs to /lavado-recurrente-autos-domicilio/que-incluye-mantenimiento (Submitted and indexed)"
   ]
 }

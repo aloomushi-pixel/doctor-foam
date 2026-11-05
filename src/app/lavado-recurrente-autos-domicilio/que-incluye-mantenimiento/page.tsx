@@ -43,11 +43,40 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const faqs = [
+  {
+    q: "¿Qué incluye el lavado y encerado de autos a domicilio de mantenimiento preventivo?",
+    a: "Nuestro protocolo de 8 pasos incluye pre-lavado con foam cannon lubricante, lavado con método de 2 cubetas y champú pH neutro, descontaminación química del clear coat, barra de arcilla sintética, aplicación de sellador UV hidrofóbico (superior al encerado tradicional), secado con microfibras de 500 GSM, detallado de rines y limpieza interior express.",
+  },
+  {
+    q: "¿Cada cuánto tiempo se recomienda el lavado de mantenimiento para un auto con recubrimiento cerámico?",
+    a: "Recomendamos realizar el lavado de mantenimiento preventivo cada 2 a 4 semanas para evitar que minerales del agua o lluvia ácida obstruyan los poros hidrofóbicos del recubrimiento cerámico o sellador de grafeno.",
+  },
+  {
+    q: "¿Por qué el método de dos cubetas y champú pH neutro evita rayones y swirls?",
+    a: "Al separar el agua jabonosa limpia del agua de enjuague con trampas de arena (Grit Guard), ninguna partícula abrasiva regresa al guante de microfibra, preservando el brillo espejo de tu pintura lavado tras lavado.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
+};
+
 export default function QueIncluyeMantenimientoPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
@@ -160,6 +189,32 @@ export default function QueIncluyeMantenimientoPage() {
                   💬 WhatsApp Directo
                 </a>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Preguntas Frecuentes sobre Mantenimiento Preventivo */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "820px" }}>
+            <h2 style={{ fontSize: "1.4rem", marginBottom: "1.25rem", textAlign: "center" }}>
+              Preguntas Frecuentes sobre <span className="gradient-text">Mantenimiento Preventivo</span>
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+              {faqs.map((faq, idx) => (
+                <details
+                  key={idx}
+                  className="glass-card"
+                  style={{ padding: "1.15rem 1.4rem", cursor: "pointer" }}
+                  open={idx === 0}
+                >
+                  <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
+                    {faq.q}
+                  </summary>
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                    {faq.a}
+                  </p>
+                </details>
+              ))}
             </div>
           </div>
         </section>

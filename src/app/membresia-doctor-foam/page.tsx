@@ -3,30 +3,47 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Membresía Lavado de Auto a Domicilio | Doctor Foam México",
+  title: "Membresía de Autolavado y Lavado de Autos a Domicilio en CDMX | Doctor Foam",
   description:
-    "Mantén tu auto impecable con la Membresía Doctor Foam. Lavado recurrente a domicilio con equipo industrial, químicos premium y descuentos exclusivos. Desde $1,160 MXN/mes.",
+    "Conoce la Membresía de Autolavado a Domicilio de Doctor Foam en CDMX: planes mensuales desde $990 MXN/mes con equipo industrial autónomo, pH neutro, cero swirls y facturación CFDI.",
   alternates: { canonical: "https://drfoam.com.mx/membresia-doctor-foam" },
   openGraph: {
-    title: "Membresía Doctor Foam | Lavado Recurrente Premium",
-    description: "El cuidado definitivo para tu auto. Planes de mantenimiento con pagos mensuales automáticos.",
+    title: "Membresía Doctor Foam | Suscripción de Lavado de Autos a Domicilio CDMX",
+    description: "El cuidado definitivo para tu auto. Planes de mantenimiento recurrente con pagos mensuales automáticos desde $990/mes.",
   },
 };
 
 const plans = [
-
   {
-    name: "Membresía Doctor Foam",
+    name: "Plan Lavado Recurrente Mensual",
+    price: "$990",
+    period: "MXN / mes",
+    icon: "🧽",
+    desc: "Ideal para mantener tu auto impecable cada mes sin preocuparte por agendar. Protocolo anti-swirls de 8 pasos con agua purificada en tu casa u oficina.",
+    features: [
+      "Lavado clínico de mantenimiento mensual a domicilio",
+      "Método de 2 cubetas, foam cannon pH neutro y microfibra 500 GSM",
+      "Aspirado profundo y limpieza interior express",
+      "Sellador hidrofóbico UV en cada visita",
+      "Sin usar tu agua ni electricidad (unidad 100% autónoma)",
+      "Cancelación libre en cualquier momento",
+    ],
+    frequency: "Suscripción mensual automática · Facturable CFDI",
+    stripeUrl: "https://buy.stripe.com/28E6oH1b45aI1LddT83Ru00",
+    featured: false,
+  },
+  {
+    name: "Membresía VIP Doctor Foam (Multi-Auto)",
     price: "$1,160",
     period: "MXN / mes",
     icon: "🔄",
-    desc: "El plan definitivo. Lavado de mantenimiento bimestral incluido más descuentos exclusivos en todos los servicios. La membresía es por cliente, no importa cuántos autos tengas.",
+    desc: "El plan patrimonial definitivo. Incluye Foam Maintenance completo más 10% de descuento permanente en todos los paquetes de detallado y cerámico para todos tus autos.",
     features: [
-      "Lavado de mantenimiento bimestral incluido",
-      "10% de descuento en cualquier paquete",
-      "Membresía por cliente (todos tus autos)",
-      "Prioridad en agendamiento",
-      "Precio protegido ante aumentos",
+      "Foam Maintenance completo incluido (descontaminación + sellador UV)",
+      "10% de descuento en Industrial Deep Interior, Signature Detail y Cerámico",
+      "Membresía por cliente (beneficios aplicables a todos tus autos)",
+      "Prioridad de agenda en fines de semana y días lluviosos",
+      "Precio congelado ante incrementos anuales",
       "Cancelación libre en cualquier momento",
     ],
     frequency: "Pago mensual automático · Cancela cuando quieras",
@@ -65,11 +82,40 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const faqs = [
+  {
+    q: "¿Cómo funciona la membresía de autolavado a domicilio de Doctor Foam en CDMX?",
+    a: "Eliges entre nuestro Plan Lavado Recurrente Mensual ($990 MXN/mes) o la Membresía VIP Doctor Foam ($1,160 MXN/mes). Una vez activa tu suscripción, coordinamos contigo el día y horario fijo de tu preferencia para acudir a tu casa u oficina con nuestra unidad móvil 100% autónoma.",
+  },
+  {
+    q: "¿La membresía de lavado de autos aplica para varios vehículos de mi familia o empresa?",
+    a: "Sí. La Membresía VIP Doctor Foam ($1,160 MXN/mes) es por cliente, no por placa: puedes aplicar tus servicios de mantenimiento y el 10% de descuento en paquetes de detallado profundo y recubrimiento cerámico a todos los vehículos de tu hogar.",
+  },
+  {
+    q: "¿Hay plazo forzoso o penalización por cancelar la membresía?",
+    a: "Ninguno. Tu suscripción se procesa de forma segura mediante Stripe con facturación CFDI mensual automática y puedes pausarla o cancelarla en cualquier momento sin cargos ocultos.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
+};
+
 export default function MembresiaPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
@@ -173,7 +219,7 @@ export default function MembresiaPage() {
             </h2>
             <p className="section-subtitle">Pago mensual automático · IVA incluido · Facturación CFDI · Cancela cuando quieras</p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2rem", marginTop: "2rem", maxWidth: "450px", margin: "2rem auto 0 auto" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem", marginTop: "2rem", maxWidth: "880px", margin: "2rem auto 0 auto" }}>
               {plans.map((p, i) => (
                 <div key={i} className={`glass-card ${p.featured ? "" : ""}`} style={{ padding: "2rem", textAlign: "left", border: p.featured ? "2px solid rgba(37,99,235,0.15)" : undefined, display: "flex", flexDirection: "column" }}>
                   {p.featured && (
@@ -214,9 +260,45 @@ export default function MembresiaPage() {
                     className="btn-premium"
                     style={{ width: "100%", justifyContent: "center", textAlign: "center", marginTop: "1rem" }}
                   >
-                    🔄 Suscribirme a {p.name}
+                    🔄 Suscribirme ({p.price}/mes)
+                  </a>
+                  <a
+                    href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, quiero activar el ${p.name} (${p.price}/mes) a domicilio`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cta-location={`pillar_membresia_card_${i}_whatsapp`}
+                    className="btn-outline"
+                    style={{ width: "100%", justifyContent: "center", textAlign: "center", marginTop: "0.6rem", fontSize: "0.82rem" }}
+                  >
+                    💬 Contratar por WhatsApp
                   </a>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Preguntas Frecuentes sobre Membresía */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "820px" }}>
+            <h2 style={{ fontSize: "1.4rem", marginBottom: "1.25rem", textAlign: "center" }}>
+              Preguntas Frecuentes sobre la <span className="gradient-text">Membresía de Autolavado</span>
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+              {faqs.map((faq, idx) => (
+                <details
+                  key={idx}
+                  className="glass-card"
+                  style={{ padding: "1.15rem 1.4rem", cursor: "pointer" }}
+                  open={idx === 0}
+                >
+                  <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
+                    {faq.q}
+                  </summary>
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                    {faq.a}
+                  </p>
+                </details>
               ))}
             </div>
           </div>

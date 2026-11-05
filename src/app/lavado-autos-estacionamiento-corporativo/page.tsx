@@ -49,11 +49,40 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const faqs = [
+  {
+    q: "¿Cómo funciona el lavado de autos en estacionamiento corporativo o de oficina en CDMX?",
+    a: "Solo nos indicas la ubicación de tu edificio corporativo (Santa Fe, Polanco, Reforma, Palmas, Insurgentes o Bosques) y tu cajón de estacionamiento. Nuestra unidad móvil compacta ingresa al sótano o área asignada con agua purificada y planta eléctrica insonorizada propia para detallar tu vehículo mientras trabajas.",
+  },
+  {
+    q: "¿Dejan charcos o escurrimientos de agua en el sótano del edificio o condominio?",
+    a: "No. Nuestro protocolo ecológico de encapsulamiento polimérico y vapor seco a 180°C no vierte agua al piso ni deja charcos ni espuma en el cajón de estacionamiento, cumpliendo al 100% con los reglamentos de administración de torres corporativas y condominios residenciales.",
+  },
+  {
+    q: "¿Ofrecen convenios corporativos B2B y lavado de flotillas ejecutivas con factura CFDI?",
+    a: "Sí. Atendemos flotillas ejecutivas, vehículos de dirección y beneficios para colaboradores en empresas de CDMX y Estado de México, con facturación CFDI mensual y tarifas preferenciales por volumen.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
+};
+
 export default function EstacionamientoCorporativoPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
@@ -181,6 +210,32 @@ export default function EstacionamientoCorporativoPage() {
                 <Link href="/reservar" className="btn-premium">📅 Agendar donde sea</Link>
                 <a href="https://wa.me/525610846022?text=Hola%2C%20me%20interesa%20el%20servicio%20corporativo" className="btn-outline" target="_blank" rel="noopener noreferrer">📱 Cotizar para Empresas</a>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Preguntas Frecuentes sobre Estacionamiento Corporativo */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "820px" }}>
+            <h2 style={{ fontSize: "1.4rem", marginBottom: "1.25rem", textAlign: "center" }}>
+              Preguntas Frecuentes sobre <span className="gradient-text">Servicio en Corporativos y Condominios</span>
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+              {faqs.map((faq, idx) => (
+                <details
+                  key={idx}
+                  className="glass-card"
+                  style={{ padding: "1.15rem 1.4rem", cursor: "pointer" }}
+                  open={idx === 0}
+                >
+                  <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
+                    {faq.q}
+                  </summary>
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                    {faq.a}
+                  </p>
+                </details>
+              ))}
             </div>
           </div>
         </section>
