@@ -396,7 +396,7 @@ Detalles:
                             background: step === s.num ? "rgba(37, 99, 235, 0.1)" : step > s.num ? "rgba(16, 185, 129, 0.08)" : "#f1f5f9",
                             border: step === s.num ? "1.5px solid #2563eb" : step > s.num ? "1.5px solid #10b981" : "1.5px solid #e2e8f0",
                             borderRadius: "2rem", padding: "0.5rem 1rem",
-                            color: step === s.num ? "#2563eb" : step > s.num ? "#10b981" : "#94a3b8",
+                            color: step === s.num ? "#2563eb" : step > s.num ? "#10b981" : "#475569",
                             fontSize: "0.8rem", fontWeight: 600, cursor: s.num < step ? "pointer" : "default",
                             fontFamily: "var(--font-heading)",
                             transition: "all 0.3s ease",
@@ -510,12 +510,38 @@ Detalles:
                         ))}
                     </div>
 
-                    <button
-                        type="button" onClick={() => { setError(""); setStep(2); }}
-                        className="btn-premium" style={{ width: "100%", justifyContent: "center" }}
-                    >
-                        Continuar → Elegir fecha
-                    </button>
+                    <div style={{ display: "grid", gap: "0.65rem" }}>
+                        <button
+                            type="button" onClick={() => { setError(""); setStep(2); }}
+                            className="btn-premium" style={{ width: "100%", justifyContent: "center" }}
+                        >
+                            Continuar → Elegir fecha (${currentPrice.toLocaleString("es-MX")} MXN)
+                        </button>
+                        <a
+                            href={`https://wa.me/525610846022?text=${encodeURIComponent(
+                                `Hola Doctor Foam, quiero agendar el paquete ${pkg?.name || selectedPackage} (${vehicleSizes.find((v) => v.value === vehicleSize)?.label || vehicleSize} — $${currentPrice.toLocaleString("es-MX")} MXN) a domicilio.`
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-cta-location="reservar_step1_whatsapp"
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                width: "100%",
+                                padding: "0.75rem 1.25rem",
+                                borderRadius: "9999px",
+                                fontSize: "0.88rem",
+                                fontWeight: 700,
+                                color: "#15803d",
+                                background: "#f0fdf4",
+                                border: "1.5px solid #bbf7d0",
+                                textDecoration: "none",
+                            }}
+                        >
+                            💬 Agendar {pkg?.name || "este servicio"} (${currentPrice.toLocaleString("es-MX")}) por WhatsApp
+                        </a>
+                    </div>
                 </div>
             )}
 
@@ -696,7 +722,7 @@ Detalles:
                         <div>
                             <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, color: "#0f172a", fontSize: "1.1rem" }}>Total (IVA incluido)</span>
                             {isMember && (
-                                <div style={{ color: "#94a3b8", fontSize: "0.8rem", textDecoration: "line-through", marginTop: "0.2rem" }}>
+                                <div style={{ color: "#475569", fontSize: "0.8rem", textDecoration: "line-through", marginTop: "0.2rem" }}>
                                     De: ${basePrice.toLocaleString("es-MX")}
                                 </div>
                             )}
@@ -769,9 +795,21 @@ export default function ReservarPage() {
                             <span className="gradient-text">FOAM</span>
                         </span>
                     </Link>
-                    <Link href="/" style={{ color: "#64748b", textDecoration: "none", fontSize: "0.9rem", fontFamily: "var(--font-heading)" }}>
-                        ← Inicio
-                    </Link>
+                    <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+                        <a
+                            href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20estoy%20en%20la%20p%C3%A1gina%20de%20reservas%20y%20quiero%20agendar%20por%20WhatsApp"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-cta-location="reservar_nav_whatsapp"
+                            className="btn-outline"
+                            style={{ padding: "0.45rem 0.95rem", fontSize: "0.8rem" }}
+                        >
+                            💬 Agendar por WhatsApp
+                        </a>
+                        <Link href="/" style={{ color: "#475569", textDecoration: "none", fontSize: "0.9rem", fontFamily: "var(--font-heading)", fontWeight: 600 }}>
+                            ← Inicio
+                        </Link>
+                    </div>
                 </div>
             </nav>
 
@@ -779,19 +817,49 @@ export default function ReservarPage() {
                 <section className="section-padding">
                     <div className="container" style={{ maxWidth: "900px" }}>
                         <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-                            <span className="section-label">Reservar y Pagar</span>
+                            <span className="section-label">Cotizador y Agenda en Línea · CDMX y EdoMex</span>
                             <h1 className="section-title" style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)" }}>
                                 Agenda tu servicio de{" "}
-                                <span className="gradient-text">detallado premium</span>
+                                <span className="gradient-text">lavado profundo o detallado a domicilio</span>
                             </h1>
-                            <p className="section-subtitle" style={{ maxWidth: "600px" }}>
-                                Selecciona tu paquete, elige una fecha disponible y paga en línea de forma segura.
+                            <p className="section-subtitle" style={{ maxWidth: "650px" }}>
+                                Cotiza al instante según el tamaño de tu auto y agenda en línea con pago seguro o directamente por WhatsApp. Unidad móvil 100% autónoma.
                             </p>
                         </div>
 
-                        <Suspense fallback={<div style={{ textAlign: "center", padding: "2rem", color: "#64748b" }}>Cargando...</div>}>
+                        <Suspense fallback={<div style={{ textAlign: "center", padding: "2rem", color: "#475569" }}>Cargando...</div>}>
                             <BookingForm />
                         </Suspense>
+                    </div>
+                </section>
+
+                {/* Zonas de Cobertura Hub */}
+                <section className="section-padding" style={{ paddingTop: 0 }}>
+                    <div className="container" style={{ maxWidth: "900px", textAlign: "center" }}>
+                        <h3 style={{ fontSize: "1.05rem", marginBottom: "0.75rem", color: "#0f172a" }}>
+                            Zonas de Servicio a Domicilio sin Cargo por Traslado
+                        </h3>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
+                            {[
+                                { slug: "polanco", label: "Polanco" },
+                                { slug: "lomas-de-chapultepec", label: "Lomas de Chapultepec" },
+                                { slug: "santa-fe", label: "Santa Fe" },
+                                { slug: "bosques-de-las-lomas", label: "Bosques de las Lomas" },
+                                { slug: "pedregal", label: "Pedregal y San Ángel" },
+                                { slug: "interlomas", label: "Interlomas" },
+                                { slug: "huixquilucan", label: "Huixquilucan" },
+                                { slug: "coyoacan", label: "Coyoacán" },
+                            ].map((z) => (
+                                <Link
+                                    key={z.slug}
+                                    href={`/zonas/${z.slug}`}
+                                    className="zone-tag zone-tag-blue"
+                                    style={{ textDecoration: "none", fontSize: "0.8rem", padding: "0.35rem 0.8rem" }}
+                                >
+                                    📍 {z.label}
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </section>
             </main>
@@ -799,6 +867,14 @@ export default function ReservarPage() {
             <footer className="footer">
                 <div className="footer-bottom" style={{ borderTop: "none", marginTop: 0 }}>
                     <p>&copy; {new Date().getFullYear()} Doctor Foam México. Todos los derechos reservados.</p>
+                    <p style={{ marginTop: "0.5rem" }}>
+                        <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>{" · "}
+                        <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>{" · "}
+                        <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Profundo</Link>{" · "}
+                        <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#64748b", textDecoration: "underline" }}>Estacionamiento Corporativo</Link>{" · "}
+                        <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>{" · "}
+                        <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>
+                    </p>
                 </div>
             </footer>
         </>

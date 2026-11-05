@@ -1,8 +1,8 @@
 {
   "app": "doctor-foam",
-  "version": "1.12.0-auto",
-  "cycle": 12,
-  "updatedAt": "2026-11-05T01:55:00Z",
+  "version": "1.13.0-auto",
+  "cycle": 13,
+  "updatedAt": "2026-11-05T06:04:00Z",
   "supabaseTelemetryProject": "pghqeoijbtzipzziezmn",
   "supabaseTelemetryTable": "drfoam_ux_events",
   "gscProperty": "sc-domain:drfoam.com.mx"
