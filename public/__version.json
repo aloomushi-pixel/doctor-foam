@@ -1,12 +1,11 @@
 {
-  "version": "1.14.0-auto",
-  "cycle": 14,
-  "deployedAt": "2026-11-05T10:15:00Z",
+  "version": "1.15.0-auto",
+  "cycle": 15,
+  "deployedAt": "2026-11-05T14:27:00Z",
   "highlights": [
-    "Optimized /blog/correccion-pintura-swirls-guia for 175+ GSC impressions (swirls auto, swirls pintura, micro rayones, microrayones, micro swirls) with FAQPage JSON-LD and visible FAQs",
-    "Enriched /blog/guia-completa-recubrimiento-ceramico with Acabado Cerámico para Autos & Cerámico para Interiores de Auto (Piel, Plásticos y Pantallas) + FAQPage JSON-LD",
-    "Added Above-the-Fold Quick Action WhatsApp Bar, Navbar Pillar & WhatsApp CTAs, FAQPage JSON-LD, and 8-Zone Coverage Hub across all /blog/[slug] articles",
-    "Enriched /lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado with 6-step Detallado Interior Profundo Automotriz section + FAQPage JSON-LD to capture 91 GSC impressions from redirected /blog/detallado-interior-profundo-que-incluye",
-    "Removed internal 301-redirected blog links on /blog index and added Pillar + WhatsApp navbar CTAs"
+    "Upgraded scripts/drfoam_autonomous_audit.cjs rowLimit to 500, uncovering and syncing the full 2,375-impression GSC footprint across 14 pages",
+    "Optimized Home (/) FAQs, FAQPage JSON-LD, and LocalBusiness serviceType for 'limpieza de motores de coches' (90 imp at #1.7), 'lavado de asientos de auto' (24 imp at #3.7), 'pulido de autos a domicilio cdmx' (31 imp), and 'estetica automotriz cdmx' (27 imp)",
+    "Enriched /lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz with Precios de Detallado Automotriz & Costo de Detailing de Auto Completo comparison table + FAQPage JSON-LD",
+    "Enhanced /blog/guia-completa-recubrimiento-ceramico for 278 GSC impressions ('que es el recubrimiento cerámico para autos', 'coating ceramico', 'tratamiento ceramico auto')"
   ]
 }

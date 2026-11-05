@@ -3,9 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Paquetes de Detallado Automotriz CDMX | Precios Doctor Foam",
+  title: "Detallado Automotriz Precios en CDMX y Costo de Detailing Completo | Doctor Foam",
   description:
-    "Compara nuestros 3 planes de detallado automotriz: Industrial Deep Interior, Signature Detail y Ceramic Coating. Precios, diferencias y beneficios en CDMX.",
+    "Conoce los precios de detallado automotriz profesional en CDMX y el costo de detailing de auto completo a domicilio: Industrial Deep Interior ($2,400), Signature Detail ($7,499) y Ceramic Coating ($10,999).",
   alternates: { canonical: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" },
 };
 
@@ -93,11 +93,40 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const faqs = [
+  {
+    q: "¿Cuál es el costo de un detailing de auto completo en CDMX?",
+    a: "El costo de un detailing de auto completo profesional a domicilio con Doctor Foam (paquete Signature Detail, que incluye restauración interior con vapor seco a 180°C, ozono médico, corrección de pintura de 2 a 3 etapas para eliminar el 95% de swirls y sellador cerámico de 6 meses) es de $7,499 MXN para sedán/SUV de 2 filas y $8,624 MXN para Pick Up o SUV de 3 filas, con IVA y factura CFDI incluidos.",
+  },
+  {
+    q: "¿Cuáles son los precios de detallado automotriz en CDMX según el paquete?",
+    a: "Manejamos 3 paquetes principales a domicilio: 1) Industrial Deep Interior desde $2,400 MXN (3-4 horas, enfoque 100% en vestiduras, asientos y cabina con vapor a 180°C); 2) Signature Detail desde $7,499 MXN (5-6 horas, interior completo + corrección de pintura + sellador cerámico); y 3) Ceramic Coating 9H desde $10,999 MXN (8-10 horas, blindaje nanocerámico por 3 a 5 años).",
+  },
+  {
+    q: "¿El precio del detallado automotriz profesional incluye servicio a domicilio sin usar mi agua ni luz?",
+    a: "Sí. Todos nuestros precios incluyen el traslado de nuestra unidad móvil 100% autónoma (equipada con tanque de agua purificada por ósmosis inversa, generador eléctrico insonorizado y máquina de vapor industrial a 180°C) en Polanco, Lomas de Chapultepec, Santa Fe, Bosques de las Lomas, Pedregal, Interlomas, Huixquilucan y Coyoacán.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
+};
+
 export default function PaquetesDetallado() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
@@ -246,6 +275,87 @@ export default function PaquetesDetallado() {
             </div>
           </section>
         ))}
+
+        {/* Tabla Resumen: Costo de Detailing de Auto Completo y Precios en CDMX */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "900px" }}>
+            <h2 style={{ fontSize: "1.45rem", marginBottom: "0.75rem", textAlign: "center" }}>
+              Tabla Comparativa: <span className="gradient-text">Precios de Detallado Automotriz</span> y Costo de Detailing Completo en CDMX
+            </h2>
+            <p style={{ color: "#475569", textAlign: "center", maxWidth: "680px", margin: "0 auto 1.5rem", fontSize: "0.92rem" }}>
+              Precios transparentes con IVA, factura CFDI y traslado de unidad móvil autónoma incluidos:
+            </p>
+            <div className="glass-card" style={{ padding: "1.5rem", overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.88rem", color: "#1e293b" }}>
+                <thead>
+                  <tr style={{ borderBottom: "2px solid rgba(37,99,235,0.18)", textAlign: "left" }}>
+                    <th style={{ padding: "0.75rem" }}>Paquete Profesional</th>
+                    <th style={{ padding: "0.75rem" }}>Enfoque Principal</th>
+                    <th style={{ padding: "0.75rem" }}>Duración</th>
+                    <th style={{ padding: "0.75rem" }}>Sedán / SUV 2 Filas</th>
+                    <th style={{ padding: "0.75rem" }}>Pick Up / SUV 3 Filas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: "1px solid rgba(148,163,184,0.2)" }}>
+                    <td style={{ padding: "0.75rem", fontWeight: 700 }}>♨️ Industrial Deep Interior</td>
+                    <td style={{ padding: "0.75rem" }}>Vestiduras, asientos, vapor 180°C y ozono</td>
+                    <td style={{ padding: "0.75rem" }}>3 - 4 hrs</td>
+                    <td style={{ padding: "0.75rem", fontWeight: 700, color: "#2563eb" }}>$2,400 MXN</td>
+                    <td style={{ padding: "0.75rem" }}>$2,400 MXN</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid rgba(148,163,184,0.2)", background: "rgba(37,99,235,0.04)" }}>
+                    <td style={{ padding: "0.75rem", fontWeight: 700 }}>💎 Signature Detail (Detailing Completo)</td>
+                    <td style={{ padding: "0.75rem" }}>Interior completo + Pulido 2-3 etapas + Sellador 6m</td>
+                    <td style={{ padding: "0.75rem" }}>5 - 6 hrs</td>
+                    <td style={{ padding: "0.75rem", fontWeight: 700, color: "#2563eb" }}>$7,499 MXN</td>
+                    <td style={{ padding: "0.75rem" }}>$8,624 MXN</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid rgba(148,163,184,0.2)" }}>
+                    <td style={{ padding: "0.75rem", fontWeight: 700 }}>🛡️ Ceramic Coating 9H</td>
+                    <td style={{ padding: "0.75rem" }}>Corrección + Blindaje Nanocerámico 3 a 5 años</td>
+                    <td style={{ padding: "0.75rem" }}>8 - 10 hrs</td>
+                    <td style={{ padding: "0.75rem", fontWeight: 700, color: "#2563eb" }}>$10,999 MXN</td>
+                    <td style={{ padding: "0.75rem" }}>$12,649 MXN</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: "0.75rem", fontWeight: 700 }}>🧽 Lavado Recurrente (Post-Detallado)</td>
+                    <td style={{ padding: "0.75rem" }}>Mantenimiento pH neutro sin swirls a domicilio</td>
+                    <td style={{ padding: "0.75rem" }}>1.5 - 2 hrs</td>
+                    <td style={{ padding: "0.75rem", fontWeight: 700, color: "#2563eb" }}>Desde $990/mes</td>
+                    <td style={{ padding: "0.75rem" }}>Consultar plan</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* Preguntas Frecuentes sobre Precios y Costo de Detailing */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "820px" }}>
+            <h2 style={{ fontSize: "1.4rem", marginBottom: "1.25rem", textAlign: "center" }}>
+              Preguntas Frecuentes sobre <span className="gradient-text">Precios de Detallado Automotriz</span>
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+              {faqs.map((faq, idx) => (
+                <details
+                  key={idx}
+                  className="glass-card"
+                  style={{ padding: "1.15rem 1.4rem", cursor: "pointer" }}
+                  open={idx === 0}
+                >
+                  <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
+                    {faq.q}
+                  </summary>
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                    {faq.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Zonas de Cobertura Hub */}
         <section className="section-padding" style={{ paddingTop: 0 }}>

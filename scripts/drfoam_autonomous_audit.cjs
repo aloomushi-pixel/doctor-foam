@@ -109,7 +109,7 @@ async function auditGsc() {
       startDate,
       endDate,
       dimensions: ["query", "page"],
-      rowLimit: 50,
+      rowLimit: 500,
     });
     const qRes = await httpJson(
       "https://www.googleapis.com/webmasters/v3/sites/" +

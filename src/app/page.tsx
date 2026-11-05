@@ -61,18 +61,18 @@ const mainServices = [
   {
     icon: "♨️",
     title: "Industrial Deep Interior",
-    tagline: "Restauración interior de grado profesional",
-    desc: "Tu interior absorbe todo: polvo, bacterias, ácaros, derrames invisibles. Nuestro vapor seco industrial a 180°C penetra cada fibra del tapizado y elimina lo que una aspiradora jamás alcanza. Usamos inyección-extracción de grado hospitalario para remover manchas profundas, olores atrapados y alérgenos. Las pieles Connolly reciben hidratación especializada para evitar grietas. Al terminar, sanitizamos con ozono médico — tu cabina queda clínicamente limpia, no solo bonita.",
-    highlights: ["Vapor seco 180°C", "Extracción profunda", "Sanitización con ozono", "Pieles hidratadas"],
+    tagline: "Lavado de asientos de auto, vestiduras y restauración interior",
+    desc: "Tu interior absorbe todo: polvo, bacterias, ácaros, derrames invisibles. Nuestro protocolo de lavado de asientos de auto y vestiduras con vapor seco industrial a 180°C penetra cada fibra del tapizado y elimina lo que una aspiradora jamás alcanza. Usamos inyección-extracción de grado hospitalario para remover manchas profundas, olores atrapados y alérgenos. Las pieles Connolly y Nappa reciben hidratación especializada para evitar grietas. Al terminar, sanitizamos con ozono médico — tu cabina queda clínicamente limpia, no solo bonita.",
+    highlights: ["Vapor seco 180°C", "Lavado de asientos y vestiduras", "Sanitización con ozono", "Pieles hidratadas"],
     image: "/services/deep-interior.jpg",
     bookingId: "deep-interior",
   },
   {
     icon: "💎",
     title: "Signature Detail",
-    tagline: "Corrección de pintura + interior completo",
-    desc: "Los micro-rayones (swirls) hacen que tu pintura luzca opaca bajo el sol. Nuestros técnicos certificados IDA corrigen la pintura en 2-3 etapas con pulidoras de triple acción, eliminando hasta el 95% de imperfecciones. El resultado es un brillo de espejo que transforma la apariencia de tu vehículo. Incluye el Industrial Deep Interior completo, sellador cerámico express de 6 meses y acondicionamiento de rines y llantas. Todo en un solo día, sin mover tu auto.",
-    highlights: ["Corrección 2-3 etapas", "Swirls eliminados 95%", "Interior completo incluido", "Sellador 6 meses"],
+    tagline: "Pulido de autos, corrección de pintura + interior completo",
+    desc: "Los micro-rayones (swirls) hacen que tu pintura luzca opaca bajo el sol. Nuestro servicio de estética automotriz y pulido de autos a domicilio en CDMX corrige la pintura en 2-3 etapas con técnicos certificados IDA, eliminando hasta el 95% de imperfecciones para un acabado espejo superior a cualquier lavado y encerado tradicional. Incluye el Industrial Deep Interior completo, sellador cerámico express de 6 meses, limpieza de motor con vapor seco y acondicionamiento de rines. Todo en un solo día, sin mover tu auto.",
+    highlights: ["Pulido y corrección 2-3 etapas", "Swirls eliminados 95%", "Interior y bahía de motor", "Sellador cerámico 6 meses"],
     image: "/services/signature-detail.jpg",
     bookingId: "signature-detail",
   },
@@ -312,6 +312,18 @@ const faqs = [
     q: "¿Qué es el Graphene Shield y cómo supera al cerámico?",
     a: "El recubrimiento de grafeno es la nueva generación de protección automotriz. Supera al cerámico tradicional en dureza (10H vs 9H), efecto hidrofóbico y resistencia a químicos. Dura 5 a 7 años vs 2-3 del cerámico convencional. Incluimos certificado de aplicación y seguimiento post-servicio.",
   },
+  {
+    q: "¿Realizan limpieza de motores de coches y detallado de bahía de motor a domicilio?",
+    a: "Sí. Realizamos limpieza de motores de coches en seco y con vapor industrial a 180°C (5% de humedad), desengrasantes dieléctricos biodegradables y acondicionamiento de plásticos y mangueras sin usar chorros de agua a presión, garantizando cero riesgo para sensores, computadora (ECU), baterías híbridas o sistemas eléctricos.",
+  },
+  {
+    q: "¿En qué consiste el pulido de autos y lavado y encerado de autos a domicilio en CDMX?",
+    a: "A diferencia de un lavado y encerado tradicional que oculta rayones por pocos días, nuestro servicio de estética automotriz en CDMX corrige la pintura con pulidora roto-orbital en 1 a 3 etapas (eliminando hasta el 95% de swirls y micro-rayones) y aplica sellador nanocerámico SiO2 de 6 meses a 5 años directamente en tu domicilio.",
+  },
+  {
+    q: "¿Cómo funciona el lavado de asientos de auto y vestiduras a domicilio?",
+    a: "Nuestro lavado de asientos de auto (tanto en tela, alcántara como piel Connolly o Nappa) combina aspirado industrial 10x, inyección-extracción térmica de manchas profundas, esterilización con vapor seco a 180°C y sanitización con ozono médico, dejando los asientos limpios, desinfectados y secos en menos de 60 minutos.",
+  },
 ];
 
 /* ─── JSON-LD Schemas ─── */
@@ -330,8 +342,13 @@ function JsonLd() {
     ],
     serviceType: [
       "Detallado automotriz",
+      "Detallado automotriz a domicilio en CDMX",
+      "Estética automotriz CDMX",
       "Recubrimiento cerámico",
-      "Corrección de pintura",
+      "Corrección de pintura y pulido de autos a domicilio en CDMX",
+      "Lavado y encerado de autos a domicilio en CDMX",
+      "Lavado de asientos de auto y vestiduras a domicilio",
+      "Limpieza de motores de coches con vapor seco a 180°C",
       "Lavado premium a domicilio",
       "Lavado de autos a domicilio en CDMX",
       "Lavado recurrente de autos a domicilio",
