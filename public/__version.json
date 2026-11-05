@@ -1,9 +1,12 @@
 {
-  "app": "doctor-foam",
-  "version": "1.13.0-auto",
-  "cycle": 13,
-  "updatedAt": "2026-11-05T06:04:00Z",
-  "supabaseTelemetryProject": "pghqeoijbtzipzziezmn",
-  "supabaseTelemetryTable": "drfoam_ux_events",
-  "gscProperty": "sc-domain:drfoam.com.mx"
+  "version": "1.14.0-auto",
+  "cycle": 14,
+  "deployedAt": "2026-11-05T10:15:00Z",
+  "highlights": [
+    "Optimized /blog/correccion-pintura-swirls-guia for 175+ GSC impressions (swirls auto, swirls pintura, micro rayones, microrayones, micro swirls) with FAQPage JSON-LD and visible FAQs",
+    "Enriched /blog/guia-completa-recubrimiento-ceramico with Acabado Cerámico para Autos & Cerámico para Interiores de Auto (Piel, Plásticos y Pantallas) + FAQPage JSON-LD",
+    "Added Above-the-Fold Quick Action WhatsApp Bar, Navbar Pillar & WhatsApp CTAs, FAQPage JSON-LD, and 8-Zone Coverage Hub across all /blog/[slug] articles",
+    "Enriched /lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado with 6-step Detallado Interior Profundo Automotriz section + FAQPage JSON-LD to capture 91 GSC impressions from redirected /blog/detallado-interior-profundo-que-incluye",
+    "Removed internal 301-redirected blog links on /blog index and added Pillar + WhatsApp navbar CTAs"
+  ]
 }

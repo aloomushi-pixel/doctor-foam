@@ -60,12 +60,12 @@ const blogPosts = [
     },
     {
         slug: "guia-completa-recubrimiento-ceramico",
-        title: "Guía Completa: Recubrimiento Cerámico para tu Auto en CDMX",
+        title: "Recubrimiento Cerámico para Autos en CDMX: Acabado Exterior, Interiores y Precios 2026",
         excerpt:
-            "Todo lo que necesitas saber antes de aplicar un recubrimiento cerámico: tipos, duración, precios y qué esperar del proceso profesional.",
-        date: "2026-02-15",
+            "Guía completa sobre acabado cerámico para autos y cerámico para interiores de auto (piel, plásticos y pantallas): tipos 9H y grafeno, duración de 3 a 7 años y precios.",
+        date: "2026-05-05",
         category: "Protección",
-        readTime: "8 min",
+        readTime: "9 min",
     },
     {
         slug: "5-errores-lavado-auto-premium",
@@ -77,31 +77,22 @@ const blogPosts = [
         readTime: "6 min",
     },
     {
-        slug: "economia-cuidado-automotriz-membresia",
-        title: "La Economía del Cuidado Automotriz: Cómo Mantener tu Auto Impecable Protege tu Patrimonio",
-        excerpt:
-            "Descubre cómo el mantenimiento interior y exterior preventivo contra la radiación UV y la lluvia ácida protege hasta el 20% del valor de reventa de tu vehículo.",
-        date: "2026-03-01",
-        category: "Patrimonio",
-        readTime: "7 min",
-    },
-    {
         slug: "correccion-pintura-swirls-guia",
-        title: "Swirls en la Pintura Automotriz: Qué Son, Cómo Eliminarlos y Corrección en CDMX",
+        title: "Swirls en la Pintura y Micro Rayones en tu Auto: Qué Son, Cómo Quitarlos y Precios CDMX",
         excerpt:
-            "Tu auto tiene más swirls de los que crees. Aprende sobre los niveles de corrección y cuándo necesitas un pulido profesional.",
-        date: "2026-01-28",
+            "¿Qué son los swirls y micro rayones (microrayones) en la pintura de tu auto? Aprende cómo quitarlos de raíz con corrección de pintura de 1 a 3 etapas a domicilio.",
+        date: "2026-05-05",
         category: "Corrección",
         readTime: "9 min",
     },
     {
-        slug: "lavado-profundo-vs-detallado-automotriz",
-        title: "Lavado Profundo vs. Detallado Automotriz: La Verdad que los Autolavados No te Dicen",
+        slug: "por-que-detallado-domicilio-mejor",
+        title: "¿Por Qué el Detallado a Domicilio Supera al Taller?",
         excerpt:
-            "¿Por qué un detallado profesional toma de 4 a 8 horas frente a los 30 minutos de un autolavado de cadena? Conoce la diferencia técnica real.",
-        date: "2026-02-25",
-        category: "Educación",
-        readTime: "8 min",
+            "Ventajas del detallado automotriz a domicilio frente a un taller tradicional: supervisión 1 a 1, cero traslados y unidad móvil con equipo industrial.",
+        date: "2026-01-20",
+        category: "Tendencias",
+        readTime: "5 min",
     },
     {
         slug: "mejores-ceras-selladores-mexico",
@@ -153,9 +144,30 @@ export default function BlogPage() {
                     <Link href="/" style={{ textDecoration: "none" }}>
                         <Logo size="sm" />
                     </Link>
-                    <a href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
-                        Agendar Cita
-                    </a>
+                    <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+                        <Link href="/lavado-profundo-vehiculos-cdmx" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+                            Lavado Profundo
+                        </Link>
+                        <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+                            Paquetes y Precios
+                        </Link>
+                        <Link href="/lavado-recurrente-autos-domicilio" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+                            Lavado Recurrente
+                        </Link>
+                        <a
+                            href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20vengo%20de%20su%20blog%20y%20me%20gustar%C3%ADa%20cotizar%20un%20servicio%20a%20domicilio"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-cta-location="blog_index_nav_whatsapp"
+                            className="btn-outline"
+                            style={{ padding: "0.45rem 0.9rem", fontSize: "0.78rem" }}
+                        >
+                            💬 WhatsApp
+                        </a>
+                        <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+                            Agendar Cita
+                        </Link>
+                    </div>
                 </div>
             </nav>
 

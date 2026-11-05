@@ -4,7 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 
 /* ─── Blog content database ─── */
-const blogContent: Record<string, { title: string; date: string; category: string; readTime: string; content: string; metaDesc: string }> = {
+interface BlogPostData {
+    title: string;
+    date: string;
+    category: string;
+    readTime: string;
+    content: string;
+    metaDesc: string;
+    faqs?: { q: string; a: string }[];
+}
+
+const blogContent: Record<string, BlogPostData> = {
     "detallado-movil-grado-clinico-vs-lavado-convencional": {
         title: "Detallado Móvil de Grado Clínico vs. Lavado a Domicilio Convencional",
         date: "2026-05-07",
@@ -242,79 +252,93 @@ Cuando un vehículo presenta un acristalamiento impecable y una limpieza quirúr
         `
     },
     "guia-completa-recubrimiento-ceramico": {
-        title: "Guía Completa: Recubrimiento Cerámico para tu Auto en CDMX",
-        date: "2026-02-15",
+        title: "Recubrimiento Cerámico para Autos en CDMX: Acabado Exterior, Interiores y Precios 2026",
+        date: "2026-05-05",
         category: "Protección",
-        readTime: "8 min",
-        metaDesc: "Todo sobre recubrimiento cerámico automotriz en CDMX: tipos, precios, duración y proceso profesional. Guía completa por Doctor Foam México.",
+        readTime: "9 min",
+        metaDesc: "Guía completa sobre acabado cerámico para autos y cerámico para interiores de auto en CDMX: tipos (9H, grafeno, piel), duración de 3 a 7 años y precios a domicilio.",
+        faqs: [
+            {
+                q: "¿Cuánto cuesta el recubrimiento cerámico para un auto en CDMX?",
+                a: "En Doctor Foam México, el recubrimiento cerámico profesional a domicilio comienza desde $7,499 MXN con sellador cerámico en el paquete Signature Detail, $10,999 MXN para Ceramic Coating 9H (3 a 5 años de garantía) y $14,999 MXN para Graphene Shield Premium (5 a 7 años).",
+            },
+            {
+                q: "¿Existe el recubrimiento cerámico para interiores de auto (piel, plásticos y pantallas)?",
+                a: "Sí. Aplicamos recubrimientos nanocerámicos flexibles específicos para interiores de auto: protegen asientos de piel Nappa o alcántara contra transferencia de mezclilla, derrames de líquidos y rayos UV sin alterar el tacto mate original.",
+            },
+            {
+                q: "¿Qué incluye el acabado cerámico para carro a domicilio de Doctor Foam?",
+                a: "Incluye lavado clínico con agua purificada, descontaminación férrica y con barra de arcilla, corrección de pintura de 1 a 3 etapas para eliminar swirls, desengrasado IPA y aplicación de protección nanocerámica SiO2 9H con certificado de garantía.",
+            },
+        ],
         content: `
-## ¿Qué es un Recubrimiento Cerámico?
+## ¿Qué es un Recubrimiento Cerámico Automotriz (Acabado Cerámico para Autos)?
 
-Un recubrimiento cerámico (o coating cerámico) es una capa de protección líquida de base SiO2 (dióxido de silicio) que se aplica sobre la pintura de tu vehículo, creando un escudo transparente extremadamente resistente.
+Un **recubrimiento cerámico para autos** (también llamado *coating cerámico* o *acabado cerámico para carro*) es un polímero líquido de base **SiO2 (dióxido de silicio)** y/o grafeno que forma un enlace químico covalente con el barniz transparente (*clear coat*) de tu vehículo, creando un escudo cristalino hidrofóbico de alta densidad.
 
-A diferencia de las ceras y selladores tradicionales que duran semanas o meses, un recubrimiento cerámico profesional puede **proteger tu auto por 2 a 5 años** dependiendo del producto y la aplicación.
+A diferencia de las ceras carnaubas o selladores sintéticos tradicionales que se degradan en semanas con el sol y la lluvia ácida del Valle de México, un recubrimiento cerámico profesional puede **proteger tu auto por 3 a 7 años**.
 
-## Tipos de Recubrimiento Cerámico
+## Tipos de Recubrimiento Cerámico para Carro
 
-### Cerámico de Consumidor (DIY)
+### 1. Cerámico de Consumidor (DIY / Spray)
 - **Duración**: 6 meses - 1 año
-- **Precio**: $500 - $2,000 MXN (producto)
+- **Precio**: $500 - $2,000 MXN (solo producto)
 - **Dificultad**: Media
-- **Resultado**: Básico
+- **Resultado**: Hidrofobicidad básica sin corrección óptica previa
 
-### Cerámico Profesional
-- **Duración**: 2 - 5 años
-- **Precio**: $6,000 - $15,000 MXN (servicio completo)
-- **Dificultad**: Requiere certificación
-- **Resultado**: Excepcional
+### 2. Acabado Cerámico Profesional 9H (SiO2)
+- **Duración**: 3 - 5 años
+- **Precio**: $10,999 MXN (servicio completo a domicilio con corrección de pintura)
+- **Dificultad**: Requiere técnicos certificados IDA e iluminación de inspección
+- **Resultado**: Efecto espejo profundo, repelencia al agua y blindaje contra lluvia ácida
 
-### Cerámico de Grafeno (Nueva Generación)
-- **Duración**: 3 - 7 años
-- **Precio**: $10,000 - $25,000 MXN
-- **Dificultad**: Especialista
-- **Resultado**: Premium
+### 3. Cerámico de Grafeno (Nueva Generación 10H)
+- **Duración**: 5 - 7 años
+- **Precio**: $14,999 MXN (paquete completo con corrección multi-etapa)
+- **Dificultad**: Especialista en nanotecnología automotriz
+- **Resultado**: Menor retención de calor, máxima resistencia a manchas de agua (*water spots*) y brillo extremo
 
-## Beneficios del Recubrimiento Cerámico
+## Recubrimiento Cerámico para Interiores de Auto (Piel, Plásticos y Pantallas)
 
-1. **Efecto hidrofóbico**: El agua se desliza llevándose la suciedad
-2. **Protección UV**: Evita oxidación y decoloración
-3. **Resistencia a químicos**: Protege contra lluvia ácida y contaminantes
-4. **Brillo profundo**: Efecto espejo permanente
-5. **Fácil mantenimiento**: Lavados más rápidos y sencillos
+Uno de los servicios más solicitados por propietarios de vehículos nuevos y de alta gama en CDMX es el **cerámico para interiores de auto**:
 
-## El Proceso de Aplicación Profesional
+1. **Cerámico para Asientos de Piel y Cuero Nappa**: Crea una barrera transpirable e invisible que evita la **transferencia de tinte de mezclilla (jeans)** en asientos blancos, beige o café, repele líquidos derramados y bloquea los rayos UV para evitar grietas sin dejar acabado grasoso ni brilloso.
+2. **Cerámico para Plásticos Piano Black y Molduras**: Protege las consolas centrales en acabado *Piano Black* y fibra de carbono contra micro-rayones y polvo estático.
+3. **Protección Hidrofóbica en Textiles y Alcántara**: Encapsula cada fibra para que café, refrescos o lluvia resbalen sin penetrar en la espuma del asiento.
 
-En Doctor Foam seguimos un protocolo de 7 pasos:
+## Beneficios del Acabado Cerámico en tu Auto
 
-1. **Lavado de descontaminación** — Eliminamos toda suciedad y contaminantes
-2. **Descontaminación química** — Eliminamos partículas incrustadas
-3. **Barra de arcilla** — Retiramos contaminación mecánica
-4. **Corrección de pintura** — Pulido para eliminar imperfecciones
-5. **Preparación IPA** — Limpiamos residuos de pulido
-6. **Aplicación del cerámico** — Capa por capa, panel por panel
-7. **Curado** — Tiempo de secado controlado
+1. **Efecto hidrofóbico extremo (Efecto Loto)**: El agua y el lodo se deslizan llevándose la suciedad.
+2. **Filtro UV de grado clínico**: Evita la oxidación y decoloración de la pintura y los interiores.
+3. **Resistencia química en CDMX**: Protege contra lluvia ácida, savia de árbol y excremento de aves.
+4. **Brillo espejo permanente**: Resalta la profundidad y las perlas metálicas de la pintura original OEM.
+5. **Lavados más rápidos**: Reduce en 60% el tiempo de limpieza en tu [lavado recurrente a domicilio](/lavado-recurrente-autos-domicilio).
 
-## Precios de Recubrimiento Cerámico en CDMX
+## El Proceso Profesional de 7 Pasos a Domicilio
+
+En Doctor Foam llevamos un laboratorio móvil con agua purificada y planta propia a tu domicilio en Polanco, Lomas, Santa Fe, Interlomas o Pedregal:
+
+1. **Lavado clínico de descontaminación** — Eliminamos toda suciedad superficial sin fricción.
+2. **Descontaminación química férrica** — Disolvemos partículas metálicas incrustadas en el barniz.
+3. **Descontaminación mecánica (Clay Bar)** — Dejamos la superficie lisa como cristal.
+4. **Corrección de pintura profesional** — Pulido en 1 a 3 etapas para eliminar [swirls y micro-rayones](/blog/correccion-pintura-swirls-guia) antes de sellar.
+5. **Preparación clínica con IPA** — Eliminamos aceites de pulido para garantizar el anclaje molecular.
+6. **Aplicación de cerámico en carrocería, rines e interiores** — Nivelación micrométrica panel por panel.
+7. **Curado e inspección LED CRI 95+** — Verificación óptica sin manchas altas (*high spots*).
+
+## Precios de Recubrimiento Cerámico en CDMX (2026)
 
 | Servicio | Precio Mercado | Precio Doctor Foam |
 |----------|---------------|-------------------|
-| Signature Detail + Sellador Cerámico 6 meses | $4,000 - $6,000 | $7,499 (incluye corrección 2-3 etapas + interior) |
-| Ceramic Coating 9H (3 a 5 años) | $9,000 - $14,000 | $10,999 (con preparación y certificado) |
-| Graphene Shield Premium (5 a 7 años) | $14,000 - $22,000 | $14,999 (máxima dureza e hidrofobicidad) |
+| Signature Detail + Sellador Cerámico 6 meses | $6,000 - $8,500 | $7,499 MXN (incluye corrección 2-3 etapas + interior) |
+| Ceramic Coating 9H (3 a 5 años) | $11,000 - $16,000 | $10,999 MXN (con preparación y certificado) |
+| Graphene Shield Premium (5 a 7 años) | $15,000 - $24,000 | $14,999 MXN (carrocería, rines, cristales e interiores) |
 
 *Precios base para sedán y SUV de 2 filas (IVA incluido). Pick Ups y SUV de 3 filas +15%.*
 
-## ¿Por Qué Elegir Doctor Foam?
-
-- **Equipo industrial**: No usamos herramientas domésticas
-- **Certificación**: Nuestros técnicos están certificados
-- **A domicilio**: Sin mover tu auto
-- **Garantía**: Certificado de protección incluido
-- **Seguimiento**: Revisión gratuita a los 30 días
-
 ---
 
-*¿Listo para proteger tu inversión? [Agenda tu cita aquí](/reservar) y lleva la protección cerámica profesional a la puerta de tu casa.*
+*¿Listo para blindar el exterior y el interior de tu vehículo? [Agenda tu cita en línea](/reservar) o revisa nuestros [paquetes de detallado automotriz y cerámico](/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz).*
     `,
     },
     "5-errores-lavado-auto-premium": {
@@ -412,12 +436,28 @@ Aplicamos un aromatizante premium de larga duración que complementa el ambiente
 };
 
 /* ─── Fallback articles ─── */
-const defaultContent: Record<string, { title: string; date: string; category: string; readTime: string; content: string; metaDesc: string }> = {
+const defaultContent: Record<string, BlogPostData> = {
     "correccion-pintura-swirls-guia": {
-        title: "Swirls en la Pintura Automotriz: Qué Son, Cómo Eliminarlos y Corrección en CDMX",
-        date: "2026-05-05", category: "Corrección", readTime: "9 min",
-        metaDesc: "¿Tu auto tiene swirls o micro-rayones circulares bajo el sol? Guía completa para eliminar swirls de la pintura en 1, 2 y 3 etapas a domicilio en CDMX con Doctor Foam.",
-        content: `## ¿Qué son los Swirls en la Pintura de tu Auto?\n\nLos **swirls** (también conocidos como marcas de remolino o telarañas ópticas) son **micro-rayones circulares** grabados en la capa transparente (*clear coat* o barniz) de la pintura automotriz. Aunque parecen circulares, en realidad son miles de micro-incisiones multidireccionales que refractan la luz solar o las lámparas LED puntuales formando un halo alrededor del reflejo.\n\nEn colores oscuros (negro obsidiana, azul marino, gris grafito) e incluso en **autos blancos** bajo iluminación de alta intensidad, los swirls apagan el brillo profundo y hacen que un vehículo nuevo o de lujo luzca envejecido.\n\n## Las 4 Causas Principales de los Swirls en CDMX\n\n1. **Lavado con cubeta única o franela ("viene-viene")**: El polvo volcánico y sílice del Valle de México tiene dureza Mohs 7. Frotarlo con un trapo húmedo equivale a lijar el barniz.\n2. **Rodillos de autolavado automático**: Las cerdas sintéticas acumulan lodo y arena de cientos de vehículos previos, golpeando la laca a altas revoluciones.\n3. **Secado con gamuzas sintéticas o toallas de algodón**: Sin lubricación polimérica ni microfibra de 500+ GSM, el secado arrastra partículas residuales.\n4. **Pulido amateur con borla de lana**: Genera hologramas térmicos y adelgaza peligrosamente el barniz original OEM.\n\n## Cómo Eliminar Swirls de la Pintura de Forma Definitiva (Niveles de Corrección)\n\nCeras y abrillantadores comerciales solo rellenan temporalmente los micro-rayones con aceites que desaparecen al segundo lavado. La única solución real es la **nivelación micrométrica del barniz mediante corrección de pintura profesional**:\n\n### 1. Corrección en 1 Etapa (One-Step Polish / Realce)\nCombinación de compuesto de corte medio-fino con pad de espuma de celda reticulada usando pulidora roto-orbital de doble acción (DA). Elimina entre **60% y 75%** de los swirls en autos seminuevos.\n\n### 2. Corrección en 2 Etapas (Corte + Refinado — Signature Detail)\nPrimera etapa de corte pesado para nivelar rayones profundos y marcas de lluvia ácida, seguida de una etapa de refinado óptico con pad suave para restaurar un acabado espejo libre de hologramas (**85% a 95% de corrección**).\n\n### 3. Corrección en 3 Etapas (Grado Concours / Show Car)\nMedición ultrasónica de espesor de pintura panel por panel, corte quirúrgico, pulido intermedio y *jeweling* de ultra-alto brillo, culminando con blindaje nanocerámico 9H (**95% a 99% de perfección óptica**).\n\n## Tabla Comparativa de Corrección de Pintura a Domicilio en CDMX\n\n| Servicio Doctor Foam | Eliminación de Swirls | Tiempo | Protección Incluida | Inversión Desde |\n|---|---|---|---|---|\n| **Lavado Clínico Anti-Swirl** | Prevención (0% abrasión) | 2 - 3 hrs | Polímero hidrofóbico | $1,599 MXN |\n| **Signature Detail (Corrección + Interior)** | 85% - 95% | 6 - 8 hrs | Sellador Cerámico 6 meses | $7,499 MXN |\n| **Extreme Ceramic Shield (Corrección + 9H)** | 95% - 99% | 8 - 12 hrs | Cerámico 9H (3 a 5 años) | $12,499 MXN |\n\n## ¿Cómo Evitar que los Swirls Regresen?\n\nUna vez corregida la pintura con nuestro servicio de [Lavado Profundo y Detallado de Vehículos en CDMX](/lavado-profundo-vehiculos-cdmx), la clave para mantener el acabado espejo intacto es proteger el barniz con nuestros [paquetes de detallado automotriz y recubrimiento cerámico](/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz) y mantener el vehículo mediante [lavado recurrente a domicilio con método de dos cubetas](/lavado-recurrente-autos-domicilio) o en tu oficina con nuestro servicio de [lavado de autos en estacionamiento corporativo sin escurrimientos](/lavado-autos-estacionamiento-corporativo).\n\n---\n\n*Descubre el verdadero color y reflejo de tu auto sin salir de casa. [Agenda una evaluación y corrección de pintura a domicilio en CDMX](/reservar).*`,
+        title: "Swirls en la Pintura y Micro Rayones en tu Auto: Qué Son, Cómo Quitarlos y Precios CDMX",
+        date: "2026-05-05",
+        category: "Corrección",
+        readTime: "9 min",
+        metaDesc: "¿Qué son los swirls en la pintura de tu auto y cómo quitar micro rayones (microrayones) definitivos? Guía de corrección de pintura a domicilio en CDMX y precios.",
+        faqs: [
+            {
+                q: "¿Qué son los swirls (micro swirls) en la pintura de un auto?",
+                a: "Los swirls o micro-rayones (microrayones) son miles de micro-incisiones en la capa transparente (barniz o clear coat) causadas por franelas sucias, lavado con una sola cubeta o rodillos de autolavado. Bajo el sol o luz LED se ven como telarañas o remolinos circulares que opacan el brillo del auto.",
+            },
+            {
+                q: "¿Cómo quitar micro rayones y swirls de la pintura de mi auto de forma definitiva?",
+                a: "Las ceras solo rellenan temporalmente los microrayones. Para quitarlos de raíz se requiere una corrección de pintura profesional con pulidora roto-orbital y compuestos abrasivos de precisión en 1 etapa (60-75% de eliminación), 2 etapas (85-95% en nuestro paquete Signature Detail) o 3 etapas con recubrimiento cerámico 9H (95-99%).",
+            },
+            {
+                q: "¿Cuánto cuesta eliminar los swirls y pulir un auto a domicilio en CDMX?",
+                a: "En Doctor Foam México realizamos corrección de pintura y eliminación de swirls a domicilio con iluminación de inspección LED CRI 95+ y planta propia desde $7,499 MXN en el paquete Signature Detail (incluye detallado interior con vapor a 180°C y sellador cerámico de 6 meses).",
+            },
+        ],
+        content: `## ¿Qué son los Swirls en la Pintura de tu Auto (Swirls Qué Es)?\n\nLos **swirls en la pintura** (también buscados como **swirls auto**, **micro swirls**, marcas de remolino o telarañas ópticas) son **micro rayones** (*microrayones*) grabados en la capa transparente (*clear coat* o barniz) de la pintura automotriz. Aunque a simple vista parecen círculos concéntricos, en realidad son miles de micro-incisiones rectas y multidireccionales que refractan la luz del sol o las lámparas LED formando un halo circular alrededor del reflejo.\n\nTanto en pinturas oscuras (negro obsidiana, azul marino, gris grafito) como en **autos blancos o plateados** bajo luz directa, los **swirls y microrayones** apagan la profundidad del color y restan hasta un 15% del valor estético de reventa.\n\n## Las 4 Causas Principales de los Micro Rayones y Swirls en CDMX\n\n1. **Lavado con cubeta única o franela ("viene-viene")**: El polvo volcánico y sílice del Valle de México tiene dureza Mohs 7. Frotarlo con un trapo húmedo equivale a pasar una lija fina sobre el barniz.\n2. **Rodillos de autolavado automático**: Las cerdas sintéticas acumulan lodo y arena de cientos de vehículos previos, golpeando la laca a altas revoluciones y generando **micro swirls** instantáneos.\n3. **Secado con gamuzas sintéticas o toallas de algodón**: Sin lubricación polimérica ni microfibra de 500+ GSM, el secado arrastra partículas abrasivas sobre los paneles horizontales (cofre, toldo y cajuela).\n4. **Pulido amateur con borla de lana**: Genera hologramas térmicos ("charolazos") y adelgaza peligrosamente el barniz original OEM.\n\n## Cómo Quitar Micro Rayones y Swirls del Auto de Forma Definitiva (Niveles de Corrección)\n\nLas ceras comerciales y "renovadores de pintura" de supermercado solo rellenan temporalmente los **micro rayones** con aceites siliconados que desaparecen al segundo lavado. La única solución real y permanente es la **nivelación micrométrica del barniz mediante corrección de pintura profesional**:\n\n### 1. Corrección en 1 Etapa (One-Step Polish / Realce Óptico)\nCombinación de compuesto de corte medio-fino con pad de espuma de celda reticulada usando pulidora roto-orbital de doble acción (DA). Elimina entre **60% y 75%** de los **swirls en el auto** y devuelve el brillo profundo en vehículos seminuevos.\n\n### 2. Corrección en 2 Etapas (Corte + Refinado — Signature Detail)\nPrimera etapa de corte pesado para nivelar **microrayones** profundos y marcas de lluvia ácida, seguida de una etapa de refinado óptico con pad suave para restaurar un acabado espejo libre de hologramas (**85% a 95% de corrección garantizada**).\n\n### 3. Corrección en 3 Etapas (Grado Concours / Show Car + Cerámico 9H)\nMedición ultrasónica de espesor de pintura panel por panel, corte quirúrgico, pulido intermedio y *jeweling* de ultra-alto brillo, culminando con blindaje nanocerámico SiO2 9H (**95% a 99% de perfección óptica**).\n\n## Tabla Comparativa de Corrección de Pintura y Eliminación de Swirls en CDMX\n\n| Servicio Doctor Foam | Eliminación de Swirls y Micro Rayones | Tiempo | Protección Incluida | Inversión Desde |\n|---|---|---|---|---|\n| **Lavado Clínico Anti-Swirl** | Prevención (0% abrasión nueva) | 2 - 3 hrs | Polímero hidrofóbico | $1,599 MXN |\n| **Signature Detail (Corrección + Interior)** | 85% - 95% de swirls y microrayones | 6 - 8 hrs | Sellador Cerámico 6 meses | $7,499 MXN |\n| **Extreme Ceramic Shield (Corrección + 9H)** | 95% - 99% + blindaje cristalino | 8 - 12 hrs | Cerámico 9H (3 a 5 años) | $12,499 MXN |\n\n## ¿Cómo Evitar que los Swirls y Microrayones Regresen?\n\nUna vez corregida la pintura con nuestro servicio de [Lavado Profundo y Detallado de Vehículos en CDMX](/lavado-profundo-vehiculos-cdmx), la clave para mantener el acabado espejo intacto es blindar el barniz con nuestros [paquetes de detallado automotriz y recubrimiento cerámico](/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz) y conservar el vehículo mediante [lavado recurrente a domicilio con método de dos cubetas y agua purificada](/lavado-recurrente-autos-domicilio) o en tu oficina con nuestro servicio de [lavado de autos en estacionamiento corporativo sin escurrimientos](/lavado-autos-estacionamiento-corporativo).\n\n---\n\n*Descubre el verdadero color y reflejo espejo de tu auto sin salir de casa. [Agenda una evaluación y corrección de pintura a domicilio en CDMX](/reservar).*`,
     },
     "por-que-detallado-domicilio-mejor": {
         title: "¿Por Qué el Detallado a Domicilio Supera al Taller?",
@@ -433,7 +473,7 @@ const defaultContent: Record<string, { title: string; date: string; category: st
     },
 };
 
-const allContent = { ...blogContent, ...defaultContent };
+const allContent: Record<string, BlogPostData> = { ...blogContent, ...defaultContent };
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -474,12 +514,24 @@ export default async function BlogPost({ params }: PageProps) {
         );
     }
 
+    const postFaqs = post.faqs || [
+        {
+            q: `¿Doctor Foam realiza este servicio de ${post.category.toLowerCase()} a domicilio en CDMX?`,
+            a: "Sí. Nuestras unidades móviles autónomas cuentan con tanque de agua purificada por ósmosis inversa, generador eléctrico insonorizado y vapor seco a 180°C para atender tu vehículo en tu residencia u oficina en Polanco, Lomas, Santa Fe, Bosques, Interlomas, Pedregal y Coyoacán.",
+        },
+        {
+            q: "¿Cómo puedo cotizar o agendar un diagnóstico para mi auto?",
+            a: "Puedes cotizar en menos de 60 segundos en nuestra calculadora en línea (/reservar) o enviarnos un mensaje directo por WhatsApp al +52 56 1084 6022 indicando el modelo de tu auto y tu colonia.",
+        },
+    ];
+
     const articleJsonLd = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         headline: post.title,
         description: post.metaDesc,
         datePublished: post.date,
+        dateModified: "2026-05-07",
         author: { "@type": "Organization", name: "Doctor Foam México" },
         publisher: { "@type": "Organization", name: "Doctor Foam México" },
         url: `https://drfoam.com.mx/blog/${slug}`,
@@ -495,19 +547,58 @@ export default async function BlogPost({ params }: PageProps) {
         ],
     };
 
+    const faqJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: postFaqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: f.a,
+            },
+        })),
+    };
+
+    const whatsappText = encodeURIComponent(
+        `Hola Doctor Foam, leí su guía "${post.title}" y me gustaría cotizar un servicio a domicilio para mi auto`
+    );
+
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
             <nav className="navbar navbar-scrolled">
                 <div className="navbar-inner">
                     <Link href="/" style={{ textDecoration: "none" }}>
                         <Logo size="sm" />
                     </Link>
-                    <a href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
-                        Agendar Cita
-                    </a>
+                    <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+                        <Link href="/lavado-profundo-vehiculos-cdmx" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+                            Lavado Profundo
+                        </Link>
+                        <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+                            Paquetes y Precios
+                        </Link>
+                        <Link href="/lavado-recurrente-autos-domicilio" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+                            Lavado Recurrente
+                        </Link>
+                        <a
+                            href={`https://wa.me/525610846022?text=${whatsappText}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-cta-location={`blog_${slug}_nav_whatsapp`}
+                            className="btn-outline"
+                            style={{ padding: "0.45rem 0.9rem", fontSize: "0.78rem" }}
+                        >
+                            💬 WhatsApp
+                        </a>
+                        <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+                            Agendar Cita
+                        </Link>
+                    </div>
                 </div>
             </nav>
 
@@ -519,7 +610,7 @@ export default async function BlogPost({ params }: PageProps) {
                         </Link>
                     </div>
 
-                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
                         <span className="zone-tag zone-tag-gold">{post.category}</span>
                         <span style={{ color: "#64748b", fontSize: "0.85rem" }}>{post.readTime} de lectura</span>
                         <span style={{ color: "#64748b", fontSize: "0.85rem" }}>
@@ -527,9 +618,47 @@ export default async function BlogPost({ params }: PageProps) {
                         </span>
                     </div>
 
-                    <h1 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", marginBottom: "2rem", lineHeight: "1.3", color: "#0f172a" }}>
+                    <h1 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", marginBottom: "1.5rem", lineHeight: "1.3", color: "#0f172a" }}>
                         {post.title}
                     </h1>
+
+                    {/* Quick Action Bar above the fold for immediate conversion */}
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            flexWrap: "wrap",
+                            gap: "0.75rem",
+                            padding: "1rem 1.25rem",
+                            marginBottom: "2rem",
+                            borderRadius: "0.9rem",
+                            background: "linear-gradient(135deg, rgba(240, 253, 244, 0.95), rgba(239, 246, 255, 0.95))",
+                            border: "1px solid rgba(34, 197, 94, 0.28)",
+                        }}
+                    >
+                        <div style={{ fontSize: "0.88rem", color: "#0f172a" }}>
+                            <strong>¿Tu auto necesita atención profesional a domicilio en CDMX?</strong>
+                            <span style={{ display: "block", fontSize: "0.8rem", color: "#475569" }}>
+                                Vamos a tu casa u oficina con agua purificada, luz de inspección y planta eléctrica propia.
+                            </span>
+                        </div>
+                        <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
+                            <a
+                                href={`https://wa.me/525610846022?text=${whatsappText}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location={`blog_${slug}_top_whatsapp`}
+                                className="btn-premium"
+                                style={{ padding: "0.5rem 1rem", fontSize: "0.8rem", background: "linear-gradient(135deg, #16a34a, #15803d)" }}
+                            >
+                                💬 Cotizar por WhatsApp
+                            </a>
+                            <Link href="/reservar" className="btn-outline" style={{ padding: "0.5rem 1rem", fontSize: "0.8rem" }}>
+                                📅 Ver Precios
+                            </Link>
+                        </div>
+                    </div>
 
                     <div style={{ marginBottom: "2.5rem", borderRadius: "1rem", overflow: "hidden", position: "relative", width: "100%", height: "400px" }}>
                         <Image
@@ -547,8 +676,32 @@ export default async function BlogPost({ params }: PageProps) {
                         dangerouslySetInnerHTML={{ __html: formatMarkdown(post.content) }}
                     />
 
-                    {/* Placeholder para la galería de 4 imágenes generadas */}
-                    <div style={{ marginTop: "4rem" }}>
+                    {/* Preguntas Frecuentes del Artículo */}
+                    <div style={{ marginTop: "3.5rem" }}>
+                        <h2 style={{ fontSize: "1.4rem", color: "#0f172a", marginBottom: "1.25rem" }}>
+                            Preguntas Frecuentes
+                        </h2>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                            {postFaqs.map((faq, idx) => (
+                                <details
+                                    key={idx}
+                                    className="glass-card"
+                                    style={{ padding: "1.15rem 1.4rem", cursor: "pointer" }}
+                                    open={idx === 0}
+                                >
+                                    <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
+                                        {faq.q}
+                                    </summary>
+                                    <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                                        {faq.a}
+                                    </p>
+                                </details>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Galería de 4 imágenes generadas */}
+                    <div style={{ marginTop: "3.5rem" }}>
                         <h3 style={{ fontSize: "1.4rem", color: "#0f172a", marginBottom: "1.5rem" }}>Galería del Servicio</h3>
                         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1rem" }}>
                             {[1, 2, 3, 4].map((i) => (
@@ -574,14 +727,24 @@ export default async function BlogPost({ params }: PageProps) {
                     <div className="glass-card" style={{ padding: "2rem", marginTop: "3rem", textAlign: "center" }}>
                         <h3 style={{ marginBottom: "0.75rem", color: "#0f172a" }}>¿Buscas una restauración completa para tu vehículo?</h3>
                         <p style={{ color: "#475569", marginBottom: "1.5rem" }}>
-                            Conoce nuestros paquetes con vapor seco a 180°C, corrección de pintura y protección nanocerámica a domicilio.
+                            Conoce nuestros paquetes con vapor seco a 180°C, corrección de pintura de 1 a 3 etapas y protección nanocerámica 9H a domicilio.
                         </p>
-                        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+                        <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+                            <a
+                                href={`https://wa.me/525610846022?text=${whatsappText}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location={`blog_${slug}_bottom_whatsapp`}
+                                className="btn-premium"
+                                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
+                            >
+                                💬 Cotizar por WhatsApp Ahora
+                            </a>
                             <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
-                                📋 Conoce nuestros Planes de Detallado Automotriz
+                                📋 Ver Paquetes y Precios
                             </Link>
                             <Link href="/reservar" className="btn-outline">
-                                📅 Agendar servicio
+                                📅 Agendar en Línea
                             </Link>
                         </div>
                     </div>
@@ -610,6 +773,34 @@ export default async function BlogPost({ params }: PageProps) {
                             </Link>
                         </div>
                     </div>
+
+                    {/* 8-Zone Local Coverage Hub */}
+                    <div style={{ marginTop: "2.5rem", textAlign: "center" }}>
+                        <h3 style={{ fontSize: "1.05rem", color: "#0f172a", marginBottom: "0.75rem" }}>
+                            Zonas de Cobertura de Detallado y Corrección de Pintura a Domicilio
+                        </h3>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
+                            {[
+                                { slug: "polanco", label: "Polanco" },
+                                { slug: "lomas-de-chapultepec", label: "Lomas de Chapultepec" },
+                                { slug: "santa-fe", label: "Santa Fe" },
+                                { slug: "bosques-de-las-lomas", label: "Bosques de las Lomas" },
+                                { slug: "pedregal", label: "Pedregal" },
+                                { slug: "interlomas", label: "Interlomas" },
+                                { slug: "huixquilucan", label: "Huixquilucan" },
+                                { slug: "coyoacan", label: "Coyoacán" },
+                            ].map((z) => (
+                                <Link
+                                    key={z.slug}
+                                    href={`/zonas/${z.slug}`}
+                                    className="zone-tag zone-tag-blue"
+                                    style={{ textDecoration: "none", fontSize: "0.78rem", padding: "0.35rem 0.75rem" }}
+                                >
+                                    📍 {z.label}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
                 </article>
             </main>
 
@@ -622,6 +813,8 @@ export default async function BlogPost({ params }: PageProps) {
                         <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>
                         {" · "}
                         <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Profundo</Link>
+                        {" · "}
+                        <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" style={{ color: "#64748b", textDecoration: "underline" }}>Paquetes y Precios</Link>
                         {" · "}
                         <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#64748b", textDecoration: "underline" }}>Estacionamiento Corporativo</Link>
                         {" · "}

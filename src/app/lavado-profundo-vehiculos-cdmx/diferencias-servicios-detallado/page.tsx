@@ -3,9 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Lavado de Vestiduras y Detallado: Diferencias | Doctor Foam",
+  title: "Detallado de Interiores de Autos, Interior Profundo y Lavado de Vestiduras | Doctor Foam CDMX",
   description:
-    "Conoce las diferencias entre lavado de vestiduras, detallado interior y restauración completa. Extracción térmica, corrección de pintura y más explicado a detalle.",
+    "¿Qué incluye un detallado interior profundo automotriz? Conoce las diferencias entre lavado de vestiduras, limpieza de interiores de autos a domicilio con vapor a 180°C y precios en CDMX.",
   alternates: { canonical: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" },
 };
 
@@ -42,8 +42,63 @@ const breadcrumbJsonLd = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Inicio", item: "https://drfoam.com.mx/" },
     { "@type": "ListItem", position: 2, name: "Lavado Profundo CDMX", item: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx" },
-    { "@type": "ListItem", position: 3, name: "Diferencias entre Servicios de Detallado", item: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" },
+    { "@type": "ListItem", position: 3, name: "Detallado de Interiores e Interior Profundo: Diferencias", item: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" },
   ],
+};
+
+const interiorSteps = [
+  {
+    step: "1. Aspirado Industrial de Alta Potencia",
+    desc: "Succión 10x superior a una aspiradora doméstica para extraer polvo, arena y alérgenos incrustados en las fibras profundas de alfombras, rieles y cajuela.",
+  },
+  {
+    step: "2. Vapor Seco a 180°C (Desnaturalización Térmica)",
+    desc: "Desinfecta, desodoriza y elimina el 99.9% de bacterias y ácaros en asientos, volante, palanca y ductos de aire acondicionado con solo 5% de humedad.",
+  },
+  {
+    step: "3. Inyección-Extracción Profunda de Manchas",
+    desc: "En vestiduras de tela y alfombras aplicamos enzimas biodegradables y extracción térmica simultánea que elimina manchas de café, grasa o mascotas sin empapar la espuma.",
+  },
+  {
+    step: "4. Tratamiento Clínico de Asientos de Piel y Alcántara",
+    desc: "Limpieza de poros con cepillo de cerdas naturales, limpiador pH neutro e hidratación con acondicionador mate que previene grietas y brillo grasoso.",
+  },
+  {
+    step: "5. Detallado de Tablero, Consola y Plásticos",
+    desc: "Cada botón, costura y rejilla se limpia con pinceles de grado quirúrgico y se protege con sellador UV anti-estático.",
+  },
+  {
+    step: "6. Sanitización con Ozono Médico (O3)",
+    desc: "Destruye moléculas de mal olor (tabaco, humedad, comida) en todo el habitáculo y circuito cerrado de ventilación.",
+  },
+];
+
+const faqs = [
+  {
+    q: "¿Qué incluye un detallado de interiores de autos e interior profundo profesional?",
+    a: "Nuestro detallado interior profundo automotriz (Industrial Deep Interior) incluye 6 etapas clínicas a domicilio: aspirado industrial de alta potencia, esterilización con vapor seco a 180°C, inyección-extracción térmica de manchas en tela y alfombra, limpieza e hidratación de asientos de piel, detallado de tablero con protección UV y sanitización con ozono médico.",
+  },
+  {
+    q: "¿Cuál es la diferencia entre lavado de vestiduras tradicional y el detallado interior de Doctor Foam?",
+    a: "Un lavado de vestiduras convencional inunda los asientos con agua y detergente alcalino, dejando humedad atrapada por días que genera olor a humedad y hongos. Doctor Foam utiliza vapor seco a 180°C y extracción controlada que seca en menos de 60 minutos y conserva la piel y electrónica del vehículo intactas.",
+  },
+  {
+    q: "¿Cuánto cuesta el lavado y detallado de interiores de autos a domicilio en CDMX?",
+    a: "El paquete Industrial Deep Interior + Exterior comienza desde $3,399 MXN para sedanes y SUVs de 2 filas (3 a 4 horas de intervención con unidad móvil autónoma a domicilio en CDMX y Zona Esmeralda/Huixquilucan).",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
 };
 
 export default function DiferenciasServiciosPage() {
@@ -51,6 +106,7 @@ export default function DiferenciasServiciosPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
           <Link href="/" style={{ textDecoration: "none" }}>
@@ -92,10 +148,10 @@ export default function DiferenciasServiciosPage() {
               ← Volver a Lavado Profundo
             </Link>
             <h1 className="section-title" style={{ marginTop: "1.5rem" }}>
-              Lavado de Vestiduras y Detallado: <span className="gradient-text">Diferencias</span> de Nuestros Servicios
+              Detallado de Interiores de Autos, <span className="gradient-text">Interior Profundo</span> y Lavado de Vestiduras
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "1.5rem" }}>
-              No todo &ldquo;lavado de vestiduras&rdquo; es igual. Aquí te explicamos exactamente qué hace diferente a cada nivel de nuestro <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link>.
+            <p className="section-subtitle" style={{ maxWidth: "740px", marginBottom: "1.5rem" }}>
+              No toda &ldquo;limpieza de interiores de autos&rdquo; ni &ldquo;lavado de vestiduras&rdquo; es igual. Descubre qué incluye nuestro <strong>detallado interior automotriz</strong> con vapor seco a 180°C y cómo se diferencia del autolavado tradicional en nuestro <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>servicio a domicilio en CDMX</Link>.
             </p>
             <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
@@ -159,6 +215,52 @@ export default function DiferenciasServiciosPage() {
             </div>
           </section>
         ))}
+
+        {/* ¿Qué incluye un Detallado Interior Profundo Automotriz? */}
+        <section className="section-padding">
+          <div className="container" style={{ maxWidth: "960px" }}>
+            <h2 style={{ fontSize: "1.5rem", marginBottom: "0.75rem", textAlign: "center" }}>
+              ¿Qué Incluye un <span className="gradient-text">Detallado Interior Profundo</span> de Autos a Domicilio?
+            </h2>
+            <p style={{ color: "#475569", textAlign: "center", maxWidth: "700px", margin: "0 auto 2rem" }}>
+              Mientras una limpieza básica solo aspira por encima, nuestro protocolo de <strong>lavado de interiores de autos a domicilio</strong> restaura y desinfecta cada centímetro del habitáculo:
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.25rem" }}>
+              {interiorSteps.map((s, idx) => (
+                <div key={idx} className="glass-card" style={{ padding: "1.5rem" }}>
+                  <h3 style={{ fontSize: "1rem", color: "#0f172a", marginBottom: "0.5rem" }}>{s.step}</h3>
+                  <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.65, margin: 0 }}>{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Preguntas Frecuentes */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "820px" }}>
+            <h2 style={{ fontSize: "1.4rem", marginBottom: "1.25rem", textAlign: "center" }}>
+              Preguntas Frecuentes sobre <span className="gradient-text">Detallado de Interiores</span>
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+              {faqs.map((faq, idx) => (
+                <details
+                  key={idx}
+                  className="glass-card"
+                  style={{ padding: "1.15rem 1.4rem", cursor: "pointer" }}
+                  open={idx === 0}
+                >
+                  <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
+                    {faq.q}
+                  </summary>
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                    {faq.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section className="section-padding" style={{ textAlign: "center" }}>
           <div className="container" style={{ maxWidth: "600px" }}>
