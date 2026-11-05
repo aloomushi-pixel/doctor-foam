@@ -105,9 +105,30 @@ export default function PaquetesDetallado() {
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
-          <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
-            Reservar Ahora
-          </Link>
+          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Lavado Profundo
+            </Link>
+            <Link href="/lavado-recurrente-autos-domicilio" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Lavado Recurrente
+            </Link>
+            <Link href="/membresia-doctor-foam" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Membresía $990
+            </Link>
+            <a
+              href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20cotizar%20un%20paquete%20de%20detallado%20automotriz%20a%20domicilio"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta-location="cluster_paquetes_nav_whatsapp"
+              className="btn-outline"
+              style={{ padding: "0.45rem 0.9rem", fontSize: "0.78rem" }}
+            >
+              💬 WhatsApp
+            </a>
+            <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+              Reservar Ahora
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -120,9 +141,23 @@ export default function PaquetesDetallado() {
             <h1 className="section-title" style={{ marginTop: "1.5rem" }}>
               Planes y Paquetes de <span className="gradient-text">Detallado Automotriz</span> en CDMX
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "700px" }}>
-              Tres niveles de servicio para tres necesidades diferentes. Todos incluyen IVA, son facturables (CFDI) y se realizan a domicilio con equipo industrial.
+            <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "1.5rem" }}>
+              Tres niveles de servicio para tres necesidades diferentes. Todos incluyen IVA, son facturables (CFDI) y se realizan a domicilio con equipo industrial 100% autónomo.
             </p>
+            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link href="/reservar" className="btn-premium">
+                📅 Agendar Paquete en Línea
+              </Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20estoy%20viendo%20los%20paquetes%20de%20detallado%20y%20quiero%20asesor%C3%ADa"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="cluster_paquetes_hero_whatsapp"
+                className="btn-outline"
+              >
+                💬 Asesoría por WhatsApp
+              </a>
+            </div>
           </div>
         </section>
 
@@ -192,21 +227,68 @@ export default function PaquetesDetallado() {
                   </div>
                 )}
 
-                <Link href={`/reservar?paquete=${p.name.toLowerCase().replace(/ /g, "-")}`} className={p.featured ? "btn-premium" : "btn-outline"} style={{ justifyContent: "center" }}>
-                  Reservar {p.name}
-                </Link>
+                <div style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap" }}>
+                  <Link href={`/reservar?paquete=${p.name.toLowerCase().replace(/ /g, "-")}`} className={p.featured ? "btn-premium" : "btn-outline"} style={{ justifyContent: "center" }}>
+                    Reservar {p.name}
+                  </Link>
+                  <a
+                    href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, quiero cotizar el paquete ${p.name} (${p.price.sedan}) a domicilio`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cta-location={`cluster_paquetes_card_${p.name.toLowerCase().replace(/ /g, "_")}_whatsapp`}
+                    className="btn-outline"
+                    style={{ justifyContent: "center" }}
+                  >
+                    💬 Cotizar {p.name} por WhatsApp
+                  </a>
+                </div>
               </div>
             </div>
           </section>
         ))}
+
+        {/* Zonas de Cobertura Hub */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "900px", textAlign: "center" }}>
+            <h3 style={{ fontSize: "1.1rem", marginBottom: "0.75rem", color: "#0f172a" }}>
+              Cobertura a Domicilio con Unidad Autónoma en CDMX y EdoMex
+            </h3>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
+              {[
+                { slug: "polanco", label: "Polanco" },
+                { slug: "lomas-de-chapultepec", label: "Lomas de Chapultepec" },
+                { slug: "santa-fe", label: "Santa Fe" },
+                { slug: "bosques-de-las-lomas", label: "Bosques de las Lomas" },
+                { slug: "pedregal", label: "Pedregal" },
+                { slug: "interlomas", label: "Interlomas" },
+                { slug: "huixquilucan", label: "Huixquilucan" },
+                { slug: "coyoacan", label: "Coyoacán" },
+              ].map((z) => (
+                <Link
+                  key={z.slug}
+                  href={`/zonas/${z.slug}`}
+                  className="zone-tag zone-tag-blue"
+                  style={{ textDecoration: "none", fontSize: "0.8rem", padding: "0.35rem 0.8rem" }}
+                >
+                  📍 {z.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="footer">
         <div className="footer-bottom" style={{ borderTop: "none", marginTop: 0 }}>
-          <p>&copy; {new Date().getFullYear()} Doctor Foam México.</p>
+          <p>&copy; {new Date().getFullYear()} Doctor Foam México. Todos los derechos reservados.</p>
           <p style={{ marginTop: "0.5rem" }}>
             <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>{" · "}
-            <Link href="/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" style={{ color: "#64748b", textDecoration: "underline" }}>Diferencias</Link>
+            <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>{" · "}
+            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Profundo</Link>{" · "}
+            <Link href="/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" style={{ color: "#64748b", textDecoration: "underline" }}>Diferencias</Link>{" · "}
+            <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#64748b", textDecoration: "underline" }}>Estacionamiento Corporativo</Link>{" · "}
+            <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>{" · "}
+            <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>
           </p>
         </div>
       </footer>

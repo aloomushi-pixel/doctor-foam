@@ -58,9 +58,30 @@ export default function DiferenciasServiciosPage() {
               DOCTOR <span className="gradient-text">FOAM</span>
             </span>
           </Link>
-          <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
-            Reservar Ahora
-          </Link>
+          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Lavado Profundo
+            </Link>
+            <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Paquetes y Precios
+            </Link>
+            <Link href="/lavado-recurrente-autos-domicilio" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#334155", textDecoration: "none" }}>
+              Lavado Recurrente
+            </Link>
+            <a
+              href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20cotizar%20lavado%20de%20vestiduras%20o%20detallado%20a%20domicilio"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta-location="cluster_diferencias_nav_whatsapp"
+              className="btn-outline"
+              style={{ padding: "0.45rem 0.9rem", fontSize: "0.78rem" }}
+            >
+              💬 WhatsApp
+            </a>
+            <Link href="/reservar" className="btn-premium" style={{ padding: "0.5rem 1.2rem", fontSize: "0.8rem" }}>
+              Reservar Ahora
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -73,9 +94,23 @@ export default function DiferenciasServiciosPage() {
             <h1 className="section-title" style={{ marginTop: "1.5rem" }}>
               Lavado de Vestiduras y Detallado: <span className="gradient-text">Diferencias</span> de Nuestros Servicios
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "700px" }}>
+            <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "1.5rem" }}>
               No todo &ldquo;lavado de vestiduras&rdquo; es igual. Aquí te explicamos exactamente qué hace diferente a cada nivel de nuestro <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link>.
             </p>
+            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
+                📋 Ver Paquetes y Precios
+              </Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20saber%20qu%C3%A9%20paquete%20de%20lavado%20de%20vestiduras%20o%20detallado%20me%20recomiendan"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="cluster_diferencias_hero_whatsapp"
+                className="btn-outline"
+              >
+                💬 Preguntar por WhatsApp
+              </a>
+            </div>
           </div>
         </section>
 
@@ -135,7 +170,46 @@ export default function DiferenciasServiciosPage() {
               <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
                 <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">📋 Ver Paquetes y Precios</Link>
                 <Link href="/reservar" className="btn-outline">📅 Agendar Servicio</Link>
+                <a
+                  href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20vi%20la%20comparativa%20de%20servicios%20y%20quiero%20cotizar%20para%20mi%20auto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cta-location="cluster_diferencias_bottom_whatsapp"
+                  className="btn-outline"
+                >
+                  💬 Cotizar por WhatsApp
+                </a>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Zonas de Cobertura Hub */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "900px", textAlign: "center" }}>
+            <h3 style={{ fontSize: "1.1rem", marginBottom: "0.75rem", color: "#0f172a" }}>
+              Lavado de Vestiduras y Detallado a Domicilio en CDMX y EdoMex
+            </h3>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
+              {[
+                { slug: "polanco", label: "Polanco" },
+                { slug: "lomas-de-chapultepec", label: "Lomas de Chapultepec" },
+                { slug: "santa-fe", label: "Santa Fe" },
+                { slug: "bosques-de-las-lomas", label: "Bosques de las Lomas" },
+                { slug: "pedregal", label: "Pedregal" },
+                { slug: "interlomas", label: "Interlomas" },
+                { slug: "huixquilucan", label: "Huixquilucan" },
+                { slug: "coyoacan", label: "Coyoacán" },
+              ].map((z) => (
+                <Link
+                  key={z.slug}
+                  href={`/zonas/${z.slug}`}
+                  className="zone-tag zone-tag-blue"
+                  style={{ textDecoration: "none", fontSize: "0.8rem", padding: "0.35rem 0.8rem" }}
+                >
+                  📍 {z.label}
+                </Link>
+              ))}
             </div>
           </div>
         </section>
@@ -143,7 +217,16 @@ export default function DiferenciasServiciosPage() {
 
       <footer className="footer">
         <div className="footer-bottom" style={{ borderTop: "none", marginTop: 0 }}>
-          <p>&copy; {new Date().getFullYear()} Doctor Foam México.</p>
+          <p>&copy; {new Date().getFullYear()} Doctor Foam México. Todos los derechos reservados.</p>
+          <p style={{ marginTop: "0.5rem" }}>
+            <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>{" · "}
+            <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>{" · "}
+            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Profundo</Link>{" · "}
+            <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" style={{ color: "#64748b", textDecoration: "underline" }}>Paquetes y Precios</Link>{" · "}
+            <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#64748b", textDecoration: "underline" }}>Estacionamiento Corporativo</Link>{" · "}
+            <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>{" · "}
+            <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>
+          </p>
         </div>
       </footer>
     </>

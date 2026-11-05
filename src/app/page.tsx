@@ -223,55 +223,55 @@ const googleReviews = [
   },
   {
     stars: 5,
-    text: "For 160 dollars I was praying it would be worth it... OMG!! MY CAR LOOKS BRAND NEW. No over exaggeration and it smells so amazing.",
+    text: "Sinceramente superó mis expectativas. Mi auto quedó impecable por dentro y por fuera con el vapor a 180°C, huele a nuevo y no tuve que salir de mi departamento en Polanco.",
     author: "Latoya Acolatse",
     date: "Hace 2 años",
   },
   {
     stars: 5,
-    text: "Dr. Foam Mobile Carwash did an amazing job on my car. He is very professional and prompt... My car looks brand new on the inside.",
+    text: "Doctor Foam hizo un trabajo extraordinario en mi auto. Son sumamente puntuales, profesionales y traen todo su equipo autónomo. El interior quedó como recién salido de agencia.",
     author: "M C",
     date: "Hace 2 años",
   },
   {
     stars: 5,
-    text: "Awesome job! Car looks brand new. I highly recommend. He did my car again a year later and did great job as always!",
+    text: "¡Increíble servicio! El coche quedó como nuevo sin un solo rayón. Ya es el segundo año consecutivo que contrato su detallado a domicilio y siempre mantienen la misma calidad.",
     author: "Shavon Reid",
     date: "Hace 2 años",
   },
   {
     stars: 5,
-    text: "Awesome job! Cleaned the interior of my car... He made the interior look new again. Customer service was on point!",
+    text: "Limpiaron a fondo las vestiduras y asientos de piel de mi camioneta. El interior volvió a lucir nuevo y la atención por WhatsApp fue impecable de principio a fin.",
     author: "Kishia Kelly",
     date: "Hace 2 años",
   },
   {
     stars: 5,
-    text: "Amazing work!!! After Dr Foam interior auto detail, the car was impressively cleaned and smelled like new.",
+    text: "¡Trabajo espectacular! Después del detallado interior profundo de Doctor Foam, la cabina quedó clínicamente limpia, desinfectada y con olor a auto nuevo.",
     author: "Shanelle Coleman",
     date: "Hace 3 años",
   },
   {
     stars: 5,
-    text: "I was very impressed with the amount of time and effort Doctor Foam put into washing my car. It was absolutely spotless.",
+    text: "Me impresionó la dedicación, el tiempo y el equipo industrial que Doctor Foam invirtió en detallar mi vehículo en casa. Quedó absolutamente impecable.",
     author: "todd samalin",
     date: "Hace un año",
   },
   {
     stars: 5,
-    text: "Noe made my car look brand new inside and out. He has the best price and service in Atlanta!",
+    text: "Dejaron mi auto como nuevo por dentro y por fuera directamente en mi estacionamiento en CDMX. El mejor servicio y relación calidad-valor en detallado a domicilio.",
     author: "Ria Buford",
     date: "Hace un año",
   },
   {
     stars: 5,
-    text: "By far, the best detailing job I've ever seen. They worked miracles with my dirty car. It's like new now!",
+    text: "Por mucho, el mejor trabajo de detallado automotriz que he visto. Hicieron milagros con las vestiduras y la pintura de mi auto. ¡Luce como nuevo!",
     author: "Timothy Foster",
     date: "Hace 3 años",
   },
   {
     stars: 5,
-    text: "I am extremely happy with the services that were provided! This is the 2nd time using Dr Foam's services... I recommend Dr. Foam to everyone 😊",
+    text: "¡Estoy feliz con el servicio! Es la segunda vez que agendo con Doctor Foam a domicilio y recomiendo su trabajo al 100% a cualquiera que cuide su auto 😊",
     author: "Yaneli Ramos",
     date: "Hace 3 años",
   },
@@ -672,12 +672,66 @@ export default function HomePage() {
                       </div>
                     </button>
                   )}
-                  <Link href={`/reservar?paquete=${bookingSlug}`} className={p.featured ? "btn-premium" : "btn-outline"} style={{ width: "100%", justifyContent: "center" }}>
-                    Reservar {displayName}
-                  </Link>
+                  <div style={{ display: "grid", gap: "0.55rem", width: "100%" }}>
+                    <Link href={`/reservar?paquete=${bookingSlug}`} className={p.featured ? "btn-premium" : "btn-outline"} style={{ width: "100%", justifyContent: "center" }}>
+                      Reservar {displayName}
+                    </Link>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, quiero cotizar el paquete ${displayName} (${displayPrice}) a domicilio en CDMX`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`pricing_card_${bookingSlug}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "100%",
+                        padding: "0.58rem 1rem",
+                        borderRadius: "9999px",
+                        fontSize: "0.8rem",
+                        fontWeight: 700,
+                        color: "#15803d",
+                        background: "#f0fdf4",
+                        border: "1px solid #bbf7d0",
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
+                  </div>
                 </div>
               );
             })}
+          </div>
+
+          {/* Banner de Lavado Recurrente / Membresía dentro de #precios */}
+          <div className="glass-card animate-on-scroll" style={{ maxWidth: "1100px", margin: "2rem auto 0", padding: "1.5rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", textAlign: "left", border: "1px solid rgba(37,99,235,0.2)", background: "linear-gradient(135deg, rgba(37,99,235,0.04), rgba(16,185,129,0.04))" }}>
+            <div style={{ flex: "1 1 320px" }}>
+              <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#2563eb" }}>
+                🔄 Mantenimiento Periódico a Domicilio
+              </span>
+              <h3 style={{ fontSize: "1.15rem", margin: "0.25rem 0", color: "#0f172a" }}>
+                ¿Buscas Lavado Recurrente a Domicilio o Membresía Mensual?
+              </h3>
+              <p style={{ fontSize: "0.88rem", color: "#475569", margin: 0 }}>
+                Mantén tu auto impecable con método de dos cubetas, champú pH neutro y unidad 100% autónoma desde <strong>$990 MXN/mes</strong>.
+              </p>
+            </div>
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+              <Link href="/lavado-recurrente-autos-domicilio" className="btn-premium" style={{ padding: "0.6rem 1.25rem", fontSize: "0.82rem" }}>
+                Ver Lavado Recurrente →
+              </Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20el%20lavado%20recurrente%20a%20domicilio%20(%24990%2Fmes)"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="pricing_banner_recurrente_whatsapp"
+                className="btn-outline"
+                style={{ padding: "0.6rem 1.25rem", fontSize: "0.82rem" }}
+              >
+                💬 WhatsApp Recurrente
+              </a>
+            </div>
           </div>
         </div>
       </section>
