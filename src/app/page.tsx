@@ -725,28 +725,28 @@ export default function HomePage() {
           <div className="glass-card animate-on-scroll" style={{ maxWidth: "1100px", margin: "2rem auto 0", padding: "1.5rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", textAlign: "left", border: "1px solid rgba(37,99,235,0.2)", background: "linear-gradient(135deg, rgba(37,99,235,0.04), rgba(16,185,129,0.04))" }}>
             <div style={{ flex: "1 1 320px" }}>
               <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#2563eb" }}>
-                🔄 Mantenimiento Periódico a Domicilio
+                🔄 Seguimiento Post-Lavado Profundo + 10% OFF
               </span>
               <h3 style={{ fontSize: "1.15rem", margin: "0.25rem 0", color: "#0f172a" }}>
-                ¿Buscas Lavado Recurrente a Domicilio o Membresía Mensual?
+                ¿Quieres mantener el resultado de tu primer Lavado Profundo todo el año?
               </h3>
               <p style={{ fontSize: "0.88rem", color: "#475569", margin: 0 }}>
-                Mantén tu auto impecable con método de dos cubetas, champú pH neutro y unidad 100% autónoma desde <strong>$990 MXN/mes</strong>.
+                Al contratar tu primer servicio de lavado profundo, puedes activar nuestra <strong>Membresía desde $990 MXN/mes</strong>: incluye mantenimiento recurrente de seguimiento y <strong>10% de descuento permanente en todos los lavados más especializados</strong>.
               </p>
             </div>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-              <Link href="/lavado-recurrente-autos-domicilio" className="btn-premium" style={{ padding: "0.6rem 1.25rem", fontSize: "0.82rem" }}>
-                Ver Lavado Recurrente →
+              <Link href="/membresia-doctor-foam" className="btn-premium" style={{ padding: "0.6rem 1.25rem", fontSize: "0.82rem" }}>
+                Ver Membresía ($990/mes) →
               </Link>
               <a
-                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20el%20lavado%20recurrente%20a%20domicilio%20(%24990%2Fmes)"
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20hacer%20mi%20primer%20lavado%20profundo%20y%20activar%20la%20Membres%C3%ADa%20(%24990%2Fmes)"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cta-location="pricing_banner_recurrente_whatsapp"
                 className="btn-outline"
                 style={{ padding: "0.6rem 1.25rem", fontSize: "0.82rem" }}
               >
-                💬 WhatsApp Recurrente
+                💬 WhatsApp Membresía
               </a>
             </div>
           </div>

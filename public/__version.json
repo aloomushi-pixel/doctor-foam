@@ -1,10 +1,10 @@
 {
-  "version": "1.18.0-auto",
+  "version": "1.18.1-auto",
   "cycle": 18,
-  "deployedAt": "2026-11-06T03:00:00Z",
+  "deployedAt": "2026-11-06T05:54:00Z",
   "highlights": [
-    "GSC Zone Indexing Milestone: Confirmed 5 out of 8 /zonas/* pages are now Submitted and Indexed (PASS) in Google Search Console (/zonas/coyoacan, /zonas/santa-fe, /zonas/lomas-de-chapultepec, /zonas/pedregal, /zonas/interlomas)",
-    "Upgraded /zonas/[zona] with Above-the-Fold 4-Package Quick Comparison & 1-Tap WhatsApp Strip, Pillar navbar links, Postal Codes (C.P.), and Descriptive Cross-Zone Hub Cards to accelerate indexing of /zonas/polanco, /zonas/bosques-de-las-lomas, and /zonas/huixquilucan",
-    "Added custom FAQPage JSON-LD and visible FAQs to /blog/verdad-recubrimiento-ceramico-9h-autos-premium targeting Page-1 '9H' queries (#9.8 position)"
+    "Updated /membresia-doctor-foam Hero, plans, and FAQs to specify that starting the membership requires an initial Deep Wash service, serves as ongoing follow-up maintenance, and grants a permanent 10% discount on specialized detailing packages",
+    "Generated new 16:9 luxury hero image (/seo/hero-membresia.png) and fixed next.config.ts images.localPatterns (pathname: '/**') so all /seo/* images load cleanly without _next/image 400 errors",
+    "GSC Zone Indexing Milestone: Confirmed 5 out of 8 /zonas/* pages are now Submitted and Indexed (PASS) in Google Search Console"
   ]
 }

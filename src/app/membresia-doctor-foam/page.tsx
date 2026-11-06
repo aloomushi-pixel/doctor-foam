@@ -19,12 +19,12 @@ const plans = [
     price: "$990",
     period: "MXN / mes",
     icon: "🧽",
-    desc: "Ideal para mantener tu auto impecable cada mes sin preocuparte por agendar. Protocolo anti-swirls de 8 pasos con agua purificada en tu casa u oficina.",
+    desc: "Diseñado para darle seguimiento continuo a tu primer servicio de lavado profundo. Incluye mantenimiento preventivo recurrente y 10% de descuento en lavados especializados.",
     features: [
-      "Lavado clínico de mantenimiento mensual a domicilio",
-      "Método de 2 cubetas, foam cannon pH neutro y microfibra 500 GSM",
-      "Aspirado profundo y limpieza interior express",
-      "Sellador hidrofóbico UV en cada visita",
+      "Requisito inicial: haber realizado tu primer Lavado Profundo con Doctor Foam",
+      "10% de descuento permanente en lavados especializados (Vestiduras Vapor 180°C, Signature Detail y Cerámico)",
+      "Mantenimiento preventivo recurrente a domicilio (método 2 cubetas y pH neutro)",
+      "Aspirado profundo, limpieza interior express y sellador hidrofóbico UV",
       "Sin usar tu agua ni electricidad (unidad 100% autónoma)",
       "Cancelación libre en cualquier momento",
     ],
@@ -37,14 +37,14 @@ const plans = [
     price: "$1,160",
     period: "MXN / mes",
     icon: "🔄",
-    desc: "El plan patrimonial definitivo. Incluye Foam Maintenance completo más 10% de descuento permanente en todos los paquetes de detallado y cerámico para todos tus autos.",
+    desc: "El plan patrimonial definitivo post-detallado profundo. Incluye seguimiento Foam Maintenance completo más 10% de descuento permanente en todos los paquetes especializados para todos tus autos.",
     features: [
-      "Foam Maintenance completo incluido (descontaminación + sellador UV)",
-      "10% de descuento en Industrial Deep Interior, Signature Detail y Cerámico",
-      "Membresía por cliente (beneficios aplicables a todos tus autos)",
+      "Requisito inicial: contratar primero un servicio de Lavado Profundo o Detallado",
+      "10% de descuento permanente en Industrial Deep Interior, Signature Detail y Cerámico 9H",
+      "Foam Maintenance de seguimiento incluido (descontaminación + sellador UV)",
+      "Membresía por cliente (el 10% de descuento aplica a todos los autos de tu casa)",
       "Prioridad de agenda en fines de semana y días lluviosos",
-      "Precio congelado ante incrementos anuales",
-      "Cancelación libre en cualquier momento",
+      "Precio congelado y cancelación libre en cualquier momento",
     ],
     frequency: "Pago mensual automático · Cancela cuando quieras",
     stripeUrl: "https://buy.stripe.com/cNi28s71x8mW0LH43k3ZK04",
@@ -53,20 +53,20 @@ const plans = [
 ];
 
 const roi = [
-  { label: "Valor de reventa protegido", value: "+20%", desc: "Un auto con mantenimiento documentado conserva hasta 20% más de su valor." },
-  { label: "Ahorro en tiempo mensual", value: "6 hrs", desc: "Sin traslados, sin filas, sin esperas. Nosotros vamos a ti." },
-  { label: "Menos reparaciones de pintura", value: "-70%", desc: "El mantenimiento preventivo evita daños costosos por oxidación y swirls." },
+  { label: "Descuento en lavados especializados", value: "10% OFF", desc: "Ahorro directo y permanente en Industrial Deep Interior, Signature Detail y Recubrimiento Cerámico." },
+  { label: "Valor de reventa protegido", value: "+20%", desc: "El seguimiento recurrente después de tu primer lavado profundo conserva tu auto en estado de agencia." },
+  { label: "Ahorro en tiempo mensual", value: "6 hrs", desc: "Sin traslados, sin filas, sin esperas. Nosotros vamos a tu domicilio u oficina." },
 ];
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Product",
-  name: "Membresía Doctor Foam — Lavado Recurrente a Domicilio CDMX",
-  description: "Membresía mensual de mantenimiento automotriz a domicilio con equipo industrial, lavado bimestral incluido y 10% de descuento en todos los paquetes.",
+  name: "Membresía Doctor Foam — Seguimiento Recurrente y 10% OFF en Detallado Especializado",
+  description: "Membresía mensual de seguimiento automotriz a domicilio posterior a tu primer servicio de lavado profundo. Incluye mantenimiento recurrente y 10% de descuento en todos los lavados especializados.",
   brand: { "@type": "Brand", name: "Doctor Foam México" },
   offers: {
     "@type": "Offer",
-    price: "1160.00",
+    price: "990.00",
     priceCurrency: "MXN",
     availability: "https://schema.org/InStock",
     url: "https://drfoam.com.mx/membresia-doctor-foam",
@@ -84,8 +84,12 @@ const breadcrumbJsonLd = {
 
 const faqs = [
   {
-    q: "¿Cómo funciona la membresía de autolavado a domicilio de Doctor Foam en CDMX?",
-    a: "Eliges entre nuestro Plan Lavado Recurrente Mensual ($990 MXN/mes) o la Membresía VIP Doctor Foam ($1,160 MXN/mes). Una vez activa tu suscripción, coordinamos contigo el día y horario fijo de tu preferencia para acudir a tu casa u oficina con nuestra unidad móvil 100% autónoma.",
+    q: "¿Cuál es el requisito para empezar a operar la Membresía Doctor Foam?",
+    a: "Para empezar a operar la membresía, primero es necesario contratar un servicio de lavado profundo inicial (como Industrial Deep Interior, Signature Detail o Ceramic Coating 9H). La membresía está diseñada específicamente para darle seguimiento continuo a ese primer servicio profundo y preservar el resultado clínico en tu vehículo.",
+  },
+  {
+    q: "¿Cuál es la ventaja real de la Membresía Doctor Foam?",
+    a: "La ventaja real de la membresía combina dos beneficios clave: un mantenimiento preventivo recurrente a domicilio que mantiene el estándar logrado en tu primer lavado profundo, y sobre todo un 10% de descuento permanente en todos nuestros lavados más especializados (lavado profundo de vestiduras con vapor a 180°C, corrección de pintura y recubrimiento cerámico).",
   },
   {
     q: "¿La membresía de lavado de autos aplica para varios vehículos de mi familia o empresa?",
@@ -158,20 +162,60 @@ export default function MembresiaPage() {
             <h1 className="section-title">
               Membresía Doctor Foam: El <span className="gradient-text">Cuidado Definitivo</span> para tu Auto
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "750px", marginBottom: "1.75rem" }}>
-              Deja de preocuparte por el mantenimiento de tu vehículo. Nuestro programa de <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado recurrente a domicilio</Link> con pagos mensuales automáticos mantiene tu auto impecable todo el año.
+            <p className="section-subtitle" style={{ maxWidth: "780px", marginBottom: "1.25rem" }}>
+              Deja de preocuparte por el mantenimiento de tu vehículo. Nuestro programa de <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado recurrente a domicilio</Link> está diseñado específicamente para <strong>darle seguimiento continuo a tu primer servicio de lavado profundo</strong>.
             </p>
+
+            {/* Requisito de Activación y Ventaja Real */}
+            <div
+              className="glass-card"
+              style={{
+                maxWidth: "820px",
+                margin: "0 auto 1.75rem",
+                padding: "1.25rem 1.5rem",
+                textAlign: "left",
+                border: "1.5px solid rgba(37, 99, 235, 0.25)",
+                background: "linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(16, 185, 129, 0.05))",
+              }}
+            >
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1rem", alignItems: "start" }}>
+                <div>
+                  <span style={{ display: "inline-block", fontSize: "0.72rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#2563eb", marginBottom: "0.3rem" }}>
+                    1️⃣ Requisito para Activar tu Membresía
+                  </span>
+                  <p style={{ color: "#1e293b", fontSize: "0.88rem", lineHeight: "1.6", margin: 0 }}>
+                    Para empezar a operar la membresía, <strong>primero hay que contratar un servicio de <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#2563eb", textDecoration: "underline" }}>lavado profundo</Link></strong>. La membresía está hecha para darle seguimiento continuo a ese primer servicio y conservar el estándar clínico logrado.
+                  </p>
+                </div>
+                <div>
+                  <span style={{ display: "inline-block", fontSize: "0.72rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#15803d", marginBottom: "0.3rem" }}>
+                    2️⃣ La Ventaja Real de la Membresía
+                  </span>
+                  <p style={{ color: "#1e293b", fontSize: "0.88rem", lineHeight: "1.6", margin: 0 }}>
+                    Además de tu mantenimiento preventivo recurrente a domicilio, obtienes un <strong>10% de descuento permanente en todos nuestros lavados más especializados</strong> (vestiduras con vapor a 180°C, corrección de pintura y recubrimiento cerámico).
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link
+                href="/reservar?paquete=industrial-deep-interior"
+                className="btn-premium"
+              >
+                📅 1. Agendar Lavado Profundo Inicial
+              </Link>
               <a
                 href="https://buy.stripe.com/28E6oH1b45aI1LddT83Ru00"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-premium"
+                className="btn-outline"
+                style={{ borderColor: "#2563eb", color: "#1d4ed8", fontWeight: 700 }}
               >
                 🔄 Suscribirme ($990/mes)
               </a>
               <a
-                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20la%20Membres%C3%ADa%20Doctor%20Foam%20de%20%24990%2Fmes"
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20agendar%20mi%20primer%20Lavado%20Profundo%20para%20activar%20la%20Membres%C3%ADa%20de%20%24990%2Fmes%20con%2010%25%20de%20descuento"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cta-location="pillar_membresia_hero_whatsapp"
@@ -186,10 +230,11 @@ export default function MembresiaPage() {
         {/* Hero Image */}
         <div style={{ maxWidth: "900px", margin: "-2rem auto 0", padding: "0 1.5rem" }}>
           <Image
-            src="/seo/hero-membresia.png"
-            alt="Cofre de auto de lujo negro con acabado espejo reflejando el atardecer — resultado de membresía Doctor Foam"
+            src="/seo/hero-membresia.png?v=2"
+            alt="Especialista de Doctor Foam realizando mantenimiento de seguimiento sobre cofre negro con acabado espejo en residencia de lujo en CDMX"
             width={1200}
-            height={600}
+            height={675}
+            unoptimized
             style={{ width: "100%", height: "auto", borderRadius: "1.25rem", boxShadow: "0 4px 25px rgba(0,0,0,0.08)" }}
             priority
           />

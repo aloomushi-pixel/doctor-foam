@@ -57,8 +57,8 @@ const breadcrumbJsonLd = {
 
 const recurrenteFaqs = [
   {
-    q: "¿Cuánto cuesta el servicio de lavado recurrente de autos a domicilio en CDMX?",
-    a: "Nuestra Membresía de Mantenimiento Doctor Foam inicia desde $990 MXN al mes (IVA incluido y facturación CFDI). Incluye lavado exterior con método de dos cubetas, champú de pH neutro que protege ceras y cerámicos, aspirado profundo e hidratación de interiores directamente en tu domicilio u oficina.",
+    q: "¿Cómo se activa la membresía de lavado recurrente de autos a domicilio en CDMX?",
+    a: "Para empezar a operar la Membresía de Lavado Recurrente (desde $990 MXN/mes), primero es necesario contratar un servicio de lavado profundo inicial (como Industrial Deep Interior, Signature Detail o Ceramic Coating 9H). La membresía está hecha para darle seguimiento continuo a ese primer servicio profundo y te otorga un 10% de descuento permanente en todos los lavados más especializados.",
   },
   {
     q: "¿Por qué el lavado recurrente de Doctor Foam no raya la pintura como los autolavados?",
