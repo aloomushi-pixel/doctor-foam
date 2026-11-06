@@ -101,6 +101,10 @@ const profundoFaqs = [
     q: "¿Necesitan toma de agua o luz en mi departamento o corporativo?",
     a: "No. Las unidades móviles de Doctor Foam son 100% autónomas: cuentan con generador eléctrico propio y tanque de agua desmineralizada, por lo que operamos en sótanos residenciales y corporativos de Polanco, Santa Fe, Lomas, Bosques, Interlomas y Pedregal sin conectar nada a tu domicilio.",
   },
+  {
+    q: "¿Cómo funciona el seguimiento con Membresía y el 10% de descuento después de mi primer lavado profundo?",
+    a: "Al contratar cualquiera de nuestros paquetes de lavado profundo (Industrial Deep Interior, Signature Detail o Ceramic Coating 9H), desbloqueas la posibilidad de activar la Membresía Doctor Foam (desde $990 MXN/mes), diseñada para darle seguimiento recurrente a tu primer servicio y otorgarte un 10% de descuento permanente en todos los lavados más especializados.",
+  },
 ];
 
 const faqJsonLd = {
@@ -156,7 +160,7 @@ export default function LavadoProfundoPage() {
 
       <main style={{ paddingTop: "6rem" }}>
         {/* Hero */}
-        <section className="section-padding" style={{ textAlign: "center" }}>
+        <section className="section-padding" style={{ textAlign: "center", paddingBottom: "2.25rem" }}>
           <div className="container">
             <span className="section-label">Restauración Premium en CDMX y EdoMex</span>
             <h1 className="section-title">
@@ -182,8 +186,51 @@ export default function LavadoProfundoPage() {
           </div>
         </section>
 
+        {/* Above-the-Fold Quick Package & 1-Tap WhatsApp Strip */}
+        <section style={{ paddingBottom: "2.25rem" }}>
+          <div className="container" style={{ maxWidth: "1000px" }}>
+            <div style={{ background: "#f8fafc", border: "1px solid #cbd5e1", borderRadius: "1rem", padding: "1.15rem 1.25rem", boxShadow: "0 8px 24px rgba(15, 23, 42, 0.05)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.85rem" }}>
+                <span style={{ fontSize: "0.78rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#0f172a" }}>
+                  ⚡ Paquetes de Lavado Profundo 2026 (Habilitan Membresía de Seguimiento + 10% OFF)
+                </span>
+                <span style={{ fontSize: "0.75rem", color: "#15803d", fontWeight: 700 }}>
+                  ✅ Unidad 100% autónoma · Vapor 180°C · Factura CFDI
+                </span>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.75rem" }}>
+                {[
+                  { name: "Industrial Deep Interior", price: "$2,400 MXN", desc: "Vestiduras, vapor 180°C, piel y ozono (3-4 h)", badge: "Interior Profundo" },
+                  { name: "Signature Detail", price: "$7,499 MXN", desc: "Corrección pintura 95% swirls + Interior (6-8 h)", badge: "Más Popular" },
+                  { name: "Ceramic Coating 9H", price: "$10,999 MXN", desc: "Blindaje SiO2 3-5 años + Corrección (8-10 h)", badge: "Protección 9H" },
+                ].map((pkg, idx) => (
+                  <div key={idx} style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "0.75rem", padding: "0.9rem 1rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                    <div>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.35rem", marginBottom: "0.25rem" }}>
+                        <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#2563eb", textTransform: "uppercase" }}>{pkg.badge}</span>
+                        <span style={{ fontSize: "0.95rem", fontWeight: 800, color: "#0f172a" }}>{pkg.price}</span>
+                      </div>
+                      <div style={{ fontWeight: 700, fontSize: "0.88rem", color: "#0f172a", marginBottom: "0.2rem" }}>{pkg.name}</div>
+                      <div style={{ fontSize: "0.76rem", color: "#475569", marginBottom: "0.65rem" }}>{pkg.desc}</div>
+                    </div>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, me interesa cotizar / agendar el paquete ${pkg.name} (${pkg.price}) a domicilio en CDMX.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`pillar_profundo_quick_strip_${idx}`}
+                      style={{ display: "block", textAlign: "center", padding: "0.45rem 0.6rem", borderRadius: "0.5rem", background: "#eff6ff", border: "1px solid #bfdbfe", color: "#1d4ed8", fontWeight: 700, fontSize: "0.76rem", textDecoration: "none" }}
+                    >
+                      💬 Cotizar {pkg.name}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Hero Image */}
-        <div style={{ maxWidth: "1100px", margin: "-2rem auto 0", padding: "0 1.5rem" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 1.5rem" }}>
           <Image
             src="/seo/hero-profundo.png"
             alt="Vista cenital de un sedán oscuro recibiendo detallado profundo con productos cerámicos y herramientas de pulido"
@@ -241,6 +288,26 @@ export default function LavadoProfundoPage() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Banner Post-Lavado Profundo -> Membresía */}
+            <div className="glass-card" style={{ marginTop: "2rem", padding: "1.5rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", border: "1.5px solid rgba(37,99,235,0.22)", background: "linear-gradient(135deg, rgba(37,99,235,0.05), rgba(16,185,129,0.05))" }}>
+              <div style={{ flex: "1 1 320px" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#2563eb" }}>
+                  🔄 Seguimiento Post-Lavado Profundo
+                </span>
+                <h3 style={{ fontSize: "1.15rem", margin: "0.25rem 0", color: "#0f172a" }}>
+                  Tu primer Lavado Profundo desbloquea la Membresía Doctor Foam ($990/mes)
+                </h3>
+                <p style={{ fontSize: "0.88rem", color: "#334155", margin: 0, lineHeight: "1.6" }}>
+                  Una vez realizado cualquiera de nuestros paquetes de lavado profundo, puedes activar la <strong>Membresía de Seguimiento</strong>: incluye mantenimiento preventivo periódico y <strong>10% de descuento permanente en todos tus futuros lavados especializados</strong>.
+                </p>
+              </div>
+              <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+                <Link href="/membresia-doctor-foam" className="btn-premium" style={{ padding: "0.6rem 1.25rem", fontSize: "0.82rem" }}>
+                  Conocer Membresía + 10% OFF →
+                </Link>
+              </div>
             </div>
           </div>
         </section>

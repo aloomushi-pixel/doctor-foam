@@ -510,6 +510,10 @@ Detalles:
                         ))}
                     </div>
 
+                    <div style={{ marginBottom: "1.25rem", padding: "0.85rem 1rem", borderRadius: "0.75rem", background: "linear-gradient(135deg, rgba(37,99,235,0.05), rgba(16,185,129,0.05))", border: "1px solid rgba(37,99,235,0.2)", fontSize: "0.8rem", color: "#334155", lineHeight: "1.55" }}>
+                        🔄 <strong style={{ color: "#0f172a" }}>Beneficio Post-Servicio:</strong> Al realizar tu primer servicio de lavado profundo, desbloqueas nuestra <Link href="/membresia-doctor-foam" style={{ color: "#2563eb", fontWeight: 700, textDecoration: "underline" }}>Membresía de Seguimiento ($990/mes)</Link> con mantenimiento recurrente y <strong>10% de descuento permanente</strong> en todos tus futuros lavados especializados (ahorro de <strong>${Math.round(basePrice * 0.1).toLocaleString("es-MX")} MXN</strong> en este paquete).
+                    </div>
+
                     <div style={{ display: "grid", gap: "0.65rem" }}>
                         <button
                             type="button" onClick={() => { setError(""); setStep(2); }}
