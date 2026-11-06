@@ -181,6 +181,20 @@ La protección de vehículos premium en zonas de alta acidez atmosférica requie
         category: "Ingeniería de Materiales",
         readTime: "9 min",
         metaDesc: "¿Qué es el recubrimiento cerámico 9H para autos? Diferencia real entre escala de lápiz 9H y Mohs, duración de 3 a 5 años, hidrofobicidad SiO2 y precios en CDMX.",
+        faqs: [
+            {
+                q: "¿Qué significa 9H en un recubrimiento cerámico para autos?",
+                a: "El grado 9H en recubrimientos cerámicos automotrices (SiO2) se refiere a la escala de dureza de lápiz de Wolff-Wilborn (resistencia al grafito 9H), no a la escala mineralógica de Mohs. Su verdadero beneficio es el enlace químico covalente que otorga hiper-hidrofobicidad, resistencia química (pH 2 a 13) y protección UV durante 3 a 5 años.",
+            },
+            {
+                q: "¿Cuál es la diferencia entre recubrimiento cerámico 9H y grafeno 10H?",
+                a: "El recubrimiento cerámico 9H (SiO2 puro) brinda de 3 a 5 años de protección hidrofóbica y brillo cristalino ($10,999 MXN en Doctor Foam), mientras que el recubrimiento de grafeno 10H reduce la temperatura superficial del barniz, disminuye las marcas de agua (water spots) y extiende la durabilidad de 5 a 7 años ($14,999 MXN).",
+            },
+            {
+                q: "¿Cuánto cuesta aplicar recubrimiento cerámico 9H a domicilio en CDMX?",
+                a: "El paquete Ceramic Coating 9H de Doctor Foam tiene un precio de $10,999 MXN en sedanes (con ajuste proporcional para SUVs), incluye descontaminación férrica y clay bar, corrección de pintura de 2 etapas para eliminar swirls, aplicación en carrocería, rines y cristales con unidad móvil 100% autónoma y garantía por escrito de 3 a 5 años.",
+            },
+        ],
         content: `
 La industria del detallado automotriz está saturada de promesas transaccionales y jerga pseudocientífica. Para el propietario de vehículos de alto valor neto, navegar este ecosistema de *marketing* engañoso es vital para asegurar el Retorno de Inversión (ROI) en la preservación de sus activos. La promesa de la "dureza 9H" a prueba de diamantes es, indiscutiblemente, la falacia más propagada en la protección nanocerámica.
 

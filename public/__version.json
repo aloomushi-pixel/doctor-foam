@@ -1,11 +1,10 @@
 {
-  "version": "1.17.0-auto",
-  "cycle": 17,
-  "deployedAt": "2026-11-05T22:46:40Z",
+  "version": "1.18.0-auto",
+  "cycle": 18,
+  "deployedAt": "2026-11-06T03:00:00Z",
   "highlights": [
-    "Empirical GEO Milestone: Captured live human mobile visitor (04e595d1, America/Mexico_City, 406x754) referred directly by ChatGPT (?utm_source=chatgpt.com) onto /lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz (82.2s dwell time, 53% scroll depth)",
-    "Added Above-the-Fold 4-Package Quick Comparison & 1-Tap WhatsApp Strip + Header WhatsApp Pill Buttons on /lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz to convert ChatGPT & mobile visitors within 0-50% scroll depth",
-    "Enriched public/llms.txt with direct WhatsApp deep-links per package and full 2026 CDMX pricing for ChatGPT, Perplexity, Gemini, and Claude",
-    "Upgraded scripts/drfoam_autonomous_audit.cjs to track aiGeoVisitors and aiEngines in public.drfoam_ux_events executive summaries"
+    "GSC Zone Indexing Milestone: Confirmed 5 out of 8 /zonas/* pages are now Submitted and Indexed (PASS) in Google Search Console (/zonas/coyoacan, /zonas/santa-fe, /zonas/lomas-de-chapultepec, /zonas/pedregal, /zonas/interlomas)",
+    "Upgraded /zonas/[zona] with Above-the-Fold 4-Package Quick Comparison & 1-Tap WhatsApp Strip, Pillar navbar links, Postal Codes (C.P.), and Descriptive Cross-Zone Hub Cards to accelerate indexing of /zonas/polanco, /zonas/bosques-de-las-lomas, and /zonas/huixquilucan",
+    "Added custom FAQPage JSON-LD and visible FAQs to /blog/verdad-recubrimiento-ceramico-9h-autos-premium targeting Page-1 '9H' queries (#9.8 position)"
   ]
 }
