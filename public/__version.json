@@ -1,10 +1,10 @@
 {
-  "version": "1.22.0-auto",
-  "cycle": 22,
-  "deployedAt": "2026-11-06T19:45:10Z",
+  "version": "1.23.0-auto",
+  "cycle": 23,
+  "deployedAt": "2026-11-06T23:53:40Z",
   "highlights": [
-    "Fixed HTML5 table & blockquote parser in formatMarkdown() on /blog/[slug] so comparison tables render as styled <table><thead><tbody> instead of stripped <tr><td> text at ~75% scroll depth",
-    "Added Mid-Article 1-Tap Package & WhatsApp Conversion Strip (Industrial Deep Interior $2,400, Signature Detail $7,499, Ceramic 9H $10,999 + Membresia $990/mes) at ~70% scroll depth following real organic human visitor (45f77ef5, 62s, 76% scroll) on /blog/correccion-pintura-swirls-guia",
-    "Completed 100% custom FAQPage JSON-LD coverage across all 10 blog articles and unified interior detailing pricing tables"
+    "Confirmed /zonas/huixquilucan promoted to PASS (Enviada e indexada) by Googlebot (6 of 8 zones now indexed) and /blog/guia-completa-recubrimiento-ceramico recrawled today",
+    "Purified sitemap.xml (src/app/sitemap.ts) by removing 301-redirected legacy blog slugs, adding missing canonical articles (detallado-interior-profundo-que-incluye, por-que-detallado-domicilio-mejor), and boosting /zonas/polanco and /zonas/bosques-de-las-lomas crawl priority",
+    "Upgraded /blog hub (src/app/blog/page.tsx) with Above-the-Fold 1-Tap Package & WhatsApp Strip, FAQPage JSON-LD, all 12 canonical blog articles, and descriptive Zonas de Cobertura internal authority cards"
   ]
 }

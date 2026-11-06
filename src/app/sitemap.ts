@@ -14,16 +14,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
 
     const zones = [
-        "polanco",
-        "lomas-de-chapultepec",
-        "santa-fe",
-        "bosques-de-las-lomas",
-        "pedregal",
-        "interlomas",
-        "huixquilucan",
-        "coyoacan",
+        { slug: "polanco", priority: 0.94, changeFrequency: "weekly" as const },
+        { slug: "bosques-de-las-lomas", priority: 0.94, changeFrequency: "weekly" as const },
+        { slug: "lomas-de-chapultepec", priority: 0.9, changeFrequency: "monthly" as const },
+        { slug: "santa-fe", priority: 0.9, changeFrequency: "monthly" as const },
+        { slug: "pedregal", priority: 0.9, changeFrequency: "monthly" as const },
+        { slug: "interlomas", priority: 0.9, changeFrequency: "monthly" as const },
+        { slug: "huixquilucan", priority: 0.9, changeFrequency: "monthly" as const },
+        { slug: "coyoacan", priority: 0.9, changeFrequency: "monthly" as const },
     ];
 
+    // 100% canonical 200-OK blog articles (no 301-redirected legacy slugs)
     const blogPosts = [
         "detallado-movil-grado-clinico-vs-lavado-convencional",
         "innovacion-2025-2026-escaneres-3d-polimeros-auto-regenerables",
@@ -31,11 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "mitigacion-grabado-lluvia-acida-autos",
         "verdad-recubrimiento-ceramico-9h-autos-premium",
         "detallado-profesional-multiplicador-financiero-vehiculos-lujo",
-        "economia-cuidado-automotriz-membresia",
-        "lavado-profundo-vs-detallado-automotriz",
         "guia-completa-recubrimiento-ceramico",
-        "5-errores-lavado-auto-premium",
         "correccion-pintura-swirls-guia",
+        "detallado-interior-profundo-que-incluye",
+        "5-errores-lavado-auto-premium",
+        "por-que-detallado-domicilio-mejor",
         "mejores-ceras-selladores-mexico",
     ];
 
@@ -62,19 +63,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: `${baseUrl}/blog`,
             lastModified: new Date(),
             changeFrequency: "weekly",
-            priority: 0.8,
+            priority: 0.85,
         },
         ...blogPosts.map((slug) => ({
             url: `${baseUrl}/blog/${slug}`,
             lastModified: new Date(),
-            changeFrequency: "monthly" as const,
-            priority: 0.75,
+            changeFrequency: "weekly" as const,
+            priority: 0.8,
         })),
         ...zones.map((zona) => ({
-            url: `${baseUrl}/zonas/${zona}`,
+            url: `${baseUrl}/zonas/${zona.slug}`,
             lastModified: new Date(),
-            changeFrequency: "monthly" as const,
-            priority: 0.9,
+            changeFrequency: zona.changeFrequency,
+            priority: zona.priority,
         })),
         {
             url: `${baseUrl}/aviso-de-privacidad`,
