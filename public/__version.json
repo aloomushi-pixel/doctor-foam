@@ -1,10 +1,10 @@
 {
-  "version": "1.19.0-auto",
-  "cycle": 19,
-  "deployedAt": "2026-11-06T07:13:00Z",
+  "version": "1.20.0-auto",
+  "cycle": 20,
+  "deployedAt": "2026-11-06T11:25:00Z",
   "highlights": [
-    "Confirmed 7 out of 7 Pillar & Cluster pages and 5 out of 8 /zonas/* pages are PASS | Submitted and Indexed in Google Search Console",
-    "Upgraded /lavado-profundo-vehiculos-cdmx with Above-the-Fold 3-Package Quick Comparison & 1-Tap WhatsApp Strip, Post-Deep-Wash Membership Follow-Up Banner ($990/mes + 10% OFF), and expanded FAQPage JSON-LD",
-    "Added dynamic Post-Service Membership & 10% Savings Calculator callout in Step 1 of /reservar to connect initial deep wash bookings with the recurring Membership follow-up funnel"
+    "Upgraded bot & headless scraper filtering (800x600 Chromium / HeadlessScraperBot) in src/lib/telemetry.ts and scripts/drfoam_autonomous_audit.cjs so human visitor & WhatsApp conversion metrics stay 100% pure while tracking AI/RAG blog crawls",
+    "Added custom FAQPage JSON-LD and visible FAQs to /blog/desnaturalizacion-termica-180c-fin-extraccion-humeda and /blog/detallado-movil-grado-clinico-vs-lavado-convencional following active AI/RAG crawler visits",
+    "Verified 7/7 Pillar & Cluster pages and 5/8 Zone pages indexed in Google Search Console"
   ]
 }

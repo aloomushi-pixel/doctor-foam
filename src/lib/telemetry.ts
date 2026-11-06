@@ -167,6 +167,13 @@ export function detectBot(ua: string): { is_bot: boolean; bot_name: string | nul
     if (navigator.webdriver === true || (window.innerHeight && window.innerHeight >= 5000)) {
       return { is_bot: true, bot_name: "Googlebot-WRS" };
     }
+    const ref = (document.referrer || "").toLowerCase();
+    if (
+      (window.innerWidth === 800 && window.innerHeight === 600) ||
+      ref.includes("aocr.org")
+    ) {
+      return { is_bot: true, bot_name: "HeadlessScraperBot" };
+    }
   }
   return { is_bot: false, bot_name: null };
 }

@@ -213,16 +213,24 @@ async function auditSupabaseUx() {
     }
   );
   const rows = Array.isArray(res.data) ? res.data : [];
+  const isHeadlessScraper = (r) =>
+    r.bot_name === "HeadlessScraperBot" ||
+    (r.viewport_w === 800 && r.viewport_h === 600) ||
+    (r.referrer && String(r.referrer).toLowerCase().includes("aocr.org"));
+
   const humanRows = rows.filter(
     (r) =>
       !r.is_bot &&
+      !isHeadlessScraper(r) &&
       r.event_category !== "autonomous_cycle" &&
       r.event_category !== "autonomous_loop" &&
+      r.event_category !== "system_audit" &&
       (!r.viewport_h || r.viewport_h < 5000)
   );
   const googlebotWrsRows = rows.filter(
     (r) => r.bot_name === "Googlebot-WRS" || (r.viewport_h && r.viewport_h >= 5000)
   );
+  const headlessScraperRows = rows.filter(isHeadlessScraper);
   const visitors = new Set(humanRows.map((r) => r.visitor_id || r.session_id));
   const sessions = new Set(humanRows.map((r) => r.session_id));
   const waRows = humanRows.filter((r) => r.event_name === "whatsapp_click");
@@ -271,6 +279,8 @@ async function auditSupabaseUx() {
     rageClicks: rageRows.length,
     googlebotWrsRenders: googlebotWrsRows.length,
     googlebotWrsPages: Array.from(new Set(googlebotWrsRows.map((r) => r.path))),
+    headlessScraperRenders: headlessScraperRows.length,
+    headlessScraperPages: Array.from(new Set(headlessScraperRows.map((r) => r.path))),
   };
 
   // Persist latest executive summary snapshot directly inside public.drfoam_ux_events

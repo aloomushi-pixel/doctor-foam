@@ -21,6 +21,20 @@ const blogContent: Record<string, BlogPostData> = {
         category: "Logística y Operaciones",
         readTime: "9 min",
         metaDesc: "Descubre la diferencia en infraestructura logística. Plantas insonorizadas, agua por ósmosis inversa y protocolos contra la contaminación cruzada en Polanco.",
+        faqs: [
+            {
+                q: "¿En qué se diferencia el detallado móvil clínico de Doctor Foam de un lavado a domicilio convencional?",
+                a: "Mientras un lavado convencional usa el agua dura de tu llave y recicla trapos que rayan la pintura, Doctor Foam acude con unidades 100% autónomas equipadas con agua purificada por ósmosis inversa, generador eléctrico silencioso, vapor seco a 180°C y microfibras de 500 GSM de un solo uso por vehículo.",
+            },
+            {
+                q: "¿Pueden realizar detallado automotriz en estacionamientos subterráneos sin toma de agua ni luz?",
+                a: "Sí. Operamos diariamente en sótanos condominiales y corporativos de Polanco, Santa Fe, Lomas de Chapultepec, Bosques e Interlomas sin requerir tomas de agua ni electricidad y sin dejar charcos ni escurrimientos.",
+            },
+            {
+                q: "¿Cómo puedo mantener mi auto después de un detallado profundo a domicilio?",
+                a: "Al contratar tu primer servicio de lavado profundo, desbloqueas el acceso a nuestra Membresía de Seguimiento ($990 MXN/mes), que incluye mantenimiento preventivo recurrente y 10% de descuento permanente en todos los lavados más especializados.",
+            },
+        ],
         content: `
 En los sectores residenciales de alta plusvalía de la Ciudad de México, como Polanco o las Lomas de Chapultepec, el servicio de "lavado a domicilio" se ha comoditizado. Sin embargo, para la custodia de activos automotrices que superan los cientos de miles de dólares, la intervención amateur en el garaje de una residencia representa un riesgo operacional inaceptable. Existe una asimetría logística absoluta entre un servicio convencional y el **Detallado Móvil de Grado Clínico**.
 
@@ -105,6 +119,20 @@ Al mantener la pintura original de fábrica (Original Equipment Manufacturer - O
         category: "Bioseguridad",
         readTime: "10 min",
         metaDesc: "Descubre por qué la extracción húmeda está obsoleta. Beneficios del detallado con vapor seco a 180°C: esterilización, nula humedad y protección de interiores.",
+        faqs: [
+            {
+                q: "¿Por qué es mejor lavar los asientos y vestiduras de auto con vapor seco a 180°C que con extracción húmeda?",
+                a: "La extracción húmeda tradicional inunda la espuma de los asientos dejando humedad atrapada que genera mal olor, hongos y despega el cielo del auto. El vapor seco a 180°C de Doctor Foam contiene solo 5% de humedad líquida: esteriliza bacterias y ácaros al instante, protege asientos de piel Nappa y permite usar el vehículo en menos de 60 minutos.",
+            },
+            {
+                q: "¿Cuánto cuesta el lavado profundo de vestiduras con vapor a 180°C a domicilio en CDMX?",
+                a: "Nuestro paquete Industrial Deep Interior tiene un costo de $2,400 MXN en sedán o SUV de 2 filas (IVA incluido). Incluye lavado de asientos, alfombra, cielo, cinturones, desinfección de ductos de aire acondicionado (HVAC) y sanitización con ozono médico.",
+            },
+            {
+                q: "¿El paquete Industrial Deep Interior habilita la Membresía de Seguimiento de Doctor Foam?",
+                a: "Sí. Al contratar Industrial Deep Interior ($2,400 MXN) como tu primer servicio profundo, puedes activar nuestra Membresía desde $990 MXN/mes para darle seguimiento periódico a tu vehículo y obtener un 10% de descuento permanente en todos los lavados especializados.",
+            },
+        ],
         content: `
 La industria tradicional del detallado de interiores ha dependido durante décadas de la inyección y succión de líquidos (extracción húmeda). Para el propietario de vehículos de lujo, esta metodología no solo es arcaica, sino que representa un riesgo directo a la bioseguridad y a la integridad estructural de los materiales de la cabina. La evolución hacia intervenciones de grado clínico exige la adopción de la desnaturalización térmica mediante vapor seco a 180°C.
 
