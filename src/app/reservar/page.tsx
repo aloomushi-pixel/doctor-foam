@@ -837,6 +837,44 @@ export default function ReservarPage() {
                     </div>
                 </section>
 
+                {/* SSR Preguntas Frecuentes sobre Reservas, Precios y Membresía */}
+                <section className="section-padding" style={{ paddingTop: 0 }}>
+                    <div className="container" style={{ maxWidth: "900px" }}>
+                        <h2 style={{ fontSize: "1.3rem", marginBottom: "1rem", color: "#0f172a", textAlign: "center" }}>
+                            Preguntas Frecuentes sobre Reservas y Precios a Domicilio
+                        </h2>
+                        <div style={{ display: "grid", gap: "0.85rem" }}>
+                            {[
+                                {
+                                    q: "¿Cómo funciona la reserva de lavado de vestiduras y detallado a domicilio en CDMX?",
+                                    a: "Elige tu paquete (Industrial Deep Interior $2,400 MXN, Signature Detail $7,499 MXN, Ceramic Coating 9H $10,999 MXN o Foam Maintenance $1,599 MXN), selecciona el tamaño de tu vehículo y agenda en línea con tarjeta o directamente por WhatsApp. Llegamos con unidad 100% autónoma (agua purificada y luz propia) a tu casa u oficina.",
+                                },
+                                {
+                                    q: "¿Cuánto cuesta el lavado de vestiduras de auto cerca de mí a domicilio en CDMX?",
+                                    a: "Nuestro paquete Industrial Deep Interior cuesta $2,400 MXN para sedán o SUV de 2 filas y $2,760 MXN para Pick Up o SUV de 3 filas (IVA incluido). Incluye lavado de asientos, alfombra y cielo con vapor seco a 180°C, desinfección de ductos de A/C y sanitización con ozono médico sin cargo por traslado en CDMX y Zona Esmeralda.",
+                                },
+                                {
+                                    q: "¿Cómo activo la Membresía Doctor Foam ($990/mes) y el 10% de descuento permanente?",
+                                    a: "Para empezar a operar la Membresía Doctor Foam ($990 MXN/mes sedán o $1,160 MXN/mes SUV), primero se contrata un servicio de lavado profundo inicial. La membresía está diseñada para darle seguimiento preventivo continuo a ese primer servicio y te otorga un 10% de descuento permanente en todos los lavados más especializados.",
+                                },
+                                {
+                                    q: "¿Puedo facturar (CFDI) mi servicio de detallado automotriz en Doctor Foam?",
+                                    a: "Sí. Todos nuestros precios incluyen IVA y en el paso 3 de tu reserva puedes activar la casilla de facturación CFDI para recibir tu factura fiscal automáticamente.",
+                                },
+                            ].map((item, idx) => (
+                                <div key={idx} className="glass-card" style={{ padding: "1.15rem 1.35rem" }}>
+                                    <h3 style={{ fontSize: "0.95rem", color: "#0f172a", marginBottom: "0.4rem" }}>
+                                        {item.q}
+                                    </h3>
+                                    <p style={{ color: "#475569", fontSize: "0.88rem", lineHeight: 1.65, margin: 0 }}>
+                                        {item.a}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 {/* Zonas de Cobertura Hub */}
                 <section className="section-padding" style={{ paddingTop: 0 }}>
                     <div className="container" style={{ maxWidth: "900px", textAlign: "center" }}>

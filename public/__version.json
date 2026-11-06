@@ -1,10 +1,9 @@
 {
-  "version": "1.20.0-auto",
-  "cycle": 20,
-  "deployedAt": "2026-11-06T11:25:00Z",
+  "version": "1.21.0-auto",
+  "cycle": 21,
+  "deployedAt": "2026-11-06T15:36:00Z",
   "highlights": [
-    "Upgraded bot & headless scraper filtering (800x600 Chromium / HeadlessScraperBot) in src/lib/telemetry.ts and scripts/drfoam_autonomous_audit.cjs so human visitor & WhatsApp conversion metrics stay 100% pure while tracking AI/RAG blog crawls",
-    "Added custom FAQPage JSON-LD and visible FAQs to /blog/desnaturalizacion-termica-180c-fin-extraccion-humeda and /blog/detallado-movil-grado-clinico-vs-lavado-convencional following active AI/RAG crawler visits",
-    "Verified 7/7 Pillar & Cluster pages and 5/8 Zone pages indexed in Google Search Console"
+    "Expanded /reservar FAQPage JSON-LD to 4 high-intent questions and rendered a visible SSR FAQ & Pricing section outside Suspense for immediate Googlebot initial HTML & AI/GEO crawler indexing",
+    "Added custom FAQPage JSON-LD and visible FAQ cards to 4 technical blog articles (innovacion-2025-2026, lluvia-acida, multiplicador-financiero, 5-errores-lavado-auto-premium)"
   ]
 }

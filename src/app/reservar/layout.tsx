@@ -73,6 +73,22 @@ const faqJsonLd = {
         },
         {
             "@type": "Question",
+            name: "¿Cuánto cuesta el lavado de vestiduras de auto cerca de mí a domicilio en CDMX?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "Nuestro paquete Industrial Deep Interior cuesta $2,400 MXN para sedán o SUV de 2 filas y $2,760 MXN para Pick Up o SUV de 3 filas (IVA incluido). Incluye lavado de asientos, alfombra y cielo con vapor seco a 180°C, desinfección de ductos de A/C y sanitización con ozono médico sin cargo por traslado en CDMX y Zona Esmeralda.",
+            },
+        },
+        {
+            "@type": "Question",
+            name: "¿Cómo activo la Membresía Doctor Foam ($990/mes) y el 10% de descuento permanente?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "Para empezar a operar la Membresía Doctor Foam ($990 MXN/mes sedán o $1,160 MXN/mes SUV), primero se contrata un servicio de lavado profundo inicial. La membresía está diseñada para darle seguimiento preventivo continuo a ese primer servicio y te otorga un 10% de descuento permanente en todos los lavados más especializados (Industrial Deep Interior, Signature Detail y Ceramic Coating 9H).",
+            },
+        },
+        {
+            "@type": "Question",
             name: "¿Puedo facturar (CFDI) mi servicio de detallado automotriz en Doctor Foam?",
             acceptedAnswer: {
                 "@type": "Answer",

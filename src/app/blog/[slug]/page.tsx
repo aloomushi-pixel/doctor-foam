@@ -75,6 +75,20 @@ El instrumental utilizado (pinceles de cerdas de jabalí, pads de pulido, y micr
         category: "Innovación Tecnológica",
         readTime: "10 min",
         metaDesc: "El futuro de la protección automotriz: metrología algorítmica, PPF viscoelástico reactivo al calor y el resguardo de la plusvalía patrimonial.",
+        faqs: [
+            {
+                q: "¿Cómo funcionan los polímeros auto-regenerables y recubrimientos nanocerámicos en la pintura automotriz?",
+                a: "Los recubrimientos nanocerámicos SiO2 9H, de grafeno 10H y las películas elastoméricas de nueva generación crean una barrera hidrofóbica y térmica sobre el barniz original OEM que disipa micro-impactos, repele lluvia ácida y mantiene el acabado espejo sin degradar la pintura de fábrica.",
+            },
+            {
+                q: "¿Qué protección avanzada a domicilio ofrece Doctor Foam en CDMX?",
+                a: "Ofrecemos corrección óptica de pintura de 2 a 3 etapas con metrología de espesor ultrasónico e iluminación CRI 95+, seguida de blindaje Ceramic Coating 9H ($10,999 MXN, 3 a 5 años de garantía) o Graphene Shield Premium ($14,999 MXN, 5 a 7 años).",
+            },
+            {
+                q: "¿Cómo se mantiene un recubrimiento cerámico o polímero de última generación?",
+                a: "Una vez aplicado tu blindaje o servicio de lavado profundo inicial, puedes activar la Membresía de Seguimiento Doctor Foam ($990 MXN/mes) con lavado clínico de pH neutro, agua purificada por ósmosis inversa y 10% de descuento permanente en todos los paquetes especializados.",
+            },
+        ],
         content: `
 La intersección entre la ciencia de materiales y la protección automotriz está experimentando un cambio de paradigma. Para el segmento *Ultra-High Net Worth* (UHNW), un vehículo representa más que movilidad; es un activo patrimonial con una curva de depreciación que puede mitigarse activamente. La respuesta técnica para los años 2025-2026 trasciende los recubrimientos líquidos convencionales y entra en el terreno de la **metrología algorítmica y los polímeros elastoméricos reactivos**.
 
@@ -170,6 +184,20 @@ Los ductos del sistema de aire acondicionado (HVAC) son el pulmón del vehículo
         category: "Defensa Ambiental",
         readTime: "11 min",
         metaDesc: "Descubre la diferencia clínica entre depósitos minerales (water spots) y el grabado químico causado por la lluvia ácida en el Valle de México, y cómo mitigarlo.",
+        faqs: [
+            {
+                q: "¿Cuál es la diferencia entre manchas de agua (water spots) y lluvia ácida en la pintura del auto?",
+                a: "Las manchas de agua dura son depósitos alcalinos de calcio y magnesio que se adhieren sobre la superficie al evaporarse el agua de la llave, mientras que la lluvia ácida de la CDMX contiene ácido sulfúrico y nítrico que corroe y graba cráteres microscópicos dentro del barniz transparente (clear coat).",
+            },
+            {
+                q: "¿Cómo se quitan las marcas de lluvia ácida y gotas secas de la pintura y cristales en CDMX?",
+                a: "Si el depósito es superficial, se remueve con descontaminación química ácida controlada y barra de arcilla; si ya existe grabado en el barniz, realizamos corrección de pintura de 2 etapas en nuestro paquete Signature Detail ($7,499 MXN) y sellamos con recubrimiento cerámico para evitar que se vuelva a incrustar.",
+            },
+            {
+                q: "¿Cómo protege el recubrimiento cerámico 9H contra la lluvia ácida del Valle de México?",
+                a: "El recubrimiento cerámico SiO2 9H ($10,999 MXN) resiste agentes químicos desde pH 2 hasta pH 13 y eleva el ángulo de contacto del agua a más de 110°, haciendo que las gotas de lluvia ácida resbalen antes de calcinarse bajo el sol.",
+            },
+        ],
         content: `
 El microclima del Valle de México y áreas metropolitanas adyacentes como Interlomas y Santa Fe presenta un desafío termodinámico y químico severo para los recubrimientos automotrices de alto valor. Para el inversionista patrimonial, la preservación del activo requiere una comprensión profunda de las amenazas ambientales. La confusión generalizada entre las *manchas de agua duras* (water spots alcalinos) y el *grabado químico* (chemical etching) derivado de la lluvia ácida es un error diagnóstico que frecuentemente culmina en la depreciación irreversible de la capa transparente (clear coat).
 
@@ -263,6 +291,20 @@ La verdadera inversión patrimonial se justifica por los siguientes factores med
         category: "Economía del Patrimonio",
         readTime: "8 min",
         metaDesc: "Descubre cómo incrementar el valor de reventa de un auto de lujo en CDMX. Un análisis del ROI del detallado profesional y el efecto halo.",
+        faqs: [
+            {
+                q: "¿Cuánto incrementa el valor de reventa de un auto un detallado automotriz profesional en CDMX?",
+                a: "Una intervención de restauración estética como nuestro paquete Signature Detail ($7,499 MXN, que incluye corrección de pintura de 2-3 etapas, sellador cerámico y vapor a 180°C en interiores) puede incrementar o retener entre $16,000 y $35,000 MXN en la valuación de reventa al eliminar penalizaciones por pintura opaca o vestiduras desgastadas.",
+            },
+            {
+                q: "¿Qué paquete de Doctor Foam se recomienda antes de vender un auto seminuevo o de lujo?",
+                a: "Recomendamos Signature Detail ($7,499 MXN) para restaurar tanto la pintura exterior como la cabina completa en una sola sesión de 4 horas a domicilio, o Industrial Deep Interior ($2,400 MXN) si el exterior ya está en buen estado y solo requieres dejar asientos, alfombra y olor como nuevos.",
+            },
+            {
+                q: "¿Cómo mantener el valor de reventa de mi auto todo el año sin llevarlo al taller?",
+                a: "Después de tu primer servicio de lavado profundo, puedes activar nuestra Membresía Doctor Foam ($990 MXN/mes) con mantenimiento preventivo recurrente a domicilio y 10% de descuento permanente en todos los servicios especializados.",
+            },
+        ],
         content: `
 En el mercado de activos vehiculares de alta gama, la degradación estética rara vez se cuantifica de forma precisa hasta el momento de la liquidación del activo. Para el inversionista patrimonial, un vehículo no es simplemente un pasivo de depreciación acelerada, sino un instrumento cuyo valor residual puede ser manipulado estratégicamente mediante el mantenimiento preventivo y correctivo. En este contexto, el detallado automotriz de grado profesional trasciende el ámbito cosmético para convertirse en una **herramienta de ingeniería financiera**.
 
@@ -393,6 +435,20 @@ En Doctor Foam llevamos un laboratorio móvil con agua purificada y planta propi
         category: "Cuidado",
         readTime: "6 min",
         metaDesc: "Evita estos 5 errores comunes que arruinan la pintura de autos de lujo. Consejos profesionales de Doctor Foam México.",
+        faqs: [
+            {
+                q: "¿Por qué los autolavados de rodillos y el lavado con una sola cubeta rayan la pintura del auto?",
+                a: "Porque atrapan polvo volcánico y sílice de vehículos anteriores y lo frotan directamente contra el barniz, generando miles de micro-rayones circulares (swirls). En Doctor Foam usamos prelavado con espuma activa, método de dos cubetas con trampas de arena y microfibras de 500 GSM de un solo uso.",
+            },
+            {
+                q: "¿Qué pasa si mi auto ya tiene swirls o marcas de agua por lavados incorrectos?",
+                a: "Podemos eliminarlos de raíz a domicilio con nuestro paquete Signature Detail ($7,499 MXN), que incluye descontaminación férrica, corrección de pintura en 2 a 3 etapas para restaurar el 85-95% del brillo original y sellador cerámico.",
+            },
+            {
+                q: "¿Cómo evitar que vuelvan a rayar mi auto al lavarlo cada semana?",
+                a: "Tras realizar tu primer servicio de lavado profundo con Doctor Foam, activa nuestra Membresía de Seguimiento ($990 MXN/mes) para que nuestros técnicos mantengan tu vehículo a domicilio con agua purificada y además recibas 10% de descuento permanente en servicios especializados.",
+            },
+        ],
         content: `
 ## Error #1: Usar Jabón de Cocina o Detergente
 
