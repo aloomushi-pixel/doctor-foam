@@ -491,6 +491,20 @@ Un auto recién lavado queda completamente expuesto a los rayos UV, lluvia ácid
         category: "Servicios",
         readTime: "7 min",
         metaDesc: "Descubre qué debe incluir un detallado interior automotriz profesional: aspirado industrial, vapor, ozono, hidratación de pieles y más.",
+        faqs: [
+            {
+                q: "¿Qué incluye el lavado profundo de vestiduras e interiores a domicilio de Doctor Foam?",
+                a: "Nuestro paquete Industrial Deep Interior ($2,400 MXN en sedán/SUV de 2 filas y $2,760 MXN en Pick Up/SUV de 3 filas) incluye los 8 pasos clínicos: aspirado industrial de alta succión, lavado de asientos, alfombra y cielo con vapor seco a 180°C, acondicionamiento de piel Nappa, limpieza de ductos de aire acondicionado y sanitización con ozono médico.",
+            },
+            {
+                q: "¿En cuánto tiempo se secan los asientos después del lavado interior con vapor a 180°C?",
+                a: "Gracias a la tecnología de vapor seco a 180°C (con solo 5% de humedad líquida), los asientos y alfombras quedan listos para usarse en menos de 60 minutos, sin olores a humedad ni riesgo de hongos.",
+            },
+            {
+                q: "¿Cómo activo la Membresía Doctor Foam ($990/mes) después de mi detallado interior profundo?",
+                a: "Al contratar Industrial Deep Interior ($2,400 MXN) como tu primer servicio profundo, habilitas automáticamente el acceso a nuestra Membresía de Seguimiento ($990 MXN/mes sedán / $1,160 MXN/mes SUV) y obtienes un 10% de descuento permanente en todos los paquetes especializados.",
+            },
+        ],
         content: `
 ## La Diferencia Entre Limpieza y Detallado
 
@@ -522,13 +536,13 @@ Generador de ozono que elimina bacterias, virus, hongos y olores atrapados en el
 ### 8. Fragancia Premium
 Aplicamos un aromatizante premium de larga duración que complementa el ambiente del vehículo sin ser invasivo.
 
-## Precios de Detallado Interior en CDMX
+## Precios de Detallado Interior en CDMX (2026)
 
-| Tipo de Vehículo | Interior Básico | Interior Profundo |
-|-------------------|----------------|-------------------|
-| Sedán | $1,500 MXN | $2,500 MXN |
-| SUV / Camioneta | $1,800 MXN | $3,200 MXN |
-| Minivan / 3 filas | $2,200 MXN | $3,800 MXN |
+| Tipo de Vehículo | Foam Maintenance (Mantenimiento) | Industrial Deep Interior (Vapor 180°C + Ozono) | Signature Detail (Interior 180°C + Corrección Exterior) |
+|---|---|---|---|
+| **Sedán / SUV 2 filas** | $1,599 MXN | $2,400 MXN | $7,499 MXN |
+| **Pick Up / SUV 3 filas** | $1,839 MXN | $2,760 MXN | $8,624 MXN |
+| **Con Membresía (-10% OFF)** | Seguimiento desde $990/mes | $2,160 MXN (Sedán) | $6,749 MXN (Sedán) |
 
 ---
 
@@ -556,21 +570,49 @@ const defaultContent: Record<string, BlogPostData> = {
             },
             {
                 q: "¿Cuánto cuesta eliminar los swirls y pulir un auto a domicilio en CDMX?",
-                a: "En Doctor Foam México realizamos corrección de pintura y eliminación de swirls a domicilio con iluminación de inspección LED CRI 95+ y planta propia desde $7,499 MXN en el paquete Signature Detail (incluye detallado interior con vapor a 180°C y sellador cerámico de 6 meses).",
+                a: "En Doctor Foam México realizamos corrección de pintura y eliminación de swirls a domicilio con iluminación de inspección LED CRI 95+ y planta propia desde $7,499 MXN en el paquete Signature Detail (incluye detallado interior con vapor a 180°C y sellador cerámico de 6 meses), o $10,999 MXN con blindaje Ceramic Coating 9H por 3 a 5 años.",
             },
         ],
-        content: `## ¿Qué son los Swirls en la Pintura de tu Auto (Swirls Qué Es)?\n\nLos **swirls en la pintura** (también buscados como **swirls auto**, **micro swirls**, marcas de remolino o telarañas ópticas) son **micro rayones** (*microrayones*) grabados en la capa transparente (*clear coat* o barniz) de la pintura automotriz. Aunque a simple vista parecen círculos concéntricos, en realidad son miles de micro-incisiones rectas y multidireccionales que refractan la luz del sol o las lámparas LED formando un halo circular alrededor del reflejo.\n\nTanto en pinturas oscuras (negro obsidiana, azul marino, gris grafito) como en **autos blancos o plateados** bajo luz directa, los **swirls y microrayones** apagan la profundidad del color y restan hasta un 15% del valor estético de reventa.\n\n## Las 4 Causas Principales de los Micro Rayones y Swirls en CDMX\n\n1. **Lavado con cubeta única o franela ("viene-viene")**: El polvo volcánico y sílice del Valle de México tiene dureza Mohs 7. Frotarlo con un trapo húmedo equivale a pasar una lija fina sobre el barniz.\n2. **Rodillos de autolavado automático**: Las cerdas sintéticas acumulan lodo y arena de cientos de vehículos previos, golpeando la laca a altas revoluciones y generando **micro swirls** instantáneos.\n3. **Secado con gamuzas sintéticas o toallas de algodón**: Sin lubricación polimérica ni microfibra de 500+ GSM, el secado arrastra partículas abrasivas sobre los paneles horizontales (cofre, toldo y cajuela).\n4. **Pulido amateur con borla de lana**: Genera hologramas térmicos ("charolazos") y adelgaza peligrosamente el barniz original OEM.\n\n## Cómo Quitar Micro Rayones y Swirls del Auto de Forma Definitiva (Niveles de Corrección)\n\nLas ceras comerciales y "renovadores de pintura" de supermercado solo rellenan temporalmente los **micro rayones** con aceites siliconados que desaparecen al segundo lavado. La única solución real y permanente es la **nivelación micrométrica del barniz mediante corrección de pintura profesional**:\n\n### 1. Corrección en 1 Etapa (One-Step Polish / Realce Óptico)\nCombinación de compuesto de corte medio-fino con pad de espuma de celda reticulada usando pulidora roto-orbital de doble acción (DA). Elimina entre **60% y 75%** de los **swirls en el auto** y devuelve el brillo profundo en vehículos seminuevos.\n\n### 2. Corrección en 2 Etapas (Corte + Refinado — Signature Detail)\nPrimera etapa de corte pesado para nivelar **microrayones** profundos y marcas de lluvia ácida, seguida de una etapa de refinado óptico con pad suave para restaurar un acabado espejo libre de hologramas (**85% a 95% de corrección garantizada**).\n\n### 3. Corrección en 3 Etapas (Grado Concours / Show Car + Cerámico 9H)\nMedición ultrasónica de espesor de pintura panel por panel, corte quirúrgico, pulido intermedio y *jeweling* de ultra-alto brillo, culminando con blindaje nanocerámico SiO2 9H (**95% a 99% de perfección óptica**).\n\n## Tabla Comparativa de Corrección de Pintura y Eliminación de Swirls en CDMX\n\n| Servicio Doctor Foam | Eliminación de Swirls y Micro Rayones | Tiempo | Protección Incluida | Inversión Desde |\n|---|---|---|---|---|\n| **Lavado Clínico Anti-Swirl** | Prevención (0% abrasión nueva) | 2 - 3 hrs | Polímero hidrofóbico | $1,599 MXN |\n| **Signature Detail (Corrección + Interior)** | 85% - 95% de swirls y microrayones | 6 - 8 hrs | Sellador Cerámico 6 meses | $7,499 MXN |\n| **Extreme Ceramic Shield (Corrección + 9H)** | 95% - 99% + blindaje cristalino | 8 - 12 hrs | Cerámico 9H (3 a 5 años) | $12,499 MXN |\n\n## ¿Cómo Evitar que los Swirls y Microrayones Regresen?\n\nUna vez corregida la pintura con nuestro servicio de [Lavado Profundo y Detallado de Vehículos en CDMX](/lavado-profundo-vehiculos-cdmx), la clave para mantener el acabado espejo intacto es blindar el barniz con nuestros [paquetes de detallado automotriz y recubrimiento cerámico](/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz) y conservar el vehículo mediante [lavado recurrente a domicilio con método de dos cubetas y agua purificada](/lavado-recurrente-autos-domicilio) o en tu oficina con nuestro servicio de [lavado de autos en estacionamiento corporativo sin escurrimientos](/lavado-autos-estacionamiento-corporativo).\n\n---\n\n*Descubre el verdadero color y reflejo espejo de tu auto sin salir de casa. [Agenda una evaluación y corrección de pintura a domicilio en CDMX](/reservar).*`,
+        content: `## ¿Qué son los Swirls en la Pintura de tu Auto (Swirls Qué Es)?\n\nLos **swirls en la pintura** (también buscados como **swirls auto**, **micro swirls**, marcas de remolino o telarañas ópticas) son **micro rayones** (*microrayones*) grabados en la capa transparente (*clear coat* o barniz) de la pintura automotriz. Aunque a simple vista parecen círculos concéntricos, en realidad son miles de micro-incisiones rectas y multidireccionales que refractan la luz del sol o las lámparas LED formando un halo circular alrededor del reflejo.\n\nTanto en pinturas oscuras (negro obsidiana, azul marino, gris grafito) como en **autos blancos o plateados** bajo luz directa, los **swirls y microrayones** apagan la profundidad del color y restan hasta un 15% del valor estético de reventa.\n\n## Las 4 Causas Principales de los Micro Rayones y Swirls en CDMX\n\n1. **Lavado con cubeta única o franela ("viene-viene")**: El polvo volcánico y sílice del Valle de México tiene dureza Mohs 7. Frotarlo con un trapo húmedo equivale a pasar una lija fina sobre el barniz.\n2. **Rodillos de autolavado automático**: Las cerdas sintéticas acumulan lodo y arena de cientos de vehículos previos, golpeando la laca a altas revoluciones y generando **micro swirls** instantáneos.\n3. **Secado con gamuzas sintéticas o toallas de algodón**: Sin lubricación polimérica ni microfibra de 500+ GSM, el secado arrastra partículas abrasivas sobre los paneles horizontales (cofre, toldo y cajuela).\n4. **Pulido amateur con borla de lana**: Genera hologramas térmicos ("charolazos") y adelgaza peligrosamente el barniz original OEM.\n\n## Cómo Quitar Micro Rayones y Swirls del Auto de Forma Definitiva (Niveles de Corrección)\n\nLas ceras comerciales y "renovadores de pintura" de supermercado solo rellenan temporalmente los **micro rayones** con aceites siliconados que desaparecen al segundo lavado. La única solución real y permanente es la **nivelación micrométrica del barniz mediante corrección de pintura profesional**:\n\n### 1. Corrección en 1 Etapa (One-Step Polish / Realce Óptico)\nCombinación de compuesto de corte medio-fino con pad de espuma de celda reticulada usando pulidora roto-orbital de doble acción (DA). Elimina entre **60% y 75%** de los **swirls en el auto** y devuelve el brillo profundo en vehículos seminuevos.\n\n### 2. Corrección en 2 Etapas (Corte + Refinado — Signature Detail)\nPrimera etapa de corte pesado para nivelar **microrayones** profundos y marcas de lluvia ácida, seguida de una etapa de refinado óptico con pad suave para restaurar un acabado espejo libre de hologramas (**85% a 95% de corrección garantizada**).\n\n### 3. Corrección en 3 Etapas (Grado Concours / Show Car + Cerámico 9H)\nMedición ultrasónica de espesor de pintura panel por panel, corte quirúrgico, pulido intermedio y *jeweling* de ultra-alto brillo, culminando con blindaje nanocerámico SiO2 9H (**95% a 99% de perfección óptica**).\n\n## Tabla Comparativa de Corrección de Pintura y Eliminación de Swirls en CDMX\n\n| Servicio Doctor Foam | Eliminación de Swirls y Micro Rayones | Tiempo | Protección Incluida | Inversión Desde |\n|---|---|---|---|---|\n| **Foam Maintenance (Lavado Clínico Anti-Swirl)** | Prevención (0% abrasión nueva) | 1.5 - 2 hrs | Polímero hidrofóbico | $1,599 MXN |\n| **Signature Detail (Corrección + Interior 180°C)** | 85% - 95% de swirls y microrayones | 4 - 6 hrs | Sellador Cerámico 6 meses | $7,499 MXN |\n| **Ceramic Coating 9H (Corrección + Blindaje SiO2)** | 95% - 99% + blindaje cristalino | 6 - 8 hrs | Cerámico 9H (3 a 5 años) | $10,999 MXN |\n\n## ¿Cómo Evitar que los Swirls y Microrayones Regresen?\n\nUna vez corregida la pintura con nuestro servicio de [Lavado Profundo y Detallado de Vehículos en CDMX](/lavado-profundo-vehiculos-cdmx), la clave para mantener el acabado espejo intacto es blindar el barniz con nuestros [paquetes de detallado automotriz y recubrimiento cerámico](/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz) y activar nuestra [Membresía Doctor Foam ($990/mes + 10% de descuento permanente)](/membresia-doctor-foam) mediante [lavado recurrente a domicilio con método de dos cubetas y agua purificada](/lavado-recurrente-autos-domicilio) o en tu oficina con nuestro servicio de [lavado de autos en estacionamiento corporativo sin escurrimientos](/lavado-autos-estacionamiento-corporativo).\n\n---\n\n*Descubre el verdadero color y reflejo espejo de tu auto sin salir de casa. [Agenda una evaluación y corrección de pintura a domicilio en CDMX](/reservar).*`,
     },
     "por-que-detallado-domicilio-mejor": {
         title: "¿Por Qué el Detallado a Domicilio Supera al Taller?",
         date: "2026-01-20", category: "Tendencias", readTime: "5 min",
         metaDesc: "Ventajas del detallado automotriz a domicilio vs taller: comodidad, atención personalizada, equipo industrial. Doctor Foam CDMX.",
+        faqs: [
+            {
+                q: "¿Por qué es más seguro el detallado automotriz a domicilio de Doctor Foam que dejar mi auto en un taller?",
+                a: "Eliminas el riesgo de golpes, kilometraje no autorizado o contaminación cruzada en talleres saturados. Nuestra unidad móvil atiende únicamente tu vehículo frente a ti con agua purificada, luz propia e instrumental esterilizado.",
+            },
+            {
+                q: "¿En qué zonas de CDMX y Estado de México tienen cobertura a domicilio sin cargo extra?",
+                a: "Atendemos sin cargo por traslado en Polanco, Lomas de Chapultepec, Santa Fe, Bosques de las Lomas, Pedregal, San Ángel, Coyoacán, Interlomas y Huixquilucan.",
+            },
+            {
+                q: "¿Qué necesito tener en mi casa o departamento para que realicen el servicio?",
+                a: "Únicamente el espacio de estacionamiento donde se encuentra tu vehículo. Nuestras unidades móviles son 100% autónomas y llevan su propio tanque de agua filtrada y generador eléctrico silencioso.",
+            },
+        ],
         content: `## La Revolución del Detallado Móvil\n\nEl servicio a domicilio no es solo conveniencia — es una experiencia superior en todos los sentidos.\n\n## 5 Razones por las que el Domicilio Gana\n\n### 1. Tu Tiempo Vale Oro\nNo pierdes 2-4 horas llevando y recogiendo tu auto.\n\n### 2. Supervisión Total\nPuedes ver todo el proceso desde tu ventana.\n\n### 3. Atención 1 a 1\nEn un taller manejan 5-10 autos. A domicilio, tu auto es el único.\n\n### 4. Sin Riesgo de Daños en Traslado\nCero riesgo de golpes en estacionamientos de talleres.\n\n### 5. Equipo Profesional Sin Compromisos\nEn Doctor Foam nuestras unidades móviles cargan el mismo equipo que los mejores talleres del mundo.\n\n---\n\n*Experimenta la diferencia. [Agenda con Doctor Foam](/reservar).*`,
     },
     "mejores-ceras-selladores-mexico": {
         title: "Las Mejores Ceras y Selladores Disponibles en México",
         date: "2026-01-15", category: "Productos", readTime: "10 min",
         metaDesc: "Comparativa de ceras y selladores automotrices en México: carnaubas, selladores cerámicos y grafeno. Por los expertos de Doctor Foam.",
+        faqs: [
+            {
+                q: "¿Qué dura más en el clima de la CDMX: una cera carnauba, un sellador sintético o un recubrimiento cerámico?",
+                a: "Una cera carnauba dura de 1 a 3 meses y se degrada a más de 80°C; un sellador cerámico profesional (incluido en nuestro paquete Signature Detail de $7,499 MXN) protege durante 6 meses, mientras que el blindaje Ceramic Coating 9H ($10,999 MXN) protege de 3 a 5 años contra rayos UV y lluvia ácida.",
+            },
+            {
+                q: "¿Conviene aplicar cera o sellador cerámico sin descontaminar ni pulir antes la pintura?",
+                a: "No se recomienda, ya que atraparías contaminantes férricos y swirls debajo del sellador. En Doctor Foam siempre realizamos descontaminación química y mecánica (Clay Bar) antes de sellar tu pintura.",
+            },
+            {
+                q: "¿Cómo mantener el brillo e hidrofobicidad de un sellador o recubrimiento cerámico todo el año?",
+                a: "Tras tu primer servicio profundo o aplicación cerámica, puedes activar la Membresía Doctor Foam ($990 MXN/mes) con lavado de mantenimiento pH neutro a domicilio y 10% de descuento permanente en todos los paquetes especializados.",
+            },
+        ],
         content: `## Ceras Carnauba\n\n### Collinite 845\n- **Duración**: 3-4 meses\n- **Precio**: ~$600 MXN\n- **Brillo**: Excelente\n\n### Meguiar's Gold Class\n- **Duración**: 1-2 meses\n- **Precio**: ~$350 MXN\n- **Brillo**: Muy bueno\n\n## Selladores Sintéticos\n\n### Jescar Power Lock Plus\n- **Duración**: 6 meses\n- **Precio**: ~$800 MXN\n- **Protección**: Excelente\n\n### Menzerna Power Lock\n- **Duración**: 4-6 meses\n- **Precio**: ~$700 MXN\n- **Protección**: Muy buena\n\n## Cerámicos Spray\n\n### CarPro Reload\n- **Duración**: 3-4 meses\n- **Precio**: ~$500 MXN\n- **Facilidad**: Muy fácil\n\n---\n\n*¿Quieres protección profesional? Nuestros recubrimientos cerámicos duran años, no meses. [Cotiza aquí](/reservar).*`,
     },
 };
@@ -778,6 +820,105 @@ export default async function BlogPost({ params }: PageProps) {
                         dangerouslySetInnerHTML={{ __html: formatMarkdown(post.content) }}
                     />
 
+                    {/* Mid-Article 1-Tap Package & WhatsApp Conversion Strip (at ~70% scroll depth) */}
+                    <div
+                        className="glass-card"
+                        style={{
+                            marginTop: "2.75rem",
+                            padding: "1.5rem",
+                            background: "linear-gradient(135deg, rgba(248, 250, 252, 0.98), rgba(239, 246, 255, 0.95))",
+                            border: "1px solid rgba(37, 99, 235, 0.22)",
+                        }}
+                    >
+                        <div style={{ textAlign: "center", marginBottom: "1.1rem" }}>
+                            <span className="zone-tag zone-tag-blue" style={{ fontSize: "0.75rem", marginBottom: "0.4rem", display: "inline-block" }}>
+                                Cotización Inmediata a Domicilio · Agua y Luz Propia
+                            </span>
+                            <h2 style={{ fontSize: "1.25rem", color: "#0f172a", margin: "0.25rem 0" }}>
+                                Paquetes y Precios Oficiales en CDMX y Zona Esmeralda
+                            </h2>
+                            <p style={{ fontSize: "0.84rem", color: "#475569", margin: 0 }}>
+                                Precios base para Sedán / SUV de 2 filas (IVA incluido). Al contratar tu primer lavado profundo, habilitas la{" "}
+                                <Link href="/membresia-doctor-foam" style={{ color: "#2563eb", fontWeight: 700 }}>
+                                    Membresía de Seguimiento ($990/mes + 10% OFF permanente)
+                                </Link>.
+                            </p>
+                        </div>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "0.85rem" }}>
+                            {[
+                                {
+                                    name: "Industrial Deep Interior",
+                                    price: "$2,400 MXN",
+                                    memberPrice: "$2,160 MXN con Membresía (-10%)",
+                                    desc: "Lavado profundo de vestiduras, alfombra y cielo con vapor seco a 180°C + Ozono médico.",
+                                    waMsg: `Hola Doctor Foam, leí "${post.title}" y quiero agendar el paquete Industrial Deep Interior ($2,400 MXN) a domicilio`,
+                                    ctaId: `blog_${slug}_mid_deep_interior`,
+                                },
+                                {
+                                    name: "Signature Detail (Corrección + Interior)",
+                                    price: "$7,499 MXN",
+                                    memberPrice: "$6,749 MXN con Membresía (-10%)",
+                                    desc: "Eliminación de 85-95% de swirls (2-3 etapas), sellador cerámico 6 meses + interior a 180°C.",
+                                    waMsg: `Hola Doctor Foam, leí "${post.title}" y quiero cotizar el paquete Signature Detail ($7,499 MXN, corrección de swirls + interior) a domicilio`,
+                                    ctaId: `blog_${slug}_mid_signature_detail`,
+                                    featured: true,
+                                },
+                                {
+                                    name: "Ceramic Coating 9H",
+                                    price: "$10,999 MXN",
+                                    memberPrice: "$9,899 MXN con Membresía (-10%)",
+                                    desc: "Corrección óptica + blindaje nanocerámico SiO2 9H en carrocería, rines y cristales (3-5 años).",
+                                    waMsg: `Hola Doctor Foam, leí "${post.title}" y quiero cotizar el blindaje Ceramic Coating 9H ($10,999 MXN) a domicilio`,
+                                    ctaId: `blog_${slug}_mid_ceramic_9h`,
+                                },
+                            ].map((pkg, idx) => (
+                                <div
+                                    key={idx}
+                                    style={{
+                                        background: "#ffffff",
+                                        borderRadius: "0.75rem",
+                                        padding: "1rem",
+                                        border: pkg.featured ? "2px solid #2563eb" : "1px solid #e2e8f0",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <div>
+                                        <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#0f172a", marginBottom: "0.2rem" }}>
+                                            {pkg.name}
+                                        </div>
+                                        <div style={{ fontSize: "1.25rem", fontWeight: 800, color: "#2563eb" }}>
+                                            {pkg.price}
+                                        </div>
+                                        <div style={{ fontSize: "0.73rem", color: "#15803d", fontWeight: 600, marginBottom: "0.45rem" }}>
+                                            {pkg.memberPrice}
+                                        </div>
+                                        <p style={{ fontSize: "0.78rem", color: "#475569", lineHeight: 1.5, margin: "0 0 0.75rem" }}>
+                                            {pkg.desc}
+                                        </p>
+                                    </div>
+                                    <a
+                                        href={`https://wa.me/525610846022?text=${encodeURIComponent(pkg.waMsg)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-cta-location={pkg.ctaId}
+                                        className="btn-premium"
+                                        style={{
+                                            width: "100%",
+                                            justifyContent: "center",
+                                            padding: "0.5rem 0.75rem",
+                                            fontSize: "0.78rem",
+                                            background: pkg.featured ? undefined : "linear-gradient(135deg, #16a34a, #15803d)",
+                                        }}
+                                    >
+                                        💬 Agendar por WhatsApp
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
                     {/* Preguntas Frecuentes del Artículo */}
                     <div style={{ marginTop: "3.5rem" }}>
                         <h2 style={{ fontSize: "1.4rem", color: "#0f172a", marginBottom: "1.25rem" }}>
@@ -932,19 +1073,63 @@ export default async function BlogPost({ params }: PageProps) {
 
 /* Simple markdown-to-html for blog content */
 function formatMarkdown(md: string): string {
-    return md
+    // 1. Parse multi-line markdown tables into valid HTML5 <table><thead><tbody> elements
+    const withTables = md.replace(/(?:^\|.+\|\s*$\n?)+/gm, (tableBlock) => {
+        const lines = tableBlock
+            .trim()
+            .split("\n")
+            .map((l) => l.trim())
+            .filter(Boolean);
+        if (lines.length === 0) return tableBlock;
+
+        const dataRows = lines.filter((line) => !/^\|[\s\-:|]+\|$/.test(line));
+        if (dataRows.length === 0) return "";
+
+        const parseCells = (row: string) =>
+            row
+                .replace(/^\|/, "")
+                .replace(/\|$/, "")
+                .split("|")
+                .map((c) => c.trim());
+
+        const headerCells = parseCells(dataRows[0]);
+        const bodyRows = dataRows.slice(1).map(parseCells);
+
+        const thead = `<thead><tr style="background:#f8fafc;border-bottom:2px solid #cbd5e1;">${headerCells
+            .map(
+                (h) =>
+                    `<th style="padding:0.75rem 1rem;text-align:left;font-weight:700;color:#0f172a;border:1px solid #e2e8f0;">${h}</th>`
+            )
+            .join("")}</tr></thead>`;
+
+        const tbody = `<tbody>${bodyRows
+            .map(
+                (cells, idx) =>
+                    `<tr style="background:${idx % 2 === 0 ? "#ffffff" : "#f8fafc"};">${cells
+                        .map(
+                            (c) =>
+                                `<td style="padding:0.65rem 1rem;border:1px solid #e2e8f0;color:#334155;">${c}</td>`
+                        )
+                        .join("")}</tr>`
+            )
+            .join("")}</tbody>`;
+
+        return `<div style="overflow-x:auto;margin:1.75rem 0;"><table style="width:100%;border-collapse:collapse;border-radius:0.75rem;overflow:hidden;border:1px solid #cbd5e1;font-size:0.9rem;line-height:1.5;">${thead}${tbody}</table></div>`;
+    });
+
+    return withTables
         .replace(/^### (.+)$/gm, '<h3 style="margin-top:2rem;margin-bottom:0.75rem;font-size:1.15rem;color:#0f172a;">$1</h3>')
         .replace(/^## (.+)$/gm, '<h2 style="margin-top:2.5rem;margin-bottom:1rem;font-size:1.4rem;color:#0f172a;">$1</h2>')
+        .replace(
+            /^> (.+)$/gm,
+            '<blockquote style="margin:1.75rem 0;padding:1.1rem 1.35rem;border-left:4px solid #2563eb;background:rgba(239,246,255,0.75);border-radius:0 0.75rem 0.75rem 0;color:#1e293b;">$1</blockquote>'
+        )
         .replace(/\*\*(.+?)\*\*/g, "<strong style='color:#0f172a'>$1</strong>")
         .replace(/\*(.+?)\*/g, "<em>$1</em>")
         .replace(/^\d+\. (.+)$/gm, '<li style="margin-bottom:0.5rem;margin-left:1.5rem;">$1</li>')
         .replace(/^- (.+)$/gm, '<li style="margin-bottom:0.5rem;margin-left:1.5rem;list-style:disc;">$1</li>')
         .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" style="color:var(--color-gold-400);text-decoration:underline;">$1</a>')
-        .replace(/\|(.+)\|/g, (match) => {
-            const cells = match.split("|").filter(Boolean).map((c) => c.trim());
-            return `<tr>${cells.map((c) => `<td style="padding:0.5rem 1rem;border:1px solid rgba(96,165,250,0.1)">${c}</td>`).join("")}</tr>`;
-        })
-        .replace(/^---$/gm, '<hr style="border:none;border-top:1px solid rgba(96,165,250,0.1);margin:2rem 0">')
+        .replace(/^---$/gm, '<hr style="border:none;border-top:1px solid rgba(96,165,250,0.2);margin:2rem 0">')
         .replace(/\n\n/g, "<br/><br/>")
         .replace(/\n/g, " ");
 }

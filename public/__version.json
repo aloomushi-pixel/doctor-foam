@@ -1,9 +1,10 @@
 {
-  "version": "1.21.0-auto",
-  "cycle": 21,
-  "deployedAt": "2026-11-06T15:36:00Z",
+  "version": "1.22.0-auto",
+  "cycle": 22,
+  "deployedAt": "2026-11-06T19:45:10Z",
   "highlights": [
-    "Expanded /reservar FAQPage JSON-LD to 4 high-intent questions and rendered a visible SSR FAQ & Pricing section outside Suspense for immediate Googlebot initial HTML & AI/GEO crawler indexing",
-    "Added custom FAQPage JSON-LD and visible FAQ cards to 4 technical blog articles (innovacion-2025-2026, lluvia-acida, multiplicador-financiero, 5-errores-lavado-auto-premium)"
+    "Fixed HTML5 table & blockquote parser in formatMarkdown() on /blog/[slug] so comparison tables render as styled <table><thead><tbody> instead of stripped <tr><td> text at ~75% scroll depth",
+    "Added Mid-Article 1-Tap Package & WhatsApp Conversion Strip (Industrial Deep Interior $2,400, Signature Detail $7,499, Ceramic 9H $10,999 + Membresia $990/mes) at ~70% scroll depth following real organic human visitor (45f77ef5, 62s, 76% scroll) on /blog/correccion-pintura-swirls-guia",
+    "Completed 100% custom FAQPage JSON-LD coverage across all 10 blog articles and unified interior detailing pricing tables"
   ]
 }
