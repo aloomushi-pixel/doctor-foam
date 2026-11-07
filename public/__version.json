@@ -1,10 +1,10 @@
 {
-  "version": "1.26.0-auto",
-  "cycle": 26,
-  "deployedAt": "2026-11-07T12:28:00Z",
+  "version": "1.27.0-auto",
+  "cycle": 27,
+  "deployedAt": "2026-11-07T16:40:00Z",
   "highlights": [
-    "Confirmed via GSC URL Inspection API that 8 of 8 coverage zones (/zonas/polanco, lomas-de-chapultepec, santa-fe, bosques-de-las-lomas, interlomas, huixquilucan, pedregal, coyoacan) are now PASS | Enviada e indexada",
-    "Purified sitemap.ts, /blog hub, and Home Blog Carousel by removing the 2 next.config.ts 308-redirected slugs (detallado-interior-profundo-que-incluye and por-que-detallado-domicilio-mejor) so 100% of sitemap and internal blog links resolve 200 OK",
-    "Completed 100% Corporate PDF Brochure footer + hero CTA coverage across all cluster sub-pages (/paquetes-detallado-automotriz, /diferencias-servicios-detallado, /que-incluye-mantenimiento) and /blog/[slug] top bar"
+    "Added 1-tap WhatsApp date confirmation on /reservar Step 2 & Step 3 and streamlined Step 3 from 9 mandatory fields across 3 cards into a single card with only 4 mandatory fields after mobile visitor cd34f921 reached Step 3 and converted via WhatsApp",
+    "Added Reserve with Google (rwg_token) attribution tracking (google_maps_rwg) in telemetry.ts and drfoam_autonomous_audit.cjs after capturing real Google Maps booking traffic on /reservar?rwg_token=...",
+    "Injected mid-article inline 1-tap WhatsApp & Cotizador callout right before the 2nd H2 heading in /blog/[slug] (~45% scroll depth) for mobile readers like visitor a7884fa1 (392s dwell, 70% scroll on /blog/correccion-pintura-swirls-guia)"
   ]
 }

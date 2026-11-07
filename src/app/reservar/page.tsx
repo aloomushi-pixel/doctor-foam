@@ -280,6 +280,8 @@ function BookingForm() {
         setError("");
 
         try {
+            const cleanVehicleDesc = [vehicleBrand, vehicleModel, vehicleYear].filter(Boolean).join(" ") + (vehicleColor ? ` (${vehicleColor})` : "");
+            const cleanAddressDesc = `${addressCalle}${addressCP ? `, CP: ${addressCP}` : ""} (${addressTipo})`;
             const payload = {
                 packageId: selectedPackage,
                 vehicleSize,
@@ -287,7 +289,7 @@ function BookingForm() {
                 customerName,
                 customerEmail,
                 customerPhone,
-                address: `${addressCalle}, CP: ${addressCP}, Tipo: ${addressTipo}`,
+                address: cleanAddressDesc,
                 vehicleBrand, vehicleModel, vehicleYear, vehicleColor,
                 needsFactura,
                 rfc: needsFactura ? rfc : "",
@@ -324,8 +326,8 @@ function BookingForm() {
 Detalles:
 - Cliente: ${customerName}
 - Teléfono: ${customerPhone}
-- Vehículo: ${vehicleBrand} ${vehicleModel} ${vehicleYear} (${vehicleColor})
-- Dirección: ${addressCalle}, CP: ${addressCP}
+- Vehículo: ${cleanVehicleDesc}
+- Dirección: ${cleanAddressDesc}
 - Fecha: ${serviceDate}
 - Paquete: ${selectedPackage}`;
             
@@ -679,76 +681,136 @@ Detalles:
                             className="btn-premium" disabled={!serviceDate}
                             style={{ flex: 2, justifyContent: "center", opacity: serviceDate ? 1 : 0.5 }}
                         >
-                            Continuar → Tus datos
+                            Continuar → Pago en línea (${currentPrice.toLocaleString("es-MX")})
                         </button>
+                    </div>
+
+                    <div style={{ marginTop: "0.85rem" }}>
+                        <a
+                            href={`https://wa.me/525610846022?text=${encodeURIComponent(
+                                `Hola Doctor Foam, quiero agendar el paquete ${pkg?.name || selectedPackage} (${vehicleSizes.find((v) => v.value === vehicleSize)?.label || vehicleSize} — $${currentPrice.toLocaleString("es-MX")} MXN) a domicilio${serviceDate ? ` para el día ${serviceDate}` : ""}.`
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-cta-location="reservar_step2_whatsapp"
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                width: "100%",
+                                padding: "0.75rem 1.25rem",
+                                borderRadius: "9999px",
+                                fontSize: "0.86rem",
+                                fontWeight: 700,
+                                color: "#15803d",
+                                background: "#f0fdf4",
+                                border: "1.5px solid #86efac",
+                                textDecoration: "none",
+                            }}
+                        >
+                            💬 {serviceDate ? `Confirmar fecha (${serviceDate}) directo por WhatsApp` : `Agendar ${pkg?.name || "este servicio"} directo por WhatsApp`}
+                        </a>
                     </div>
                 </div>
             )}
 
-            {/* ─── STEP 3: Contact + Vehicle Details ─── */}
+            {/* ─── STEP 3: Contact + Vehicle Details (Streamlined 4-Field Express Form + 1-Tap WhatsApp) ─── */}
             {step === 3 && (
                 <div>
-                    <div className="glass-card" style={{ padding: "2rem", marginBottom: "1.5rem" }}>
-                        <h2 style={{ fontSize: "1.2rem", marginBottom: "1.25rem", color: "#0f172a" }}>3. Tus datos de contacto</h2>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                    {/* 1-Tap WhatsApp Fast-Track Banner at Top of Step 3 */}
+                    <div
+                        style={{
+                            padding: "1rem 1.25rem",
+                            borderRadius: "0.85rem",
+                            background: "linear-gradient(135deg, #f0fdf4, #ecfdf5)",
+                            border: "1.5px solid #86efac",
+                            marginBottom: "1.25rem",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            flexWrap: "wrap",
+                            gap: "0.75rem",
+                        }}
+                    >
+                        <div style={{ flex: "1 1 240px" }}>
+                            <strong style={{ color: "#14532d", fontSize: "0.9rem", display: "block" }}>
+                                ⚡ ¿Prefieres confirmar en 1 clic sin llenar formulario?
+                            </strong>
+                            <span style={{ color: "#166534", fontSize: "0.78rem" }}>
+                                Tu paquete ({pkg?.name} · ${currentPrice.toLocaleString("es-MX")} MXN) y fecha ({serviceDate}) ya están listos:
+                            </span>
+                        </div>
+                        <a
+                            href={`https://wa.me/525610846022?text=${encodeURIComponent(
+                                `Hola Doctor Foam, quiero confirmar mi cita para el día ${serviceDate}:\n- Paquete: ${pkg?.name || selectedPackage} ($${currentPrice.toLocaleString("es-MX")} MXN)\n- Tamaño: ${vehicleSizes.find((v) => v.value === vehicleSize)?.label || vehicleSize}${customerName ? `\n- Nombre: ${customerName}` : ""}${vehicleBrand ? `\n- Vehículo: ${vehicleBrand} ${vehicleModel}` : ""}${addressCalle ? `\n- Zona/Dirección: ${addressCalle}` : ""}`
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-cta-location="reservar_step3_top_whatsapp"
+                            className="btn-premium"
+                            style={{
+                                background: "linear-gradient(135deg, #16a34a, #15803d)",
+                                padding: "0.6rem 1.15rem",
+                                fontSize: "0.82rem",
+                                textDecoration: "none",
+                            }}
+                        >
+                            💬 Confirmar cita por WhatsApp →
+                        </a>
+                    </div>
+
+                    <div className="glass-card" style={{ padding: "1.75rem", marginBottom: "1.25rem" }}>
+                        <h2 style={{ fontSize: "1.15rem", marginBottom: "0.35rem", color: "#0f172a" }}>3. Datos rápidos para tu reserva en línea</h2>
+                        <p style={{ fontSize: "0.8rem", color: "#64748b", marginBottom: "1.15rem" }}>
+                            Solo 4 datos esenciales (*) para confirmar tu pago seguro con Stripe.
+                        </p>
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.9rem" }}>
                             <div style={{ gridColumn: "span 2" }}>
                                 <label style={labelStyle}>Nombre completo *</label>
                                 <input type="text" placeholder="Tu nombre" value={customerName} onChange={(e) => setCustomerName(e.target.value)} style={inputStyle} required />
                             </div>
-                            <div style={{ gridColumn: "span 2" }}>
-                                <label style={labelStyle}>Email *</label>
-                                <input type="email" placeholder="Tu correo electrónico" value={customerEmail} onChange={(e) => setCustomerEmail(e.target.value)} style={inputStyle} required />
-                            </div>
-                            <div style={{ gridColumn: "span 2" }}>
-                                <label style={labelStyle}>WhatsApp *</label>
+                            <div>
+                                <label style={labelStyle}>WhatsApp / Teléfono *</label>
                                 <input type="tel" placeholder="55 1234 5678" value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} style={inputStyle} required />
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="glass-card" style={{ padding: "2rem", marginBottom: "1.5rem" }}>
-                        <h2 style={{ fontSize: "1.2rem", marginBottom: "1.25rem", color: "#0f172a" }}>Datos del vehículo</h2>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                            <div><label style={labelStyle}>Marca *</label><input type="text" placeholder="BMW, Mercedes..." value={vehicleBrand} onChange={(e) => setVehicleBrand(e.target.value)} style={inputStyle} required /></div>
-                            <div><label style={labelStyle}>Modelo *</label><input type="text" placeholder="X5, Clase C..." value={vehicleModel} onChange={(e) => setVehicleModel(e.target.value)} style={inputStyle} required /></div>
-                            <div><label style={labelStyle}>Año *</label><input type="number" placeholder="2024" value={vehicleYear} onChange={(e) => setVehicleYear(e.target.value)} style={inputStyle} required min="2000" max="2027" /></div>
-                            <div><label style={labelStyle}>Color *</label><input type="text" placeholder="Negro, Blanco..." value={vehicleColor} onChange={(e) => setVehicleColor(e.target.value)} style={inputStyle} required /></div>
-                        </div>
-                    </div>
-
-                    <div className="glass-card" style={{ padding: "2rem", marginBottom: "1.5rem" }}>
-                        <h2 style={{ fontSize: "1.2rem", marginBottom: "1.25rem", color: "#0f172a" }}>Dirección del servicio</h2>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                            <div>
+                                <label style={labelStyle}>Email (opcional)</label>
+                                <input type="email" placeholder="correo@ejemplo.com" value={customerEmail} onChange={(e) => setCustomerEmail(e.target.value)} style={inputStyle} />
+                            </div>
+                            <div>
+                                <label style={labelStyle}>Marca y Modelo del auto *</label>
+                                <input type="text" placeholder="Ej. BMW X5, Porsche Macan..." value={vehicleBrand} onChange={(e) => setVehicleBrand(e.target.value)} style={inputStyle} required />
+                            </div>
+                            <div>
+                                <label style={labelStyle}>Año / Color (opcional)</label>
+                                <input type="text" placeholder="Ej. 2024 Negro" value={vehicleColor} onChange={(e) => setVehicleColor(e.target.value)} style={inputStyle} />
+                            </div>
                             <div style={{ gridColumn: "span 2" }}>
-                                <label style={labelStyle}>Calle y número *</label>
-                                <input type="text" placeholder="Ej. Av. Chapultepec 123, Int 4" value={addressCalle} onChange={(e) => setAddressCalle(e.target.value)} style={inputStyle} required />
+                                <label style={labelStyle}>Calle, número y colonia (CDMX / EdoMex) *</label>
+                                <input type="text" placeholder="Ej. Av. Presidente Masaryk 123, Polanco" value={addressCalle} onChange={(e) => setAddressCalle(e.target.value)} style={inputStyle} required />
                             </div>
                             <div>
-                                <label style={labelStyle}>Código Postal *</label>
-                                <input type="text" placeholder="Ej. 11000" value={addressCP} onChange={(e) => setAddressCP(e.target.value)} style={inputStyle} required />
+                                <label style={labelStyle}>Código Postal (opcional)</label>
+                                <input type="text" placeholder="Ej. 11560" value={addressCP} onChange={(e) => setAddressCP(e.target.value)} style={inputStyle} />
                             </div>
                             <div>
-                                <label style={labelStyle}>Tipo de domicilio *</label>
-                                <select value={addressTipo} onChange={(e) => setAddressTipo(e.target.value)} style={inputStyle} required>
-                                    <option value="Casa">Casa</option>
-                                    <option value="Trabajo">Trabajo</option>
-                                    <option value="Otro">Otro</option>
+                                <label style={labelStyle}>Tipo de ubicación</label>
+                                <select value={addressTipo} onChange={(e) => setAddressTipo(e.target.value)} style={inputStyle}>
+                                    <option value="Casa">Casa / Residencia</option>
+                                    <option value="Trabajo">Oficina / Corporativo</option>
+                                    <option value="Otro">Condominio / Otro</option>
                                 </select>
                             </div>
                         </div>
-                        <p style={{ color: "#64748b", fontSize: "0.8rem", marginTop: "1rem", fontStyle: "italic" }}>
-                            (Podrás administrar tus direcciones en &quot;Mi Cuenta&quot; después de reservar)
-                        </p>
                     </div>
 
-                    <div className="glass-card" style={{ padding: "2rem", marginBottom: "1.5rem" }}>
-                        <h2 style={{ fontSize: "1.2rem", marginBottom: "1rem", color: "#0f172a" }}>Facturación</h2>
-                        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+                    <div className="glass-card" style={{ padding: "1.5rem", marginBottom: "1.5rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                             <input type="checkbox" id="needsFactura" checked={needsFactura} onChange={(e) => setNeedsFactura(e.target.checked)} style={{ width: "1.25rem", height: "1.25rem", accentColor: "#2563eb" }} />
-                            <label htmlFor="needsFactura" style={{ color: "#334155", fontSize: "0.95rem", cursor: "pointer" }}>Requiero factura (CFDI)</label>
+                            <label htmlFor="needsFactura" style={{ color: "#334155", fontSize: "0.95rem", cursor: "pointer", fontWeight: 600 }}>Requiero factura fiscal (CFDI)</label>
                         </div>
                         {needsFactura && (
-                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginTop: "1rem" }}>
                                 <div><label style={labelStyle}>RFC *</label><input type="text" placeholder="XAXX010101000" value={rfc} onChange={(e) => setRfc(e.target.value.toUpperCase())} style={inputStyle} required={needsFactura} maxLength={13} /></div>
                                 <div><label style={labelStyle}>Razón Social *</label><input type="text" placeholder="Nombre o Razón Social" value={razonSocial} onChange={(e) => setRazonSocial(e.target.value)} style={inputStyle} required={needsFactura} /></div>
                                 <div><label style={labelStyle}>Régimen Fiscal *</label><input type="text" placeholder="Ej. 601 General de Ley..." value={facturaRegimen} onChange={(e) => setFacturaRegimen(e.target.value)} style={inputStyle} required={needsFactura} /></div>
@@ -771,18 +833,18 @@ Detalles:
                         <button
                             type="button"
                             onClick={() => {
-                                const baseValid = customerName && customerEmail && customerPhone && vehicleBrand && vehicleModel && addressCalle && addressCP && vehicleYear && vehicleColor;
+                                const baseValid = customerName.trim() && customerPhone.trim() && vehicleBrand.trim() && addressCalle.trim();
                                 const facturaValid = !needsFactura || (rfc && razonSocial && facturaRegimen && facturaCP && facturaEmail && facturaUsoCFDI);
                                 if (baseValid && facturaValid) {
                                     setError("");
                                     setStep(4);
                                 } else {
-                                    setError("Por favor completa todos los campos obligatorios (*) para continuar al resumen.");
+                                    setError("Por favor completa los 4 campos marcados con (*) para continuar al pago.");
                                 }
                             }}
                             className="btn-premium" style={{ flex: 2, justifyContent: "center" }}
                         >
-                            Continuar → Resumen
+                            Continuar → Resumen y Pago (${currentPrice.toLocaleString("es-MX")})
                         </button>
                     </div>
                 </div>
@@ -796,10 +858,10 @@ Detalles:
                     <div style={{ display: "grid", gap: "0.75rem", marginBottom: "1.5rem" }}>
                         {[
                             { label: "Servicio", value: pkg.name },
-                            { label: "Vehículo", value: `${vehicleBrand} ${vehicleModel} ${vehicleYear} (${vehicleColor})` },
+                            { label: "Vehículo", value: [vehicleBrand, vehicleModel, vehicleYear].filter(Boolean).join(" ") + (vehicleColor ? ` (${vehicleColor})` : "") },
                             { label: "Tamaño", value: vehicleSizes.find((v) => v.value === vehicleSize)?.label || "" },
                             { label: "Fecha", value: serviceDate ? new Date(serviceDate + "T12:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) : "" },
-                            { label: "Dirección", value: `${addressCalle}, CP: ${addressCP} (${addressTipo})` },
+                            { label: "Dirección", value: `${addressCalle}${addressCP ? `, CP: ${addressCP}` : ""} (${addressTipo})` },
                             { label: "Contacto", value: `${customerName} · ${customerPhone}` },
                             ...(needsFactura ? [{ label: "Facturación", value: `Solicitada (${rfc})` }] : []),
                         ].map((item) => (

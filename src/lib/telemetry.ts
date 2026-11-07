@@ -238,6 +238,10 @@ export function detectTrafficAttribution(): {
       result = { attribution_channel: "geo_ai", ai_engine: "Gemini" };
     } else if (combined.includes("copilot.microsoft.com")) {
       result = { attribution_channel: "geo_ai", ai_engine: "Copilot" };
+    } else if (search.includes("rwg_token=")) {
+      result = { attribution_channel: "google_maps_rwg", ai_engine: null };
+    } else if (search.includes("utm_source=brochure_pdf")) {
+      result = { attribution_channel: "brochure_pdf", ai_engine: null };
     } else if (/google\.|bing\.|duckduckgo\.|yahoo\./i.test(ref)) {
       result = { attribution_channel: "organic_search", ai_engine: null };
     } else if (/instagram\.|facebook\.|tiktok\.|t\.co|youtube\./i.test(ref)) {

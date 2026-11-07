@@ -254,6 +254,12 @@ async function auditSupabaseUx() {
   const brochureVisitors = new Set(
     [...brochureDownloadRows, ...brochureReferralRows].map((r) => r.visitor_id || r.session_id)
   );
+  const rwgRows = humanRows.filter(
+    (r) =>
+      r.attribution_channel === "google_maps_rwg" ||
+      (r.path && String(r.path).includes("rwg_token="))
+  );
+  const rwgVisitors = new Set(rwgRows.map((r) => r.visitor_id || r.session_id));
   const bookingRows = humanRows.filter(
     (r) =>
       r.event_name === "booking_step_view" ||
@@ -297,6 +303,8 @@ async function auditSupabaseUx() {
     brochurePdfVisitors: brochureVisitors.size,
     brochurePdfDownloadClicks: brochureDownloadRows.length,
     brochurePdfReferralEvents: brochureReferralRows.length,
+    googleMapsRwgVisitors: rwgVisitors.size,
+    googleMapsRwgEvents: rwgRows.length,
     bookingFunnelEvents: bookingRows.length,
     rageClicks: rageRows.length,
     googlebotWrsRenders: googlebotWrsRows.length,

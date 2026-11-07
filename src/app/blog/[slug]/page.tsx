@@ -828,7 +828,7 @@ export default async function BlogPost({ params }: PageProps) {
                     <div
                         className="blog-content"
                         style={{ color: "#334155", fontSize: "1.05rem", lineHeight: "1.9" }}
-                        dangerouslySetInnerHTML={{ __html: formatMarkdown(post.content) }}
+                        dangerouslySetInnerHTML={{ __html: formatMarkdown(post.content, slug, post.title) }}
                     />
 
                     {/* Mid-Article 1-Tap Package & WhatsApp Conversion Strip (at ~70% scroll depth) */}
@@ -1085,7 +1085,7 @@ export default async function BlogPost({ params }: PageProps) {
 }
 
 /* Simple markdown-to-html for blog content */
-function formatMarkdown(md: string): string {
+function formatMarkdown(md: string, slug?: string, title?: string): string {
     // 1. Parse multi-line markdown tables into valid HTML5 <table><thead><tbody> elements
     const withTables = md.replace(/(?:^\|.+\|\s*$\n?)+/gm, (tableBlock) => {
         const lines = tableBlock
@@ -1130,9 +1130,19 @@ function formatMarkdown(md: string): string {
         return `<div style="overflow-x:auto;margin:1.75rem 0;"><table style="width:100%;border-collapse:collapse;border-radius:0.75rem;overflow:hidden;border:1px solid #cbd5e1;font-size:0.9rem;line-height:1.5;">${thead}${tbody}</table></div>`;
     });
 
+    let h2Index = 0;
+    const inlineWaText = encodeURIComponent(
+        `Hola Doctor Foam, estoy leyendo "${title || "el blog"}" y quiero cotizar un servicio de detallado / corrección / cerámico a domicilio`
+    );
+    const inlineCtaHtml = `<div style="margin:2rem 0;padding:1.15rem 1.3rem;border-radius:0.85rem;background:linear-gradient(135deg,#f0fdf4,#eff6ff);border:1px solid #86efac;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.85rem;line-height:1.5;"><div style="flex:1 1 260px;"><div style="font-size:0.75rem;font-weight:700;color:#15803d;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.2rem;">⚡ Atención a Domicilio 100% Autónoma</div><div style="font-size:0.98rem;font-weight:800;color:#0f172a;">¿Quieres cotizar este tratamiento en tu casa u oficina?</div><div style="font-size:0.82rem;color:#475569;margin-top:0.15rem;">Llevamos agua desmineralizada y planta de luz a Polanco, Lomas, Santa Fe, Bosques, Interlomas, Huixquilucan, Pedregal y Coyoacán.</div></div><div style="display:flex;gap:0.55rem;flex-wrap:wrap;align-items:center;"><a href="https://wa.me/525610846022?text=${inlineWaText}" target="_blank" rel="noopener noreferrer" data-cta-location="blog_${slug || "article"}_inline_midtext_whatsapp" style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.55rem 1rem;border-radius:0.65rem;background:linear-gradient(135deg,#16a34a,#15803d);color:#ffffff;font-weight:700;font-size:0.84rem;text-decoration:none;box-shadow:0 4px 12px rgba(22,163,74,0.22);">💬 Cotizar por WhatsApp</a><a href="/reservar" style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.55rem 0.95rem;border-radius:0.65rem;background:#2563eb;color:#ffffff;font-weight:700;font-size:0.84rem;text-decoration:none;">📅 Ver Precios y Agendar</a></div></div>`;
+
     return withTables
         .replace(/^### (.+)$/gm, '<h3 style="margin-top:2rem;margin-bottom:0.75rem;font-size:1.15rem;color:#0f172a;">$1</h3>')
-        .replace(/^## (.+)$/gm, '<h2 style="margin-top:2.5rem;margin-bottom:1rem;font-size:1.4rem;color:#0f172a;">$1</h2>')
+        .replace(/^## (.+)$/gm, (_match, headingText) => {
+            h2Index += 1;
+            const h2Html = `<h2 style="margin-top:2.5rem;margin-bottom:1rem;font-size:1.4rem;color:#0f172a;">${headingText}</h2>`;
+            return h2Index === 2 ? `${inlineCtaHtml}${h2Html}` : h2Html;
+        })
         .replace(
             /^> (.+)$/gm,
             '<blockquote style="margin:1.75rem 0;padding:1.1rem 1.35rem;border-left:4px solid #2563eb;background:rgba(239,246,255,0.75);border-radius:0 0.75rem 0.75rem 0;color:#1e293b;">$1</blockquote>'
