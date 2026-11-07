@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import { PACKAGES, calculatePrice, getVehicleSizeLabel } from "@/lib/packages";
+import { PACKAGES, calculatePrice, getVehicleSizeLabel, resolvePackageSlug } from "@/lib/packages";
 import { insertTelemetryRows } from "@/lib/telemetry";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -30,8 +30,9 @@ export async function POST(request: NextRequest) {
             facturaUsoCFDI,
         } = body;
 
-        // Validate package
-        const pkg = PACKAGES[packageId];
+        // Validate package (supporting aliases like industrial-deep-interior -> deep-interior)
+        const canonicalPkgId = resolvePackageSlug(packageId);
+        const pkg = PACKAGES[canonicalPkgId];
         if (!pkg) {
             return NextResponse.json({ error: "Paquete no válido" }, { status: 400 });
         }
@@ -41,7 +42,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Calculate price with vehicle size coefficient
-        const totalCentavos = calculatePrice(packageId, vehicleSize);
+        const totalCentavos = calculatePrice(canonicalPkgId, vehicleSize);
         const isSubscription = !!pkg.isSubscription;
 
         const vehicleSizeLabel = getVehicleSizeLabel(vehicleSize);

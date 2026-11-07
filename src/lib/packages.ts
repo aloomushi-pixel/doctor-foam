@@ -138,12 +138,42 @@ export const PREMIUM_ZONES = [
 ];
 
 /* ─── Helpers ─── */
+const PACKAGE_SLUG_ALIASES: Record<string, string> = {
+    "deep-interior": "deep-interior",
+    "industrial-deep-interior": "deep-interior",
+    "lavado-profundo": "deep-interior",
+    "interior": "deep-interior",
+    "signature-detail": "signature-detail",
+    "signature": "signature-detail",
+    "ceramic-coating": "ceramic-coating",
+    "ceramic-coating-9h": "ceramic-coating",
+    "ceramico": "ceramic-coating",
+    "graphene-upgrade": "graphene-upgrade",
+    "graphene-shield": "graphene-upgrade",
+    "grafeno": "graphene-upgrade",
+    "foam-maintenance": "foam-maintenance",
+    "recurrente": "foam-maintenance",
+    "membresia": "membresia",
+};
+
+export function resolvePackageSlug(input?: string | null): string {
+    if (!input) return "signature-detail";
+    const normalized = input.trim().toLowerCase();
+    if (PACKAGE_SLUG_ALIASES[normalized]) {
+        return PACKAGE_SLUG_ALIASES[normalized];
+    }
+    if (PACKAGES[normalized]) {
+        return normalized;
+    }
+    return "signature-detail";
+}
+
 export function getPackageBySlug(slug: string): PackageConfig | undefined {
-    return PACKAGES[slug];
+    return PACKAGES[resolvePackageSlug(slug)];
 }
 
 export function calculatePrice(slug: string, vehicleSize: string): number {
-    const pkg = PACKAGES[slug];
+    const pkg = PACKAGES[resolvePackageSlug(slug)];
     if (!pkg) return 0;
     const coeff = SIZE_COEFFICIENTS[vehicleSize] || 1.0;
     return Math.round(pkg.priceCentavos * coeff);

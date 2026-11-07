@@ -76,7 +76,7 @@ const faqJsonLd = {
             name: "¿Cuánto cuesta el lavado de vestiduras de auto cerca de mí a domicilio en CDMX?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Nuestro paquete Industrial Deep Interior cuesta $2,400 MXN para sedán o SUV de 2 filas y $2,760 MXN para Pick Up o SUV de 3 filas (IVA incluido). Incluye lavado de asientos, alfombra y cielo con vapor seco a 180°C, desinfección de ductos de A/C y sanitización con ozono médico sin cargo por traslado en CDMX y Zona Esmeralda.",
+                text: "Nuestro paquete Industrial Deep Interior cuesta $2,499 MXN para sedán o SUV de 2 filas y $2,874 MXN para Pick Up o SUV de 3 filas (IVA incluido). Incluye lavado de asientos, alfombra y cielo con vapor seco a 180°C, desinfección de ductos de A/C y sanitización con ozono médico sin cargo por traslado en CDMX y Zona Esmeralda.",
             },
         },
         {

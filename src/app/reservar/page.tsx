@@ -1,6 +1,6 @@
 "use client";
 
-import { PACKAGES, VEHICLE_SIZES } from "@/lib/packages";
+import { PACKAGES, VEHICLE_SIZES, resolvePackageSlug } from "@/lib/packages";
 import { trackDrFoamEvent } from "@/lib/telemetry";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -196,7 +196,8 @@ function Calendar({
 function BookingForm() {
     const searchParams = useSearchParams();
     const [step, setStep] = useState(1);
-    const [selectedPackage, setSelectedPackage] = useState(searchParams.get("paquete") || "signature-detail");
+    const initialPkgParam = searchParams.get("paquete") || searchParams.get("package") || searchParams.get("pkg");
+    const [selectedPackage, setSelectedPackage] = useState(resolvePackageSlug(initialPkgParam));
     const [vehicleSize, setVehicleSize] = useState("sedan-2filas");
     const [serviceDate, setServiceDate] = useState("");
     const [loading, setLoading] = useState(false);
@@ -231,8 +232,11 @@ function BookingForm() {
     const currentPrice = isMember ? Math.round(basePrice * 0.9) : basePrice;
 
     useEffect(() => {
-        const paquete = searchParams.get("paquete");
-        if (paquete && packagesData[paquete]) setSelectedPackage(paquete);
+        const rawPkg = searchParams.get("paquete") || searchParams.get("package") || searchParams.get("pkg");
+        if (rawPkg) {
+            const resolved = resolvePackageSlug(rawPkg);
+            if (packagesData[resolved]) setSelectedPackage(resolved);
+        }
 
         const checkMembership = async () => {
             try {
@@ -421,8 +425,100 @@ Detalles:
 
             {/* ─── STEP 1: Package + Vehicle Size ─── */}
             {step === 1 && (
-                <div className="glass-card" style={{ padding: "2rem" }}>
-                    <h2 style={{ fontSize: "1.2rem", marginBottom: "1.25rem", color: "#0f172a" }}>1. Selecciona tu servicio</h2>
+                <div className="glass-card" style={{ padding: "1.5rem" }}>
+                    {/* Above-the-Fold Quick Action Bar for Mobile & Brochure Referrals */}
+                    <div
+                        style={{
+                            padding: "1.1rem 1.25rem",
+                            borderRadius: "0.85rem",
+                            background: "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(16,185,129,0.06))",
+                            border: "2px solid rgba(37,99,235,0.25)",
+                            marginBottom: "1.5rem",
+                        }}
+                    >
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.75rem" }}>
+                            <div>
+                                <span style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#2563eb", display: "block" }}>
+                                    ✓ Paquete seleccionado
+                                </span>
+                                <strong style={{ fontSize: "1.15rem", color: "#0f172a", fontFamily: "var(--font-heading)" }}>
+                                    {pkg?.name || "Signature Detail"}
+                                </strong>
+                            </div>
+                            <div style={{ textAlign: "right" }}>
+                                <span className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.45rem" }}>
+                                    ${currentPrice.toLocaleString("es-MX")} MXN
+                                </span>
+                                <span style={{ display: "block", fontSize: "0.72rem", color: "#64748b" }}>
+                                    IVA incluido · {vehicleSizes.find((v) => v.value === vehicleSize)?.label}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Quick Vehicle Size Toggle Pills Above the Fold */}
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem", marginBottom: "0.85rem" }}>
+                            {vehicleSizes.map((v) => (
+                                <button
+                                    key={`quick-${v.value}`}
+                                    type="button"
+                                    onClick={() => setVehicleSize(v.value)}
+                                    style={{
+                                        padding: "0.5rem 0.65rem",
+                                        borderRadius: "0.5rem",
+                                        border: vehicleSize === v.value ? "2px solid #2563eb" : "1px solid #cbd5e1",
+                                        background: vehicleSize === v.value ? "#ffffff" : "rgba(255,255,255,0.65)",
+                                        color: vehicleSize === v.value ? "#1e40af" : "#475569",
+                                        fontWeight: vehicleSize === v.value ? 700 : 500,
+                                        fontSize: "0.78rem",
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    {v.label} {v.coefficient > 1 ? "(+15%)" : "(Base)"}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Immediate 1-Tap Action Buttons Above the Fold */}
+                        <div style={{ display: "grid", gap: "0.55rem" }}>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setError("");
+                                    setStep(2);
+                                }}
+                                className="btn-premium"
+                                style={{ width: "100%", justifyContent: "center", padding: "0.8rem 1.25rem", fontSize: "0.92rem" }}
+                            >
+                                📅 Elegir fecha y pagar en línea (${currentPrice.toLocaleString("es-MX")} MXN) →
+                            </button>
+                            <a
+                                href={`https://wa.me/525610846022?text=${encodeURIComponent(
+                                    `Hola Doctor Foam, quiero agendar el paquete ${pkg?.name || selectedPackage} (${vehicleSizes.find((v) => v.value === vehicleSize)?.label || vehicleSize} — $${currentPrice.toLocaleString("es-MX")} MXN) a domicilio.`
+                                )}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location="reservar_step1_top_whatsapp"
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    width: "100%",
+                                    padding: "0.7rem 1.15rem",
+                                    borderRadius: "9999px",
+                                    fontSize: "0.86rem",
+                                    fontWeight: 700,
+                                    color: "#15803d",
+                                    background: "#f0fdf4",
+                                    border: "1.5px solid #86efac",
+                                    textDecoration: "none",
+                                }}
+                            >
+                                💬 Agendar {pkg?.name || "este servicio"} (${currentPrice.toLocaleString("es-MX")}) por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                    <h2 style={{ fontSize: "1.08rem", marginBottom: "0.9rem", color: "#0f172a" }}>1. O compara y cambia tu paquete:</h2>
 
                     <div style={{ display: "grid", gap: "0.75rem", marginBottom: "1.5rem" }}>
                         {Object.entries(packagesData).map(([key, p]) => {
@@ -847,11 +943,11 @@ export default function ReservarPage() {
                             {[
                                 {
                                     q: "¿Cómo funciona la reserva de lavado de vestiduras y detallado a domicilio en CDMX?",
-                                    a: "Elige tu paquete (Industrial Deep Interior $2,400 MXN, Signature Detail $7,499 MXN, Ceramic Coating 9H $10,999 MXN o Foam Maintenance $1,599 MXN), selecciona el tamaño de tu vehículo y agenda en línea con tarjeta o directamente por WhatsApp. Llegamos con unidad 100% autónoma (agua purificada y luz propia) a tu casa u oficina.",
+                                    a: "Elige tu paquete (Industrial Deep Interior $2,499 MXN, Signature Detail $7,449 MXN, Ceramic Coating 9H $11,999 MXN o Foam Maintenance $1,800 MXN), selecciona el tamaño de tu vehículo y agenda en línea con tarjeta o directamente por WhatsApp. Llegamos con unidad 100% autónoma (agua purificada y luz propia) a tu casa u oficina.",
                                 },
                                 {
                                     q: "¿Cuánto cuesta el lavado de vestiduras de auto cerca de mí a domicilio en CDMX?",
-                                    a: "Nuestro paquete Industrial Deep Interior cuesta $2,400 MXN para sedán o SUV de 2 filas y $2,760 MXN para Pick Up o SUV de 3 filas (IVA incluido). Incluye lavado de asientos, alfombra y cielo con vapor seco a 180°C, desinfección de ductos de A/C y sanitización con ozono médico sin cargo por traslado en CDMX y Zona Esmeralda.",
+                                    a: "Nuestro paquete Industrial Deep Interior cuesta $2,499 MXN para sedán o SUV de 2 filas y $2,874 MXN para Pick Up o SUV de 3 filas (IVA incluido). Incluye lavado de asientos, alfombra y cielo con vapor seco a 180°C, desinfección de ductos de A/C y sanitización con ozono médico sin cargo por traslado en CDMX y Zona Esmeralda.",
                                 },
                                 {
                                     q: "¿Cómo activo la Membresía Doctor Foam ($990/mes) y el 10% de descuento permanente?",

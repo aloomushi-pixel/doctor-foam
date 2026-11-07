@@ -620,7 +620,12 @@ export default function HomePage() {
               const displayPrice = isGrapheneActive ? p.upgrade!.price : p.price;
               const displayName = isGrapheneActive ? "Graphene Shield" : p.name;
               const displaySubtitle = isGrapheneActive ? "Protección superior de grafeno 5-7 años" : p.subtitle;
-              const bookingSlug = isGrapheneActive ? "graphene-upgrade" : p.name.toLowerCase().replace(/ /g, '-');
+              const rawSlug = p.name.toLowerCase().replace(/ /g, '-');
+              const bookingSlug = isGrapheneActive
+                ? "graphene-upgrade"
+                : rawSlug === "industrial-deep-interior"
+                ? "deep-interior"
+                : rawSlug;
 
               return (
                 <div key={i} className={`glass-card price-card animate-on-scroll ${p.featured ? "featured" : ""}`}>

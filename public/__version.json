@@ -1,10 +1,10 @@
 {
-  "version": "1.24.0-auto",
-  "cycle": 24,
-  "deployedAt": "2026-11-07T04:06:00Z",
+  "version": "1.25.0-auto",
+  "cycle": 25,
+  "deployedAt": "2026-11-07T08:16:00Z",
   "highlights": [
-    "Added Corporate PDF Brochure download telemetry (brochure_pdf_download) and utm_source=brochure_pdf referral tracking after real mobile visitor 59f62186 converted via PDF buttons to /reservar?package=signature-detail&utm_source=brochure_pdf",
-    "Added Descargar Brochure PDF CTA button directly inside Home #precios banner, replaced legacy 301-redirected blog slugs in Home Blog Carousel with canonical 200 OK articles, and added Huixquilucan + Coyoacan to Home footer coverage links",
-    "Filtered 0x0 viewport preload bots (HeadlessPreloadBot) so humanVisitorsEntered remains 100% pure human"
+    "Added Above-the-Fold Quick Action & Vehicle Size Bar on /reservar Step 1 after observing mobile visitor 59f62186 (448x875, utm_source=brochure_pdf) land on /reservar with scroll_pct=0 while the action buttons were below the fold",
+    "Added canonical resolvePackageSlug() in src/lib/packages.ts and updated /reservar + /api/checkout to support both ?paquete= and ?package= params and aliases (industrial-deep-interior -> deep-interior, ceramic-coating-9h -> ceramic-coating)",
+    "Aligned /reservar FAQ & JSON-LD pricing with PACKAGES source of truth ($2,499, $7,449, $11,999, $1,800 MXN)"
   ]
 }
