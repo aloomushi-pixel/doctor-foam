@@ -1,9 +1,10 @@
 {
-  "version": "1.23.1-auto",
-  "cycle": 23.1,
-  "deployedAt": "2026-11-07T00:44:00Z",
+  "version": "1.24.0-auto",
+  "cycle": 24,
+  "deployedAt": "2026-11-07T04:06:00Z",
   "highlights": [
-    "Generated 5-page Corporate Luxury PDF Brochure (public/brochure-doctor-foam.pdf) covering Lavado Interior (Vapor 180C + Ozono), Lavado Exterior & Correccion de Pintura (Anti-Swirls), Recubrimiento Ceramico 9H/10H, Membresia ($990/mes + 10% OFF), and Corporate B2B with interactive clickable payment & WhatsApp buttons",
-    "Added Descargar Brochure Corporativo (PDF) download button and link across the main footer (src/app/page.tsx) and all internal page footers"
+    "Added Corporate PDF Brochure download telemetry (brochure_pdf_download) and utm_source=brochure_pdf referral tracking after real mobile visitor 59f62186 converted via PDF buttons to /reservar?package=signature-detail&utm_source=brochure_pdf",
+    "Added Descargar Brochure PDF CTA button directly inside Home #precios banner, replaced legacy 301-redirected blog slugs in Home Blog Carousel with canonical 200 OK articles, and added Huixquilucan + Coyoacan to Home footer coverage links",
+    "Filtered 0x0 viewport preload bots (HeadlessPreloadBot) so humanVisitorsEntered remains 100% pure human"
   ]
 }

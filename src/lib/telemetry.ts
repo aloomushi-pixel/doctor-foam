@@ -18,6 +18,7 @@ export type DrFoamEventCategory =
   | "navigation"
   | "conversion_whatsapp"
   | "conversion_booking"
+  | "conversion_brochure"
   | "ux_interaction"
   | "ux_friction"
   | "performance"
@@ -166,6 +167,9 @@ export function detectBot(ua: string): { is_bot: boolean; bot_name: string | nul
   if (typeof window !== "undefined") {
     if (navigator.webdriver === true || (window.innerHeight && window.innerHeight >= 5000)) {
       return { is_bot: true, bot_name: "Googlebot-WRS" };
+    }
+    if (window.innerWidth === 0 || window.innerHeight === 0) {
+      return { is_bot: true, bot_name: "HeadlessPreloadBot" };
     }
     const ref = (document.referrer || "").toLowerCase();
     if (

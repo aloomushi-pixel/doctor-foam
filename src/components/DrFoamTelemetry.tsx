@@ -205,12 +205,34 @@ export default function DrFoamTelemetry() {
           return;
         }
 
-        // 5. Track /reservar CTA clicks
+        // 5. Track Corporate PDF Brochure download clicks
+        if (href.includes("brochure-doctor-foam.pdf")) {
+          const ctaLoc = interactive.getAttribute("data-cta-location") || (interactive.closest("footer") ? "footer_brochure_pdf" : "inline_brochure_pdf");
+          trackDrFoamEvent({
+            event_name: "brochure_pdf_download",
+            event_category: "conversion_brochure",
+            duration_ms: durationMs,
+            scroll_pct: scrollPct,
+            element_tag: interactive.tagName.toLowerCase(),
+            element_id: ctaLoc,
+            element_text: text || "Descargar Brochure PDF",
+            metadata: {
+              href,
+              from_page: window.location.pathname,
+            },
+          });
+          return;
+        }
+
+        // 6. Track /reservar CTA clicks
         if (href.includes("/reservar")) {
           let pkgName: string | undefined;
           try {
             const urlObj = new URL(href, window.location.origin);
-            pkgName = urlObj.searchParams.get("paquete") || undefined;
+            pkgName =
+              urlObj.searchParams.get("paquete") ||
+              urlObj.searchParams.get("package") ||
+              undefined;
           } catch {
             // ignore
           }

@@ -213,8 +213,18 @@ async function auditSupabaseUx() {
     }
   );
   const rows = Array.isArray(res.data) ? res.data : [];
+  const zeroViewportVisitors = new Set(
+    rows
+      .filter((r) => r.viewport_w === 0 || r.viewport_h === 0 || r.bot_name === "HeadlessPreloadBot")
+      .map((r) => r.visitor_id)
+      .filter(Boolean)
+  );
   const isHeadlessScraper = (r) =>
     r.bot_name === "HeadlessScraperBot" ||
+    r.bot_name === "HeadlessPreloadBot" ||
+    r.viewport_w === 0 ||
+    r.viewport_h === 0 ||
+    (r.visitor_id && zeroViewportVisitors.has(r.visitor_id)) ||
     (r.viewport_w === 800 && r.viewport_h === 600) ||
     (r.referrer && String(r.referrer).toLowerCase().includes("aocr.org"));
 
@@ -235,6 +245,15 @@ async function auditSupabaseUx() {
   const sessions = new Set(humanRows.map((r) => r.session_id));
   const waRows = humanRows.filter((r) => r.event_name === "whatsapp_click");
   const waVisitors = new Set(waRows.map((r) => r.visitor_id || r.session_id));
+  const brochureDownloadRows = humanRows.filter((r) => r.event_name === "brochure_pdf_download");
+  const brochureReferralRows = humanRows.filter(
+    (r) =>
+      r.utm_source === "brochure_pdf" ||
+      (r.path && String(r.path).includes("utm_source=brochure_pdf"))
+  );
+  const brochureVisitors = new Set(
+    [...brochureDownloadRows, ...brochureReferralRows].map((r) => r.visitor_id || r.session_id)
+  );
   const bookingRows = humanRows.filter(
     (r) =>
       r.event_name === "booking_step_view" ||
@@ -275,6 +294,9 @@ async function auditSupabaseUx() {
     aiEngines,
     whatsappByButton,
     whatsappByPage,
+    brochurePdfVisitors: brochureVisitors.size,
+    brochurePdfDownloadClicks: brochureDownloadRows.length,
+    brochurePdfReferralEvents: brochureReferralRows.length,
     bookingFunnelEvents: bookingRows.length,
     rageClicks: rageRows.length,
     googlebotWrsRenders: googlebotWrsRows.length,

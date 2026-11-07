@@ -739,6 +739,17 @@ export default function HomePage() {
                 Ver Membresía ($990/mes) →
               </Link>
               <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="pricing_banner_brochure_pdf"
+                className="btn-outline"
+                style={{ padding: "0.6rem 1.25rem", fontSize: "0.82rem", borderColor: "#2563eb", color: "#2563eb" }}
+              >
+                📄 Descargar Brochure PDF
+              </a>
+              <a
                 href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20hacer%20mi%20primer%20lavado%20profundo%20y%20activar%20la%20Membres%C3%ADa%20(%24990%2Fmes)"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -1121,8 +1132,8 @@ export default function HomePage() {
               { slug: "verdad-recubrimiento-ceramico-9h-autos-premium", title: "Recubrimiento Cerámico 9H: Qué Significa Realmente y Precios", cat: "Protección 9H", img: "/blog/verdad-recubrimiento-ceramico-9h-autos-premium.png" },
               { slug: "guia-completa-recubrimiento-ceramico", title: "Guía Completa: Recubrimiento Cerámico en CDMX", cat: "Protección", img: "/blog/guia-completa-recubrimiento-ceramico.png" },
               { slug: "5-errores-lavado-auto-premium", title: "5 Errores que Arruinan la Pintura de tu Auto", cat: "Cuidado", img: "/blog/5-errores-lavado-auto-premium.png" },
-              { slug: "economia-cuidado-automotriz-membresia", title: "La Economía del Cuidado Automotriz: Membresía vs. Descuido", cat: "Patrimonio", img: "/seo/blog-economia.png" },
-              { slug: "lavado-profundo-vs-detallado-automotriz", title: "Lavado Profundo vs. Detallado Automotriz: La Verdad", cat: "Educación", img: "/seo/blog-vs-detallado.png" },
+              { slug: "desnaturalizacion-termica-180c-fin-extraccion-humeda", title: "Desnaturalización Térmica a 180°C: El Fin de la Extracción Húmeda", cat: "Vapor 180°C", img: "/seo/blog-economia.png" },
+              { slug: "detallado-interior-profundo-que-incluye", title: "Detallado Interior Profundo: Qué Incluye y Por Qué Vale la Pena", cat: "Interior", img: "/seo/blog-vs-detallado.png" },
               { slug: "mejores-ceras-selladores-mexico", title: "Las Mejores Ceras y Selladores en México", cat: "Productos", img: "/blog/mejores-ceras-selladores-mexico.png" }
             ].map((b, i) => (
               <Link key={i} href={`/blog/${b.slug}`} className="glass-card animate-on-scroll" style={{
@@ -1273,6 +1284,8 @@ export default function HomePage() {
               <li><Link href="/zonas/bosques-de-las-lomas">Bosques de las Lomas</Link></li>
               <li><Link href="/zonas/pedregal">Pedregal</Link></li>
               <li><Link href="/zonas/interlomas">Interlomas y Bosque Real</Link></li>
+              <li><Link href="/zonas/huixquilucan">Huixquilucan y Tecamachalco</Link></li>
+              <li><Link href="/zonas/coyoacan">Coyoacán y San Ángel</Link></li>
             </ul>
           </div>
           <div>
