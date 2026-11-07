@@ -1222,6 +1222,26 @@ export default function HomePage() {
               Servicio de detallado automotriz premium a domicilio. Equipo industrial, químicos
               profesionales, resultados extraordinarios. Valle de México.
             </p>
+            <div style={{ marginTop: "1.1rem" }}>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="footer_brochure_pdf_btn"
+                className="btn-premium"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.6rem 1.15rem",
+                  fontSize: "0.82rem",
+                  textDecoration: "none",
+                }}
+              >
+                📄 Descargar Brochure Corporativo (PDF)
+              </a>
+            </div>
           </div>
           <div>
             <h4 className="footer-title">Servicios</h4>
@@ -1231,6 +1251,17 @@ export default function HomePage() {
               <li><Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz">Paquetes y Precios</Link></li>
               <li><Link href="/membresia-doctor-foam">Membresía Doctor Foam</Link></li>
               <li><Link href="/lavado-autos-estacionamiento-corporativo">Corporativos y Oficinas</Link></li>
+              <li>
+                <a
+                  href="/brochure-doctor-foam.pdf"
+                  download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontWeight: 700, color: "#2563eb" }}
+                >
+                  📄 Brochure de Servicios (PDF)
+                </a>
+              </li>
             </ul>
           </div>
           <div>
@@ -1265,6 +1296,16 @@ export default function HomePage() {
             <Link href="/blog" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "underline" }}>
               Blog
             </Link>
+            {" · "}
+            <a
+              href="/brochure-doctor-foam.pdf"
+              download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#2563eb", fontWeight: 700, textDecoration: "underline" }}
+            >
+              📄 Descargar Brochure PDF
+            </a>
           </p>
         </div>
       </footer>

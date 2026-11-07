@@ -1,10 +1,9 @@
 {
-  "version": "1.23.0-auto",
-  "cycle": 23,
-  "deployedAt": "2026-11-06T23:53:40Z",
+  "version": "1.23.1-auto",
+  "cycle": 23.1,
+  "deployedAt": "2026-11-07T00:44:00Z",
   "highlights": [
-    "Confirmed /zonas/huixquilucan promoted to PASS (Enviada e indexada) by Googlebot (6 of 8 zones now indexed) and /blog/guia-completa-recubrimiento-ceramico recrawled today",
-    "Purified sitemap.xml (src/app/sitemap.ts) by removing 301-redirected legacy blog slugs, adding missing canonical articles (detallado-interior-profundo-que-incluye, por-que-detallado-domicilio-mejor), and boosting /zonas/polanco and /zonas/bosques-de-las-lomas crawl priority",
-    "Upgraded /blog hub (src/app/blog/page.tsx) with Above-the-Fold 1-Tap Package & WhatsApp Strip, FAQPage JSON-LD, all 12 canonical blog articles, and descriptive Zonas de Cobertura internal authority cards"
+    "Generated 5-page Corporate Luxury PDF Brochure (public/brochure-doctor-foam.pdf) covering Lavado Interior (Vapor 180C + Ozono), Lavado Exterior & Correccion de Pintura (Anti-Swirls), Recubrimiento Ceramico 9H/10H, Membresia ($990/mes + 10% OFF), and Corporate B2B with interactive clickable payment & WhatsApp buttons",
+    "Added Descargar Brochure Corporativo (PDF) download button and link across the main footer (src/app/page.tsx) and all internal page footers"
   ]
 }
