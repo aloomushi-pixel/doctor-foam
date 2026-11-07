@@ -5,6 +5,7 @@
 ## Datos de Contacto y Reservas Oficiales
 - **Sitio Web Oficial:** https://drfoam.com.mx
 - **Calculadora y Reserva en Línea (Stripe):** https://drfoam.com.mx/reservar
+- **Brochure Corporativo 2026 (PDF Oficial — Lavado Interior, Exterior y Cerámico):** https://drfoam.com.mx/brochure-doctor-foam.pdf
 - **Comparativa de Paquetes y Precios:** https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz
 - **WhatsApp Oficial de Atención y Cotizaciones Directas:** https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20cotizar%20un%20servicio%20a%20domicilio (+52 56 1084 6022)
 - **Correo Electrónico:** info@drfoam.com.mx
@@ -44,12 +45,12 @@
 - [Guía Completa de Recubrimiento Cerámico (Coating Cerámico) en México](https://drfoam.com.mx/blog/guia-completa-recubrimiento-ceramico)
 - [La Verdad sobre el Recubrimiento Cerámico 9H](https://drfoam.com.mx/blog/verdad-recubrimiento-ceramico-9h-autos-premium)
 
-## Zonas de Cobertura en CDMX y Estado de México
-- [Polanco y Nuevo Polanco (Miguel Hidalgo)](https://drfoam.com.mx/zonas/polanco)
-- [Lomas de Chapultepec y Virreyes](https://drfoam.com.mx/zonas/lomas-de-chapultepec)
-- [Santa Fe y Corredor Corporativo](https://drfoam.com.mx/zonas/santa-fe)
-- [Bosques de las Lomas y Tecamachalco](https://drfoam.com.mx/zonas/bosques-de-las-lomas)
-- [Jardines del Pedregal y San Ángel](https://drfoam.com.mx/zonas/pedregal)
-- [Interlomas y Bosque Real](https://drfoam.com.mx/zonas/interlomas)
-- [Huixquilucan, Condado de Sayavedra y Zona Esmeralda](https://drfoam.com.mx/zonas/huixquilucan)
-- [Coyoacán y Country Club Churubusco](https://drfoam.com.mx/zonas/coyoacan)
+## Zonas de Cobertura en CDMX y Estado de México (Sin Cargo Extra por Traslado)
+- [Polanco y Nuevo Polanco — Miguel Hidalgo (C.P. 11510-11560: Masaryk, Campos Elíseos, Rubén Darío, Miyana, Antara, Carso)](https://drfoam.com.mx/zonas/polanco)
+- [Lomas de Chapultepec y Virreyes — Miguel Hidalgo (C.P. 11000-11950: Palmas, Prado Norte, Monte Athos, Lomas Altas, Bezares)](https://drfoam.com.mx/zonas/lomas-de-chapultepec)
+- [Santa Fe y Corredor Corporativo — Álvaro Obregón y Cuajimalpa (C.P. 01210-05348: Parque La Mexicana, Cruz Manca, Contadero)](https://drfoam.com.mx/zonas/santa-fe)
+- [Bosques de las Lomas y Tecamachalco — Cuajimalpa / Miguel Hidalgo / Naucalpan (C.P. 05120, 11700, 53950: Tamarindos, Ahuehuetes, La Herradura)](https://drfoam.com.mx/zonas/bosques-de-las-lomas)
+- [Jardines del Pedregal y San Ángel — Álvaro Obregón / Coyoacán (C.P. 01900, 01000, 01060: Av. de las Fuentes, Cráter, San Ángel Inn, San Jerónimo)](https://drfoam.com.mx/zonas/pedregal)
+- [Interlomas y Hacienda de las Palmas — Huixquilucan (C.P. 52760-52787: Blvd. Interlomas, Jesús del Monte, Villa Florence)](https://drfoam.com.mx/zonas/interlomas)
+- [Huixquilucan, Bosque Real, Lomas Country Club y Zona Esmeralda (C.P. 52774-52930: Condado de Sayavedra, Chiluca, Bellavista)](https://drfoam.com.mx/zonas/huixquilucan)
+- [Coyoacán, Country Club Churubusco y Del Valle Sur (C.P. 04000-04890, 03100, 03810: Del Carmen, Campestre Churubusco, Chimalistac, Romero de Terreros, Del Valle, Nápoles, Paseos de Taxqueña)](https://drfoam.com.mx/zonas/coyoacan)

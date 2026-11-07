@@ -1,10 +1,10 @@
 {
-  "version": "1.27.0-auto",
-  "cycle": 27,
-  "deployedAt": "2026-11-07T16:40:00Z",
+  "version": "1.28.0-auto",
+  "cycle": 28,
+  "deployedAt": "2026-11-07T20:51:00Z",
   "highlights": [
-    "Added 1-tap WhatsApp date confirmation on /reservar Step 2 & Step 3 and streamlined Step 3 from 9 mandatory fields across 3 cards into a single card with only 4 mandatory fields after mobile visitor cd34f921 reached Step 3 and converted via WhatsApp",
-    "Added Reserve with Google (rwg_token) attribution tracking (google_maps_rwg) in telemetry.ts and drfoam_autonomous_audit.cjs after capturing real Google Maps booking traffic on /reservar?rwg_token=...",
-    "Injected mid-article inline 1-tap WhatsApp & Cotizador callout right before the 2nd H2 heading in /blog/[slug] (~45% scroll depth) for mobile readers like visitor a7884fa1 (392s dwell, 70% scroll on /blog/correccion-pintura-swirls-guia)"
+    "Converted all Colonia cards across /zonas/[zona] into 1-click WhatsApp quote buttons, expanded Coyoacan/Del Valle Sur colonias & postal codes, and added a 100%-scroll bottom conversion bar after ChatGPT visitor bc5af018 scrolled 100% of /zonas/coyoacan",
+    "Added dual 1-click WhatsApp & Online Booking buttons (/reservar?paquete=...&zona=...) in /zonas/[zona] Quick Package Strip and zone-aware confirmation banner on /reservar",
+    "Made floating WhatsAppButton.tsx pill text dynamically display the active coverage zone or pillar (e.g. WhatsApp · Coyoacan, WhatsApp · Polanco, WhatsApp · Membresia) and enriched public/llms.txt with full colonia/postal-code mappings"
   ]
 }

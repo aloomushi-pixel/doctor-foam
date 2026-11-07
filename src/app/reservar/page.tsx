@@ -197,6 +197,7 @@ function BookingForm() {
     const searchParams = useSearchParams();
     const [step, setStep] = useState(1);
     const initialPkgParam = searchParams.get("paquete") || searchParams.get("package") || searchParams.get("pkg");
+    const zonaParam = searchParams.get("zona") || "";
     const [selectedPackage, setSelectedPackage] = useState(resolvePackageSlug(initialPkgParam));
     const [vehicleSize, setVehicleSize] = useState("sedan-2filas");
     const [serviceDate, setServiceDate] = useState("");
@@ -385,6 +386,23 @@ Detalles:
 
     return (
         <form onSubmit={handleSubmit}>
+            {zonaParam && (
+                <div
+                    style={{
+                        marginBottom: "1rem",
+                        padding: "0.7rem 1rem",
+                        borderRadius: "0.75rem",
+                        background: "#f0fdf4",
+                        border: "1px solid #86efac",
+                        color: "#14532d",
+                        fontSize: "0.84rem",
+                        fontWeight: 600,
+                        textAlign: "center",
+                    }}
+                >
+                    📍 Cobertura confirmada a domicilio en <strong>{zonaParam}</strong> · Unidad móvil 100% autónoma (agua y luz a bordo) sin cargo extra por traslado
+                </div>
+            )}
             {/* Step Indicator */}
             <div style={{ display: "flex", justifyContent: "center", gap: "0.5rem", marginBottom: "2rem" }}>
                 {steps.map((s) => (

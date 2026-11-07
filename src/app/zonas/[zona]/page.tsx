@@ -108,16 +108,27 @@ const zonesData: Record<string, {
     },
     coyoacan: {
         name: "Coyoacán Premium",
-        fullName: "Coyoacán y Del Valle Sur",
+        fullName: "Coyoacán, Del Valle y Benito Juárez Sur",
         state: "Ciudad de México",
-        postalCodes: "C.P. 04000, 04010, 04100, 04200, 04310",
-        description: "Colonias residenciales arboladas y tradicionales de alto valor en el sur de CDMX",
-        neighborhoods: ["Country Club Churubusco", "Del Carmen Coyoacán", "Campestre Churubusco", "Villa Coyoacán", "Chimalistac", "Romero de Terreros"],
-        metaDesc: "Servicio de detallado automotriz premium y lavado de vestiduras a domicilio en Coyoacán, Country Club y sur de CDMX. Doctor Foam: equipo industrial autónomo.",
-        intro: "En Coyoacán, colonias arboladas como Del Carmen, Country Club Churubusco, Campestre Churubusco y Chimalistac exponen los vehículos a savia de árboles, polvo orgánico y lluvia ácida que degradan el transparente de la pintura si no se descontamina profesionalmente.",
-        logistics: "Nuestro tratamiento a domicilio en Coyoacán incluye descontaminación férrica y con barra de arcilla (clay bar), selladores hidrofóbicos y limpieza profunda de vestiduras con vapor a 180°C, operando directamente en tu cochera o calle residencial con nuestro propio suministro de agua y electricidad.",
-        landmarks: ["Country Club y Campestre Churubusco", "Colonia Del Carmen y Centro de Coyoacán", "Chimalistac y Miguel Ángel de Quevedo", "Romero de Terreros", "División del Norte y Río Churubusco"],
-        carBrands: ["BMW", "Audi", "Mercedes-Benz", "Volkswagen", "Mini", "Volvo"],
+        postalCodes: "C.P. 04000, 04010, 04020, 04100, 04120, 04200, 04310, 04890, 03100, 03810",
+        description: "Colonias residenciales arboladas y condominios de alto valor en Coyoacán y Del Valle Sur",
+        neighborhoods: [
+            "Country Club Churubusco",
+            "Del Carmen Coyoacán",
+            "Campestre Churubusco",
+            "Villa Coyoacán",
+            "Chimalistac",
+            "Romero de Terreros",
+            "Colonia Del Valle (Norte, Centro y Sur)",
+            "Nápoles y Ciudad de los Deportes",
+            "Jardines de Coyoacán y Paseos de Taxqueña",
+            "Copilco Universidad y San Diego Churubusco",
+        ],
+        metaDesc: "Servicio de detallado automotriz premium y lavado de vestiduras a domicilio en Coyoacán, Country Club, Del Carmen y Del Valle Sur CDMX. Doctor Foam: equipo industrial autónomo.",
+        intro: "En Coyoacán y el corredor residencial de Del Valle Sur, colonias arboladas como Del Carmen, Country Club Churubusco, Campestre Churubusco, Chimalistac, Romero de Terreros, Jardines de Coyoacán y Del Valle exponen los vehículos a savia de árboles, polvo orgánico y lluvia ácida que degradan el transparente de la pintura si no se descontamina profesionalmente.",
+        logistics: "Nuestro tratamiento a domicilio en Coyoacán y Benito Juárez Sur incluye descontaminación férrica y con barra de arcilla (clay bar), corrección de swirls, selladores hidrofóbicos SiO2 9H y limpieza profunda de vestiduras con vapor seco a 180°C, operando directamente en tu cochera, condominio o estacionamiento subterráneo con nuestro propio suministro de agua desmineralizada y planta de luz.",
+        landmarks: ["Country Club y Campestre Churubusco", "Colonia Del Carmen y Centro de Coyoacán", "Chimalistac y Miguel Ángel de Quevedo", "Colonia Del Valle y Nápoles", "Romero de Terreros, Taxqueña y Río Churubusco"],
+        carBrands: ["BMW", "Audi", "Mercedes-Benz", "Volkswagen", "Mini", "Volvo", "Porsche"],
     },
 };
 
@@ -316,7 +327,7 @@ export default async function ZonePage({ params }: PageProps) {
                             {z.description}. Unidades móviles 100% autónomas con agua y luz propia.
                         </p>
                         <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
-                            <Link href="/reservar" className="btn-premium">
+                            <Link href={`/reservar?zona=${encodeURIComponent(z.name)}`} className="btn-premium">
                                 📅 Agendar en {z.name}
                             </Link>
                             <a
@@ -328,6 +339,16 @@ export default async function ZonePage({ params }: PageProps) {
                             >
                                 💬 Cotizar por WhatsApp en {z.name}
                             </a>
+                            <a
+                                href="/brochure-doctor-foam.pdf"
+                                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-outline"
+                                style={{ borderColor: "rgba(37, 99, 235, 0.35)", color: "#1d4ed8" }}
+                            >
+                                📄 Brochure PDF
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -338,37 +359,46 @@ export default async function ZonePage({ params }: PageProps) {
                         <div style={{ background: "#f8fafc", border: "1px solid #cbd5e1", borderRadius: "1rem", padding: "1.15rem 1.25rem", boxShadow: "0 8px 24px rgba(15, 23, 42, 0.05)" }}>
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.85rem" }}>
                                 <span style={{ fontSize: "0.78rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#0f172a" }}>
-                                    ⚡ Precios 2026 con Traslado Incluido en {z.name} (Cotiza en 1 Clic)
+                                    ⚡ Precios 2026 con Traslado Incluido en {z.name} (Cotiza o Reserva en 1 Clic)
                                 </span>
                                 <span style={{ fontSize: "0.75rem", color: "#15803d", fontWeight: 700 }}>
                                     ✅ Agua filtrada y generador propio · IVA y CFDI
                                 </span>
                             </div>
-                            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "0.75rem" }}>
+                            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(215px, 1fr))", gap: "0.75rem" }}>
                                 {[
-                                    { name: "Industrial Deep Interior", price: "$2,400 MXN", desc: "Vestiduras, vapor 180°C, piel y ozono", badge: "Más Solicitado" },
-                                    { name: "Signature Detail", price: "$7,499 MXN", desc: "Corrección pintura 95% swirls + Interior", badge: "Renovación Total" },
-                                    { name: "Ceramic Coating 9H", price: "$10,999 MXN", desc: "Blindaje SiO2 (3-5 años) + Corrección", badge: "3-5 Años Garantía" },
-                                    { name: "Lavado Recurrente", price: "$990 / mes", desc: "Mantenimiento periódico pH neutro", badge: "Membresía Mensual" },
+                                    { name: "Industrial Deep Interior", slug: "deep-interior", price: "$2,400 MXN", suvPrice: "SUV: $2,680 MXN", desc: "Vestiduras, vapor 180°C, piel y ozono (3-4 hrs)", badge: "Más Solicitado" },
+                                    { name: "Signature Detail", slug: "signature-detail", price: "$7,499 MXN", suvPrice: "Corrección + Interior", desc: "Corrección pintura 95% swirls + Interior (5-6 hrs)", badge: "Renovación Total" },
+                                    { name: "Ceramic Coating 9H", slug: "ceramic-coating", price: "$10,999 MXN", suvPrice: "Blindaje SiO2 9H", desc: "Protección 3-5 años + Corrección óptica (8-10 hrs)", badge: "3-5 Años Garantía" },
+                                    { name: "Membresía de Seguimiento", slug: "membership-sedan", price: "$990 / mes", suvPrice: "SUV: $1,160 / mes", desc: "Se activa tras tu 1er lavado profundo (+10% OFF fijo)", badge: "Seguimiento Mensual" },
                                 ].map((pkg, idx) => (
                                     <div key={idx} style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "0.75rem", padding: "0.9rem 1rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                                         <div>
-                                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.35rem", marginBottom: "0.25rem" }}>
+                                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.35rem", marginBottom: "0.2rem" }}>
                                                 <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#2563eb", textTransform: "uppercase" }}>{pkg.badge}</span>
                                                 <span style={{ fontSize: "0.95rem", fontWeight: 800, color: "#0f172a" }}>{pkg.price}</span>
                                             </div>
+                                            <div style={{ fontSize: "0.7rem", color: "#64748b", fontWeight: 600, marginBottom: "0.2rem" }}>{pkg.suvPrice}</div>
                                             <div style={{ fontWeight: 700, fontSize: "0.88rem", color: "#0f172a", marginBottom: "0.2rem" }}>{pkg.name}</div>
                                             <div style={{ fontSize: "0.76rem", color: "#475569", marginBottom: "0.65rem" }}>{pkg.desc}</div>
                                         </div>
-                                        <a
-                                            href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy en ${z.name} y me interesa cotizar / agendar el paquete ${pkg.name} (${pkg.price}) a domicilio.`)}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            data-cta-location={`zone_quick_strip_${zona}_${idx}`}
-                                            style={{ display: "block", textAlign: "center", padding: "0.45rem 0.6rem", borderRadius: "0.5rem", background: "#eff6ff", border: "1px solid #bfdbfe", color: "#1d4ed8", fontWeight: 700, fontSize: "0.76rem", textDecoration: "none" }}
-                                        >
-                                            💬 Pedir en {z.name}
-                                        </a>
+                                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.4rem" }}>
+                                            <a
+                                                href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy en ${z.name} y me interesa cotizar / agendar el paquete ${pkg.name} (${pkg.price}) a domicilio.`)}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                data-cta-location={`zone_quick_strip_${zona}_${idx}`}
+                                                style={{ display: "block", textAlign: "center", padding: "0.45rem 0.4rem", borderRadius: "0.5rem", background: "#f0fdf4", border: "1px solid #86efac", color: "#15803d", fontWeight: 700, fontSize: "0.73rem", textDecoration: "none" }}
+                                            >
+                                                💬 WhatsApp
+                                            </a>
+                                            <Link
+                                                href={`/reservar?paquete=${pkg.slug}&zona=${encodeURIComponent(z.name)}`}
+                                                style={{ display: "block", textAlign: "center", padding: "0.45rem 0.4rem", borderRadius: "0.5rem", background: "#eff6ff", border: "1px solid #bfdbfe", color: "#1d4ed8", fontWeight: 700, fontSize: "0.73rem", textDecoration: "none" }}
+                                            >
+                                                📅 Reservar
+                                            </Link>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -416,19 +446,33 @@ export default async function ZonePage({ params }: PageProps) {
                     </div>
                 </section>
 
-                {/* Neighborhoods */}
+                {/* Neighborhoods — Interactive 1-Click Colonia WhatsApp Quote Cards */}
                 <section className="section-padding" style={{ paddingTop: 0 }}>
-                    <div className="container" style={{ maxWidth: "800px" }}>
-                        <h2 style={{ fontSize: "1.5rem", marginBottom: "1.5rem", textAlign: "center" }}>
-                            Colonias y Fraccionamientos que Atendemos
+                    <div className="container" style={{ maxWidth: "860px" }}>
+                        <h2 style={{ fontSize: "1.5rem", marginBottom: "0.45rem", textAlign: "center" }}>
+                            Colonias y Fraccionamientos que Atendemos en {z.name}
                         </h2>
+                        <p style={{ textAlign: "center", color: "#475569", fontSize: "0.86rem", marginBottom: "1.35rem" }}>
+                            Selecciona tu colonia para confirmar disponibilidad inmediata por WhatsApp (traslado y unidad autónoma incluidos):
+                        </p>
                         <div className="zones-grid">
                             {z.neighborhoods.map((n, i) => (
-                                <div key={i} className="glass-card" style={{ padding: "1rem 1.5rem", textAlign: "center" }}>
-                                    <span style={{ color: "var(--color-gold-400)", fontFamily: "var(--font-heading)", fontWeight: 600 }}>
-                                        {n}
+                                <a
+                                    key={i}
+                                    href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy en la colonia ${n} (${z.name}) y me gustaría cotizar / agendar un servicio a domicilio.`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-cta-location={`zone_colonia_${zona}_${i}`}
+                                    className="glass-card"
+                                    style={{ padding: "0.95rem 1.25rem", textAlign: "center", textDecoration: "none", display: "flex", flexDirection: "column", gap: "0.3rem", alignItems: "center", justifyContent: "center" }}
+                                >
+                                    <span style={{ color: "#0f172a", fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "0.92rem" }}>
+                                        📍 {n}
                                     </span>
-                                </div>
+                                    <span style={{ color: "#15803d", fontSize: "0.74rem", fontWeight: 700 }}>
+                                        💬 Cotizar en {n} →
+                                    </span>
+                                </a>
                             ))}
                         </div>
                     </div>
@@ -517,7 +561,7 @@ export default async function ZonePage({ params }: PageProps) {
                         </p>
                         <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
                             <Link
-                                href="/reservar"
+                                href={`/reservar?zona=${encodeURIComponent(z.name)}`}
                                 className="btn-premium"
                             >
                                 📅 Agendar en {z.name}
@@ -565,6 +609,63 @@ export default async function ZonePage({ params }: PageProps) {
                                         </span>
                                     </Link>
                                 ))}
+                        </div>
+
+                        {/* Final 100%-Scroll Direct Action Card */}
+                        <div
+                            style={{
+                                marginTop: "2.25rem",
+                                padding: "1.35rem 1.5rem",
+                                borderRadius: "1rem",
+                                background: "linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%)",
+                                border: "1px solid #86efac",
+                                display: "flex",
+                                flexWrap: "wrap",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                gap: "1rem",
+                            }}
+                        >
+                            <div style={{ flex: "1 1 280px" }}>
+                                <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "#15803d", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                                    ✅ Cobertura Directa en {z.name} ({z.postalCodes})
+                                </div>
+                                <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "#0f172a", marginTop: "0.15rem" }}>
+                                    ¿Listo para detallar tu auto sin salir de casa u oficina en {z.name}?
+                                </div>
+                                <div style={{ fontSize: "0.82rem", color: "#475569", marginTop: "0.2rem" }}>
+                                    Recuerda: al contratar tu primer Lavado Profundo desde $2,400 MXN habilitas la Membresía de Seguimiento ($990/mes + 10% OFF permanente).
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap", alignItems: "center" }}>
+                                <a
+                                    href={whatsappHref}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-cta-location={`zone_footer_banner_${zona}_whatsapp`}
+                                    className="btn-premium"
+                                    style={{ background: "linear-gradient(135deg, #16a34a, #15803d)", padding: "0.65rem 1.15rem", fontSize: "0.84rem" }}
+                                >
+                                    💬 Cotizar por WhatsApp
+                                </a>
+                                <Link
+                                    href={`/reservar?zona=${encodeURIComponent(z.name)}`}
+                                    className="btn-premium"
+                                    style={{ padding: "0.65rem 1.15rem", fontSize: "0.84rem" }}
+                                >
+                                    📅 Cotizador Online
+                                </Link>
+                                <a
+                                    href="/brochure-doctor-foam.pdf"
+                                    download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn-outline"
+                                    style={{ padding: "0.6rem 1rem", fontSize: "0.82rem", background: "#ffffff" }}
+                                >
+                                    📄 Brochure PDF
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </section>
