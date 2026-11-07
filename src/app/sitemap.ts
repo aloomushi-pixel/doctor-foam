@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { slug: "coyoacan", priority: 0.9, changeFrequency: "monthly" as const },
     ];
 
-    // 100% canonical 200-OK blog articles (no 301-redirected legacy slugs)
+    // 100% canonical 200-OK blog articles (zero 301/308-redirected slugs)
     const blogPosts = [
         "detallado-movil-grado-clinico-vs-lavado-convencional",
         "innovacion-2025-2026-escaneres-3d-polimeros-auto-regenerables",
@@ -34,9 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "detallado-profesional-multiplicador-financiero-vehiculos-lujo",
         "guia-completa-recubrimiento-ceramico",
         "correccion-pintura-swirls-guia",
-        "detallado-interior-profundo-que-incluye",
         "5-errores-lavado-auto-premium",
-        "por-que-detallado-domicilio-mejor",
         "mejores-ceras-selladores-mexico",
     ];
 

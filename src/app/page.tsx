@@ -1138,7 +1138,7 @@ export default function HomePage() {
               { slug: "guia-completa-recubrimiento-ceramico", title: "Guía Completa: Recubrimiento Cerámico en CDMX", cat: "Protección", img: "/blog/guia-completa-recubrimiento-ceramico.png" },
               { slug: "5-errores-lavado-auto-premium", title: "5 Errores que Arruinan la Pintura de tu Auto", cat: "Cuidado", img: "/blog/5-errores-lavado-auto-premium.png" },
               { slug: "desnaturalizacion-termica-180c-fin-extraccion-humeda", title: "Desnaturalización Térmica a 180°C: El Fin de la Extracción Húmeda", cat: "Vapor 180°C", img: "/seo/blog-economia.png" },
-              { slug: "detallado-interior-profundo-que-incluye", title: "Detallado Interior Profundo: Qué Incluye y Por Qué Vale la Pena", cat: "Interior", img: "/seo/blog-vs-detallado.png" },
+              { slug: "detallado-movil-grado-clinico-vs-lavado-convencional", title: "Detallado Móvil de Grado Clínico vs. Lavado a Domicilio Convencional", cat: "Grado Clínico", img: "/seo/blog-vs-detallado.png" },
               { slug: "mejores-ceras-selladores-mexico", title: "Las Mejores Ceras y Selladores en México", cat: "Productos", img: "/blog/mejores-ceras-selladores-mexico.png" }
             ].map((b, i) => (
               <Link key={i} href={`/blog/${b.slug}`} className="glass-card animate-on-scroll" style={{

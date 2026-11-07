@@ -801,6 +801,17 @@ export default async function BlogPost({ params }: PageProps) {
                             <Link href="/reservar" className="btn-outline" style={{ padding: "0.5rem 1rem", fontSize: "0.8rem" }}>
                                 📅 Ver Precios
                             </Link>
+                            <a
+                                href="/brochure-doctor-foam.pdf"
+                                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location={`blog_${slug}_top_brochure_pdf`}
+                                className="btn-outline"
+                                style={{ padding: "0.5rem 1rem", fontSize: "0.8rem", borderColor: "#2563eb", color: "#2563eb" }}
+                            >
+                                📄 Brochure PDF
+                            </a>
                         </div>
                     </div>
 

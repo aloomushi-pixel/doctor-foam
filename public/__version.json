@@ -1,10 +1,10 @@
 {
-  "version": "1.25.0-auto",
-  "cycle": 25,
-  "deployedAt": "2026-11-07T08:16:00Z",
+  "version": "1.26.0-auto",
+  "cycle": 26,
+  "deployedAt": "2026-11-07T12:28:00Z",
   "highlights": [
-    "Added Above-the-Fold Quick Action & Vehicle Size Bar on /reservar Step 1 after observing mobile visitor 59f62186 (448x875, utm_source=brochure_pdf) land on /reservar with scroll_pct=0 while the action buttons were below the fold",
-    "Added canonical resolvePackageSlug() in src/lib/packages.ts and updated /reservar + /api/checkout to support both ?paquete= and ?package= params and aliases (industrial-deep-interior -> deep-interior, ceramic-coating-9h -> ceramic-coating)",
-    "Aligned /reservar FAQ & JSON-LD pricing with PACKAGES source of truth ($2,499, $7,449, $11,999, $1,800 MXN)"
+    "Confirmed via GSC URL Inspection API that 8 of 8 coverage zones (/zonas/polanco, lomas-de-chapultepec, santa-fe, bosques-de-las-lomas, interlomas, huixquilucan, pedregal, coyoacan) are now PASS | Enviada e indexada",
+    "Purified sitemap.ts, /blog hub, and Home Blog Carousel by removing the 2 next.config.ts 308-redirected slugs (detallado-interior-profundo-que-incluye and por-que-detallado-domicilio-mejor) so 100% of sitemap and internal blog links resolve 200 OK",
+    "Completed 100% Corporate PDF Brochure footer + hero CTA coverage across all cluster sub-pages (/paquetes-detallado-automotriz, /diferencias-servicios-detallado, /que-incluye-mantenimiento) and /blog/[slug] top bar"
   ]
 }

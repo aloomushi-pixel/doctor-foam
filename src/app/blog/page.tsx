@@ -38,15 +38,6 @@ const blogPosts = [
         readTime: "9 min",
     },
     {
-        slug: "detallado-interior-profundo-que-incluye",
-        title: "¿Qué Incluye un Detallado Interior Profundo Profesional? (8 Pasos y Precios CDMX)",
-        excerpt:
-            "Descubre los 8 pasos clínicos del lavado profundo de vestiduras a domicilio: aspirado industrial, vapor seco a 180°C, piel Nappa, ozono médico y precios por tamaño.",
-        date: "2026-05-04",
-        category: "Servicios",
-        readTime: "7 min",
-    },
-    {
         slug: "desnaturalizacion-termica-180c-fin-extraccion-humeda",
         title: "Desnaturalización Térmica a 180°C: El Fin de la Extracción Húmeda",
         excerpt:
@@ -99,15 +90,6 @@ const blogPosts = [
         date: "2026-02-10",
         category: "Cuidado",
         readTime: "6 min",
-    },
-    {
-        slug: "por-que-detallado-domicilio-mejor",
-        title: "¿Por Qué el Detallado a Domicilio Supera al Taller?",
-        excerpt:
-            "Ventajas del detallado automotriz a domicilio frente a un taller tradicional: supervisión 1 a 1, cero traslados y unidad móvil con equipo industrial.",
-        date: "2026-01-20",
-        category: "Tendencias",
-        readTime: "5 min",
     },
     {
         slug: "mejores-ceras-selladores-mexico",

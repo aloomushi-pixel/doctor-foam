@@ -178,6 +178,17 @@ export default function PaquetesDetallado() {
                 📅 Agendar Paquete en Línea
               </Link>
               <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="cluster_paquetes_hero_brochure_pdf"
+                className="btn-outline"
+                style={{ borderColor: "#2563eb", color: "#2563eb" }}
+              >
+                📄 Descargar Brochure PDF
+              </a>
+              <a
                 href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20estoy%20viendo%20los%20paquetes%20de%20detallado%20y%20quiero%20asesor%C3%ADa"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -513,7 +524,8 @@ export default function PaquetesDetallado() {
             <Link href="/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" style={{ color: "#64748b", textDecoration: "underline" }}>Diferencias</Link>{" · "}
             <Link href="/lavado-autos-estacionamiento-corporativo" style={{ color: "#64748b", textDecoration: "underline" }}>Estacionamiento Corporativo</Link>{" · "}
             <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>{" · "}
-            <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>
+            <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>{" · "}
+            <a href="/brochure-doctor-foam.pdf" download="Brochure-Corporativo-Doctor-Foam-2026.pdf" target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", fontWeight: 700, textDecoration: "underline" }}>📄 Descargar Brochure PDF</a>
           </p>
         </div>
       </footer>
