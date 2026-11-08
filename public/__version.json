@@ -1,10 +1,6 @@
 {
-  "version": "1.30.0-auto",
-  "cycle": 30,
-  "deployedAt": "2026-11-08T05:10:00Z",
-  "highlights": [
-    "Added 2-Step Membership Activation Rule card, Above-the-Fold 4-Plan Quick Booking Strip (WhatsApp + Reservar Online), and inline FAQ conversion buttons on /lavado-recurrente-autos-domicilio after 3 consecutive real visitors (cdbe1876, 5815078f, 632794d7) visited the page (up to 174.6s and 100% scroll)",
-    "Upgraded /lavado-profundo-vehiculos-cdmx Quick Package Strip with -10% Member Prices and dual WhatsApp + Online Booking buttons",
-    "Added Corporate PDF Brochure Hero CTAs across /lavado-recurrente-autos-domicilio, /lavado-profundo-vehiculos-cdmx, and /lavado-autos-estacionamiento-corporativo"
-  ]
+  "version": "1.31.0-auto",
+  "cycle": 31,
+  "deployedAt": "2026-11-08T09:19:00Z",
+  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #31 — Inline 8-step maintenance protocol checklist & 100%-scroll direct conversion bar on /lavado-recurrente-autos-domicilio (following return visitor cdbe1876 scrolling 100%), plus 2-Step Membership Activation rule & inline FAQ 1-tap WhatsApp/Booking CTAs across /que-incluye-mantenimiento and /diferencias-servicios-detallado"
 }

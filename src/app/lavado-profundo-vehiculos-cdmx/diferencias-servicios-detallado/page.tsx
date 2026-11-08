@@ -253,9 +253,50 @@ export default function DiferenciasServiciosPage() {
                   <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
                     {faq.q}
                   </summary>
-                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: "0.85rem" }}>
                     {faq.a}
                   </p>
+                  <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, leí sobre "${faq.q}" y quiero cotizar un lavado profundo para mi auto.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`cluster_diferencias_faq_${idx + 1}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.3rem",
+                        padding: "0.42rem 0.85rem",
+                        borderRadius: "0.55rem",
+                        background: "#16a34a",
+                        color: "#ffffff",
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
+                    <Link
+                      href="/reservar?pkg=industrial"
+                      data-cta-location={`cluster_diferencias_faq_${idx + 1}_reservar`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.3rem",
+                        padding: "0.42rem 0.85rem",
+                        borderRadius: "0.55rem",
+                        background: "rgba(37, 99, 235, 0.08)",
+                        border: "1px solid rgba(37, 99, 235, 0.25)",
+                        color: "#1d4ed8",
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      📅 Reservar Lavado Profundo ($2,400)
+                    </Link>
+                  </div>
                 </details>
               ))}
             </div>

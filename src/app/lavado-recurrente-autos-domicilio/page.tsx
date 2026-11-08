@@ -308,10 +308,35 @@ export default function LavadoRecurrentePage() {
 
         {/* Links to sub-pages */}
         <section className="section-padding" style={{ textAlign: "center" }}>
-          <div className="container" style={{ maxWidth: "800px" }}>
-            <h2 style={{ fontSize: "1.5rem", marginBottom: "1.5rem" }}>
-              Explora más sobre nuestro <span className="gradient-text">lavado recurrente</span>
+          <div className="container" style={{ maxWidth: "900px" }}>
+            <h2 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>
+              ¿Qué Incluye Cada Visita de <span className="gradient-text">Lavado Recurrente</span>? (Protocolo de 8 Pasos)
             </h2>
+            <p style={{ color: "#475569", fontSize: "0.9rem", maxWidth: "680px", margin: "0 auto 1.5rem" }}>
+              Cada visita de seguimiento se ejecuta en tu domicilio u oficina (2 a 2.5 horas) sin usar tu agua ni electricidad:
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(205px, 1fr))", gap: "0.75rem", textAlign: "left", marginBottom: "2rem" }}>
+              {[
+                { step: "1. Pre-Lavado Foam Cannon", desc: "Espuma activa pH neutro que encapsula polvo sin fricción." },
+                { step: "2. Método Dos Cubetas", desc: "Trampas Grit Guard para evitar micro-rayones (swirls)." },
+                { step: "3. Descontaminación Química", desc: "Remoción de savia, lluvia ácida y partículas férricas." },
+                { step: "4. Barra de Arcilla Sintética", desc: "Superficie lisa como cristal sin contaminantes adheridos." },
+                { step: "5. Sellador UV Hidrofóbico", desc: "Refuerza el brillo espejo y protege pintura o cerámico." },
+                { step: "6. Secado Microfibra 500 GSM", desc: "Toallas coreanas limpias por auto y soplado sin marcas." },
+                { step: "7. Rines y Llantas Satinadas", desc: "Descontaminación de rines y acondicionador seco UV." },
+                { step: "8. Limpieza Interior Express", desc: "Aspirado profundo de cabina, tablero, consola y cristales." },
+              ].map((item, idx) => (
+                <div key={idx} className="glass-card" style={{ padding: "0.95rem 1.1rem", border: "1px solid #e2e8f0" }}>
+                  <div style={{ fontWeight: 700, fontSize: "0.86rem", color: "#0f172a", marginBottom: "0.25rem" }}>
+                    ✅ {item.step}
+                  </div>
+                  <div style={{ fontSize: "0.78rem", color: "#475569", lineHeight: 1.5 }}>
+                    {item.desc}
+                  </div>
+                </div>
+              ))}
+            </div>
+
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
               <Link href="/membresia-doctor-foam" className="glass-card" style={{ padding: "2rem", textDecoration: "none", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)", transition: "border-color 0.3s" }}>
                 <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>🔄</span>
@@ -423,6 +448,64 @@ export default function LavadoRecurrentePage() {
                   📍 {z.label}
                 </Link>
               ))}
+            </div>
+
+            {/* Final 100%-Scroll Direct Action Card */}
+            <div
+              style={{
+                marginTop: "2.25rem",
+                padding: "1.35rem 1.5rem",
+                borderRadius: "1rem",
+                background: "linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%)",
+                border: "1px solid #86efac",
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "1rem",
+                textAlign: "left",
+              }}
+            >
+              <div style={{ flex: "1 1 280px" }}>
+                <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "#15803d", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  🔄 Paso 1: Lavado Profundo ($2,400) → Paso 2: Membresía ($990/mes + 10% OFF)
+                </div>
+                <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "#0f172a", marginTop: "0.15rem" }}>
+                  ¿Listo para comenzar tu programa de lavado recurrente a domicilio?
+                </div>
+                <div style={{ fontSize: "0.82rem", color: "#475569", marginTop: "0.2rem" }}>
+                  Agenda tu primer lavado profundo en línea o escríbenos por WhatsApp para programar tu visita en CDMX o Zona Metropolitana.
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap", alignItems: "center" }}>
+                <a
+                  href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20empezar%20mi%20programa%20de%20lavado%20recurrente%20a%20domicilio%20(Paso%201%3A%20Lavado%20Profundo%20%2B%20Membres%C3%ADa)"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cta-location="pillar_recurrente_footer_banner_whatsapp"
+                  className="btn-premium"
+                  style={{ background: "linear-gradient(135deg, #16a34a, #15803d)", padding: "0.65rem 1.15rem", fontSize: "0.84rem" }}
+                >
+                  💬 Empezar por WhatsApp
+                </a>
+                <Link
+                  href="/reservar?paquete=deep-interior"
+                  className="btn-premium"
+                  style={{ padding: "0.65rem 1.15rem", fontSize: "0.84rem" }}
+                >
+                  📅 Agendar Paso 1 ($2,400)
+                </Link>
+                <a
+                  href="/brochure-doctor-foam.pdf"
+                  download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline"
+                  style={{ padding: "0.6rem 1rem", fontSize: "0.82rem", background: "#ffffff" }}
+                >
+                  📄 Brochure PDF
+                </a>
+              </div>
             </div>
           </div>
         </section>

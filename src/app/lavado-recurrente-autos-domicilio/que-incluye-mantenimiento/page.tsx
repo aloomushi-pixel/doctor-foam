@@ -117,12 +117,32 @@ export default function QueIncluyeMantenimientoPage() {
             <h1 className="section-title" style={{ marginTop: "1.5rem" }}>
               ¿Qué Incluye Nuestro Servicio de <span className="gradient-text">Mantenimiento Preventivo</span>?
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "1.5rem" }}>
+            <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "1rem" }}>
               Cada visita de mantenimiento sigue un protocolo de 8 pasos diseñado para preservar la pintura y el recubrimiento de tu vehículo. Nada se deja al azar.
             </p>
+            <div
+              style={{
+                maxWidth: "740px",
+                margin: "0 auto 1.5rem",
+                padding: "0.9rem 1.25rem",
+                background: "rgba(37, 99, 235, 0.06)",
+                border: "1px solid rgba(37, 99, 235, 0.2)",
+                borderRadius: "0.85rem",
+                fontSize: "0.85rem",
+                color: "#1e293b",
+                lineHeight: 1.6,
+                textAlign: "left",
+              }}
+            >
+              <strong style={{ color: "#1d4ed8" }}>✨ Regla de Activación de Membresía Doctor Foam:</strong>{" "}
+              Para empezar a operar tu membresía de mantenimiento preventivo (<strong>$990/mes Sedán | $1,160/mes SUV</strong>), primero realizamos un <strong>Lavado Profundo Inicial</strong> (desde $2,400 MXN) para restaurar tu vehículo al 100%. Además del mantenimiento recurrente, obtienes un <strong>10% de descuento permanente</strong> en todos nuestros detallados especializados.
+            </div>
             <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/membresia-doctor-foam" className="btn-premium">
                 🔄 Conocer Membresía ($990/mes)
+              </Link>
+              <Link href="/reservar?pkg=industrial" className="btn-outline" data-cta-location="cluster_mantenimiento_hero_reservar">
+                📅 Agendar Paso 1 ($2,400)
               </Link>
               <a
                 href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20cotizar%20el%20lavado%20de%20mantenimiento%20a%20domicilio"
@@ -132,6 +152,17 @@ export default function QueIncluyeMantenimientoPage() {
                 className="btn-outline"
               >
                 💬 Cotizar por WhatsApp
+              </a>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="cluster_mantenimiento_hero_brochure"
+                className="btn-outline"
+                style={{ borderColor: "rgba(37,99,235,0.35)", color: "#1d4ed8", background: "rgba(37,99,235,0.04)" }}
+              >
+                📄 Brochure PDF
               </a>
             </div>
           </div>
@@ -210,9 +241,50 @@ export default function QueIncluyeMantenimientoPage() {
                   <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
                     {faq.q}
                   </summary>
-                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: "0.85rem" }}>
                     {faq.a}
                   </p>
+                  <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, leí la pregunta "${faq.q}" y quiero cotizar mi mantenimiento preventivo.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`cluster_mantenimiento_faq_${idx + 1}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.3rem",
+                        padding: "0.42rem 0.85rem",
+                        borderRadius: "0.55rem",
+                        background: "#16a34a",
+                        color: "#ffffff",
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
+                    <Link
+                      href="/reservar"
+                      data-cta-location={`cluster_mantenimiento_faq_${idx + 1}_reservar`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.3rem",
+                        padding: "0.42rem 0.85rem",
+                        borderRadius: "0.55rem",
+                        background: "rgba(37, 99, 235, 0.08)",
+                        border: "1px solid rgba(37, 99, 235, 0.25)",
+                        color: "#1d4ed8",
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      📅 Reservar en Línea
+                    </Link>
+                  </div>
                 </details>
               ))}
             </div>
