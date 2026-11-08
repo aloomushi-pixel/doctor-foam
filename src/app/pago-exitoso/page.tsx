@@ -32,7 +32,7 @@ function SuccessContent() {
         } catch {
             // ignore
         }
-    }, []);
+    }, [sessionId]);
 
     const handleSendEmail = async () => {
         if (!bookingPayload) return;
@@ -129,7 +129,6 @@ function SuccessContent() {
                         </p>
 
                         <div style={{ marginBottom: "2.5rem", display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}>
-                            
                             <button 
                                 onClick={handleSendEmail}
                                 disabled={isSending || emailSent}
@@ -250,6 +249,43 @@ function SuccessContent() {
                             </p>
                         )}
 
+                        {/* Upsell Post-Pago: Paso 2 Activar Membresía de Seguimiento ($990/mes + 10% OFF) */}
+                        <div
+                            className="glass-card"
+                            style={{
+                                padding: "1.5rem",
+                                marginBottom: "2rem",
+                                textAlign: "left",
+                                border: "2px solid rgba(37,99,235,0.25)",
+                                background: "linear-gradient(135deg, rgba(239,246,255,0.95), rgba(240,253,244,0.92))",
+                            }}
+                        >
+                            <span style={{ fontSize: "0.74rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#15803d" }}>
+                                🎉 ¡Requisito Inicial Cumplido (Paso 1)!
+                            </span>
+                            <h3 style={{ fontSize: "1.15rem", color: "#0f172a", margin: "0.35rem 0 0.5rem" }}>
+                                Activa tu Membresía de Seguimiento Doctor Foam ($990/mes)
+                            </h3>
+                            <p style={{ fontSize: "0.88rem", color: "#334155", lineHeight: 1.6, margin: "0 0 0.9rem" }}>
+                                Al haber contratado tu primer servicio de lavado profundo, ya puedes activar tu <strong>Membresía de Seguimiento ($990/mes Sedán | $1,160/mes SUV)</strong> para mantener tu auto impecable todo el año y disfrutar de un <strong>10% de descuento permanente</strong> en todos nuestros paquetes especializados.
+                            </p>
+                            <div style={{ display: "flex", gap: "0.65rem", flexWrap: "wrap" }}>
+                                <Link href="/membresia-doctor-foam" className="btn-premium" style={{ padding: "0.55rem 1.1rem", fontSize: "0.82rem" }}>
+                                    🔄 Ver Membresía ($990/mes)
+                                </Link>
+                                <a
+                                    href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20acabo%20de%20pagar%20mi%20primer%20Lavado%20Profundo%20y%20quiero%20activar%20mi%20Membres%C3%ADa%20de%20Seguimiento%20con%2010%25%20OFF"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-cta-location="pago_exitoso_upsell_membresia_whatsapp"
+                                    className="btn-outline"
+                                    style={{ padding: "0.55rem 1.1rem", fontSize: "0.82rem" }}
+                                >
+                                    💬 Activar Membresía por WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
                         <div
                             style={{
                                 display: "flex",
@@ -276,6 +312,13 @@ function SuccessContent() {
                     <p>
                         &copy; {new Date().getFullYear()} Doctor Foam México. Todos los derechos
                         reservados.
+                    </p>
+                    <p style={{ marginTop: "0.5rem" }}>
+                        <Link href="/" style={{ color: "#64748b", textDecoration: "underline" }}>Inicio</Link>{" · "}
+                        <Link href="/lavado-recurrente-autos-domicilio" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Recurrente</Link>{" · "}
+                        <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#64748b", textDecoration: "underline" }}>Lavado Profundo</Link>{" · "}
+                        <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>{" · "}
+                        <a href="/brochure-doctor-foam.pdf" download="Brochure-Corporativo-Doctor-Foam-2026.pdf" target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", fontWeight: 700, textDecoration: "underline" }}>📄 Descargar Brochure PDF</a>
                     </p>
                 </div>
             </footer>

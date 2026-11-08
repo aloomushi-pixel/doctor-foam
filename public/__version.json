@@ -1,6 +1,6 @@
 {
-  "version": "1.32.0-auto",
-  "cycle": 32,
-  "deployedAt": "2026-11-08T13:30:00Z",
-  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #32 — Added -10% Member Prices & inline FAQ CTAs on /paquetes-detallado-automotriz (Position #1.3 in GSC), added Member 10% Savings Table & FAQ CTAs on /membresia-doctor-foam, aligned /blog/economia-cuidado-automotriz-membresia with 2-Step Membership Activation Rule + Brochure PDF footer links, and linked all 12 blog articles on /blog"
+  "version": "1.33.0-auto",
+  "cycle": 33,
+  "deployedAt": "2026-11-08T17:38:00Z",
+  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #33 — Fixed PACKAGE_SLUG_ALIASES in src/lib/packages.ts so ?pkg=industrial, ?pkg=ceramic, and ?pkg=maintenance resolve accurately on /reservar; added -10% Member Price preview badges, 2-Step Membership Activation banner, Brochure PDF navbar CTA & inline FAQ WhatsApp buttons on /reservar; added Post-Purchase Paso 2 Membership Upsell & Brochure PDF footer on /pago-exitoso"
 }

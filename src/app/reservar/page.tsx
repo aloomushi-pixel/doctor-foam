@@ -598,10 +598,35 @@ Detalles:
                                         <div className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.2rem", whiteSpace: "nowrap" }}>
                                             ${(isMember ? Math.round(p.priceBase * 0.9) : p.priceBase).toLocaleString("es-MX")}
                                         </div>
+                                        {!isMember && (
+                                            <div style={{ color: "#15803d", fontSize: "0.71rem", fontWeight: 700, whiteSpace: "nowrap", marginTop: "0.1rem" }}>
+                                                🔄 Miembro (-10%): ${Math.round(p.priceBase * 0.9).toLocaleString("es-MX")}
+                                            </div>
+                                        )}
                                     </div>
                                 </button>
                             );
                         })}
+                    </div>
+
+                    {/* Aviso de Regla de Activación de Membresía Doctor Foam ($990/mes + 10% OFF) */}
+                    <div
+                        style={{
+                            padding: "0.95rem 1.15rem",
+                            borderRadius: "0.75rem",
+                            background: "rgba(37, 99, 235, 0.05)",
+                            border: "1px solid rgba(37, 99, 235, 0.2)",
+                            marginBottom: "1.5rem",
+                            fontSize: "0.82rem",
+                            color: "#1e293b",
+                            lineHeight: 1.55,
+                        }}
+                    >
+                        <strong style={{ color: "#1d4ed8" }}>✨ ¿Quieres activar la Membresía Doctor Foam ($990/mes Sedán | $1,160/mes SUV)?</strong>{" "}
+                        Al contratar hoy tu primer servicio de <strong>Lavado Profundo</strong>, desbloqueas nuestra membresía de seguimiento mensual y obtienes un <strong>10% de descuento permanente</strong> en todos nuestros paquetes especializados.{" "}
+                        <Link href="/membresia-doctor-foam" style={{ color: "#2563eb", fontWeight: 700, textDecoration: "underline" }}>
+                            Conocer Membresía →
+                        </Link>
                     </div>
 
                     <h3 style={{ fontSize: "1rem", marginBottom: "0.75rem", color: "#334155" }}>Tamaño del vehículo</h3>
@@ -977,6 +1002,17 @@ export default function ReservarPage() {
                     </Link>
                     <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
                         <a
+                            href="/brochure-doctor-foam.pdf"
+                            download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-cta-location="reservar_nav_brochure"
+                            className="btn-outline"
+                            style={{ padding: "0.45rem 0.85rem", fontSize: "0.78rem", borderColor: "rgba(37,99,235,0.35)", color: "#1d4ed8" }}
+                        >
+                            📄 Brochure PDF
+                        </a>
+                        <a
                             href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20estoy%20en%20la%20p%C3%A1gina%20de%20reservas%20y%20quiero%20agendar%20por%20WhatsApp"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -1042,9 +1078,29 @@ export default function ReservarPage() {
                                     <h3 style={{ fontSize: "0.95rem", color: "#0f172a", marginBottom: "0.4rem" }}>
                                         {item.q}
                                     </h3>
-                                    <p style={{ color: "#475569", fontSize: "0.88rem", lineHeight: 1.65, margin: 0 }}>
+                                    <p style={{ color: "#475569", fontSize: "0.88rem", lineHeight: 1.65, margin: "0 0 0.7rem" }}>
                                         {item.a}
                                     </p>
+                                    <a
+                                        href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy en /reservar y tengo una duda sobre "${item.q}"`)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-cta-location={`reservar_faq_${idx + 1}_whatsapp`}
+                                        style={{
+                                            display: "inline-flex",
+                                            alignItems: "center",
+                                            gap: "0.3rem",
+                                            padding: "0.38rem 0.8rem",
+                                            borderRadius: "0.5rem",
+                                            background: "#16a34a",
+                                            color: "#ffffff",
+                                            fontSize: "0.76rem",
+                                            fontWeight: 700,
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        💬 Resolver y Agendar por WhatsApp
+                                    </a>
                                 </div>
                             ))}
                         </div>
