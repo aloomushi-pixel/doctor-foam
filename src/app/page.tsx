@@ -575,6 +575,64 @@ export default function HomePage() {
               >
                 💬 Cotizar por WhatsApp
               </a>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline"
+                style={{ color: "#ffffff", borderColor: "rgba(147, 197, 253, 0.45)", background: "rgba(37, 99, 235, 0.22)" }}
+              >
+                📄 Descargar Brochure PDF
+              </a>
+            </div>
+
+            {/* Above-the-Fold 8-Zone Direct Coverage Selector */}
+            <div
+              style={{
+                marginTop: "1.75rem",
+                padding: "0.75rem 1rem",
+                borderRadius: "1rem",
+                background: "rgba(15, 23, 42, 0.55)",
+                border: "1px solid rgba(148, 163, 184, 0.25)",
+                backdropFilter: "blur(8px)",
+                maxWidth: "860px",
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
+            >
+              <div style={{ fontSize: "0.73rem", fontWeight: 700, color: "#93c5fd", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.5rem" }}>
+                📍 Unidades 100% Autónomas (Agua y Luz a Bordo) · Selecciona tu Zona en CDMX o Edomex:
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", justifyContent: "center" }}>
+                {[
+                  { slug: "polanco", label: "Polanco" },
+                  { slug: "lomas-de-chapultepec", label: "Lomas" },
+                  { slug: "santa-fe", label: "Santa Fe" },
+                  { slug: "bosques-de-las-lomas", label: "Bosques" },
+                  { slug: "interlomas", label: "Interlomas" },
+                  { slug: "huixquilucan", label: "Huixquilucan" },
+                  { slug: "pedregal", label: "Pedregal" },
+                  { slug: "coyoacan", label: "Coyoacán y Del Valle" },
+                ].map((z) => (
+                  <Link
+                    key={z.slug}
+                    href={`/zonas/${z.slug}`}
+                    style={{
+                      fontSize: "0.76rem",
+                      fontWeight: 600,
+                      color: "#f8fafc",
+                      background: "rgba(255, 255, 255, 0.1)",
+                      border: "1px solid rgba(255, 255, 255, 0.22)",
+                      borderRadius: "9999px",
+                      padding: "0.3rem 0.75rem",
+                      textDecoration: "none",
+                    }}
+                  >
+                    📍 {z.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -633,7 +691,10 @@ export default function HomePage() {
                   <h3 style={{ fontSize: "1.3rem", marginBottom: "0.25rem" }}>{p.name}</h3>
                   <p style={{ color: "#475569", fontSize: "0.85rem" }}>{displaySubtitle}</p>
                   <div className="price-amount gradient-text" style={{ transition: "all 0.3s ease" }}>{displayPrice}</div>
-                  <p style={{ color: "#475569", fontSize: "0.8rem", marginBottom: "0.5rem" }}>{p.priceLabel} · IVA incluido</p>
+                  <p style={{ color: "#475569", fontSize: "0.8rem", marginBottom: "0.25rem" }}>{p.priceLabel} · IVA incluido</p>
+                  <p style={{ color: "#15803d", fontSize: "0.76rem", fontWeight: 700, marginBottom: "0.55rem" }}>
+                    🔄 Con Membresía (-10% OFF): ${Math.round(Number(displayPrice.replace(/[^0-9]/g, "")) * 0.9).toLocaleString("es-MX")} MXN
+                  </p>
                   <ul className="price-list">
                     {p.features.map((f, fi) => (
                       <li key={fi}>{f}</li>

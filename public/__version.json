@@ -1,10 +1,10 @@
 {
-  "version": "1.28.0-auto",
-  "cycle": 28,
-  "deployedAt": "2026-11-07T20:51:00Z",
+  "version": "1.29.0-auto",
+  "cycle": 29,
+  "deployedAt": "2026-11-08T01:01:00Z",
   "highlights": [
-    "Converted all Colonia cards across /zonas/[zona] into 1-click WhatsApp quote buttons, expanded Coyoacan/Del Valle Sur colonias & postal codes, and added a 100%-scroll bottom conversion bar after ChatGPT visitor bc5af018 scrolled 100% of /zonas/coyoacan",
-    "Added dual 1-click WhatsApp & Online Booking buttons (/reservar?paquete=...&zona=...) in /zonas/[zona] Quick Package Strip and zone-aware confirmation banner on /reservar",
-    "Made floating WhatsAppButton.tsx pill text dynamically display the active coverage zone or pillar (e.g. WhatsApp · Coyoacan, WhatsApp · Polanco, WhatsApp · Membresia) and enriched public/llms.txt with full colonia/postal-code mappings"
+    "Added Above-the-Fold 8-Zone Coverage Selector & Brochure PDF button directly inside the Home Hero and -10% Member Price badges on #precios cards after organic visitor 51c31e2f spent 47s at 15% scroll on /",
+    "Added technical & price comparison table to /blog/verdad-recubrimiento-ceramico-9h-autos-premium after organic mobile visitor 9f230320 read the article for 6m 19s (379s) up to 92% scroll",
+    "Added 1-tap WhatsApp & Online Booking action buttons inside every FAQ item and mid-article package card across /blog/[slug]"
   ]
 }

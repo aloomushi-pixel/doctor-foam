@@ -278,6 +278,15 @@ La verdadera inversión patrimonial se justifica por los siguientes factores med
 2.  **Resistencia Química Espectral:** A diferencia de las ceras carnaubas que se funden a 80°C y se degradan con jabones alcalinos, un enlace covalente de dióxido de silicio resiste solventes agresivos (desde pH 2 hasta pH 13) y soporta temperaturas superiores a los 600°C sin comprometer su estructura reticular.
 3.  **Auto-Limpieza (Self-Cleaning):** Gracias a la baja tensión superficial aerodinámica, la suciedad particulada encapsulada en gotas de agua se desplaza rápidamente al conducir a velocidades medias, manteniendo la refracción óptica del vehículo intacta por más tiempo.
 
+## Comparativa Técnica y Precios a Domicilio en CDMX (2026)
+
+| Nivel de Protección | Escala Wolff-Wilborn | Ángulo Hidrofóbico | Resistencia Química | Duración Real | Inversión Doctor Foam (Sedán / SUV 2 filas) |
+|---|---|---|---|---|---|
+| Cera Carnauba Tradicional | Sin grado H | 75° - 85° | Baja (pH 6 - 8) | 3 a 6 semanas | No recomendada para autos premium |
+| Signature Detail + Sellador SiO2 | 7H Polimérico | 100°+ | Media-Alta (pH 4 - 11) | 6 meses | $7,499 MXN (incluye corrección 2-3 etapas + interior 180°C) |
+| Ceramic Coating 9H (SiO2 Puro) | 9H Certificado | 110°+ | Extrema (pH 2 - 13) | 3 a 5 años | $10,999 MXN (incluye corrección óptica + carrocería, rines y vidrios) |
+| Graphene Shield 10H | 10H Nanografeno | 115° - 120° | Extrema + Anti-Water Spots | 5 a 7 años | $14,999 MXN (máxima disipación térmica + certificado) |
+
 ---
 
 > **Veredicto Financiero:** El recubrimiento cerámico no es una armadura anti-rayones, es un escudo bioquímico y termodinámico. El verdadero ROI no está en la dureza de lápiz, sino en la impermeabilidad absoluta frente a los factores de degradación ambiental que destruyen el valor de reventa del automóvil.
@@ -859,6 +868,7 @@ export default async function BlogPost({ params }: PageProps) {
                             {[
                                 {
                                     name: "Industrial Deep Interior",
+                                    slug: "deep-interior",
                                     price: "$2,400 MXN",
                                     memberPrice: "$2,160 MXN con Membresía (-10%)",
                                     desc: "Lavado profundo de vestiduras, alfombra y cielo con vapor seco a 180°C + Ozono médico.",
@@ -867,6 +877,7 @@ export default async function BlogPost({ params }: PageProps) {
                                 },
                                 {
                                     name: "Signature Detail (Corrección + Interior)",
+                                    slug: "signature-detail",
                                     price: "$7,499 MXN",
                                     memberPrice: "$6,749 MXN con Membresía (-10%)",
                                     desc: "Eliminación de 85-95% de swirls (2-3 etapas), sellador cerámico 6 meses + interior a 180°C.",
@@ -876,6 +887,7 @@ export default async function BlogPost({ params }: PageProps) {
                                 },
                                 {
                                     name: "Ceramic Coating 9H",
+                                    slug: "ceramic-coating",
                                     price: "$10,999 MXN",
                                     memberPrice: "$9,899 MXN con Membresía (-10%)",
                                     desc: "Corrección óptica + blindaje nanocerámico SiO2 9H en carrocería, rines y cristales (3-5 años).",
@@ -909,22 +921,41 @@ export default async function BlogPost({ params }: PageProps) {
                                             {pkg.desc}
                                         </p>
                                     </div>
-                                    <a
-                                        href={`https://wa.me/525610846022?text=${encodeURIComponent(pkg.waMsg)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        data-cta-location={pkg.ctaId}
-                                        className="btn-premium"
-                                        style={{
-                                            width: "100%",
-                                            justifyContent: "center",
-                                            padding: "0.5rem 0.75rem",
-                                            fontSize: "0.78rem",
-                                            background: pkg.featured ? undefined : "linear-gradient(135deg, #16a34a, #15803d)",
-                                        }}
-                                    >
-                                        💬 Agendar por WhatsApp
-                                    </a>
+                                    <div style={{ display: "grid", gap: "0.4rem" }}>
+                                        <a
+                                            href={`https://wa.me/525610846022?text=${encodeURIComponent(pkg.waMsg)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            data-cta-location={pkg.ctaId}
+                                            className="btn-premium"
+                                            style={{
+                                                width: "100%",
+                                                justifyContent: "center",
+                                                padding: "0.5rem 0.75rem",
+                                                fontSize: "0.78rem",
+                                                background: pkg.featured ? undefined : "linear-gradient(135deg, #16a34a, #15803d)",
+                                            }}
+                                        >
+                                            💬 Agendar por WhatsApp
+                                        </a>
+                                        <Link
+                                            href={`/reservar?paquete=${pkg.slug}`}
+                                            style={{
+                                                display: "block",
+                                                textAlign: "center",
+                                                padding: "0.45rem 0.65rem",
+                                                borderRadius: "9999px",
+                                                border: "1px solid #cbd5e1",
+                                                background: "#f8fafc",
+                                                color: "#0f172a",
+                                                fontSize: "0.75rem",
+                                                fontWeight: 700,
+                                                textDecoration: "none",
+                                            }}
+                                        >
+                                            📅 Reservar en Línea
+                                        </Link>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -946,9 +977,26 @@ export default async function BlogPost({ params }: PageProps) {
                                     <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
                                         {faq.q}
                                     </summary>
-                                    <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                                    <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: "0.75rem" }}>
                                         {faq.a}
                                     </p>
+                                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", paddingTop: "0.55rem", borderTop: "1px dashed #e2e8f0" }}>
+                                        <a
+                                            href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, leí la pregunta "${faq.q}" en su guía y quiero cotizar este servicio a domicilio.`)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            data-cta-location={`blog_${slug}_faq_${idx}_whatsapp`}
+                                            style={{ fontSize: "0.76rem", fontWeight: 700, color: "#15803d", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "9999px", padding: "0.3rem 0.75rem", textDecoration: "none" }}
+                                        >
+                                            💬 Cotizar por WhatsApp
+                                        </a>
+                                        <Link
+                                            href="/reservar"
+                                            style={{ fontSize: "0.76rem", fontWeight: 700, color: "#1d4ed8", background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "9999px", padding: "0.3rem 0.75rem", textDecoration: "none" }}
+                                        >
+                                            📅 Ver Fechas Disponibles
+                                        </Link>
+                                    </div>
                                 </details>
                             ))}
                         </div>
