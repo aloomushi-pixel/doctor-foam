@@ -1,6 +1,6 @@
 {
-  "version": "1.33.0-auto",
-  "cycle": 33,
-  "deployedAt": "2026-11-08T17:38:00Z",
-  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #33 — Fixed PACKAGE_SLUG_ALIASES in src/lib/packages.ts so ?pkg=industrial, ?pkg=ceramic, and ?pkg=maintenance resolve accurately on /reservar; added -10% Member Price preview badges, 2-Step Membership Activation banner, Brochure PDF navbar CTA & inline FAQ WhatsApp buttons on /reservar; added Post-Purchase Paso 2 Membership Upsell & Brochure PDF footer on /pago-exitoso"
+  "version": "1.34.0-auto",
+  "cycle": 34,
+  "deployedAt": "2026-11-08T21:49:00Z",
+  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #34 — Optimized 0%-scroll Above-the-Fold mobile Hero on /zonas/[zona] (following mobile organic visitor d8d39604 on /zonas/huixquilucan at 0% scroll / 10.2s) with instant price summary, 1-tap colonia WhatsApp pills, expanded Huixquilucan colonias/postal codes, -10% Member Prices in Quick Package Strip, and inline FAQ CTAs"
 }

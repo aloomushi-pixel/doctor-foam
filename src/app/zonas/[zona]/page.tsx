@@ -95,16 +95,27 @@ const zonesData: Record<string, {
     },
     huixquilucan: {
         name: "Huixquilucan",
-        fullName: "Huixquilucan (Bosque Real, Zona Esmeralda y Lomas Country)",
+        fullName: "Huixquilucan (Bosque Real, La Herradura, Lomas Country y Zona Esmeralda)",
         state: "Estado de México",
-        postalCodes: "C.P. 52774, 52779, 52787, 52930",
-        description: "Fraccionamientos campestres y clubes de golf más exclusivos del Estado de México",
-        neighborhoods: ["Bosque Real", "Lomas Country Club", "Zona Esmeralda", "La Herradura", "Club de Golf Bellavista", "El Olivo"],
-        metaDesc: "Lavado de autos a domicilio y detallado automotriz en Huixquilucan: Bosque Real, Lomas Country Club y Zona Esmeralda (CP 52774-52930). Unidades 100% autónomas.",
-        intro: "Huixquilucan alberga los desarrollos residenciales y clubes de golf con mayor seguridad y privacidad del área metropolitana, incluyendo Bosque Real Country Club, Lomas Country Club, Paseos del Bosque y Zona Esmeralda (Chiluca y Condado de Sayavedra). Para los residentes de estas privadas, llevar un vehículo a un taller externo implica perder medio día; Doctor Foam lleva el taller clínico directamente a tu cochera.",
-        logistics: "Nuestras unidades móviles están preparadas para recorridos de larga estancia en Bosque Real, Lomas Country Club, Balcones de la Herradura y Zona Esmeralda, atendiendo desde 1 vehículo hasta flotillas familiares de 4 o más autos, razers o carritos de golf en una misma visita, con registro previo de código QR en caseta, facturación CFDI y planes de Membresía mensual recurrente.",
-        landmarks: ["Bosque Real Country Club y Av. Bosque Real", "Lomas Country Club y Paseo de las Palmas", "Zona Esmeralda, Chiluca y Sayavedra", "La Herradura y Balcones de la Herradura", "Paseo de la Asunción y El Olivo"],
-        carBrands: ["BMW", "Audi", "Mercedes-Benz", "Porsche", "Range Rover", "Jeep Premium"],
+        postalCodes: "C.P. 52760, 52770, 52774, 52779, 52784, 52785, 52787, 52930",
+        description: "Fraccionamientos residenciales, privadas y clubes de golf más exclusivos de Huixquilucan y Estado de México",
+        neighborhoods: [
+            "Bosque Real",
+            "Lomas Country Club",
+            "La Herradura",
+            "Parques de la Herradura",
+            "Balcones de la Herradura",
+            "Paseos del Bosque",
+            "Jesús del Monte",
+            "El Olivo",
+            "Zona Esmeralda (Sayavedra / Chiluca)",
+            "Club de Golf Bellavista",
+        ],
+        metaDesc: "Lavado de autos a domicilio y detallado automotriz en Huixquilucan: Bosque Real, La Herradura, Lomas Country Club y Zona Esmeralda (CP 52760-52930). Unidades 100% autónomas.",
+        intro: "Huixquilucan alberga los desarrollos residenciales y clubes de golf con mayor seguridad y privacidad del área metropolitana, incluyendo Bosque Real Country Club, Lomas Country Club, La Herradura, Parques de la Herradura, Balcones de la Herradura, Paseos del Bosque, Jesús del Monte, El Olivo y Zona Esmeralda (Chiluca y Condado de Sayavedra). Para los residentes de estas privadas, llevar un vehículo a un taller externo implica perder medio día; Doctor Foam lleva el taller clínico directamente a tu cochera.",
+        logistics: "Nuestras unidades móviles están preparadas para recorridos de larga estancia en Bosque Real, Lomas Country Club, La Herradura, Parques de la Herradura, El Olivo y Zona Esmeralda, atendiendo desde 1 vehículo hasta flotillas familiares de 4 o más autos, razers o carritos de golf en una misma visita, con registro previo de código QR en caseta, facturación CFDI y planes de Membresía mensual recurrente ($990/mes Sedán | $1,160/mes SUV + 10% OFF permanente).",
+        landmarks: ["Bosque Real Country Club y Av. Bosque Real", "Lomas Country Club y Paseo de las Palmas", "La Herradura, Parques y Balcones de la Herradura", "Jesús del Monte, El Olivo y Paseos del Bosque", "Zona Esmeralda, Chiluca y Condado de Sayavedra"],
+        carBrands: ["BMW", "Audi", "Mercedes-Benz", "Porsche", "Range Rover", "Jeep Premium", "Land Rover"],
     },
     coyoacan: {
         name: "Coyoacán Premium",
@@ -315,30 +326,76 @@ export default async function ZonePage({ params }: PageProps) {
                 </div>
             </nav>
 
-            <main style={{ paddingTop: "6rem" }}>
+            <main style={{ paddingTop: "4.75rem" }}>
                 {/* Hero */}
-                <section className="section-padding" style={{ textAlign: "center", paddingBottom: "2.25rem" }}>
+                <section className="section-padding" style={{ textAlign: "center", paddingTop: "1.5rem", paddingBottom: "1.35rem" }}>
                     <div className="container">
-                        <span className="section-label">{z.fullName} · {z.postalCodes}</span>
-                        <h1 className="section-title">
+                        <span className="section-label" style={{ marginBottom: "0.45rem" }}>{z.fullName} · {z.postalCodes}</span>
+                        <h1 className="section-title" style={{ marginBottom: "0.65rem", fontSize: "clamp(1.65rem, 3.8vw, 2.5rem)" }}>
                             Lavado de Autos a Domicilio y Detallado Automotriz en <span className="gradient-text">{z.name}</span>
                         </h1>
-                        <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "1.75rem" }}>
-                            {z.description}. Unidades móviles 100% autónomas con agua y luz propia.
+                        <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "0.95rem", fontSize: "0.95rem" }}>
+                            {z.description}. Unidades móviles 100% autónomas con agua purificada y luz propia sin cargo por traslado.
                         </p>
-                        <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
-                            <Link href={`/reservar?zona=${encodeURIComponent(z.name)}`} className="btn-premium">
-                                📅 Agendar en {z.name}
-                            </Link>
+
+                        {/* Above-the-Fold (0% Scroll) Instant Price Summary & Colonia Pills for Mobile Organic Visitors */}
+                        <div
+                            style={{
+                                maxWidth: "780px",
+                                margin: "0 auto 1rem",
+                                padding: "0.7rem 0.95rem",
+                                borderRadius: "0.85rem",
+                                background: "linear-gradient(135deg, rgba(240,253,244,0.95), rgba(239,246,255,0.95))",
+                                border: "1px solid rgba(22,163,74,0.3)",
+                                fontSize: "0.78rem",
+                                color: "#0f172a",
+                                lineHeight: 1.5,
+                            }}
+                        >
+                            <div style={{ fontWeight: 800, color: "#15803d", marginBottom: "0.35rem" }}>
+                                💰 Precios a Domicilio en {z.name}: Lavado Profundo Vapor 180°C $2,400 ($2,160 Miembro) · Detailing Completo $7,499 · Membresía $990/mes (+10% OFF fijo)
+                            </div>
+                            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem", justifyContent: "center", alignItems: "center" }}>
+                                <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#334155" }}>📍 Toca tu colonia en {z.name}:</span>
+                                {z.neighborhoods.slice(0, 7).map((col, idx) => (
+                                    <a
+                                        key={idx}
+                                        href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy en ${col} (${z.name}) y quiero cotizar un lavado / detallado a domicilio.`)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-cta-location={`zone_hero_pill_${zona}_${idx}`}
+                                        style={{
+                                            display: "inline-block",
+                                            padding: "0.22rem 0.6rem",
+                                            borderRadius: "999px",
+                                            background: "#ffffff",
+                                            border: "1px solid #86efac",
+                                            color: "#14532d",
+                                            fontSize: "0.72rem",
+                                            fontWeight: 700,
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        {col} 💬
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div style={{ display: "flex", gap: "0.65rem", justifyContent: "center", flexWrap: "wrap" }}>
                             <a
                                 href={whatsappHref}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 data-cta-location={`zone_hero_${zona}_whatsapp`}
-                                className="btn-outline"
+                                className="btn-premium"
+                                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
                             >
                                 💬 Cotizar por WhatsApp en {z.name}
                             </a>
+                            <Link href={`/reservar?zona=${encodeURIComponent(z.name)}`} className="btn-premium">
+                                📅 Agendar en {z.name}
+                            </Link>
                             <a
                                 href="/brochure-doctor-foam.pdf"
                                 download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
@@ -367,10 +424,10 @@ export default async function ZonePage({ params }: PageProps) {
                             </div>
                             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(215px, 1fr))", gap: "0.75rem" }}>
                                 {[
-                                    { name: "Industrial Deep Interior", slug: "deep-interior", price: "$2,400 MXN", suvPrice: "SUV: $2,680 MXN", desc: "Vestiduras, vapor 180°C, piel y ozono (3-4 hrs)", badge: "Más Solicitado" },
-                                    { name: "Signature Detail", slug: "signature-detail", price: "$7,499 MXN", suvPrice: "Corrección + Interior", desc: "Corrección pintura 95% swirls + Interior (5-6 hrs)", badge: "Renovación Total" },
-                                    { name: "Ceramic Coating 9H", slug: "ceramic-coating", price: "$10,999 MXN", suvPrice: "Blindaje SiO2 9H", desc: "Protección 3-5 años + Corrección óptica (8-10 hrs)", badge: "3-5 Años Garantía" },
-                                    { name: "Membresía de Seguimiento", slug: "membership-sedan", price: "$990 / mes", suvPrice: "SUV: $1,160 / mes", desc: "Se activa tras tu 1er lavado profundo (+10% OFF fijo)", badge: "Seguimiento Mensual" },
+                                    { name: "Industrial Deep Interior", slug: "deep-interior", price: "$2,400 MXN", memberPrice: "Miembro (-10%): $2,160 MXN", suvPrice: "SUV: $2,680 MXN", desc: "Vestiduras, vapor 180°C, piel y ozono (3-4 hrs)", badge: "Paso 1 · Más Solicitado" },
+                                    { name: "Signature Detail", slug: "signature-detail", price: "$7,499 MXN", memberPrice: "Miembro (-10%): $6,749 MXN", suvPrice: "Corrección + Interior", desc: "Corrección pintura 95% swirls + Interior (5-6 hrs)", badge: "Renovación Total" },
+                                    { name: "Ceramic Coating 9H", slug: "ceramic-coating", price: "$10,999 MXN", memberPrice: "Miembro (-10%): $9,899 MXN", suvPrice: "Blindaje SiO2 9H", desc: "Protección 3-5 años + Corrección óptica (8-10 hrs)", badge: "3-5 Años Garantía" },
+                                    { name: "Membresía de Seguimiento", slug: "deep-interior", price: "$990 / mes", memberPrice: "Activa 10% OFF permanente", suvPrice: "SUV: $1,160 / mes", desc: "Se activa tras tu 1er lavado profundo (+10% OFF fijo)", badge: "Paso 2 · Seguimiento" },
                                 ].map((pkg, idx) => (
                                     <div key={idx} style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "0.75rem", padding: "0.9rem 1rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                                         <div>
@@ -378,6 +435,7 @@ export default async function ZonePage({ params }: PageProps) {
                                                 <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#2563eb", textTransform: "uppercase" }}>{pkg.badge}</span>
                                                 <span style={{ fontSize: "0.95rem", fontWeight: 800, color: "#0f172a" }}>{pkg.price}</span>
                                             </div>
+                                            <div style={{ fontSize: "0.71rem", color: "#15803d", fontWeight: 700, marginBottom: "0.15rem" }}>🔄 {pkg.memberPrice}</div>
                                             <div style={{ fontSize: "0.7rem", color: "#64748b", fontWeight: 600, marginBottom: "0.2rem" }}>{pkg.suvPrice}</div>
                                             <div style={{ fontWeight: 700, fontSize: "0.88rem", color: "#0f172a", marginBottom: "0.2rem" }}>{pkg.name}</div>
                                             <div style={{ fontSize: "0.76rem", color: "#475569", marginBottom: "0.65rem" }}>{pkg.desc}</div>
@@ -541,9 +599,49 @@ export default async function ZonePage({ params }: PageProps) {
                                     <h3 style={{ fontSize: "1.02rem", fontWeight: 700, color: "#0f172a", marginBottom: "0.5rem" }}>
                                         {item.q}
                                     </h3>
-                                    <p style={{ color: "#334155", fontSize: "0.92rem", lineHeight: "1.7", margin: 0 }}>
+                                    <p style={{ color: "#334155", fontSize: "0.92rem", lineHeight: "1.7", margin: "0 0 0.85rem" }}>
                                         {item.a}
                                     </p>
+                                    <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
+                                        <a
+                                            href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy en ${z.name}, leí sobre "${item.q}" y quiero cotizar un servicio a domicilio.`)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            data-cta-location={`zone_faq_${zona}_${idx + 1}_whatsapp`}
+                                            style={{
+                                                display: "inline-flex",
+                                                alignItems: "center",
+                                                gap: "0.3rem",
+                                                padding: "0.4rem 0.85rem",
+                                                borderRadius: "0.5rem",
+                                                background: "#16a34a",
+                                                color: "#ffffff",
+                                                fontSize: "0.78rem",
+                                                fontWeight: 700,
+                                                textDecoration: "none",
+                                            }}
+                                        >
+                                            💬 Cotizar en {z.name}
+                                        </a>
+                                        <Link
+                                            href={`/reservar?zona=${encodeURIComponent(z.name)}`}
+                                            style={{
+                                                display: "inline-flex",
+                                                alignItems: "center",
+                                                gap: "0.3rem",
+                                                padding: "0.4rem 0.85rem",
+                                                borderRadius: "0.5rem",
+                                                background: "rgba(37,99,235,0.08)",
+                                                border: "1px solid rgba(37,99,235,0.25)",
+                                                color: "#1d4ed8",
+                                                fontSize: "0.78rem",
+                                                fontWeight: 700,
+                                                textDecoration: "none",
+                                            }}
+                                        >
+                                            📅 Agendar en {z.name}
+                                        </Link>
+                                    </div>
                                 </div>
                             ))}
                         </div>
