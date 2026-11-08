@@ -100,6 +100,24 @@ const blogPosts = [
         category: "Productos",
         readTime: "10 min",
     },
+    {
+        slug: "economia-cuidado-automotriz-membresia",
+        title: "La Economía del Cuidado Automotriz: ¿Conviene una Membresía de Lavado?",
+        excerpt:
+            "Descubre cuánto ahorras con una membresía de seguimiento automotriz ($990/mes + 10% OFF permanente en paquetes especializados) frente a lavados esporádicos.",
+        date: "2026-03-29",
+        category: "Finanzas",
+        readTime: "10 min",
+    },
+    {
+        slug: "lavado-profundo-vs-detallado-automotriz",
+        title: "Lavado Profundo vs Detallado Automotriz: ¿Cuál Necesitas?",
+        excerpt:
+            "Diferencia real entre lavado de mantenimiento, lavado profundo interior con vapor a 180°C y detallado completo con corrección de pintura y cerámico 9H.",
+        date: "2026-03-29",
+        category: "Educación",
+        readTime: "8 min",
+    },
 ];
 
 const blogFaqs = [

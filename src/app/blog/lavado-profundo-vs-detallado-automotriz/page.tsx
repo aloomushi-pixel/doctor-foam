@@ -123,10 +123,32 @@ export default function BlogLavadoProfundoVsDetallado() {
           {/* CTA */}
           <div className="glass-card" style={{ padding: "2rem", marginTop: "3rem", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)" }}>
             <h3 style={{ marginBottom: "1rem" }}>¿Listo para el <span className="gradient-text">nivel profesional</span>?</h3>
-            <p style={{ color: "#475569", marginBottom: "1.5rem" }}>Conoce nuestros planes de detallado con precios y comparativas detalladas.</p>
-            <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
-              📋 Conoce nuestros Planes de Detallado Automotriz
-            </Link>
+            <p style={{ color: "#475569", marginBottom: "1.5rem" }}>Conoce nuestros planes de detallado con precios y comparativas detalladas (desde $2,400 MXN, y 10% OFF permanente con Membresía).</p>
+            <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
+                📋 Ver Planes y Precios
+              </Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20le%C3%AD%20Lavado%20Profundo%20vs%20Detallado%20y%20quiero%20cotizar%20un%20servicio%20a%20domicilio"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="blog_vs_detallado_bottom_whatsapp"
+                className="btn-outline"
+              >
+                💬 Cotizar por WhatsApp
+              </a>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="blog_vs_detallado_bottom_brochure"
+                className="btn-outline"
+                style={{ borderColor: "#2563eb", color: "#1d4ed8" }}
+              >
+                📄 Descargar Brochure PDF
+              </a>
+            </div>
           </div>
         </article>
       </main>
@@ -146,6 +168,8 @@ export default function BlogLavadoProfundoVsDetallado() {
             <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>
             {" · "}
             <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>
+            {" · "}
+            <a href="/brochure-doctor-foam.pdf" download="Brochure-Corporativo-Doctor-Foam-2026.pdf" target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", fontWeight: 700, textDecoration: "underline" }}>📄 Descargar Brochure PDF</a>
           </p>
         </div>
       </footer>

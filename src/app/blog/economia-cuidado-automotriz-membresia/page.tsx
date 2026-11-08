@@ -84,11 +84,43 @@ export default function BlogEconomiaCuidado() {
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>El Costo Real de NO Mantener tu Auto</h2>
             <p>La mayoría de los propietarios de autos de gama media-alta gastan en promedio <strong style={{ color: "#0f172a" }}>$2,500-$4,000 MXN al mes</strong> en lavados esporádicos sin protocolo profesional. Cada visita a un autolavado de rodillos genera micro-rayones que degradan la pintura y disminuyen el valor de reventa hasta un <strong style={{ color: "#0f172a" }}>15%</strong>.</p>
 
-            <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>Membresía vs. Lavados Esporádicos: Los Números</h2>
-            <div className="glass-card" style={{ padding: "1.5rem", marginBottom: "1.5rem" }}>
-              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Sin membresía:</strong> 4 lavados/mes × $600 = $2,400/mes + daño acumulado a pintura</p>
-              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Con Membresía Doctor Foam:</strong> $1,160/mes. Incluye lavado de mantenimiento bimestral + 10% descuento en paquetes.</p>
-              <p style={{ color: "#22c55e", fontWeight: 600 }}>Ahorro anual: ~$14,880 MXN + preservación del valor del vehículo</p>
+            <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>Membresía vs. Lavados Esporádicos: Los Números y Cómo Empieza a Operar</h2>
+            <div className="glass-card" style={{ padding: "1.5rem", marginBottom: "1.5rem", border: "1.5px solid rgba(37,99,235,0.22)" }}>
+              <p style={{ marginBottom: "0.65rem" }}><strong style={{ color: "#0f172a" }}>❌ Sin membresía:</strong> 4 lavados/mes × $600 = $2,400/mes + daño acumulado por micro-rayones (swirls) en pintura.</p>
+              <p style={{ marginBottom: "0.65rem" }}><strong style={{ color: "#1d4ed8" }}>✅ Paso 1 (Requisito Inicial):</strong> Contratar primero un servicio de <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#2563eb", textDecoration: "underline" }}>Lavado Profundo</Link> (desde $2,400 MXN con vapor seco a 180°C y ozono) para restaurar tu vehículo al estándar clínico Doctor Foam.</p>
+              <p style={{ marginBottom: "0.65rem" }}><strong style={{ color: "#15803d" }}>✅ Paso 2 (Membresía de Seguimiento):</strong> Desde <strong>$990/mes (Sedán)</strong> o <strong>$1,160/mes (SUV / Multi-Auto)</strong>. Le da seguimiento preventivo continuo a tu primer servicio y te otorga la ventaja real: <strong>10% de descuento permanente en todos los lavados más especializados</strong> (Industrial Deep Interior a $2,160, Signature Detail a $6,749 y Ceramic Coating 9H a $9,899).</p>
+              <p style={{ color: "#16a34a", fontWeight: 700, marginBottom: "0.9rem" }}>💰 Ahorro anual estimado: ~$14,880 MXN + preservación de hasta +20% en el valor de reventa</p>
+              <div style={{ display: "flex", gap: "0.65rem", flexWrap: "wrap" }}>
+                <a
+                  href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20le%C3%AD%20el%20art%C3%ADculo%20sobre%20la%20Econom%C3%ADa%20de%20la%20Membres%C3%ADa%20y%20quiero%20agendar%20mi%20primer%20Lavado%20Profundo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cta-location="blog_economia_mid_whatsapp"
+                  className="btn-premium"
+                  style={{ background: "linear-gradient(135deg, #16a34a, #15803d)", padding: "0.5rem 1rem", fontSize: "0.82rem" }}
+                >
+                  💬 Empezar por WhatsApp
+                </a>
+                <Link
+                  href="/reservar?pkg=industrial"
+                  data-cta-location="blog_economia_mid_reservar"
+                  className="btn-outline"
+                  style={{ padding: "0.5rem 1rem", fontSize: "0.82rem" }}
+                >
+                  📅 Agendar Paso 1 ($2,400)
+                </Link>
+                <a
+                  href="/brochure-doctor-foam.pdf"
+                  download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cta-location="blog_economia_mid_brochure"
+                  className="btn-outline"
+                  style={{ padding: "0.5rem 1rem", fontSize: "0.82rem", borderColor: "rgba(37,99,235,0.35)", color: "#1d4ed8" }}
+                >
+                  📄 Brochure PDF
+                </a>
+              </div>
             </div>
 
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>Tips Profesionales para el Interior (entre visitas)</h2>
@@ -117,10 +149,32 @@ export default function BlogEconomiaCuidado() {
           {/* CTA */}
           <div className="glass-card" style={{ padding: "2rem", marginTop: "3rem", textAlign: "center", border: "2px solid rgba(37,99,235,0.15)" }}>
             <h3 style={{ marginBottom: "1rem" }}>¿Listo para <span className="gradient-text">proteger tu inversión</span>?</h3>
-            <p style={{ color: "#475569", marginBottom: "1.5rem" }}>Conoce nuestra membresía y deja de preocuparte por el mantenimiento.</p>
-            <Link href="/membresia-doctor-foam" className="btn-premium">
-              🔄 Conocer la Membresía Doctor Foam
-            </Link>
+            <p style={{ color: "#475569", marginBottom: "1.5rem" }}>Agenda tu Lavado Profundo inicial y activa tu Membresía desde $990/mes con 10% OFF permanente en paquetes especializados.</p>
+            <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link href="/membresia-doctor-foam" className="btn-premium">
+                🔄 Conocer la Membresía ($990/mes)
+              </Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20activar%20mi%20Membres%C3%ADa%20de%20Seguimiento%20con%2010%25%20OFF"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="blog_economia_bottom_whatsapp"
+                className="btn-outline"
+              >
+                💬 Cotizar por WhatsApp
+              </a>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="blog_economia_bottom_brochure"
+                className="btn-outline"
+                style={{ borderColor: "#2563eb", color: "#1d4ed8" }}
+              >
+                📄 Descargar Brochure PDF
+              </a>
+            </div>
           </div>
         </article>
       </main>
@@ -140,6 +194,8 @@ export default function BlogEconomiaCuidado() {
             <Link href="/membresia-doctor-foam" style={{ color: "#64748b", textDecoration: "underline" }}>Membresía</Link>
             {" · "}
             <Link href="/blog" style={{ color: "#64748b", textDecoration: "underline" }}>Blog</Link>
+            {" · "}
+            <a href="/brochure-doctor-foam.pdf" download="Brochure-Corporativo-Doctor-Foam-2026.pdf" target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", fontWeight: 700, textDecoration: "underline" }}>📄 Descargar Brochure PDF</a>
           </p>
         </div>
       </footer>

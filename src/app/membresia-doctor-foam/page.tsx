@@ -223,6 +223,17 @@ export default function MembresiaPage() {
               >
                 💬 Preguntar por WhatsApp
               </a>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="pillar_membresia_hero_brochure"
+                className="btn-outline"
+                style={{ borderColor: "rgba(37,99,235,0.35)", color: "#1d4ed8", background: "rgba(37,99,235,0.04)" }}
+              >
+                📄 Descargar Brochure PDF
+              </a>
             </div>
           </div>
         </section>
@@ -323,6 +334,86 @@ export default function MembresiaPage() {
           </div>
         </section>
 
+        {/* Tabla de Ahorro Real del 10% en Lavados Especializados */}
+        <section className="section-padding" style={{ paddingTop: 0 }}>
+          <div className="container" style={{ maxWidth: "880px" }}>
+            <div className="glass-card" style={{ padding: "2rem" }}>
+              <div style={{ textAlign: "center", marginBottom: "1.25rem" }}>
+                <span className="section-label">Ventaja Exclusiva para Miembros</span>
+                <h2 style={{ fontSize: "1.45rem", color: "#0f172a", margin: "0.35rem 0" }}>
+                  Tu <span className="gradient-text">10% de Descuento Permanente</span> en Lavados Especializados
+                </h2>
+                <p style={{ color: "#475569", fontSize: "0.9rem", maxWidth: "660px", margin: "0 auto" }}>
+                  Una vez que realizas tu primer lavado profundo y activas tu Membresía Doctor Foam, accedes a precios preferenciales permanentes en todos los paquetes de restauración y blindaje:
+                </p>
+              </div>
+              <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.88rem", color: "#1e293b" }}>
+                  <thead>
+                    <tr style={{ borderBottom: "2px solid rgba(37,99,235,0.2)", textAlign: "left" }}>
+                      <th style={{ padding: "0.75rem" }}>Paquete Especializado</th>
+                      <th style={{ padding: "0.75rem" }}>Precio Regular</th>
+                      <th style={{ padding: "0.75rem" }}>Precio Miembro (-10%)</th>
+                      <th style={{ padding: "0.75rem" }}>Ahorro Directo</th>
+                      <th style={{ padding: "0.75rem" }}>Acción Rápida</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      {
+                        name: "♨️ Industrial Deep Interior (Vapor 180°C + Ozono)",
+                        regular: "$2,400 MXN",
+                        member: "$2,160 MXN",
+                        save: "-$240 MXN",
+                        pkg: "industrial",
+                      },
+                      {
+                        name: "💎 Signature Detail (Corrección Swirls + Interior)",
+                        regular: "$7,499 MXN",
+                        member: "$6,749 MXN",
+                        save: "-$750 MXN",
+                        pkg: "signature",
+                      },
+                      {
+                        name: "🛡️ Ceramic Coating 9H (Blindaje 3 a 5 Años)",
+                        regular: "$10,999 MXN",
+                        member: "$9,899 MXN",
+                        save: "-$1,100 MXN",
+                        pkg: "ceramic",
+                      },
+                    ].map((row, idx) => (
+                      <tr key={idx} style={{ borderBottom: "1px solid rgba(148,163,184,0.2)" }}>
+                        <td style={{ padding: "0.75rem", fontWeight: 700 }}>{row.name}</td>
+                        <td style={{ padding: "0.75rem", textDecoration: "line-through", color: "#64748b" }}>{row.regular}</td>
+                        <td style={{ padding: "0.75rem", fontWeight: 800, color: "#15803d" }}>{row.member}</td>
+                        <td style={{ padding: "0.75rem", fontWeight: 700, color: "#2563eb" }}>{row.save}</td>
+                        <td style={{ padding: "0.75rem" }}>
+                          <Link
+                            href={`/reservar?pkg=${row.pkg}`}
+                            data-cta-location={`pillar_membresia_table_${row.pkg}`}
+                            style={{
+                              display: "inline-block",
+                              padding: "0.35rem 0.7rem",
+                              borderRadius: "0.45rem",
+                              background: "rgba(37,99,235,0.1)",
+                              color: "#1d4ed8",
+                              fontWeight: 700,
+                              fontSize: "0.76rem",
+                              textDecoration: "none",
+                            }}
+                          >
+                            📅 Agendar
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Preguntas Frecuentes sobre Membresía */}
         <section className="section-padding" style={{ paddingTop: 0 }}>
           <div className="container" style={{ maxWidth: "820px" }}>
@@ -340,9 +431,50 @@ export default function MembresiaPage() {
                   <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
                     {faq.q}
                   </summary>
-                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: "0.85rem" }}>
                     {faq.a}
                   </p>
+                  <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, leí la pregunta "${faq.q}" y quiero activar mi Membresía Doctor Foam.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`pillar_membresia_faq_${idx + 1}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.3rem",
+                        padding: "0.42rem 0.85rem",
+                        borderRadius: "0.55rem",
+                        background: "#16a34a",
+                        color: "#ffffff",
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Activar por WhatsApp
+                    </a>
+                    <Link
+                      href="/reservar?pkg=industrial"
+                      data-cta-location={`pillar_membresia_faq_${idx + 1}_reservar`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.3rem",
+                        padding: "0.42rem 0.85rem",
+                        borderRadius: "0.55rem",
+                        background: "rgba(37, 99, 235, 0.08)",
+                        border: "1px solid rgba(37, 99, 235, 0.25)",
+                        color: "#1d4ed8",
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      📅 Agendar Paso 1 ($2,400)
+                    </Link>
+                  </div>
                 </details>
               ))}
             </div>

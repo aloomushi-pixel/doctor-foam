@@ -215,6 +215,7 @@ export default function PaquetesDetallado() {
                   icon: "♨️",
                   name: "Industrial Deep Interior",
                   price: "$2,400 MXN",
+                  memberPrice: "$2,160 con Membresía (-10%)",
                   sub: "3-4 hrs · Vapor 180°C + Ozono",
                   wa: "Hola Doctor Foam, quiero cotizar el paquete Industrial Deep Interior ($2,400 MXN) a domicilio",
                   slug: "industrial-deep-interior",
@@ -223,6 +224,7 @@ export default function PaquetesDetallado() {
                   icon: "💎",
                   name: "Signature Detail (Completo)",
                   price: "$7,499 MXN",
+                  memberPrice: "$6,749 con Membresía (-10%)",
                   sub: "5-6 hrs · Interior + Pulido Espejo",
                   wa: "Hola Doctor Foam, quiero cotizar el paquete Signature Detail Completo ($7,499 MXN) a domicilio",
                   slug: "signature-detail",
@@ -232,6 +234,7 @@ export default function PaquetesDetallado() {
                   icon: "🛡️",
                   name: "Ceramic Coating 9H",
                   price: "$10,999 MXN",
+                  memberPrice: "$9,899 con Membresía (-10%)",
                   sub: "8-10 hrs · Blindaje 3 a 5 Años",
                   wa: "Hola Doctor Foam, quiero cotizar el paquete Ceramic Coating 9H ($10,999 MXN) a domicilio",
                   slug: "ceramic-coating",
@@ -240,7 +243,8 @@ export default function PaquetesDetallado() {
                   icon: "🔄",
                   name: "Lavado Recurrente",
                   price: "$990 / mes",
-                  sub: "Mantenimiento mensual sin swirls",
+                  memberPrice: "Activa tu 10% OFF permanente",
+                  sub: "Seguimiento post-lavado profundo",
                   wa: "Hola Doctor Foam, quiero información del Plan de Lavado Recurrente ($990/mes) a domicilio",
                   slug: "membresia",
                 },
@@ -261,6 +265,9 @@ export default function PaquetesDetallado() {
                   </div>
                   <div className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.35rem" }}>
                     {q.price}
+                  </div>
+                  <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "#15803d", marginTop: "0.15rem" }}>
+                    ✨ {q.memberPrice}
                   </div>
                   <p style={{ fontSize: "0.76rem", color: "#475569", margin: "0.2rem 0 0.75rem" }}>{q.sub}</p>
                   <div style={{ display: "flex", gap: "0.45rem" }}>
@@ -419,6 +426,7 @@ export default function PaquetesDetallado() {
                     <th style={{ padding: "0.75rem" }}>Enfoque Principal</th>
                     <th style={{ padding: "0.75rem" }}>Duración</th>
                     <th style={{ padding: "0.75rem" }}>Sedán / SUV 2 Filas</th>
+                    <th style={{ padding: "0.75rem" }}>Precio Miembro (-10%)</th>
                     <th style={{ padding: "0.75rem" }}>Pick Up / SUV 3 Filas</th>
                   </tr>
                 </thead>
@@ -428,6 +436,7 @@ export default function PaquetesDetallado() {
                     <td style={{ padding: "0.75rem" }}>Vestiduras, asientos, vapor 180°C y ozono</td>
                     <td style={{ padding: "0.75rem" }}>3 - 4 hrs</td>
                     <td style={{ padding: "0.75rem", fontWeight: 700, color: "#2563eb" }}>$2,400 MXN</td>
+                    <td style={{ padding: "0.75rem", fontWeight: 700, color: "#15803d" }}>$2,160 MXN</td>
                     <td style={{ padding: "0.75rem" }}>$2,400 MXN</td>
                   </tr>
                   <tr style={{ borderBottom: "1px solid rgba(148,163,184,0.2)", background: "rgba(37,99,235,0.04)" }}>
@@ -435,6 +444,7 @@ export default function PaquetesDetallado() {
                     <td style={{ padding: "0.75rem" }}>Interior completo + Pulido 2-3 etapas + Sellador 6m</td>
                     <td style={{ padding: "0.75rem" }}>5 - 6 hrs</td>
                     <td style={{ padding: "0.75rem", fontWeight: 700, color: "#2563eb" }}>$7,499 MXN</td>
+                    <td style={{ padding: "0.75rem", fontWeight: 700, color: "#15803d" }}>$6,749 MXN</td>
                     <td style={{ padding: "0.75rem" }}>$8,624 MXN</td>
                   </tr>
                   <tr style={{ borderBottom: "1px solid rgba(148,163,184,0.2)" }}>
@@ -442,14 +452,16 @@ export default function PaquetesDetallado() {
                     <td style={{ padding: "0.75rem" }}>Corrección + Blindaje Nanocerámico 3 a 5 años</td>
                     <td style={{ padding: "0.75rem" }}>8 - 10 hrs</td>
                     <td style={{ padding: "0.75rem", fontWeight: 700, color: "#2563eb" }}>$10,999 MXN</td>
+                    <td style={{ padding: "0.75rem", fontWeight: 700, color: "#15803d" }}>$9,899 MXN</td>
                     <td style={{ padding: "0.75rem" }}>$12,649 MXN</td>
                   </tr>
                   <tr>
                     <td style={{ padding: "0.75rem", fontWeight: 700 }}>🧽 Lavado Recurrente (Post-Detallado)</td>
-                    <td style={{ padding: "0.75rem" }}>Mantenimiento pH neutro sin swirls a domicilio</td>
+                    <td style={{ padding: "0.75rem" }}>Seguimiento pH neutro sin swirls + 10% OFF en paquetes</td>
                     <td style={{ padding: "0.75rem" }}>1.5 - 2 hrs</td>
                     <td style={{ padding: "0.75rem", fontWeight: 700, color: "#2563eb" }}>Desde $990/mes</td>
-                    <td style={{ padding: "0.75rem" }}>Consultar plan</td>
+                    <td style={{ padding: "0.75rem", fontWeight: 700, color: "#15803d" }}>Incluido en Membresía</td>
+                    <td style={{ padding: "0.75rem" }}>$1,160/mes (SUV/Multi-Auto)</td>
                   </tr>
                 </tbody>
               </table>
@@ -474,9 +486,50 @@ export default function PaquetesDetallado() {
                   <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
                     {faq.q}
                   </summary>
-                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: "0.85rem" }}>
                     {faq.a}
                   </p>
+                  <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, leí sobre "${faq.q}" y quiero cotizar un paquete de detallado a domicilio.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`cluster_paquetes_faq_${idx + 1}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.3rem",
+                        padding: "0.42rem 0.85rem",
+                        borderRadius: "0.55rem",
+                        background: "#16a34a",
+                        color: "#ffffff",
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
+                    <Link
+                      href="/reservar"
+                      data-cta-location={`cluster_paquetes_faq_${idx + 1}_reservar`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.3rem",
+                        padding: "0.42rem 0.85rem",
+                        borderRadius: "0.55rem",
+                        background: "rgba(37, 99, 235, 0.08)",
+                        border: "1px solid rgba(37, 99, 235, 0.25)",
+                        color: "#1d4ed8",
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      📅 Agendar en Línea
+                    </Link>
+                  </div>
                 </details>
               ))}
             </div>
