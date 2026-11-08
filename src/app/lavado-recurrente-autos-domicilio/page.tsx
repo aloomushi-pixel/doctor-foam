@@ -123,21 +123,57 @@ export default function LavadoRecurrentePage() {
 
       <main style={{ paddingTop: "6rem" }}>
         {/* Hero */}
-        <section className="section-padding" style={{ textAlign: "center" }}>
+        <section className="section-padding" style={{ textAlign: "center", paddingBottom: "2rem" }}>
           <div className="container">
             <span className="section-label">Mantenimiento Premium desde $990/mes</span>
             <h1 className="section-title">
               Lavado Recurrente para Vehículos a Domicilio: <span className="gradient-text">Mantenimiento Premium</span>
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "750px", marginBottom: "1.75rem" }}>
-              Tu auto merece un cuidado constante, no esporádico. Nuestro programa de <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link> recurrente mantiene tu vehículo impecable semana tras semana con el estándar Doctor Foam.
+            <p className="section-subtitle" style={{ maxWidth: "760px", marginBottom: "1.25rem" }}>
+              Tu auto merece un cuidado constante, no esporádico. Nuestro programa de <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link> recurrente está diseñado para <strong>darle seguimiento continuo a tu primer servicio de lavado profundo</strong> con el estándar clínico de Doctor Foam.
             </p>
+
+            {/* Regla de Negocio: Paso 1 Lavado Profundo -> Paso 2 Membresía Recurrente + 10% OFF */}
+            <div
+              className="glass-card"
+              style={{
+                maxWidth: "860px",
+                margin: "0 auto 1.5rem",
+                padding: "1.2rem 1.4rem",
+                textAlign: "left",
+                border: "1.5px solid rgba(37, 99, 235, 0.25)",
+                background: "linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(16, 185, 129, 0.05))",
+              }}
+            >
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1rem", alignItems: "start" }}>
+                <div>
+                  <span style={{ display: "inline-block", fontSize: "0.72rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#2563eb", marginBottom: "0.25rem" }}>
+                    1️⃣ Cómo Empezar (Paso 1 Obligatorio)
+                  </span>
+                  <p style={{ color: "#1e293b", fontSize: "0.86rem", lineHeight: "1.6", margin: 0 }}>
+                    Para activar el programa de lavado recurrente y membresía, <strong>primero contratamos un servicio de <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "#2563eb", textDecoration: "underline" }}>Lavado Profundo</Link></strong> (desde $2,400 MXN). Así dejamos tu vehículo en estado clínico base.
+                  </p>
+                </div>
+                <div>
+                  <span style={{ display: "inline-block", fontSize: "0.72rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#15803d", marginBottom: "0.25rem" }}>
+                    2️⃣ Seguimiento + 10% de Descuento Permanente
+                  </span>
+                  <p style={{ color: "#1e293b", fontSize: "0.86rem", lineHeight: "1.6", margin: 0 }}>
+                    Tu membresía mantiene ese primer servicio con lavados preventivos pH neutro (método 2 cubetas) y te otorga un <strong>10% de descuento permanente en todos los lavados más especializados</strong> (vestiduras a 180°C, corrección de pintura y cerámico 9H).
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/membresia-doctor-foam" className="btn-premium">
+              <Link href="/reservar?paquete=deep-interior" className="btn-premium">
+                📅 1. Agendar Lavado Profundo Inicial
+              </Link>
+              <Link href="/membresia-doctor-foam" className="btn-outline" style={{ borderColor: "#2563eb", color: "#1d4ed8", fontWeight: 700 }}>
                 🔄 Ver Membresía ($990/mes)
               </Link>
               <a
-                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20el%20lavado%20recurrente%20a%20domicilio"
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20activar%20el%20lavado%20recurrente%20a%20domicilio%20(empezando%20con%20mi%20primer%20lavado%20profundo)"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cta-location="pillar_recurrente_hero_whatsapp"
@@ -145,12 +181,106 @@ export default function LavadoRecurrentePage() {
               >
                 💬 WhatsApp Directo
               </a>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline"
+              >
+                📄 Brochure PDF
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Above-the-Fold Quick Plans & 1-Tap Booking Strip */}
+        <section style={{ paddingBottom: "2.25rem" }}>
+          <div className="container" style={{ maxWidth: "1020px" }}>
+            <div style={{ background: "#f8fafc", border: "1px solid #cbd5e1", borderRadius: "1rem", padding: "1.15rem 1.25rem", boxShadow: "0 8px 24px rgba(15, 23, 42, 0.05)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.85rem" }}>
+                <span style={{ fontSize: "0.78rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "#0f172a" }}>
+                  ⚡ Planes y Precios 2026 de Lavado Recurrente y Seguimiento (IVA y CFDI Incluidos)
+                </span>
+                <span style={{ fontSize: "0.75rem", color: "#15803d", fontWeight: 700 }}>
+                  ✅ Unidades 100% autónomas (agua y luz a bordo)
+                </span>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.75rem" }}>
+                {[
+                  {
+                    badge: "Paso 1 · Requisito Inicial",
+                    name: "Industrial Deep Interior",
+                    price: "$2,400 MXN",
+                    sub: "Habilita tu Membresía (-10% OFF)",
+                    desc: "Vapor seco 180°C en vestiduras, alfombra, cielo y ozono médico (3-4 hrs).",
+                    slug: "deep-interior",
+                    waText: "Hola Doctor Foam, estoy en Lavado Recurrente y quiero agendar mi Paso 1 (Industrial Deep Interior $2,400 MXN) para activar mi membresía",
+                  },
+                  {
+                    badge: "Paso 2 · Plan Sedán",
+                    name: "Membresía Sedán Recurrente",
+                    price: "$990 / mes",
+                    sub: "+10% OFF en paquetes especializados",
+                    desc: "Seguimiento preventivo pH neutro, 2 cubetas, microfibra 500 GSM y sellador UV.",
+                    slug: "membership-sedan",
+                    waText: "Hola Doctor Foam, me interesa la Membresía Sedán de Lavado Recurrente ($990/mes + 10% OFF en servicios especializados)",
+                  },
+                  {
+                    badge: "Paso 2 · Plan SUV / Multi-Auto",
+                    name: "Membresía SUV / VIP",
+                    price: "$1,160 / mes",
+                    sub: "+10% OFF en cualquier vehículo",
+                    desc: "Seguimiento bimestral Foam Maintenance + 10% de descuento permanente.",
+                    slug: "membresia",
+                    waText: "Hola Doctor Foam, me interesa la Membresía SUV / VIP de Lavado Recurrente ($1,160/mes + 10% OFF permanente)",
+                  },
+                  {
+                    badge: "Mantenimiento por Evento",
+                    name: "Foam Maintenance",
+                    price: "$1,800 MXN",
+                    sub: "Para clientes post-servicio",
+                    desc: "Foam cannon pH neutro, descontaminación química, clay bar y sellador UV.",
+                    slug: "foam-maintenance",
+                    waText: "Hola Doctor Foam, quiero agendar un servicio de seguimiento Foam Maintenance ($1,800 MXN) a domicilio",
+                  },
+                ].map((plan, idx) => (
+                  <div key={idx} style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "0.75rem", padding: "0.95rem 1rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                    <div>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.35rem", marginBottom: "0.2rem" }}>
+                        <span style={{ fontSize: "0.66rem", fontWeight: 800, color: "#2563eb", textTransform: "uppercase" }}>{plan.badge}</span>
+                        <span style={{ fontSize: "0.95rem", fontWeight: 800, color: "#0f172a" }}>{plan.price}</span>
+                      </div>
+                      <div style={{ fontSize: "0.7rem", color: "#15803d", fontWeight: 700, marginBottom: "0.2rem" }}>{plan.sub}</div>
+                      <div style={{ fontWeight: 700, fontSize: "0.88rem", color: "#0f172a", marginBottom: "0.2rem" }}>{plan.name}</div>
+                      <div style={{ fontSize: "0.75rem", color: "#475569", marginBottom: "0.65rem", lineHeight: 1.45 }}>{plan.desc}</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.4rem" }}>
+                      <a
+                        href={`https://wa.me/525610846022?text=${encodeURIComponent(plan.waText)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-cta-location={`pillar_recurrente_quick_strip_${idx}`}
+                        style={{ display: "block", textAlign: "center", padding: "0.45rem 0.4rem", borderRadius: "0.5rem", background: "#f0fdf4", border: "1px solid #86efac", color: "#15803d", fontWeight: 700, fontSize: "0.73rem", textDecoration: "none" }}
+                      >
+                        💬 WhatsApp
+                      </a>
+                      <Link
+                        href={`/reservar?paquete=${plan.slug}`}
+                        style={{ display: "block", textAlign: "center", padding: "0.45rem 0.4rem", borderRadius: "0.5rem", background: "#eff6ff", border: "1px solid #bfdbfe", color: "#1d4ed8", fontWeight: 700, fontSize: "0.73rem", textDecoration: "none" }}
+                      >
+                        📅 Reservar
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Hero Image */}
-        <div style={{ maxWidth: "1000px", margin: "-2rem auto 0", padding: "0 1.5rem" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 1.5rem" }}>
           <Image
             src="/seo/hero-recurrente.png"
             alt="Técnico de Doctor Foam aplicando espuma sobre un SUV negro en una residencia de lujo en CDMX"
@@ -209,9 +339,26 @@ export default function LavadoRecurrentePage() {
                   <h3 style={{ fontSize: "1.02rem", fontWeight: 700, color: "#0f172a", marginBottom: "0.5rem" }}>
                     {item.q}
                   </h3>
-                  <p style={{ color: "#334155", fontSize: "0.92rem", lineHeight: "1.7", margin: 0 }}>
+                  <p style={{ color: "#334155", fontSize: "0.92rem", lineHeight: "1.7", marginBottom: "0.75rem" }}>
                     {item.a}
                   </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", paddingTop: "0.55rem", borderTop: "1px dashed #e2e8f0" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, leí "${item.q}" en Lavado Recurrente y quiero cotizar mi servicio a domicilio.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`pillar_recurrente_faq_${idx}_whatsapp`}
+                      style={{ fontSize: "0.76rem", fontWeight: 700, color: "#15803d", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "9999px", padding: "0.3rem 0.75rem", textDecoration: "none" }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
+                    <Link
+                      href="/reservar?paquete=deep-interior"
+                      style={{ fontSize: "0.76rem", fontWeight: 700, color: "#1d4ed8", background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "9999px", padding: "0.3rem 0.75rem", textDecoration: "none" }}
+                    >
+                      📅 Agendar Paso 1 en Línea
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>

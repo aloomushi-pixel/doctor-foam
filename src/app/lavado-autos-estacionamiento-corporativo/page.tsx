@@ -141,6 +141,15 @@ export default function EstacionamientoCorporativoPage() {
               >
                 💬 Cotizar por WhatsApp
               </a>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline"
+              >
+                📄 Brochure Corporativo PDF
+              </a>
             </div>
           </div>
         </section>

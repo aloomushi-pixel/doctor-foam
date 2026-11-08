@@ -1,10 +1,10 @@
 {
-  "version": "1.29.0-auto",
-  "cycle": 29,
-  "deployedAt": "2026-11-08T01:01:00Z",
+  "version": "1.30.0-auto",
+  "cycle": 30,
+  "deployedAt": "2026-11-08T05:10:00Z",
   "highlights": [
-    "Added Above-the-Fold 8-Zone Coverage Selector & Brochure PDF button directly inside the Home Hero and -10% Member Price badges on #precios cards after organic visitor 51c31e2f spent 47s at 15% scroll on /",
-    "Added technical & price comparison table to /blog/verdad-recubrimiento-ceramico-9h-autos-premium after organic mobile visitor 9f230320 read the article for 6m 19s (379s) up to 92% scroll",
-    "Added 1-tap WhatsApp & Online Booking action buttons inside every FAQ item and mid-article package card across /blog/[slug]"
+    "Added 2-Step Membership Activation Rule card, Above-the-Fold 4-Plan Quick Booking Strip (WhatsApp + Reservar Online), and inline FAQ conversion buttons on /lavado-recurrente-autos-domicilio after 3 consecutive real visitors (cdbe1876, 5815078f, 632794d7) visited the page (up to 174.6s and 100% scroll)",
+    "Upgraded /lavado-profundo-vehiculos-cdmx Quick Package Strip with -10% Member Prices and dual WhatsApp + Online Booking buttons",
+    "Added Corporate PDF Brochure Hero CTAs across /lavado-recurrente-autos-domicilio, /lavado-profundo-vehiculos-cdmx, and /lavado-autos-estacionamiento-corporativo"
   ]
 }

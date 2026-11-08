@@ -182,6 +182,15 @@ export default function LavadoProfundoPage() {
               >
                 💬 Cotizar por WhatsApp
               </a>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline"
+              >
+                📄 Brochure PDF
+              </a>
             </div>
           </div>
         </section>
@@ -200,28 +209,37 @@ export default function LavadoProfundoPage() {
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.75rem" }}>
                 {[
-                  { name: "Industrial Deep Interior", price: "$2,400 MXN", desc: "Vestiduras, vapor 180°C, piel y ozono (3-4 h)", badge: "Interior Profundo" },
-                  { name: "Signature Detail", price: "$7,499 MXN", desc: "Corrección pintura 95% swirls + Interior (6-8 h)", badge: "Más Popular" },
-                  { name: "Ceramic Coating 9H", price: "$10,999 MXN", desc: "Blindaje SiO2 3-5 años + Corrección (8-10 h)", badge: "Protección 9H" },
+                  { name: "Industrial Deep Interior", slug: "deep-interior", price: "$2,400 MXN", memberPrice: "Con Membresía: $2,160 MXN (-10%)", desc: "Vestiduras, vapor 180°C, piel y ozono (3-4 h)", badge: "Interior Profundo" },
+                  { name: "Signature Detail", slug: "signature-detail", price: "$7,499 MXN", memberPrice: "Con Membresía: $6,749 MXN (-10%)", desc: "Corrección pintura 95% swirls + Interior (5-6 h)", badge: "Más Popular" },
+                  { name: "Ceramic Coating 9H", slug: "ceramic-coating", price: "$10,999 MXN", memberPrice: "Con Membresía: $9,899 MXN (-10%)", desc: "Blindaje SiO2 3-5 años + Corrección (8-10 h)", badge: "Protección 9H" },
                 ].map((pkg, idx) => (
                   <div key={idx} style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "0.75rem", padding: "0.9rem 1rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                     <div>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.35rem", marginBottom: "0.25rem" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.35rem", marginBottom: "0.2rem" }}>
                         <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#2563eb", textTransform: "uppercase" }}>{pkg.badge}</span>
                         <span style={{ fontSize: "0.95rem", fontWeight: 800, color: "#0f172a" }}>{pkg.price}</span>
                       </div>
+                      <div style={{ fontSize: "0.7rem", color: "#15803d", fontWeight: 700, marginBottom: "0.2rem" }}>{pkg.memberPrice}</div>
                       <div style={{ fontWeight: 700, fontSize: "0.88rem", color: "#0f172a", marginBottom: "0.2rem" }}>{pkg.name}</div>
                       <div style={{ fontSize: "0.76rem", color: "#475569", marginBottom: "0.65rem" }}>{pkg.desc}</div>
                     </div>
-                    <a
-                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, me interesa cotizar / agendar el paquete ${pkg.name} (${pkg.price}) a domicilio en CDMX.`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-cta-location={`pillar_profundo_quick_strip_${idx}`}
-                      style={{ display: "block", textAlign: "center", padding: "0.45rem 0.6rem", borderRadius: "0.5rem", background: "#eff6ff", border: "1px solid #bfdbfe", color: "#1d4ed8", fontWeight: 700, fontSize: "0.76rem", textDecoration: "none" }}
-                    >
-                      💬 Cotizar {pkg.name}
-                    </a>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.4rem" }}>
+                      <a
+                        href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, me interesa cotizar / agendar el paquete ${pkg.name} (${pkg.price}) a domicilio en CDMX.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-cta-location={`pillar_profundo_quick_strip_${idx}`}
+                        style={{ display: "block", textAlign: "center", padding: "0.45rem 0.4rem", borderRadius: "0.5rem", background: "#f0fdf4", border: "1px solid #86efac", color: "#15803d", fontWeight: 700, fontSize: "0.73rem", textDecoration: "none" }}
+                      >
+                        💬 WhatsApp
+                      </a>
+                      <Link
+                        href={`/reservar?paquete=${pkg.slug}`}
+                        style={{ display: "block", textAlign: "center", padding: "0.45rem 0.4rem", borderRadius: "0.5rem", background: "#eff6ff", border: "1px solid #bfdbfe", color: "#1d4ed8", fontWeight: 700, fontSize: "0.73rem", textDecoration: "none" }}
+                      >
+                        📅 Reservar
+                      </Link>
+                    </div>
                   </div>
                 ))}
               </div>
