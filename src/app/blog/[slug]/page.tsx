@@ -563,11 +563,11 @@ Aplicamos un aromatizante premium de larga duración que complementa el ambiente
 /* ─── Fallback articles ─── */
 const defaultContent: Record<string, BlogPostData> = {
     "correccion-pintura-swirls-guia": {
-        title: "Swirls en la Pintura y Micro Rayones en tu Auto: Qué Son, Cómo Quitarlos y Precios CDMX",
+        title: "Swirls en la Pintura: Cómo Quitarlos (85-95%) y Precios CDMX",
         date: "2026-05-05",
         category: "Corrección",
         readTime: "9 min",
-        metaDesc: "¿Qué son los swirls en la pintura de tu auto y cómo quitar micro rayones (microrayones) definitivos? Guía de corrección de pintura a domicilio en CDMX y precios.",
+        metaDesc: "¿Qué son los swirls en la pintura de tu auto y cómo quitar micro rayones de raíz? Eliminamos 85-95% de swirls a domicilio en CDMX ($7,499 Signature Detail | -10% Miembros).",
         faqs: [
             {
                 q: "¿Qué son los swirls (micro swirls) en la pintura de un auto?",
@@ -791,9 +791,9 @@ export default async function BlogPost({ params }: PageProps) {
                         }}
                     >
                         <div style={{ fontSize: "0.88rem", color: "#0f172a" }}>
-                            <strong>¿Tu auto necesita atención profesional a domicilio en CDMX?</strong>
-                            <span style={{ display: "block", fontSize: "0.8rem", color: "#475569" }}>
-                                Vamos a tu casa u oficina con agua purificada, luz de inspección y planta eléctrica propia.
+                            <strong>¿Tu auto necesita atención profesional a domicilio en CDMX y EdoMex?</strong>
+                            <span style={{ display: "block", fontSize: "0.8rem", color: "#475569", marginTop: "0.15rem" }}>
+                                Unidad 100% autónoma (agua purificada y luz propia) · <strong>Lavado Profundo Vapor 180°C: $2,400</strong> ($2,160 Miembro) · <strong>Corrección Swirls: $7,499</strong> · <strong>Cerámico 9H: $10,999</strong> · <strong>Membresía: $990/mes (+10% OFF fijo)</strong>
                             </span>
                         </div>
                         <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>

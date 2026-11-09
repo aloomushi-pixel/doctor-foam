@@ -91,31 +91,40 @@ function generateUuid(): string {
   });
 }
 
+let cachedSessionId: string | null = null;
+let cachedVisitorId: string | null = null;
+
 export function getDrFoamSessionId(): string {
   if (typeof window === "undefined") return "server";
+  if (cachedSessionId) return cachedSessionId;
   try {
     let sid = sessionStorage.getItem(SESSION_KEY);
     if (!sid) {
       sid = generateUuid();
       sessionStorage.setItem(SESSION_KEY, sid);
     }
+    cachedSessionId = sid;
     return sid;
   } catch {
-    return generateUuid();
+    cachedSessionId = generateUuid();
+    return cachedSessionId;
   }
 }
 
 export function getDrFoamVisitorId(): string {
   if (typeof window === "undefined") return "server";
+  if (cachedVisitorId) return cachedVisitorId;
   try {
     let vid = localStorage.getItem(VISITOR_KEY);
     if (!vid) {
       vid = generateUuid();
       localStorage.setItem(VISITOR_KEY, vid);
     }
+    cachedVisitorId = vid;
     return vid;
   } catch {
-    return generateUuid();
+    cachedVisitorId = generateUuid();
+    return cachedVisitorId;
   }
 }
 

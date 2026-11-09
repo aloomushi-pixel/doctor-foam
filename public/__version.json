@@ -1,6 +1,6 @@
 {
-  "version": "1.34.0-auto",
-  "cycle": 34,
-  "deployedAt": "2026-11-08T21:49:00Z",
-  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #34 — Optimized 0%-scroll Above-the-Fold mobile Hero on /zonas/[zona] (following mobile organic visitor d8d39604 on /zonas/huixquilucan at 0% scroll / 10.2s) with instant price summary, 1-tap colonia WhatsApp pills, expanded Huixquilucan colonias/postal codes, -10% Member Prices in Quick Package Strip, and inline FAQ CTAs"
+  "version": "1.35.0-auto",
+  "cycle": 35,
+  "deployedAt": "2026-11-09T01:28:00Z",
+  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #35 — In-memory visitor/session ID caching in src/lib/telemetry.ts to prevent Android WebView teardown from splitting page_leave events; SERP CTR optimization on Home (layout.tsx) for 'detallado automotriz a domicilio' (86 imp, pos 9.8) & 'lavado de asientos de auto' (24 imp, pos 3.7) and on /blog/correccion-pintura-swirls-guia for 'swirls pintura' (119 imp, pos 8.7) + Above-the-Fold price summary in blog articles"
 }
