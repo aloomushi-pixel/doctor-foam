@@ -548,20 +548,54 @@ export default function HomePage() {
 
       {/* ─── HERO ─── */}
       <section className="hero-section" id="inicio">
-        <img src="https://drfoam.com.mx/hero-bg.png" alt="Doctor Foam Automotriz Premium" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
+        <img src="https://drfoam.com.mx/hero-bg.png" alt="Detallado automotriz a domicilio, lavado de asientos de auto con vapor 180°C y recubrimiento cerámico 9H en CDMX — Doctor Foam" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
         <div className="hero-bg" style={{ zIndex: 1 }} />
         <div className="hero-glow hero-glow-gold" style={{ zIndex: 1 }} />
         <div className="hero-glow hero-glow-blue" style={{ zIndex: 1 }} />
 
         <div className="container" style={{ position: "relative", zIndex: 10, textAlign: "center" }}>
           <div className="animate-on-scroll">
-            <span className="section-label" style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)", color: "#93c5fd" }}>Detallado Automotriz Premium a Domicilio</span>
-            <h1 className="section-title" style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)", marginBottom: "1.5rem", maxWidth: "920px", marginLeft: "auto", marginRight: "auto", color: "#ffffff" }}>
+            <span className="section-label" style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)", color: "#93c5fd" }}>Detallado Automotriz Premium a Domicilio · Car Detailing CDMX</span>
+            <h1 className="section-title" style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)", marginBottom: "1.25rem", maxWidth: "920px", marginLeft: "auto", marginRight: "auto", color: "#ffffff" }}>
               Lavado de Autos a Domicilio en CDMX: <span className="gradient-text">Detallado Automotriz Premium</span>
             </h1>
-            <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.88)", maxWidth: "720px", margin: "0 auto 2.5rem", lineHeight: "1.8" }}>
-              Llevamos el taller perfecto hasta la puerta de tu casa u oficina. Equipo industrial de grado profesional, químicos especializados y resultados superiores en un solo día, sin mover tu auto.
+            <p style={{ fontSize: "1.12rem", color: "rgba(255,255,255,0.9)", maxWidth: "780px", margin: "0 auto 1.35rem", lineHeight: "1.75" }}>
+              Llevamos el estudio de estética automotriz hasta tu casa u oficina con agua purificada y luz propia: <strong>lavado de asientos de auto y vestiduras con vapor seco a 180°C</strong>, <strong>corrección de pintura</strong>, <strong>limpieza de motores</strong> y <strong>recubrimiento cerámico 9H</strong> en un solo día.
             </p>
+
+            {/* Above-the-Fold 0%-Scroll Price & 1-Tap Package Bar */}
+            <div
+              style={{
+                maxWidth: "860px",
+                margin: "0 auto 1.5rem",
+                padding: "0.7rem 1rem",
+                borderRadius: "0.9rem",
+                background: "rgba(15, 23, 42, 0.68)",
+                border: "1px solid rgba(56, 189, 248, 0.35)",
+                backdropFilter: "blur(10px)",
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.45rem 0.75rem",
+                fontSize: "0.8rem",
+                color: "#f8fafc",
+              }}
+            >
+              <Link href="/reservar?paquete=deep-interior" style={{ color: "#f8fafc", textDecoration: "none", background: "rgba(255,255,255,0.08)", padding: "0.28rem 0.65rem", borderRadius: "9999px", border: "1px solid rgba(255,255,255,0.18)" }}>
+                ♨️ <strong>Interior Vapor 180°C: $2,499</strong> <span style={{ color: "#86efac" }}>($2,249 Miembro)</span>
+              </Link>
+              <Link href="/reservar?paquete=signature-detail" style={{ color: "#f8fafc", textDecoration: "none", background: "rgba(37,99,235,0.32)", padding: "0.28rem 0.65rem", borderRadius: "9999px", border: "1px solid rgba(147,197,253,0.4)" }}>
+                💎 <strong>Signature + Motor: $7,449</strong> <span style={{ color: "#86efac" }}>($6,704 Miembro)</span>
+              </Link>
+              <Link href="/reservar?paquete=ceramic-coating" style={{ color: "#f8fafc", textDecoration: "none", background: "rgba(255,255,255,0.08)", padding: "0.28rem 0.65rem", borderRadius: "9999px", border: "1px solid rgba(255,255,255,0.18)" }}>
+                🛡️ <strong>Cerámico 9H: $11,999</strong>
+              </Link>
+              <Link href="/membresia-doctor-foam" style={{ color: "#86efac", textDecoration: "none", background: "rgba(22,163,74,0.22)", padding: "0.28rem 0.65rem", borderRadius: "9999px", border: "1px solid rgba(134,239,172,0.4)", fontWeight: 700 }}>
+                🔄 Membresía: $990/mes (+10% OFF fijo)
+              </Link>
+            </div>
+
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/reservar" className="btn-premium">
                 Reservar y Pagar en Línea

@@ -232,11 +232,11 @@ La protección de vehículos premium en zonas de alta acidez atmosférica requie
         `
     },
     "verdad-recubrimiento-ceramico-9h-autos-premium": {
-        title: "Recubrimiento Cerámico 9H: Qué Significa Realmente, Duración y Precios en CDMX",
+        title: "Cerámico 9H para Autos: Qué Significa 9H, Duración y Precio CDMX",
         date: "2026-05-06",
         category: "Ingeniería de Materiales",
         readTime: "9 min",
-        metaDesc: "¿Qué es el recubrimiento cerámico 9H para autos? Diferencia real entre escala de lápiz 9H y Mohs, duración de 3 a 5 años, hidrofobicidad SiO2 y precios en CDMX.",
+        metaDesc: "¿Qué significa 9H en un recubrimiento cerámico automotriz? Dureza 9H vs Mohs, duración real (3-5 años SiO2) y precio a domicilio en CDMX ($10,999 | -10% Miembros).",
         faqs: [
             {
                 q: "¿Qué significa 9H en un recubrimiento cerámico para autos?",
@@ -244,11 +244,11 @@ La protección de vehículos premium en zonas de alta acidez atmosférica requie
             },
             {
                 q: "¿Cuál es la diferencia entre recubrimiento cerámico 9H y grafeno 10H?",
-                a: "El recubrimiento cerámico 9H (SiO2 puro) brinda de 3 a 5 años de protección hidrofóbica y brillo cristalino ($10,999 MXN en Doctor Foam), mientras que el recubrimiento de grafeno 10H reduce la temperatura superficial del barniz, disminuye las marcas de agua (water spots) y extiende la durabilidad de 5 a 7 años ($14,999 MXN).",
+                a: "El recubrimiento cerámico 9H (SiO2 puro) brinda de 3 a 5 años de protección hidrofóbica y brillo cristalino ($10,999 MXN; $9,899 MXN con Membresía -10% en Doctor Foam), mientras que el recubrimiento de grafeno 10H reduce la temperatura superficial del barniz, disminuye las marcas de agua (water spots) y extiende la durabilidad de 5 a 7 años ($14,999 MXN; $13,499 MXN con Membresía -10%).",
             },
             {
                 q: "¿Cuánto cuesta aplicar recubrimiento cerámico 9H a domicilio en CDMX?",
-                a: "El paquete Ceramic Coating 9H de Doctor Foam tiene un precio de $10,999 MXN en sedanes (con ajuste proporcional para SUVs), incluye descontaminación férrica y clay bar, corrección de pintura de 2 etapas para eliminar swirls, aplicación en carrocería, rines y cristales con unidad móvil 100% autónoma y garantía por escrito de 3 a 5 años.",
+                a: "El paquete Ceramic Coating 9H de Doctor Foam tiene un precio de $10,999 MXN en sedanes ($9,899 MXN con Membresía -10% OFF), incluye descontaminación férrica y clay bar, corrección de pintura de 2 etapas para eliminar swirls, aplicación en carrocería, rines y cristales con unidad móvil 100% autónoma y garantía por escrito de 3 a 5 años.",
             },
         ],
         content: `
@@ -280,12 +280,12 @@ La verdadera inversión patrimonial se justifica por los siguientes factores med
 
 ## Comparativa Técnica y Precios a Domicilio en CDMX (2026)
 
-| Nivel de Protección | Escala Wolff-Wilborn | Ángulo Hidrofóbico | Resistencia Química | Duración Real | Inversión Doctor Foam (Sedán / SUV 2 filas) |
-|---|---|---|---|---|---|
-| Cera Carnauba Tradicional | Sin grado H | 75° - 85° | Baja (pH 6 - 8) | 3 a 6 semanas | No recomendada para autos premium |
-| Signature Detail + Sellador SiO2 | 7H Polimérico | 100°+ | Media-Alta (pH 4 - 11) | 6 meses | $7,499 MXN (incluye corrección 2-3 etapas + interior 180°C) |
-| Ceramic Coating 9H (SiO2 Puro) | 9H Certificado | 110°+ | Extrema (pH 2 - 13) | 3 a 5 años | $10,999 MXN (incluye corrección óptica + carrocería, rines y vidrios) |
-| Graphene Shield 10H | 10H Nanografeno | 115° - 120° | Extrema + Anti-Water Spots | 5 a 7 años | $14,999 MXN (máxima disipación térmica + certificado) |
+| Nivel de Protección | Escala Wolff-Wilborn | Ángulo Hidrofóbico | Resistencia Química | Duración Real | Precio Base (Sedán) | Precio Miembro (-10% OFF) |
+|---|---|---|---|---|---|---|
+| Cera Carnauba Tradicional | Sin grado H | 75° - 85° | Baja (pH 6 - 8) | 3 a 6 semanas | No recomendada | — |
+| Signature Detail + Sellador SiO2 | 7H Polimérico | 100°+ | Media-Alta (pH 4 - 11) | 6 meses | $7,499 MXN | **$6,749 MXN** |
+| Ceramic Coating 9H (SiO2 Puro) | 9H Certificado | 110°+ | Extrema (pH 2 - 13) | 3 a 5 años | $10,999 MXN | **$9,899 MXN** |
+| Graphene Shield 10H | 10H Nanografeno | 115° - 120° | Extrema + Anti-Water Spots | 5 a 7 años | $14,999 MXN | **$13,499 MXN** |
 
 ---
 
