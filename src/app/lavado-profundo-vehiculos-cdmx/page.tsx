@@ -3,13 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Lavado Profundo de Autos CDMX | Extracción Térmica y Detallado",
+  title: "Lavado Profundo de Autos y Detallado de Interiores CDMX ($2,400) | Doctor Foam",
   description:
-    "Restaura tu auto a nivel de exhibición. Lavado profundo a domicilio con extracción térmica, desinfección UV y corrección de pintura profesional en CDMX.",
+    "Lavado profundo de vehículos, vestiduras y detallado de interiores a domicilio en CDMX con vapor seco a 180°C y ozono ($2,400 MXN | -10% OFF con Membresía).",
   alternates: { canonical: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx" },
   openGraph: {
-    title: "Lavado Profundo de Vehículos | Doctor Foam México",
-    description: "Detallado y restauración completa a domicilio. Extracción térmica, corrección de pintura y recubrimiento cerámico.",
+    title: "Lavado Profundo de Vehículos y Detallado de Interiores CDMX | Doctor Foam",
+    description: "Detallado y restauración completa a domicilio con vapor a 180°C, corrección de pintura y recubrimiento cerámico 9H desde $2,400 MXN.",
   },
 };
 
@@ -17,26 +17,32 @@ const services = [
   {
     icon: "♨️",
     name: "Industrial Deep Interior",
+    slug: "deep-interior",
     price: "$2,400",
-    tagline: "Restauración interior completa",
+    memberPrice: "$2,160 MXN con Membresía (-10%)",
+    tagline: "Restauración e interior profundo completo",
     highlights: ["Vapor seco 180°C", "Extracción profunda de manchas", "Hidratación de pieles", "Sanitización con ozono"],
     desc: "Tu interior absorbe todo: polvo, bacterias, ácaros, derrames invisibles. Nuestro vapor seco industrial a 180°C penetra cada fibra del tapizado y elimina lo que una aspiradora jamás alcanza.",
   },
   {
     icon: "💎",
     name: "Signature Detail",
+    slug: "signature-detail",
     price: "$7,499",
-    tagline: "Corrección de pintura + interior completo (SUV o Negro +15%)",
-    highlights: ["Corrección 2-3 etapas", "Eliminación de swirls 95%", "Interior completo incluido", "Sellador cerámico 6 meses"],
-    desc: "Los micro-rayones hacen que tu pintura luzca opaca. Nuestros técnicos certificados IDA corrigen la pintura eliminando hasta el 95% de imperfecciones. Incluye el Interior completo.",
+    memberPrice: "$6,749 MXN con Membresía (-10%)",
+    tagline: "Corrección de pintura + interior completo + motor (SUV o Negro +15%)",
+    highlights: ["Corrección 2-3 etapas", "Eliminación de swirls 95%", "Interior y motor incluidos", "Sellador cerámico 6 meses"],
+    desc: "Los micro-rayones hacen que tu pintura luzca opaca. Nuestros técnicos certificados IDA corrigen la pintura eliminando hasta el 95% de imperfecciones. Incluye el Interior completo y bahía de motor.",
     featured: true,
   },
   {
     icon: "🛡️",
     name: "Ceramic Coating",
+    slug: "ceramic-coating",
     price: "$10,999",
-    tagline: "Protección de nueva generación",
-    highlights: ["Protección 3-5 años", "Dureza 9H", "Certificado incluido", "Upgrade Cristal líquido disponible"],
+    memberPrice: "$9,899 MXN con Membresía (-10%)",
+    tagline: "Protección nanocerámica de nueva generación",
+    highlights: ["Protección 3-5 años", "Dureza 9H", "Certificado incluido", "Upgrade Grafeno 10H disponible"],
     desc: "Escudo invisible de dureza 9H que repele agua, suciedad y químicos durante 3 a 5 años. Incluye preparación completa de superficie y certificado Doctor Foam.",
   },
 ];
@@ -270,7 +276,10 @@ export default function LavadoProfundoPage() {
                   <h3 style={{ fontSize: "1.3rem", marginBottom: "0.25rem" }}>{s.name}</h3>
                   <p style={{ color: "#475569", fontSize: "0.85rem", marginBottom: "0.75rem" }}>{s.tagline}</p>
                   <div className="price-amount gradient-text">{s.price}</div>
-                  <p style={{ color: "#475569", fontSize: "0.8rem", marginBottom: "1rem" }}>Sedán / SUV 2 filas · IVA incluido</p>
+                  <p style={{ color: "#475569", fontSize: "0.8rem", marginBottom: "0.25rem" }}>Sedán / SUV 2 filas · IVA incluido</p>
+                  <p style={{ color: "#15803d", fontSize: "0.76rem", fontWeight: 700, marginBottom: "0.85rem" }}>
+                    🔄 {s.memberPrice}
+                  </p>
                   <p style={{ color: "#475569", fontSize: "0.88rem", lineHeight: "1.7", marginBottom: "1.25rem" }}>{s.desc}</p>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "1.5rem" }}>
                     {s.highlights.map((h, j) => (
@@ -278,7 +287,7 @@ export default function LavadoProfundoPage() {
                     ))}
                   </div>
                   <div style={{ display: "grid", gap: "0.5rem" }}>
-                    <Link href={`/reservar?paquete=${s.name.toLowerCase().replace(/ /g, "-")}`} className={s.featured ? "btn-premium" : "btn-outline"} style={{ width: "100%", justifyContent: "center" }}>
+                    <Link href={`/reservar?paquete=${s.slug}`} className={s.featured ? "btn-premium" : "btn-outline"} style={{ width: "100%", justifyContent: "center" }}>
                       Reservar {s.name}
                     </Link>
                     <a
@@ -363,9 +372,50 @@ export default function LavadoProfundoPage() {
                   <h3 style={{ fontSize: "1.02rem", fontWeight: 700, color: "#0f172a", marginBottom: "0.5rem" }}>
                     {item.q}
                   </h3>
-                  <p style={{ color: "#334155", fontSize: "0.92rem", lineHeight: "1.7", margin: 0 }}>
+                  <p style={{ color: "#334155", fontSize: "0.92rem", lineHeight: "1.7", margin: "0 0 0.85rem" }}>
                     {item.a}
                   </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.55rem", paddingTop: "0.65rem", borderTop: "1px dashed #e2e8f0" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, vi la pregunta "${item.q}" en Lavado Profundo y me gustaría cotizar para mi auto.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`pillar_profundo_faq_${idx}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        padding: "0.38rem 0.85rem",
+                        borderRadius: "9999px",
+                        background: "#f0fdf4",
+                        border: "1px solid #86efac",
+                        color: "#15803d",
+                        fontWeight: 700,
+                        fontSize: "0.78rem",
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
+                    <Link
+                      href="/reservar?paquete=deep-interior"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        padding: "0.38rem 0.85rem",
+                        borderRadius: "9999px",
+                        background: "#eff6ff",
+                        border: "1px solid #bfdbfe",
+                        color: "#1d4ed8",
+                        fontWeight: 700,
+                        fontSize: "0.78rem",
+                        textDecoration: "none",
+                      }}
+                    >
+                      📅 Reservar en Línea ($2,400)
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>

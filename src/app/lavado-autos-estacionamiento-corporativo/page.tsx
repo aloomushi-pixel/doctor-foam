@@ -125,9 +125,12 @@ export default function EstacionamientoCorporativoPage() {
             <h1 className="section-title">
               Lavado de Autos en Estacionamiento Corporativo: <span className="gradient-text">Ecológico y Sin Agua</span>
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "750px", marginBottom: "1.75rem" }}>
+            <p className="section-subtitle" style={{ maxWidth: "750px", marginBottom: "1.25rem" }}>
               No solo vamos a tu casa. Llevamos nuestro <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link> a donde tú estés: oficina, estacionamiento subterráneo, corporativo o condominio. Somos 100% autónomos con agua y electricidad propia.
             </p>
+            <div style={{ maxWidth: "820px", margin: "0 auto 1.35rem", padding: "0.75rem 1.1rem", borderRadius: "0.85rem", background: "linear-gradient(135deg, #f0fdf4, #eff6ff)", border: "1px solid #86efac", fontSize: "0.84rem", color: "#0f172a" }}>
+              ⚡ <strong>Lavado Profundo sin escurrimientos: $2,400 MXN</strong> <span style={{ color: "#15803d", fontWeight: 700 }}>($2,160 Miembro)</span> · <strong>Signature Detail: $7,499 MXN</strong> · <strong>Membresía de Seguimiento en tu oficina: $990/mes (+10% OFF fijo)</strong>
+            </div>
             <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/reservar" className="btn-premium">
                 📅 Agendar en mi Oficina / Condominio
@@ -240,9 +243,50 @@ export default function EstacionamientoCorporativoPage() {
                   <summary style={{ fontWeight: 700, color: "#0f172a", fontSize: "0.98rem" }}>
                     {faq.q}
                   </summary>
-                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: 0 }}>
+                  <p style={{ color: "#475569", fontSize: "0.92rem", lineHeight: 1.7, marginTop: "0.65rem", marginBottom: "0.75rem" }}>
                     {faq.a}
                   </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.55rem", paddingTop: "0.6rem", borderTop: "1px dashed #e2e8f0" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, leí "${faq.q}" en Estacionamiento Corporativo y quiero cotizar el servicio en mi oficina o condominio.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`pillar_corporativo_faq_${idx}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        padding: "0.38rem 0.85rem",
+                        borderRadius: "9999px",
+                        background: "#f0fdf4",
+                        border: "1px solid #86efac",
+                        color: "#15803d",
+                        fontWeight: 700,
+                        fontSize: "0.78rem",
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
+                    <Link
+                      href="/reservar"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        padding: "0.38rem 0.85rem",
+                        borderRadius: "9999px",
+                        background: "#eff6ff",
+                        border: "1px solid #bfdbfe",
+                        color: "#1d4ed8",
+                        fontWeight: 700,
+                        fontSize: "0.78rem",
+                        textDecoration: "none",
+                      }}
+                    >
+                      📅 Agendar en mi Oficina
+                    </Link>
+                  </div>
                 </details>
               ))}
             </div>

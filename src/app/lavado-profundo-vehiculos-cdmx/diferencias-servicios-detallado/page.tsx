@@ -3,27 +3,64 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Detallado de Interiores de Autos, Interior Profundo y Lavado de Vestiduras | Doctor Foam CDMX",
+  title: "Detallado de Interiores e Interior Profundo CDMX: Qué Incluye ($2,400) | Doctor Foam",
   description:
-    "¿Qué incluye un detallado interior profundo automotriz? Conoce las diferencias entre lavado de vestiduras, limpieza de interiores de autos a domicilio con vapor a 180°C y precios en CDMX.",
+    "¿Qué incluye un detallado de interiores e interior profundo automotriz? Lavado de vestiduras con vapor seco a 180°C y ozono a domicilio en CDMX ($2,400 MXN | -10% Miembros).",
   alternates: { canonical: "https://drfoam.com.mx/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" },
 };
 
 const comparisons = [
   {
-    aspect: "Limpieza Interior",
-    basic: { title: "Autolavado Tradicional", items: ["Aspirado superficial", "Limpieza con franela", "Aromatizante genérico", "10-15 minutos"] },
-    drfoam: { title: "Doctor Foam (Industrial Deep Interior)", items: ["Aspirado industrial 10x potencia", "Vapor seco a 180°C en toda superficie", "Inyección-extracción profunda de manchas", "Hidratación de pieles con productos especializados", "Sanitización con ozono médico", "3-4 horas de trabajo meticuloso"] },
+    aspect: "Limpieza e Interior Profundo",
+    basic: { title: "Autolavado Tradicional", items: ["Aspirado superficial", "Limpieza con franela húmeda", "Aromatizante genérico que oculta olores", "10-15 minutos sin desinfección"] },
+    drfoam: {
+      title: "Doctor Foam (Industrial Deep Interior)",
+      price: "$2,400 MXN",
+      memberPrice: "$2,160 MXN con Membresía (-10%)",
+      slug: "deep-interior",
+      items: [
+        "Aspirado industrial 10x potencia en alfombra y rieles",
+        "Vapor seco a 180°C en asientos, cielo y ductos A/C (secado <60 min)",
+        "Inyección-extracción profunda de manchas (95% remoción)",
+        "Hidratación de pieles Nappa / Connolly con pH neutro",
+        "Sanitización hospitalaria con ozono médico (O3)",
+        "3-4 horas a domicilio con agua purificada y luz propia",
+      ],
+    },
   },
   {
-    aspect: "Pintura Exterior",
-    basic: { title: "Autolavado de Rodillos", items: ["Rodillos de tela que generan swirls", "Jabón multipropósito ácido", "Secado al aire con marcas de agua", "Cero protección post-lavado"] },
-    drfoam: { title: "Doctor Foam (Signature Detail)", items: ["Prelavado con foam cannon lubricante", "Método 2 cubetas con champú pH neutro", "Corrección de pintura en 2-3 etapas", "Eliminación del 95% de swirls", "Sellador cerámico express de 6 meses", "5-6 horas con técnicos certificados IDA"] },
+    aspect: "Pintura Exterior + Bahía de Motor",
+    basic: { title: "Autolavado de Rodillos", items: ["Rodillos de tela que generan swirls y micro-rayones", "Jabón multipropósito alcalino", "Secado al aire con marcas de agua dura", "Cero protección post-lavado"] },
+    drfoam: {
+      title: "Doctor Foam (Signature Detail)",
+      price: "$7,499 MXN",
+      memberPrice: "$6,749 MXN con Membresía (-10%)",
+      slug: "signature-detail",
+      items: [
+        "Incluye Industrial Deep Interior completo (vapor 180°C + ozono)",
+        "Corrección de pintura en 2-3 etapas (elimina 85-95% de swirls)",
+        "Limpieza de motor con vapor seco a 180°C sin mojar sensores",
+        "Sellador nanocerámico SiO2 de 6 meses de duración",
+        "5-6 horas en tu estacionamiento con técnicos certificados IDA",
+      ],
+    },
   },
   {
-    aspect: "Protección",
-    basic: { title: "Cera de Supermercado", items: ["Protección de 2-4 semanas", "Se degrada con lluvia", "Sin protección UV real", "Aplicación amateur con riesgo de hologramas"] },
-    drfoam: { title: "Doctor Foam (Ceramic Coating)", items: ["Protección de 3-7 años", "Dureza 9H-10H (cristal líquido)", "Resistencia a lluvia ácida y UV", "Efecto hidrofóbico permanente", "Certificado de aplicación incluido", "8-10 horas de preparación y aplicación"] },
+    aspect: "Protección Nanocerámica de Larga Duración",
+    basic: { title: "Cera de Supermercado", items: ["Protección de 2-4 semanas", "Se degrada con lluvia ácida y sol", "Sin protección UV real", "Aplicación amateur con riesgo de hologramas"] },
+    drfoam: {
+      title: "Doctor Foam (Ceramic Coating 9H / Grafeno 10H)",
+      price: "$10,999 MXN",
+      memberPrice: "$9,899 MXN con Membresía (-10%)",
+      slug: "ceramic-coating",
+      items: [
+        "Protección certificada de 3 a 5 años (9H) o 5 a 7 años (Grafeno 10H)",
+        "Escudo cristalino SiO2 contra lluvia ácida, savia y rayos UV",
+        "Aplicación en carrocería, rines y cristales con curado IR/LED",
+        "Certificado escrito Doctor Foam + seguimiento post-servicio",
+        "8-10 horas de preparación clínica y nivelación micrométrica",
+      ],
+    },
   },
 ];
 
@@ -76,7 +113,7 @@ const interiorSteps = [
 const faqs = [
   {
     q: "¿Qué incluye un detallado de interiores de autos e interior profundo profesional?",
-    a: "Nuestro detallado interior profundo automotriz (Industrial Deep Interior) incluye 6 etapas clínicas a domicilio: aspirado industrial de alta potencia, esterilización con vapor seco a 180°C, inyección-extracción térmica de manchas en tela y alfombra, limpieza e hidratación de asientos de piel, detallado de tablero con protección UV y sanitización con ozono médico.",
+    a: "Nuestro detallado interior profundo automotriz (Industrial Deep Interior, $2,400 MXN; $2,160 MXN con Membresía -10%) incluye 6 etapas clínicas a domicilio: aspirado industrial de alta potencia, esterilización con vapor seco a 180°C, inyección-extracción térmica de manchas en tela y alfombra, limpieza e hidratación de asientos de piel, detallado de tablero con protección UV y sanitización con ozono médico.",
   },
   {
     q: "¿Cuál es la diferencia entre lavado de vestiduras tradicional y el detallado interior de Doctor Foam?",
@@ -84,7 +121,11 @@ const faqs = [
   },
   {
     q: "¿Cuánto cuesta el lavado y detallado de interiores de autos a domicilio en CDMX?",
-    a: "El paquete Industrial Deep Interior + Exterior comienza desde $3,399 MXN para sedanes y SUVs de 2 filas (3 a 4 horas de intervención con unidad móvil autónoma a domicilio en CDMX y Zona Esmeralda/Huixquilucan).",
+    a: "El paquete Industrial Deep Interior tiene un precio de $2,400 MXN para sedanes y SUVs de 2 filas ($2,760 MXN en Pick Ups y SUVs de 3 filas; $2,160 MXN con Membresía -10% OFF), con 3 a 4 horas de intervención con unidad móvil 100% autónoma a domicilio en CDMX, Interlomas y Zona Esmeralda/Huixquilucan.",
+  },
+  {
+    q: "¿Realizan limpieza de motores de coches con vapor seco sin arriesgar sensores?",
+    a: "Sí. En nuestro paquete Signature Detail ($7,499 MXN; $6,749 MXN con Membresía -10%) incluimos limpieza y detallado de bahía de motor con vapor seco industrial a 180°C (solo 5% de humedad) y desengrasantes dieléctricos biodegradables, sin usar chorros de agua a presión y con cero riesgo para sensores, computadora o sistemas híbridos.",
   },
 ];
 
@@ -142,7 +183,7 @@ export default function DiferenciasServiciosPage() {
       </nav>
 
       <main style={{ paddingTop: "6rem" }}>
-        <section className="section-padding" style={{ textAlign: "center" }}>
+        <section className="section-padding" style={{ textAlign: "center", paddingBottom: "1.75rem" }}>
           <div className="container">
             <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.9rem" }}>
               ← Volver a Lavado Profundo
@@ -150,12 +191,18 @@ export default function DiferenciasServiciosPage() {
             <h1 className="section-title" style={{ marginTop: "1.5rem" }}>
               Detallado de Interiores de Autos, <span className="gradient-text">Interior Profundo</span> y Lavado de Vestiduras
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "740px", marginBottom: "1.5rem" }}>
+            <p className="section-subtitle" style={{ maxWidth: "740px", marginBottom: "1.25rem" }}>
               No toda &ldquo;limpieza de interiores de autos&rdquo; ni &ldquo;lavado de vestiduras&rdquo; es igual. Descubre qué incluye nuestro <strong>detallado interior automotriz</strong> con vapor seco a 180°C y cómo se diferencia del autolavado tradicional en nuestro <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>servicio a domicilio en CDMX</Link>.
             </p>
+
+            {/* Above-the-Fold Price Summary Pill */}
+            <div style={{ maxWidth: "820px", margin: "0 auto 1.35rem", padding: "0.75rem 1.1rem", borderRadius: "0.85rem", background: "linear-gradient(135deg, #f0fdf4, #eff6ff)", border: "1px solid #86efac", fontSize: "0.84rem", color: "#0f172a" }}>
+              ⚡ <strong>Interior Profundo Vapor 180°C: $2,400 MXN</strong> <span style={{ color: "#15803d", fontWeight: 700 }}>($2,160 Miembro)</span> · <strong>Signature Detail + Motor: $7,499 MXN</strong> <span style={{ color: "#15803d", fontWeight: 700 }}>($6,749 Miembro)</span> · <strong>Cerámico 9H: $10,999 MXN</strong> · <strong>Membresía: $990/mes (+10% OFF fijo)</strong>
+            </div>
+
             <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
-                📋 Ver Paquetes y Precios
+              <Link href="/reservar?paquete=deep-interior" className="btn-premium">
+                📅 Reservar Interior Profundo ($2,400)
               </Link>
               <a
                 href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20saber%20qu%C3%A9%20paquete%20de%20lavado%20de%20vestiduras%20o%20detallado%20me%20recomiendan"
@@ -165,6 +212,20 @@ export default function DiferenciasServiciosPage() {
                 className="btn-outline"
               >
                 💬 Preguntar por WhatsApp
+              </a>
+              <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-outline">
+                📋 Ver Todos los Paquetes
+              </Link>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="cluster_diferencias_hero_brochure_pdf"
+                className="btn-outline"
+                style={{ borderColor: "#2563eb", color: "#2563eb" }}
+              >
+                📄 Brochure PDF
               </a>
             </div>
           </div>
@@ -201,15 +262,63 @@ export default function DiferenciasServiciosPage() {
                   </ul>
                 </div>
                 {/* Doctor Foam */}
-                <div className="glass-card" style={{ padding: "2rem", borderTop: "3px solid #2563eb" }}>
-                  <h3 style={{ fontSize: "1.1rem", marginBottom: "1rem", color: "#1d4ed8" }}>✅ {c.drfoam.title}</h3>
-                  <ul style={{ listStyle: "none", padding: 0 }}>
-                    {c.drfoam.items.map((item, j) => (
-                      <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.6rem", color: "#1e293b", fontSize: "0.9rem" }}>
-                        <span style={{ color: "#22c55e", flexShrink: 0 }}>✓</span> {item}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="glass-card" style={{ padding: "2rem", borderTop: "3px solid #2563eb", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "0.5rem", flexWrap: "wrap", marginBottom: "0.35rem" }}>
+                      <h3 style={{ fontSize: "1.1rem", margin: 0, color: "#1d4ed8" }}>✅ {c.drfoam.title}</h3>
+                      <span style={{ fontSize: "1.15rem", fontWeight: 800, color: "#0f172a" }}>{c.drfoam.price}</span>
+                    </div>
+                    <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#15803d", marginBottom: "0.9rem" }}>
+                      🔄 {c.drfoam.memberPrice}
+                    </div>
+                    <ul style={{ listStyle: "none", padding: 0, marginBottom: "1.25rem" }}>
+                      {c.drfoam.items.map((item, j) => (
+                        <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.6rem", color: "#1e293b", fontSize: "0.9rem" }}>
+                          <span style={{ color: "#22c55e", flexShrink: 0 }}>✓</span> {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div style={{ display: "flex", gap: "0.55rem", flexWrap: "wrap", paddingTop: "0.75rem", borderTop: "1px dashed #cbd5e1" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, vi la comparativa de "${c.drfoam.title}" (${c.drfoam.price}) y quiero cotizar para mi auto a domicilio.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`cluster_diferencias_card_${c.drfoam.slug}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        padding: "0.48rem 0.95rem",
+                        borderRadius: "9999px",
+                        background: "#16a34a",
+                        color: "#ffffff",
+                        fontSize: "0.8rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
+                    <Link
+                      href={`/reservar?paquete=${c.drfoam.slug}`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        padding: "0.48rem 0.95rem",
+                        borderRadius: "9999px",
+                        background: "#eff6ff",
+                        border: "1px solid #bfdbfe",
+                        color: "#1d4ed8",
+                        fontSize: "0.8rem",
+                        fontWeight: 700,
+                        textDecoration: "none",
+                      }}
+                    >
+                      📅 Reservar en Línea
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
