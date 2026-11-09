@@ -1,6 +1,6 @@
 {
-  "version": "1.35.0-auto",
-  "cycle": 35,
-  "deployedAt": "2026-11-09T01:28:00Z",
-  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #35 — In-memory visitor/session ID caching in src/lib/telemetry.ts to prevent Android WebView teardown from splitting page_leave events; SERP CTR optimization on Home (layout.tsx) for 'detallado automotriz a domicilio' (86 imp, pos 9.8) & 'lavado de asientos de auto' (24 imp, pos 3.7) and on /blog/correccion-pintura-swirls-guia for 'swirls pintura' (119 imp, pos 8.7) + Above-the-Fold price summary in blog articles"
+  "version": "1.36.0-auto",
+  "cycle": 36,
+  "deployedAt": "2026-11-09T05:44:00Z",
+  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #36 — 50%-77% scroll-depth conversion upgrades on /blog/[slug] (Table Conversion Footer Bar, 4-card package strip with Graphene Shield 10H + 2-min WhatsApp Diagnostic bar, and Bottom CTA moved above photo gallery after 13m 47s organic session on /blog/guia-completa-recubrimiento-ceramico); SERP CTR optimization on /blog/detallado-interior-profundo-que-incluye (113 imp, Pos 4.3-8.0), /blog/correccion-pintura-swirls-guia (296 imp), and /blog/guia-completa-recubrimiento-ceramico; Home FAQ 1-tap WhatsApp/Booking CTAs + Engine Bay & Membership Activation FAQ; topZeroClickOpportunities added to drfoam_autonomous_audit.cjs"
 }

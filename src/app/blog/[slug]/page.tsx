@@ -345,11 +345,11 @@ Cuando un vehículo presenta un acristalamiento impecable y una limpieza quirúr
         `
     },
     "guia-completa-recubrimiento-ceramico": {
-        title: "Recubrimiento Cerámico para Autos (Coating Cerámico) en México: Qué Es y Precios CDMX",
+        title: "Coating Cerámico y Recubrimiento Cerámico para Autos en México: Precios CDMX",
         date: "2026-05-05",
         category: "Protección",
         readTime: "9 min",
-        metaDesc: "¿Qué es el recubrimiento cerámico para autos (coating cerámico y tratamiento cerámico automotriz)? Tipos 9H, grafeno, cerámico para interiores y precios en México.",
+        metaDesc: "¿Qué es el coating cerámico y recubrimiento cerámico para autos en México? Diferencias 9H vs Grafeno 10H, cerámico para interiores y precios a domicilio CDMX ($10,999 | -10% Miembros).",
         faqs: [
             {
                 q: "¿Qué es el recubrimiento cerámico para autos (coating cerámico automotriz)?",
@@ -357,7 +357,7 @@ Cuando un vehículo presenta un acristalamiento impecable y una limpieza quirúr
             },
             {
                 q: "¿Cuánto cuesta el recubrimiento cerámico y coating cerámico para autos en México (CDMX)?",
-                a: "En Doctor Foam México, el tratamiento cerámico profesional a domicilio comienza desde $7,499 MXN con sellador cerámico en el paquete Signature Detail, $10,999 MXN para Ceramic Coating 9H (3 a 5 años de garantía) y $14,999 MXN para Graphene Shield Premium (5 a 7 años).",
+                a: "En Doctor Foam México, el tratamiento cerámico profesional a domicilio comienza desde $7,499 MXN ($6,749 con Membresía -10%) con sellador cerámico en el paquete Signature Detail, $10,999 MXN ($9,899 Miembro) para Ceramic Coating 9H (3 a 5 años de garantía) y $14,999 MXN ($13,499 Miembro) para Graphene Shield Premium (5 a 7 años).",
             },
             {
                 q: "¿Existe el recubrimiento cerámico para interiores de auto (piel, plásticos y pantallas)?",
@@ -371,7 +371,7 @@ Cuando un vehículo presenta un acristalamiento impecable y una limpieza quirúr
         content: `
 ## ¿Qué es el Recubrimiento Cerámico para Autos (Coating Cerámico y Tratamiento Cerámico Automotriz)?
 
-Si te preguntas **qué es el recubrimiento cerámico para autos** (también buscado como **coating cerámico**, **tratamiento cerámico auto** o **acabado cerámico para carro**), se trata de una capa de protección líquida nanotecnológica de base **SiO2 (dióxido de silicio)** y/o grafeno que forma un enlace químico covalente con el barniz transparente (*clear coat*) de tu vehículo, creando un escudo cristalino hidrofóbico de alta densidad.
+Si te preguntas **qué es el recubrimiento cerámico para autos** (también buscado como **coating cerámico**, **coating cerámico para autos en México**, **tratamiento cerámico auto** o **acabado cerámico para carro**), se trata de una capa de protección líquida nanotecnológica de base **SiO2 (dióxido de silicio)** y/o grafeno que forma un enlace químico covalente con el barniz transparente (*clear coat*) de tu vehículo, creando un escudo cristalino hidrofóbico de alta densidad.
 
 A diferencia de las ceras carnaubas o selladores sintéticos tradicionales que se degradan en pocas semanas bajo el sol y la lluvia ácida del Valle de México, un **coating cerámico para autos en México** aplicado profesionalmente puede **proteger tu auto por 3 a 7 años**.
 
@@ -385,13 +385,13 @@ A diferencia de las ceras carnaubas o selladores sintéticos tradicionales que s
 
 ### 2. Acabado Cerámico Profesional 9H (SiO2)
 - **Duración**: 3 - 5 años
-- **Precio**: $10,999 MXN (servicio completo a domicilio con corrección de pintura)
+- **Precio**: $10,999 MXN ($9,899 MXN con Membresía -10% · servicio completo a domicilio con corrección de pintura)
 - **Dificultad**: Requiere técnicos certificados IDA e iluminación de inspección
 - **Resultado**: Efecto espejo profundo, repelencia al agua y blindaje contra lluvia ácida
 
 ### 3. Cerámico de Grafeno (Nueva Generación 10H)
 - **Duración**: 5 - 7 años
-- **Precio**: $14,999 MXN (paquete completo con corrección multi-etapa)
+- **Precio**: $14,999 MXN ($13,499 MXN con Membresía -10% · paquete completo con corrección multi-etapa)
 - **Dificultad**: Especialista en nanotecnología automotriz
 - **Resultado**: Menor retención de calor, máxima resistencia a manchas de agua (*water spots*) y brillo extremo
 
@@ -413,7 +413,7 @@ Uno de los servicios más solicitados por propietarios de vehículos nuevos y de
 
 ## El Proceso Profesional de 7 Pasos a Domicilio
 
-En Doctor Foam llevamos un laboratorio móvil con agua purificada y planta propia a tu domicilio en Polanco, Lomas, Santa Fe, Interlomas o Pedregal:
+En Doctor Foam llevamos un laboratorio móvil con agua purificada y planta propia a tu domicilio en Polanco, Lomas, Santa Fe, Interlomas, Huixquilucan o Pedregal:
 
 1. **Lavado clínico de descontaminación** — Eliminamos toda suciedad superficial sin fricción.
 2. **Descontaminación química férrica** — Disolvemos partículas metálicas incrustadas en el barniz.
@@ -423,15 +423,16 @@ En Doctor Foam llevamos un laboratorio móvil con agua purificada y planta propi
 6. **Aplicación de cerámico en carrocería, rines e interiores** — Nivelación micrométrica panel por panel.
 7. **Curado e inspección LED CRI 95+** — Verificación óptica sin manchas altas (*high spots*).
 
-## Precios de Recubrimiento Cerámico en CDMX (2026)
+## Precios de Recubrimiento Cerámico y Coating Cerámico en CDMX (2026)
 
-| Servicio | Precio Mercado | Precio Doctor Foam |
-|----------|---------------|-------------------|
-| Signature Detail + Sellador Cerámico 6 meses | $6,000 - $8,500 | $7,499 MXN (incluye corrección 2-3 etapas + interior) |
-| Ceramic Coating 9H (3 a 5 años) | $11,000 - $16,000 | $10,999 MXN (con preparación y certificado) |
-| Graphene Shield Premium (5 a 7 años) | $15,000 - $24,000 | $14,999 MXN (carrocería, rines, cristales e interiores) |
+| Servicio a Domicilio (Agua y Luz Propia) | Duración | Precio Base (Sedán / SUV 2 filas) | Precio Miembro (-10% OFF) |
+|----------|----------|-------------------|-------------------|
+| **Industrial Deep Interior + Hidratación Pieles** | 6 meses | $2,400 MXN | **$2,160 MXN** |
+| **Signature Detail + Sellador Cerámico SiO2** | 6 meses (con corrección 2-3 etapas + interior 180°C) | $7,499 MXN | **$6,749 MXN** |
+| **Ceramic Coating 9H (Carrocería + Rines + Vidrios)** | 3 a 5 años (con certificado escrito) | $10,999 MXN | **$9,899 MXN** |
+| **Graphene Shield 10H (Exterior + Rines + Interiores)** | 5 a 7 años (máximo blindaje térmico) | $14,999 MXN | **$13,499 MXN** |
 
-*Precios base para sedán y SUV de 2 filas (IVA incluido). Pick Ups y SUV de 3 filas +15%.*
+*Precios base para sedán y SUV de 2 filas (IVA incluido y facturación CFDI). Pick Ups y SUV de 3 filas +15%. Al realizar tu primer servicio profundo, habilitas la [Membresía de Seguimiento ($990/mes)](/membresia-doctor-foam) con 10% de descuento permanente.*
 
 ---
 
@@ -495,18 +496,18 @@ Un auto recién lavado queda completamente expuesto a los rayos UV, lluvia ácid
     `,
     },
     "detallado-interior-profundo-que-incluye": {
-        title: "¿Qué Incluye un Detallado Interior Profundo Profesional?",
-        date: "2026-02-05",
+        title: "Detallado de Interiores e Interior Profundo: Qué Incluye y Precios CDMX",
+        date: "2026-05-06",
         category: "Servicios",
         readTime: "7 min",
-        metaDesc: "Descubre qué debe incluir un detallado interior automotriz profesional: aspirado industrial, vapor, ozono, hidratación de pieles y más.",
+        metaDesc: "¿Qué incluye el detallado de interiores e interior profundo automotriz? Lavado de asientos con vapor seco a 180°C y ozono a domicilio en CDMX ($2,400 MXN | -10% Miembros).",
         faqs: [
             {
-                q: "¿Qué incluye el lavado profundo de vestiduras e interiores a domicilio de Doctor Foam?",
-                a: "Nuestro paquete Industrial Deep Interior ($2,400 MXN en sedán/SUV de 2 filas y $2,760 MXN en Pick Up/SUV de 3 filas) incluye los 8 pasos clínicos: aspirado industrial de alta succión, lavado de asientos, alfombra y cielo con vapor seco a 180°C, acondicionamiento de piel Nappa, limpieza de ductos de aire acondicionado y sanitización con ozono médico.",
+                q: "¿Qué incluye el detallado de interiores y lavado profundo de vestiduras a domicilio de Doctor Foam?",
+                a: "Nuestro paquete Industrial Deep Interior ($2,400 MXN en sedán/SUV de 2 filas y $2,760 MXN en Pick Up/SUV de 3 filas; $2,160 MXN con Membresía -10%) incluye los 8 pasos clínicos: aspirado industrial de alta succión, lavado de asientos, alfombra y cielo con vapor seco a 180°C, acondicionamiento de piel Nappa, limpieza de ductos de aire acondicionado y sanitización con ozono médico.",
             },
             {
-                q: "¿En cuánto tiempo se secan los asientos después del lavado interior con vapor a 180°C?",
+                q: "¿En cuánto tiempo se secan los asientos después del detallado de interiores con vapor a 180°C?",
                 a: "Gracias a la tecnología de vapor seco a 180°C (con solo 5% de humedad líquida), los asientos y alfombras quedan listos para usarse en menos de 60 minutos, sin olores a humedad ni riesgo de hongos.",
             },
             {
@@ -515,47 +516,47 @@ Un auto recién lavado queda completamente expuesto a los rayos UV, lluvia ácid
             },
         ],
         content: `
-## La Diferencia Entre Limpieza y Detallado
+## Detallado de Interiores vs. Limpieza Convencional: Qué Es un Interior Profundo
 
-Una "limpieza interior" típica incluye aspirar y limpiar superficialmente. Un **detallado interior profundo** es un proceso completo de restauración que devuelve cada superficie a su estado original.
+Una "limpieza interior" típica de autolavado solo aspira superficialmente y aplica siliconas grasosas sobre el polvo. Un **detallado de interiores** (**interior profundo automotriz**) de grado clínico en Doctor Foam es un protocolo de restauración y bioseguridad a domicilio en CDMX que esteriliza vestiduras, pieles, alfombra, cielo y ductos de aire acondicionado sin saturar de agua la espuma de los asientos.
 
-## Los 8 Pasos de Nuestro Detallado Interior
+## Los 8 Pasos de Nuestro Detallado de Interiores e Interior Profundo a Domicilio
 
-### 1. Aspirado Industrial de Alta Potencia
-No usamos aspiradoras domésticas. Nuestro equipo industrial tiene succión 10x superior, capaz de extraer polvo, tierra y partículas de las fibras más profundas de alfombras y asientos.
+### 1. Aspirado Industrial de Alta Potencia (10x Succión)
+No usamos aspiradoras domésticas. Nuestro equipo industrial extrae polvo volcánico, tierra, pelo de mascota y alérgenos desde la base de la alfombra, rieles de asientos y costuras ocultas.
 
-### 2. Limpieza a Vapor a 180°C
-El vapor a alta temperatura desinfecta, desodoriza y elimina bacterias sin químicos agresivos. Ideal para asientos, tablero, volante y todas las superficies de contacto.
+### 2. Esterilización con Vapor Seco a 180°C (Secado en Menos de 60 Min)
+El vapor seco a 180°C (con solo 5% de humedad líquida) desnaturaliza bacterias, ácaros y hongos al contacto sin empapar los asientos ni despegar el cielo del auto. Ideal para asientos, tablero, volante, cinturones de seguridad y ductos HVAC.
 
-### 3. Extracción Profunda de Manchas
-Para asientos de tela y alfombras, utilizamos extractoras profesionales que inyectan solución limpiadora y aspiran simultáneamente, eliminando manchas hasta un 95%.
+### 3. Inyección-Extracción Térmica Controlada de Manchas
+Para vestiduras textiles y alfombras con manchas de café, grasa o líquidos, aplicamos enzimas biodegradables e inyección-extracción localizada que remueve hasta el 95% de manchas profundas y olores atrapados.
 
-### 4. Limpieza de Asientos de Piel
-Los asientos de piel requieren un tratamiento especial: limpiador de pH neutro para piel, cepillo de cerdas suaves, y acondicionador premium que hidrata y protege contra el secado y las grietas.
+### 4. Limpieza e Hidratación de Asientos de Piel Connolly, Nappa y Alcántara
+Los asientos de piel reciben limpieza de poros con pH neutro, cepillado de cerdas naturales y acondicionador nutritivo mate con filtro UV que restaura la elasticidad original y previene grietas.
 
-### 5. Detallado de Tablero y Plásticos
-Cada botón, ranura y ventila se limpia con pinceles de detallado profesional. Los plásticos reciben un protector UV para evitar el blanqueamiento por sol.
+### 5. Detallado Quirúrgico de Tablero, Consolas Piano Black y Pantallas
+Cada botón, costura, portavasos y rejilla de ventilación se detalla con micro-pinceles de cerdas suaves y protección anti-UV sin brillo grasoso.
 
-### 6. Limpieza de Vidrios Interior
-Vidrios impecables sin rayas usando limpiador cerámico profesional y técnica de doble paño.
+### 6. Limpieza Óptica de Cristales y Quemacocos
+Descontaminación interior de parabrisas, medallón y quemacocos con técnica de doble microfibra de 500 GSM para visibilidad nocturna cristalina sin empañamiento.
 
-### 7. Sanitización con Ozono
-Generador de ozono que elimina bacterias, virus, hongos y olores atrapados en el sistema de ventilación, tela y alfombra. Tu auto queda 99.9% libre de patógenos.
+### 7. Sanitización Hospitalaria con Ozono Médico (O3)
+Al finalizar el **interior profundo**, sellamos la cabina con un generador de ozono médico que destruye el 99.9% de virus, bacterias, esporas de humedad y olores de tabaco o mascotas en todo el circuito de aire acondicionado.
 
-### 8. Fragancia Premium
-Aplicamos un aromatizante premium de larga duración que complementa el ambiente del vehículo sin ser invasivo.
+### 8. Limpieza de Bahía de Motor con Vapor Seco (Opcional / Incluido en Signature Detail)
+Para quienes buscan una restauración integral, también realizamos **limpieza de motores de coches con vapor seco a 180°C y desengrasante dieléctrico**, dejando la bahía del motor impecable sin usar chorros de agua a presión ni arriesgar sensores o computadoras.
 
-## Precios de Detallado Interior en CDMX (2026)
+## Precios de Detallado de Interiores e Interior Profundo en CDMX (2026)
 
-| Tipo de Vehículo | Foam Maintenance (Mantenimiento) | Industrial Deep Interior (Vapor 180°C + Ozono) | Signature Detail (Interior 180°C + Corrección Exterior) |
+| Tipo de Vehículo | Foam Maintenance (Mantenimiento) | Industrial Deep Interior (Vapor 180°C + Ozono) | Signature Detail (Interior 180°C + Corrección Exterior + Motor) |
 |---|---|---|---|
-| **Sedán / SUV 2 filas** | $1,599 MXN | $2,400 MXN | $7,499 MXN |
-| **Pick Up / SUV 3 filas** | $1,839 MXN | $2,760 MXN | $8,624 MXN |
-| **Con Membresía (-10% OFF)** | Seguimiento desde $990/mes | $2,160 MXN (Sedán) | $6,749 MXN (Sedán) |
+| **Sedán / SUV 2 filas** | $1,599 MXN | **$2,400 MXN** | **$7,499 MXN** |
+| **Pick Up / SUV 3 filas** | $1,839 MXN | **$2,760 MXN** | **$8,624 MXN** |
+| **Con Membresía (-10% OFF)** | Seguimiento desde $990/mes | **$2,160 MXN** (Sedán) | **$6,749 MXN** (Sedán) |
 
 ---
 
-*Tu auto es donde pasas horas cada día. Merece un interior impecable. [Agenda tu detallado interior](/reservar) con Doctor Foam.*
+*Tu auto es donde pasas horas cada día. Merece un interior clínicamente limpio y desinfectado sin salir de casa. [Agenda tu detallado de interiores a domicilio](/reservar) con Doctor Foam.*
     `,
     },
 };
@@ -563,11 +564,11 @@ Aplicamos un aromatizante premium de larga duración que complementa el ambiente
 /* ─── Fallback articles ─── */
 const defaultContent: Record<string, BlogPostData> = {
     "correccion-pintura-swirls-guia": {
-        title: "Swirls en la Pintura: Cómo Quitarlos (85-95%) y Precios CDMX",
+        title: "Swirls en la Pintura y Micro Rayones: Cómo Quitarlos (85-95%) CDMX",
         date: "2026-05-05",
         category: "Corrección",
         readTime: "9 min",
-        metaDesc: "¿Qué son los swirls en la pintura de tu auto y cómo quitar micro rayones de raíz? Eliminamos 85-95% de swirls a domicilio en CDMX ($7,499 Signature Detail | -10% Miembros).",
+        metaDesc: "¿Cómo quitar micro rayones (microrayones) y swirls en la pintura de tu auto? Corrección de pintura a domicilio en CDMX: 85-95% eliminación ($7,499 | -10% Miembros).",
         faqs: [
             {
                 q: "¿Qué son los swirls (micro swirls) en la pintura de un auto?",
@@ -864,7 +865,7 @@ export default async function BlogPost({ params }: PageProps) {
                                 </Link>.
                             </p>
                         </div>
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "0.85rem" }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(185px, 1fr))", gap: "0.85rem" }}>
                             {[
                                 {
                                     name: "Industrial Deep Interior",
@@ -886,13 +887,22 @@ export default async function BlogPost({ params }: PageProps) {
                                     featured: true,
                                 },
                                 {
-                                    name: "Ceramic Coating 9H",
+                                    name: "Ceramic Coating 9H (3-5 Años)",
                                     slug: "ceramic-coating",
                                     price: "$10,999 MXN",
                                     memberPrice: "$9,899 MXN con Membresía (-10%)",
                                     desc: "Corrección óptica + blindaje nanocerámico SiO2 9H en carrocería, rines y cristales (3-5 años).",
                                     waMsg: `Hola Doctor Foam, leí "${post.title}" y quiero cotizar el blindaje Ceramic Coating 9H ($10,999 MXN) a domicilio`,
                                     ctaId: `blog_${slug}_mid_ceramic_9h`,
+                                },
+                                {
+                                    name: "Graphene Shield 10H (5-7 Años)",
+                                    slug: "graphene-upgrade",
+                                    price: "$14,999 MXN",
+                                    memberPrice: "$13,499 MXN con Membresía (-10%)",
+                                    desc: "Máxima disipación térmica, anti-water spots y blindaje en carrocería, rines, cristales e interiores.",
+                                    waMsg: `Hola Doctor Foam, leí "${post.title}" y quiero cotizar el blindaje Graphene Shield 10H ($14,999 MXN) a domicilio`,
+                                    ctaId: `blog_${slug}_mid_graphene_10h`,
                                 },
                             ].map((pkg, idx) => (
                                 <div
@@ -959,6 +969,49 @@ export default async function BlogPost({ params }: PageProps) {
                                 </div>
                             ))}
                         </div>
+
+                        {/* Direct WhatsApp Advisor Prompt inside the 70%-scroll strip */}
+                        <div
+                            style={{
+                                marginTop: "1rem",
+                                padding: "0.85rem 1rem",
+                                borderRadius: "0.75rem",
+                                background: "#f0fdf4",
+                                border: "1px solid #86efac",
+                                display: "flex",
+                                flexWrap: "wrap",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                gap: "0.75rem",
+                            }}
+                        >
+                            <div style={{ fontSize: "0.83rem", color: "#0f172a" }}>
+                                <strong>¿Duda sobre qué tratamiento conviene más a tu modelo de auto?</strong>{" "}
+                                <span style={{ color: "#475569" }}>
+                                    Envíanos el modelo y tu colonia por WhatsApp y recibe diagnóstico en 2 minutos.
+                                </span>
+                            </div>
+                            <a
+                                href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy leyendo "${post.title}" y me gustaría saber qué paquete me recomiendan para mi auto y mi colonia.`)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location={`blog_${slug}_mid_diagnostic_whatsapp`}
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    gap: "0.35rem",
+                                    padding: "0.48rem 0.95rem",
+                                    borderRadius: "9999px",
+                                    background: "#16a34a",
+                                    color: "#ffffff",
+                                    fontWeight: 700,
+                                    fontSize: "0.78rem",
+                                    textDecoration: "none",
+                                }}
+                            >
+                                💬 Pedir Diagnóstico por WhatsApp
+                            </a>
+                        </div>
                     </div>
 
                     {/* Preguntas Frecuentes del Artículo */}
@@ -1002,8 +1055,45 @@ export default async function BlogPost({ params }: PageProps) {
                         </div>
                     </div>
 
+                    {/* Tarjeta de Conversión Inmediata (a ~75% scroll depth justo después de FAQs) */}
+                    <div className="glass-card" style={{ padding: "2rem", marginTop: "2.75rem", textAlign: "center", border: "1px solid rgba(22, 163, 74, 0.28)", background: "linear-gradient(135deg, rgba(240, 253, 244, 0.96), rgba(239, 246, 255, 0.96))" }}>
+                        <h3 style={{ marginBottom: "0.65rem", color: "#0f172a" }}>¿Buscas una restauración o blindaje a domicilio para tu vehículo?</h3>
+                        <p style={{ color: "#475569", marginBottom: "1.35rem", fontSize: "0.92rem" }}>
+                            Acudimos con unidad 100% autónoma (agua purificada por ósmosis inversa y generador propio) a Polanco, Lomas, Santa Fe, Bosques, Interlomas, Huixquilucan, Pedregal y Coyoacán.
+                        </p>
+                        <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
+                            <a
+                                href={`https://wa.me/525610846022?text=${whatsappText}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location={`blog_${slug}_bottom_whatsapp`}
+                                className="btn-premium"
+                                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
+                            >
+                                💬 Cotizar por WhatsApp Ahora
+                            </a>
+                            <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
+                                📋 Ver Paquetes y Precios
+                            </Link>
+                            <Link href="/reservar" className="btn-outline">
+                                📅 Agendar en Línea
+                            </Link>
+                            <a
+                                href="/brochure-doctor-foam.pdf"
+                                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location={`blog_${slug}_bottom_brochure_pdf`}
+                                className="btn-outline"
+                                style={{ borderColor: "#2563eb", color: "#2563eb" }}
+                            >
+                                📄 Descargar Brochure PDF
+                            </a>
+                        </div>
+                    </div>
+
                     {/* Galería de 4 imágenes generadas */}
-                    <div style={{ marginTop: "3.5rem" }}>
+                    <div style={{ marginTop: "3rem" }}>
                         <h3 style={{ fontSize: "1.4rem", color: "#0f172a", marginBottom: "1.5rem" }}>Galería del Servicio</h3>
                         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1rem" }}>
                             {[1, 2, 3, 4].map((i) => (
@@ -1023,31 +1113,6 @@ export default async function BlogPost({ params }: PageProps) {
                                     />
                                 </div>
                             ))}
-                        </div>
-                    </div>
-
-                    <div className="glass-card" style={{ padding: "2rem", marginTop: "3rem", textAlign: "center" }}>
-                        <h3 style={{ marginBottom: "0.75rem", color: "#0f172a" }}>¿Buscas una restauración completa para tu vehículo?</h3>
-                        <p style={{ color: "#475569", marginBottom: "1.5rem" }}>
-                            Conoce nuestros paquetes con vapor seco a 180°C, corrección de pintura de 1 a 3 etapas y protección nanocerámica 9H a domicilio.
-                        </p>
-                        <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
-                            <a
-                                href={`https://wa.me/525610846022?text=${whatsappText}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                data-cta-location={`blog_${slug}_bottom_whatsapp`}
-                                className="btn-premium"
-                                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
-                            >
-                                💬 Cotizar por WhatsApp Ahora
-                            </a>
-                            <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">
-                                📋 Ver Paquetes y Precios
-                            </Link>
-                            <Link href="/reservar" className="btn-outline">
-                                📅 Agendar en Línea
-                            </Link>
                         </div>
                     </div>
 
@@ -1134,7 +1199,11 @@ export default async function BlogPost({ params }: PageProps) {
 
 /* Simple markdown-to-html for blog content */
 function formatMarkdown(md: string, slug?: string, title?: string): string {
-    // 1. Parse multi-line markdown tables into valid HTML5 <table><thead><tbody> elements
+    const tableWaText = encodeURIComponent(
+        `Hola Doctor Foam, estoy viendo la tabla de precios en "${title || "el blog"}" y quiero cotizar un paquete a domicilio para mi auto`
+    );
+
+    // 1. Parse multi-line markdown tables into valid HTML5 <table><thead><tbody> elements + immediate conversion bar
     const withTables = md.replace(/(?:^\|.+\|\s*$\n?)+/gm, (tableBlock) => {
         const lines = tableBlock
             .trim()
@@ -1175,7 +1244,9 @@ function formatMarkdown(md: string, slug?: string, title?: string): string {
             )
             .join("")}</tbody>`;
 
-        return `<div style="overflow-x:auto;margin:1.75rem 0;"><table style="width:100%;border-collapse:collapse;border-radius:0.75rem;overflow:hidden;border:1px solid #cbd5e1;font-size:0.9rem;line-height:1.5;">${thead}${tbody}</table></div>`;
+        const tableFooterCta = `<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.65rem;padding:0.85rem 1rem;background:linear-gradient(135deg,#f0fdf4,#eff6ff);border:1px solid #cbd5e1;border-top:none;border-radius:0 0 0.75rem 0.75rem;"><div style="font-size:0.8rem;color:#0f172a;"><strong>✨ Precios con IVA incluido y facturación CFDI</strong> · <span style="color:#15803d;font-weight:700;">-10% OFF permanente con Membresía ($990/mes)</span></div><div style="display:flex;gap:0.5rem;flex-wrap:wrap;"><a href="https://wa.me/525610846022?text=${tableWaText}" target="_blank" rel="noopener noreferrer" data-cta-location="blog_${slug || "article"}_table_whatsapp" style="display:inline-flex;align-items:center;gap:0.3rem;padding:0.42rem 0.85rem;border-radius:9999px;background:#16a34a;color:#ffffff;font-weight:700;font-size:0.78rem;text-decoration:none;">💬 Cotizar por WhatsApp</a><a href="/reservar" style="display:inline-flex;align-items:center;gap:0.3rem;padding:0.42rem 0.85rem;border-radius:9999px;background:#2563eb;color:#ffffff;font-weight:700;font-size:0.78rem;text-decoration:none;">📅 Agendar en Línea</a></div></div>`;
+
+        return `<div style="overflow-x:auto;margin:1.75rem 0;"><table style="width:100%;border-collapse:collapse;border-radius:0.75rem 0.75rem 0 0;overflow:hidden;border:1px solid #cbd5e1;font-size:0.9rem;line-height:1.5;">${thead}${tbody}</table>${tableFooterCta}</div>`;
     });
 
     let h2Index = 0;
@@ -1189,7 +1260,7 @@ function formatMarkdown(md: string, slug?: string, title?: string): string {
         .replace(/^## (.+)$/gm, (_match, headingText) => {
             h2Index += 1;
             const h2Html = `<h2 style="margin-top:2.5rem;margin-bottom:1rem;font-size:1.4rem;color:#0f172a;">${headingText}</h2>`;
-            return h2Index === 2 ? `${inlineCtaHtml}${h2Html}` : h2Html;
+            return h2Index === 2 || h2Index === 4 ? `${inlineCtaHtml}${h2Html}` : h2Html;
         })
         .replace(
             /^> (.+)$/gm,

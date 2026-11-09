@@ -314,7 +314,7 @@ const faqs = [
   },
   {
     q: "¿Realizan limpieza de motores de coches y detallado de bahía de motor a domicilio?",
-    a: "Sí. Realizamos limpieza de motores de coches en seco y con vapor industrial a 180°C (5% de humedad), desengrasantes dieléctricos biodegradables y acondicionamiento de plásticos y mangueras sin usar chorros de agua a presión, garantizando cero riesgo para sensores, computadora (ECU), baterías híbridas o sistemas eléctricos.",
+    a: "Sí. Realizamos limpieza de motores de coches en seco y con vapor industrial a 180°C (5% de humedad), desengrasantes dieléctricos biodegradables y acondicionamiento de plásticos y mangueras sin usar chorros de agua a presión, garantizando cero riesgo para sensores, computadora (ECU), baterías híbridas o sistemas eléctricos. Está incluida en nuestro paquete Signature Detail ($7,449 MXN) o puedes solicitarla al agendar tu detallado a domicilio en CDMX.",
   },
   {
     q: "¿En qué consiste el pulido de autos y lavado y encerado de autos a domicilio en CDMX?",
@@ -322,7 +322,11 @@ const faqs = [
   },
   {
     q: "¿Cómo funciona el lavado de asientos de auto y vestiduras a domicilio?",
-    a: "Nuestro lavado de asientos de auto (tanto en tela, alcántara como piel Connolly o Nappa) combina aspirado industrial 10x, inyección-extracción térmica de manchas profundas, esterilización con vapor seco a 180°C y sanitización con ozono médico, dejando los asientos limpios, desinfectados y secos en menos de 60 minutos.",
+    a: "Nuestro lavado de asientos de auto (tanto en tela, alcántara como piel Connolly o Nappa) en el paquete Industrial Deep Interior ($2,499 MXN; $2,249 MXN con Membresía -10%) combina aspirado industrial 10x, inyección-extracción térmica de manchas profundas, esterilización con vapor seco a 180°C y sanitización con ozono médico, dejando los asientos limpios, desinfectados y secos en menos de 60 minutos.",
+  },
+  {
+    q: "¿Cómo se activa la Membresía Doctor Foam ($990/mes) y el 10% de descuento permanente?",
+    a: "Para empezar a operar la Membresía Doctor Foam ($990 MXN/mes en sedán o $1,160 MXN/mes en SUV), primero se contrata un servicio de lavado profundo inicial (como Industrial Deep Interior o Signature Detail). La membresía está diseñada para darle seguimiento continuo a ese primer servicio y su ventaja principal es el mantenimiento recurrente preventivo más un 10% de descuento permanente en todos los lavados más especializados.",
   },
 ];
 
@@ -1255,7 +1259,48 @@ export default function HomePage() {
                   </svg>
                 </button>
                 <div className={`faq-answer ${openFaq === i ? "open" : ""}`}>
-                  {f.a}
+                  <div>{f.a}</div>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.55rem", marginTop: "0.75rem", paddingTop: "0.65rem", borderTop: "1px dashed #e2e8f0" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, vi en su sección de preguntas frecuentes "${f.q}" y me gustaría cotizar un servicio a domicilio.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`home_faq_${i}_whatsapp`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        padding: "0.35rem 0.85rem",
+                        borderRadius: "9999px",
+                        background: "#f0fdf4",
+                        border: "1px solid #86efac",
+                        color: "#15803d",
+                        fontWeight: 700,
+                        fontSize: "0.78rem",
+                        textDecoration: "none",
+                      }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
+                    <Link
+                      href="/reservar"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        padding: "0.35rem 0.85rem",
+                        borderRadius: "9999px",
+                        background: "#eff6ff",
+                        border: "1px solid #bfdbfe",
+                        color: "#1d4ed8",
+                        fontWeight: 700,
+                        fontSize: "0.78rem",
+                        textDecoration: "none",
+                      }}
+                    >
+                      📅 Reservar en Línea
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}

@@ -150,6 +150,19 @@ async function auditGsc() {
       position: Math.round((r.position || 0) * 10) / 10,
     }));
 
+    const topZeroClickOpportunities = rows
+      .filter((r) => (r.clicks || 0) === 0 && (r.impressions || 0) >= 3)
+      .sort((a, b) => (b.impressions || 0) - (a.impressions || 0))
+      .slice(0, 20)
+      .map((r) => ({
+        query: r.keys[0],
+        page: r.keys[1] ? r.keys[1].replace("https://drfoam.com.mx", "") || "/" : "/",
+        clicks: r.clicks,
+        impressions: r.impressions,
+        ctr: 0,
+        position: Math.round((r.position || 0) * 10) / 10,
+      }));
+
     summary = {
       property: verifiedSite.siteUrl,
       permissionLevel: verifiedSite.permissionLevel,
@@ -159,6 +172,7 @@ async function auditGsc() {
       avgCtr,
       avgPosition,
       topQueries,
+      topZeroClickOpportunities,
       syncedAt: new Date().toISOString(),
     };
 
