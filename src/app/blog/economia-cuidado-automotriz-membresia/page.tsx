@@ -3,13 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "La Economía del Cuidado Automotriz: ¿Conviene una Membresía? | Doctor Foam",
+  title: "Membresía de Lavado de Auto en CDMX ($990/mes + 10% OFF): ¿Conviene? | Doctor Foam",
   description:
-    "Descubre cuánto ahorras con una membresía de mantenimiento automotriz vs. lavados esporádicos. Tips de limpieza interior + análisis financiero del cuidado de tu auto.",
+    "Análisis financiero de la Membresía Doctor Foam ($990/mes Sedán | $1,160/mes SUV): seguimiento post-lavado profundo ($2,400) y 10% de descuento permanente en detallado especializado.",
   alternates: { canonical: "https://drfoam.com.mx/blog/economia-cuidado-automotriz-membresia" },
   openGraph: {
-    title: "¿Conviene una Membresía de Lavado de Auto? | Doctor Foam",
-    description: "Análisis financiero del cuidado automotriz recurrente vs. esporádico. Plus: tips profesionales de limpieza interior.",
+    title: "¿Conviene la Membresía de Lavado de Auto Doctor Foam ($990/mes + 10% OFF)?",
+    description: "Cómo empezar con tu primer lavado profundo ($2,400 MXN) y mantener tu auto con seguimiento recurrente + 10% OFF fijo.",
     type: "article",
   },
 };
@@ -17,12 +17,34 @@ export const metadata: Metadata = {
 const articleJsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  headline: "La Economía del Cuidado Automotriz: ¿Conviene una Membresía de Lavado?",
-  description: "Análisis financiero del cuidado automotriz recurrente vs. esporádico con tips de limpieza interior.",
+  headline: "La Economía del Cuidado Automotriz: ¿Conviene una Membresía de Lavado ($990/mes + 10% OFF)?",
+  description: "Análisis financiero del cuidado automotriz recurrente con seguimiento post-lavado profundo y 10% de descuento permanente.",
   datePublished: "2026-03-29",
+  dateModified: "2026-11-09",
   author: { "@type": "Organization", name: "Doctor Foam México" },
   publisher: { "@type": "Organization", name: "Doctor Foam México" },
   url: "https://drfoam.com.mx/blog/economia-cuidado-automotriz-membresia",
+};
+
+const economiaFaqs = [
+  {
+    q: "¿Cuál es el requisito para activar la Membresía Doctor Foam ($990/mes)?",
+    a: "Para empezar a operar la Membresía Doctor Foam ($990 MXN/mes Sedán o $1,160 MXN/mes SUV), primero hay que contratar un servicio de lavado profundo inicial (como Industrial Deep Interior por $2,400 MXN o Signature Detail por $7,499 MXN). La membresía está diseñada para darle seguimiento continuo a ese primer servicio.",
+  },
+  {
+    q: "¿Cuál es la ventaja real de la Membresía además del mantenimiento recurrente?",
+    a: "Además del mantenimiento preventivo recurrente a domicilio con champú pH neutro y técnica de dos cubetas, la ventaja principal es tu 10% de descuento permanente en todos los lavados más especializados: Industrial Deep Interior baja a $2,160 MXN, Signature Detail a $6,749 MXN, Ceramic Coating 9H a $9,899 MXN y Graphene Shield 10H a $13,499 MXN.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: economiaFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
 };
 
 const breadcrumbJsonLd = {
@@ -40,6 +62,7 @@ export default function BlogEconomiaCuidado() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <nav className="navbar navbar-scrolled">
         <div className="navbar-inner">
@@ -102,7 +125,7 @@ export default function BlogEconomiaCuidado() {
                   💬 Empezar por WhatsApp
                 </a>
                 <Link
-                  href="/reservar?pkg=industrial"
+                  href="/reservar?paquete=deep-interior"
                   data-cta-location="blog_economia_mid_reservar"
                   className="btn-outline"
                   style={{ padding: "0.5rem 1rem", fontSize: "0.82rem" }}
@@ -144,6 +167,33 @@ export default function BlogEconomiaCuidado() {
               <li style={{ marginBottom: "0.5rem" }}>Ya invirtieron en cerámico o cristal líquido y necesitan mantenimiento especializado</li>
               <li style={{ marginBottom: "0.5rem" }}>Buscan un servicio recurrente confiable, no lavados improvisados</li>
             </ul>
+
+            <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>Preguntas Frecuentes sobre la Membresía ($990/mes)</h2>
+            <div style={{ display: "grid", gap: "0.85rem", marginBottom: "1.5rem" }}>
+              {economiaFaqs.map((faq, idx) => (
+                <div key={idx} className="glass-card" style={{ padding: "1.25rem 1.4rem" }}>
+                  <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#0f172a", marginBottom: "0.45rem" }}>{faq.q}</h3>
+                  <p style={{ fontSize: "0.9rem", color: "#334155", lineHeight: 1.65, marginBottom: "0.65rem" }}>{faq.a}</p>
+                  <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                    <a
+                      href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, leí "${faq.q}" y quiero activar mi Membresía.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cta-location={`blog_economia_faq_${idx}_whatsapp`}
+                      style={{ fontSize: "0.75rem", fontWeight: 700, color: "#15803d", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "9999px", padding: "0.3rem 0.75rem", textDecoration: "none" }}
+                    >
+                      💬 Cotizar por WhatsApp
+                    </a>
+                    <Link
+                      href="/reservar?paquete=deep-interior"
+                      style={{ fontSize: "0.75rem", fontWeight: 700, color: "#1d4ed8", background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "9999px", padding: "0.3rem 0.75rem", textDecoration: "none" }}
+                    >
+                      📅 Agendar Paso 1 ($2,400)
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* CTA */}

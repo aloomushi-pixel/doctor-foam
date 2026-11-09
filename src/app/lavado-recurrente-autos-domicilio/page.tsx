@@ -3,13 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Membresía de Lavado de Auto a Domicilio | Mantenimiento Premium",
+  title: "Lavado Recurrente de Autos a Domicilio en CDMX ($990/mes + 10% OFF) | Doctor Foam",
   description:
-    "Protege el valor de reventa de tu auto y ahorra tiempo. Conoce nuestro servicio exclusivo de lavado recurrente a domicilio para vehículos de alta gama en CDMX.",
+    "Programa de lavado y encerado de autos a domicilio en CDMX ($990/mes Sedán | $1,160/mes SUV). Seguimiento post-lavado profundo con método 2 cubetas y 10% OFF permanente en detallado.",
   alternates: { canonical: "https://drfoam.com.mx/lavado-recurrente-autos-domicilio" },
   openGraph: {
-    title: "Lavado Recurrente para Vehículos a Domicilio | Doctor Foam",
-    description: "Mantén tu auto impecable con nuestro plan de lavado recurrente a domicilio. Sin filas, sin riesgos, sin esfuerzo.",
+    title: "Lavado Recurrente para Vehículos a Domicilio en CDMX ($990/mes) | Doctor Foam",
+    description: "Seguimiento preventivo a tu primer lavado profundo + 10% de descuento permanente en paquetes especializados.",
   },
 };
 

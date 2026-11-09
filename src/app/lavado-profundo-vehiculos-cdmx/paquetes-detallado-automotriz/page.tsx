@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const packages = [
   {
     name: "Industrial Deep Interior",
-    price: { sedan: "$2,400", pickup: "$2,400" },
+    price: { sedan: "$2,400", pickup: "$2,400", member: "$2,160 MXN" },
     time: "3-4 horas",
     icon: "♨️",
     ideal: "Tu interior necesita una restauración seria — manchas, olores, bacterias acumuladas.",
@@ -30,16 +30,17 @@ const packages = [
   },
   {
     name: "Signature Detail",
-    price: { sedan: "$7,499", pickup: "$8,624" },
+    price: { sedan: "$7,499", pickup: "$8,624", member: "$6,749 MXN" },
     time: "5-6 horas",
     icon: "💎",
-    ideal: "Quieres la restauración completa: interior + corrección de pintura + sellado.",
+    ideal: "Quieres la restauración completa: interior + corrección de pintura + motor + sellado.",
     featured: true,
     includes: [
       "Industrial Deep Interior COMPLETO incluido",
       "Corrección de pintura en 2-3 etapas con pulidora de triple acción",
       "Eliminación de swirls y micro-rayones al 95%",
       "Descontaminación química + barra de arcilla",
+      "Limpieza de motores de coches con vapor seco a 180°C y desengrasantes dieléctricos",
       "Sellador cerámico express de 6 meses de protección",
       "Limpieza profunda de rines y acondicionamiento de llantas",
       "Limpieza de vidrios exterior e interior",
@@ -49,7 +50,7 @@ const packages = [
   },
   {
     name: "Ceramic Coating",
-    price: { sedan: "$10,999", pickup: "$12,649" },
+    price: { sedan: "$10,999", pickup: "$12,649", member: "$9,899 MXN" },
     time: "8-10 horas",
     icon: "🛡️",
     ideal: "Quieres protección de largo plazo (3-5 años). Inversión en la preservación de tu auto.",
@@ -64,9 +65,9 @@ const packages = [
     ],
     notIncludes: [],
     upgrade: {
-      name: "Cristal líquido",
+      name: "Cristal líquido (Grafeno 10H)",
       price: { sedan: "$13,999", pickup: "$16,099" },
-      desc: "Supera al cerámico en dureza (10H) e hidrofobicidad. Protección de 5 a 7 años.",
+      desc: "Supera al cerámico en dureza (10H) e hidrofobicidad. Protección de 5 a 7 años ($12,599 - $13,499 con Membresía -10%).",
     },
   },
 ];
@@ -105,6 +106,10 @@ const faqs = [
   {
     q: "¿El precio del detallado automotriz profesional incluye servicio a domicilio sin usar mi agua ni luz?",
     a: "Sí. Todos nuestros precios incluyen el traslado de nuestra unidad móvil 100% autónoma (equipada con tanque de agua purificada por ósmosis inversa, generador eléctrico insonorizado y máquina de vapor industrial a 180°C) en Polanco, Lomas de Chapultepec, Santa Fe, Bosques de las Lomas, Pedregal, Interlomas, Huixquilucan y Coyoacán.",
+  },
+  {
+    q: "¿Cómo obtengo el 10% de descuento de Miembro en los paquetes y realizan limpieza de motores de coches?",
+    a: "Al contratar tu primer servicio de lavado profundo inicial puedes activar la Membresía Doctor Foam ($990/mes Sedán | $1,160/mes SUV), la cual da seguimiento preventivo a tu auto y te otorga un 10% de descuento permanente en todos los paquetes especializados ($2,160 en Deep Interior, $6,749 en Signature Detail y $9,899 en Ceramic 9H). Además, en Signature Detail incluimos limpieza de motores de coches con vapor seco a 180°C y desengrasantes dieléctricos sin riesgo eléctrico.",
   },
 ];
 
@@ -329,8 +334,11 @@ export default function PaquetesDetallado() {
                     <h2 style={{ fontSize: "1.5rem" }}>{p.name}</h2>
                     <p style={{ color: "#64748b", fontSize: "0.85rem" }}>Duración: {p.time}</p>
                   </div>
-                  <div style={{ marginLeft: "auto", textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.35rem" }}>
+                  <div style={{ marginLeft: "auto", textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.3rem" }}>
                     <span className="gradient-text" style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "2rem", lineHeight: 1.1 }}>{p.price.sedan}</span>
+                    <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#15803d", background: "#f0fdf4", border: "1px solid #86efac", padding: "0.18rem 0.6rem", borderRadius: "9999px" }}>
+                      ✨ Miembro (-10%): {p.price.member}
+                    </span>
                     <p style={{ color: "#64748b", fontSize: "0.75rem", margin: 0 }}>Sedán · Pick Up: {p.price.pickup}</p>
                     <a
                       href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, me interesa el paquete ${p.name} (${p.price.sedan}) a domicilio`)}`}

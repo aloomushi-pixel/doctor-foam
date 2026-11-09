@@ -3,9 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "¿Qué Incluye Nuestro Lavado de Mantenimiento? | Doctor Foam",
+  title: "¿Qué Incluye el Lavado y Encerado de Mantenimiento a Domicilio? ($990/mes) | Doctor Foam",
   description:
-    "Conoce cada detalle de nuestro servicio de mantenimiento preventivo: champú pH neutro, método dos cubetas, sellador UV y más. Lavado seguro para autos con cerámico.",
+    "Protocolo de 8 pasos de lavado y encerado de autos a domicilio en CDMX: champú pH neutro, método dos cubetas, arcilla sintética y sellador UV ($990/mes + 10% OFF en detallado).",
   alternates: { canonical: "https://drfoam.com.mx/lavado-recurrente-autos-domicilio/que-incluye-mantenimiento" },
 };
 
@@ -141,7 +141,7 @@ export default function QueIncluyeMantenimientoPage() {
               <Link href="/membresia-doctor-foam" className="btn-premium">
                 🔄 Conocer Membresía ($990/mes)
               </Link>
-              <Link href="/reservar?pkg=industrial" className="btn-outline" data-cta-location="cluster_mantenimiento_hero_reservar">
+              <Link href="/reservar?paquete=deep-interior" className="btn-outline" data-cta-location="cluster_mantenimiento_hero_reservar">
                 📅 Agendar Paso 1 ($2,400)
               </Link>
               <a
