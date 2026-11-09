@@ -3,13 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Membresía de Autolavado y Lavado de Autos a Domicilio en CDMX | Doctor Foam",
+  title: "Membresía de Lavado de Autos a Domicilio en CDMX ($990/mes + 10% OFF) | Doctor Foam",
   description:
-    "Conoce la Membresía de Autolavado a Domicilio de Doctor Foam en CDMX: planes mensuales desde $990 MXN/mes con equipo industrial autónomo, pH neutro, cero swirls y facturación CFDI.",
+    "Membresía Doctor Foam desde $990 MXN/mes (Sedán) y $1,160 MXN/mes (SUV): seguimiento continuo a tu primer lavado profundo + 10% de descuento permanente en detallado especializado.",
   alternates: { canonical: "https://drfoam.com.mx/membresia-doctor-foam" },
   openGraph: {
-    title: "Membresía Doctor Foam | Suscripción de Lavado de Autos a Domicilio CDMX",
-    description: "El cuidado definitivo para tu auto. Planes de mantenimiento recurrente con pagos mensuales automáticos desde $990/mes.",
+    title: "Membresía Doctor Foam ($990/mes + 10% OFF Permanente) | Lavado a Domicilio CDMX",
+    description: "Actívala tras tu primer lavado profundo. Mantenimiento recurrente + 10% OFF en vestiduras 180°C, corrección de pintura y cerámico 9H.",
   },
 };
 
@@ -365,21 +365,28 @@ export default function MembresiaPage() {
                         regular: "$2,400 MXN",
                         member: "$2,160 MXN",
                         save: "-$240 MXN",
-                        pkg: "industrial",
+                        slug: "deep-interior",
                       },
                       {
-                        name: "💎 Signature Detail (Corrección Swirls + Interior)",
+                        name: "💎 Signature Detail (Corrección Swirls + Interior + Motor)",
                         regular: "$7,499 MXN",
                         member: "$6,749 MXN",
                         save: "-$750 MXN",
-                        pkg: "signature",
+                        slug: "signature-detail",
                       },
                       {
                         name: "🛡️ Ceramic Coating 9H (Blindaje 3 a 5 Años)",
                         regular: "$10,999 MXN",
                         member: "$9,899 MXN",
                         save: "-$1,100 MXN",
-                        pkg: "ceramic",
+                        slug: "ceramic-coating",
+                      },
+                      {
+                        name: "✨ Graphene Shield 10H (Blindaje 5 a 7 Años)",
+                        regular: "$14,999 MXN",
+                        member: "$13,499 MXN",
+                        save: "-$1,500 MXN",
+                        slug: "graphene-shield",
                       },
                     ].map((row, idx) => (
                       <tr key={idx} style={{ borderBottom: "1px solid rgba(148,163,184,0.2)" }}>
@@ -388,22 +395,43 @@ export default function MembresiaPage() {
                         <td style={{ padding: "0.75rem", fontWeight: 800, color: "#15803d" }}>{row.member}</td>
                         <td style={{ padding: "0.75rem", fontWeight: 700, color: "#2563eb" }}>{row.save}</td>
                         <td style={{ padding: "0.75rem" }}>
-                          <Link
-                            href={`/reservar?pkg=${row.pkg}`}
-                            data-cta-location={`pillar_membresia_table_${row.pkg}`}
-                            style={{
-                              display: "inline-block",
-                              padding: "0.35rem 0.7rem",
-                              borderRadius: "0.45rem",
-                              background: "rgba(37,99,235,0.1)",
-                              color: "#1d4ed8",
-                              fontWeight: 700,
-                              fontSize: "0.76rem",
-                              textDecoration: "none",
-                            }}
-                          >
-                            📅 Agendar
-                          </Link>
+                          <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+                            <Link
+                              href={`/reservar?paquete=${row.slug}&miembro=1`}
+                              data-cta-location={`pillar_membresia_table_${row.slug}`}
+                              style={{
+                                display: "inline-block",
+                                padding: "0.35rem 0.65rem",
+                                borderRadius: "0.45rem",
+                                background: "rgba(37,99,235,0.1)",
+                                color: "#1d4ed8",
+                                fontWeight: 700,
+                                fontSize: "0.75rem",
+                                textDecoration: "none",
+                              }}
+                            >
+                              📅 Agendar (-10%)
+                            </Link>
+                            <a
+                              href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, quiero agendar ${row.name} con mi Precio Miembro (-10%: ${row.member})`)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              data-cta-location={`pillar_membresia_table_${row.slug}_whatsapp`}
+                              style={{
+                                display: "inline-block",
+                                padding: "0.35rem 0.65rem",
+                                borderRadius: "0.45rem",
+                                background: "#f0fdf4",
+                                border: "1px solid #86efac",
+                                color: "#15803d",
+                                fontWeight: 700,
+                                fontSize: "0.75rem",
+                                textDecoration: "none",
+                              }}
+                            >
+                              💬 WhatsApp
+                            </a>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -456,7 +484,7 @@ export default function MembresiaPage() {
                       💬 Activar por WhatsApp
                     </a>
                     <Link
-                      href="/reservar?pkg=industrial"
+                      href="/reservar?paquete=deep-interior"
                       data-cta-location={`pillar_membresia_faq_${idx + 1}_reservar`}
                       style={{
                         display: "inline-flex",

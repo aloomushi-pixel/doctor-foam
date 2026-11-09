@@ -123,11 +123,15 @@ const blogPosts = [
 const blogFaqs = [
     {
         q: "¿Cuánto cuesta quitar swirls, lavar vestiduras con vapor a 180°C o aplicar cerámico 9H a domicilio en CDMX?",
-        a: "En Doctor Foam México nuestros paquetes a domicilio con agua purificada y luz propia son: Foam Maintenance ($1,599 MXN), Industrial Deep Interior con vapor a 180°C y ozono ($2,400 MXN), Signature Detail con corrección de 85-95% de swirls + interior ($7,499 MXN) y Ceramic Coating 9H ($10,999 MXN, garantía de 3 a 5 años).",
+        a: "En Doctor Foam México nuestros paquetes a domicilio con agua purificada y luz propia son: Foam Maintenance ($1,599 MXN), Industrial Deep Interior con vapor a 180°C y ozono ($2,400 MXN | $2,160 Miembro -10%), Signature Detail con corrección de 85-95% de swirls + interior + motor ($7,499 MXN | $6,749 Miembro -10%) y Ceramic Coating 9H ($10,999 MXN | $9,899 Miembro -10%, garantía de 3 a 5 años).",
     },
     {
         q: "¿Cómo funciona la Membresía Doctor Foam ($990/mes) y el descuento del 10% permanente?",
         a: "Para empezar a operar la Membresía Doctor Foam ($990 MXN/mes sedán o $1,160 MXN/mes SUV), primero se contrata un servicio de lavado profundo inicial. La membresía está diseñada para darle seguimiento preventivo continuo a ese primer servicio y otorga un 10% de descuento permanente en todos los lavados más especializados.",
+    },
+    {
+        q: "¿Realizan limpieza de motores de coches sin usar agua a presión?",
+        a: "Sí. En el paquete Signature Detail ($7,499 MXN) incluimos limpieza de motores de coches con vapor seco industrial a 180°C (5% de humedad) y desengrasantes dieléctricos biodegradables, protegiendo al 100% sensores, computadoras (ECU) y baterías híbridas.",
     },
     {
         q: "¿En qué zonas de CDMX y Estado de México realizan detallado automotriz a domicilio sin cargo extra?",
@@ -247,32 +251,51 @@ export default function BlogPage() {
                                     🔄 Membresía de Seguimiento $990/mes + 10% OFF permanente →
                                 </Link>
                             </div>
-                            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "0.75rem" }}>
+                            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(215px, 1fr))", gap: "0.75rem" }}>
                                 {[
-                                    { name: "Foam Maintenance", price: "$1,599 MXN", sub: "Lavado clínico pH neutro", msg: "Hola Doctor Foam, vengo del blog y quiero agendar Foam Maintenance ($1,599 MXN)" },
-                                    { name: "Industrial Deep Interior", price: "$2,400 MXN", sub: "Vestiduras vapor 180°C + Ozono", msg: "Hola Doctor Foam, vengo del blog y quiero agendar Industrial Deep Interior ($2,400 MXN)" },
-                                    { name: "Signature Detail", price: "$7,499 MXN", sub: "Corrección swirls + Interior 180°C", msg: "Hola Doctor Foam, vengo del blog y quiero agendar Signature Detail ($7,499 MXN)" },
-                                    { name: "Ceramic Coating 9H", price: "$10,999 MXN", sub: "Blindaje SiO2 9H (3 a 5 años)", msg: "Hola Doctor Foam, vengo del blog y quiero cotizar Ceramic Coating 9H ($10,999 MXN)" },
+                                    { name: "Foam Maintenance", price: "$1,599 MXN", member: "Seguimiento $990/mes", sub: "Lavado clínico pH neutro", slug: "foam-maintenance", msg: "Hola Doctor Foam, vengo del blog y quiero agendar Foam Maintenance ($1,599 MXN)" },
+                                    { name: "Industrial Deep Interior", price: "$2,400 MXN", member: "$2,160 Miembro (-10%)", sub: "Vestiduras vapor 180°C + Ozono", slug: "deep-interior", msg: "Hola Doctor Foam, vengo del blog y quiero agendar Industrial Deep Interior ($2,400 MXN)" },
+                                    { name: "Signature Detail + Motor", price: "$7,499 MXN", member: "$6,749 Miembro (-10%)", sub: "Corrección swirls + Interior 180°C", slug: "signature-detail", msg: "Hola Doctor Foam, vengo del blog y quiero agendar Signature Detail ($7,499 MXN)" },
+                                    { name: "Ceramic Coating 9H", price: "$10,999 MXN", member: "$9,899 Miembro (-10%)", sub: "Blindaje SiO2 9H (3 a 5 años)", slug: "ceramic-coating", msg: "Hola Doctor Foam, vengo del blog y quiero cotizar Ceramic Coating 9H ($10,999 MXN)" },
                                 ].map((pkg, idx) => (
-                                    <a
+                                    <div
                                         key={idx}
-                                        href={`https://wa.me/525610846022?text=${encodeURIComponent(pkg.msg)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        data-cta-location={`blog_index_strip_${idx}`}
                                         style={{
-                                            display: "block",
-                                            padding: "0.8rem 0.95rem",
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            justifyContent: "space-between",
+                                            padding: "0.85rem 0.95rem",
                                             borderRadius: "0.65rem",
                                             background: "#ffffff",
                                             border: "1px solid #e2e8f0",
-                                            textDecoration: "none",
                                         }}
                                     >
-                                        <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#0f172a" }}>{pkg.name}</div>
-                                        <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "#2563eb", margin: "0.1rem 0" }}>{pkg.price}</div>
-                                        <div style={{ fontSize: "0.73rem", color: "#475569" }}>{pkg.sub} · 💬 WhatsApp</div>
-                                    </a>
+                                        <div>
+                                            <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#0f172a" }}>{pkg.name}</div>
+                                            <div style={{ display: "flex", alignItems: "baseline", gap: "0.4rem", flexWrap: "wrap", margin: "0.1rem 0" }}>
+                                                <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "#2563eb" }}>{pkg.price}</span>
+                                                <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#15803d" }}>{pkg.member}</span>
+                                            </div>
+                                            <div style={{ fontSize: "0.73rem", color: "#475569", marginBottom: "0.55rem" }}>{pkg.sub}</div>
+                                        </div>
+                                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.35rem" }}>
+                                            <a
+                                                href={`https://wa.me/525610846022?text=${encodeURIComponent(pkg.msg)}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                data-cta-location={`blog_index_strip_${idx}_whatsapp`}
+                                                style={{ textAlign: "center", padding: "0.35rem 0.3rem", borderRadius: "0.45rem", background: "#16a34a", color: "#fff", fontWeight: 700, fontSize: "0.72rem", textDecoration: "none" }}
+                                            >
+                                                💬 WhatsApp
+                                            </a>
+                                            <Link
+                                                href={`/reservar?paquete=${pkg.slug}`}
+                                                style={{ textAlign: "center", padding: "0.35rem 0.3rem", borderRadius: "0.45rem", background: "#eff6ff", border: "1px solid #bfdbfe", color: "#1d4ed8", fontWeight: 700, fontSize: "0.72rem", textDecoration: "none" }}
+                                            >
+                                                📅 Reservar
+                                            </Link>
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -295,16 +318,27 @@ export default function BlogPage() {
                                     <p style={{ color: "#475569", fontSize: "0.9rem", lineHeight: "1.7", marginBottom: "1rem" }}>
                                         {post.excerpt}
                                     </p>
-                                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                        <span style={{ color: "#475569", fontSize: "0.8rem" }}>
+                                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
+                                        <span style={{ color: "#475569", fontSize: "0.78rem" }}>
                                             {new Date(post.date).toLocaleDateString("es-MX", { year: "numeric", month: "long", day: "numeric" })}
                                         </span>
-                                        <Link
-                                            href={`/blog/${post.slug}`}
-                                            style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.9rem", fontWeight: 600 }}
-                                        >
-                                            Leer guía completa →
-                                        </Link>
+                                        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                                            <a
+                                                href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, vi la guía "${post.title}" en su blog y quiero cotizar a domicilio`)}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                data-cta-location={`blog_index_card_${i}_whatsapp`}
+                                                style={{ fontSize: "0.74rem", fontWeight: 700, color: "#15803d", background: "#f0fdf4", border: "1px solid #86efac", padding: "0.24rem 0.6rem", borderRadius: "9999px", textDecoration: "none" }}
+                                            >
+                                                💬 Cotizar
+                                            </a>
+                                            <Link
+                                                href={`/blog/${post.slug}`}
+                                                style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.88rem", fontWeight: 600 }}
+                                            >
+                                                Leer guía →
+                                            </Link>
+                                        </div>
                                     </div>
                                 </article>
                             ))}
@@ -319,7 +353,24 @@ export default function BlogPage() {
                                 {blogFaqs.map((faq, idx) => (
                                     <div key={idx} className="glass-card" style={{ padding: "1.2rem 1.4rem" }}>
                                         <h3 style={{ fontSize: "0.96rem", color: "#0f172a", marginBottom: "0.4rem" }}>{faq.q}</h3>
-                                        <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.65, margin: 0 }}>{faq.a}</p>
+                                        <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.65, marginBottom: "0.65rem" }}>{faq.a}</p>
+                                        <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                                            <a
+                                                href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, leí "${faq.q}" en el blog y quiero cotizar mi servicio a domicilio.`)}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                data-cta-location={`blog_index_faq_${idx}_whatsapp`}
+                                                style={{ fontSize: "0.75rem", fontWeight: 700, color: "#15803d", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "9999px", padding: "0.28rem 0.75rem", textDecoration: "none" }}
+                                            >
+                                                💬 Cotizar por WhatsApp
+                                            </a>
+                                            <Link
+                                                href="/reservar"
+                                                style={{ fontSize: "0.75rem", fontWeight: 700, color: "#1d4ed8", background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "9999px", padding: "0.28rem 0.75rem", textDecoration: "none" }}
+                                            >
+                                                📅 Reservar en Línea
+                                            </Link>
+                                        </div>
                                     </div>
                                 ))}
                             </div>

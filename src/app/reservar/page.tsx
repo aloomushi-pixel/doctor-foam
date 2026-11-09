@@ -206,7 +206,9 @@ function BookingForm() {
     const [success] = useState(false);
     const cancelled = searchParams.get("cancelled");
     const [hoveredPkg, setHoveredPkg] = useState<string | null>(null);
-    const [isMember, setIsMember] = useState(false);
+    const [isMember, setIsMember] = useState(
+        searchParams.get("miembro") === "1" || searchParams.get("member") === "1"
+    );
 
     /* Form fields — pre-fill from query params if available */
     const [customerName, setCustomerName] = useState(searchParams.get("nombre") || "");
