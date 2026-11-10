@@ -1,6 +1,6 @@
 {
-  "version": "1.40.0-auto",
-  "cycle": 40,
-  "deployedAt": "2026-11-09T22:26:15Z",
-  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #40 — Auto-enabled -10% Member pricing toggle on /reservar when ?miembro=1 is passed; upgraded /membresia-doctor-foam table with Graphene Shield 10H row ($13,499 Miembro), canonical ?paquete=&miembro=1 links and 1-tap WhatsApp buttons; upgraded /blog hub with Member -10% OFF prices, 1-tap Reservar + WhatsApp buttons, per-card WhatsApp quote pills, and engine bay vapor cleaning FAQ"
+  "version": "1.41.0-auto",
+  "cycle": 41,
+  "deployedAt": "2026-11-10T02:38:00Z",
+  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #41 — Upgraded all 8 /zonas/[zona] pages (src/app/zonas/[zona]/page.tsx) after organic mobile visitor 6c6cad27 spent 40.2s at 47% scroll depth on /zonas/interlomas: converted 45%-scroll landmark pills into 1-tap WhatsApp quote buttons, added a 47%-scroll QR/Caseta Logistics Conversion Bar, converted car brand badges into 1-tap vehicle quote pills (including Toyota/RAV4), added Member -10% OFF prices & 1-tap booking/WhatsApp buttons to the Services grid, and front-loaded prices in Zone metadata"
 }

@@ -91,7 +91,7 @@ const zonesData: Record<string, {
         intro: "Interlomas, Hacienda de las Palmas y Jesús del Monte concentran decenas de torres residenciales y fraccionamientos cerrados donde el cuidado automotriz a domicilio ahorra horas de traslados. Doctor Foam opera rutas diarias en toda la zona de Interlomas.",
         logistics: "Enviamos con anticipación las placas de nuestra unidad móvil y nombres de los técnicos para autorización por QR o caseta en fraccionamientos de Hacienda de las Palmas, Villa Florence y torres sobre Blvd. Interlomas. Trabajamos en tus cajones de estacionamiento con suministro propio de agua y energía.",
         landmarks: ["Blvd. Interlomas y Paseo Interlomas", "Hacienda de las Palmas", "Jesús del Monte y Villa Florence", "Parque Interlomas", "Vialidad de la Barranca"],
-        carBrands: ["Audi", "BMW", "Mercedes-Benz", "Porsche", "Volkswagen Premium", "Mini"],
+        carBrands: ["Audi", "BMW", "Mercedes-Benz", "Porsche", "Toyota / RAV4", "Volkswagen Premium", "Mini"],
     },
     huixquilucan: {
         name: "Huixquilucan",
@@ -157,11 +157,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     if (!z) return { title: "Zona no encontrada" };
 
     return {
-        title: `Lavado de Autos a Domicilio y Detallado Automotriz en ${z.name} | Doctor Foam`,
-        description: z.metaDesc,
+        title: `Lavado de Autos a Domicilio y Detallado en ${z.name} ($2,400 | -10% Miembros) | Doctor Foam`,
+        description: `${z.metaDesc} Lavado profundo vapor 180°C ($2,400), Detailing Completo ($7,499) y Membresía ($990/mes + 10% OFF).`,
         alternates: { canonical: `https://drfoam.com.mx/zonas/${zona}` },
         openGraph: {
-            title: `Detallado Premium a Domicilio en ${z.name}`,
+            title: `Detallado Automotriz a Domicilio en ${z.name} ($2,400 | -10% Miembros)`,
             description: z.metaDesc,
         },
     };
@@ -479,25 +479,82 @@ export default async function ZonePage({ params }: PageProps) {
                             </p>
                             <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: "1.25rem" }}>
                                 <div style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#2563eb", marginBottom: "0.65rem" }}>
-                                    📍 Corredores, Vialidades y Puntos Clave en {z.name} ({z.postalCodes})
+                                    📍 Corredores, Vialidades y Puntos Clave en {z.name} ({z.postalCodes}) — Toca para Cotizar:
                                 </div>
-                                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.25rem" }}>
                                     {z.landmarks.map((lm, i) => (
-                                        <span
+                                        <a
                                             key={i}
+                                            href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy cerca de ${lm} (${z.name}) y quiero cotizar / agendar un servicio a domicilio.`)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            data-cta-location={`zone_landmark_${zona}_${i}`}
                                             style={{
-                                                fontSize: "0.82rem",
-                                                padding: "0.35rem 0.8rem",
+                                                fontSize: "0.8rem",
+                                                padding: "0.38rem 0.85rem",
                                                 borderRadius: "2rem",
-                                                background: "#f8fafc",
-                                                border: "1px solid #cbd5e1",
-                                                color: "#1e293b",
-                                                fontWeight: 600,
+                                                background: "#f0fdf4",
+                                                border: "1px solid #86efac",
+                                                color: "#14532d",
+                                                fontWeight: 700,
+                                                textDecoration: "none",
                                             }}
                                         >
-                                            {lm}
-                                        </span>
+                                            📍 {lm} 💬
+                                        </a>
                                     ))}
+                                </div>
+
+                                {/* 47%-Scroll Conversion Bar inside Local Logistics Card */}
+                                <div
+                                    style={{
+                                        padding: "0.95rem 1.15rem",
+                                        borderRadius: "0.85rem",
+                                        background: "linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%)",
+                                        border: "1px solid #93c5fd",
+                                        display: "flex",
+                                        flexWrap: "wrap",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                        gap: "0.75rem",
+                                    }}
+                                >
+                                    <div style={{ fontSize: "0.82rem", color: "#0f172a", fontWeight: 700 }}>
+                                        🪪 ¿Tu privada o torre en {z.name} pide QR o placas en caseta? Enviamos datos de la unidad al agendar:
+                                    </div>
+                                    <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                                        <a
+                                            href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy en ${z.name} y quiero agendar a domicilio (solicito datos de unidad para acceso en caseta).`)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            data-cta-location={`zone_logistics_bar_${zona}_whatsapp`}
+                                            style={{
+                                                padding: "0.48rem 0.95rem",
+                                                borderRadius: "0.55rem",
+                                                background: "#16a34a",
+                                                color: "#ffffff",
+                                                fontSize: "0.78rem",
+                                                fontWeight: 700,
+                                                textDecoration: "none",
+                                            }}
+                                        >
+                                            💬 Cotizar por WhatsApp en {z.name}
+                                        </a>
+                                        <Link
+                                            href={`/reservar?zona=${encodeURIComponent(z.name)}`}
+                                            style={{
+                                                padding: "0.48rem 0.95rem",
+                                                borderRadius: "0.55rem",
+                                                background: "#2563eb",
+                                                color: "#ffffff",
+                                                fontSize: "0.78rem",
+                                                fontWeight: 700,
+                                                textDecoration: "none",
+                                            }}
+                                        >
+                                            📅 Reservar en Línea
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -536,17 +593,28 @@ export default async function ZonePage({ params }: PageProps) {
                     </div>
                 </section>
 
-                {/* Car brands */}
+                {/* Car brands — Interactive 1-Tap Brand Quote Pills */}
                 <section className="section-padding" style={{ paddingTop: 0 }}>
                     <div className="container" style={{ maxWidth: "800px", textAlign: "center" }}>
-                        <h2 style={{ fontSize: "1.5rem", marginBottom: "1.5rem" }}>
+                        <h2 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>
                             Marcas que Detallamos en {z.name}
                         </h2>
+                        <p style={{ color: "#475569", fontSize: "0.85rem", marginBottom: "1.15rem" }}>
+                            Toca la marca de tu auto o SUV para recibir cotización exacta en {z.name}:
+                        </p>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}>
                             {z.carBrands.map((b, i) => (
-                                <span key={i} className="zone-tag zone-tag-gold" style={{ fontSize: "0.85rem", padding: "0.4rem 1rem" }}>
-                                    {b}
-                                </span>
+                                <a
+                                    key={i}
+                                    href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, tengo un ${b} en ${z.name} y quiero cotizar un servicio de detallado a domicilio.`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-cta-location={`zone_brand_${zona}_${i}`}
+                                    className="zone-tag zone-tag-gold"
+                                    style={{ fontSize: "0.85rem", padding: "0.45rem 1rem", textDecoration: "none", cursor: "pointer" }}
+                                >
+                                    🚗 {b} · 💬 Cotizar
+                                </a>
                             ))}
                         </div>
                     </div>
@@ -560,18 +628,39 @@ export default async function ZonePage({ params }: PageProps) {
                         </h2>
                         <div className="services-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))" }}>
                             {[
-                                { icon: "🧽", title: "Lavado Recurrente", price: "Desde $990/mes", desc: "Mantenimiento periódico con método 2 cubetas y pH neutro", href: "/lavado-recurrente-autos-domicilio" },
-                                { icon: "🪑", title: "Industrial Deep Interior", price: "$2,400 MXN", desc: "Lavado de vestiduras, vapor a 180°C, pieles y ozono", href: "/lavado-profundo-vehiculos-cdmx" },
-                                { icon: "💎", title: "Signature Detail", price: "$7,499 MXN", desc: "Corrección de pintura (95% swirls) + interior completo", href: "/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" },
-                                { icon: "🛡️", title: "Ceramic Coating 9H", price: "$10,999 MXN", desc: "Blindaje cerámico de 3 a 5 años con certificado", href: "/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado" },
+                                { icon: "🧽", title: "Lavado Recurrente", price: "Desde $990/mes", member: "+10% OFF en paquetes", desc: "Seguimiento periódico post-lavado profundo con método 2 cubetas", href: "/lavado-recurrente-autos-domicilio", slug: "membership-sedan" },
+                                { icon: "🪑", title: "Industrial Deep Interior", price: "$2,400 MXN", member: "$2,160 Miembro (-10%)", desc: "Lavado de vestiduras, vapor a 180°C, pieles y ozono", href: "/lavado-profundo-vehiculos-cdmx", slug: "deep-interior" },
+                                { icon: "💎", title: "Signature Detail + Motor", price: "$7,499 MXN", member: "$6,749 Miembro (-10%)", desc: "Corrección de pintura (95% swirls) + interior + motor", href: "/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz", slug: "signature-detail" },
+                                { icon: "🛡️", title: "Ceramic Coating 9H", price: "$10,999 MXN", member: "$9,899 Miembro (-10%)", desc: "Blindaje cerámico de 3 a 5 años con certificado", href: "/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado", slug: "ceramic-coating" },
                             ].map((s, i) => (
-                                <Link key={i} href={s.href} className="glass-card" style={{ padding: "1.5rem", textAlign: "center", textDecoration: "none", display: "block" }}>
-                                    <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>{s.icon}</div>
-                                    <h3 style={{ fontSize: "1rem", marginBottom: "0.35rem", color: "#0f172a" }}>{s.title}</h3>
-                                    <p style={{ color: "#475569", fontSize: "0.78rem", marginBottom: "0.6rem", lineHeight: "1.45" }}>{s.desc}</p>
-                                    <span className="gradient-text" style={{ fontWeight: 700, fontFamily: "var(--font-heading)", display: "block", marginBottom: "0.35rem" }}>{s.price}</span>
-                                    <span style={{ color: "#2563eb", fontSize: "0.75rem", fontWeight: 700 }}>Ver detalles →</span>
-                                </Link>
+                                <div key={i} className="glass-card" style={{ padding: "1.4rem", textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                                    <div>
+                                        <div style={{ fontSize: "2rem", marginBottom: "0.6rem" }}>{s.icon}</div>
+                                        <h3 style={{ fontSize: "0.98rem", marginBottom: "0.3rem", color: "#0f172a" }}>
+                                            <Link href={s.href} style={{ color: "#0f172a", textDecoration: "none" }}>{s.title}</Link>
+                                        </h3>
+                                        <p style={{ color: "#475569", fontSize: "0.78rem", marginBottom: "0.5rem", lineHeight: "1.45" }}>{s.desc}</p>
+                                        <span className="gradient-text" style={{ fontWeight: 800, fontFamily: "var(--font-heading)", display: "block", fontSize: "1.1rem" }}>{s.price}</span>
+                                        <span style={{ color: "#15803d", fontSize: "0.72rem", fontWeight: 700, display: "block", marginBottom: "0.65rem" }}>✨ {s.member}</span>
+                                    </div>
+                                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.35rem" }}>
+                                        <a
+                                            href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy en ${z.name} y quiero cotizar ${s.title} (${s.price}) a domicilio.`)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            data-cta-location={`zone_services_card_${zona}_${i}_whatsapp`}
+                                            style={{ padding: "0.38rem 0.3rem", borderRadius: "0.45rem", background: "#16a34a", color: "#ffffff", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none" }}
+                                        >
+                                            💬 WhatsApp
+                                        </a>
+                                        <Link
+                                            href={`/reservar?paquete=${s.slug}&zona=${encodeURIComponent(z.name)}`}
+                                            style={{ padding: "0.38rem 0.3rem", borderRadius: "0.45rem", background: "#eff6ff", border: "1px solid #bfdbfe", color: "#1d4ed8", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none" }}
+                                        >
+                                            📅 Reservar
+                                        </Link>
+                                    </div>
+                                </div>
                             ))}
                         </div>
                         <div style={{ marginTop: "1.25rem", textAlign: "center", fontSize: "0.85rem", color: "#475569" }}>
