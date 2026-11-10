@@ -1,6 +1,28 @@
 {
-  "version": "1.42.0-auto",
-  "cycle": 42,
-  "deployedAt": "2026-11-10T06:50:45Z",
-  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #42 — Added Precio Miembro (-10% OFF) column & Graphene Shield 10H row to /blog/correccion-pintura-swirls-guia comparison table; added Markdown comparison tables (with automatic Table Conversion Footer Bars) to /blog/desnaturalizacion-termica-180c-fin-extraccion-humeda and /blog/detallado-profesional-multiplicador-financiero-vehiculos-lujo; front-loaded 'Lavado Profundo de Autos ($2,400)' in /blog/lavado-profundo-vs-detallado-automotriz metadata (GSC Pos 7.0)"
+  "version": "1.43.0-auto",
+  "cycle": 43,
+  "deployedAt": "2026-11-10T10:59:30Z",
+  "status": "autonomous_loop_active",
+  "features": [
+    "gsc_analytics_sync_tres_raices_isolated_table",
+    "ai_geo_attribution_telemetry",
+    "llms_txt_structured_context_and_member_10pct_pricing",
+    "canonical_host_308_and_301_redirects",
+    "zone_alias_rewrites_bosques_chapultepec_huixquilucan",
+    "corporativo_and_membresia_faq_jsonld",
+    "home_hero_above_fold_price_and_1tap_package_bar",
+    "home_hero_direct_booking_and_8_zone_selector",
+    "home_spanish_verified_reviews",
+    "reservar_3_step_streamlined_checkout",
+    "reservar_auto_member_10pct_query_param",
+    "reservar_package_slug_aliases_deep_interior_ceramic_9h",
+    "telemetry_in_memory_session_visitor_id_persistence",
+    "membresia_2step_prerequisite_deep_wash_and_10pct_discount",
+    "membresia_page_4_tier_10pct_savings_table_with_1tap_ctas",
+    "custom_hero_membresia_luxury_photography",
+    "corporate_5page_pdf_brochure_interior_exterior_ceramic",
+    "headless_preload_and_scraper_bot_filtering",
+    "zonas_47pct_scroll_landmark_and_qr_caseta_1tap_whatsapp_bars",
+    "blog_all_12_articles_comparison_tables_with_conversion_footer_bars"
+  ]
 }

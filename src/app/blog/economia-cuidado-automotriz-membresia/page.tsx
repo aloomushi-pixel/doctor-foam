@@ -146,6 +146,69 @@ export default function BlogEconomiaCuidado() {
               </div>
             </div>
 
+            <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>Tabla de Ahorros con el 10% de Descuento Permanente de Membresía</h2>
+            <div style={{ overflowX: "auto", marginBottom: "1.5rem", borderRadius: "0.9rem", border: "1px solid #cbd5e1", background: "#ffffff", boxShadow: "0 4px 18px rgba(15,23,42,0.05)" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.88rem" }}>
+                <thead>
+                  <tr style={{ background: "#f8fafc", borderBottom: "2px solid #cbd5e1" }}>
+                    <th style={{ padding: "0.75rem 0.9rem", textAlign: "left", color: "#0f172a" }}>Paquete Especializado Doctor Foam</th>
+                    <th style={{ padding: "0.75rem 0.9rem", textAlign: "left", color: "#475569" }}>Precio Regular</th>
+                    <th style={{ padding: "0.75rem 0.9rem", textAlign: "left", color: "#15803d" }}>Precio Miembro (-10% OFF)</th>
+                    <th style={{ padding: "0.75rem 0.9rem", textAlign: "left", color: "#1d4ed8" }}>Tu Ahorro Directo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: "1px solid #e2e8f0" }}>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 700, color: "#0f172a" }}>Industrial Deep Interior (Vapor 180°C + Ozono)</td>
+                    <td style={{ padding: "0.7rem 0.9rem" }}>$2,400 MXN</td>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 800, color: "#15803d" }}>$2,160 MXN</td>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 700, color: "#1d4ed8" }}>-$240 MXN</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid #e2e8f0", background: "#f8fafc" }}>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 700, color: "#0f172a" }}>Signature Detail (Interior 180°C + Pulido + Motor)</td>
+                    <td style={{ padding: "0.7rem 0.9rem" }}>$7,499 MXN</td>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 800, color: "#15803d" }}>$6,749 MXN</td>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 700, color: "#1d4ed8" }}>-$750 MXN</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid #e2e8f0" }}>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 700, color: "#0f172a" }}>Ceramic Coating 9H (Blindaje 3 a 5 años)</td>
+                    <td style={{ padding: "0.7rem 0.9rem" }}>$10,999 MXN</td>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 800, color: "#15803d" }}>$9,899 MXN</td>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 700, color: "#1d4ed8" }}>-$1,100 MXN</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 700, color: "#0f172a" }}>Graphene Shield 10H (Blindaje 5 a 7 años)</td>
+                    <td style={{ padding: "0.7rem 0.9rem" }}>$14,999 MXN</td>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 800, color: "#15803d" }}>$13,499 MXN</td>
+                    <td style={{ padding: "0.7rem 0.9rem", fontWeight: 700, color: "#1d4ed8" }}>-$1,500 MXN</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.65rem", padding: "0.75rem 1rem", background: "linear-gradient(135deg,#eff6ff 0%,#f0fdf4 100%)", borderTop: "1px solid #bfdbfe" }}>
+                <span style={{ fontSize: "0.8rem", color: "#1e293b", fontWeight: 700 }}>
+                  💡 Contrata tu 1er Lavado Profundo ($2,400) y desbloquea la Membresía ($990/mes) con -10% permanente
+                </span>
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                  <a
+                    href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20vi%20la%20tabla%20de%20ahorros%20de%20Membres%C3%ADa%20(-10%25%20OFF)%20y%20quiero%20agendar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cta-location="blog_economia_table_whatsapp"
+                    style={{ background: "#16a34a", color: "#fff", fontWeight: 800, fontSize: "0.76rem", padding: "0.4rem 0.85rem", borderRadius: "9999px", textDecoration: "none" }}
+                  >
+                    💬 Cotizar por WhatsApp
+                  </a>
+                  <Link
+                    href="/reservar?paquete=deep-interior"
+                    data-cta-location="blog_economia_table_reservar"
+                    style={{ background: "#2563eb", color: "#fff", fontWeight: 800, fontSize: "0.76rem", padding: "0.4rem 0.85rem", borderRadius: "9999px", textDecoration: "none" }}
+                  >
+                    📅 Agendar en Línea
+                  </Link>
+                </div>
+              </div>
+            </div>
+
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>Tips Profesionales para el Interior (entre visitas)</h2>
             <p>Aunque tengas membresía, estos hábitos diarios harán que tu interior se mantenga impecable:</p>
             <ul style={{ marginLeft: "1.5rem", marginBottom: "1.5rem" }}>

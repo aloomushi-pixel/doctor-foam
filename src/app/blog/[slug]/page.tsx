@@ -16,11 +16,11 @@ interface BlogPostData {
 
 const blogContent: Record<string, BlogPostData> = {
     "detallado-movil-grado-clinico-vs-lavado-convencional": {
-        title: "Detallado Móvil de Grado Clínico vs. Lavado a Domicilio Convencional",
+        title: "Detallado Móvil de Grado Clínico vs. Lavado a Domicilio Convencional ($2,400 CDMX)",
         date: "2026-05-07",
         category: "Logística y Operaciones",
         readTime: "9 min",
-        metaDesc: "Descubre la diferencia en infraestructura logística. Plantas insonorizadas, agua por ósmosis inversa y protocolos contra la contaminación cruzada en Polanco.",
+        metaDesc: "Detallado móvil con agua purificada por ósmosis inversa y planta eléctrica propia vs lavado convencional en CDMX. Paquetes desde $2,400 (-10% Miembros).",
         faqs: [
             {
                 q: "¿En qué se diferencia el detallado móvil clínico de Doctor Foam de un lavado a domicilio convencional?",
@@ -62,6 +62,15 @@ Respetamos la tranquilidad de su patrimonio inmobiliario. Nuestras plantas de en
 ### 4. Protocolo Clínico de Contaminación Cruzada Cero
 El instrumental utilizado (pinceles de cerdas de jabalí, pads de pulido, y microfibras de 500+ GSM) se clasifica y se aísla de forma rigurosa. Por política corporativa, un insumo que ha tocado rines o pasos de rueda *nunca* entrará en contacto con la pintura o los interiores.
 
+## Comparativa Operativa: Lavado Convencional vs. Unidad Móvil Doctor Foam
+
+| Criterio Técnico | Lavado a Domicilio Convencional | Industrial Deep Interior Doctor Foam | Signature Detail + Corrección |
+|---|---|---|---|
+| **Suministro de Agua y Luz** | Usa agua dura y luz de tu casa | **100% Autónomo (Ósmosis Inversa + Planta)** | **100% Autónomo + Luz LED CRI 95+** |
+| **Bioseguridad y Microfibras** | Trapos reciclados (riesgo de swirls) | **Microfibras 500 GSM nuevas + Vapor 180°C** | **Descontaminación + Corrección + Ozono** |
+| **Precio Base (Sedán)** | $300 - $600 MXN | **$2,400 MXN** | **$7,499 MXN** |
+| **Precio Miembro (-10% OFF)** | — | **$2,160 MXN** | **$6,749 MXN** |
+
 ---
 
 > **Veredicto Operacional:** Confiar el cuidado de un activo de ultra-lujo a una logística no estandarizada es un riesgo financiero. El Detallado Móvil de Grado Clínico es la única aproximación metódica que asegura la preservación del valor estético y monetario de su vehículo desde la comodidad de su residencia.
@@ -70,11 +79,11 @@ El instrumental utilizado (pinceles de cerdas de jabalí, pads de pulido, y micr
         `
     },
     "innovacion-2025-2026-escaneres-3d-polimeros-auto-regenerables": {
-        title: "Innovación 2025-2026: Escáneres 3D y Polímeros Auto-Regenerables",
+        title: "Innovación 2025-2026: Polímeros Auto-Regenerables, Cerámico 9H y Grafeno 10H CDMX",
         date: "2026-05-07",
         category: "Innovación Tecnológica",
         readTime: "10 min",
-        metaDesc: "El futuro de la protección automotriz: metrología algorítmica, PPF viscoelástico reactivo al calor y el resguardo de la plusvalía patrimonial.",
+        metaDesc: "El futuro del blindaje automotriz en CDMX: recubrimiento cerámico 9H ($10,999), grafeno 10H ($14,999) y polímeros auto-regenerables (-10% OFF con Membresía).",
         faqs: [
             {
                 q: "¿Cómo funcionan los polímeros auto-regenerables y recubrimientos nanocerámicos en la pintura automotriz?",
@@ -119,6 +128,14 @@ Al aplicar energía térmica (ya sea radiación infrarroja del sol o la inducci�
 Desde una óptica financiera, instalar PPF en las áreas de alto impacto (cofre, fascia frontal, espejos) o en toda la carrocería (*Full Body Wrap*), transforma un gasto de protección en un **seguro contra la depreciación óptica**. 
 
 Al mantener la pintura original de fábrica (Original Equipment Manufacturer - OEM) inmaculada a lo largo del ciclo de propiedad del vehículo, se maximiza el valor de tasación y de reventa. Los peritos valuadores bonifican de forma sistemática los vehículos que han conservado su pintura OEM intacta, un logro mecánicamente imposible en el tránsito urbano sin una barrera polimérica de sacrificio.
+
+## Comparativa de Tecnologías de Blindaje Automotriz en CDMX (2026)
+
+| Tecnología de Protección | Dureza / Garantía | Alcance del Paquete a Domicilio | Precio Base | Precio Miembro (-10% OFF) |
+|---|---|---|---|---|
+| **Sellador Cerámico SiO2 (Signature Detail)** | 6 meses de blindaje UV | Corrección 2-3 etapas + Interior 180°C + Motor | **$7,499 MXN** | **$6,749 MXN** |
+| **Ceramic Coating 9H (Nanocerámico)** | Dureza 9H · 3 a 5 años | Corrección + Carrocería + Rines + Cristales | **$10,999 MXN** | **$9,899 MXN** |
+| **Graphene Shield 10H (Nanografeno Térmico)** | Dureza 10H · 5 a 7 años | Corrección Concours + Grafeno + Interiores | **$14,999 MXN** | **$13,499 MXN** |
 
 ---
 
@@ -188,11 +205,11 @@ Los ductos del sistema de aire acondicionado (HVAC) son el pulmón del vehículo
         `
     },
     "mitigacion-grabado-lluvia-acida-autos": {
-        title: "Lluvia Ácida vs. Manchas de Agua en la CDMX: La Cinética de la Destrucción",
+        title: "Cómo Quitar Lluvia Ácida y Manchas de Agua del Auto en CDMX ($7,499)",
         date: "2026-05-06",
         category: "Defensa Ambiental",
         readTime: "11 min",
-        metaDesc: "Descubre la diferencia clínica entre depósitos minerales (water spots) y el grabado químico causado por la lluvia ácida en el Valle de México, y cómo mitigarlo.",
+        metaDesc: "¿Cómo quitar manchas de lluvia ácida y gotas secas en pintura y cristales en CDMX? Corrección de pintura ($7,499) y blindaje cerámico 9H ($10,999 | -10% Miembros).",
         faqs: [
             {
                 q: "¿Cuál es la diferencia entre manchas de agua (water spots) y lluvia ácida en la pintura del auto?",
@@ -232,6 +249,14 @@ El lavado con shampoo genérico de pH neutro es insuficiente frente a la lluvia 
 La protección de vehículos premium en zonas de alta acidez atmosférica requiere la aplicación de polímeros reticulados (recubrimientos cerámicos de base SiO2 o TiO2). La función de esta barrera no es ser "inquebrantable", sino:
 1.  **Modificar la Tensión Superficial:** Al reducir drásticamente la energía superficial del panel, el ángulo de contacto del agua se incrementa a más de 110 grados. Las gotas de lluvia ácida no logran anclarse y son evacuadas por la resistencia aerodinámica.
 2.  **Sacrificio Molecular:** Si el ácido logra evaporarse, el grabado químico ataca la matriz de cuarzo del recubrimiento y no el poliuretano del barniz original, preservando la integridad y el valor de tasación del activo subyacente.
+
+## Soluciones y Precios contra Lluvia Ácida y Manchas de Agua en CDMX
+
+| Nivel de Daño en Pintura / Cristales | Tratamiento Doctor Foam a Domicilio | Protección Anti-Lluvia Ácida | Precio Base | Precio Miembro (-10% OFF) |
+|---|---|---|---|---|
+| **Prevención Mensual (Sin Grabado)** | Lavado con Ósmosis Inversa + Sellador Hidrofóbico | Repelencia pH neutro | $1,599 MXN | Seguimiento **$990/mes** |
+| **Manchas de Agua y Grabado Ligero/Medio** | **Signature Detail** (Descontaminación + Corrección 2-3 etapas + Interior 180°C) | Sellador Cerámico SiO2 (6 meses) | **$7,499 MXN** | **$6,749 MXN** |
+| **Grabado Ácido + Blindaje Definitivo** | **Ceramic Coating 9H** (Corrección + Carrocería, Rines y Parabrisas) | Blindaje pH 2-13 (3 a 5 años) | **$10,999 MXN** | **$9,899 MXN** |
 
 ---
 
@@ -455,11 +480,11 @@ En Doctor Foam llevamos un laboratorio móvil con agua purificada y planta propi
     `,
     },
     "5-errores-lavado-auto-premium": {
-        title: "5 Errores que Arruinan la Pintura de tu Auto de Lujo",
+        title: "5 Errores al Lavar un Auto de Lujo y Cómo Corregirlos en CDMX",
         date: "2026-02-10",
         category: "Cuidado",
         readTime: "6 min",
-        metaDesc: "Evita estos 5 errores comunes que arruinan la pintura de autos de lujo. Consejos profesionales de Doctor Foam México.",
+        metaDesc: "Evita los 5 errores que rayan la pintura de tu auto de lujo. Lavado clínico a domicilio con agua purificada, corrección ($7,499) y Membresía ($990/mes).",
         faqs: [
             {
                 q: "¿Por qué los autolavados de rodillos y el lavado con una sola cubeta rayan la pintura del auto?",
@@ -504,6 +529,15 @@ Las toallas de algodón común, las franelas y por supuesto las jergas son abras
 Un auto recién lavado queda completamente expuesto a los rayos UV, lluvia ácida y contaminantes. Sin una capa de protección, la pintura se deteriora rápidamente.
 
 **La solución**: Después de cada lavado, aplica al menos un quick detailer con protección UV. Para protección real y duradera, invierte en un recubrimiento cerámico profesional.
+
+## Comparativa: Autolavado Tradicional vs. Protocolo Anti-Swirls Doctor Foam
+
+| Paso Crítico | Autolavado / Lavado Casero | Lavado Profundo Inicial Doctor Foam | Corrección + Blindaje Cerámico 9H |
+|---|---|---|---|
+| **Agua y Shampoo** | Agua dura de red + detergente alcalino | **Ósmosis Inversa + Shampoo pH Neutro** | **Descontaminación Férrica + Clay Bar** |
+| **Secado e Interior** | Franela reciclada + aspirado superficial | **Microfibra 500 GSM nueva + Vapor 180°C** | **Corrección 2-3 Etapas + SiO2 9H (3-5 años)** |
+| **Precio Base (Sedán)** | $150 - $350 MXN (genera swirls) | **$2,400 MXN** (Habilita Membresía $990/mes) | **$10,999 MXN** (Signature Detail: $7,499) |
+| **Precio Miembro (-10% OFF)** | — | **$2,160 MXN** | **$9,899 MXN** (Signature: **$6,749 MXN**) |
 
 ---
 
@@ -601,44 +635,46 @@ const defaultContent: Record<string, BlogPostData> = {
         content: `## ¿Qué son los Swirls en la Pintura de tu Auto (Swirls Qué Es)?\n\nLos **swirls en la pintura** (también buscados como **swirls auto**, **micro swirls**, marcas de remolino o telarañas ópticas) son **micro rayones** (*microrayones*) grabados en la capa transparente (*clear coat* o barniz) de la pintura automotriz. Aunque a simple vista parecen círculos concéntricos, en realidad son miles de micro-incisiones rectas y multidireccionales que refractan la luz del sol o las lámparas LED formando un halo circular alrededor del reflejo.\n\nTanto en pinturas oscuras (negro obsidiana, azul marino, gris grafito) como en **autos blancos o plateados** bajo luz directa, los **swirls y microrayones** apagan la profundidad del color y restan hasta un 15% del valor estético de reventa.\n\n## Las 4 Causas Principales de los Micro Rayones y Swirls en CDMX\n\n1. **Lavado con cubeta única o franela ("viene-viene")**: El polvo volcánico y sílice del Valle de México tiene dureza Mohs 7. Frotarlo con un trapo húmedo equivale a pasar una lija fina sobre el barniz.\n2. **Rodillos de autolavado automático**: Las cerdas sintéticas acumulan lodo y arena de cientos de vehículos previos, golpeando la laca a altas revoluciones y generando **micro swirls** instantáneos.\n3. **Secado con gamuzas sintéticas o toallas de algodón**: Sin lubricación polimérica ni microfibra de 500+ GSM, el secado arrastra partículas abrasivas sobre los paneles horizontales (cofre, toldo y cajuela).\n4. **Pulido amateur con borla de lana**: Genera hologramas térmicos ("charolazos") y adelgaza peligrosamente el barniz original OEM.\n\n## Cómo Quitar Micro Rayones y Swirls del Auto de Forma Definitiva (Niveles de Corrección)\n\nLas ceras comerciales y "renovadores de pintura" de supermercado solo rellenan temporalmente los **micro rayones** con aceites siliconados que desaparecen al segundo lavado. La única solución real y permanente es la **nivelación micrométrica del barniz mediante corrección de pintura profesional**:\n\n### 1. Corrección en 1 Etapa (One-Step Polish / Realce Óptico)\nCombinación de compuesto de corte medio-fino con pad de espuma de celda reticulada usando pulidora roto-orbital de doble acción (DA). Elimina entre **60% y 75%** de los **swirls en el auto** y devuelve el brillo profundo en vehículos seminuevos.\n\n### 2. Corrección en 2 Etapas (Corte + Refinado — Signature Detail)\nPrimera etapa de corte pesado para nivelar **microrayones** profundos y marcas de lluvia ácida, seguida de una etapa de refinado óptico con pad suave para restaurar un acabado espejo libre de hologramas (**85% a 95% de corrección garantizada**).\n\n### 3. Corrección en 3 Etapas (Grado Concours / Show Car + Cerámico 9H)\nMedición ultrasónica de espesor de pintura panel por panel, corte quirúrgico, pulido intermedio y *jeweling* de ultra-alto brillo, culminando con blindaje nanocerámico SiO2 9H (**95% a 99% de perfección óptica**).\n\n## Tabla Comparativa de Corrección de Pintura y Eliminación de Swirls en CDMX\n\n| Servicio Doctor Foam | Eliminación de Swirls y Micro Rayones | Tiempo | Protección Incluida | Precio Base | Precio Miembro (-10% OFF) |\n|---|---|---|---|---|---|\n| **Foam Maintenance (Lavado Clínico Anti-Swirl)** | Prevención (0% abrasión nueva) | 1.5 - 2 hrs | Polímero hidrofóbico | $1,599 MXN | Seguimiento $990/mes |\n| **Signature Detail (Corrección + Interior 180°C + Motor)** | 85% - 95% de swirls y microrayones | 4 - 6 hrs | Sellador Cerámico 6 meses | $7,499 MXN | **$6,749 MXN** |\n| **Ceramic Coating 9H (Corrección + Blindaje SiO2)** | 95% - 99% + blindaje cristalino | 6 - 8 hrs | Cerámico 9H (3 a 5 años) | $10,999 MXN | **$9,899 MXN** |\n| **Graphene Shield 10H (Corrección + Nanografeno)** | 95% - 99% + blindaje térmico 10H | 8 - 10 hrs | Grafeno 10H (5 a 7 años) | $14,999 MXN | **$13,499 MXN** |\n\n## ¿Cómo Evitar que los Swirls y Microrayones Regresen?\n\nUna vez corregida la pintura con nuestro servicio de [Lavado Profundo y Detallado de Vehículos en CDMX](/lavado-profundo-vehiculos-cdmx), la clave para mantener el acabado espejo intacto es blindar el barniz con nuestros [paquetes de detallado automotriz y recubrimiento cerámico](/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz) y activar nuestra [Membresía Doctor Foam ($990/mes + 10% de descuento permanente)](/membresia-doctor-foam) mediante [lavado recurrente a domicilio con método de dos cubetas y agua purificada](/lavado-recurrente-autos-domicilio) o en tu oficina con nuestro servicio de [lavado de autos en estacionamiento corporativo sin escurrimientos](/lavado-autos-estacionamiento-corporativo).\n\n---\n\n*Descubre el verdadero color y reflejo espejo de tu auto sin salir de casa. [Agenda una evaluación y corrección de pintura a domicilio en CDMX](/reservar).*`,
     },
     "por-que-detallado-domicilio-mejor": {
-        title: "¿Por Qué el Detallado a Domicilio Supera al Taller?",
+        title: "Detallado Automotriz a Domicilio vs. Taller en CDMX (Desde $2,400)",
         date: "2026-01-20", category: "Tendencias", readTime: "5 min",
-        metaDesc: "Ventajas del detallado automotriz a domicilio vs taller: comodidad, atención personalizada, equipo industrial. Doctor Foam CDMX.",
-        faqs: [
-            {
-                q: "¿Por qué es más seguro el detallado automotriz a domicilio de Doctor Foam que dejar mi auto en un taller?",
-                a: "Eliminas el riesgo de golpes, kilometraje no autorizado o contaminación cruzada en talleres saturados. Nuestra unidad móvil atiende únicamente tu vehículo frente a ti con agua purificada, luz propia e instrumental esterilizado.",
-            },
-            {
-                q: "¿En qué zonas de CDMX y Estado de México tienen cobertura a domicilio sin cargo extra?",
-                a: "Atendemos sin cargo por traslado en Polanco, Lomas de Chapultepec, Santa Fe, Bosques de las Lomas, Pedregal, San Ángel, Coyoacán, Interlomas y Huixquilucan.",
-            },
-            {
-                q: "¿Qué necesito tener en mi casa o departamento para que realicen el servicio?",
-                a: "Únicamente el espacio de estacionamiento donde se encuentra tu vehículo. Nuestras unidades móviles son 100% autónomas y llevan su propio tanque de agua filtrada y generador eléctrico silencioso.",
-            },
-        ],
-        content: `## La Revolución del Detallado Móvil\n\nEl servicio a domicilio no es solo conveniencia — es una experiencia superior en todos los sentidos.\n\n## 5 Razones por las que el Domicilio Gana\n\n### 1. Tu Tiempo Vale Oro\nNo pierdes 2-4 horas llevando y recogiendo tu auto.\n\n### 2. Supervisión Total\nPuedes ver todo el proceso desde tu ventana.\n\n### 3. Atención 1 a 1\nEn un taller manejan 5-10 autos. A domicilio, tu auto es el único.\n\n### 4. Sin Riesgo de Daños en Traslado\nCero riesgo de golpes en estacionamientos de talleres.\n\n### 5. Equipo Profesional Sin Compromisos\nEn Doctor Foam nuestras unidades móviles cargan el mismo equipo que los mejores talleres del mundo.\n\n---\n\n*Experimenta la diferencia. [Agenda con Doctor Foam](/reservar).*`,
+        metaDesc: "Ventajas del detallado automotriz a domicilio vs taller en CDMX: unidad autónoma con agua purificada y luz propia. Desde $2,400 MXN (-10% con Membresía).",
+        faqs:
+            [
+                {
+                    q: "¿Por qué es más seguro el detallado automotriz a domicilio de Doctor Foam que dejar mi auto en un taller?",
+                    a: "Eliminas el riesgo de golpes, kilometraje no autorizado o contaminación cruzada en talleres saturados. Nuestra unidad móvil atiende únicamente tu vehículo frente a ti con agua purificada, luz propia e instrumental esterilizado.",
+                },
+                {
+                    q: "¿En qué zonas de CDMX y Estado de México tienen cobertura a domicilio sin cargo extra?",
+                    a: "Atendemos sin cargo por traslado en Polanco, Lomas de Chapultepec, Santa Fe, Bosques de las Lomas, Pedregal, San Ángel, Coyoacán, Interlomas y Huixquilucan.",
+                },
+                {
+                    q: "¿Qué necesito tener en mi casa o departamento para que realicen el servicio?",
+                    a: "Únicamente el espacio de estacionamiento donde se encuentra tu vehículo. Nuestras unidades móviles son 100% autónomas y llevan su propio tanque de agua filtrada y generador eléctrico silencioso.",
+                },
+            ],
+        content: `## La Revolución del Detallado Móvil\n\nEl servicio a domicilio no es solo conveniencia — es una experiencia superior en todos los sentidos.\n\n## 5 Razones por las que el Domicilio Gana\n\n### 1. Tu Tiempo Vale Oro\nNo pierdes 2-4 horas llevando y recogiendo tu auto.\n\n### 2. Supervisión Total\nPuedes ver todo el proceso desde tu ventana.\n\n### 3. Atención 1 a 1\nEn un taller manejan 5-10 autos. A domicilio, tu auto es el único.\n\n### 4. Sin Riesgo de Daños en Traslado\nCero riesgo de golpes en estacionamientos de talleres.\n\n### 5. Equipo Profesional Sin Compromisos\nEn Doctor Foam nuestras unidades móviles cargan el mismo equipo que los mejores talleres del mundo.\n\n## Comparativa: Taller Físico vs. Unidad Móvil Doctor Foam a Domicilio\n\n| Factor de Decisión | Taller Físico Tradicional | Industrial Deep Interior a Domicilio | Signature Detail + Cerámico a Domicilio |\n|---|---|---|---|\n| **Traslados y Tiempo** | Pierdes medio día + riesgo de traslado | **Cero traslados (3-4 hrs en tu cochera)** | **Cero traslados (5-6 hrs en tu cochera)** |\n| **Suministro y Seguridad** | Vehículo sin tu supervisión | **100% Autónomo (Agua RO + Planta Propia)** | **100% Autónomo + Luz LED CRI 95+** |\n| **Precio Base (Sedán)** | $3,000 - $9,500 MXN | **$2,400 MXN** | **$7,499 MXN** (Cerámico 9H: $10,999) |\n| **Precio Miembro (-10% OFF)** | — | **$2,160 MXN** | **$6,749 MXN** (Cerámico 9H: **$9,899**) |\n\n---\n\n*Experimenta la diferencia. [Agenda con Doctor Foam](/reservar).*`,
     },
     "mejores-ceras-selladores-mexico": {
-        title: "Las Mejores Ceras y Selladores Disponibles en México",
+        title: "Ceras vs. Selladores vs. Recubrimiento Cerámico 9H en México (2026)",
         date: "2026-01-15", category: "Productos", readTime: "10 min",
-        metaDesc: "Comparativa de ceras y selladores automotrices en México: carnaubas, selladores cerámicos y grafeno. Por los expertos de Doctor Foam.",
-        faqs: [
-            {
-                q: "¿Qué dura más en el clima de la CDMX: una cera carnauba, un sellador sintético o un recubrimiento cerámico?",
-                a: "Una cera carnauba dura de 1 a 3 meses y se degrada a más de 80°C; un sellador cerámico profesional (incluido en nuestro paquete Signature Detail de $7,499 MXN) protege durante 6 meses, mientras que el blindaje Ceramic Coating 9H ($10,999 MXN) protege de 3 a 5 años contra rayos UV y lluvia ácida.",
-            },
-            {
-                q: "¿Conviene aplicar cera o sellador cerámico sin descontaminar ni pulir antes la pintura?",
-                a: "No se recomienda, ya que atraparías contaminantes férricos y swirls debajo del sellador. En Doctor Foam siempre realizamos descontaminación química y mecánica (Clay Bar) antes de sellar tu pintura.",
-            },
-            {
-                q: "¿Cómo mantener el brillo e hidrofobicidad de un sellador o recubrimiento cerámico todo el año?",
-                a: "Tras tu primer servicio profundo o aplicación cerámica, puedes activar la Membresía Doctor Foam ($990 MXN/mes) con lavado de mantenimiento pH neutro a domicilio y 10% de descuento permanente en todos los paquetes especializados.",
-            },
-        ],
-        content: `## Ceras Carnauba\n\n### Collinite 845\n- **Duración**: 3-4 meses\n- **Precio**: ~$600 MXN\n- **Brillo**: Excelente\n\n### Meguiar's Gold Class\n- **Duración**: 1-2 meses\n- **Precio**: ~$350 MXN\n- **Brillo**: Muy bueno\n\n## Selladores Sintéticos\n\n### Jescar Power Lock Plus\n- **Duración**: 6 meses\n- **Precio**: ~$800 MXN\n- **Protección**: Excelente\n\n### Menzerna Power Lock\n- **Duración**: 4-6 meses\n- **Precio**: ~$700 MXN\n- **Protección**: Muy buena\n\n## Cerámicos Spray\n\n### CarPro Reload\n- **Duración**: 3-4 meses\n- **Precio**: ~$500 MXN\n- **Facilidad**: Muy fácil\n\n---\n\n*¿Quieres protección profesional? Nuestros recubrimientos cerámicos duran años, no meses. [Cotiza aquí](/reservar).*`,
+        metaDesc: "Comparativa de ceras carnauba, selladores cerámicos ($7,499) y recubrimiento cerámico 9H ($10,999 | -10% Miembros) en México por Doctor Foam.",
+        faqs:
+            [
+                {
+                    q: "¿Qué dura más en el clima de la CDMX: una cera carnauba, un sellador sintético o un recubrimiento cerámico?",
+                    a: "Una cera carnauba dura de 1 a 3 meses y se degrada a más de 80°C; un sellador cerámico profesional (incluido en nuestro paquete Signature Detail de $7,499 MXN) protege durante 6 meses, mientras que el blindaje Ceramic Coating 9H ($10,999 MXN) protege de 3 a 5 años contra rayos UV y lluvia ácida.",
+                },
+                {
+                    q: "¿Conviene aplicar cera o sellador cerámico sin descontaminar ni pulir antes la pintura?",
+                    a: "No se recomienda, ya que atraparías contaminantes férricos y swirls debajo del sellador. En Doctor Foam siempre realizamos descontaminación química y mecánica (Clay Bar) antes de sellar tu pintura.",
+                },
+                {
+                    q: "¿Cómo mantener el brillo e hidrofobicidad de un sellador o recubrimiento cerámico todo el año?",
+                    a: "Tras tu primer servicio profundo o aplicación cerámica, puedes activar la Membresía Doctor Foam ($990 MXN/mes) con lavado de mantenimiento pH neutro a domicilio y 10% de descuento permanente en todos los paquetes especializados.",
+                },
+            ],
+        content: `## Ceras Carnauba\n\n### Collinite 845\n- **Duración**: 3-4 meses\n- **Precio**: ~$600 MXN\n- **Brillo**: Excelente\n\n### Meguiar's Gold Class\n- **Duración**: 1-2 meses\n- **Precio**: ~$350 MXN\n- **Brillo**: Muy bueno\n\n## Selladores Sintéticos\n\n### Jescar Power Lock Plus\n- **Duración**: 6 meses\n- **Precio**: ~$800 MXN\n- **Protección**: Excelente\n\n### Menzerna Power Lock\n- **Duración**: 4-6 meses\n- **Precio**: ~$700 MXN\n- **Protección**: Muy buena\n\n## Cerámicos Spray\n\n### CarPro Reload\n- **Duración**: 3-4 meses\n- **Precio**: ~$500 MXN\n- **Facilidad**: Muy fácil\n\n## Tabla Comparativa: Cera Carnauba vs. Sellador SiO2 vs. Blindaje Cerámico 9H / 10H\n\n| Protección Automotriz | Duración Real en CDMX | Resistencia Térmica y UV | Precio Base Doctor Foam | Precio Miembro (-10% OFF) |\n|---|---|---|---|---|\n| **Cera Carnauba Tradicional** | 1 a 3 meses | Baja (se degrada a >80°C) | Incluido en Mantenimiento ($1,599) | Seguimiento **$990/mes** |\n| **Sellador Cerámico SiO2 (Signature Detail)** | 6 meses | Alta + Corrección 2-3 Etapas + Interior 180°C | **$7,499 MXN** | **$6,749 MXN** |\n| **Ceramic Coating 9H (SiO2 Profesional)** | 3 a 5 años | Extrema (pH 2-13, >700°C) | **$10,999 MXN** | **$9,899 MXN** |\n| **Graphene Shield 10H (Nanografeno)** | 5 a 7 años | Máxima disipación térmica anti-water spots | **$14,999 MXN** | **$13,499 MXN** |\n\n---\n\n*¿Quieres protección profesional? Nuestros recubrimientos cerámicos duran años, no meses. [Cotiza aquí](/reservar).*`,
     },
 };
 

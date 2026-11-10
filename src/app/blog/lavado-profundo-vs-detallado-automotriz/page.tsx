@@ -227,11 +227,67 @@ export default function BlogLavadoProfundoVsDetallado() {
             <p>Un autolavado de rodillos mueve tu auto a través de cepillos de tela que hacen exactamente lo contrario de lo que debería hacerse: friccionan la suciedad contra la pintura. Cada lavado de rodillos genera miles de micro-rayones (swirls) que hacen que tu pintura luzca opaca bajo la luz directa.</p>
             <p>Esos &ldquo;30 minutos&rdquo; no solo no limpian realmente — <strong style={{ color: "#0f172a" }}>dañan tu auto progresivamente</strong>.</p>
 
-            <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>¿Cada Cuánto Necesito Cada Servicio?</h2>
-            <div className="glass-card" style={{ padding: "1.5rem", marginBottom: "2rem" }}>
-              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Lavado de mantenimiento ($990/mes):</strong> Cada 2-4 semanas como seguimiento posterior a tu primer lavado profundo</p>
-              <p style={{ marginBottom: "0.5rem" }}><strong style={{ color: "#0f172a" }}>Lavado profundo interior ($2,400 MXN | $2,160 Miembro):</strong> Cada 3-6 meses según uso</p>
-              <p style={{ marginBottom: "0" }}><strong style={{ color: "#0f172a" }}>Detallado completo ($7,499) o Cerámico 9H ($10,999):</strong> Cada 12 meses o al adquirir el vehículo</p>
+            <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.4rem" }}>¿Cada Cuánto Necesito Cada Servicio? (Tabla Comparativa)</h2>
+            <div style={{ overflowX: "auto", marginBottom: "2rem", borderRadius: "0.9rem", border: "1px solid #cbd5e1", background: "#ffffff", boxShadow: "0 4px 18px rgba(15,23,42,0.05)" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.86rem" }}>
+                <thead>
+                  <tr style={{ background: "#f8fafc", borderBottom: "2px solid #cbd5e1" }}>
+                    <th style={{ padding: "0.75rem 0.85rem", textAlign: "left", color: "#0f172a" }}>Servicio a Domicilio</th>
+                    <th style={{ padding: "0.75rem 0.85rem", textAlign: "left", color: "#475569" }}>Duración / Frecuencia</th>
+                    <th style={{ padding: "0.75rem 0.85rem", textAlign: "left", color: "#1d4ed8" }}>Precio Regular</th>
+                    <th style={{ padding: "0.75rem 0.85rem", textAlign: "left", color: "#15803d" }}>Precio Miembro (-10% OFF)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: "1px solid #e2e8f0" }}>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 700, color: "#0f172a" }}>Lavado de Mantenimiento / Membresía</td>
+                    <td style={{ padding: "0.7rem 0.85rem" }}>1.5-2 hrs · Cada 2-4 semanas</td>
+                    <td style={{ padding: "0.7rem 0.85rem" }}>$1,599 MXN</td>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 800, color: "#15803d" }}>Seguimiento $990/mes</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid #e2e8f0", background: "#f8fafc" }}>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 700, color: "#0f172a" }}>Lavado Profundo Interior (Vapor 180°C + Ozono)</td>
+                    <td style={{ padding: "0.7rem 0.85rem" }}>3-4 hrs · Cada 3-6 meses</td>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 700 }}>$2,400 MXN</td>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 800, color: "#15803d" }}>$2,160 MXN</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid #e2e8f0" }}>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 700, color: "#0f172a" }}>Detallado Completo Signature Detail + Motor</td>
+                    <td style={{ padding: "0.7rem 0.85rem" }}>5-6 hrs · Cada 6-12 meses</td>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 700 }}>$7,499 MXN</td>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 800, color: "#15803d" }}>$6,749 MXN</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 700, color: "#0f172a" }}>Blindaje Ceramic Coating 9H (3 a 5 años)</td>
+                    <td style={{ padding: "0.7rem 0.85rem" }}>6-8 hrs · Cada 3-5 años</td>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 700 }}>$10,999 MXN</td>
+                    <td style={{ padding: "0.7rem 0.85rem", fontWeight: 800, color: "#15803d" }}>$9,899 MXN</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.65rem", padding: "0.75rem 1rem", background: "linear-gradient(135deg,#eff6ff 0%,#f0fdf4 100%)", borderTop: "1px solid #bfdbfe" }}>
+                <span style={{ fontSize: "0.8rem", color: "#1e293b", fontWeight: 700 }}>
+                  💡 Incluye planta eléctrica y agua purificada propia · <strong style={{ color: "#15803d" }}>-10% OFF permanente con Membresía ($990/mes)</strong>
+                </span>
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                  <a
+                    href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20vi%20la%20tabla%20comparativa%20de%20Lavado%20Profundo%20(%242%2C400)%20vs%20Detallado%20(%247%2C499)%20y%20quiero%20agendar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cta-location="blog_vs_detallado_table_whatsapp"
+                    style={{ background: "#16a34a", color: "#fff", fontWeight: 800, fontSize: "0.76rem", padding: "0.4rem 0.85rem", borderRadius: "9999px", textDecoration: "none" }}
+                  >
+                    💬 Cotizar por WhatsApp
+                  </a>
+                  <Link
+                    href="/reservar"
+                    data-cta-location="blog_vs_detallado_table_reservar"
+                    style={{ background: "#2563eb", color: "#fff", fontWeight: 800, fontSize: "0.76rem", padding: "0.4rem 0.85rem", borderRadius: "9999px", textDecoration: "none" }}
+                  >
+                    📅 Agendar en Línea
+                  </Link>
+                </div>
+              </div>
             </div>
 
             {/* Preguntas Frecuentes */}
