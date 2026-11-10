@@ -3,12 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Lavado Profundo vs Detallado Automotriz CDMX: Diferencias y Precios ($2,400) | Doctor Foam",
+  title: "Lavado Profundo de Autos ($2,400) vs Detallado Automotriz ($7,499): Diferencias CDMX | Doctor Foam",
   description:
-    "Diferencia real entre lavado profundo interior con vapor a 180°C ($2,400 MXN) y detallado automotriz completo con corrección de pintura y motor ($7,499 MXN | -10% Miembros) a domicilio en CDMX.",
+    "¿Qué incluye un lavado profundo de auto ($2,400 MXN con vapor seco a 180°C y ozono) frente a un detallado automotriz completo ($7,499 MXN | -10% Miembros) a domicilio en CDMX?",
   alternates: { canonical: "https://drfoam.com.mx/blog/lavado-profundo-vs-detallado-automotriz" },
   openGraph: {
-    title: "Lavado Profundo vs Detallado Automotriz en CDMX: Precios y Qué Incluye | Doctor Foam",
+    title: "Lavado Profundo de Autos ($2,400) vs Detallado Automotriz ($7,499) en CDMX | Doctor Foam",
     description: "Compara Lavado de Mantenimiento ($990/mes), Lavado Profundo Interior ($2,400) y Detallado Completo ($7,499) a domicilio en CDMX.",
     type: "article",
   },

@@ -1,6 +1,6 @@
 {
-  "version": "1.41.0-auto",
-  "cycle": 41,
-  "deployedAt": "2026-11-10T02:38:00Z",
-  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #41 — Upgraded all 8 /zonas/[zona] pages (src/app/zonas/[zona]/page.tsx) after organic mobile visitor 6c6cad27 spent 40.2s at 47% scroll depth on /zonas/interlomas: converted 45%-scroll landmark pills into 1-tap WhatsApp quote buttons, added a 47%-scroll QR/Caseta Logistics Conversion Bar, converted car brand badges into 1-tap vehicle quote pills (including Toyota/RAV4), added Member -10% OFF prices & 1-tap booking/WhatsApp buttons to the Services grid, and front-loaded prices in Zone metadata"
+  "version": "1.42.0-auto",
+  "cycle": 42,
+  "deployedAt": "2026-11-10T06:50:45Z",
+  "description": "Autonomous SEO/GEO/CRO Evolution Cycle #42 — Added Precio Miembro (-10% OFF) column & Graphene Shield 10H row to /blog/correccion-pintura-swirls-guia comparison table; added Markdown comparison tables (with automatic Table Conversion Footer Bars) to /blog/desnaturalizacion-termica-180c-fin-extraccion-humeda and /blog/detallado-profesional-multiplicador-financiero-vehiculos-lujo; front-loaded 'Lavado Profundo de Autos ($2,400)' in /blog/lavado-profundo-vs-detallado-automotriz metadata (GSC Pos 7.0)"
 }
