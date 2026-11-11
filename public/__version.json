@@ -1,7 +1,7 @@
 {
-  "version": "1.43.0-auto",
-  "cycle": 43,
-  "deployedAt": "2026-11-10T10:59:30Z",
+  "version": "1.44.0-auto",
+  "cycle": 44,
+  "deployedAt": "2026-11-11T20:18:45Z",
   "status": "autonomous_loop_active",
   "features": [
     "gsc_analytics_sync_tres_raices_isolated_table",
@@ -12,6 +12,7 @@
     "corporativo_and_membresia_faq_jsonld",
     "home_hero_above_fold_price_and_1tap_package_bar",
     "home_hero_direct_booking_and_8_zone_selector",
+    "home_frontloaded_serp_snippet_car_detailing_prices",
     "home_spanish_verified_reviews",
     "reservar_3_step_streamlined_checkout",
     "reservar_auto_member_10pct_query_param",
@@ -22,7 +23,9 @@
     "custom_hero_membresia_luxury_photography",
     "corporate_5page_pdf_brochure_interior_exterior_ceramic",
     "headless_preload_and_scraper_bot_filtering",
+    "zonas_0pct_scroll_mobile_cta_priority_and_multilingual_concierge",
     "zonas_47pct_scroll_landmark_and_qr_caseta_1tap_whatsapp_bars",
-    "blog_all_12_articles_comparison_tables_with_conversion_footer_bars"
+    "blog_responsive_mobile_hero_and_early_30pct_scroll_conversion_tables",
+    "contextual_floating_whatsapp_button_for_zones_and_blog_topics"
   ]
 }

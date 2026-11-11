@@ -314,7 +314,7 @@ const faqs = [
   },
   {
     q: "¿Realizan limpieza de motores de coches y detallado de bahía de motor a domicilio?",
-    a: "Sí. Realizamos limpieza de motores de coches en seco y con vapor industrial a 180°C (5% de humedad), desengrasantes dieléctricos biodegradables y acondicionamiento de plásticos y mangueras sin usar chorros de agua a presión, garantizando cero riesgo para sensores, computadora (ECU), baterías híbridas o sistemas eléctricos. Está incluida en nuestro paquete Signature Detail ($7,449 MXN) o puedes solicitarla al agendar tu detallado a domicilio en CDMX.",
+    a: "Sí. Realizamos limpieza de motores de coches en seco y con vapor industrial a 180°C (5% de humedad), desengrasantes dieléctricos biodegradables y acondicionamiento de plásticos y mangueras sin usar chorros de agua a presión, garantizando cero riesgo para sensores, computadora (ECU), baterías híbridas o sistemas eléctricos. Está incluida en nuestro paquete Signature Detail ($7,449 MXN; $6,704 MXN con Membresía -10%) o puedes solicitarla al agendar tu detallado a domicilio en CDMX.",
   },
   {
     q: "¿En qué consiste el pulido de autos y lavado y encerado de autos a domicilio en CDMX?",

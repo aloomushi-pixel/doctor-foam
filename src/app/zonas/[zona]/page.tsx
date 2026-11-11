@@ -328,35 +328,66 @@ export default async function ZonePage({ params }: PageProps) {
 
             <main style={{ paddingTop: "4.75rem" }}>
                 {/* Hero */}
-                <section className="section-padding" style={{ textAlign: "center", paddingTop: "1.5rem", paddingBottom: "1.35rem" }}>
+                <section className="section-padding" style={{ textAlign: "center", paddingTop: "1.25rem", paddingBottom: "1.25rem" }}>
                     <div className="container">
-                        <span className="section-label" style={{ marginBottom: "0.45rem" }}>{z.fullName} · {z.postalCodes}</span>
-                        <h1 className="section-title" style={{ marginBottom: "0.65rem", fontSize: "clamp(1.65rem, 3.8vw, 2.5rem)" }}>
+                        <span className="section-label" style={{ marginBottom: "0.4rem" }}>{z.fullName} · {z.postalCodes}</span>
+                        <h1 className="section-title" style={{ marginBottom: "0.55rem", fontSize: "clamp(1.55rem, 3.8vw, 2.45rem)" }}>
                             Lavado de Autos a Domicilio y Detallado Automotriz en <span className="gradient-text">{z.name}</span>
                         </h1>
-                        <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "0.95rem", fontSize: "0.95rem" }}>
-                            {z.description}. Unidades móviles 100% autónomas con agua purificada y luz propia sin cargo por traslado.
+                        <p className="section-subtitle" style={{ maxWidth: "680px", marginBottom: "0.85rem", fontSize: "0.92rem", lineHeight: 1.55 }}>
+                            {z.description}. Unidades 100% autónomas con agua purificada por ósmosis inversa y planta eléctrica propia sin cargo por traslado.
                         </p>
 
-                        {/* Above-the-Fold (0% Scroll) Instant Price Summary & Colonia Pills for Mobile Organic Visitors */}
+                        {/* Primary 0%-Scroll Mobile & Desktop Action Buttons */}
+                        <div style={{ display: "flex", gap: "0.6rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "0.85rem" }}>
+                            <a
+                                href={whatsappHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location={`zone_hero_${zona}_whatsapp`}
+                                className="btn-premium"
+                                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)", padding: "0.7rem 1.25rem" }}
+                            >
+                                💬 Cotizar por WhatsApp en {z.name}
+                            </a>
+                            <Link href={`/reservar?zona=${encodeURIComponent(z.name)}`} className="btn-premium" style={{ padding: "0.7rem 1.25rem" }}>
+                                📅 Agendar en {z.name}
+                            </Link>
+                            <a
+                                href="/brochure-doctor-foam.pdf"
+                                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-cta-location={`zone_hero_${zona}_brochure`}
+                                className="btn-outline"
+                                style={{ borderColor: "rgba(37, 99, 235, 0.35)", color: "#1d4ed8", padding: "0.65rem 1rem", fontSize: "0.82rem" }}
+                            >
+                                📄 Brochure PDF
+                            </a>
+                        </div>
+
+                        {/* Above-the-Fold Instant Price Summary, Multilingual Concierge Badge & 1-Tap Colonia Pills */}
                         <div
                             style={{
                                 maxWidth: "780px",
-                                margin: "0 auto 1rem",
-                                padding: "0.7rem 0.95rem",
+                                margin: "0 auto",
+                                padding: "0.65rem 0.9rem",
                                 borderRadius: "0.85rem",
                                 background: "linear-gradient(135deg, rgba(240,253,244,0.95), rgba(239,246,255,0.95))",
                                 border: "1px solid rgba(22,163,74,0.3)",
-                                fontSize: "0.78rem",
+                                fontSize: "0.77rem",
                                 color: "#0f172a",
                                 lineHeight: 1.5,
                             }}
                         >
-                            <div style={{ fontWeight: 800, color: "#15803d", marginBottom: "0.35rem" }}>
-                                💰 Precios a Domicilio en {z.name}: Lavado Profundo Vapor 180°C $2,400 ($2,160 Miembro) · Detailing Completo $7,499 · Membresía $990/mes (+10% OFF fijo)
+                            <div style={{ fontWeight: 800, color: "#15803d", marginBottom: "0.25rem" }}>
+                                💰 Interior Vapor 180°C $2,400 ($2,160 Miembro) · Detailing Completo $7,499 · Membresía $990/mes (+10% OFF fijo)
+                            </div>
+                            <div style={{ fontSize: "0.71rem", color: "#334155", fontWeight: 600, marginBottom: "0.35rem" }}>
+                                ✅ Acceso con registro QR en caseta · Factura CFDI · Concierge ES / EN / FR
                             </div>
                             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem", justifyContent: "center", alignItems: "center" }}>
-                                <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#334155" }}>📍 Toca tu colonia en {z.name}:</span>
+                                <span style={{ fontSize: "0.71rem", fontWeight: 700, color: "#334155" }}>📍 Toca tu colonia:</span>
                                 {z.neighborhoods.slice(0, 7).map((col, idx) => (
                                     <a
                                         key={idx}
@@ -366,12 +397,12 @@ export default async function ZonePage({ params }: PageProps) {
                                         data-cta-location={`zone_hero_pill_${zona}_${idx}`}
                                         style={{
                                             display: "inline-block",
-                                            padding: "0.22rem 0.6rem",
+                                            padding: "0.2rem 0.58rem",
                                             borderRadius: "999px",
                                             background: "#ffffff",
                                             border: "1px solid #86efac",
                                             color: "#14532d",
-                                            fontSize: "0.72rem",
+                                            fontSize: "0.71rem",
                                             fontWeight: 700,
                                             textDecoration: "none",
                                         }}
@@ -380,32 +411,6 @@ export default async function ZonePage({ params }: PageProps) {
                                     </a>
                                 ))}
                             </div>
-                        </div>
-
-                        <div style={{ display: "flex", gap: "0.65rem", justifyContent: "center", flexWrap: "wrap" }}>
-                            <a
-                                href={whatsappHref}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                data-cta-location={`zone_hero_${zona}_whatsapp`}
-                                className="btn-premium"
-                                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
-                            >
-                                💬 Cotizar por WhatsApp en {z.name}
-                            </a>
-                            <Link href={`/reservar?zona=${encodeURIComponent(z.name)}`} className="btn-premium">
-                                📅 Agendar en {z.name}
-                            </Link>
-                            <a
-                                href="/brochure-doctor-foam.pdf"
-                                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn-outline"
-                                style={{ borderColor: "rgba(37, 99, 235, 0.35)", color: "#1d4ed8" }}
-                            >
-                                📄 Brochure PDF
-                            </a>
                         </div>
                     </div>
                 </section>

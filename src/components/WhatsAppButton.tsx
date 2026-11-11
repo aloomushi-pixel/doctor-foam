@@ -7,7 +7,7 @@ function getContextualWhatsAppMessage(pathname: string): string {
         return "Hola Doctor Foam, estoy viendo Lavado Recurrente a Domicilio y me gustaría cotizar para mi auto.";
     }
     if (pathname.startsWith("/membresia-doctor-foam")) {
-        return "Hola Doctor Foam, me interesa la Membresía de Mantenimiento Mensual ($990/mes).";
+        return "Hola Doctor Foam, me interesa la Membresía de Seguimiento ($990/mes + 10% OFF permanente).";
     }
     if (pathname.startsWith("/lavado-profundo-vehiculos-cdmx")) {
         return "Hola Doctor Foam, me interesa un Lavado Profundo de Vestiduras / Detallado Automotriz a domicilio.";
@@ -17,7 +17,19 @@ function getContextualWhatsAppMessage(pathname: string): string {
     }
     if (pathname.startsWith("/zonas/")) {
         const zonaSlug = pathname.replace("/zonas/", "").replace(/-/g, " ");
-        return `Hola Doctor Foam, estoy en ${zonaSlug} y quiero cotizar un servicio de detallado a domicilio.`;
+        return `Hola Doctor Foam, estoy en ${zonaSlug} y quiero cotizar un servicio de detallado a domicilio con agua y luz propia.`;
+    }
+    if (pathname.startsWith("/blog/")) {
+        if (pathname.includes("ceramico") || pathname.includes("ceras") || pathname.includes("polimeros")) {
+            return "Hola Doctor Foam, leí su guía de Recubrimiento Cerámico 9H / Grafeno y quiero cotizar para mi auto a domicilio.";
+        }
+        if (pathname.includes("swirls") || pathname.includes("lluvia-acida") || pathname.includes("errores")) {
+            return "Hola Doctor Foam, quiero cotizar una corrección de pintura y eliminación de swirls a domicilio en CDMX.";
+        }
+        if (pathname.includes("interior") || pathname.includes("180c")) {
+            return "Hola Doctor Foam, quiero cotizar el Lavado Profundo de Interiores con vapor seco a 180°C a domicilio.";
+        }
+        return "Hola Doctor Foam, leí su artículo en el blog y me gustaría cotizar un detallado a domicilio para mi auto.";
     }
     if (pathname.startsWith("/reservar")) {
         return "Hola Doctor Foam, estoy en la página de reservas y me gustaría apoyo para agendar mi cita.";
@@ -38,13 +50,26 @@ function getContextualWhatsAppLabel(pathname: string): string {
             huixquilucan: "Huixquilucan",
             coyoacan: "Coyoacán",
         };
-        if (zoneNames[z]) return `WhatsApp · ${zoneNames[z]}`;
+        if (zoneNames[z]) return `Cotizar en ${zoneNames[z]}`;
     }
-    if (pathname.startsWith("/membresia-doctor-foam")) return "WhatsApp · Membresía";
-    if (pathname.startsWith("/lavado-profundo-vehiculos-cdmx")) return "WhatsApp · Cotizar";
-    if (pathname.startsWith("/lavado-recurrente-autos-domicilio")) return "WhatsApp · Recurrente";
-    if (pathname.startsWith("/lavado-autos-estacionamiento-corporativo")) return "WhatsApp · Corporativo";
-    return "WhatsApp Directo";
+    if (pathname.startsWith("/blog/")) {
+        if (pathname.includes("ceramico") || pathname.includes("ceras") || pathname.includes("polimeros")) {
+            return "Cotizar Cerámico 9H";
+        }
+        if (pathname.includes("swirls") || pathname.includes("lluvia-acida") || pathname.includes("errores")) {
+            return "Cotizar Pulido / Swirls";
+        }
+        if (pathname.includes("interior") || pathname.includes("180c")) {
+            return "Cotizar Interior 180°C";
+        }
+        return "Cotizar a Domicilio";
+    }
+    if (pathname.startsWith("/membresia-doctor-foam")) return "Activar Membresía";
+    if (pathname.startsWith("/lavado-profundo-vehiculos-cdmx")) return "Cotizar Detallado";
+    if (pathname.startsWith("/lavado-recurrente-autos-domicilio")) return "Cotizar Recurrente";
+    if (pathname.startsWith("/lavado-autos-estacionamiento-corporativo")) return "Cotizar Corporativo";
+    if (pathname.startsWith("/reservar")) return "Ayuda para Reservar";
+    return "Cotizar a Domicilio";
 }
 
 export default function WhatsAppButton() {

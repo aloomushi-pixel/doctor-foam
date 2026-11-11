@@ -10,9 +10,9 @@ const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600", "700",
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://drfoam.com.mx"),
-  title: "Detallado Automotriz a Domicilio y Lavado de Autos CDMX | Doctor Foam",
+  title: "Detallado Automotriz a Domicilio y Car Detailing CDMX (Desde $2,499) | Doctor Foam",
   description:
-    "Detallado automotriz a domicilio, lavado de asientos y vestiduras con vapor seco a 180°C, corrección de pintura (swirls) y cerámico 9H en CDMX y EdoMex. Unidad 100% autónoma (agua y luz propia). Lavado profundo desde $2,400 MXN y Membresía desde $990/mes (+10% OFF).",
+    "Car detailing y lavado de asientos con vapor 180°C a domicilio en CDMX ($2,499), corrección swirls ($7,449), cerámico 9H y Membresía $990/mes (-10% OFF). Agua y luz propia.",
   keywords: [
     "detallado automotriz a domicilio",
     "lavado de autos a domicilio",
