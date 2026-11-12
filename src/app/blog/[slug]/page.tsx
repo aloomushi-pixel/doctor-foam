@@ -266,11 +266,11 @@ La protección de vehículos premium en zonas de alta acidez atmosférica requie
         `
     },
     "verdad-recubrimiento-ceramico-9h-autos-premium": {
-        title: "Cerámico 9H para Autos: Qué Significa 9H, Duración y Precio CDMX",
+        title: "Recubrimiento Cerámico 9H: Qué Es, Duración Real y Precio ($10,999 CDMX)",
         date: "2026-05-06",
         category: "Ingeniería de Materiales",
         readTime: "9 min",
-        metaDesc: "¿Qué significa 9H en un recubrimiento cerámico automotriz? Dureza 9H vs Mohs, duración real (3-5 años SiO2) y precio a domicilio en CDMX ($10,999 | -10% Miembros).",
+        metaDesc: "¿Qué significa 9H en recubrimiento cerámico automotriz? Dureza 9H real, 3 a 5 años de garantía SiO2 y precio a domicilio en CDMX ($10,999 | $9,899 Miembro).",
         faqs: [
             {
                 q: "¿Qué significa 9H en un recubrimiento cerámico para autos?",
@@ -385,11 +385,11 @@ Cuando un vehículo presenta un acristalamiento impecable y una limpieza quirúr
         `
     },
     "guia-completa-recubrimiento-ceramico": {
-        title: "Coating Cerámico y Recubrimiento Cerámico para Autos en México: Precios CDMX",
+        title: "Coating Cerámico para Autos en México: Precios 9H y 10H ($10,999 CDMX)",
         date: "2026-05-05",
         category: "Protección",
         readTime: "9 min",
-        metaDesc: "¿Qué es el coating cerámico y recubrimiento cerámico para autos en México? Diferencias 9H vs Grafeno 10H, cerámico para interiores y precios a domicilio CDMX ($10,999 | -10% Miembros).",
+        metaDesc: "Coating cerámico y recubrimiento cerámico para autos en México: 9H ($10,999) vs Grafeno 10H ($14,999) a domicilio en CDMX con garantía escrita (-10% Miembros).",
         faqs: [
             {
                 q: "¿Qué es el recubrimiento cerámico para autos (coating cerámico automotriz)?",
@@ -624,11 +624,11 @@ Para quienes buscan una restauración integral, también realizamos **limpieza d
 /* ─── Fallback articles ─── */
 const defaultContent: Record<string, BlogPostData> = {
     "correccion-pintura-swirls-guia": {
-        title: "Swirls en la Pintura y Micro Rayones: Cómo Quitarlos (85-95%) CDMX",
+        title: "Swirls en la Pintura del Auto: Cómo Quitarlos (95% Real · $7,499 CDMX)",
         date: "2026-05-05",
         category: "Corrección",
         readTime: "9 min",
-        metaDesc: "¿Cómo quitar micro rayones (microrayones) y swirls en la pintura de tu auto? Corrección de pintura a domicilio en CDMX: 85-95% eliminación ($7,499 | -10% Miembros).",
+        metaDesc: "¿Swirls en la pintura y micro rayones en tu auto? Eliminamos 85-95% de swirls a domicilio en CDMX con luz LED CRI 95+ ($7,499 | $6,749 Miembro).",
         faqs: [
             {
                 q: "¿Qué son los swirls (micro swirls) en la pintura de un auto?",
@@ -717,6 +717,67 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
+function getTopicHeroOffer(slug: string, title: string) {
+    if (slug.includes("ceramico") || slug.includes("ceras") || slug.includes("polimeros")) {
+        return {
+            headline: "🛡️ Blindaje Cerámico 9H ($10,999 | $9,899 Miembro) y Grafeno 10H a Domicilio",
+            subline: "Unidad 100% autónoma (agua purificada + luz LED CRI 95+) · Carrocería, rines y cristales con garantía escrita de 3 a 7 años.",
+            primaryWaLabel: "💬 Cotizar Cerámico 9H",
+            primaryWaText: `Hola Doctor Foam, estoy leyendo "${title}" y quiero cotizar Recubrimiento Cerámico 9H / Grafeno 10H a domicilio para mi auto.`,
+            bookingHref: "/reservar?paquete=ceramic-coating",
+            bookingLabel: "📅 Reservar Cerámico",
+            pills: [
+                { label: "🚗 Mi auto es Sedán / Coupé 💬", msg: `Hola Doctor Foam, tengo un Sedán / Coupé y quiero cotizar blindaje Cerámico 9H ($10,999) a domicilio en CDMX.` },
+                { label: "🚙 Mi auto es SUV 2 Filas 💬", msg: `Hola Doctor Foam, tengo una SUV de 2 filas y quiero cotizar blindaje Cerámico 9H / Grafeno 10H a domicilio.` },
+                { label: "🛻 Pick Up / SUV 3 Filas 💬", msg: `Hola Doctor Foam, tengo una Pick Up / SUV de 3 filas y quiero cotizar recubrimiento cerámico a domicilio.` },
+            ],
+        };
+    }
+    if (slug.includes("swirls") || slug.includes("lluvia-acida") || slug.includes("errores")) {
+        return {
+            headline: "💎 Eliminación de 85–95% de Swirls + Interior 180°C: $7,499 ($6,749 Miembro)",
+            subline: "Corrección óptica de 2–3 etapas en tu cochera + sellador cerámico SiO2 de 6 meses (agua purificada y luz propia).",
+            primaryWaLabel: "💬 Cotizar Pulido / Swirls",
+            primaryWaText: `Hola Doctor Foam, estoy leyendo "${title}" y quiero cotizar eliminación de swirls y corrección de pintura a domicilio.`,
+            bookingHref: "/reservar?paquete=signature-detail",
+            bookingLabel: "📅 Reservar Corrección",
+            pills: [
+                { label: "🖤 Pintura Oscura / Negra 💬", msg: `Hola Doctor Foam, mi auto es de pintura oscura con swirls/rayones y quiero cotizar Signature Detail ($7,499) a domicilio.` },
+                { label: "🚙 Cotizar Sedán o SUV 💬", msg: `Hola Doctor Foam, quiero cotizar eliminación de swirls y manchas de agua a domicilio en CDMX.` },
+                { label: "📸 Enviar foto de mi pintura 💬", msg: `Hola Doctor Foam, les comparto foto de la pintura de mi auto para que me recomienden corrección de swirls o cerámico 9H.` },
+            ],
+        };
+    }
+    if (slug.includes("interior") || slug.includes("180c")) {
+        return {
+            headline: "♨️ Lavado Interior Profundo Vapor 180°C + Ozono: $2,400 ($2,160 Miembro)",
+            subline: "Seco en menos de 60 minutos · Esterilización de piel Nappa, tela, alfombra y ductos A/C sin mojar espuma.",
+            primaryWaLabel: "💬 Cotizar Interior $2,400",
+            primaryWaText: `Hola Doctor Foam, estoy leyendo "${title}" y quiero cotizar el Lavado Interior Profundo con vapor a 180°C ($2,400) a domicilio.`,
+            bookingHref: "/reservar?paquete=deep-interior",
+            bookingLabel: "📅 Reservar Interior",
+            pills: [
+                { label: "🪑 Asientos de Piel / Cuero 💬", msg: `Hola Doctor Foam, mi auto tiene asientos de piel y quiero cotizar el Interior Profundo a 180°C ($2,400) a domicilio.` },
+                { label: "🧼 Vestiduras de Tela / Manchas 💬", msg: `Hola Doctor Foam, mi auto tiene asientos de tela con manchas y quiero cotizar lavado profundo con vapor a 180°C.` },
+                { label: "🌬️ Eliminar Olor / Mascotas 💬", msg: `Hola Doctor Foam, necesito sanitización interior con vapor 180°C y ozono médico a domicilio.` },
+            ],
+        };
+    }
+    return {
+        headline: "⚡ Detallado Clínico a Domicilio con Agua Purificada y Luz Propia (Desde $2,400)",
+        subline: "Polanco, Lomas, Santa Fe, Bosques, Interlomas, Huixquilucan y Pedregal · Membresía $990/mes (+10% OFF fijo).",
+        primaryWaLabel: "💬 Cotizar por WhatsApp",
+        primaryWaText: `Hola Doctor Foam, leí su guía "${title}" y me gustaría cotizar un servicio a domicilio para mi auto.`,
+        bookingHref: "/reservar",
+        bookingLabel: "📅 Ver Paquetes",
+        pills: [
+            { label: "🚗 Cotizar Sedán / Coupé 💬", msg: `Hola Doctor Foam, tengo un Sedán / Coupé y quiero cotizar detallado a domicilio con agua y luz propia.` },
+            { label: "🚙 Cotizar SUV / Camioneta 💬", msg: `Hola Doctor Foam, tengo una SUV / Camioneta y quiero cotizar detallado profundo a domicilio.` },
+            { label: "🔄 Info Membresía (-10% OFF) 💬", msg: `Hola Doctor Foam, quiero información del primer Lavado Profundo + Membresía de Seguimiento ($990/mes + 10% OFF).` },
+        ],
+    };
+}
+
 export default async function BlogPost({ params }: PageProps) {
     const { slug } = await params;
     const post = allContent[slug];
@@ -776,9 +837,8 @@ export default async function BlogPost({ params }: PageProps) {
         })),
     };
 
-    const whatsappText = encodeURIComponent(
-        `Hola Doctor Foam, leí su guía "${post.title}" y me gustaría cotizar un servicio a domicilio para mi auto`
-    );
+    const heroOffer = getTopicHeroOffer(slug, post.title);
+    const whatsappText = encodeURIComponent(heroOffer.primaryWaText);
 
     return (
         <>
@@ -818,72 +878,101 @@ export default async function BlogPost({ params }: PageProps) {
                 </div>
             </nav>
 
-            <main style={{ paddingTop: "6rem" }}>
-                <article className="section-padding" style={{ maxWidth: "800px", margin: "0 auto" }}>
-                    <div style={{ marginBottom: "2rem" }}>
-                        <Link href="/blog" style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.9rem" }}>
+            <main style={{ paddingTop: "5rem" }}>
+                <article className="section-padding" style={{ maxWidth: "800px", margin: "0 auto", paddingTop: "1.1rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
+                        <Link href="/blog" style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.84rem", fontWeight: 600 }}>
                             ← Volver al blog
                         </Link>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.65rem", flexWrap: "wrap" }}>
+                            <span className="zone-tag zone-tag-gold" style={{ fontSize: "0.74rem", padding: "0.2rem 0.65rem" }}>{post.category}</span>
+                            <span style={{ color: "#64748b", fontSize: "0.8rem" }}>{post.readTime}</span>
+                            <span style={{ color: "#64748b", fontSize: "0.8rem" }}>
+                                {new Date(post.date).toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}
+                            </span>
+                        </div>
                     </div>
 
-                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
-                        <span className="zone-tag zone-tag-gold">{post.category}</span>
-                        <span style={{ color: "#64748b", fontSize: "0.85rem" }}>{post.readTime} de lectura</span>
-                        <span style={{ color: "#64748b", fontSize: "0.85rem" }}>
-                            {new Date(post.date).toLocaleDateString("es-MX", { year: "numeric", month: "long", day: "numeric" })}
-                        </span>
-                    </div>
-
-                    <h1 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", marginBottom: "1.5rem", lineHeight: "1.3", color: "#0f172a" }}>
+                    <h1 style={{ fontSize: "clamp(1.55rem, 3.8vw, 2.35rem)", marginBottom: "0.9rem", lineHeight: "1.25", color: "#0f172a" }}>
                         {post.title}
                     </h1>
 
-                    {/* Quick Action Bar above the fold for immediate conversion */}
+                    {/* Topic-Matched 0%-Scroll Conversion Card + 1-Tap Micro-Commitment Pills */}
                     <div
                         style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            flexWrap: "wrap",
-                            gap: "0.75rem",
-                            padding: "1rem 1.25rem",
-                            marginBottom: "2rem",
+                            padding: "0.95rem 1.1rem",
+                            marginBottom: "1.35rem",
                             borderRadius: "0.9rem",
-                            background: "linear-gradient(135deg, rgba(240, 253, 244, 0.95), rgba(239, 246, 255, 0.95))",
-                            border: "1px solid rgba(34, 197, 94, 0.28)",
+                            background: "linear-gradient(135deg, rgba(240, 253, 244, 0.96), rgba(239, 246, 255, 0.96))",
+                            border: "1.5px solid rgba(22, 163, 74, 0.32)",
+                            boxShadow: "0 4px 16px rgba(15, 23, 42, 0.04)",
                         }}
                     >
-                        <div style={{ fontSize: "0.88rem", color: "#0f172a" }}>
-                            <strong>¿Tu auto necesita atención profesional a domicilio en CDMX y EdoMex?</strong>
-                            <span style={{ display: "block", fontSize: "0.8rem", color: "#475569", marginTop: "0.15rem" }}>
-                                Unidad 100% autónoma (agua purificada y luz propia) · <strong>Lavado Profundo Vapor 180°C: $2,400</strong> ($2,160 Miembro) · <strong>Corrección Swirls: $7,499</strong> · <strong>Cerámico 9H: $10,999</strong> · <strong>Membresía: $990/mes (+10% OFF fijo)</strong>
-                            </span>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.7rem", marginBottom: "0.7rem" }}>
+                            <div style={{ flex: "1 1 280px" }}>
+                                <div style={{ fontSize: "0.92rem", fontWeight: 800, color: "#0f172a" }}>
+                                    {heroOffer.headline}
+                                </div>
+                                <div style={{ fontSize: "0.78rem", color: "#475569", marginTop: "0.15rem" }}>
+                                    {heroOffer.subline}
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", alignItems: "center" }}>
+                                <a
+                                    href={`https://wa.me/525610846022?text=${whatsappText}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-cta-location={`blog_${slug}_top_whatsapp`}
+                                    className="btn-premium"
+                                    style={{ padding: "0.5rem 0.95rem", fontSize: "0.8rem", background: "linear-gradient(135deg, #16a34a, #15803d)" }}
+                                >
+                                    {heroOffer.primaryWaLabel}
+                                </a>
+                                <Link href={heroOffer.bookingHref} className="btn-outline" style={{ padding: "0.48rem 0.9rem", fontSize: "0.78rem", fontWeight: 700 }}>
+                                    {heroOffer.bookingLabel}
+                                </Link>
+                                <a
+                                    href="/brochure-doctor-foam.pdf"
+                                    download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-cta-location={`blog_${slug}_top_brochure_pdf`}
+                                    className="btn-outline"
+                                    style={{ padding: "0.48rem 0.85rem", fontSize: "0.76rem", borderColor: "#2563eb", color: "#2563eb" }}
+                                >
+                                    📄 Brochure PDF
+                                </a>
+                            </div>
                         </div>
-                        <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
-                            <a
-                                href={`https://wa.me/525610846022?text=${whatsappText}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                data-cta-location={`blog_${slug}_top_whatsapp`}
-                                className="btn-premium"
-                                style={{ padding: "0.5rem 1rem", fontSize: "0.8rem", background: "linear-gradient(135deg, #16a34a, #15803d)" }}
-                            >
-                                💬 Cotizar por WhatsApp
-                            </a>
-                            <Link href="/reservar" className="btn-outline" style={{ padding: "0.5rem 1rem", fontSize: "0.8rem" }}>
-                                📅 Ver Precios
-                            </Link>
-                            <a
-                                href="/brochure-doctor-foam.pdf"
-                                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                data-cta-location={`blog_${slug}_top_brochure_pdf`}
-                                className="btn-outline"
-                                style={{ padding: "0.5rem 1rem", fontSize: "0.8rem", borderColor: "#2563eb", color: "#2563eb" }}
-                            >
-                                📄 Brochure PDF
-                            </a>
+
+                        {/* 1-Tap Micro-Commitment Vehicle / Need Pills (Modeled on Winning Zona Colonia Pills) */}
+                        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.4rem", paddingTop: "0.6rem", borderTop: "1px dashed rgba(148, 163, 184, 0.45)" }}>
+                            <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "#15803d", textTransform: "uppercase", letterSpacing: "0.03em", marginRight: "0.15rem" }}>
+                                ⚡ 1 Clic en WhatsApp:
+                            </span>
+                            {heroOffer.pills.map((pill, idx) => (
+                                <a
+                                    key={idx}
+                                    href={`https://wa.me/525610846022?text=${encodeURIComponent(pill.msg)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-cta-location={`blog_${slug}_hero_pill_${idx + 1}`}
+                                    style={{
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        padding: "0.3rem 0.7rem",
+                                        borderRadius: "9999px",
+                                        background: "#ffffff",
+                                        border: "1px solid #86efac",
+                                        color: "#15803d",
+                                        fontSize: "0.75rem",
+                                        fontWeight: 700,
+                                        textDecoration: "none",
+                                    }}
+                                >
+                                    {pill.label}
+                                </a>
+                            ))}
                         </div>
                     </div>
 

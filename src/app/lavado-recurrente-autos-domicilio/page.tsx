@@ -121,25 +121,54 @@ export default function LavadoRecurrentePage() {
         </div>
       </nav>
 
-      <main style={{ paddingTop: "6rem" }}>
+      <main style={{ paddingTop: "5rem" }}>
         {/* Hero */}
-        <section className="section-padding" style={{ textAlign: "center", paddingBottom: "2rem" }}>
+        <section className="section-padding" style={{ textAlign: "center", paddingTop: "1.2rem", paddingBottom: "1.5rem" }}>
           <div className="container">
             <span className="section-label">Mantenimiento Premium desde $990/mes</span>
-            <h1 className="section-title">
+            <h1 className="section-title" style={{ marginBottom: "0.75rem" }}>
               Lavado Recurrente para Vehículos a Domicilio: <span className="gradient-text">Mantenimiento Premium</span>
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "760px", marginBottom: "1.25rem" }}>
+            <p className="section-subtitle" style={{ maxWidth: "760px", marginBottom: "1.05rem" }}>
               Tu auto merece un cuidado constante, no esporádico. Nuestro programa de <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link> recurrente está diseñado para <strong>darle seguimiento continuo a tu primer servicio de lavado profundo</strong> con el estándar clínico de Doctor Foam.
             </p>
+
+            {/* Primary 0%-Scroll Mobile CTAs Placed BEFORE the 2-Step Card */}
+            <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "1.2rem" }}>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20activar%20el%20lavado%20recurrente%20a%20domicilio%20(empezando%20con%20mi%20primer%20lavado%20profundo)"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="pillar_recurrente_hero_whatsapp"
+                className="btn-premium"
+                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
+              >
+                💬 Cotizar Plan por WhatsApp
+              </a>
+              <Link href="/reservar?paquete=deep-interior" className="btn-premium">
+                📅 1. Agendar Lavado Profundo Inicial
+              </Link>
+              <Link href="/membresia-doctor-foam" className="btn-outline" style={{ borderColor: "#2563eb", color: "#1d4ed8", fontWeight: 700 }}>
+                🔄 Ver Membresía ($990/mes)
+              </Link>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline"
+              >
+                📄 Brochure PDF
+              </a>
+            </div>
 
             {/* Regla de Negocio: Paso 1 Lavado Profundo -> Paso 2 Membresía Recurrente + 10% OFF */}
             <div
               className="glass-card"
               style={{
                 maxWidth: "860px",
-                margin: "0 auto 1.5rem",
-                padding: "1.2rem 1.4rem",
+                margin: "0 auto",
+                padding: "1.1rem 1.3rem",
                 textAlign: "left",
                 border: "1.5px solid rgba(37, 99, 235, 0.25)",
                 background: "linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(16, 185, 129, 0.05))",
@@ -163,33 +192,6 @@ export default function LavadoRecurrentePage() {
                   </p>
                 </div>
               </div>
-            </div>
-
-            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/reservar?paquete=deep-interior" className="btn-premium">
-                📅 1. Agendar Lavado Profundo Inicial
-              </Link>
-              <Link href="/membresia-doctor-foam" className="btn-outline" style={{ borderColor: "#2563eb", color: "#1d4ed8", fontWeight: 700 }}>
-                🔄 Ver Membresía ($990/mes)
-              </Link>
-              <a
-                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20activar%20el%20lavado%20recurrente%20a%20domicilio%20(empezando%20con%20mi%20primer%20lavado%20profundo)"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cta-location="pillar_recurrente_hero_whatsapp"
-                className="btn-outline"
-              >
-                💬 WhatsApp Directo
-              </a>
-              <a
-                href="/brochure-doctor-foam.pdf"
-                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline"
-              >
-                📄 Brochure PDF
-              </a>
             </div>
           </div>
         </section>

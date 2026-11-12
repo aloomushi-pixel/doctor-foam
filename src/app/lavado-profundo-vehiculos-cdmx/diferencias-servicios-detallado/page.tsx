@@ -182,37 +182,33 @@ export default function DiferenciasServiciosPage() {
         </div>
       </nav>
 
-      <main style={{ paddingTop: "6rem" }}>
-        <section className="section-padding" style={{ textAlign: "center", paddingBottom: "1.75rem" }}>
+      <main style={{ paddingTop: "5rem" }}>
+        <section className="section-padding" style={{ textAlign: "center", paddingTop: "1.15rem", paddingBottom: "1.5rem" }}>
           <div className="container">
-            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.9rem" }}>
+            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.86rem", fontWeight: 600 }}>
               ← Volver a Lavado Profundo
             </Link>
-            <h1 className="section-title" style={{ marginTop: "1.5rem" }}>
+            <h1 className="section-title" style={{ marginTop: "0.65rem", marginBottom: "0.75rem" }}>
               Detallado de Interiores de Autos, <span className="gradient-text">Interior Profundo</span> y Lavado de Vestiduras
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "740px", marginBottom: "1.25rem" }}>
+            <p className="section-subtitle" style={{ maxWidth: "740px", marginBottom: "1rem" }}>
               No toda &ldquo;limpieza de interiores de autos&rdquo; ni &ldquo;lavado de vestiduras&rdquo; es igual. Descubre qué incluye nuestro <strong>detallado interior automotriz</strong> con vapor seco a 180°C y cómo se diferencia del autolavado tradicional en nuestro <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>servicio a domicilio en CDMX</Link>.
             </p>
 
-            {/* Above-the-Fold Price Summary Pill */}
-            <div style={{ maxWidth: "820px", margin: "0 auto 1.35rem", padding: "0.75rem 1.1rem", borderRadius: "0.85rem", background: "linear-gradient(135deg, #f0fdf4, #eff6ff)", border: "1px solid #86efac", fontSize: "0.84rem", color: "#0f172a" }}>
-              ⚡ <strong>Interior Profundo Vapor 180°C: $2,400 MXN</strong> <span style={{ color: "#15803d", fontWeight: 700 }}>($2,160 Miembro)</span> · <strong>Signature Detail + Motor: $7,499 MXN</strong> <span style={{ color: "#15803d", fontWeight: 700 }}>($6,749 Miembro)</span> · <strong>Cerámico 9H: $10,999 MXN</strong> · <strong>Membresía: $990/mes (+10% OFF fijo)</strong>
-            </div>
-
-            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/reservar?paquete=deep-interior" className="btn-premium">
-                📅 Reservar Interior Profundo ($2,400)
-              </Link>
+            <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "0.9rem" }}>
               <a
-                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20saber%20qu%C3%A9%20paquete%20de%20lavado%20de%20vestiduras%20o%20detallado%20me%20recomiendan"
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20quiero%20cotizar%20el%20Detallado%20de%20Interiores%20Profundo%20con%20vapor%20a%20180%C2%B0C%20(%242%2C400)%20a%20domicilio"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cta-location="cluster_diferencias_hero_whatsapp"
-                className="btn-outline"
+                className="btn-premium"
+                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
               >
-                💬 Preguntar por WhatsApp
+                💬 Cotizar Interior Profundo ($2,400)
               </a>
+              <Link href="/reservar?paquete=deep-interior" className="btn-premium">
+                📅 Reservar en Línea ($2,400)
+              </Link>
               <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-outline">
                 📋 Ver Todos los Paquetes
               </Link>
@@ -227,6 +223,43 @@ export default function DiferenciasServiciosPage() {
               >
                 📄 Brochure PDF
               </a>
+            </div>
+
+            {/* 1-Tap Micro-Commitment Pills inside 0%-Scroll Hero */}
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "0.45rem", marginBottom: "1rem" }}>
+              <span style={{ fontSize: "0.74rem", fontWeight: 800, color: "#15803d", textTransform: "uppercase" }}>⚡ Cotización en 1 Clic:</span>
+              {[
+                { label: "🪑 Asientos de Piel / Cuero 💬", msg: "Hola Doctor Foam, mi auto tiene asientos de piel y quiero cotizar el Detallado Interior Profundo a 180°C ($2,400) a domicilio." },
+                { label: "🧼 Vestiduras de Tela / Manchas 💬", msg: "Hola Doctor Foam, mi auto tiene vestiduras de tela y quiero cotizar lavado profundo con vapor a 180°C ($2,400) a domicilio." },
+                { label: "💎 Interior + Pulido + Motor ($7,499) 💬", msg: "Hola Doctor Foam, me interesa el paquete completo Signature Detail ($7,499: interior 180°C + corrección de pintura + motor) a domicilio." },
+              ].map((p, idx) => (
+                <a
+                  key={idx}
+                  href={`https://wa.me/525610846022?text=${encodeURIComponent(p.msg)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cta-location={`cluster_diferencias_hero_pill_${idx + 1}`}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    padding: "0.32rem 0.75rem",
+                    borderRadius: "9999px",
+                    background: "#f0fdf4",
+                    border: "1px solid #86efac",
+                    color: "#15803d",
+                    fontSize: "0.76rem",
+                    fontWeight: 700,
+                    textDecoration: "none",
+                  }}
+                >
+                  {p.label}
+                </a>
+              ))}
+            </div>
+
+            {/* Above-the-Fold Price Summary Pill */}
+            <div style={{ maxWidth: "820px", margin: "0 auto", padding: "0.7rem 1.05rem", borderRadius: "0.85rem", background: "linear-gradient(135deg, #f0fdf4, #eff6ff)", border: "1px solid #86efac", fontSize: "0.82rem", color: "#0f172a" }}>
+              ⚡ <strong>Interior Profundo Vapor 180°C: $2,400 MXN</strong> <span style={{ color: "#15803d", fontWeight: 700 }}>($2,160 Miembro)</span> · <strong>Signature Detail + Motor: $7,499 MXN</strong> <span style={{ color: "#15803d", fontWeight: 700 }}>($6,749 Miembro)</span> · <strong>Cerámico 9H: $10,999 MXN</strong> · <strong>Membresía: $990/mes (+10% OFF fijo)</strong>
             </div>
           </div>
         </section>
@@ -419,18 +452,19 @@ export default function DiferenciasServiciosPage() {
                 ¿Listo para ver la <span className="gradient-text">diferencia real</span>?
               </h2>
               <p style={{ color: "#475569", marginBottom: "1.5rem" }}>Compara nuestros paquetes con precios detallados.</p>
-              <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-                <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-premium">📋 Ver Paquetes y Precios</Link>
-                <Link href="/reservar" className="btn-outline">📅 Agendar Servicio</Link>
+              <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
                 <a
-                  href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20vi%20la%20comparativa%20de%20servicios%20y%20quiero%20cotizar%20para%20mi%20auto"
+                  href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20vi%20la%20comparativa%20de%20detallado%20de%20interiores%20y%20quiero%20cotizar%20para%20mi%20auto%20a%20domicilio"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cta-location="cluster_diferencias_bottom_whatsapp"
-                  className="btn-outline"
+                  className="btn-premium"
+                  style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
                 >
-                  💬 Cotizar por WhatsApp
+                  💬 Cotizar por WhatsApp Ahora
                 </a>
+                <Link href="/reservar?paquete=deep-interior" className="btn-premium">📅 Reservar Interior ($2,400)</Link>
+                <Link href="/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz" className="btn-outline">📋 Ver Paquetes y Precios</Link>
               </div>
             </div>
           </div>

@@ -93,21 +93,20 @@ export default function BlogLavadoProfundoVsDetallado() {
         </div>
       </nav>
 
-      <main style={{ paddingTop: "6rem" }}>
-        <article className="section-padding" style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <div style={{ marginBottom: "2rem" }}>
-            <Link href="/blog" style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.9rem" }}>
+      <main style={{ paddingTop: "5rem" }}>
+        <article className="section-padding" style={{ maxWidth: "800px", margin: "0 auto", paddingTop: "1.1rem" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
+            <Link href="/blog" style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.85rem", fontWeight: 600 }}>
               ← Volver al blog
             </Link>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
+              <span className="zone-tag zone-tag-gold" style={{ fontSize: "0.74rem", padding: "0.2rem 0.65rem" }}>Educación</span>
+              <span style={{ color: "#64748b", fontSize: "0.8rem" }}>8 min de lectura</span>
+            </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}>
-            <span className="zone-tag zone-tag-gold">Educación</span>
-            <span style={{ color: "#64748b", fontSize: "0.85rem" }}>8 min de lectura</span>
-          </div>
-
-          <h1 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", marginBottom: "1.25rem", lineHeight: "1.3" }}>
-            Lavado Profundo vs Detallado Automotriz en CDMX: ¿Cuál Necesitas y Cuánto Cuesta?
+          <h1 style={{ fontSize: "clamp(1.55rem, 3.8vw, 2.35rem)", marginBottom: "0.95rem", lineHeight: "1.25" }}>
+            Lavado Profundo ($2,400) vs Detallado Automotriz ($7,499) en CDMX: ¿Cuál Necesitas?
           </h1>
 
           {/* Above-the-Fold 3-Level Price & 1-Tap Comparison Strip */}

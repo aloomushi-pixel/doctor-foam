@@ -66,8 +66,10 @@ function getContextualWhatsAppLabel(pathname: string): string {
         return "Cotizar a Domicilio";
     }
     if (pathname.startsWith("/membresia-doctor-foam")) return "Activar Membresía";
+    if (pathname.startsWith("/lavado-profundo-vehiculos-cdmx/diferencias-servicios-detallado")) return "Cotizar Interior $2,400";
+    if (pathname.startsWith("/lavado-profundo-vehiculos-cdmx/paquetes-detallado-automotriz")) return "Cotizar Paquete";
     if (pathname.startsWith("/lavado-profundo-vehiculos-cdmx")) return "Cotizar Detallado";
-    if (pathname.startsWith("/lavado-recurrente-autos-domicilio")) return "Cotizar Recurrente";
+    if (pathname.startsWith("/lavado-recurrente-autos-domicilio")) return "Plan $990/mes · WhatsApp";
     if (pathname.startsWith("/lavado-autos-estacionamiento-corporativo")) return "Cotizar Corporativo";
     if (pathname.startsWith("/reservar")) return "Ayuda para Reservar";
     return "Cotizar a Domicilio";

@@ -1,7 +1,7 @@
 {
-  "version": "1.46.0-auto",
-  "cycle": 46,
-  "deployedAt": "2026-11-12T09:22:00Z",
+  "version": "1.47.0-auto",
+  "cycle": 47,
+  "deployedAt": "2026-11-12T13:38:00Z",
   "status": "autonomous_loop_active",
   "features": [
     "gsc_analytics_sync_tres_raices_isolated_table",
@@ -28,8 +28,9 @@
     "headless_preload_and_scraper_bot_filtering",
     "zonas_all_colonias_0pct_scroll_whatsapp_pills_and_autolavado_interlomas_seo",
     "zonas_47pct_scroll_landmark_and_qr_caseta_1tap_whatsapp_bars",
-    "paquetes_mobile_0pct_scroll_whatsapp_priority_and_compact_hero",
+    "paquetes_and_diferencias_and_recurrente_0pct_scroll_whatsapp_ctas",
+    "blog_topic_matched_0pct_scroll_1tap_micro_commitment_pills",
     "blog_responsive_mobile_hero_and_early_30pct_scroll_conversion_tables",
-    "contextual_floating_whatsapp_button_for_zones_and_blog_topics"
+    "contextual_floating_whatsapp_button_for_zones_clusters_and_blog_topics"
   ]
 }
