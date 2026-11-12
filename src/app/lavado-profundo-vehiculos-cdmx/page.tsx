@@ -164,30 +164,31 @@ export default function LavadoProfundoPage() {
         </div>
       </nav>
 
-      <main style={{ paddingTop: "6rem" }}>
+      <main style={{ paddingTop: "4.75rem" }}>
         {/* Hero */}
-        <section className="section-padding" style={{ textAlign: "center", paddingBottom: "2.25rem" }}>
+        <section className="section-padding" style={{ textAlign: "center", paddingTop: "1.5rem", paddingBottom: "1.5rem" }}>
           <div className="container">
-            <span className="section-label">Restauración Premium en CDMX y EdoMex</span>
-            <h1 className="section-title">
+            <span className="section-label" style={{ marginBottom: "0.45rem" }}>Restauración Premium en CDMX y EdoMex</span>
+            <h1 className="section-title" style={{ marginBottom: "0.7rem", fontSize: "clamp(1.7rem, 4vw, 2.75rem)" }}>
               Lavado Profundo de Vehículos y Vestiduras: <span className="gradient-text">Detallado y Restauración</span> a Domicilio
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "750px", marginBottom: "1.75rem" }}>
-              No somos un autolavado. Somos un estudio clínico de estética automotriz portátil que lleva el mejor <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link>, limpieza de asientos con vapor a 180°C, corrección de pintura y cerámico 9H sin usar tu agua ni electricidad.
+            <p className="section-subtitle" style={{ maxWidth: "750px", marginBottom: "1.1rem", fontSize: "0.96rem", lineHeight: 1.6 }}>
+              Estudio clínico de estética automotriz portátil: llevamos el mejor <Link href="/" style={{ color: "var(--color-gold-400)", textDecoration: "underline" }}>lavado de autos a domicilio</Link>, limpieza de asientos con vapor seco a 180°C, corrección de pintura y cerámico 9H sin usar tu agua ni electricidad.
             </p>
-            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/reservar" className="btn-premium">
-                💳 Reservar Paquete en Línea
-              </Link>
+            <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
               <a
                 href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20cotizar%20un%20lavado%20profundo%20de%20vestiduras%20o%20detallado%20a%20domicilio"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cta-location="pillar_profundo_hero_whatsapp"
-                className="btn-outline"
+                className="btn-premium"
+                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
               >
                 💬 Cotizar por WhatsApp
               </a>
+              <Link href="/reservar?paquete=deep-interior" className="btn-premium">
+                💳 Reservar Paquete ($2,400)
+              </Link>
               <a
                 href="/brochure-doctor-foam.pdf"
                 download="Brochure-Corporativo-Doctor-Foam-2026.pdf"

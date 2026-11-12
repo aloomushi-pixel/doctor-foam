@@ -440,6 +440,30 @@ export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [grapheneUpgrade, setGrapheneUpgrade] = useState(false);
+  const [aiSourceName, setAiSourceName] = useState<string | null>(null);
+
+  /* Detect AI / GEO referral (e.g. ?utm_source=chatgpt.com) for instant Concierge Fast-Track */
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const utm = (params.get("utm_source") || "").toLowerCase();
+      const ref = (document.referrer || "").toLowerCase();
+      const combined = `${utm} ${ref}`;
+      if (combined.includes("chatgpt") || combined.includes("openai")) {
+        setAiSourceName("ChatGPT");
+      } else if (combined.includes("perplexity")) {
+        setAiSourceName("Perplexity");
+      } else if (combined.includes("gemini") || combined.includes("bard")) {
+        setAiSourceName("Google Gemini");
+      } else if (combined.includes("claude") || combined.includes("anthropic")) {
+        setAiSourceName("Claude");
+      } else if (combined.includes("copilot")) {
+        setAiSourceName("Copilot");
+      }
+    } catch {
+      // ignore URL parsing errors
+    }
+  }, []);
 
   /* Scroll listener for navbar */
   useEffect(() => {
@@ -554,21 +578,112 @@ export default function HomePage() {
         <div className="hero-glow hero-glow-blue" style={{ zIndex: 1 }} />
 
         <div className="container" style={{ position: "relative", zIndex: 10, textAlign: "center" }}>
-          <div className="animate-on-scroll">
-            <span className="section-label" style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)", color: "#93c5fd" }}>Detallado Automotriz Premium a Domicilio · Car Detailing CDMX</span>
-            <h1 className="section-title" style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)", marginBottom: "1.25rem", maxWidth: "920px", marginLeft: "auto", marginRight: "auto", color: "#ffffff" }}>
+          <div>
+            {aiSourceName && (
+              <div
+                style={{
+                  maxWidth: "820px",
+                  margin: "0 auto 0.85rem",
+                  padding: "0.55rem 0.95rem",
+                  borderRadius: "0.85rem",
+                  background: "linear-gradient(135deg, rgba(22, 163, 74, 0.92), rgba(15, 23, 42, 0.92))",
+                  border: "1px solid rgba(134, 239, 172, 0.6)",
+                  boxShadow: "0 8px 24px rgba(15, 23, 42, 0.35)",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.5rem 0.85rem",
+                  color: "#ffffff",
+                  fontSize: "0.8rem",
+                }}
+              >
+                <span style={{ fontWeight: 700 }}>
+                  ✨ Recomendado en {aiSourceName} · Unidad 100% Autónoma en CDMX y Huixquilucan
+                </span>
+                <div style={{ display: "flex", gap: "0.45rem", flexWrap: "wrap" }}>
+                  <a
+                    href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, los vi recomendados en ${aiSourceName} y quiero cotizar un detallado a domicilio.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cta-location="hero_ai_geo_whatsapp"
+                    style={{
+                      background: "#ffffff",
+                      color: "#14532d",
+                      fontWeight: 800,
+                      fontSize: "0.76rem",
+                      padding: "0.32rem 0.8rem",
+                      borderRadius: "9999px",
+                      textDecoration: "none",
+                    }}
+                  >
+                    💬 Cotizar en 15s por WhatsApp
+                  </a>
+                  <Link
+                    href="/reservar"
+                    data-cta-location="hero_ai_geo_reservar"
+                    style={{
+                      background: "rgba(37, 99, 235, 0.95)",
+                      color: "#ffffff",
+                      fontWeight: 800,
+                      fontSize: "0.76rem",
+                      padding: "0.32rem 0.8rem",
+                      borderRadius: "9999px",
+                      border: "1px solid rgba(191, 219, 254, 0.6)",
+                      textDecoration: "none",
+                    }}
+                  >
+                    📅 Ver Agenda y Precios
+                  </Link>
+                </div>
+              </div>
+            )}
+
+            <span className="section-label" style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)", color: "#93c5fd", marginBottom: "0.65rem" }}>Detallado Automotriz Premium a Domicilio · Car Detailing CDMX</span>
+            <h1 className="section-title" style={{ fontSize: "clamp(1.95rem, 5vw, 3.9rem)", marginBottom: "0.85rem", maxWidth: "920px", marginLeft: "auto", marginRight: "auto", color: "#ffffff", lineHeight: 1.15 }}>
               Lavado de Autos a Domicilio en CDMX: <span className="gradient-text">Detallado Automotriz Premium</span>
             </h1>
-            <p style={{ fontSize: "1.12rem", color: "rgba(255,255,255,0.9)", maxWidth: "780px", margin: "0 auto 1.35rem", lineHeight: "1.75" }}>
-              Llevamos el estudio de estética automotriz hasta tu casa u oficina con agua purificada y luz propia: <strong>lavado de asientos de auto y vestiduras con vapor seco a 180°C</strong>, <strong>corrección de pintura</strong>, <strong>limpieza de motores</strong> y <strong>recubrimiento cerámico 9H</strong> en un solo día.
+            <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.08rem)", color: "rgba(255,255,255,0.92)", maxWidth: "780px", margin: "0 auto 1.05rem", lineHeight: "1.6" }}>
+              Estudio móvil 100% autónomo (agua purificada y luz propia): <strong>lavado de asientos con vapor seco a 180°C</strong>, <strong>corrección de pintura</strong>, <strong>limpieza de motores</strong> y <strong>cerámico 9H</strong> en un solo día.
             </p>
+
+            {/* Primary 0%-Scroll Action Buttons (Visible on 542px-734px mobile & split-screen viewports) */}
+            <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "1rem" }}>
+              <a
+                href={`https://wa.me/525610846022?text=${encodeURIComponent(aiSourceName ? `Hola Doctor Foam, los encontré en ${aiSourceName} y me interesa cotizar un servicio de detallado a domicilio` : "Hola Doctor Foam, me interesa cotizar un servicio de detallado a domicilio")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="hero_cta"
+                className="btn-premium"
+                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)", boxShadow: "0 6px 22px rgba(22, 163, 74, 0.4)" }}
+              >
+                💬 Cotizar por WhatsApp
+              </a>
+              <Link href="/reservar" className="btn-premium">
+                📅 Reservar y Pagar en Línea
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+              <a
+                href="/brochure-doctor-foam.pdf"
+                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="hero_brochure_pdf"
+                className="btn-outline"
+                style={{ color: "#ffffff", borderColor: "rgba(147, 197, 253, 0.45)", background: "rgba(37, 99, 235, 0.22)" }}
+              >
+                📄 Brochure PDF
+              </a>
+            </div>
 
             {/* Above-the-Fold 0%-Scroll Price & 1-Tap Package Bar */}
             <div
               style={{
                 maxWidth: "860px",
-                margin: "0 auto 1.5rem",
-                padding: "0.7rem 1rem",
+                margin: "0 auto 1rem",
+                padding: "0.6rem 0.9rem",
                 borderRadius: "0.9rem",
                 background: "rgba(15, 23, 42, 0.68)",
                 border: "1px solid rgba(56, 189, 248, 0.35)",
@@ -577,52 +692,23 @@ export default function HomePage() {
                 flexWrap: "wrap",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "0.45rem 0.75rem",
-                fontSize: "0.8rem",
+                gap: "0.4rem 0.65rem",
+                fontSize: "0.78rem",
                 color: "#f8fafc",
               }}
             >
-              <Link href="/reservar?paquete=deep-interior" style={{ color: "#f8fafc", textDecoration: "none", background: "rgba(255,255,255,0.08)", padding: "0.28rem 0.65rem", borderRadius: "9999px", border: "1px solid rgba(255,255,255,0.18)" }}>
+              <Link href="/reservar?paquete=deep-interior" style={{ color: "#f8fafc", textDecoration: "none", background: "rgba(255,255,255,0.08)", padding: "0.26rem 0.62rem", borderRadius: "9999px", border: "1px solid rgba(255,255,255,0.18)" }}>
                 ♨️ <strong>Interior Vapor 180°C: $2,499</strong> <span style={{ color: "#86efac" }}>($2,249 Miembro)</span>
               </Link>
-              <Link href="/reservar?paquete=signature-detail" style={{ color: "#f8fafc", textDecoration: "none", background: "rgba(37,99,235,0.32)", padding: "0.28rem 0.65rem", borderRadius: "9999px", border: "1px solid rgba(147,197,253,0.4)" }}>
+              <Link href="/reservar?paquete=signature-detail" style={{ color: "#f8fafc", textDecoration: "none", background: "rgba(37,99,235,0.32)", padding: "0.26rem 0.62rem", borderRadius: "9999px", border: "1px solid rgba(147,197,253,0.4)" }}>
                 💎 <strong>Signature + Motor: $7,449</strong> <span style={{ color: "#86efac" }}>($6,704 Miembro)</span>
               </Link>
-              <Link href="/reservar?paquete=ceramic-coating" style={{ color: "#f8fafc", textDecoration: "none", background: "rgba(255,255,255,0.08)", padding: "0.28rem 0.65rem", borderRadius: "9999px", border: "1px solid rgba(255,255,255,0.18)" }}>
+              <Link href="/reservar?paquete=ceramic-coating" style={{ color: "#f8fafc", textDecoration: "none", background: "rgba(255,255,255,0.08)", padding: "0.26rem 0.62rem", borderRadius: "9999px", border: "1px solid rgba(255,255,255,0.18)" }}>
                 🛡️ <strong>Cerámico 9H: $11,999</strong>
               </Link>
-              <Link href="/membresia-doctor-foam" style={{ color: "#86efac", textDecoration: "none", background: "rgba(22,163,74,0.22)", padding: "0.28rem 0.65rem", borderRadius: "9999px", border: "1px solid rgba(134,239,172,0.4)", fontWeight: 700 }}>
+              <Link href="/membresia-doctor-foam" style={{ color: "#86efac", textDecoration: "none", background: "rgba(22,163,74,0.22)", padding: "0.26rem 0.62rem", borderRadius: "9999px", border: "1px solid rgba(134,239,172,0.4)", fontWeight: 700 }}>
                 🔄 Membresía: $990/mes (+10% OFF fijo)
               </Link>
-            </div>
-
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/reservar" className="btn-premium">
-                Reservar y Pagar en Línea
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-              <a
-                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20me%20interesa%20cotizar%20un%20servicio%20de%20detallado%20a%20domicilio"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cta-location="hero_cta"
-                className="btn-outline"
-                style={{ color: "#ffffff", borderColor: "rgba(255,255,255,0.35)", background: "rgba(16, 185, 129, 0.22)" }}
-              >
-                💬 Cotizar por WhatsApp
-              </a>
-              <a
-                href="/brochure-doctor-foam.pdf"
-                download="Brochure-Corporativo-Doctor-Foam-2026.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline"
-                style={{ color: "#ffffff", borderColor: "rgba(147, 197, 253, 0.45)", background: "rgba(37, 99, 235, 0.22)" }}
-              >
-                📄 Descargar Brochure PDF
-              </a>
             </div>
 
             {/* Above-the-Fold 8-Zone Direct Coverage Selector */}
@@ -1358,9 +1444,16 @@ export default function HomePage() {
               <Link href="/reservar" className="btn-premium">
                 💳 Reservar y Pagar en Línea
               </Link>
-              <Link href="?chat=open" className="btn-outline">
-                💬 Chat para dudas
-              </Link>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20tengo%20dudas%20sobre%20sus%20paquetes%20de%20detallado%20a%20domicilio"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="home_bottom_whatsapp_cta"
+                className="btn-premium"
+                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
+              >
+                💬 Cotizar por WhatsApp
+              </a>
             </div>
             <p style={{ color: "#475569", fontSize: "0.8rem", marginTop: "1rem" }}>
               🔒 Pago seguro con Stripe · Facturación CFDI disponible

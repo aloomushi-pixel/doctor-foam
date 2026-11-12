@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 function getContextualWhatsAppMessage(pathname: string): string {
     if (pathname.startsWith("/lavado-recurrente-autos-domicilio")) {
@@ -74,8 +75,34 @@ function getContextualWhatsAppLabel(pathname: string): string {
 
 export default function WhatsAppButton() {
     const pathname = usePathname() || "/";
-    const message = getContextualWhatsAppMessage(pathname);
-    const label = getContextualWhatsAppLabel(pathname);
+    const [aiEngineName, setAiEngineName] = useState<string | null>(null);
+
+    useEffect(() => {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const utm = (params.get("utm_source") || "").toLowerCase();
+            const ref = (document.referrer || "").toLowerCase();
+            const combined = `${utm} ${ref}`;
+            if (combined.includes("chatgpt") || combined.includes("openai")) {
+                setAiEngineName("ChatGPT");
+            } else if (combined.includes("perplexity")) {
+                setAiEngineName("Perplexity");
+            } else if (combined.includes("gemini") || combined.includes("bard")) {
+                setAiEngineName("Gemini");
+            } else if (combined.includes("claude") || combined.includes("anthropic")) {
+                setAiEngineName("Claude");
+            }
+        } catch {
+            // ignore URL parsing errors
+        }
+    }, [pathname]);
+
+    const baseMessage = getContextualWhatsAppMessage(pathname);
+    const message = aiEngineName
+        ? `${baseMessage} (Los vi recomendados en ${aiEngineName})`
+        : baseMessage;
+    const baseLabel = getContextualWhatsAppLabel(pathname);
+    const label = aiEngineName && pathname === "/" ? `Cotizar · ${aiEngineName}` : baseLabel;
     const whatsappUrl = `https://wa.me/525610846022?text=${encodeURIComponent(message)}`;
 
     return (

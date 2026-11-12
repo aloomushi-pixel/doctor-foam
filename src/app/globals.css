@@ -803,8 +803,8 @@ h6 {
 
   .hero-section {
     min-height: auto;
-    padding-top: 8rem;
-    padding-bottom: 4rem;
+    padding-top: 5.35rem;
+    padding-bottom: 2.75rem;
   }
 
   .footer-grid {
@@ -851,4 +851,18 @@ h6 {
 
 .spinner-rotate {
   animation: spin-linear 1s linear infinite;
+}
+
+/* Short-viewport & AI preview sheet optimization (e.g. 580x542 ChatGPT WebView & 1280x665 laptops) */
+@media (max-height: 700px) {
+  .hero-section {
+    min-height: auto;
+    padding-top: 4.85rem;
+    padding-bottom: 2rem;
+  }
+  .hero-section .btn-premium,
+  .hero-section .btn-outline {
+    padding: 0.7rem 1.25rem;
+    font-size: 0.88rem;
+  }
 }
