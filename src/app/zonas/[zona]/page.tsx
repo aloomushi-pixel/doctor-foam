@@ -85,9 +85,9 @@ const zonesData: Record<string, {
         fullName: "Interlomas y Jesús del Monte, Huixquilucan",
         state: "Estado de México",
         postalCodes: "C.P. 52760, 52763, 52786, 52787",
-        description: "Clúster residencial vertical y fraccionamientos de alto nivel en el poniente metropolitano",
-        neighborhoods: ["Interlomas", "Bosque Real", "Hacienda de las Palmas", "La Estadía", "Villa Florence", "Jesús del Monte"],
-        metaDesc: "Detallado automotriz premium y lavado recurrente a domicilio en Interlomas, Hacienda de las Palmas y Bosque Real. Unidades autónomas Doctor Foam.",
+        description: "Autolavado premium a domicilio, car wash autónomo y detallado automotriz en torres y privadas de Interlomas",
+        neighborhoods: ["Interlomas", "Bosque Real", "Hacienda de las Palmas", "La Estadía", "Villa Florence", "Jesús del Monte", "Paseo Interlomas"],
+        metaDesc: "Autolavado en Interlomas a domicilio, car wash premium y detallado automotriz en Hacienda de las Palmas y Bosque Real. Unidad 100% autónoma (agua y luz propia).",
         intro: "Interlomas, Hacienda de las Palmas y Jesús del Monte concentran decenas de torres residenciales y fraccionamientos cerrados donde el cuidado automotriz a domicilio ahorra horas de traslados. Doctor Foam opera rutas diarias en toda la zona de Interlomas.",
         logistics: "Enviamos con anticipación las placas de nuestra unidad móvil y nombres de los técnicos para autorización por QR o caseta en fraccionamientos de Hacienda de las Palmas, Villa Florence y torres sobre Blvd. Interlomas. Trabajamos en tus cajones de estacionamiento con suministro propio de agua y energía.",
         landmarks: ["Blvd. Interlomas y Paseo Interlomas", "Hacienda de las Palmas", "Jesús del Monte y Villa Florence", "Parque Interlomas", "Vialidad de la Barranca"],
@@ -157,8 +157,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     if (!z) return { title: "Zona no encontrada" };
 
     return {
-        title: `Lavado de Autos a Domicilio y Detallado en ${z.name} ($2,400 | -10% Miembros) | Doctor Foam`,
-        description: `${z.metaDesc} Lavado profundo vapor 180°C ($2,400), Detailing Completo ($7,499) y Membresía ($990/mes + 10% OFF).`,
+        title: `Autolavado a Domicilio, Car Wash y Detallado en ${z.name} ($2,400 | -10% Miembros) | Doctor Foam`,
+        description: `${z.metaDesc} Vapor 180°C ($2,400), Detailing ($7,499) y Membresía $990/mes (-10% OFF).`,
         alternates: { canonical: `https://drfoam.com.mx/zonas/${zona}` },
         openGraph: {
             title: `Detallado Automotriz a Domicilio en ${z.name} ($2,400 | -10% Miembros)`,
@@ -388,7 +388,7 @@ export default async function ZonePage({ params }: PageProps) {
                             </div>
                             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem", justifyContent: "center", alignItems: "center" }}>
                                 <span style={{ fontSize: "0.71rem", fontWeight: 700, color: "#334155" }}>📍 Toca tu colonia:</span>
-                                {z.neighborhoods.slice(0, 7).map((col, idx) => (
+                                {z.neighborhoods.map((col, idx) => (
                                     <a
                                         key={idx}
                                         href={`https://wa.me/525610846022?text=${encodeURIComponent(`Hola Doctor Foam, estoy en ${col} (${z.name}) y quiero cotizar un lavado / detallado a domicilio.`)}`}

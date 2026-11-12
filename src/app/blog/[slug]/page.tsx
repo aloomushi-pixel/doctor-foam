@@ -551,11 +551,11 @@ Un auto recién lavado queda completamente expuesto a los rayos UV, lluvia ácid
     `,
     },
     "detallado-interior-profundo-que-incluye": {
-        title: "Detallado de Interiores e Interior Profundo: Qué Incluye y Precios CDMX",
+        title: "Detallado de Interiores e Interior Profundo ($2,400 CDMX): Qué Incluye",
         date: "2026-05-06",
         category: "Servicios",
         readTime: "7 min",
-        metaDesc: "¿Qué incluye el detallado de interiores e interior profundo automotriz? Lavado de asientos con vapor seco a 180°C y ozono a domicilio en CDMX ($2,400 MXN | -10% Miembros).",
+        metaDesc: "¿Qué incluye el detallado de interiores e interior profundo automotriz ($2,400 MXN | $2,160 Miembro)? Vapor seco a 180°C, piel y ozono a domicilio en CDMX.",
         faqs: [
             {
                 q: "¿Qué incluye el detallado de interiores y lavado profundo de vestiduras a domicilio de Doctor Foam?",
@@ -574,6 +574,11 @@ Un auto recién lavado queda completamente expuesto a los rayos UV, lluvia ácid
 ## Detallado de Interiores vs. Limpieza Convencional: Qué Es un Interior Profundo
 
 Una "limpieza interior" típica de autolavado solo aspira superficialmente y aplica siliconas grasosas sobre el polvo. Un **detallado de interiores** (**interior profundo automotriz**) de grado clínico en Doctor Foam es un protocolo de restauración y bioseguridad a domicilio en CDMX que esteriliza vestiduras, pieles, alfombra, cielo y ductos de aire acondicionado sin saturar de agua la espuma de los asientos.
+
+| Paquete Interior a Domicilio (Agua y Luz Propia) | Tiempo y Secado | Precio Regular | Precio Miembro (-10% OFF) |
+|---|---|---|---|
+| **Industrial Deep Interior (Vapor 180°C + Ozono)** | 3-4 hrs · **Seco en <60 min** | **$2,400 MXN** | **$2,160 MXN** |
+| **Signature Detail (Interior 180°C + Pulido + Motor)** | 5-6 hrs · Restauración Total | **$7,499 MXN** | **$6,749 MXN** |
 
 ## Los 8 Pasos de Nuestro Detallado de Interiores e Interior Profundo a Domicilio
 

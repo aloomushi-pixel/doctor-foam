@@ -166,21 +166,31 @@ export default function PaquetesDetallado() {
         </div>
       </nav>
 
-      <main style={{ paddingTop: "6rem" }}>
-        <section className="section-padding" style={{ textAlign: "center" }}>
+      <main style={{ paddingTop: "4.75rem" }}>
+        <section className="section-padding" style={{ textAlign: "center", paddingTop: "1.25rem", paddingBottom: "1.75rem" }}>
           <div className="container">
-            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.9rem" }}>
+            <Link href="/lavado-profundo-vehiculos-cdmx" style={{ color: "var(--color-gold-400)", textDecoration: "none", fontSize: "0.85rem" }}>
               ← Volver a Lavado Profundo
             </Link>
-            <h1 className="section-title" style={{ marginTop: "1.5rem" }}>
+            <h1 className="section-title" style={{ marginTop: "0.65rem", marginBottom: "0.65rem", fontSize: "clamp(1.65rem, 3.8vw, 2.6rem)" }}>
               Planes y Paquetes de <span className="gradient-text">Detallado Automotriz</span> en CDMX
             </h1>
-            <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "1.5rem" }}>
-              Tres niveles de servicio para tres necesidades diferentes. Todos incluyen IVA, son facturables (CFDI) y se realizan a domicilio con equipo industrial 100% autónomo.
+            <p className="section-subtitle" style={{ maxWidth: "700px", marginBottom: "1rem", fontSize: "0.94rem", lineHeight: 1.55 }}>
+              Tres niveles de restauración a domicilio con agua purificada y planta propia (IVA y CFDI incluidos). Contrata tu 1er lavado profundo y desbloquea <strong>-10% OFF fijo con Membresía ($990/mes)</strong>.
             </p>
-            <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "2rem" }}>
-              <Link href="/reservar" className="btn-premium">
-                📅 Agendar Paquete en Línea
+            <div style={{ display: "flex", gap: "0.65rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "1.25rem" }}>
+              <a
+                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20estoy%20viendo%20los%20paquetes%20de%20detallado%20y%20quiero%20cotizar%20para%20mi%20auto"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cta-location="cluster_paquetes_hero_whatsapp"
+                className="btn-premium"
+                style={{ background: "linear-gradient(135deg, #16a34a, #15803d)", padding: "0.7rem 1.25rem" }}
+              >
+                💬 Cotizar por WhatsApp
+              </a>
+              <Link href="/reservar" className="btn-premium" style={{ padding: "0.7rem 1.25rem" }}>
+                📅 Agendar en Línea
               </Link>
               <a
                 href="/brochure-doctor-foam.pdf"
@@ -189,18 +199,9 @@ export default function PaquetesDetallado() {
                 rel="noopener noreferrer"
                 data-cta-location="cluster_paquetes_hero_brochure_pdf"
                 className="btn-outline"
-                style={{ borderColor: "#2563eb", color: "#2563eb" }}
+                style={{ borderColor: "#2563eb", color: "#2563eb", padding: "0.65rem 1rem", fontSize: "0.82rem" }}
               >
-                📄 Descargar Brochure PDF
-              </a>
-              <a
-                href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20estoy%20viendo%20los%20paquetes%20de%20detallado%20y%20quiero%20asesor%C3%ADa"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cta-location="cluster_paquetes_hero_whatsapp"
-                className="btn-outline"
-              >
-                💬 Asesoría por WhatsApp
+                📄 Brochure PDF
               </a>
             </div>
 

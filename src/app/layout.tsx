@@ -1,3 +1,4 @@
+import AiGeoConciergeBanner from "@/components/AiGeoConciergeBanner";
 import AuthProvider from "@/components/AuthProvider";
 import DrFoamTelemetry from "@/components/DrFoamTelemetry";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -12,13 +13,15 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://drfoam.com.mx"),
   title: "Detallado Automotriz a Domicilio y Car Detailing CDMX (Desde $2,499) | Doctor Foam",
   description:
-    "Car detailing y lavado de asientos con vapor 180°C a domicilio en CDMX ($2,499), corrección swirls ($7,449), cerámico 9H y Membresía $990/mes (-10% OFF). Agua y luz propia.",
+    "Car detailing, lavado de asientos y limpieza de motor con vapor 180°C a domicilio CDMX ($2,499), pulido swirls ($7,449) y Membresía $990/mes (-10% OFF).",
   keywords: [
     "detallado automotriz a domicilio",
     "lavado de autos a domicilio",
     "lavado de autos a domicilio cdmx",
     "detallado automotriz cdmx",
     "lavado de asientos de auto",
+    "limpieza de motores de coches",
+    "lavado de motor con vapor seco cdmx",
     "lavado de vestiduras a domicilio cdmx",
     "detailing a domicilio",
     "car detailing CDMX",
@@ -97,6 +100,7 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           <DrFoamTelemetry />
+          <AiGeoConciergeBanner />
           {children}
           <WhatsAppButton />
           <script

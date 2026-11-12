@@ -1,12 +1,12 @@
 {
-  "version": "1.45.0-auto",
-  "cycle": 45,
-  "deployedAt": "2026-11-12T05:12:30Z",
+  "version": "1.46.0-auto",
+  "cycle": 46,
+  "deployedAt": "2026-11-12T09:22:00Z",
   "status": "autonomous_loop_active",
   "features": [
     "gsc_analytics_sync_tres_raices_isolated_table",
     "ai_geo_attribution_telemetry",
-    "ai_geo_concierge_fasttrack_hero_banner_chatgpt_perplexity_gemini",
+    "ai_geo_concierge_fasttrack_global_and_hero_banner",
     "ai_geo_whatsapp_button_lead_source_tagging",
     "llms_txt_direct_package_action_citations",
     "canonical_host_308_and_301_redirects",
@@ -15,7 +15,7 @@
     "home_hero_0ms_ssr_visibility_lcp_and_short_viewport_542px_ctas",
     "home_hero_above_fold_price_and_1tap_package_bar",
     "home_hero_direct_booking_and_8_zone_selector",
-    "home_frontloaded_serp_snippet_car_detailing_prices",
+    "home_frontloaded_serp_snippet_car_detailing_engine_cleaning_prices",
     "home_spanish_verified_reviews",
     "reservar_3_step_streamlined_checkout",
     "reservar_auto_member_10pct_query_param",
@@ -26,8 +26,9 @@
     "custom_hero_membresia_luxury_photography",
     "corporate_5page_pdf_brochure_interior_exterior_ceramic",
     "headless_preload_and_scraper_bot_filtering",
-    "zonas_0pct_scroll_mobile_cta_priority_and_multilingual_concierge",
+    "zonas_all_colonias_0pct_scroll_whatsapp_pills_and_autolavado_interlomas_seo",
     "zonas_47pct_scroll_landmark_and_qr_caseta_1tap_whatsapp_bars",
+    "paquetes_mobile_0pct_scroll_whatsapp_priority_and_compact_hero",
     "blog_responsive_mobile_hero_and_early_30pct_scroll_conversion_tables",
     "contextual_floating_whatsapp_button_for_zones_and_blog_topics"
   ]
