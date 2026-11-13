@@ -1,9 +1,13 @@
 {
-  "version": "1.47.0-auto",
-  "cycle": 47,
-  "deployedAt": "2026-11-12T13:38:00Z",
+  "version": "1.48.0-auto",
+  "cycle": 48,
+  "deployedAt": "2026-11-13T20:45:00Z",
   "status": "autonomous_loop_active",
   "features": [
+    "dual_loop_v4_architecture_loop1_and_loop2_meta_prompt_auditor",
+    "sha256_immutable_guardrails_and_session_start_hook",
+    "windows_watchdog_and_persistent_cron_sidecars",
+    "ux_conscious_monitors_js_runtime_error_and_mobile_44px_tap_targets",
     "gsc_analytics_sync_tres_raices_isolated_table",
     "ai_geo_attribution_telemetry",
     "ai_geo_concierge_fasttrack_global_and_hero_banner",
@@ -26,9 +30,9 @@
     "custom_hero_membresia_luxury_photography",
     "corporate_5page_pdf_brochure_interior_exterior_ceramic",
     "headless_preload_and_scraper_bot_filtering",
-    "zonas_all_colonias_0pct_scroll_whatsapp_pills_and_autolavado_interlomas_seo",
+    "zonas_all_colonias_0pct_scroll_whatsapp_pills_and_44px_touch_targets",
     "zonas_47pct_scroll_landmark_and_qr_caseta_1tap_whatsapp_bars",
-    "paquetes_and_diferencias_and_recurrente_0pct_scroll_whatsapp_ctas",
+    "paquetes_50pct_scroll_diagnostic_and_44px_touch_targets",
     "blog_topic_matched_0pct_scroll_1tap_micro_commitment_pills",
     "blog_responsive_mobile_hero_and_early_30pct_scroll_conversion_tables",
     "contextual_floating_whatsapp_button_for_zones_clusters_and_blog_topics"

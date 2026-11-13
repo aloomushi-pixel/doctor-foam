@@ -13,6 +13,8 @@ export default function DrFoamTelemetry() {
   const maxScrollRef = useRef<number>(0);
   const milestonesSentRef = useRef<Set<number>>(new Set());
   const recentClicksRef = useRef<Array<{ t: number; x: number; y: number }>>([]);
+  const runtimeErrorCountRef = useRef<number>(0);
+  const smallTapReportedRef = useRef<Set<string>>(new Set());
 
   // Track route changes & session start
   useEffect(() => {
@@ -21,6 +23,8 @@ export default function DrFoamTelemetry() {
     pageEnterRef.current = Date.now();
     maxScrollRef.current = 0;
     milestonesSentRef.current = new Set();
+    runtimeErrorCountRef.current = 0;
+    smallTapReportedRef.current = new Set();
 
     const fullPath =
       typeof window !== "undefined"
@@ -119,6 +123,27 @@ export default function DrFoamTelemetry() {
 
       const interactive = target.closest("a, button") as HTMLElement | null;
       if (interactive) {
+        // 1b. Conscious UX Mobile Tap Target Audit (< 44x44 px on mobile viewports)
+        if (window.innerWidth < 768 && !interactive.closest("p")) {
+          const rect = interactive.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0 && (rect.height < 44 || rect.width < 44)) {
+            const tapKey = `${interactive.tagName}:${interactive.getAttribute("data-cta-location") || interactive.id || (interactive.innerText || "").trim().slice(0, 30)}`;
+            if (!smallTapReportedRef.current.has(tapKey) && smallTapReportedRef.current.size < 5) {
+              smallTapReportedRef.current.add(tapKey);
+              trackDrFoamEvent({
+                event_name: "mobile_small_tap_target",
+                event_category: "ux_friction",
+                duration_ms: durationMs,
+                scroll_pct: scrollPct,
+                element_tag: interactive.tagName.toLowerCase(),
+                element_id: interactive.getAttribute("data-cta-location") || interactive.id || undefined,
+                element_text: (interactive.innerText || interactive.getAttribute("aria-label") || "").trim().slice(0, 80),
+                metadata: { width: Math.round(rect.width), height: Math.round(rect.height) },
+              });
+            }
+          }
+        }
+
         const href =
           interactive.getAttribute("href") ||
           (interactive as HTMLAnchorElement).href ||
@@ -266,14 +291,51 @@ export default function DrFoamTelemetry() {
       }
     };
 
+    const handleRuntimeError = (event: ErrorEvent) => {
+      if (window.location.pathname.startsWith("/admin")) return;
+      if (runtimeErrorCountRef.current >= 3) return;
+      runtimeErrorCountRef.current += 1;
+      trackDrFoamEvent({
+        event_name: "js_runtime_error",
+        event_category: "ux_friction",
+        duration_ms: Date.now() - pageEnterRef.current,
+        scroll_pct: maxScrollRef.current,
+        element_text: String(event.message || "Unknown JS Error").slice(0, 180),
+        metadata: {
+          filename: event.filename ? String(event.filename).slice(-80) : undefined,
+          lineno: event.lineno,
+          colno: event.colno,
+        },
+      });
+    };
+
+    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+      if (window.location.pathname.startsWith("/admin")) return;
+      if (runtimeErrorCountRef.current >= 3) return;
+      runtimeErrorCountRef.current += 1;
+      const reason = event.reason instanceof Error ? event.reason.message : String(event.reason || "Unhandled rejection");
+      trackDrFoamEvent({
+        event_name: "js_runtime_error",
+        event_category: "ux_friction",
+        duration_ms: Date.now() - pageEnterRef.current,
+        scroll_pct: maxScrollRef.current,
+        element_text: reason.slice(0, 180),
+        metadata: { type: "unhandledrejection" },
+      });
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     document.addEventListener("click", handleClick, { capture: true });
     document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("error", handleRuntimeError);
+    window.addEventListener("unhandledrejection", handleUnhandledRejection);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("click", handleClick, { capture: true });
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("error", handleRuntimeError);
+      window.removeEventListener("unhandledrejection", handleUnhandledRejection);
     };
   }, []);
 

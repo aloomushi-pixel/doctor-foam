@@ -285,8 +285,9 @@ export default function PaquetesDetallado() {
                       className="btn-premium"
                       style={{
                         flex: 1,
-                        padding: "0.42rem 0.6rem",
-                        fontSize: "0.74rem",
+                        minHeight: "44px",
+                        padding: "0.5rem 0.65rem",
+                        fontSize: "0.78rem",
                         justifyContent: "center",
                         textAlign: "center",
                         background: "linear-gradient(135deg, #16a34a, #15803d)",
@@ -297,7 +298,7 @@ export default function PaquetesDetallado() {
                     <Link
                       href={q.slug === "membresia" ? "/membresia-doctor-foam" : `/reservar?paquete=${q.slug}`}
                       className="btn-outline"
-                      style={{ padding: "0.42rem 0.6rem", fontSize: "0.74rem", justifyContent: "center", textAlign: "center" }}
+                      style={{ minHeight: "44px", padding: "0.5rem 0.75rem", fontSize: "0.78rem", display: "inline-flex", alignItems: "center", justifyContent: "center", textAlign: "center" }}
                     >
                       Reservar
                     </Link>
@@ -309,7 +310,7 @@ export default function PaquetesDetallado() {
         </section>
 
         {/* Hero Image */}
-        <div style={{ maxWidth: "900px", margin: "0 auto 2rem", padding: "0 1.5rem" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto 1.5rem", padding: "0 1.5rem" }}>
           <Image
             src="/seo/hero-paquetes.png"
             alt="Tres autos con diferentes niveles de acabado de detallado automotriz en estudio profesional"
@@ -318,6 +319,30 @@ export default function PaquetesDetallado() {
             style={{ width: "100%", height: "auto", borderRadius: "1.25rem", boxShadow: "0 4px 25px rgba(0,0,0,0.08)" }}
             priority
           />
+        </div>
+
+        {/* Mid-Page 50%-Scroll 1-Tap Diagnostic Strip */}
+        <div style={{ maxWidth: "900px", margin: "0 auto 1.25rem", padding: "0 1.5rem" }}>
+          <div style={{ padding: "1rem 1.25rem", borderRadius: "0.95rem", background: "linear-gradient(135deg, #f0fdf4, #eff6ff)", border: "1.5px solid #86efac", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "0.85rem" }}>
+            <div style={{ flex: "1 1 260px" }}>
+              <div style={{ fontSize: "0.92rem", fontWeight: 800, color: "#0f172a" }}>
+                ¿Indeciso entre Interior Profundo ($2,400), Signature ($7,499) o Cerámico 9H ($10,999)?
+              </div>
+              <div style={{ fontSize: "0.78rem", color: "#475569", marginTop: "0.15rem" }}>
+                Dinos tu modelo de auto y colonia por WhatsApp y te recomendamos el paquete exacto en 60 segundos.
+              </div>
+            </div>
+            <a
+              href="https://wa.me/525610846022?text=Hola%20Doctor%20Foam%2C%20estoy%20comparando%20sus%20paquetes%20y%20quiero%20que%20me%20recomienden%20el%20ideal%20para%20mi%20auto"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta-location="cluster_paquetes_mid_diagnostic_whatsapp"
+              className="btn-premium"
+              style={{ minHeight: "44px", background: "linear-gradient(135deg, #16a34a, #15803d)", padding: "0.6rem 1.15rem", fontSize: "0.84rem" }}
+            >
+              💬 Recomendación por WhatsApp
+            </a>
+          </div>
         </div>
 
         {packages.map((p, i) => (

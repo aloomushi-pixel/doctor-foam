@@ -1,0 +1,15 @@
+{
+  "drfoam-guardrails-session-start": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .agents/scripts/verify_immutable_guardrails.cjs",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

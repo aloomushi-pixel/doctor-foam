@@ -281,6 +281,8 @@ async function auditSupabaseUx() {
       r.event_name === "checkout_initiated"
   );
   const rageRows = humanRows.filter((r) => r.event_name === "rage_click");
+  const jsErrorRows = humanRows.filter((r) => r.event_name === "js_runtime_error");
+  const smallTapRows = humanRows.filter((r) => r.event_name === "mobile_small_tap_target");
   const aiGeoRows = humanRows.filter(
     (r) => r.attribution_channel === "geo_ai" || Boolean(r.ai_engine)
   );
@@ -321,6 +323,8 @@ async function auditSupabaseUx() {
     googleMapsRwgEvents: rwgRows.length,
     bookingFunnelEvents: bookingRows.length,
     rageClicks: rageRows.length,
+    jsRuntimeErrors: jsErrorRows.length,
+    smallTapTargets: smallTapRows.length,
     googlebotWrsRenders: googlebotWrsRows.length,
     googlebotWrsPages: Array.from(new Set(googlebotWrsRows.map((r) => r.path))),
     headlessScraperRenders: headlessScraperRows.length,

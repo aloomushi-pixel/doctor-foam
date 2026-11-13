@@ -451,13 +451,13 @@ export default async function ZonePage({ params }: PageProps) {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 data-cta-location={`zone_quick_strip_${zona}_${idx}`}
-                                                style={{ display: "block", textAlign: "center", padding: "0.45rem 0.4rem", borderRadius: "0.5rem", background: "#f0fdf4", border: "1px solid #86efac", color: "#15803d", fontWeight: 700, fontSize: "0.73rem", textDecoration: "none" }}
+                                                style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "44px", textAlign: "center", padding: "0.5rem 0.45rem", borderRadius: "0.5rem", background: "#f0fdf4", border: "1px solid #86efac", color: "#15803d", fontWeight: 700, fontSize: "0.76rem", textDecoration: "none" }}
                                             >
                                                 💬 WhatsApp
                                             </a>
                                             <Link
                                                 href={`/reservar?paquete=${pkg.slug}&zona=${encodeURIComponent(z.name)}`}
-                                                style={{ display: "block", textAlign: "center", padding: "0.45rem 0.4rem", borderRadius: "0.5rem", background: "#eff6ff", border: "1px solid #bfdbfe", color: "#1d4ed8", fontWeight: 700, fontSize: "0.73rem", textDecoration: "none" }}
+                                                style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "44px", textAlign: "center", padding: "0.5rem 0.45rem", borderRadius: "0.5rem", background: "#eff6ff", border: "1px solid #bfdbfe", color: "#1d4ed8", fontWeight: 700, fontSize: "0.76rem", textDecoration: "none" }}
                                             >
                                                 📅 Reservar
                                             </Link>
